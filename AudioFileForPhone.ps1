@@ -17,15 +17,16 @@ WHAT THIS IS (AND ISN’T)
       It trades advanced audio features for predictability, robustness,
       and a simple console experience.
     - Used via a .bat wrapper (drag & drop a folder) or directly from PowerShell.
-      No GUI, just verbose console + log output.
+      Optional TUI prompts when launched in interactive mode.
     - Focused on:
         - Making big podcast archives small enough for phone storage.
         - Fixing overly long, problematic filenames for Android / MTP.
         - Mirroring input folder structure into a clean output tree.
+        - Optional, batch-level metadata helpers (cover + artist/album).
     - Not focused on:
         - Fancy DSP, noise reduction, or EQ.
         - Multi-format support (input is MP3, output is MP3).
-        - Tag editing beyond a simple, safe title when needed.
+        - Per-track tagging workflows or library management.
 
 FEATURES
     - Folder-based workflow:
@@ -54,11 +55,18 @@ FEATURES
         - Uses ffprobe to check for an existing title tag.
         - If no title is present, sets the title to the sanitized base name.
         - Copies all other metadata from source, forces ID3v2.3 for compatibility.
+    - Optional batch metadata (interactive or parameter-driven):
+        - Can embed an album cover image (.jpg/.png) into every output MP3.
+        - Can set Artist and Album tags for all output files.
+        - In interactive mode, cover is selected via file picker.
+        - Warns (and logs) if the chosen cover is unusually large
+          (size and/or dimensions), to avoid bloating every output file.
     - Per-run log file:
         - Stored in the run’s output root:
             AudioFileForPhone_log.txt
         - Logs:
             - Start time, input folder, output root, bitrate, max name length.
+            - Selected metadata options (cover/artist/album) when used.
             - Each file processed, input and output paths.
             - Sanitized base name chosen for each file.
             - Conversion success/failure details and summary.
@@ -70,6 +78,7 @@ MY INTENDED USAGE
         - Converts them to 64 kbps CBR.
         - Writes them into a fresh AudioForPhone_* output tree.
         - Shortens and sanitizes filenames so Android accepts them.
+        - Optionally embeds cover + sets artist/album tags for AIMP/players.
     - After the run:
         - I copy the AudioForPhone_*\<InputFolderName>\ folder to my phone.
         - I keep the log file around if I suspect something failed mid-run.
@@ -95,26 +104,31 @@ USAGE
         - Drag a folder containing .mp3 files onto:
             AudioFileForPhone.bat
         - The .bat calls:
-            AudioFileForPhone.ps1 -InputFolder "<that folder>"
+            AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
         - Output:
             <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
                 <InputFolderName>\...
             plus:
                 AudioFileForPhone_log.txt    (in the AudioForPhone_* root)
-
     B) Direct PowerShell (default options)
         - From a PowerShell prompt:
             .\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts"
         - Uses:
             -BitrateKbps     64
             -MaxBaseLength   60
-
     C) Direct PowerShell (custom options)
         - Example: slightly higher bitrate, tighter filename length:
             .\AudioFileForPhone.ps1 
                 -InputFolder   "C:\MyPodcasts" 
                 -BitrateKbps   96 
                 -MaxBaseLength 50
+    D) Direct PowerShell (with batch metadata)
+        - Provide cover + artist/album without interactive prompts:
+            .\AudioFileForPhone.ps1
+                -InputFolder "C:\MyPodcasts"
+                -CoverPath  "C:\Images\cover.jpg"
+                -Artist     "PowerShell After Dark"
+                -Album      "PSConfEU 2024"
 
 NOTES
     - Input:
@@ -131,10 +145,13 @@ NOTES
     - Metadata:
         - Existing title tags are preserved when present.
         - When missing, the title is set to the sanitized base name.
+        - Artist/Album can be set for all outputs when provided.
+        - Album cover can be embedded when a CoverPath is provided.
         - ID3v2.3 is enforced for broader compatibility.
     - Logging:
         - A single log file is created per run in the AudioForPhone_* root.
-        - All important operations and failures are logged.
+        - All important operations and failures are logged, including
+          cover diagnostics warnings when a cover is used.
 
 LIMITATIONS
     - Input format limited to MP3:
@@ -160,6 +177,10 @@ TROUBLESHOOTING
     - "Could not resolve input folder":
         - The path passed from the .bat may contain quotes or be invalid.
         - Ensure you are dragging a real folder, not a shortcut.
+    - Cover picker does not open:
+        - Ensure the .bat launches PowerShell with -Sta (the provided wrapper does).
+        - If running manually, use:
+            pwsh -Sta -File .\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts" -Interactive
     - Long path / ItemNotFound errors:
         - Move or rename the input folder to a shorter path (e.g. C:\P)
           and run the tool again from there.
@@ -181,10 +202,18 @@ param(
     [int]$BitrateKbps = 64,
 
     # Max length of the base filename, without extension
-    [int]$MaxBaseLength = 60
+    [int]$MaxBaseLength = 60,
+
+    # Enables simple TUI prompts + file picker, intended for .bat usage
+    [switch]$Interactive,
+
+    # Non-interactive overrides, optional
+    [string]$CoverPath,
+    [string]$Artist,
+    [string]$Album
 )
 
-# --- Script path & dir ---
+# --- Script path & dir, computed ONCE here, not inside functions ---
 $ScriptPath = $MyInvocation.MyCommand.Path
 $ScriptDir  = Split-Path -Parent $ScriptPath
 
@@ -194,12 +223,179 @@ Write-Host "[INFO] Script dir  : $ScriptDir"
 Write-Host "[INFO] Raw input   : '$InputFolder'"
 Write-Host "[INFO] Bitrate     : ${BitrateKbps}kbps"
 Write-Host "[INFO] Max name    : $MaxBaseLength chars"
+Write-Host "[INFO] Interactive : $Interactive"
 Write-Host ""
 
 # --- Basic sanity check on param ---
 if ([string]::IsNullOrWhiteSpace($InputFolder)) {
     Write-Error "[FATAL] InputFolder parameter is null or empty. This usually means the .bat did not pass the path correctly."
     exit 1
+}
+
+function Read-YesNo {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Prompt,
+
+        [bool]$DefaultYes = $false
+    )
+
+    $defaultHint = if ($DefaultYes) { "Y/n" } else { "y/N" }
+
+    while ($true) {
+        $ans = Read-Host "$Prompt ($defaultHint)"
+        if ([string]::IsNullOrWhiteSpace($ans)) { return $DefaultYes }
+
+        switch ($ans.Trim().ToLowerInvariant()) {
+            'y' { return $true }
+            'yes' { return $true }
+            'n' { return $false }
+            'no' { return $false }
+            default { Write-Host "[WARN] Please answer y or n." }
+        }
+    }
+}
+
+function Select-CoverFileDialog {
+    param(
+        [string]$Title = "Select album cover image",
+        [string]$Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*"
+    )
+
+    try {
+        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
+        $ofd = New-Object System.Windows.Forms.OpenFileDialog
+        $ofd.Title = $Title
+        $ofd.Filter = $Filter
+        $ofd.Multiselect = $false
+
+        $result = $ofd.ShowDialog()
+        if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
+            return $ofd.FileName
+        }
+        return $null
+    }
+    catch {
+        Write-Warning "[WARN] Could not open file picker. (Tip: wrapper should launch PowerShell in STA mode.)"
+        Write-Warning "[WARN] Error: $_"
+        return $null
+    }
+}
+
+function Validate-CoverPath {
+    param([string]$Path)
+
+    if ([string]::IsNullOrWhiteSpace($Path)) { return $false }
+    if (-not (Test-Path -LiteralPath $Path)) { return $false }
+
+    $ext = [System.IO.Path]::GetExtension($Path).ToLowerInvariant()
+    return @('.jpg', '.jpeg', '.png') -contains $ext
+}
+
+function Get-CoverDiagnostics {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    $diag = [ordered]@{
+        Path      = $Path
+        SizeBytes = $null
+        SizeMB    = $null
+        Width     = $null
+        Height    = $null
+        Warnings  = @()
+    }
+
+    try {
+        $fi = Get-Item -LiteralPath $Path -ErrorAction Stop
+        $diag.SizeBytes = [int64]$fi.Length
+        $diag.SizeMB    = [Math]::Round(($fi.Length / 1MB), 2)
+
+        # Size heuristic: warn if > 2MB (can bloat every MP3)
+        if ($diag.SizeMB -gt 2.0) {
+            $diag.Warnings += ("Cover is {0} MB. Consider a smaller JPG to avoid bloating every output MP3." -f $diag.SizeMB)
+        }
+
+        # Dimension heuristic: best-effort only (System.Drawing)
+        try {
+            Add-Type -AssemblyName System.Drawing -ErrorAction Stop | Out-Null
+            $img = [System.Drawing.Image]::FromFile($Path)
+            try {
+                $diag.Width  = $img.Width
+                $diag.Height = $img.Height
+
+                if (($diag.Width -gt 1200) -or ($diag.Height -gt 1200)) {
+                    $diag.Warnings += ("Cover dimensions are {0}x{1}. Consider ~800x800 to keep file sizes sane." -f $diag.Width, $diag.Height)
+                }
+            }
+            finally {
+                $img.Dispose()
+            }
+        }
+        catch {
+            # Ignore, dimensions are optional
+        }
+    }
+    catch {
+        $diag.Warnings += ("Could not read cover file info: {0}" -f $_)
+    }
+
+    return [pscustomobject]$diag
+}
+
+# --- Optional: interactive metadata step, only if requested ---
+if ($Interactive) {
+    Write-Host "==== Optional metadata step ===="
+    Write-Host "This run can optionally embed an album cover and set Artist/Album tags for all output files."
+    Write-Host ""
+
+    # Cover
+    if ([string]::IsNullOrWhiteSpace($CoverPath)) {
+        $doCover = Read-YesNo -Prompt "Add album cover to output MP3 metadata?" -DefaultYes:$false
+        if ($doCover) {
+            $picked = Select-CoverFileDialog
+            if ($picked -and (Validate-CoverPath -Path $picked)) {
+                $CoverPath = $picked
+                Write-Host "[INFO] Cover selected: $CoverPath"
+
+                $coverDiag = Get-CoverDiagnostics -Path $CoverPath
+                if ($coverDiag.SizeMB -ne $null) {
+                    Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                }
+                if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
+                    Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
+                }
+                foreach ($w in $coverDiag.Warnings) {
+                    Write-Warning "[WARN] $w"
+                }
+            }
+            else {
+                Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
+                $CoverPath = $null
+            }
+        }
+    }
+
+    # Artist
+    if ([string]::IsNullOrWhiteSpace($Artist)) {
+        $doArtist = Read-YesNo -Prompt "Set Artist tag manually for all output files?" -DefaultYes:$false
+        if ($doArtist) {
+            $Artist = (Read-Host "Artist").Trim()
+            if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
+        }
+    }
+
+    # Album
+    if ([string]::IsNullOrWhiteSpace($Album)) {
+        $doAlbum = Read-YesNo -Prompt "Set Album tag manually for all output files?" -DefaultYes:$false
+        if ($doAlbum) {
+            $Album = (Read-Host "Album").Trim()
+            if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
+        }
+    }
+
+    Write-Host ""
 }
 
 # --- Helper: find ffmpeg / ffprobe either next to script or in PATH ---
@@ -209,7 +405,6 @@ function Get-ToolPath {
         [string]$ExeName
     )
 
-    # Use the script directory 
     $localPath = Join-Path $ScriptDir $ExeName
     Write-Host "[DEBUG] Checking for $ExeName next to script: $localPath"
     if (Test-Path $localPath) {
@@ -267,12 +462,15 @@ if (-not (Test-Path $outputRoot)) {
 # --- Log file ---
 $logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
 "==== AudioFileForPhone Log ====" | Out-File -FilePath $logPath -Encoding UTF8
-"Start time    : $(Get-Date)"    | Add-Content -Path $logPath
-"Input folder  : $InputFolder"   | Add-Content -Path $logPath
-"Output root   : $outputRoot"    | Add-Content -Path $logPath
-"Bitrate (kbps): $BitrateKbps"   | Add-Content -Path $logPath
-"Max base len  : $MaxBaseLength" | Add-Content -Path $logPath
-""                                  | Add-Content -Path $logPath
+"Start time    : $(Get-Date)"     | Add-Content -Path $logPath
+"Input folder  : $InputFolder"    | Add-Content -Path $logPath
+"Output root   : $outputRoot"     | Add-Content -Path $logPath
+"Bitrate (kbps): $BitrateKbps"    | Add-Content -Path $logPath
+"Max base len  : $MaxBaseLength"  | Add-Content -Path $logPath
+"CoverPath     : $CoverPath"      | Add-Content -Path $logPath
+"Artist        : $Artist"         | Add-Content -Path $logPath
+"Album         : $Album"          | Add-Content -Path $logPath
+""                                   | Add-Content -Path $logPath
 
 function Write-Log {
     param(
@@ -284,7 +482,30 @@ function Write-Log {
     Add-Content -Path $logPath -Value $line
 }
 
-# --- Output base ---
+# --- Validate cover path, non-interactive parameter or interactive pick + log diagnostics ---
+if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
+    if (-not (Validate-CoverPath -Path $CoverPath)) {
+        Write-Log ("Invalid CoverPath '{0}'. Continuing without cover." -f $CoverPath) "WARN"
+        $CoverPath = $null
+    }
+    else {
+        $coverDiag = Get-CoverDiagnostics -Path $CoverPath
+
+        if ($coverDiag.SizeMB -ne $null) {
+            Write-Log ("Cover size: {0} MB" -f $coverDiag.SizeMB) "INFO"
+        }
+        if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
+            Write-Log ("Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height) "INFO"
+        }
+        foreach ($w in $coverDiag.Warnings) {
+            Write-Log $w "WARN"
+        }
+
+        Write-Log ("Cover enabled: {0}" -f $CoverPath) "INFO"
+    }
+}
+
+# --- Output base, mirrors input folder name ---
 $inputLeaf  = Split-Path $InputFolder -Leaf
 $outputBase = Join-Path $outputRoot $inputLeaf
 
@@ -347,7 +568,7 @@ foreach ($file in $files) {
         New-Item -ItemType Directory -Path $outDir -Force | Out-Null
     }
 
-    # Build sanitized + shortened filename, keep date
+    # Build sanitized + shortened filename, keep date 
     $originalBase = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
 
     if ($originalBase -match '^(?<date>\d{4}-\d{2}-\d{2})\s*-?\s*(?<rest>.*)$') {
@@ -359,9 +580,7 @@ foreach ($file in $files) {
         $titlePart = $originalBase
     }
 
-    # Remove non-safe chars, keep letters, digits, spaces, - and _
     $safeTitle = $titlePart -replace '[^\p{L}\p{Nd}\s\-_]', ''
-    # Collapse whitespace and trim
     $safeTitle = ($safeTitle -replace '\s+', ' ').Trim()
 
     if ([string]::IsNullOrWhiteSpace($safeTitle)) {
@@ -370,17 +589,15 @@ foreach ($file in $files) {
 
     $base = "$datePart - $safeTitle"
 
-    # Enforce max length
     if ($base.Length -gt $MaxBaseLength) {
         $base = $base.Substring(0, $MaxBaseLength).Trim()
     }
 
     Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $base, $originalBase) "DEBUG"
 
-    # Handle collisions in this output directory
-    $newBase  = $base
-    $counter  = 1
-    $extension = '.mp3'   # output is always mp3
+    $newBase    = $base
+    $counter    = 1
+    $extension  = '.mp3'
 
     while ($true) {
         $candidateName = "$newBase$extension"
@@ -437,24 +654,51 @@ foreach ($file in $files) {
         Write-Log ("ffprobe failed for '{0}': {1}" -f $file.FullName, $_) "WARN"
     }
 
-    # Copy all metadata, and force ID3v2.3 
+    # Build metadata args 
     $metadataArgs = @("-map_metadata","0","-id3v2_version","3")
 
     if (-not $hasTitle) {
-        # Use the sanitized base, including date as title
         $title = $newBase
         $metadataArgs += @("-metadata","title=$title")
         Write-Host "       [INFO] Setting title tag: $title"
     }
 
-    # ffmpeg re-encode to MP3 64kbps CBR 
-    $ffArgs = @(
-        "-y",
-        "-i", $file.FullName,
-        "-vn",
-        "-acodec", "libmp3lame",
-        "-b:a", ("{0}k" -f $BitrateKbps)
-    ) + $metadataArgs + @($outPath)
+    if (-not [string]::IsNullOrWhiteSpace($Artist)) {
+        $metadataArgs += @("-metadata","artist=$Artist")
+        Write-Host "       [INFO] Setting artist tag: $Artist"
+    }
+    if (-not [string]::IsNullOrWhiteSpace($Album)) {
+        $metadataArgs += @("-metadata","album=$Album")
+        Write-Host "       [INFO] Setting album tag: $Album"
+    }
+
+    # ffmpeg re-encode 
+    if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
+        Write-Host "       [INFO] Embedding cover: $CoverPath"
+
+        $ffArgs = @(
+            "-y",
+            "-i", $file.FullName,
+            "-i", $CoverPath,
+            "-map", "0:a:0",
+            "-c:a", "libmp3lame",
+            "-b:a", ("{0}k" -f $BitrateKbps),
+            "-map", "1:0",
+            "-c:v", "mjpeg",
+            "-disposition:v", "attached_pic",
+            "-metadata:s:v", "title=Album cover",
+            "-metadata:s:v", "comment=Cover (front)"
+        ) + $metadataArgs + @($outPath)
+    }
+    else {
+        $ffArgs = @(
+            "-y",
+            "-i", $file.FullName,
+            "-vn",
+            "-acodec", "libmp3lame",
+            "-b:a", ("{0}k" -f $BitrateKbps)
+        ) + $metadataArgs + @($outPath)
+    }
 
     Write-Host "       [DEBUG] ffmpeg command line:"
     Write-Host "              $ffmpeg " + ($ffArgs -join " ")
