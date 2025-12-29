@@ -8,7 +8,7 @@ Dependencies: PowerShell 5.1+ or PowerShell 7+, ffmpeg.exe, ffprobe.exe
 
 SYNOPSIS
     One-preset, no-frills audio converter intended for my own workflow:
-    taking a folder of MP3 podcasts/audiobooks, re-encoding them to a
+    taking a folder of MP3 or M4A podcasts/audiobooks, re-encoding them to a
     phone-friendly bitrate, and outputting files with Android-safe,
     shortened filenames that still keep the date visible.
 
@@ -25,17 +25,17 @@ WHAT THIS IS (AND ISN’T)
         - Optional, batch-level metadata helpers (cover + artist/album).
     - Not focused on:
         - Fancy DSP, noise reduction, or EQ.
-        - Multi-format support (input is MP3, output is MP3).
+        - Multi-format support (input is MP3 or M4A, output is MP3).
         - Per-track tagging workflows or library management.
 
 FEATURES
     - Folder-based workflow:
-        - Input:  a folder containing .mp3 files, recursively processed.
+        - Input:  a folder containing .mp3 and .m4a files, recursively processed.
         - Output: a new root folder per run:
             <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
               <InputFolderName>\subfolders...
     - One-preset audio conversion:
-        - Re-encodes all input .mp3 files using ffmpeg.
+        - Re-encodes all input .mp3 and .m4a files using ffmpeg.
         - Default bitrate: 64 kbps CBR, configurable via -BitrateKbps.
         - Drops any video streams, audio-only output.
     - Filename sanitization + shortening for Android:
@@ -74,7 +74,7 @@ FEATURES
 MY INTENDED USAGE
     - I drop a podcast/audiobook folder onto AudioFileForPhone.bat.
     - The script:
-        - Walks the folder tree, finds all .mp3 files.
+        - Walks the folder tree, finds all .mp3 and .m4afiles.
         - Converts them to 64 kbps CBR.
         - Writes them into a fresh AudioForPhone_* output tree.
         - Shortens and sanitizes filenames so Android accepts them.
@@ -101,7 +101,7 @@ SETUP
 
 USAGE
     A) Drag & drop (primary usage)
-        - Drag a folder containing .mp3 files onto:
+        - Drag a folder containing .mp3 or .m4afiles onto:
             AudioFileForPhone.bat
         - The .bat calls:
             AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
@@ -132,7 +132,7 @@ USAGE
 
 NOTES
     - Input:
-        - Only .mp3 files are processed.
+        - Only .mp3 and .m4afiles are processed.
         - Search is recursive under the specified input folder.
     - Output:
         - All outputs are MP3, even if input had different internal encoding.
@@ -154,7 +154,7 @@ NOTES
           cover diagnostics warnings when a cover is used.
 
 LIMITATIONS
-    - Input format limited to MP3:
+    - Input format limited to MP3 and M4A:
         - Other audio formats (FLAC, M4A, etc.) are not handled.
     - No loudness normalization or noise reduction:
         - The script only re-encodes bitrate and handles naming/metadata.
@@ -186,7 +186,7 @@ TROUBLESHOOTING
           and run the tool again from there.
     - Files appear missing on the phone:
         - Check:
-            - That all inputs were .mp3 and were actually converted.
+            - That all inputs were .mp3 or .m4a and were actually converted.
             - The log file for per-file errors.
             - The output tree under AudioForPhone_* for expected counts.
 
@@ -514,25 +514,26 @@ Write-Log ("Output base      : {0}" -f $outputBase)
 New-Item -ItemType Directory -Path $outputBase -Force | Out-Null
 
 Write-Host ""
-Write-Log "Scanning for MP3 files under: $InputFolder"
+Write-Log "Scanning for audio files (.mp3/.m4a) under: $InputFolder"
 
-# --- Scan for MP3s ---
+# --- Scan for MP3 + M4A ---
 try {
-    $files = Get-ChildItem -Path $InputFolder -Filter *.mp3 -Recurse -File -ErrorAction Stop
+    $files = Get-ChildItem -Path $InputFolder -Recurse -File -ErrorAction Stop |
+        Where-Object { @('.mp3', '.m4a') -contains $_.Extension.ToLowerInvariant() }
 }
 catch {
-    Write-Error "[FATAL] Error searching for MP3 files: $_"
-    Write-Log ("FATAL: Error searching for MP3 files: {0}" -f $_) "FATAL"
+    Write-Error "[FATAL] Error searching for audio files: $_"
+    Write-Log ("FATAL: Error searching for audio files: {0}" -f $_) "FATAL"
     exit 1
 }
 
 if (-not $files) {
-    Write-Warning "[WARN] No MP3 files found under: $InputFolder"
-    Write-Log ("No MP3 files found under: {0}" -f $InputFolder) "WARN"
+    Write-Warning "[WARN] No MP3/M4A files found under: $InputFolder"
+    Write-Log ("No MP3/M4A files found under: {0}" -f $InputFolder) "WARN"
     exit 1
 }
 
-Write-Log ("Found {0} MP3 file(s)." -f $files.Count)
+Write-Log ("Found {0} audio file(s) (.mp3/.m4a)." -f $files.Count)
 Write-Host ""
 
 # --- Main conversion + sanitize loop ---
