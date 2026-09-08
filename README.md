@@ -1,10 +1,12 @@
 # AudioFileForPhone — Audio converter + filename sanitizer for Win11 (PowerShell + FFmpeg)
-Minimal, no-frills audio converter I use to shrink and clean up podcast/audiobook MP3s and M4As for phone listening. It’s a personal, purpose-built tool, not a general audio manager. It trades features for a simple folder-based workflow, predictable output structure, and verbose logging so I can see exactly what happened during each run.
+Minimal, no-frills audio converter I use to shrink and clean up podcast/audiobook MP3, M4A, and OGG files for phone listening. It’s a personal, purpose-built tool, not a general audio manager. It trades features for a simple folder-based workflow, predictable output structure, and verbose logging so I can see exactly what happened during each run.
 
 **Synopsis**  
 - Accepts a single input folder path (typically via drag & drop on a .bat wrapper).  
-- Recursively finds all .mp3 and .m4a files under that folder and re-encodes them to MP3 at a phone-friendly bitrate:
-  - Default: 64 kbps CBR (configurable via -BitrateKbps).  
+- Recursively finds all .mp3, .m4a, and .ogg files under that folder and re-encodes them to MP3 at a phone-friendly bitrate:
+  - Default: 64 kbps CBR (configurable via -BitrateKbps).
+  - OGG input supports Vorbis and Opus audio; extensions are case-insensitive (including .OGG).
+  - Output is always MP3. Other input extensions, such as .opus, .wav, and .flac, are not scanned.
 - Creates a new output tree per run:
   - <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\... 
 - Sanitizes and shortens filenames for Android / MTP:
@@ -38,11 +40,11 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 
 **Usage**
 1. Drag & drop via .bat (my default)  
-   - Drag a folder containing MP3 and M4A files onto AudioFileForPhone.bat.  
+   - Drag a folder containing MP3, M4A, or OGG files onto AudioFileForPhone.bat.
    - The wrapper calls:
         AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
    - The script:
-     - Recursively scans for .mp3 and .m4a files under the input folder.  
+     - Recursively scans for .mp3, .m4a, and .ogg files under the input folder.
      - Re-encodes each file to the selected bitrate.  
      - Writes the output tree under:
        <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...  
@@ -118,7 +120,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - If not found, iterates over PATH to locate them.  
   - If still not found, aborts with a clear fatal error.  
 - File scanning:
-  - Uses Get-ChildItem -Recurse to find .mp3 and -m4a files under the input folder.  
+  - Uses Get-ChildItem -LiteralPath -Recurse to find .mp3, .m4a, and .ogg files under the input folder.
 - Filename sanitization:
   - Attempts to parse a leading date from the original base name:
     - Pattern: YYYY-MM-DD - ...  
@@ -135,13 +137,13 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
     - Video is explicitly discarded (-vn).  
   - Output is always .mp3, regardless of internal encoding details.  
 - Metadata:
-  - Uses ffprobe to inspect the input file’s format and tags.  
+  - Uses ffprobe to inspect the input file’s format and audio-stream tags.
   - If a title tag already exists, it is preserved.  
   - If no title tag is found, the script sets the title to the sanitized base name.
   - Artist/Album tags can be set for all outputs when provided.
   - A cover image can be embedded into every output MP3 when CoverPath is provided.
   - Warns (and logs) when the selected cover is unusually large (size and/or dimensions).
-  - Other metadata is copied with -map_metadata 0, and ID3v2.3 is enforced for compatibility.  
+  - Metadata is copied from the container for MP3/M4A and from the first audio stream for OGG, preserving Vorbis/Opus comments such as title, artist, and album. ID3v2.3 is enforced for compatibility.
 
 **Troubleshooting**  
 - Script window closes immediately:
@@ -167,5 +169,16 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
     - Per-file failures or ffmpeg exit codes.  
     - Any skipped files due to errors.  
 
-**Intent & License**  
-This is a personal tool for a very specific workflow. Shrinking and cleaning up my podcast/audiobook MP3s and M4Asfor phone listening, with predictable output and logs I can inspect later. It’s provided as-is, without warranty. Use at your own risk. If you want to reuse or adapt it, feel free, just keep in mind it intentionally avoids extra features to stay simple, and easy to reason about when something breaks in the middle of a batch.
+**Verification**
+
+Run the integration checks with FFmpeg and ffprobe installed as described above:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\Test-AudioFileForPhone.ps1
+pwsh -NoProfile -File .\tests\Test-AudioFileForPhone.ps1
+```
+
+The checks generate short synthetic audio clips in a temporary folder and verify OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Temporary inputs and outputs are removed afterward.
+
+**Intent & License**
+This is a personal tool for a very specific workflow. Shrinking and cleaning up my podcast/audiobook MP3, M4A, and OGG files for phone listening, with predictable output and logs I can inspect later. It’s provided as-is, without warranty. Use at your own risk. If you want to reuse or adapt it, feel free, just keep in mind it intentionally avoids extra features to stay simple, and easy to reason about when something breaks in the middle of a batch.

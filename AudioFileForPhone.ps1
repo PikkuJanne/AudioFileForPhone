@@ -8,7 +8,7 @@ Dependencies: PowerShell 5.1+ or PowerShell 7+, ffmpeg.exe, ffprobe.exe
 
 SYNOPSIS
     One-preset, no-frills audio converter intended for my own workflow:
-    taking a folder of MP3 or M4A podcasts/audiobooks, re-encoding them to a
+    taking a folder of MP3, M4A, or OGG podcasts/audiobooks, re-encoding them to a
     phone-friendly bitrate, and outputting files with Android-safe,
     shortened filenames that still keep the date visible.
 
@@ -25,17 +25,18 @@ WHAT THIS IS (AND ISN’T)
         - Optional, batch-level metadata helpers (cover + artist/album).
     - Not focused on:
         - Fancy DSP, noise reduction, or EQ.
-        - Multi-format support (input is MP3 or M4A, output is MP3).
+        - Additional output formats (output is always MP3).
         - Per-track tagging workflows or library management.
 
 FEATURES
     - Folder-based workflow:
-        - Input:  a folder containing .mp3 and .m4a files, recursively processed.
+        - Input:  a folder containing .mp3, .m4a, and .ogg files, recursively processed.
         - Output: a new root folder per run:
             <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
               <InputFolderName>\subfolders...
     - One-preset audio conversion:
-        - Re-encodes all input .mp3 and .m4a files using ffmpeg.
+        - Re-encodes all input .mp3, .m4a, and .ogg files using ffmpeg.
+        - Supports Ogg Vorbis and Ogg Opus audio in .ogg files.
         - Default bitrate: 64 kbps CBR, configurable via -BitrateKbps.
         - Drops any video streams, audio-only output.
     - Filename sanitization + shortening for Android:
@@ -54,7 +55,7 @@ FEATURES
     - Basic metadata handling:
         - Uses ffprobe to check for an existing title tag.
         - If no title is present, sets the title to the sanitized base name.
-        - Copies all other metadata from source, forces ID3v2.3 for compatibility.
+        - Copies source metadata (including Ogg audio-stream tags), forces ID3v2.3.
     - Optional batch metadata (interactive or parameter-driven):
         - Can embed an album cover image (.jpg/.png) into every output MP3.
         - Can set Artist and Album tags for all output files.
@@ -74,7 +75,7 @@ FEATURES
 MY INTENDED USAGE
     - I drop a podcast/audiobook folder onto AudioFileForPhone.bat.
     - The script:
-        - Walks the folder tree, finds all .mp3 and .m4afiles.
+        - Walks the folder tree, finds all .mp3, .m4a, and .ogg files.
         - Converts them to 64 kbps CBR.
         - Writes them into a fresh AudioForPhone_* output tree.
         - Shortens and sanitizes filenames so Android accepts them.
@@ -101,7 +102,7 @@ SETUP
 
 USAGE
     A) Drag & drop (primary usage)
-        - Drag a folder containing .mp3 or .m4afiles onto:
+        - Drag a folder containing .mp3, .m4a, or .ogg files onto:
             AudioFileForPhone.bat
         - The .bat calls:
             AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
@@ -132,7 +133,7 @@ USAGE
 
 NOTES
     - Input:
-        - Only .mp3 and .m4afiles are processed.
+        - Only .mp3, .m4a, and .ogg files are processed (case-insensitive).
         - Search is recursive under the specified input folder.
     - Output:
         - All outputs are MP3, even if input had different internal encoding.
@@ -154,8 +155,8 @@ NOTES
           cover diagnostics warnings when a cover is used.
 
 LIMITATIONS
-    - Input format limited to MP3 and M4A:
-        - Other audio formats (FLAC, M4A, etc.) are not handled.
+    - Input extensions limited to .mp3, .m4a, and .ogg:
+        - Other extensions (e.g. .flac, .wav, .opus) are not scanned.
     - No loudness normalization or noise reduction:
         - The script only re-encodes bitrate and handles naming/metadata.
     - Single naming scheme:
@@ -186,7 +187,7 @@ TROUBLESHOOTING
           and run the tool again from there.
     - Files appear missing on the phone:
         - Check:
-            - That all inputs were .mp3 or .m4a and were actually converted.
+            - That all inputs were .mp3, .m4a, or .ogg and were actually converted.
             - The log file for per-file errors.
             - The output tree under AudioForPhone_* for expected counts.
 
@@ -514,12 +515,12 @@ Write-Log ("Output base      : {0}" -f $outputBase)
 New-Item -ItemType Directory -Path $outputBase -Force | Out-Null
 
 Write-Host ""
-Write-Log "Scanning for audio files (.mp3/.m4a) under: $InputFolder"
+Write-Log "Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
 
-# --- Scan for MP3 + M4A ---
+# --- Scan for MP3 + M4A + OGG ---
 try {
-    $files = Get-ChildItem -Path $InputFolder -Recurse -File -ErrorAction Stop |
-        Where-Object { @('.mp3', '.m4a') -contains $_.Extension.ToLowerInvariant() }
+    $files = @(Get-ChildItem -LiteralPath $InputFolder -Recurse -File -ErrorAction Stop |
+        Where-Object { @('.mp3', '.m4a', '.ogg') -contains $_.Extension.ToLowerInvariant() })
 }
 catch {
     Write-Error "[FATAL] Error searching for audio files: $_"
@@ -528,12 +529,12 @@ catch {
 }
 
 if (-not $files) {
-    Write-Warning "[WARN] No MP3/M4A files found under: $InputFolder"
-    Write-Log ("No MP3/M4A files found under: {0}" -f $InputFolder) "WARN"
+    Write-Warning "[WARN] No MP3/M4A/OGG files found under: $InputFolder"
+    Write-Log ("No MP3/M4A/OGG files found under: {0}" -f $InputFolder) "WARN"
     exit 1
 }
 
-Write-Log ("Found {0} audio file(s) (.mp3/.m4a)." -f $files.Count)
+Write-Log ("Found {0} audio file(s) (.mp3/.m4a/.ogg)." -f $files.Count)
 Write-Host ""
 
 # --- Main conversion + sanitize loop ---
@@ -629,18 +630,28 @@ foreach ($file in $files) {
     Write-Host "       Target : $outPath"
     Write-Log  ("Output file   : {0}" -f $outPath) "DEBUG"
 
-    # Check metadata, title only
+    # Ogg Vorbis/Opus comments live on the audio stream, not the container.
+    $isOgg = $file.Extension -ieq '.ogg'
+    $metadataSource = if ($isOgg) { '0:s:a:0' } else { '0' }
+
+    # Check the same metadata source that ffmpeg will copy to the output.
     $hasTitle = $false
     try {
-        $ffprobeArgs   = @("-v","quiet","-print_format","json","-show_format",$file.FullName)
+        $ffprobeArgs   = @("-v","quiet","-print_format","json","-show_format",
+                          "-select_streams","a:0","-show_streams",$file.FullName)
         Write-Host "       [DEBUG] Running ffprobe..."
         $ffprobeOutput = & $ffprobe @ffprobeArgs 2>$null
 
         if ($ffprobeOutput) {
             $meta = $ffprobeOutput | ConvertFrom-Json
-            if ($meta.format -and $meta.format.tags -and $meta.format.tags.title) {
+            $sourceTags = if ($isOgg) {
+                $meta.streams | Select-Object -First 1 -ExpandProperty tags -ErrorAction SilentlyContinue
+            } else {
+                $meta.format.tags
+            }
+            if ($sourceTags -and $sourceTags.title) {
                 $hasTitle = $true
-                Write-Host "       [INFO] Existing title tag: $($meta.format.tags.title)"
+                Write-Host "       [INFO] Existing title tag: $($sourceTags.title)"
             }
             else {
                 Write-Host "       [INFO] No title tag found; will set from sanitized filename."
@@ -656,7 +667,7 @@ foreach ($file in $files) {
     }
 
     # Build metadata args 
-    $metadataArgs = @("-map_metadata","0","-id3v2_version","3")
+    $metadataArgs = @("-map_metadata",$metadataSource,"-id3v2_version","3")
 
     if (-not $hasTitle) {
         $title = $newBase
@@ -695,6 +706,7 @@ foreach ($file in $files) {
         $ffArgs = @(
             "-y",
             "-i", $file.FullName,
+            "-map", "0:a:0",
             "-vn",
             "-acodec", "libmp3lame",
             "-b:a", ("{0}k" -f $BitrateKbps)
