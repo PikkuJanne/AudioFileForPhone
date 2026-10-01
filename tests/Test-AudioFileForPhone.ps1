@@ -2,7 +2,8 @@
 Integration checks using generated audio and real ffmpeg/ffprobe (no Pester).
 Run from either Windows PowerShell 5.1 or PowerShell 7:
     .\tests\Test-AudioFileForPhone.ps1
-All fixtures, script copies and converter output are isolated in TEMP and removed.
+Fixtures and script copies use TEMP; output uses the user's Music folder.
+Only directories created by these tests are removed afterward.
 #>
 [CmdletBinding()]
 param()
@@ -16,6 +17,11 @@ $originalPath = $env:PATH
 $tempParent = (Resolve-Path -LiteralPath ([IO.Path]::GetTempPath())).Path.TrimEnd('\', '/')
 $testName = 'AudioFileForPhone-tests-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
+$musicFolder = [Environment]::GetFolderPath(
+    [Environment+SpecialFolder]::MyMusic,
+    [Environment+SpecialFolderOption]::DoNotVerify
+)
+$createdOutputRoots = New-Object 'System.Collections.Generic.List[string]'
 
 function Assert-True {
     param([bool]$Condition, [string]$Message)
@@ -66,12 +72,36 @@ function Invoke-Conversion {
     Copy-Item -LiteralPath $productionScript -Destination $scriptCopy
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass',
         '-File', $scriptCopy, '-InputFolder', $InputPath) + $Options
-    Invoke-Native $shellPath $nativeArgs $ExpectedExitCode | Out-Null
-    $roots = @(Get-ChildItem -LiteralPath $runDir -Directory -Filter 'AudioForPhone_*')
-    Assert-True ($roots.Count -eq 1) "$Name should create exactly one output root."
+
+    # Avoid reusing an existing run's second-resolution timestamp, including a
+    # directory from an earlier test. Snapshot first so cleanup cannot claim it.
+    $preexistingRoots = @()
+    if (Test-Path -LiteralPath $musicFolder) {
+        $preexistingRoots = @(Get-ChildItem -LiteralPath $musicFolder -Directory -Filter 'AudioForPhone_*' |
+            Select-Object -ExpandProperty FullName)
+    }
+    while (@($preexistingRoots | Where-Object { $_ -like ('*_' + (Get-Date -Format 'yyyyMMdd_HHmmss')) }).Count -gt 0) {
+        Start-Sleep -Milliseconds 100
+    }
+    $ErrorActionPreference = 'Continue'
+    $nativeOutput = @(& $shellPath @nativeArgs 2>&1)
+    $nativeExitCode = $LASTEXITCODE
+    $ErrorActionPreference = 'Stop'
+    $roots = @($nativeOutput | ForEach-Object {
+        if ("$_" -match '^\[INFO\] Output root\s+: (.+)$') { $Matches[1] }
+    })
+    Assert-True ($roots.Count -eq 1) "$Name should report exactly one output root."
+    $outputRoot = [IO.Path]::GetFullPath($roots[0]).TrimEnd('\', '/')
+    Assert-True ((Split-Path -Parent $outputRoot) -eq $musicFolder) "$Name should write directly into the user's Music folder."
+    Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_\d+kbps_\d{8}_\d{6}$') "$Name should use the timestamped output name."
+    Assert-True ($preexistingRoots -notcontains $outputRoot) "$Name must not reuse a preexisting output root."
+    $createdOutputRoots.Add($outputRoot)
+    Assert-True ($nativeExitCode -eq $ExpectedExitCode) "$Name exited $nativeExitCode (expected $ExpectedExitCode).`n$($nativeOutput -join "`n")"
+    Assert-True (@(Get-ChildItem -LiteralPath $runDir -Directory -Filter 'AudioForPhone_*').Count -eq 0) "$Name should not create output beside the script."
+    Assert-True (Test-Path -LiteralPath $outputRoot -PathType Container) "$Name should create its output root."
     return [pscustomobject]@{
-        Base = Join-Path $roots[0].FullName (Split-Path -Leaf $InputPath)
-        Log = Get-Content -LiteralPath (Join-Path $roots[0].FullName 'AudioFileForPhone_log.txt') -Raw
+        Base = Join-Path $outputRoot (Split-Path -Leaf $InputPath)
+        Log = Get-Content -LiteralPath (Join-Path $outputRoot 'AudioFileForPhone_log.txt') -Raw
     }
 }
 
@@ -92,6 +122,9 @@ function Assert-Mp3 {
 }
 
 try {
+    Assert-True (-not [string]::IsNullOrWhiteSpace($musicFolder)) 'Windows should provide a Music folder path.'
+    Assert-True ([IO.Path]::IsPathRooted($musicFolder)) 'The Music folder path should be absolute.'
+    $musicFolder = [IO.Path]::GetFullPath($musicFolder).TrimEnd('\', '/')
     $ffmpeg = Find-Tool 'ffmpeg.exe'
     $ffprobe = Find-Tool 'ffprobe.exe'
     # Script copies exercise production PATH discovery without copying binaries.
@@ -174,6 +207,17 @@ try {
 }
 finally {
     $env:PATH = $originalPath
+    foreach ($outputRoot in $createdOutputRoots) {
+        if (Test-Path -LiteralPath $outputRoot) {
+            $resolvedOutputRoot = (Resolve-Path -LiteralPath $outputRoot).Path.TrimEnd('\', '/')
+            if ((Split-Path -Parent $resolvedOutputRoot) -ne $musicFolder -or
+                (Split-Path -Leaf $resolvedOutputRoot) -notmatch '^AudioForPhone_\d+kbps_\d{8}_\d{6}$' -or
+                $resolvedOutputRoot -ne $outputRoot) {
+                throw "Refusing cleanup outside the expected Music output directory: $resolvedOutputRoot"
+            }
+            Remove-Item -LiteralPath $resolvedOutputRoot -Recurse -Force
+        }
+    }
     if (Test-Path -LiteralPath $testRoot) {
         $resolvedTestRoot = (Resolve-Path -LiteralPath $testRoot).Path.TrimEnd('\', '/')
         if ((Split-Path -Parent $resolvedTestRoot) -ne $tempParent -or

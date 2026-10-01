@@ -7,8 +7,8 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - Default: 64 kbps CBR (configurable via -BitrateKbps).
   - OGG input supports Vorbis and Opus audio; extensions are case-insensitive (including .OGG).
   - Output is always MP3. Other input extensions, such as .opus, .wav, and .flac, are not scanned.
-- Creates a new output tree per run:
-  - <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\... 
+- Creates a new output tree per run in the current user's Music folder:
+  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...`
 - Sanitizes and shortens filenames for Android / MTP:
   - Keeps a YYYY-MM-DD prefix when available, or uses the file’s timestamp.  
   - Strips problematic characters, collapses whitespace, and truncates to a configurable max length.  
@@ -34,8 +34,9 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - AudioFileForPhone.bat (wrapper for drag & drop)  
   - ffmpeg.exe 
   - ffprobe.exe 
+- `<MusicFolder>` is the current user's configured Windows Music folder, usually `C:\Users\<user>\Music`. Moved or redirected Music folders are supported.
 - Default output root is:
-  - <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\ 
+  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
 - The script first looks for ffmpeg.exe / ffprobe.exe next to itself, then falls back to searching PATH.  
 
 **Usage**
@@ -47,7 +48,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
      - Recursively scans for .mp3, .m4a, and .ogg files under the input folder.
      - Re-encodes each file to the selected bitrate.  
      - Writes the output tree under:
-       <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...  
+       `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...`
      - Sanitizes and shortens filenames while keeping a date prefix.  
      - Optionally prompts once for:
        - Album cover embed (file picker), and/or
@@ -76,10 +77,10 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 
 **Output layout**  
 - Default root per run:
-  - <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\ 
+  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
 - For each run:
   - A subfolder named after the input folder’s leaf name:
-    - <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\ 
+    - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\`
   - The original subfolder structure under the input is mirrored beneath <InputFolderName>.  
 - Filenames:
   - If the original base name starts with YYYY-MM-DD, that date is preserved:
@@ -178,7 +179,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\Test-AudioFileFo
 pwsh -NoProfile -File .\tests\Test-AudioFileForPhone.ps1
 ```
 
-The checks generate short synthetic audio clips in a temporary folder and verify OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Temporary inputs and outputs are removed afterward.
+The checks generate short synthetic audio clips in a temporary folder and write their output to the current user's Music folder. They verify the output location, OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Temporary inputs and the output folders created by the checks are removed afterward.
 
 **Intent & License**
 This is a personal tool for a very specific workflow. Shrinking and cleaning up my podcast/audiobook MP3, M4A, and OGG files for phone listening, with predictable output and logs I can inspect later. It’s provided as-is, without warranty. Use at your own risk. If you want to reuse or adapt it, feel free, just keep in mind it intentionally avoids extra features to stay simple, and easy to reason about when something breaks in the middle of a batch.

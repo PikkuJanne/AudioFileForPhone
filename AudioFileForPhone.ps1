@@ -32,7 +32,7 @@ FEATURES
     - Folder-based workflow:
         - Input:  a folder containing .mp3, .m4a, and .ogg files, recursively processed.
         - Output: a new root folder per run:
-            <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
+            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
               <InputFolderName>\subfolders...
     - One-preset audio conversion:
         - Re-encodes all input .mp3, .m4a, and .ogg files using ffmpeg.
@@ -77,7 +77,7 @@ MY INTENDED USAGE
     - The script:
         - Walks the folder tree, finds all .mp3, .m4a, and .ogg files.
         - Converts them to 64 kbps CBR.
-        - Writes them into a fresh AudioForPhone_* output tree.
+        - Writes them into a fresh AudioForPhone_* output tree in my Music folder.
         - Shortens and sanitizes filenames so Android accepts them.
         - Optionally embeds cover + sets artist/album tags for AIMP/players.
     - After the run:
@@ -94,7 +94,7 @@ SETUP
          - Add the folder to PATH if you want to call the script from anywhere.
     3) Ensure the machine has:
          - Permission to read the input folder you drag onto the .bat.
-         - Permission to create folders and files next to the script.
+         - Permission to create folders and files in the current user's Music folder.
     4) ffmpeg/ffprobe resolution:
          - The script first looks for ffmpeg.exe / ffprobe.exe in the script folder.
          - If not found there, it searches PATH.
@@ -107,7 +107,7 @@ USAGE
         - The .bat calls:
             AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
         - Output:
-            <ScriptFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
+            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
                 <InputFolderName>\...
             plus:
                 AudioFileForPhone_log.txt    (in the AudioForPhone_* root)
@@ -136,6 +136,7 @@ NOTES
         - Only .mp3, .m4a, and .ogg files are processed (case-insensitive).
         - Search is recursive under the specified input folder.
     - Output:
+        - Uses the current user's Windows Music folder, including moved locations.
         - All outputs are MP3, even if input had different internal encoding.
         - Names follow the pattern:
             "YYYY-MM-DD - Sanitized title.mp3"
@@ -450,8 +451,17 @@ catch {
 $InputFolder = $InputFolder.TrimEnd('\','/')
 
 # --- Output root + log setup ---
+$musicFolder = [Environment]::GetFolderPath(
+    [Environment+SpecialFolder]::MyMusic,
+    [Environment+SpecialFolderOption]::DoNotVerify
+)
+if ([string]::IsNullOrWhiteSpace($musicFolder)) {
+    Write-Error "[FATAL] Could not resolve the current user's Music folder."
+    exit 1
+}
+
 $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
-$outputRoot = Join-Path $ScriptDir ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
+$outputRoot = Join-Path $musicFolder ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
 
 Write-Host "[INFO] Output root      : $outputRoot"
 

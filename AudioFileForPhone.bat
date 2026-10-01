@@ -26,5 +26,5 @@ if %ERRORLEVEL%==0 (
 )
 
 echo.
-echo Done. Check the new "AudioForPhone_*" folder next to the script.
+echo Done. Check the new "AudioForPhone_*" folder in your Music folder.
 pause
