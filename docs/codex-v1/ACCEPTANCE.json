@@ -1,0 +1,684 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "A01",
+      "task": "T01",
+      "title": "Repository and baseline reconciliation",
+      "required": true,
+      "method": "read-only Git/GitHub",
+      "expected": "Live repository/default branch/HEAD, tags and releases are inspected; newer work is preserved; wrong repository or conflicting v1.0.0 blocks writes.",
+      "status": "pass",
+      "evidence": [
+        "evidence/T01.md",
+        "evidence/T01-helper-results.json"
+      ]
+    },
+    {
+      "id": "A02",
+      "task": "T01",
+      "title": "Safe bundle import and helper review",
+      "required": true,
+      "method": "isolated importer tests, both Windows shells",
+      "expected": "Preview has zero writes; apply creates only new allowlisted planning files; identical files are skipped; conflicts, symlink targets and wrong checkout are refused.",
+      "status": "pass",
+      "evidence": [
+        "evidence/T01.md",
+        "evidence/T01-helper-results.json"
+      ]
+    },
+    {
+      "id": "A03",
+      "task": "T01",
+      "title": "Live synchronization check",
+      "required": true,
+      "method": "isolated helper tests plus actual live read",
+      "expected": "Clean matching branch passes; dirty, detached, mismatched, absent remote ref or network failure cannot pass; fetch and push destinations are both verified.",
+      "status": "pass",
+      "evidence": [
+        "evidence/T01.md",
+        "evidence/T01-helper-results.json"
+      ]
+    },
+    {
+      "id": "A04",
+      "task": "T02",
+      "title": "Baseline formats and codec behavior",
+      "required": true,
+      "method": "real FFmpeg integration",
+      "expected": "MP3, M4A, Ogg Vorbis and Ogg Opus including uppercase .OGG reproduce current intended behavior with generated fixtures; unsupported extensions remain excluded.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A05",
+      "task": "T02",
+      "title": "Default audio and naming contract",
+      "required": true,
+      "method": "characterization on both shells",
+      "expected": "Record actual 64 kbps CBR, ID3v2.3, channels/sample rate, default MaxBaseLength 60, recursive layout, dates, title and override behavior; no unapproved DSP change.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A06",
+      "task": "T02",
+      "title": "Source safety baseline",
+      "required": true,
+      "method": "SHA-256 inventory comparison",
+      "expected": "Input file bytes and relative names remain identical before/after conversion; generated fixtures are the only disposable media.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A07",
+      "task": "T03",
+      "title": "Output override and isolation",
+      "required": true,
+      "method": "isolated integration",
+      "expected": "OutputParent directs runs only beneath the chosen test parent; ordinary automated tests never write into the real Music library.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A08",
+      "task": "T03",
+      "title": "Music default resolution",
+      "required": true,
+      "method": "resolver unit test plus owner-safe smoke",
+      "expected": "Default uses the configured Windows Music folder, including injected redirected-path resolver tests; a narrowly controlled manual/default test removes only its own run.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A09",
+      "task": "T04",
+      "title": "Input and parameter validation",
+      "required": true,
+      "method": "negative unit/integration tests",
+      "expected": "Missing, non-directory, non-filesystem and malformed inputs; unsupported bitrate; too-small/large MaxBaseLength fail clearly before conversion or optional prompts.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A10",
+      "task": "T04",
+      "title": "Root, permissions and disk handling",
+      "required": true,
+      "method": "negative fixtures and Windows permissions test",
+      "expected": "Drive/share roots are correctly rejected or explicitly supported under the recorded contract; unreadable input and unwritable output fail safely; no registry/security changes.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A11",
+      "task": "T04",
+      "title": "Incremental extraction",
+      "required": true,
+      "method": "diff review and regression suite",
+      "expected": "Public entry points and established parameters/defaults remain; helpers can be tested without prompting or starting a conversion; no new runtime language/framework.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A12",
+      "task": "T05",
+      "title": "Native arguments and process errors",
+      "required": true,
+      "method": "argv capture stub plus FFmpeg tests",
+      "expected": "Space/bracket/apostrophe/ampersand/quote/Unicode arguments reach the executable intact on PS 5.1 and PS 7; no shell evaluation; immediate exit status retained.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A13",
+      "task": "T05",
+      "title": "Process I/O does not deadlock",
+      "required": true,
+      "method": "noisy test process + real conversion",
+      "expected": "Simultaneously drain stdout/stderr under stress, bound retained diagnostics, use -nostdin, release process resources and do not treat ordinary native stderr as automatic failure.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A14",
+      "task": "T05",
+      "title": "Probe and dependency results are explicit",
+      "required": true,
+      "method": "mock failures plus real tools",
+      "expected": "Missing/non-executable/unsupported tools, missing libmp3lame, nonzero ffprobe, invalid JSON, no audio and missing title are distinct; absolute tool path/version logged.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A15",
+      "task": "T06",
+      "title": "Generated output exclusion",
+      "required": true,
+      "method": "nested-tree synthetic fixture",
+      "expected": "Choosing Music or another ancestor does not rescan current or recognized legacy/new output; an unrelated similarly named user folder is not silently discarded.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A16",
+      "task": "T06",
+      "title": "Reparse points and inaccessible subtrees",
+      "required": true,
+      "method": "junction/symlink/permission fixtures",
+      "expected": "Directory reparse points are skipped and reported; access failure follows abort-before-convert contract; no loops, out-of-tree traversal or hidden partial scan.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A17",
+      "task": "T06",
+      "title": "Input/output boundary",
+      "required": true,
+      "method": "path comparison unit and integration tests",
+      "expected": "Canonical, separator-aware containment checks handle casing and similarly prefixed directories; unsafe destinations/overlap are rejected without changing sources.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A18",
+      "task": "T07",
+      "title": "Valid and invalid dates",
+      "required": true,
+      "method": "unit cases including leap days",
+      "expected": "Real YYYY-MM-DD prefix retained; impossible dates fall back to LastWriteTime with a defined title rule; locale does not change the result.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A19",
+      "task": "T07",
+      "title": "Unicode and literal filenames",
+      "required": true,
+      "method": "unit and generated filesystem fixtures",
+      "expected": "NFC/decomposed accents, Finnish/German letters, punctuation and whitespace normalize predictably; literal-path operations do not interpret brackets as wildcards.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A20",
+      "task": "T07",
+      "title": "Deterministic collision allocation",
+      "required": true,
+      "method": "permuted input inventories",
+      "expected": "Stable ordinal ordering produces a repeatable source-to-output mapping even with mixed extensions, case collisions and duplicate sanitized names.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A21",
+      "task": "T07",
+      "title": "Complete filename and path limits",
+      "required": true,
+      "method": "boundary unit and Windows path tests",
+      "expected": "Date prefix, basename, suffix and extension budgets are enforced; long directories are rejected clearly rather than source-renamed; surrogate pairs are not split.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A22",
+      "task": "T08",
+      "title": "Concurrent run reservation",
+      "required": true,
+      "method": "barrier-based process concurrency test",
+      "expected": "Two synchronized launches obtain different exclusively owned roots and logs; no timing sleep or check-then-create race is used as correctness proof.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A23",
+      "task": "T08",
+      "title": "No overwrite of an existing run",
+      "required": true,
+      "method": "collision sentinel/hash test",
+      "expected": "Pre-existing directories/logs/sentinel files remain byte-identical; ownership marker is exclusive and cleanup knows only this run.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A24",
+      "task": "T09",
+      "title": "Transactional success",
+      "required": true,
+      "method": "real conversion plus staged fault injection",
+      "expected": "A final .mp3 appears only after a nonempty working file has valid expected audio, plausible duration and a no-overwrite final promotion.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A25",
+      "task": "T09",
+      "title": "False successes rejected",
+      "required": true,
+      "method": "stub process plus output probe fixtures",
+      "expected": "Zero exit with empty/corrupt/non-audio/truncated/implausibly long output is failure; container bitrate including cover is not mistaken for audio bitrate.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A26",
+      "task": "T09",
+      "title": "Failure cleanup and destination races",
+      "required": true,
+      "method": "fault-injection and sentinel tests",
+      "expected": "Nonzero encoder/probe/rename errors cannot leave a final-looking partial or overwrite a concurrent final file; only current owned temporary files are removed.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A27",
+      "task": "T10",
+      "title": "Partial-batch exit contract",
+      "required": true,
+      "method": "spawn script as child process",
+      "expected": "Good+bad inputs continue per contract, record both outcomes and return nonzero; successful conversions return zero; preflight/no-supported-files remain nonzero.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A28",
+      "task": "T10",
+      "title": "BAT result and argument contract",
+      "required": true,
+      "method": "cmd.exe smoke and special-character tests",
+      "expected": "BAT captures and returns child code even after pause; not always Done; zero/multiple dropped folders rejected clearly; tricky Windows paths do not expand unexpectedly.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A29",
+      "task": "T11",
+      "title": "Controlled cancellation",
+      "required": true,
+      "method": "manual Ctrl+C plus controlled process test",
+      "expected": "Cancel stops only this owned process, waits for its exit, marks run cancelled, retains completed outputs and removes current partial; unrelated FFmpeg survives.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A30",
+      "task": "T11",
+      "title": "Crash leftovers and cleanup boundaries",
+      "required": true,
+      "method": "crash/leftover fixture tests",
+      "expected": "Forced termination leftovers are recognizable incomplete files; next run neither treats them as audio nor deletes arbitrary paths/other live runs; limits are documented.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A31",
+      "task": "T12",
+      "title": "No-write preview",
+      "required": true,
+      "method": "before/after filesystem inventory",
+      "expected": "Preview creates no directories, marker, cover cache, log, manifest or audio and launches no encoder; interactive choices do not appear; omitted writability checks are explicit.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A32",
+      "task": "T12",
+      "title": "Preview accuracy",
+      "required": true,
+      "method": "plan-versus-execution comparison",
+      "expected": "For unchanged inputs/options, preview and real run share the same naming/collision planner; provisional run-root timestamp/reservation and unknown durations are labelled.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A33",
+      "task": "T13",
+      "title": "Honest progress",
+      "required": true,
+      "method": "record-stream unit tests and long-file smoke",
+      "expected": "Batch/file progress uses machine-readable records; final success is not shown before output validation/promotion; failures remain visible at 100 percent processed.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A34",
+      "task": "T13",
+      "title": "Unknown duration and long times",
+      "required": true,
+      "method": "parser tests",
+      "expected": "Unknown duration gives indeterminate status; HH beyond one hour parses correctly; malformed progress does not crash conversion or invent ETA.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A35",
+      "task": "T14",
+      "title": "Diagnostics persist locally",
+      "required": true,
+      "method": "failure fixtures + log inspection",
+      "expected": "Useful native error details survive in the run log with tool/app versions, timings and final outcome; large native output is bounded; logs are not uploaded.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A36",
+      "task": "T14",
+      "title": "Manifest correctness",
+      "required": true,
+      "method": "structured roundtrip and totals tests",
+      "expected": "One row per discovered candidate outcome; Unicode, commas, newlines and formula-like text safely represented; input/output paths, duration, bytes and failure reasons are traceable.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A37",
+      "task": "T14",
+      "title": "Accurate outcome totals",
+      "required": true,
+      "method": "mixed outcomes tests",
+      "expected": "Discovered/converted/failed/skipped/cancelled counts reconcile; actual bytes and elapsed time are reported; scan exclusions are distinguishable from successful conversions.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A38",
+      "task": "T15",
+      "title": "Metadata precedence",
+      "required": true,
+      "method": "real fixtures/probe assertions",
+      "expected": "Existing/fallback title, Ogg stream metadata, track/disc, quoted/non-ASCII artist/album and explicit overrides have deterministic precedence on both shells.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A39",
+      "task": "T15",
+      "title": "Artwork default and explicit replacement",
+      "required": true,
+      "method": "embedded-picture and corrupt-image fixtures",
+      "expected": "Source artwork absent by preserved default; supplied valid cover embedded exactly once; a missing/corrupt/undecodable explicit cover fails preflight, not silent success.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A40",
+      "task": "T15",
+      "title": "Cover handling and chapter honesty",
+      "required": true,
+      "method": "resource test and chapter fixture/manual documentation",
+      "expected": "Validate supplied cover once per run and dispose handles; avoid unexpected resizing; document/test actual chapter behavior without promising phone chapter navigation.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A41",
+      "task": "T16",
+      "title": "Regression/failure suite remains meaningful",
+      "required": true,
+      "method": "complete automated suites",
+      "expected": "Existing integration coverage preserved or explicitly mapped to replacement assertions; failure/edge/concurrency cases pass on both Windows shells.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A42",
+      "task": "T16",
+      "title": "Test cleanup is contained",
+      "required": true,
+      "method": "cleanup negative tests and hash inventory",
+      "expected": "Fixtures/results live in owned temporary trees; cleanup refuses reparse/outside/pre-existing paths; production sources and unrelated files remain unchanged.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A43",
+      "task": "T17",
+      "title": "CI matches supported shells",
+      "required": true,
+      "method": "green workflow on reviewed commit",
+      "expected": "Windows jobs run syntax, analysis, focused tests and real-FFmpeg integration in powershell and pwsh; dependency availability is verified, not assumed.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A44",
+      "task": "T17",
+      "title": "CI supply-chain controls",
+      "required": true,
+      "method": "workflow audit",
+      "expected": "Reviewed full action SHAs, minimal read permissions for tests, pinned verified dependency source/digest and no secret-bearing untrusted PR execution.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A45",
+      "task": "T18",
+      "title": "Help and examples work",
+      "required": true,
+      "method": "help/example smoke",
+      "expected": "Get-Help recognizes comment-based help; examples parse and run; unsupported inputs, normalization limits, exits and cancellation are documented correctly.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A46",
+      "task": "T18",
+      "title": "Single version and support claims",
+      "required": true,
+      "method": "version consistency and document review",
+      "expected": "One authoritative 1.0.0 version drives banner/help/package; docs list actual tested OS/shell/device boundaries, unsigned status and external dependencies.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A47",
+      "task": "T19",
+      "title": "Explicit distributable allowlist",
+      "required": true,
+      "method": "packaging allowlist tests",
+      "expected": "Package includes required entry points/helpers/docs/license, excludes personal media/logs, build junk and unnecessary poster; no FFmpeg binaries accidentally bundled.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A48",
+      "task": "T19",
+      "title": "Dependency and repository hygiene",
+      "required": true,
+      "method": "source/diff/package security review",
+      "expected": "Runtime remains local, no telemetry/downloader; resolved tool identity reported; tracked-change scan finds no credentials or private paths/media; licensing notices accurate.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A49",
+      "task": "T20",
+      "title": "Windows 11 acceptance",
+      "required": true,
+      "method": "named manual tester evidence",
+      "expected": "Real Windows 11 runs with PS5.1 and PS7 cover BAT drag/drop, metadata interaction, spaces/special characters, cancellation and failure result; record exact environment.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A50",
+      "task": "T20",
+      "title": "Windows long-file and default-path smoke",
+      "required": true,
+      "method": "manual release-candidate smoke",
+      "expected": "Representative long audio completes with correct duration and resource behavior; controlled default Music destination works; managed-policy restrictions are not bypassed.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A51",
+      "task": "T21",
+      "title": "Phone long-file playback and seeking",
+      "required": true,
+      "method": "real phone owner acceptance",
+      "expected": "Record phone/OS/player version, transfer method and exact tested asset/source; beginning/middle/near-end playback and seeking work on representative long audio.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A52",
+      "task": "T21",
+      "title": "Phone tags, artwork and ordering",
+      "required": true,
+      "method": "real phone evidence",
+      "expected": "Check title, Artist/Album, cover and track ordering; compare documented chapter limitations and resume behavior; failures are not labelled universal phone compatibility.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A53",
+      "task": "T22",
+      "title": "Required review outcomes are closed",
+      "required": true,
+      "method": "independent audit",
+      "expected": "Improvements 1–15 map to passing evidence, known limits are explicit and no blocking defects remain; O01 stays deferred unless specifically activated.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A54",
+      "task": "T22",
+      "title": "Main integration is reviewed and synchronized",
+      "required": true,
+      "method": "fresh Git/GitHub read",
+      "expected": "Approved in-scope PRs integrated without bypass; clean local main equals live main; no unmerged runtime/test/build changes remain.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A55",
+      "task": "T23",
+      "title": "Exact frozen commit and ZIP",
+      "required": true,
+      "method": "exact-commit clean worktree and ZIP test",
+      "expected": "Freeze C only after final version/code/docs/CI are committed; build ZIP from clean C via deterministic allowlist; extracted ZIP passes shell/FFmpeg/launcher smoke.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A56",
+      "task": "T23",
+      "title": "Candidate provenance is self-consistent",
+      "required": true,
+      "method": "manifest and checksum validation",
+      "expected": "Record C, ZIP digest, dependency/test versions, signing status and per-member hashes in external release-manifest; no self-hashing manifest or stale working-tree files.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A57",
+      "task": "T24",
+      "title": "Exact release authority and immutable tag",
+      "required": true,
+      "method": "owner approval + live tag read",
+      "expected": "Recorded approval matches C and exact ZIP/manifest digests; no conflicting tag/release; annotated v1.0.0 remotely resolves to C; no forced retarget.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A58",
+      "task": "T24",
+      "title": "Draft is not completion",
+      "required": true,
+      "method": "GitHub draft inspection",
+      "expected": "Draft points at verified existing tag; only expected assets uploaded; state remains incomplete; missing asset/upload or failed check blocks publication.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A59",
+      "task": "T25",
+      "title": "Uploaded draft bytes verified",
+      "required": true,
+      "method": "draft download and archive smoke",
+      "expected": "Download each draft asset into fresh temp through authenticated release read; names, sizes and SHA-256 match candidate; extracted uploaded ZIP smoke passes.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A60",
+      "task": "T26",
+      "title": "Normal public release exists",
+      "required": true,
+      "method": "unauthenticated API/browser read",
+      "expected": "v1.0.0 is public, published, non-draft and non-prerelease; repository visibility is public; no intermediate public releases were introduced.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A61",
+      "task": "T26",
+      "title": "Public downloads match candidate",
+      "required": true,
+      "method": "fresh independent HTTP downloads",
+      "expected": "Anonymous downloads of ZIP, external manifest and SHA256SUMS succeed; digests and every ZIP member match reviewed evidence and safe allowlist.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A62",
+      "task": "T26",
+      "title": "Actually released ZIP works",
+      "required": true,
+      "method": "public-asset Windows smoke",
+      "expected": "Extract newly downloaded public ZIP into a clean Windows location and run required smoke; record downloaded hash, shell version, command and actual result.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A63",
+      "task": "T27",
+      "title": "Final source/tag relationship",
+      "required": true,
+      "method": "full commit diff and ancestry check",
+      "expected": "C remains tag target; final main D contains only docs/codex-v1 progress/evidence additions beyond C; all shipped/runtime/test/build/CI files remain unchanged.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A64",
+      "task": "T27",
+      "title": "Final synchronization and closure",
+      "required": true,
+      "method": "post-push technical verifier + human checklist",
+      "expected": "Required task/case evidence is pushed; local main is clean and equals live main; public verification still passes; final response reports real URL/tag/C/hashes/D.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "A65",
+      "task": "T27",
+      "title": "No fabricated completion",
+      "required": true,
+      "method": "closure evidence audit",
+      "expected": "Missing authorization, manual test, remote access, asset or CI remains blocker; no required case is silently waived and no template is counted as a result.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "O-A01",
+      "task": "O01",
+      "title": "Optional loudness mode is opt-in",
+      "required": false,
+      "method": "optional regression and measured audio tests",
+      "expected": "Default FFmpeg arguments/output behavior have no loudness filter; enabled mode uses a tested measured pipeline with documented target, channel/rate policy and fallback.",
+      "status": "not_run",
+      "evidence": []
+    },
+    {
+      "id": "O-A02",
+      "task": "O01",
+      "title": "Loudness edge cases and output measurements",
+      "required": false,
+      "method": "optional synthetic/real speech measurement",
+      "expected": "Silence, short clips, invalid measurements and dynamic fallback handled explicitly; decoded final MP3 loudness/peaks within documented tolerance; log actual mode.",
+      "status": "not_run",
+      "evidence": []
+    }
+  ]
+}

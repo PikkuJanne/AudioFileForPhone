@@ -1,0 +1,751 @@
+{
+  "schema_version": 1,
+  "repository": "PikkuJanne/AudioFileForPhone",
+  "target_release": "v1.0.0",
+  "core_review_improvements": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "optional_review_improvements": [
+    16
+  ],
+  "milestones": [
+    {
+      "id": "M0",
+      "title": "Baseline and continuity",
+      "outcome": "Confirm the real checkout, preserve existing behavior and establish handoff checkpoints."
+    },
+    {
+      "id": "M1",
+      "title": "Safe foundations",
+      "outcome": "Isolate tests, validate inputs, control subprocesses and allocate paths safely."
+    },
+    {
+      "id": "M2",
+      "title": "Reliable conversion outcomes",
+      "outcome": "Prevent final-looking partials; handle batch errors, launcher codes and cancellation."
+    },
+    {
+      "id": "M3",
+      "title": "Everyday usability",
+      "outcome": "Preview, progress, persistent diagnostics and predictable metadata."
+    },
+    {
+      "id": "M4",
+      "title": "Tests, documentation and packaging",
+      "outcome": "Complete regression coverage, secure CI, help/version and package build policy."
+    },
+    {
+      "id": "M5",
+      "title": "Acceptance and frozen candidate",
+      "outcome": "Obtain real Windows/phone evidence and test the exact clean-commit ZIP."
+    },
+    {
+      "id": "M6",
+      "title": "Publication and closure",
+      "outcome": "Verify draft, publish normal v1.0.0, verify public bytes and synchronize final main."
+    }
+  ],
+  "scheduling_exceptions": [
+    {
+      "task": "T03",
+      "dependency": "T02",
+      "allowed_when": "Baseline characterization plan/fixtures exist but execution is blocked solely by legacy Music-folder test isolation; T03 must finish baseline execution before T04."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T01",
+      "milestone": "M0",
+      "title": "Reconcile checkout, import handoff, establish checkpoint",
+      "required": true,
+      "status": "done",
+      "depends_on": [],
+      "review_improvements": [
+        13,
+        15
+      ],
+      "brief": "tasks/T01.md",
+      "acceptance_cases": [
+        "A01",
+        "A02",
+        "A03"
+      ],
+      "evidence": [
+        "evidence/T01.md",
+        "evidence/T01-helper-results.json",
+        "evidence/T01-source-inventory.json"
+      ],
+      "tested_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
+      "checkpoint_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
+      "remote_checkpoint_verified": true,
+      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Draft PR #1 is pending main integration. Final docs follow the verified checkpoint; next task T02."
+    },
+    {
+      "id": "T02",
+      "milestone": "M0",
+      "title": "Capture baseline behavior and test contracts",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T01"
+      ],
+      "review_improvements": [
+        4,
+        7,
+        10,
+        12
+      ],
+      "brief": "tasks/T02.md",
+      "acceptance_cases": [
+        "A04",
+        "A05",
+        "A06"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T03",
+      "milestone": "M1",
+      "title": "Add OutputParent and isolate ordinary tests",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T02"
+      ],
+      "review_improvements": [
+        8,
+        12
+      ],
+      "brief": "tasks/T03.md",
+      "acceptance_cases": [
+        "A07",
+        "A08"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T04",
+      "milestone": "M1",
+      "title": "Extract small helpers and implement preflight",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T03"
+      ],
+      "review_improvements": [
+        4,
+        11
+      ],
+      "brief": "tasks/T04.md",
+      "acceptance_cases": [
+        "A09",
+        "A10",
+        "A11"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T05",
+      "milestone": "M1",
+      "title": "Centralize native execution and media inspection",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T04"
+      ],
+      "review_improvements": [
+        4,
+        6
+      ],
+      "brief": "tasks/T05.md",
+      "acceptance_cases": [
+        "A12",
+        "A13",
+        "A14"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T06",
+      "milestone": "M1",
+      "title": "Bound recursive scanning and exclude prior output",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T05"
+      ],
+      "review_improvements": [
+        5
+      ],
+      "brief": "tasks/T06.md",
+      "acceptance_cases": [
+        "A15",
+        "A16",
+        "A17"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T07",
+      "milestone": "M1",
+      "title": "Make date and filename allocation deterministic",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T06"
+      ],
+      "review_improvements": [
+        7
+      ],
+      "brief": "tasks/T07.md",
+      "acceptance_cases": [
+        "A18",
+        "A19",
+        "A20",
+        "A21"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T08",
+      "milestone": "M1",
+      "title": "Reserve unique run roots and logs exclusively",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T07"
+      ],
+      "review_improvements": [
+        3
+      ],
+      "brief": "tasks/T08.md",
+      "acceptance_cases": [
+        "A22",
+        "A23"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T09",
+      "milestone": "M2",
+      "title": "Stage, validate and safely publish each output",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T08"
+      ],
+      "review_improvements": [
+        1
+      ],
+      "brief": "tasks/T09.md",
+      "acceptance_cases": [
+        "A24",
+        "A25",
+        "A26"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T10",
+      "milestone": "M2",
+      "title": "Unify script and BAT result reporting",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T09"
+      ],
+      "review_improvements": [
+        2
+      ],
+      "brief": "tasks/T10.md",
+      "acceptance_cases": [
+        "A27",
+        "A28"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T11",
+      "milestone": "M2",
+      "title": "Handle cancellation and crash leftovers safely",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T10"
+      ],
+      "review_improvements": [
+        1,
+        6
+      ],
+      "brief": "tasks/T11.md",
+      "acceptance_cases": [
+        "A29",
+        "A30"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T12",
+      "milestone": "M3",
+      "title": "Add side-effect-free preview using the real planner",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T11"
+      ],
+      "review_improvements": [
+        8
+      ],
+      "brief": "tasks/T12.md",
+      "acceptance_cases": [
+        "A31",
+        "A32"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T13",
+      "milestone": "M3",
+      "title": "Show per-file and batch progress honestly",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T12"
+      ],
+      "review_improvements": [
+        9
+      ],
+      "brief": "tasks/T13.md",
+      "acceptance_cases": [
+        "A33",
+        "A34"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T14",
+      "milestone": "M3",
+      "title": "Add persistent diagnostics and a usable run manifest",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T13"
+      ],
+      "review_improvements": [
+        9
+      ],
+      "brief": "tasks/T14.md",
+      "acceptance_cases": [
+        "A35",
+        "A36",
+        "A37"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T15",
+      "milestone": "M3",
+      "title": "Stabilize metadata, explicit covers and chapter documentation",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T14"
+      ],
+      "review_improvements": [
+        10
+      ],
+      "brief": "tasks/T15.md",
+      "acceptance_cases": [
+        "A38",
+        "A39",
+        "A40"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T16",
+      "milestone": "M4",
+      "title": "Complete the regression and fault-injection matrix",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T15"
+      ],
+      "review_improvements": [
+        12
+      ],
+      "brief": "tasks/T16.md",
+      "acceptance_cases": [
+        "A41",
+        "A42"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T17",
+      "milestone": "M4",
+      "title": "Add secure Windows CI and a release gate",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T16"
+      ],
+      "review_improvements": [
+        13
+      ],
+      "brief": "tasks/T17.md",
+      "acceptance_cases": [
+        "A43",
+        "A44"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T18",
+      "milestone": "M4",
+      "title": "Finish help, docs, version and support boundaries",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T17"
+      ],
+      "review_improvements": [
+        14
+      ],
+      "brief": "tasks/T18.md",
+      "acceptance_cases": [
+        "A45",
+        "A46"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T19",
+      "milestone": "M4",
+      "title": "Define package build and dependency/security policy",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T18"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T19.md",
+      "acceptance_cases": [
+        "A47",
+        "A48"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T20",
+      "milestone": "M5",
+      "title": "Perform real Windows acceptance on both shells",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T19"
+      ],
+      "review_improvements": [
+        12,
+        15
+      ],
+      "brief": "tasks/T20.md",
+      "acceptance_cases": [
+        "A49",
+        "A50"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T21",
+      "milestone": "M5",
+      "title": "Record phone playback, seeking and metadata acceptance",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T20"
+      ],
+      "review_improvements": [
+        12
+      ],
+      "brief": "tasks/T21.md",
+      "acceptance_cases": [
+        "A51",
+        "A52"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T22",
+      "milestone": "M5",
+      "title": "Audit all required outcomes and integrate reviewed work",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T21"
+      ],
+      "review_improvements": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "brief": "tasks/T22.md",
+      "acceptance_cases": [
+        "A53",
+        "A54"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T23",
+      "milestone": "M5",
+      "title": "Freeze C, build clean ZIP and preserve candidate evidence",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T22"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T23.md",
+      "acceptance_cases": [
+        "A55",
+        "A56"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T24",
+      "milestone": "M6",
+      "title": "Authorize exact tag and prepare the draft release",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T23"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T24.md",
+      "acceptance_cases": [
+        "A57",
+        "A58"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T25",
+      "milestone": "M6",
+      "title": "Verify uploaded draft assets before publication",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T24"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T25.md",
+      "acceptance_cases": [
+        "A59"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T26",
+      "milestone": "M6",
+      "title": "Publish public v1.0.0 and verify real downloads",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T25"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T26.md",
+      "acceptance_cases": [
+        "A60",
+        "A61",
+        "A62"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "T27",
+      "milestone": "M6",
+      "title": "Close with synchronized evidence and immutable release",
+      "required": true,
+      "status": "todo",
+      "depends_on": [
+        "T26"
+      ],
+      "review_improvements": [
+        15
+      ],
+      "brief": "tasks/T27.md",
+      "acceptance_cases": [
+        "A63",
+        "A64",
+        "A65"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    },
+    {
+      "id": "O01",
+      "milestone": "OPTIONAL",
+      "title": "Opt-in measured loudness normalization; deferred",
+      "required": false,
+      "status": "deferred",
+      "depends_on": [
+        "T15"
+      ],
+      "review_improvements": [
+        16
+      ],
+      "brief": "tasks/O01.md",
+      "acceptance_cases": [
+        "O-A01",
+        "O-A02"
+      ],
+      "evidence": [],
+      "tested_commit": null,
+      "checkpoint_commit": null,
+      "remote_checkpoint_verified": false,
+      "notes": null
+    }
+  ]
+}
