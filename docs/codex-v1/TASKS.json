@@ -92,14 +92,14 @@
       "tested_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
       "checkpoint_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
       "remote_checkpoint_verified": true,
-      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Draft PR #1 is pending main integration. Final docs follow the verified checkpoint; next task T02."
+      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Owner merged PR #1 at 2026-10-10T19:45:49Z into main 483af25f8e5fa9dee295f5b74130324663339e37; reconciled in T02."
     },
     {
       "id": "T02",
       "milestone": "M0",
       "title": "Capture baseline behavior and test contracts",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T01"
       ],
@@ -115,11 +115,24 @@
         "A05",
         "A06"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T02.md",
+        "T02_REGRESSION_MATRIX.md",
+        "evidence/T02-isolation-ps51.json",
+        "evidence/T02-isolation-ps7.json",
+        "evidence/T02-baseline-ps51.json",
+        "evidence/T02-baseline-ps7.json",
+        "evidence/T02-guard-results.json",
+        "evidence/T02-bitrate-matrix.json",
+        "evidence/T02-name-contracts-ps51.json",
+        "evidence/T02-name-contracts-ps7.json",
+        "evidence/T02-launcher.json",
+        "evidence/T02-tested-payload.json"
+      ],
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "checkpoint_commit": "84bd98656e9e56c9d244aa8b9a216d0204dd23d8",
+      "remote_checkpoint_verified": true,
+      "notes": "Owner supplied C:\\ffmpeg; unchanged legacy suite and focused companion passed on PS5.1 and PS7, A04-A06 pass. Native bitrate matrix (96 rows per shell), actual 24/180 names with collisions and pure suffix/path policies finalized T02 contracts. Source inventories and owned cleanup passed. Reports record actual test base plus working helper hashes, equivalent to the preserved/pushed code checkpoint in T02-tested-payload.json. Impossible dates, failed-batch exit 0 and BAT failure masking/ignored extra folders remain observed gaps for later tasks; no future gates passed. Optional bitrate junction guard fixture was rejected before execution and is unrun. Draft PR #2; feature checkpoint synchronized, main integration pending; final handoff docs follow code checkpoint. Next suggested step: T03, add OutputParent and isolate ordinary tests."
     },
     {
       "id": "T03",

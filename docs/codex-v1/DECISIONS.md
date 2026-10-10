@@ -21,7 +21,7 @@ record any owner-approved changes with rationale and impacted tests.
 | D14 | Skip directory reparse points/junctions with a recorded warning; do not follow unknown targets. | Safe initial contract |
 | D15 | Scan access failures abort before conversions, rather than silently miss subtrees. | Safe initial contract |
 | D16 | Empty/no-supported inputs return a documented nonzero outcome with no finished output. | Preserve intent |
-| D17 | Bitrate whitelist/ranges, name-length minimum and duration tolerance must be finalized from tests in T02/T09. | Open engineering detail |
+| D17 | Fixed-rate whitelist and name limit 24–180 finalized in T02; produced bitrate must equal request. Duration tolerance remains T09. | Contract selected; implementation pending |
 | D18 | Main-merge authority and exact release approval are not recorded yet. | Owner gate |
 | D19 | Any post-freeze commit may change only docs/codex-v1 progress/evidence, never shipped or tested payload. | Freeze policy |
 
@@ -47,6 +47,45 @@ T01 workflow: one active branch `codex/v1-t01-checkpoint`, a small draft PR agai
 `main`, and independent post-push live-ref verification. The next task may continue
 on this branch while main integration remains pending; preserve any later work.
 Do not infer merge authority from an unprotected branch or authenticated tools.
+
+## T02 reconciliation and engineering decisions — 10 October 2026
+
+- Owner requested T02 and a handoff that clearly states the next suggested step.
+  PR #1 was already merged by the owner at 19:45:49 UTC. T01 is now integrated
+  into main `483af25f8e5fa9dee295f5b74130324663339e37`; no agent merge was performed.
+  T02 uses fresh branch `codex/v1-t02-baseline` rather than the merged PR's branch.
+- `T02_REGRESSION_MATRIX.md` records formats/defaults/tags/names/exits/source
+  safety before application changes. Selected D17 limits are the documented
+  LAME fixed-rate union, `MaxBaseLength` 24–180 UTF-16 units, default 60, with
+  independent final/working file paths below 260 and directory-creation paths
+  below 248 UTF-16 units. Real tests on both shells establish exact rate/profile
+  behavior and baseline 24/180 names with collisions. Pure budget tests support
+  suffix/path policies; rejection and Unicode scalar/NFC behavior are not yet
+  implemented. Duration tolerance remains assigned to T09; short baseline deltas
+  range from 0 to -0.0065 seconds, insufficient to validate long-file tolerance.
+- Retain D13 root rejection, D14 descendant-directory reparse skips and D15
+  abort-before-conversion on scan access errors. Selected T06 refinement also
+  rejects a selected reparse directory and skips file reparse points to avoid
+  out-of-tree source/cleanup boundaries; enforcement needs focused Windows tests.
+- Adopt the already proposed future outcome contract 0/1/2/130 from UX_RESULTS
+  for all-success/preflight-or-empty/per-file-failure/controlled-cancel. Baseline
+  all-failed/mixed batches and BAT child failures returned 0; these are observed
+  gaps, not passes of the future result contract. Implementation remains T10/T11.
+- The test-only T02 adapter substitutes the Music resolver in disposable copies;
+  no production environment-variable backdoor or known-folder registry change
+  is introduced. Initially missing native tools blocked execution. The owner then
+  supplied "C:\ffmpeg please resume T02"; the installed bin pair resolved that
+  blocker without a download or machine change. A04–A06 passed the unchanged
+  legacy suite and synthetic companion on both shells. Exact working payload
+  fingerprints are linked in evidence; observed defects and unrun details remain
+  explicit. Next suggested step: T03, add OutputParent and isolate ordinary tests.
+
+- Native matrix: every selected rate was exact on a compatible profile. At
+  44.1/48 kHz, 8/16/24 became 32 and 144 became 128; at 22.05 kHz, 192–320
+  became 160. Keep automatic channels/sample rate; reject invalid requests in
+  T04 and fail a produced-rate mismatch in T09 rather than silently round.
+- No agent merge, CI run, default-Music smoke, phone test or release occurred.
+  Feature synchronization and pending main integration are reported separately.
 
 ## Change entry template
 

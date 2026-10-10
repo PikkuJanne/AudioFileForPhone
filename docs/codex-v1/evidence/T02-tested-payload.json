@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "task": "T02",
+  "recorded_utc": "2026-10-10T20:24:25.1213605Z",
+  "actual_test_base_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+  "preserved_code_checkpoint": "84bd98656e9e56c9d244aa8b9a216d0204dd23d8",
+  "code_checkpoint_live_verified": true,
+  "interpretation": "Tests executed at the recorded base plus working helpers. Matching raw hashes and Git blob identities (raw first, line-ending filter where needed) preserve that code payload at the subsequent checkpoint; reports do not claim a post-test commit was executed.",
+  "files": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "raw_worktree_sha256": "d30eb7280baff82089536797abd4ca20dec203d7e47807a5f13d0ed2fa4d0a88",
+      "checkpoint_git_blob": "06d049536ffe1e2a979856df8b67bae8b31b6dd6",
+      "compared_working_git_blob": "06d049536ffe1e2a979856df8b67bae8b31b6dd6",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "raw_worktree_sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+      "checkpoint_git_blob": "00cbf63a11b705bb5deda1fc72db17ab71c0f467",
+      "compared_working_git_blob": "00cbf63a11b705bb5deda1fc72db17ab71c0f467",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "raw_worktree_sha256": "95f2a1738d1f7743cb07a1a80e6a4d8b1f0dc82796334016d82c27be8ae4d86d",
+      "checkpoint_git_blob": "b14fc1cf74f849be87666ecae66c3bb7fcfd2c25",
+      "compared_working_git_blob": "b14fc1cf74f849be87666ecae66c3bb7fcfd2c25",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "raw_worktree_sha256": "0d4a27164fe455e959acbd579d274b92bfd0e91380363324edb7d0f129f827b8",
+      "checkpoint_git_blob": "569ec4c05e1098fdd18539d3e3bfc981b5147ade",
+      "compared_working_git_blob": "569ec4c05e1098fdd18539d3e3bfc981b5147ade",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "raw_worktree_sha256": "092196681d75af70f5ceababe2dd6bf6039efa070860f905d0841084655f4626",
+      "checkpoint_git_blob": "47001c7bd65ed88c441e7d6cfd1703eb2eb1517f",
+      "compared_working_git_blob": "47001c7bd65ed88c441e7d6cfd1703eb2eb1517f",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "raw_worktree_sha256": "1abd0ccf8edf7baa5cb32b57f7ed01733af600565575cf2462dc8c4500e5d538",
+      "checkpoint_git_blob": "9329c1c0ab2cd026061352854513628edbd2c3a4",
+      "compared_working_git_blob": "9329c1c0ab2cd026061352854513628edbd2c3a4",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "raw_worktree_sha256": "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+      "checkpoint_git_blob": "f186155461efc1031a72ff001e3d5b0b03d78712",
+      "compared_working_git_blob": "f186155461efc1031a72ff001e3d5b0b03d78712",
+      "checkpoint_equivalence": "byte_exact"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "raw_worktree_sha256": "527d15541a3d604394debb34bfbd478bd55cfdfdb314dcab0ccabb20f8bda228",
+      "checkpoint_git_blob": "2fd1fa635ed55d2066b77f5c8b8af353b5706344",
+      "compared_working_git_blob": "2fd1fa635ed55d2066b77f5c8b8af353b5706344",
+      "checkpoint_equivalence": "byte_exact"
+    }
+  ],
+  "reports": [
+    {
+      "report": "evidence/T02-baseline-ps51.json",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "tests/Invoke-IsolatedBaseline.ps1",
+      "helper_raw_sha256": "0d4a27164fe455e959acbd579d274b92bfd0e91380363324edb7d0f129f827b8",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-baseline-ps7.json",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "tests/Invoke-IsolatedBaseline.ps1",
+      "helper_raw_sha256": "0d4a27164fe455e959acbd579d274b92bfd0e91380363324edb7d0f129f827b8",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-name-contracts-ps51.json",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "helper_raw_sha256": "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-name-contracts-ps7.json",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "helper_raw_sha256": "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-launcher.json",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "helper_raw_sha256": "527d15541a3d604394debb34bfbd478bd55cfdfdb314dcab0ccabb20f8bda228",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-bitrate-matrix.json",
+      "shell": "5.1.26100.9444",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "helper_raw_sha256": "1abd0ccf8edf7baa5cb32b57f7ed01733af600565575cf2462dc8c4500e5d538",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    },
+    {
+      "report": "evidence/T02-bitrate-matrix.json",
+      "shell": "7.6.5",
+      "tested_commit": "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+      "helper_file": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "helper_raw_sha256": "1abd0ccf8edf7baa5cb32b57f7ed01733af600565575cf2462dc8c4500e5d538",
+      "fingerprint_matches": true,
+      "status": "pass",
+      "cleanup_verified": true
+    }
+  ],
+  "optional_bitrate_junction_guard_check": "not_run: automatic approval review rejected the isolated junction fixture before execution (rejected: blocked by policy); no fixture created"
+}

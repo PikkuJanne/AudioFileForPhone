@@ -1,0 +1,125 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T02",
+    "scope":  "B12 unchanged BAT plus inert PowerShell capture/exit stub; no audio conversion",
+    "started_utc":  "2026-10-10T20:19:31.8690672Z",
+    "tested_commit":  "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+    "helper_shell":  "5.1.26100.9444",
+    "harness_sha256":  "527d15541a3d604394debb34bfbd478bd55cfdfdb314dcab0ccabb20f8bda228",
+    "production_bat_sha256_before":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+    "production_bat_sha256_after":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+    "copied_bat_byte_identical":  true,
+    "cases":  [
+                  {
+                      "name":  "no-argument",
+                      "supplied_folder_count":  0,
+                      "requested_child_exit":  0,
+                      "bat_exit":  1,
+                      "unconditional_done_displayed":  false,
+                      "status":  "observed_behavior",
+                      "capture":  null,
+                      "stdout":  "Drag a folder onto this .bat to convert audio for phone.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "cmd_arguments":  "/d /c \"\"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\AudioFileForPhone.bat\"\""
+                  },
+                  {
+                      "name":  "one-folder-exit-0",
+                      "supplied_folder_count":  1,
+                      "requested_child_exit":  0,
+                      "bat_exit":  0,
+                      "unconditional_done_displayed":  true,
+                      "status":  "observed_behavior",
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Done. Check the new \"AudioForPhone_*\" folder in your Music folder.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "cmd_arguments":  "/d /c \"\"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\AudioFileForPhone.bat\" \"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces\"\""
+                  },
+                  {
+                      "name":  "one-folder-exit-1",
+                      "supplied_folder_count":  1,
+                      "requested_child_exit":  1,
+                      "bat_exit":  0,
+                      "unconditional_done_displayed":  true,
+                      "status":  "observed_gap",
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  1
+                                  },
+                      "stdout":  "Done. Check the new \"AudioForPhone_*\" folder in your Music folder.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "cmd_arguments":  "/d /c \"\"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\AudioFileForPhone.bat\" \"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces\"\""
+                  },
+                  {
+                      "name":  "one-folder-exit-2",
+                      "supplied_folder_count":  1,
+                      "requested_child_exit":  2,
+                      "bat_exit":  0,
+                      "unconditional_done_displayed":  true,
+                      "status":  "observed_gap",
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  2
+                                  },
+                      "stdout":  "Done. Check the new \"AudioForPhone_*\" folder in your Music folder.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "cmd_arguments":  "/d /c \"\"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\AudioFileForPhone.bat\" \"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces\"\""
+                  },
+                  {
+                      "name":  "multiple-folders",
+                      "supplied_folder_count":  2,
+                      "requested_child_exit":  0,
+                      "bat_exit":  0,
+                      "unconditional_done_displayed":  true,
+                      "status":  "observed_gap",
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Done. Check the new \"AudioForPhone_*\" folder in your Music folder.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "cmd_arguments":  "/d /c \"\"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\AudioFileForPhone.bat\" \"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\First folder with spaces\" \"C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T02Launcher-82715920c6a14cf69d18d64e315f3a24\\Second folder with spaces\"\""
+                  }
+              ],
+    "exercised_shells":  [
+                             "Core 7.6.5"
+                         ],
+    "fallback_ps51_branch":  "not_run",
+    "metacharacters_beyond_spaces":  "not_run; future T10",
+    "music_resolver_or_media_access":  false,
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "interpretation":  "characterization completed; observed gaps remain unfixed",
+    "finished_utc":  "2026-10-10T20:19:37.0950532Z"
+}

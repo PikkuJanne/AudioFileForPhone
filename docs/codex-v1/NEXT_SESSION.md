@@ -1,58 +1,76 @@
 # Next session
 
-Task: **T02 — Capture baseline behavior and test contracts.**
+## Next suggested step
+
+**T03 in a new thread: add OutputParent and isolate ordinary tests.** T02 is
+complete on its feature branch; A04–A06 passed on both Windows shells. Main
+integration of T02 remains pending owner review of draft PR #2.
+
 Read AGENTS.md, INDEX.md, STATUS.md, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md,
-tasks/T02.md, BASELINE.md, TEST_STRATEGY.md and DECISIONS.md.
+tasks/T03.md, specs/SAFETY.md and TEST_STRATEGY.md. Consult T02 evidence and
+regression matrix for preservation expectations; read only relevant later specs.
+Inspect fresh Git/GitHub state and agent overrides before editing.
 
 Checkout: `C:\projects\AudioFileForPhone-main`.
-Active branch: `codex/v1-t01-checkpoint`.
-Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/1.
-Last independently verified task checkpoint:
-`2ead61ed51a3a6aeb93d2bdb341041f6490dceaf` (tested imported helper/source commit).
-The final T01 documentation commit follows it; inspect actual HEAD/live refs.
-Local/live main: `2bf1ea1921ab33633b978bd384bbbf098648ceed`; T01 is not merged.
+Active branch: `codex/v1-t02-baseline`.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/2.
+Tested payload/code checkpoint: `84bd98656e9e56c9d244aa8b9a216d0204dd23d8`; reports retain test base
+`9fceee091fc4bfd43bdab64d5bb943a3b620bc79` plus verified helper fingerprints.
+Final handoff documentation follows that checkpoint; inspect actual HEAD/live ref.
 
-T01 restored missing Git metadata only after explicit owner approval and verifying
-all nine original files against GitHub. It imported 62 planning files, validated
-the bundle, ran 41 Python helper tests under each shell and 46 PowerShell helper
-cases (23 each), then pushed and passed live checks on both shells. Evidence:
-`evidence/T01.md`, `T01-helper-results.json`, `T01-source-inventory.json`.
-No application files or default behavior changed; no conversion/phone tests ran.
+T01 PR #1 was merged by the owner at 19:45:49 UTC on 10 October 2026.
+Local/live main was `483af25f8e5fa9dee295f5b74130324663339e37`.
+T02 is not integrated. No broader agent merge policy was approved. Reconcile an
+owner merge if present. If still pending, continue from the T02 head without
+losing its evidence; keep T03 a separate task/branch/PR and state its dependency.
 
-Environment: Windows 11 Pro build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
-FFmpeg/ffprobe were not found on PATH/in the checkout. The legacy integration
-suite writes to ordinary Music and must not be run without proven isolation.
-T02 should record a characterization matrix/fixtures and truthful blockers if
-safe execution is unavailable. T03's documented scheduling exception is for a
-later thread and does not waive A04–A06.
+Environment: Windows 11 Pro build 26300.9457, PS5.1 5.1.26100.9444 and PS7 7.6.5.
+Owner-provided native pair: `C:\ffmpeg\bin\ffmpeg.exe` and `ffprobe.exe`, build
+`2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev`. No agent installation,
+ordinary Music test, phone test or persistent machine change occurred.
 
-Existing authority covers ordinary implementation/tests/commits/task pushes and
-draft PRs. The owner requested no repeated approvals for those actions. CLI auth
-works outside the sandbox; the connected app cannot create PRs. No main merge,
-bounded merge policy or exact release/tag authorization has been recorded.
-Loudness remains deferred; website work is excluded. Public v1.0.0 is absent.
+The unchanged legacy integration suite and focused synthetic companion passed
+through the copy-only Music adapter on both shells. Seven required companion
+checks passed per shell; impossible-date and failed-batch results are three
+observed gaps per shell. Native bitrate and actual 24/180 filename/collision
+characterization also passed. Source inventories and owned cleanup passed.
+The PS5.1 report reader needed explicit UTF-8; both baseline suites were rerun
+successfully after that test-only correction. Production PS1/BAT and original
+suite remain unchanged. Review the finalized engineering choices in the matrix;
+future acceptance cases remain unrun.
+
+T03 adds optional OutputParent while retaining the configured Music default.
+Update the existing suite to use an owned temporary parent; preserve real FFmpeg
+coverage and the baseline behavior. A07 requires isolated output integration.
+A08 requires resolver tests plus a narrowly owned default-path smoke; do not
+change the owner's registry or blindly run the old suite against Music. Plan the
+smoke so only its exclusively owned run can be removed. Update canonical test
+commands in STATUS.md and TEST_STRATEGY.md. Baseline media need not be repeated
+solely for documentation; rerun affected coverage for T03's application changes.
 
 ## Copy-ready next-thread prompt
 
 ```text
 Work in C:\projects\AudioFileForPhone-main for PikkuJanne/AudioFileForPhone.
-Complete T02 only: capture baseline behavior and test contracts. Read AGENTS.md
-and docs/codex-v1/INDEX.md, STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md,
-SYNC_PROTOCOL.md, tasks/T02.md and its relevant references. Inspect actual status,
-all fetch/push destinations and live refs; fetch normally and preserve all work.
-Continue the existing codex/v1-t01-checkpoint branch and draft PR #1 unless fresh
-state requires reconciliation. T01 passed; its tested/live checkpoint is
-2ead61ed51a3a6aeb93d2bdb341041f6490dceaf, followed by final handoff documentation.
-Local/live main was 2bf1ea1921ab33633b978bd384bbbf098648ceed; T01 is not integrated.
-Build the regression matrix before changing implementation. FFmpeg/ffprobe were
-not found on PATH/in the checkout. Never run the legacy suite against normal
-Music; execute only after proven disposable isolation, otherwise record T02's
-plan/fixtures and exact execution blocker for the later T03 exception. Preserve
-default audio behavior, keep loudness deferred and leave website work for later.
-Ordinary tests, focused commits, feature pushes and draft PR updates are already
-authorized; do not ask for those again. Main integration and release writes retain
-their recorded explicit approval gates. Before ending, record evidence and the
-precise next task, review/stage intended files, commit/push and compare local HEAD
-to fresh git ls-remote for the active branch. Report main integration separately,
-never claim unrun Windows/phone tests passed, and leave the next-thread prompt.
+T03 only: add optional OutputParent while preserving configured Music as default,
+and isolate ordinary automated tests. Read AGENTS.md and docs/codex-v1/INDEX.md,
+STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md, tasks/T03.md,
+specs/SAFETY.md and TEST_STRATEGY.md. Inspect actual status/overrides, all fetch/push
+URLs, and fresh advertised feature/main refs; fetch normally and preserve work.
+T02 A04–A06 passed on both shells; its tested payload/code checkpoint is
+84bd98656e9e56c9d244aa8b9a216d0204dd23d8 and draft PR #2 is pending integration. T01 was owner-merged
+into main 483af25f8e5fa9dee295f5b74130324663339e37. Reconcile any newer owner merge;
+otherwise base a focused T03 branch/PR on T02's current head and state the dependency.
+Use installed C:\ffmpeg\bin\ffmpeg.exe and ffprobe.exe, never auto-download.
+Preserve the real-FFmpeg suite; the old suite still writes ordinary Music when
+invoked directly. T02's copy adapter is safe, with exact helper/source fingerprints
+in evidence/T02-tested-payload.json. Implement A07 and A08 with an owned test
+parent, resolver coverage and a narrowly safe default-path smoke. Do not change
+known-folder registry settings or invent manual/phone evidence. No DSP/default
+rate/formats/layout changes. Record source hashes, commands, shell/OS/tool versions
+and actual results. Ordinary tests, focused commits, feature pushes and draft PR
+updates are authorized; retain merge/release gates. Update tracking and handoff,
+review/stage intended files, commit/push, compare HEAD with fresh ls-remote and
+report feature sync and main integration separately. Clearly state the next
+suggested step; after T03 completes, suggest T04 as the next coherent new thread.
 ```
