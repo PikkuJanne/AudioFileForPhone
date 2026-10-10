@@ -39,6 +39,13 @@ merge does not change the main-integration or release gates.
 
 ## Main integration
 
+On 10 October 2026 the owner requested "T05 next please". This authorizes T05
+within the normal scope above. Fresh GitHub inspection found PR #4 merged by
+`PikkuJanne` at 21:06:59 UTC into main
+`124f3a96e1a416f6870b832d1ee1cc7543286ab9`. Local main was fast-forwarded to
+that independently advertised commit; T05 uses `codex/v1-t05-native-process`.
+This owner merge does not change the main-integration or release gates.
+
 Default: owner approval for a reviewed PR or milestone integration. Optional
 bounded policy the owner may approve once: integrate in-scope reviewed PRs only
 when required local tests and GitHub checks pass, no conflicts or unrelated changes

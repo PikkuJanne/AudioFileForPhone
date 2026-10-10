@@ -82,7 +82,7 @@ the separate narrow configured-Music test described in `evidence/T03.md`; this
 is excluded from ordinary runs. No registry or persistent PATH/policy change is
 needed. Neither mode is phone/manual playback evidence.
 
-The wrapper writes only explicitly named `T03-<label>.json` or `T04-<label>.json`
+The wrapper writes only explicitly named `T03-<label>.json`, `T04-<label>.json` or `T05-<label>.json`
 reports directly in `docs/codex-v1/evidence`, preserving historical reports. `-ValidateOnly`
 checks copies, syntax and owned cleanup without generating media and cannot
 establish codec behavior. No helper downloads tools.
@@ -111,6 +111,21 @@ SkipWriteProbe/no-creation are checked separately. Raw child diagnostics remain
 only in disposable TEMP; evidence contains assertions, bounded diagnostic
 excerpts and controlled commands.
 No ordinary Music test, disk filling, registry/policy change or manual evidence.
+
+## T05 native execution checks
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-NativeProcess.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T05-native-ps51-final.json
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-NativeProcess.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T05-native-ps7-final.json
+```
+
+The focused harness compiles a controlled C# child with the local .NET Framework
+compiler inside owned TEMP. Its argv capture and native fault modes exercise both
+shells independently; no test executable is shipped or committed. Real FFmpeg
+tests accompany stubs. Retained baseline, preflight and resolver harnesses accept
+T05 evidence filenames so their historical T03/T04 reports remain unchanged.
+Native evidence uses CreateNew; repeat with a fresh T05 label instead of replacing
+an existing report. The commands above record the original final runs.
 
 ## Cadence and status vocabulary
 

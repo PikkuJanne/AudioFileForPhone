@@ -24,6 +24,26 @@ diagnostics; parse them defensively (source S3). Keep process handle ownership f
 cancellation. No broad process-name termination or forced arbitrary short timeout
 that breaks normal audiobook conversion.
 
+T05 implementation uses an absolute application path and one Windows CRT quoting
+algorithm on both shells. A lazily compiled .NET helper reads fixed-size UTF-8
+chunks on concurrent tasks; it retains at most 1,048,576 stdout characters and
+65,536 stderr characters by default, while draining/counting the remainder.
+Results carry native status, immediate exit code, text, truncation flags and
+elapsed time without depending on or changing PowerShell LASTEXITCODE. No timeout
+is imposed on ordinary conversion. Process handles and redirected streams belong
+to that invocation and are disposed when it returns.
+
+The focused probe selects `a:0`, validates exactly one audio stream and its
+absolute stream index, and inspects only stream/container tags plus stream
+identity. Conversion maps that validated stream. Failed startup, nonzero probe,
+truncated output, invalid JSON/schema and no audio are file failures; successful
+inspection reports title presence separately. MP3/M4A container tags and Ogg
+first-audio-stream comments keep their existing precedence. Version/encoder
+checks run once before prompts, and the accepted paths/versions enter the run log.
+
+References for the implementation: [Microsoft CRT argument parsing](https://learn.microsoft.com/en-us/cpp/c-language/parsing-c-command-line-arguments)
+and [Microsoft redirected process I/O guidance](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.process.standardoutput).
+
 ## Preserve audio behavior
 
 Supported scanned extensions remain MP3/M4A/OGG, including Ogg Vorbis and Opus.

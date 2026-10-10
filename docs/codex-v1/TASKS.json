@@ -199,14 +199,14 @@
       "tested_commit": "bf425829d2e019911f179eb8250bfe6800f7ac81",
       "checkpoint_commit": "512a824ae856b4425a4012e0116f363babcc4d4e",
       "remote_checkpoint_verified": true,
-      "notes": "A09-A11 pass on PS5.1/PS7: functions-only helper extraction, before-prompt input/range/output/tool/cover preflight, 35 negative children and eight helper cases per shell, effective owned-TEMP ACL denials/exact restoration, ten resolver cases and retained FFmpeg suites. Source/cleanup pass; actual test base plus working hashes are equivalent to preserved/pushed code checkpoint with recorded CRLF/LF behavior. Owner merged T03 PR #3; T04 draft PR #4 synchronized, main integration pending owner review. No registry/policy/ordinary Music, disk-fill, live-share, CI/phone/release evidence. Next suggested step: T05 in a new thread."
+      "notes": "A09-A11 pass on PS5.1/PS7: functions-only helper extraction, before-prompt input/range/output/tool/cover preflight, 35 negative children and eight helper cases per shell, effective owned-TEMP ACL denials/exact restoration, ten resolver cases and retained FFmpeg suites. Source/cleanup pass; actual test base plus working hashes are equivalent to preserved/pushed code checkpoint with recorded CRLF/LF behavior. Owner merged T03 PR #3; Owner merged T04 PR #4 at 2026-10-10T21:06:59Z into main 124f3a96e1a416f6870b832d1ee1cc7543286ab9 (reconciled in T05). No registry/policy/ordinary Music, disk-fill, live-share, CI/phone/release evidence. Next suggested step: T05 in a new thread."
     },
     {
       "id": "T05",
       "milestone": "M1",
       "title": "Centralize native execution and media inspection",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T04"
       ],
@@ -220,11 +220,22 @@
         "A13",
         "A14"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T05.md",
+        "evidence/T05-native-ps51-final.json",
+        "evidence/T05-native-ps7-final.json",
+        "evidence/T05-baseline-ps51.json",
+        "evidence/T05-baseline-ps7.json",
+        "evidence/T05-preflight-ps51.json",
+        "evidence/T05-preflight-ps7.json",
+        "evidence/T05-resolver-ps51.json",
+        "evidence/T05-resolver-ps7.json",
+        "evidence/T05-tested-payload.json"
+      ],
+      "tested_commit": "124f3a96e1a416f6870b832d1ee1cc7543286ab9",
+      "checkpoint_commit": "215b57c2d1fd93ab62192e07c9ba30632bf2824e",
+      "remote_checkpoint_verified": true,
+      "notes": "A12-A14 pass on PS5.1/PS7: 35 focused cases per shell, exact quoted/special/Unicode argv, bounded concurrent 2,457,600-char dual-pipe floods, explicit native/probe/dependency results, no handle growth across 40 invocations, real metadata/cover/full decode/tool logs. Startup checks and conversions share one lazy .NET runner with -nostdin, immediate exit status and owned cleanup. Final retained FFmpeg suites/seven required companion checks, 35 preflight negatives/eight helper checks and ten resolver cases pass per shell. Source/fixture hashes, ACL restoration and owned cleanup pass; code checkpoint equivalence records CRLF/LF behavior. Initial native argv-harness and worker-handle failures retained and repaired. Owner merged T04 PR #4; T05 draft PR #5 synchronized, main integration pending owner review. No ordinary Music, registry/policy/download, external-reference audit, manual/phone/long-audio/cancellation, CI or release evidence. Next suggested step: T06 in a new thread."
     },
     {
       "id": "T06",

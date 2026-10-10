@@ -1,0 +1,413 @@
+{
+    "schema_version":  1,
+    "task":  "T05",
+    "mode":  "native_process_and_probe",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-NativeProcess.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T05-native-ps51-final.json",
+    "started_utc":  "2026-10-10T21:14:55.5941550Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "124f3a96e1a416f6870b832d1ee1cc7543286ab9",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "6931025b2863719666ede07ad3c960e621d49c85ecb3e7098ce05796bd2a77f7"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "4b466f0f514ab0ef112ea418066879c49d007b8a0594d569f3cb1614620bffa5"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NativeProcess.ps1",
+                              "sha256":  "a86c1f72389520c2eeefc3f7b012cff173126bd42c767b2fa56247f2637e0245"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preflight.ps1",
+                              "sha256":  "d282e192698e7411b385e98d58009926af5766a0359f1c3117d7eff98c910f39"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "735e68c30375c55db4904d0ccbd1c3d21ad5e65e1805065d0f5a393de9967bd5"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "464599199915cfb27fc2daab83cac9355c303b6791097622ca064aa77615af3d"
+                          },
+                          {
+                              "relative_path":  "tests/Test-OutputParent.ps1",
+                              "sha256":  "5c94e7878061b2a23a11dfccfcbccc1f4cf037b69e4622430fcb79153351e2f6"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "6931025b2863719666ede07ad3c960e621d49c85ecb3e7098ce05796bd2a77f7"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "4b466f0f514ab0ef112ea418066879c49d007b8a0594d569f3cb1614620bffa5"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NativeProcess.ps1",
+                             "sha256":  "a86c1f72389520c2eeefc3f7b012cff173126bd42c767b2fa56247f2637e0245"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preflight.ps1",
+                             "sha256":  "d282e192698e7411b385e98d58009926af5766a0359f1c3117d7eff98c910f39"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "735e68c30375c55db4904d0ccbd1c3d21ad5e65e1805065d0f5a393de9967bd5"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "464599199915cfb27fc2daab83cac9355c303b6791097622ca064aa77615af3d"
+                         },
+                         {
+                             "relative_path":  "tests/Test-OutputParent.ps1",
+                             "sha256":  "5c94e7878061b2a23a11dfccfcbccc1f4cf037b69e4622430fcb79153351e2f6"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Input [literal] O\u0027Brien \u0026 Unicode\\2024-01-02 - Synthetic [literal] O\u0027Brien \u0026 äö雪Ω.mp3",
+                                 "sha256":  "2c2a86db8d80b1c458fd2f4f1fede41f0e04940878e20277f500c6628fa14384"
+                             },
+                             {
+                                 "relative_path":  "Real multiple audio streams.m4a",
+                                 "sha256":  "93223f5fe83630ebf5512728b13befcc3d2cd0d7818fdc8833204ab973f6cf95"
+                             },
+                             {
+                                 "relative_path":  "Cover [literal] O\u0027Brien \u0026 äö雪Ω.png",
+                                 "sha256":  "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Input [literal] O\u0027Brien \u0026 Unicode\\2024-01-02 - Synthetic [literal] O\u0027Brien \u0026 äö雪Ω.mp3",
+                                "sha256":  "2c2a86db8d80b1c458fd2f4f1fede41f0e04940878e20277f500c6628fa14384"
+                            },
+                            {
+                                "relative_path":  "Real multiple audio streams.m4a",
+                                "sha256":  "93223f5fe83630ebf5512728b13befcc3d2cd0d7818fdc8833204ab973f6cf95"
+                            },
+                            {
+                                "relative_path":  "Cover [literal] O\u0027Brien \u0026 äö雪Ω.png",
+                                "sha256":  "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "cases":  [
+                  {
+                      "name":  "exact-argv-special-empty-backslash-unicode",
+                      "status":  "pass",
+                      "captured_argv":  {
+                                            "value":  [
+                                                          "capture",
+                                                          "",
+                                                          " ",
+                                                          "two words",
+                                                          "[literal]",
+                                                          "O\u0027Brien",
+                                                          "x \u0026 y",
+                                                          "say \"quoted\"",
+                                                          "äö雪Ω",
+                                                          "C:\\space path\\",
+                                                          "C:\\ends\\\\",
+                                                          "\\\"",
+                                                          "\\\\\"",
+                                                          "a\\\\\\\"b",
+                                                          "$(should not execute)",
+                                                          "; not evaluated",
+                                                          "tab\tbetween",
+                                                          "line\nbreak"
+                                                      ],
+                                            "Count":  18
+                                        },
+                      "duration_ms":  178
+                  },
+                  {
+                      "name":  "ffmpeg-nostdin-argv",
+                      "status":  "pass",
+                      "captured_argv":  {
+                                            "value":  [
+                                                          "-nostdin",
+                                                          "capture",
+                                                          "artist=quote \" and \u0026 äö雪Ω"
+                                                      ],
+                                            "Count":  3
+                                        }
+                  },
+                  {
+                      "name":  "immediate-exit-status-and-both-streams",
+                      "status":  "pass",
+                      "exit_code":  7
+                  },
+                  {
+                      "name":  "ordinary-stderr-is-success-and-caller-exit-unchanged",
+                      "status":  "pass",
+                      "caller_exit":  29,
+                      "stderr":  "ordinary native diagnostic"
+                  },
+                  {
+                      "name":  "bounded-dual-stream-flood-alternating",
+                      "status":  "pass",
+                      "exit_code":  7,
+                      "stdout_retained":  1048576,
+                      "stderr_retained":  65536,
+                      "stdout_total":  2457600,
+                      "stderr_total":  2457600,
+                      "duration_ms":  93
+                  },
+                  {
+                      "name":  "bounded-dual-stream-flood-concurrent",
+                      "status":  "pass",
+                      "exit_code":  7,
+                      "stdout_retained":  1048576,
+                      "stderr_retained":  65536,
+                      "stdout_total":  2457600,
+                      "stderr_total":  2457600,
+                      "duration_ms":  89
+                  },
+                  {
+                      "name":  "custom-zero-and-small-retention-caps",
+                      "status":  "pass",
+                      "stdout_retained":  0,
+                      "stderr_retained":  4
+                  },
+                  {
+                      "name":  "embedded-nul-argument-is-rejected",
+                      "status":  "pass",
+                      "actual_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "process-resource-handles-released",
+                      "status":  "pass",
+                      "calls_after_warmup":  40,
+                      "handle_count_before":  674,
+                      "handle_count_immediate":  674,
+                      "handle_count_after":  674,
+                      "worker_settle_ms":  500,
+                      "allowed_handle_growth":  16,
+                      "child_executable_rename_after_exit":  true
+                  },
+                  {
+                      "name":  "missing-executable",
+                      "status":  "pass",
+                      "expected_status":  "MissingExecutable",
+                      "actual_status":  "MissingExecutable"
+                  },
+                  {
+                      "name":  "directory-executable",
+                      "status":  "pass",
+                      "expected_status":  "InvalidExecutablePath",
+                      "actual_status":  "InvalidExecutablePath"
+                  },
+                  {
+                      "name":  "relative-executable",
+                      "status":  "pass",
+                      "expected_status":  "InvalidExecutablePath",
+                      "actual_status":  "InvalidExecutablePath"
+                  },
+                  {
+                      "name":  "non-executable-file",
+                      "status":  "pass",
+                      "expected_status":  "StartFailed",
+                      "actual_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "probe-nonzero",
+                      "status":  "pass",
+                      "expected_status":  "ProbeFailed",
+                      "actual_status":  "ProbeFailed",
+                      "native_exit":  9
+                  },
+                  {
+                      "name":  "probe-invalid-json",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-empty-output",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-whitespace-output",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-truncated",
+                      "status":  "pass",
+                      "expected_status":  "OutputTruncated",
+                      "actual_status":  "OutputTruncated",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-wrong-shape",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-singleton-array",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-bad-tags",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-no-audio",
+                      "status":  "pass",
+                      "expected_status":  "NoAudio",
+                      "actual_status":  "NoAudio",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-multi",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-video",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-bad-index",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-title-no-title",
+                      "status":  "pass",
+                      "title_status":  "Absent",
+                      "title":  null,
+                      "stream_index":  4,
+                      "metadata_source":  "0"
+                  },
+                  {
+                      "name":  "probe-title-present-container",
+                      "status":  "pass",
+                      "title_status":  "Present",
+                      "title":  "container title",
+                      "stream_index":  4,
+                      "metadata_source":  "0"
+                  },
+                  {
+                      "name":  "probe-title-present-stream",
+                      "status":  "pass",
+                      "title_status":  "Present",
+                      "title":  "stream title",
+                      "stream_index":  4,
+                      "metadata_source":  "0:s:a:0"
+                  },
+                  {
+                      "name":  "probe-native-startup-failure-distinct",
+                      "status":  "pass",
+                      "missing_status":  "MissingExecutable",
+                      "invalid_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "dependency-unsupported",
+                      "status":  "pass",
+                      "diagnostic":  "Invalid ffmpeg executable \u0027\u003cOWNED_TEMP\u003e\\unsupported\\ffmpeg.exe\u0027: Expected a successful tool version response."
+                  },
+                  {
+                      "name":  "dependency-version-failure",
+                      "status":  "pass",
+                      "diagnostic":  "Invalid ffmpeg executable \u0027\u003cOWNED_TEMP\u003e\\version-failure\\ffmpeg.exe\u0027: Expected a successful tool version response."
+                  },
+                  {
+                      "name":  "dependency-no-lame",
+                      "status":  "pass",
+                      "diagnostic":  "ffmpeg does not provide the required libmp3lame encoder: \u003cOWNED_TEMP\u003e\\no-lame\\ffmpeg.exe"
+                  },
+                  {
+                      "name":  "real-metadata-probe-and-selected-audio",
+                      "status":  "pass",
+                      "title":  "Title \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "artist":  "Artist \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "album":  "Album \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "selected_stream_index_after_video":  1
+                  },
+                  {
+                      "name":  "real-cover-and-caller-state",
+                      "status":  "pass",
+                      "caller_exit":  31,
+                      "cover_decoded":  true
+                  },
+                  {
+                      "name":  "real-entry-quoted-unicode-metadata-full-decode-tool-log",
+                      "status":  "pass",
+                      "native_exit":  0,
+                      "output_sha256":  "1a5cc3f130591ca6aa5fdb40cde009878dfa051345e9de2b9e75eab5e04e87bc",
+                      "full_audio_decode":  true,
+                      "tool_paths_versions_logged":  true,
+                      "title":  "Title \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "artist":  "Artist \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "album":  "Album \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω"
+                  }
+              ],
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "ffmpeg":  {
+                   "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                   "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                   "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+               },
+    "ffprobe":  {
+                    "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                    "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                    "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+                },
+    "child_compiler":  {
+                           "path":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                           "sha256":  "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+                           "generated_binary_committed":  false
+                       },
+    "finished_utc":  "2026-10-10T21:15:16.1476357Z"
+}

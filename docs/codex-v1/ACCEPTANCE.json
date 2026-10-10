@@ -175,8 +175,14 @@
       "required": true,
       "method": "argv capture stub plus FFmpeg tests",
       "expected": "Space/bracket/apostrophe/ampersand/quote/Unicode arguments reach the executable intact on PS 5.1 and PS 7; no shell evaluation; immediate exit status retained.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T05.md",
+        "evidence/T05-native-ps51-final.json",
+        "evidence/T05-native-ps7-final.json",
+        "evidence/T05-baseline-ps51.json",
+        "evidence/T05-baseline-ps7.json"
+      ]
     },
     {
       "id": "A13",
@@ -185,8 +191,14 @@
       "required": true,
       "method": "noisy test process + real conversion",
       "expected": "Simultaneously drain stdout/stderr under stress, bound retained diagnostics, use -nostdin, release process resources and do not treat ordinary native stderr as automatic failure.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T05.md",
+        "evidence/T05-native-ps51-final.json",
+        "evidence/T05-native-ps7-final.json",
+        "evidence/T05-baseline-ps51.json",
+        "evidence/T05-baseline-ps7.json"
+      ]
     },
     {
       "id": "A14",
@@ -195,8 +207,14 @@
       "required": true,
       "method": "mock failures plus real tools",
       "expected": "Missing/non-executable/unsupported tools, missing libmp3lame, nonzero ffprobe, invalid JSON, no audio and missing title are distinct; absolute tool path/version logged.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T05.md",
+        "evidence/T05-native-ps51-final.json",
+        "evidence/T05-native-ps7-final.json",
+        "evidence/T05-baseline-ps51.json",
+        "evidence/T05-baseline-ps7.json"
+      ]
     },
     {
       "id": "A15",

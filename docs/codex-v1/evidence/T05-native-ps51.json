@@ -1,0 +1,122 @@
+{
+    "schema_version":  1,
+    "task":  "T05",
+    "mode":  "native_process_and_probe",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-NativeProcess.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T05-native-ps51.json",
+    "started_utc":  "2026-10-10T21:13:07.6996680Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "124f3a96e1a416f6870b832d1ee1cc7543286ab9",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "6931025b2863719666ede07ad3c960e621d49c85ecb3e7098ce05796bd2a77f7"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "bd2eeddad522720e03f45cd38e7cd8eeda50ea52cd400a76c48486689638bed1"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NativeProcess.ps1",
+                              "sha256":  "31abf0090dfb8c8361cc480a4e4b2bd4e120b56de518a22a891d9290494c4900"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preflight.ps1",
+                              "sha256":  "d282e192698e7411b385e98d58009926af5766a0359f1c3117d7eff98c910f39"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "735e68c30375c55db4904d0ccbd1c3d21ad5e65e1805065d0f5a393de9967bd5"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "464599199915cfb27fc2daab83cac9355c303b6791097622ca064aa77615af3d"
+                          },
+                          {
+                              "relative_path":  "tests/Test-OutputParent.ps1",
+                              "sha256":  "5c94e7878061b2a23a11dfccfcbccc1f4cf037b69e4622430fcb79153351e2f6"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "6931025b2863719666ede07ad3c960e621d49c85ecb3e7098ce05796bd2a77f7"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "bd2eeddad522720e03f45cd38e7cd8eeda50ea52cd400a76c48486689638bed1"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NativeProcess.ps1",
+                             "sha256":  "31abf0090dfb8c8361cc480a4e4b2bd4e120b56de518a22a891d9290494c4900"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preflight.ps1",
+                             "sha256":  "d282e192698e7411b385e98d58009926af5766a0359f1c3117d7eff98c910f39"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "735e68c30375c55db4904d0ccbd1c3d21ad5e65e1805065d0f5a393de9967bd5"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "464599199915cfb27fc2daab83cac9355c303b6791097622ca064aa77615af3d"
+                         },
+                         {
+                             "relative_path":  "tests/Test-OutputParent.ps1",
+                             "sha256":  "5c94e7878061b2a23a11dfccfcbccc1f4cf037b69e4622430fcb79153351e2f6"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+
+                         ],
+    "synthetic_after":  null,
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "cases":  [
+                  {
+                      "name":  "exact-argv-special-empty-backslash-unicode",
+                      "status":  "fail"
+                  }
+              ],
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Every argv element, including empty strings, must arrive.",
+    "ffmpeg":  {
+                   "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                   "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                   "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+               },
+    "ffprobe":  {
+                    "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                    "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                    "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+                },
+    "child_compiler":  {
+                           "path":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                           "sha256":  "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+                           "generated_binary_committed":  false
+                       },
+    "finished_utc":  "2026-10-10T21:13:11.4316198Z"
+}

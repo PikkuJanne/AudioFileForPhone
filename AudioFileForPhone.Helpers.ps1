@@ -106,28 +106,322 @@ function Get-ToolPath {
     return $command.Source
 }
 
+function Invoke-AudioNativeProcess {
+    param(
+        [Parameter(Mandatory = $true)][string]$ExecutablePath,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][AllowEmptyString()][string[]]$Arguments,
+        [ValidateRange(0, 2147483647)][int]$MaxStdoutChars = 1048576,
+        [ValidateRange(0, 2147483647)][int]$MaxStderrChars = 65536
+    )
+
+    $result = [ordered]@{
+        Status = 'StartFailed'; ExecutablePath = $ExecutablePath; Arguments = [string[]]$Arguments.Clone()
+        ExitCode = $null; Stdout = ''; Stderr = ''; StdoutTruncated = $false; StderrTruncated = $false
+        StdoutTotalChars = [long]0; StderrTotalChars = [long]0; DurationMilliseconds = [long]0; Error = ''
+    }
+    $timer = [Diagnostics.Stopwatch]::StartNew()
+    $capture = $null
+    try {
+        # A rooted drive-relative path such as C:tool.exe is not an absolute path.
+        # FileName is passed directly to Process, never to a command interpreter.
+        if (-not [IO.Path]::IsPathRooted($ExecutablePath) -or
+            $ExecutablePath -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\/]+[\\/][^\\/]+[\\/])' -or
+            $ExecutablePath.IndexOf([char]0) -ge 0 -or
+            $ExecutablePath.StartsWith('\\?\') -or $ExecutablePath.StartsWith('\\.\')) {
+            $result.Status = 'InvalidExecutablePath'
+            $result.Error = 'ExecutablePath must be an absolute filesystem executable path.'
+            $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+            return [pscustomobject]$result
+        }
+        if ([IO.Directory]::Exists($ExecutablePath)) {
+            $result.Status = 'InvalidExecutablePath'
+            $result.Error = 'ExecutablePath must name an executable file, not a directory.'
+            $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+            return [pscustomobject]$result
+        }
+        if (-not [IO.File]::Exists($ExecutablePath)) {
+            $result.Status = 'MissingExecutable'
+            $result.Error = 'The executable file does not exist or is not readable.'
+            $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+            return [pscustomobject]$result
+        }
+        # Compile only on first invocation. Dot-sourcing remains functions-only.
+        # This implementation uses APIs available in .NET Framework/PowerShell 5.1.
+        if (-not ('AudioFileForPhone.NativeCapture' -as [type])) {
+            Add-Type -TypeDefinition @'
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Threading.Tasks;
+namespace AudioFileForPhone {
+    public sealed class NativeCapture : IDisposable {
+        private sealed class DrainResult {
+            public string Text;
+            public long TotalChars;
+        }
+        private Process process;
+        private Task<DrainResult> stdoutTask;
+        private Task<DrainResult> stderrTask;
+        private bool completed;
+        public int ExitCode { get; private set; }
+        public string Stdout { get; private set; }
+        public string Stderr { get; private set; }
+        public long StdoutTotalChars { get; private set; }
+        public long StderrTotalChars { get; private set; }
+        public bool StdoutTruncated { get; private set; }
+        public bool StderrTruncated { get; private set; }
+
+        // Quote every argument using the Windows CRT rules: backslashes preceding
+        // a quote or the closing quote are doubled; other backslashes stay literal.
+        private static string Quote(string value) {
+            if (value == null) throw new ArgumentException("Native arguments cannot be null.");
+            if (value.IndexOf('\0') >= 0) throw new ArgumentException("Native arguments cannot contain NUL characters.");
+            StringBuilder quoted = new StringBuilder();
+            quoted.Append('"');
+            int slashes = 0;
+            foreach (char c in value) {
+                if (c == '\\') { slashes++; continue; }
+                if (c == '"') {
+                    quoted.Append('\\', slashes * 2 + 1);
+                    quoted.Append('"');
+                } else {
+                    quoted.Append('\\', slashes);
+                    quoted.Append(c);
+                }
+                slashes = 0;
+            }
+            quoted.Append('\\', slashes * 2);
+            quoted.Append('"');
+            return quoted.ToString();
+        }
+        private static DrainResult Drain(StreamReader reader, int limit) {
+            StringBuilder retained = new StringBuilder(Math.Min(limit, 4096));
+            char[] buffer = new char[4096];
+            long total = 0;
+            int count;
+            while ((count = reader.Read(buffer, 0, buffer.Length)) != 0) {
+                total += count;
+                int keep = Math.Min(count, limit - retained.Length);
+                if (keep > 0) retained.Append(buffer, 0, keep);
+            }
+            return new DrainResult { Text = retained.ToString(), TotalChars = total };
+        }
+        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit) {
+            try {
+                StringBuilder commandLine = new StringBuilder();
+                foreach (string argument in arguments) {
+                    if (commandLine.Length != 0) commandLine.Append(' ');
+                    commandLine.Append(Quote(argument));
+                }
+                ProcessStartInfo start = new ProcessStartInfo();
+                start.FileName = executablePath;
+                start.Arguments = commandLine.ToString();
+                start.UseShellExecute = false;
+                start.CreateNoWindow = true;
+                start.RedirectStandardInput = true;
+                start.RedirectStandardOutput = true;
+                start.RedirectStandardError = true;
+                start.StandardOutputEncoding = new UTF8Encoding(false, false);
+                start.StandardErrorEncoding = new UTF8Encoding(false, false);
+                process = new Process();
+                process.StartInfo = start;
+                if (!process.Start()) throw new IOException("The native process did not start.");
+                StreamReader stdoutReader = process.StandardOutput;
+                StreamReader stderrReader = process.StandardError;
+                // Reuse pool workers rather than allocate two CLR threads and
+                // their native handles for every media item in a long batch.
+                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                // Observe faults even if an interrupted caller cannot join a drain.
+                stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
+                stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
+                process.StandardInput.Close();
+            } catch {
+                Dispose();
+                throw;
+            }
+        }
+        public bool WaitForExit(int milliseconds) { return process.WaitForExit(milliseconds); }
+        public int CaptureExitCode() { ExitCode = process.ExitCode; return ExitCode; }
+        public void Complete() {
+            Task.WaitAll(stdoutTask, stderrTask);
+            Stdout = stdoutTask.Result.Text;
+            Stderr = stderrTask.Result.Text;
+            StdoutTotalChars = stdoutTask.Result.TotalChars;
+            StderrTotalChars = stderrTask.Result.TotalChars;
+            StdoutTruncated = StdoutTotalChars > Stdout.Length;
+            StderrTruncated = StderrTotalChars > Stderr.Length;
+            completed = true;
+        }
+        public void Dispose() {
+            if (process == null) return;
+            // Only this helper's process is owned. Abnormal unwind never searches
+            // process names, terminates unrelated children or changes global state.
+            if (!completed) {
+                try { if (!process.HasExited) process.Kill(); } catch { }
+            }
+            // Process.Dispose closes its process handle; explicitly own each pipe
+            // reader/writer on successful completion and on abnormal unwind.
+            try { process.StandardInput.Dispose(); } catch { }
+            try { process.StandardOutput.Dispose(); } catch { }
+            try { process.StandardError.Dispose(); } catch { }
+            // This bounded teardown join is separate from process runtime: normal
+            // conversions have no timeout. Killed/closed pipes should promptly end.
+            try {
+                if (stdoutTask != null && stderrTask != null) Task.WaitAll(new Task[] { stdoutTask, stderrTask }, 1000);
+                else if (stdoutTask != null) stdoutTask.Wait(1000);
+                else if (stderrTask != null) stderrTask.Wait(1000);
+            } catch { }
+            if (stdoutTask != null && stdoutTask.IsCompleted) stdoutTask.Dispose();
+            if (stderrTask != null && stderrTask.IsCompleted) stderrTask.Dispose();
+            process.Dispose();
+            process = null;
+        }
+    }
+}
+'@ -ErrorAction Stop
+        }
+        $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
+        # Short polling permits PowerShell interruption; it is not a runtime limit.
+        while (-not $capture.WaitForExit(100)) { }
+        $result.ExitCode = $capture.CaptureExitCode()
+        $result.Status = 'CaptureFailed'
+        $capture.Complete()
+        $result.Status = 'Completed'
+        $result.Stdout = $capture.Stdout
+        $result.Stderr = $capture.Stderr
+        $result.StdoutTruncated = $capture.StdoutTruncated
+        $result.StderrTruncated = $capture.StderrTruncated
+        $result.StdoutTotalChars = $capture.StdoutTotalChars
+        $result.StderrTotalChars = $capture.StderrTotalChars
+    }
+    catch { $result.Error = $_.Exception.Message }
+    finally {
+        if ($null -ne $capture) { $capture.Dispose() }
+        $timer.Stop()
+        $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+    }
+    return [pscustomobject]$result
+}
+
+function Get-AudioMediaInfo {
+    param([string]$Path, [string]$FfprobePath)
+    $result = [ordered]@{
+        Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
+        StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
+    }
+    try {
+        $provider = $null
+        $drive = $null
+        $localPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+            $Path, [ref]$provider, [ref]$drive
+        )
+        if ($provider.Name -ne 'FileSystem' -or [string]::IsNullOrWhiteSpace($Path)) {
+            throw 'Media input must be a local filesystem path.'
+        }
+        $localPath = [IO.Path]::GetFullPath($localPath)
+        $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
+            '-v', 'error', '-select_streams', 'a:0', '-show_entries',
+            'stream=index,codec_type:stream_tags:format_tags', '-of', 'json', '-i', $localPath
+        )
+        $result.NativeResult = $native
+        if ($native.Status -ne 'Completed') {
+            $result.Status = $native.Status
+            $result.Error = $native.Error
+            return [pscustomobject]$result
+        }
+        if ($native.ExitCode -ne 0) {
+            $result.Status = 'ProbeFailed'
+            $result.Error = "ffprobe exited with code $($native.ExitCode): $($native.Stderr)"
+            return [pscustomobject]$result
+        }
+        if ($native.StdoutTruncated) {
+            $result.Status = 'OutputTruncated'
+            $result.Error = 'ffprobe JSON exceeded the retained output limit.'
+            return [pscustomobject]$result
+        }
+        try {
+            if ([string]::IsNullOrWhiteSpace($native.Stdout)) { throw 'ffprobe returned empty JSON output.' }
+            $meta = ConvertFrom-Json -InputObject $native.Stdout -ErrorAction Stop
+        }
+        catch {
+            $result.Status = 'InvalidJson'
+            $result.Error = "ffprobe did not return valid JSON: $($_.Exception.Message)"
+            return [pscustomobject]$result
+        }
+        # ConvertFrom-Json can unwrap a singleton root array into an object.
+        # The ffprobe root must be an object regardless of shell enumeration.
+        if (-not $native.Stdout.TrimStart().StartsWith('{')) { throw 'ffprobe JSON root must be an object.' }
+        if ($null -eq $meta -or $meta -isnot [pscustomobject] -or
+            $null -eq $meta.PSObject.Properties['streams'] -or $meta.streams -isnot [array]) {
+            throw 'ffprobe JSON must contain a streams array.'
+        }
+        if ($meta.streams.Count -eq 0) {
+            $result.Status = 'NoAudio'
+            $result.Error = 'ffprobe found no selected audio stream.'
+            return [pscustomobject]$result
+        }
+        if ($meta.streams.Count -ne 1) { throw 'ffprobe must return exactly the selected first audio stream.' }
+        $audio = $meta.streams[0]
+        if ($null -eq $audio -or $audio -isnot [pscustomobject] -or
+            $audio.codec_type -cne 'audio' -or
+            ($audio.index -isnot [int] -and $audio.index -isnot [long]) -or
+            $audio.index -lt 0 -or $audio.index -gt [int]::MaxValue) {
+            throw 'The selected stream must be audio with a nonnegative integer index.'
+        }
+        $tags = $null
+        if ($result.MetadataSource -eq '0:s:a:0') {
+            $tags = $audio.tags
+        }
+        elseif ($null -ne $meta.PSObject.Properties['format']) {
+            if ($meta.format -isnot [pscustomobject]) { throw 'ffprobe format data must be an object.' }
+            $tags = $meta.format.tags
+        }
+        if ($null -ne $tags) {
+            if ($tags -isnot [pscustomobject]) { throw 'ffprobe tags must be a JSON object.' }
+            foreach ($tag in $tags.PSObject.Properties) {
+                if ($tag.Value -isnot [string]) { throw 'ffprobe tag values must be strings.' }
+            }
+        }
+        $result.StreamIndex = [int]$audio.index
+        # Keep baseline truthiness: an empty title falls back to the filename;
+        # whitespace and all other nonempty title strings remain intact.
+        if ($null -ne $tags -and -not [string]::IsNullOrEmpty($tags.title)) {
+            $result.TitleStatus = 'Present'
+            $result.Title = $tags.title
+        }
+        else { $result.TitleStatus = 'Absent' }
+        $result.Status = 'Success'
+    }
+    catch { $result.Error = $_.Exception.Message }
+    return [pscustomobject]$result
+}
+
 function Assert-ToolPrerequisites {
     param([string]$FfmpegPath, [string]$FfprobePath)
-    # Small startup checks only. T05 owns the shared native execution wrapper.
-    $ErrorActionPreference = 'Continue'
+    $tools = [ordered]@{}
     foreach ($tool in @(@{ Name = 'ffmpeg'; Path = $FfmpegPath }, @{ Name = 'ffprobe'; Path = $FfprobePath })) {
         try {
-            $global:LASTEXITCODE = $null
-            $version = @(& $tool.Path '-version' 2>&1)
-            $code = $global:LASTEXITCODE
-            if ($null -eq $code -or $code -ne 0 -or $version.Count -eq 0 -or [string]$version[0] -notmatch ('^' + $tool.Name + ' version ')) {
+            $arguments = if ($tool.Name -eq 'ffmpeg') { @('-nostdin', '-version') } else { @('-version') }
+            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments
+            $version = ($native.Stdout -split '\r?\n' | Select-Object -First 1)
+            if ($native.Status -ne 'Completed') { throw "$($native.Status): $($native.Error)" }
+            if ($native.ExitCode -ne 0 -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
                 throw 'Expected a successful tool version response.'
             }
-            Write-Host ("[INFO] {0}: {1}" -f $tool.Path, $version[0])
+            $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version }
+            Write-Host ("[INFO] {0}: {1}" -f $tool.Path, $version)
         }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
-    $global:LASTEXITCODE = $null
-    $encoders = @(& $FfmpegPath '-hide_banner' '-encoders' 2>&1)
-    $code = $global:LASTEXITCODE
-    if ($null -eq $code -or $code -ne 0 -or ($encoders -join "`n") -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {
+    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders')
+    if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or $encoders.StdoutTruncated -or
+        ($encoders.Stdout + "`n" + $encoders.Stderr) -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {
         throw "ffmpeg does not provide the required libmp3lame encoder: $FfmpegPath"
     }
+    return [pscustomobject]@{ Ffmpeg = $tools['ffmpeg']; Ffprobe = $tools['ffprobe'] }
 }
 
 function Get-ValidatedCoverPath {
@@ -151,11 +445,12 @@ function Get-ValidatedCoverPath {
             }
         }
         finally { $image.Dispose() }
-        $ErrorActionPreference = 'Continue'
-        $global:LASTEXITCODE = $null
-        $diagnostic = @(& $FfmpegPath '-nostdin' '-hide_banner' '-v' 'error' '-xerror' '-i' $item.FullName '-map' '0:v:0' '-frames:v' '1' '-c:v' 'mjpeg' '-f' 'null' '-' 2>&1)
-        $code = $global:LASTEXITCODE
-        if ($null -eq $code -or $code -ne 0) { throw "FFmpeg could not decode the cover (exit $code): $($diagnostic -join ' ')" }
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-i', $item.FullName,
+            '-map', '0:v:0', '-frames:v', '1', '-c:v', 'mjpeg', '-f', 'null', '-'
+        )
+        if ($native.Status -ne 'Completed') { throw "FFmpeg could not decode the cover ($($native.Status)): $($native.Error)" }
+        if ($native.ExitCode -ne 0) { throw "FFmpeg could not decode the cover (exit $($native.ExitCode)): $($native.Stderr)" }
         return $item.FullName
     }
     catch { throw "Invalid CoverPath '$Path': $($_.Exception.Message)" }
