@@ -184,7 +184,7 @@ try {
             '-MusicParent', $characterMusic, '-FfmpegPath', $ffmpeg, '-FfprobePath', $ffprobe,
             '-ResultPath', $characterResult)
         if (Test-Path -LiteralPath $characterResult -PathType Leaf) {
-            $report.characterization = Get-Content -LiteralPath $characterResult -Raw | ConvertFrom-Json
+            $report.characterization = Get-Content -LiteralPath $characterResult -Raw -Encoding UTF8 | ConvertFrom-Json
         }
         if ($legacy.ExitCode -ne 0 -or $characterization.ExitCode -ne 0 -or $null -eq $report.characterization) {
             $report.status = 'fail'
