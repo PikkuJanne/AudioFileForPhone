@@ -1,0 +1,522 @@
+{
+    "schema_version":  1,
+    "task":  "T02",
+    "suite":  "Short-root name-limit characterization",
+    "started_utc":  "2026-10-10T20:18:09.7910279Z",
+    "tested_commit":  "9fceee091fc4bfd43bdab64d5bb943a3b620bc79",
+    "shell":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "powershell_version":  "5.1.26100.9444",
+    "powershell_edition":  "Desktop",
+    "os":  "Microsoft Windows NT 10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "execution_policy":  [
+                             {
+                                 "scope":  "MachinePolicy",
+                                 "policy":  "Undefined"
+                             },
+                             {
+                                 "scope":  "UserPolicy",
+                                 "policy":  "Undefined"
+                             },
+                             {
+                                 "scope":  "Process",
+                                 "policy":  "RemoteSigned"
+                             },
+                             {
+                                 "scope":  "CurrentUser",
+                                 "policy":  "Undefined"
+                             },
+                             {
+                                 "scope":  "LocalMachine",
+                                 "policy":  "Undefined"
+                             }
+                         ],
+    "production_sha256_before":  "d30eb7280baff82089536797abd4ca20dec203d7e47807a5f13d0ed2fa4d0a88",
+    "production_sha256_after":  "d30eb7280baff82089536797abd4ca20dec203d7e47807a5f13d0ed2fa4d0a88",
+    "helper_sha256":  "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+    "ffmpeg_version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe_version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "isolated_application_sha256":  "967621d5c5d59e5ed80ce43cf25977c3ba8f7b557763bf7156c8d0f8de4a2270",
+    "source_before":  [
+                          {
+                              "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.m4a",
+                              "length":  4225,
+                              "sha256":  "92add5e7cb20fb96b015444149a434f91efdbb29f0a11c484ebb6e64ef3edfbc"
+                          },
+                          {
+                              "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.mp3",
+                              "length":  3692,
+                              "sha256":  "32eb335feed4ffd274ece5e0ad14c4b3bce2a3a7e776160f3205366f35b1807c"
+                          },
+                          {
+                              "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.ogg",
+                              "length":  4430,
+                              "sha256":  "68d5841145b32fbd4c1561d6e6bb0eb71f56c36645952c64148b986399cbb972"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.m4a",
+                             "length":  4225,
+                             "sha256":  "92add5e7cb20fb96b015444149a434f91efdbb29f0a11c484ebb6e64ef3edfbc"
+                         },
+                         {
+                             "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.mp3",
+                             "length":  3692,
+                             "sha256":  "32eb335feed4ffd274ece5e0ad14c4b3bce2a3a7e776160f3205366f35b1807c"
+                         },
+                         {
+                             "relative_path":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.ogg",
+                             "length":  4430,
+                             "sha256":  "68d5841145b32fbd4c1561d6e6bb0eb71f56c36645952c64148b986399cbb972"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "policy_scope":  "Pure proposed v1 contract arithmetic; production enforcement remains T04/T07 and path handling remains later tasks.",
+    "baseline_validation_gap":  "Source-reviewed only: baseline parameters are unconstrained [int]; no 23/181 conversions or root/UNC acceptance were run.",
+    "completed_utc":  "2026-10-10T20:18:12.9336291Z",
+    "runs":  [
+                 {
+                     "max_base_length":  24,
+                     "status":  "pass",
+                     "exit_code":  0,
+                     "summary":  "total=3, converted=3, failed=0",
+                     "outputs":  [
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAA (2).mp3",
+                                         "basename_length":  24,
+                                         "filename_length":  28,
+                                         "complete_path_length":  91,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     },
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAA (3).mp3",
+                                         "basename_length":  24,
+                                         "filename_length":  28,
+                                         "complete_path_length":  91,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     },
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAAAAAA.mp3",
+                                         "basename_length":  24,
+                                         "filename_length":  28,
+                                         "complete_path_length":  91,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     }
+                                 ]
+                 },
+                 {
+                     "max_base_length":  180,
+                     "status":  "pass",
+                     "exit_code":  0,
+                     "summary":  "total=3, converted=3, failed=0",
+                     "outputs":  [
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (2).mp3",
+                                         "basename_length":  180,
+                                         "filename_length":  184,
+                                         "complete_path_length":  247,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     },
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (3).mp3",
+                                         "basename_length":  180,
+                                         "filename_length":  184,
+                                         "complete_path_length":  247,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     },
+                                     {
+                                         "relative_name":  "2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.mp3",
+                                         "basename_length":  180,
+                                         "filename_length":  184,
+                                         "complete_path_length":  247,
+                                         "parent_directory_length":  62,
+                                         "audio_codec":  "mp3",
+                                         "audio_bit_rate":  64000
+                                     }
+                                 ]
+                 }
+             ],
+    "policy_checks":  [
+                          {
+                              "id":  "name_length_23",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "length":  23,
+                                               "accepted":  false
+                                           }
+                          },
+                          {
+                              "id":  "name_length_24",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "length":  24,
+                                               "accepted":  true
+                                           }
+                          },
+                          {
+                              "id":  "name_length_180",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "length":  180,
+                                               "accepted":  true
+                                           }
+                          },
+                          {
+                              "id":  "name_length_181",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "length":  181,
+                                               "accepted":  false
+                                           }
+                          },
+                          {
+                              "id":  "suffix_counter_9",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "counter":  9,
+                                               "suffix":  " (9)",
+                                               "suffix_length":  4,
+                                               "date_prefix_length":  13,
+                                               "available_title_characters":  7,
+                                               "allocated_basename_length":  24
+                                           }
+                          },
+                          {
+                              "id":  "suffix_counter_10",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "counter":  10,
+                                               "suffix":  " (10)",
+                                               "suffix_length":  5,
+                                               "date_prefix_length":  13,
+                                               "available_title_characters":  6,
+                                               "allocated_basename_length":  24
+                                           }
+                          },
+                          {
+                              "id":  "suffix_counter_9999",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "counter":  9999,
+                                               "suffix":  " (9999)",
+                                               "suffix_length":  7,
+                                               "date_prefix_length":  13,
+                                               "available_title_characters":  4,
+                                               "allocated_basename_length":  24
+                                           }
+                          },
+                          {
+                              "id":  "suffix_counter_10000",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "counter":  10000,
+                                               "suffix":  " (10000)",
+                                               "suffix_length":  8,
+                                               "date_prefix_length":  13,
+                                               "available_title_characters":  3,
+                                               "allocated_basename_length":  24
+                                           }
+                          },
+                          {
+                              "id":  "complete_file_path_259",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "kind":  "complete_file_path",
+                                               "dotnet_string_length":  259,
+                                               "maximum":  259,
+                                               "accepted":  true,
+                                               "filesystem_operation":  "none; arithmetic only"
+                                           }
+                          },
+                          {
+                              "id":  "complete_file_path_260",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "kind":  "complete_file_path",
+                                               "dotnet_string_length":  260,
+                                               "maximum":  259,
+                                               "accepted":  false,
+                                               "filesystem_operation":  "none; arithmetic only"
+                                           }
+                          },
+                          {
+                              "id":  "directory_path_247",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "kind":  "directory_path",
+                                               "dotnet_string_length":  247,
+                                               "maximum":  247,
+                                               "accepted":  true,
+                                               "filesystem_operation":  "none; arithmetic only"
+                                           }
+                          },
+                          {
+                              "id":  "directory_path_248",
+                              "scope":  "pure proposed policy",
+                              "status":  "pass",
+                              "observed":  {
+                                               "kind":  "directory_path",
+                                               "dotnet_string_length":  248,
+                                               "maximum":  247,
+                                               "accepted":  false,
+                                               "filesystem_operation":  "none; arithmetic only"
+                                           }
+                          }
+                      ],
+    "commands":  [
+                     {
+                         "purpose":  "FFmpeg version",
+                         "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                         "arguments":  [
+                                           "-version"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "ffprobe version",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-version"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "generate 0.4-second colliding fixture",
+                         "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                         "arguments":  [
+                                           "-hide_banner",
+                                           "-loglevel",
+                                           "error",
+                                           "-y",
+                                           "-f",
+                                           "lavfi",
+                                           "-i",
+                                           "sine=frequency=440:sample_rate=48000:duration=0.4",
+                                           "-c:a",
+                                           "libmp3lame",
+                                           "C:\\Temp\\T02N-0467c0e4\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "generate 0.4-second colliding fixture",
+                         "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                         "arguments":  [
+                                           "-hide_banner",
+                                           "-loglevel",
+                                           "error",
+                                           "-y",
+                                           "-f",
+                                           "lavfi",
+                                           "-i",
+                                           "sine=frequency=440:sample_rate=48000:duration=0.4",
+                                           "-c:a",
+                                           "aac",
+                                           "C:\\Temp\\T02N-0467c0e4\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.m4a"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "generate 0.4-second colliding fixture",
+                         "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                         "arguments":  [
+                                           "-hide_banner",
+                                           "-loglevel",
+                                           "error",
+                                           "-y",
+                                           "-f",
+                                           "lavfi",
+                                           "-i",
+                                           "sine=frequency=440:sample_rate=48000:duration=0.4",
+                                           "-c:a",
+                                           "libvorbis",
+                                           "C:\\Temp\\T02N-0467c0e4\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.ogg"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "baseline MaxBaseLength 24",
+                         "executable":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                         "arguments":  [
+                                           "-NoLogo",
+                                           "-NoProfile",
+                                           "-NonInteractive",
+                                           "-ExecutionPolicy",
+                                           "RemoteSigned",
+                                           "-File",
+                                           "C:\\Temp\\T02N-0467c0e4\\app.ps1",
+                                           "-InputFolder",
+                                           "C:\\Temp\\T02N-0467c0e4\\i",
+                                           "-MaxBaseLength",
+                                           "24"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221810\\i\\2024-02-03 - AAAAAAA (2).mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221810\\i\\2024-02-03 - AAAAAAA (3).mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221810\\i\\2024-02-03 - AAAAAAAAAAA.mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "baseline MaxBaseLength 180",
+                         "executable":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                         "arguments":  [
+                                           "-NoLogo",
+                                           "-NoProfile",
+                                           "-NonInteractive",
+                                           "-ExecutionPolicy",
+                                           "RemoteSigned",
+                                           "-File",
+                                           "C:\\Temp\\T02N-0467c0e4\\app.ps1",
+                                           "-InputFolder",
+                                           "C:\\Temp\\T02N-0467c0e4\\i",
+                                           "-MaxBaseLength",
+                                           "180"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221811\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (2).mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221811\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA (3).mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     },
+                     {
+                         "purpose":  "probe collision output",
+                         "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                         "arguments":  [
+                                           "-v",
+                                           "error",
+                                           "-show_streams",
+                                           "-show_format",
+                                           "-of",
+                                           "json",
+                                           "C:\\Temp\\T02N-0467c0e4\\m\\AudioForPhone_64kbps_20261010_221811\\i\\2024-02-03 - AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.mp3"
+                                       ],
+                         "exit_code":  0,
+                         "diagnostic_tail":  {
+
+                                             }
+                     }
+                 ]
+}

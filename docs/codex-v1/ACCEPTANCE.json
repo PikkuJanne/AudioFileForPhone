@@ -47,7 +47,7 @@
       "required": true,
       "method": "real FFmpeg integration",
       "expected": "MP3, M4A, Ogg Vorbis and Ogg Opus including uppercase .OGG reproduce current intended behavior with generated fixtures; unsupported extensions remain excluded.",
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "evidence/T02.md",
         "evidence/T02-baseline-ps51.json",
@@ -61,11 +61,16 @@
       "required": true,
       "method": "characterization on both shells",
       "expected": "Record actual 64 kbps CBR, ID3v2.3, channels/sample rate, default MaxBaseLength 60, recursive layout, dates, title and override behavior; no unapproved DSP change.",
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "evidence/T02.md",
         "evidence/T02-baseline-ps51.json",
-        "evidence/T02-baseline-ps7.json"
+        "evidence/T02-baseline-ps7.json",
+        "T02_REGRESSION_MATRIX.md",
+        "evidence/T02-bitrate-matrix.json",
+        "evidence/T02-name-contracts-ps51.json",
+        "evidence/T02-name-contracts-ps7.json",
+        "evidence/T02-launcher.json"
       ]
     },
     {
@@ -75,7 +80,7 @@
       "required": true,
       "method": "SHA-256 inventory comparison",
       "expected": "Input file bytes and relative names remain identical before/after conversion; generated fixtures are the only disposable media.",
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "evidence/T02.md",
         "evidence/T02-baseline-ps51.json",

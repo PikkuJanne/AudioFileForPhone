@@ -3,9 +3,10 @@
 Source reviewed on 10 October 2026 at application baseline
 `2bf1ea1921ab33633b978bd384bbbf098648ceed`. T01 was integrated into live main
 at `483af25f8e5fa9dee295f5b74130324663339e37`; the application and original
-integration suite remain unchanged. This document defines fixtures and assertions
-before implementation changes. It is not an execution result. Actual observations,
-environment, commands and acceptance results belong in `evidence/T02.md`.
+integration suite remain unchanged. This document records the preservation matrix
+and finalized engineering choices before implementation changes. Real baseline
+execution passed on both shells using the owner's installed `C:\ffmpeg` pair.
+Actual observations, commands and acceptance results are in `evidence/T02.md`.
 
 ## Baseline preservation matrix
 
@@ -30,14 +31,28 @@ Music destination and cleanup require proven isolation before execution.
 | B13 / A06 | All generated input trees, including ignored files | Compare sorted relative directory names, relative file names, lengths and SHA-256 values before/after conversion. Inventory image fixtures too. No source byte/name changes; no conversion output beneath input unless the explicitly isolated test layout requests it. | Safety invariant; legacy suite currently has no source-inventory assertion |
 | B14 / A05 | Script copy outside input and configured Music resolver redirected only in the isolated test copy | Output is under the configured Music resolver, never beside the script. Preserve input leaf/relative layout and log location. Record the precise copy-only substitution and prove no writes/cleanup reach ordinary Music. | PS1 454–475, 519–525; legacy tests 67–105 |
 
-## Selected v1 engineering choices, validation and implementation pending
+## T02 execution coverage
 
-These proposed choices refine D13–D17 within existing scope. Missing FFmpeg/ffprobe
-prevents T02's empirical finalization; they must be validated, implemented and
-tested in their owning tasks; source review or a failing baseline does not pass
-their later acceptance gates. Defaults, automatic audio behavior and formats stay
-unchanged. Duration tolerance remains a T09 decision informed by the B04 results;
-T02 must not turn an unmeasured tolerance into a validated-output claim.
+| Rows | Executed coverage and limits |
+|---|---|
+| B01–B04 | Legacy suite plus companion passed on both shells: four source codecs, uppercase extensions, exclusions, mono/stereo, 44.1/48 kHz, raw ID3v2.3, 64 kbps frame CBR, full decode and measured durations. |
+| B05–B06 | Title/fallback, artist, album, comment, track and Unicode tags/overrides passed. Disc, embedded quotes, decomposed accents and supplementary characters remain focused T15/T07 checks. |
+| B07–B08 | Default 60 and LastWriteTime dates passed; impossible date retained as an observed defect. Legacy collisions and actual 24/180 length runs passed. Large suffix transitions were arithmetic policy checks, not thousands of conversions. |
+| B09–B10 | Legacy 96 kbps/explicit JPEG/overrides passed; companion confirmed default source artwork removal. Missing/wrong-extension/undecodable explicit covers remain unrun T15 cases. |
+| B11 | Unsupported-only exit 1 passed in the legacy suite. Corrupt-only and mixed batches returned 0 despite failed files: observed gaps. Missing input/tool and a truly empty tree were source-reviewed, not separately reproduced. |
+| B12 | Unchanged BAT with inert argv/exit child: no argument exits 1, spaces and PS7/STA forwarding work, child failures become BAT 0/Done and extra folders are ignored. Stored report uses PS5.1 host; BAT PS5.1 fallback and other cmd metacharacters remain unrun. |
+| B13–B14 | Original application/BAT/suite hashes unchanged; companion's 14 generated source files and eight directories unchanged; exact copy-only Music substitution and owned cleanup verified. Live ordinary Music default is A08/T03, unrun here. |
+
+## Selected v1 engineering choices; implementation pending
+
+These choices finalize T02's D13–D17 contract selection within existing scope.
+The bitrate matrix ran 96 cases per shell; name limits 24/180 ran real baseline
+conversions with collisions on both shells. Pure policy checks covered rejection
+boundaries and suffix/path budgets. Root/reparse/path rejection, Unicode scalar
+truncation and aggregate results still require implementation and their owning
+task's Windows acceptance; a selected policy or known baseline failure does not
+pass those gates. Defaults, automatic audio behavior and formats stay unchanged.
+Duration tolerance remains a T09 decision informed by B04's measured short clips.
 
 | Boundary | Selected contract | Required future checks / owning task |
 |---|---|---|
@@ -47,13 +62,16 @@ T02 must not turn an unmeasured tolerance into a validated-output claim.
 | Date and suffix budget | Preserve the complete ten-character date plus ` - ` and at least one permitted title character, reducing title length for suffixes. At length 24, ` (9999)` still leaves four title units. If a counter or required suffix cannot fit, fail visibly without overwrite; do not reuse a number. | Date prefix survives minimum length; suffix transitions 9→10, 99→100 and 9999→10000; stable case-insensitive collision allocation. T07/A18–A21. |
 | Impossible leading date | Use invariant real calendar parsing. On failure, use `LastWriteTime` and retain the entire original basename as the title input before sanitization. This avoids silently dropping an unrecognized original prefix. | Valid/impossible leap dates and non-default locale produce declared mappings. T07/A18. |
 | Input kind and roots | Accept local filesystem directories on Windows 11; reject files, non-filesystem providers and drive roots with a specific preflight message. Keep canonical root spelling during rejection. UNC roots, live shares and removable/network storage are outside the tested support claim. | Local drive root and provider inputs fail before conversion/writes/prompts; bracket/space paths use literal semantics; separate prefix-neighbor containment checks. T04/A09–A11, T06. |
-| Reparse and scanning | Reject a selected reparse-point input directory; skip and report descendant directory reparse points rather than following targets. Proposed T06 refinement: file reparse points also receive a recorded skip until a supported local-target contract is tested, to avoid source/cleanup boundary escapes. Any ordinary scan access failure aborts before conversions. | Owned junction/symlink loops and outside-target sentinels untouched; access-denied subtree causes zero conversions. T06/A15–A17. |
-| Complete path | Conservatively reject any planned canonical file path of 260 or more UTF-16 units, including temporary working names; validate preserved directory components independently. Directory-creation paths must satisfy the applicable shorter legacy directory limit too. No extended-length-prefix/long-path support claim. | Below/at/over boundary for final and working paths; deep trees rejected with actionable diagnostic; no source-folder renaming or silent omission. T04/T07/T09. |
+| Reparse and scanning | Reject a selected reparse-point input directory; skip and report descendant directory and file reparse points rather than following targets. Any ordinary scan access failure aborts before conversions. | Owned junction/symlink loops and outside-target sentinels untouched; access-denied subtree causes zero conversions. T06/A15–A17. |
+| Complete path | Conservatively reject any planned canonical file path of 260 or more UTF-16 units, including temporary working names; validate preserved directory components independently. Select a conservative directory-creation limit of 247 units, rejecting 248 or more. No extended-length-prefix/long-path support claim. | Pure 259/260 file and 247/248 directory budget checks passed; actual baseline output paths reached 247, not a filesystem boundary test. Future below/at/over final and working paths and deep trees need actionable rejection. T04/T07/T09. |
 | Process results | Target codes: 0 all requested conversions succeed; 1 preflight/no supported files/fatal; 2 completed batch with per-file failures; 130 controlled cancellation where captured. Host-defined parameter-binding/forced-close codes remain honest limitations. BAT saves and returns child result across `pause`; exactly one folder. | Valid/empty/mixed/all-failed batches, BAT child exits and zero/multiple paths. T10/A27–A28, T11/A29–A30. |
 
 The rate table comes from [LAME's upstream usage guide](https://github.com/lameproject/lame/blob/master/USAGE)
 and the CBR option mapping from [FFmpeg's libmp3lame documentation](https://www.ffmpeg.org/ffmpeg-codecs.html#libmp3lame).
-Exact media behavior still requires the installed Windows build. The conservative
+The installed Windows build reproduced every selected rate exactly on at least
+one compatible profile. At 44.1/48 kHz, 8/16/24 became 32 and 144 became 128;
+at 22.05 kHz, 192/224/256/320 became 160. This supports the separate produced-rate
+validation contract, without forcing a sample rate. The conservative
 path policy accounts for [Microsoft's documented legacy path limits](https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation),
 including the distinction between file and directory-creation paths; it does not
 claim that an OS long-path setting makes both PowerShell families and FFmpeg safe.
@@ -77,7 +95,7 @@ claim that an OS long-path setting makes both PowerShell families and FFmpeg saf
   snapshot/name rather than exclusive creation. Cleanup at 210–218 is under ordinary
   Music; a concurrent creator is not proven excluded. Do not run it blindly.
 
-Each runtime reproduction is a separate observed result in T02 evidence. Unrun
-rows remain unrun; blocked media execution keeps A04–A06 blocked until isolated
-execution is completed. The T03 scheduling exception applies only when isolation
-is the sole blocker; it does not waive a missing native dependency.
+Each runtime reproduction is a separate observed result in T02 evidence. A04–A06
+passed the isolated baseline on both shells. Unrun matrix details remain assigned
+to later tasks; no future acceptance gate is passed by characterization. The next
+suggested step is T03: add OutputParent and isolate ordinary tests.

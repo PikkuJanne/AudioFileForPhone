@@ -12,6 +12,10 @@ found PR #1 merged by `PikkuJanne` at 19:45:49 UTC into main
 that existing merge and a fresh `codex/v1-t02-baseline` branch was created.
 The owner-performed merge is integration evidence, not a new blanket merge policy.
 
+The owner then supplied "C:\ffmpeg please resume T02". This authorizes use of
+that locally installed FFmpeg/ffprobe pair and completion of the same T02 scope;
+it does not change merge, release or machine-setting authority.
+
 ## Normal task scope after startup
 
 Allowed: inspect/fetch, preserve work, create a relevant codex/* branch, make
