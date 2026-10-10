@@ -30,6 +30,13 @@ incremental code/docs/test edits, run isolated tests, commit intended changes,
 push that branch and open/update a relevant draft PR. Do not needlessly ask the
 owner to approve each ordinary task commit or repeat an approval already recorded.
 
+On 10 October 2026 the owner requested "T04 next please". This authorizes T04
+within that normal scope. Fresh GitHub inspection found PR #3 merged by
+`PikkuJanne` at 20:43:41 UTC into main
+`bf425829d2e019911f179eb8250bfe6800f7ac81`. Local main was fast-forwarded to
+that advertised commit and `codex/v1-t04-preflight` created from it. This owner
+merge does not change the main-integration or release gates.
+
 ## Main integration
 
 Default: owner approval for a reviewed PR or milestone integration. Optional

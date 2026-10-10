@@ -126,8 +126,13 @@
       "required": true,
       "method": "negative unit/integration tests",
       "expected": "Missing, non-directory, non-filesystem and malformed inputs; unsupported bitrate; too-small/large MaxBaseLength fail clearly before conversion or optional prompts.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T04.md",
+        "evidence/T04-preflight-ps51.json",
+        "evidence/T04-preflight-ps7.json",
+        "evidence/T04-tested-payload.json"
+      ]
     },
     {
       "id": "A10",
@@ -136,8 +141,13 @@
       "required": true,
       "method": "negative fixtures and Windows permissions test",
       "expected": "Drive/share roots are correctly rejected or explicitly supported under the recorded contract; unreadable input and unwritable output fail safely; no registry/security changes.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T04.md",
+        "evidence/T04-preflight-ps51.json",
+        "evidence/T04-preflight-ps7.json",
+        "evidence/T04-tested-payload.json"
+      ]
     },
     {
       "id": "A11",
@@ -146,8 +156,17 @@
       "required": true,
       "method": "diff review and regression suite",
       "expected": "Public entry points and established parameters/defaults remain; helpers can be tested without prompting or starting a conversion; no new runtime language/framework.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T04.md",
+        "evidence/T04-preflight-ps51.json",
+        "evidence/T04-preflight-ps7.json",
+        "evidence/T04-tested-payload.json",
+        "evidence/T04-baseline-ps51.json",
+        "evidence/T04-baseline-ps7.json",
+        "evidence/T04-resolver-ps51.json",
+        "evidence/T04-resolver-ps7.json"
+      ]
     },
     {
       "id": "A12",
