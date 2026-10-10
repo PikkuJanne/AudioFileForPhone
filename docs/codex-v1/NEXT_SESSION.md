@@ -2,75 +2,60 @@
 
 ## Next suggested step
 
-**T03 in a new thread: add OutputParent and isolate ordinary tests.** T02 is
-complete on its feature branch; A04–A06 passed on both Windows shells. Main
-integration of T02 remains pending owner review of draft PR #2.
+**T04 in a new thread: extract small helpers and implement preflight.**
+T03 is complete on `codex/v1-t03-output-isolation`; A07/A08 passed on PS5.1 and
+PS7. Draft PR #3 awaits owner integration. T02 PR #2 was owner-merged at
+20:32:54 UTC on 10 October 2026 into main
+`0818bf8206849370aa0ef2eaeccaed5b2fb1a890`; local main was fast-forwarded to it.
+No blanket agent merge authority has been recorded.
 
 Read AGENTS.md, INDEX.md, STATUS.md, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md,
-tasks/T03.md, specs/SAFETY.md and TEST_STRATEGY.md. Consult T02 evidence and
-regression matrix for preservation expectations; read only relevant later specs.
-Inspect fresh Git/GitHub state and agent overrides before editing.
+tasks/T04.md and its relevant specs. Refresh actual Git/GitHub state and overrides.
+Reconcile a newer owner merge if present; otherwise continue from the T03 head
+on a separate T04 branch/PR and state the dependency. Preserve unrelated work.
 
-Checkout: `C:\projects\AudioFileForPhone-main`.
-Active branch: `codex/v1-t02-baseline`.
-Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/2.
-Tested payload/code checkpoint: `84bd98656e9e56c9d244aa8b9a216d0204dd23d8`; reports retain test base
-`9fceee091fc4bfd43bdab64d5bb943a3b620bc79` plus verified helper fingerprints.
-Final handoff documentation follows that checkpoint; inspect actual HEAD/live ref.
+T03 code checkpoint: `b5b3c8b7837dd8af17ae4e5b8405684ccdd7237e`.
+Final evidence/handoff follows it; inspect fresh HEAD/live refs. Reports contain
+actual test base `0818bf8206849370aa0ef2eaeccaed5b2fb1a890` plus file fingerprints;
+`evidence/T03-tested-payload.json` verifies equivalent committed source, with only
+Git CRLF/LF normalization where recorded. Draft PR:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/3.
 
-T01 PR #1 was merged by the owner at 19:45:49 UTC on 10 October 2026.
-Local/live main was `483af25f8e5fa9dee295f5b74130324663339e37`.
-T02 is not integrated. No broader agent merge policy was approved. Reconcile an
-owner merge if present. If still pending, continue from the T02 head without
-losing its evidence; keep T03 a separate task/branch/PR and state its dependency.
+The script accepts optional OutputParent; configured Windows Music remains the
+default. Ordinary retained-suite/companion runs now use fresh owned TEMP parents
+and byte-identical application copies. Missing parents with spaces/brackets are
+covered end to end. Ten resolver cases and separate narrowly owned instrumented
+Music smokes passed on each shell. Synthetic source hashes and all cleanup checks
+passed. The smoke is opt-in and changes only a copy's timestamp assignment; no
+registry changes or manual/phone evidence occurred. Use the canonical isolated
+commands in STATUS.md/TEST_STRATEGY.md. T02 substitution helpers are historical.
 
-Environment: Windows 11 Pro build 26300.9457, PS5.1 5.1.26100.9444 and PS7 7.6.5.
-Owner-provided native pair: `C:\ffmpeg\bin\ffmpeg.exe` and `ffprobe.exe`, build
-`2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev`. No agent installation,
-ordinary Music test, phone test or persistent machine change occurred.
-
-The unchanged legacy integration suite and focused synthetic companion passed
-through the copy-only Music adapter on both shells. Seven required companion
-checks passed per shell; impossible-date and failed-batch results are three
-observed gaps per shell. Native bitrate and actual 24/180 filename/collision
-characterization also passed. Source inventories and owned cleanup passed.
-The PS5.1 report reader needed explicit UTF-8; both baseline suites were rerun
-successfully after that test-only correction. Production PS1/BAT and original
-suite remain unchanged. Review the finalized engineering choices in the matrix;
-future acceptance cases remain unrun.
-
-T03 adds optional OutputParent while retaining the configured Music default.
-Update the existing suite to use an owned temporary parent; preserve real FFmpeg
-coverage and the baseline behavior. A07 requires isolated output integration.
-A08 requires resolver tests plus a narrowly owned default-path smoke; do not
-change the owner's registry or blindly run the old suite against Music. Plan the
-smoke so only its exclusively owned run can be removed. Update canonical test
-commands in STATUS.md and TEST_STRATEGY.md. Baseline media need not be repeated
-solely for documentation; rerun affected coverage for T03's application changes.
+Environment: Windows 11 Pro build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
+Use the installed `C:\ffmpeg\bin\ffmpeg.exe` and `ffprobe.exe`; never download.
+Baseline audio/tags/names/layout remained unchanged. Impossible dates and corrupt
+batch exit 0 remain observed gaps for later tasks; BAT remains byte-identical.
+No CI, phone, long-file, release ZIP or publication was performed.
 
 ## Copy-ready next-thread prompt
 
 ```text
 Work in C:\projects\AudioFileForPhone-main for PikkuJanne/AudioFileForPhone.
-T03 only: add optional OutputParent while preserving configured Music as default,
-and isolate ordinary automated tests. Read AGENTS.md and docs/codex-v1/INDEX.md,
-STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md, tasks/T03.md,
-specs/SAFETY.md and TEST_STRATEGY.md. Inspect actual status/overrides, all fetch/push
-URLs, and fresh advertised feature/main refs; fetch normally and preserve work.
-T02 A04–A06 passed on both shells; its tested payload/code checkpoint is
-84bd98656e9e56c9d244aa8b9a216d0204dd23d8 and draft PR #2 is pending integration. T01 was owner-merged
-into main 483af25f8e5fa9dee295f5b74130324663339e37. Reconcile any newer owner merge;
-otherwise base a focused T03 branch/PR on T02's current head and state the dependency.
-Use installed C:\ffmpeg\bin\ffmpeg.exe and ffprobe.exe, never auto-download.
-Preserve the real-FFmpeg suite; the old suite still writes ordinary Music when
-invoked directly. T02's copy adapter is safe, with exact helper/source fingerprints
-in evidence/T02-tested-payload.json. Implement A07 and A08 with an owned test
-parent, resolver coverage and a narrowly safe default-path smoke. Do not change
-known-folder registry settings or invent manual/phone evidence. No DSP/default
-rate/formats/layout changes. Record source hashes, commands, shell/OS/tool versions
-and actual results. Ordinary tests, focused commits, feature pushes and draft PR
-updates are authorized; retain merge/release gates. Update tracking and handoff,
-review/stage intended files, commit/push, compare HEAD with fresh ls-remote and
-report feature sync and main integration separately. Clearly state the next
-suggested step; after T03 completes, suggest T04 as the next coherent new thread.
+T04 only: extract small helpers and implement preflight. Read AGENTS.md and
+docs/codex-v1/INDEX.md, STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md,
+SYNC_PROTOCOL.md, tasks/T04.md and relevant specs. Inspect actual status/overrides,
+all fetch/push URLs and fresh advertised feature/main refs; fetch normally and
+preserve work. T02 is owner-merged into main 0818bf8206849370aa0ef2eaeccaed5b2fb1a890.
+T03 A07/A08 passed on both shells; code checkpoint b5b3c8b7837dd8af17ae4e5b8405684ccdd7237e
+and draft PR #3 await owner integration. Reconcile any newer owner merge; otherwise
+base focused T04 work on T03's latest head and state the dependency. Preserve
+OutputParent/configured Music default and real-FFmpeg coverage; ordinary tests
+now use owned TEMP output and include missing bracketed parents. Copy any newly
+required runtime helpers with the app in every applicable test harness. Use the
+installed C:\ffmpeg\bin pair and canonical commands in STATUS/TEST_STRATEGY.
+No DSP/default bitrate/format/layout changes or policy/registry changes. Record
+actual source hashes, commands, versions/results; don't invent manual/phone evidence.
+Normal tests, commits, feature pushes and draft PR updates are authorized; retain
+main merge/release gates. Review/stage intended files, update evidence/tracking and
+handoff, commit/push, compare HEAD with fresh ls-remote, and report feature sync and
+main integration separately. After T04, suggest T05 as the next coherent new thread.
 ```

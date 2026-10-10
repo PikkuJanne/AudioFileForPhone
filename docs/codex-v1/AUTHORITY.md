@@ -18,6 +18,13 @@ it does not change merge, release or machine-setting authority.
 
 ## Normal task scope after startup
 
+On 10 October 2026 the owner requested "T03 next please". This authorizes T03
+within the normal scope below. Fresh GitHub inspection found PR #2 merged by
+`PikkuJanne` at 20:32:54 UTC into main
+`0818bf8206849370aa0ef2eaeccaed5b2fb1a890`. Local main was fast-forwarded to
+that existing merge; T03 uses `codex/v1-t03-output-isolation` from it. This
+owner merge does not change the main-integration or release gates.
+
 Allowed: inspect/fetch, preserve work, create a relevant codex/* branch, make
 incremental code/docs/test edits, run isolated tests, commit intended changes,
 push that branch and open/update a relevant draft PR. Do not needlessly ask the

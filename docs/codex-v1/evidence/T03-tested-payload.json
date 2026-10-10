@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "task": "T03",
+  "test_base_commit": "0818bf8206849370aa0ef2eaeccaed5b2fb1a890",
+  "code_checkpoint_commit": "b5b3c8b7837dd8af17ae4e5b8405684ccdd7237e",
+  "files": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "44e246455dbafa72a5cd3c3f6ea143a883f66c634122568b04501095a4807fcb",
+      "committed_git_blob": "ac6a523077740e5818787fc02c36378d5a04e892",
+      "literal_bytes_equal": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+      "committed_git_blob": "00cbf63a11b705bb5deda1fc72db17ab71c0f467",
+      "literal_bytes_equal": true
+    },
+    {
+      "path": "README.md",
+      "sha256": "a5b80e50c238f34be862518abeacff4f7d0e0399ad1513f95f947de9353f393e",
+      "committed_git_blob": "1a59b389bef6c93b093125acc5401300d43f03ec",
+      "literal_bytes_equal": true
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "614fd8751e990062a38f9a4a9575dac4f07f34f7262bf2cddfd250448701c0e0",
+      "committed_git_blob": "c2d00c8a9595ebfb8c4c2253344d4c798f3d8229",
+      "literal_bytes_equal": false
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "9d7c8d01d0ccef8acfee208347d13112280d6fbe053304c8182fe528fad16f69",
+      "committed_git_blob": "0cd3f1a0ccc12f96dc5f54b747600b6fc5a88fe7",
+      "literal_bytes_equal": false
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "867b0ce8621b39b51a1420dec5498d3f6d0997422fe7f662c3176a31024bb22f",
+      "committed_git_blob": "6d8cefaeb6e25d7512f077c1e3476024f1a57be7",
+      "literal_bytes_equal": false
+    },
+    {
+      "path": "tests/Test-OutputParent.ps1",
+      "sha256": "6801457f72b761b50c7014f7c348bb163ec661a2e28fa9f7d2f801542217336a",
+      "committed_git_blob": "86081e8612cff2759d4d64f6af48854b56113a14",
+      "literal_bytes_equal": true
+    }
+  ],
+  "equivalence_verified": true,
+  "previous_live_main": "0818bf8206849370aa0ef2eaeccaed5b2fb1a890",
+  "code_checkpoint_remote_verified": true,
+  "verification_method": "Every SHA-256 matches the final test snapshot; UTF-8 comparison with each checkpoint Git blob confirms only CRLF/LF may differ; literal byte equality is recorded per file. Fresh ls-remote equals checkpoint HEAD."
+}

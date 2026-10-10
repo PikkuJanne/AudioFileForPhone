@@ -87,6 +87,35 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
 - No agent merge, CI run, default-Music smoke, phone test or release occurred.
   Feature synchronization and pending main integration are reported separately.
 
+## T03 reconciliation and isolation — 10 October 2026
+
+- Owner requested "T03 next please". PR #2 was already owner-merged at
+  20:32:54 UTC into main `0818bf8206849370aa0ef2eaeccaed5b2fb1a890`.
+  Local main was fast-forwarded and T03 branched from it; no agent merge or
+  broader merge/release authority was inferred.
+- Optional OutputParent uses literal filesystem resolution, supports missing
+  and relative parents, and retains Windows configured Music when omitted.
+  It is appended after existing parameters to preserve positional binding.
+  Destination/log operations are literal to support bracketed parent names.
+  No DSP, default-rate, supported-format, naming/layout or metadata change.
+- Ordinary real-FFmpeg tests now pass fresh owned TEMP parents and copy the
+  application byte-for-byte. Retained suite plus seven required companion
+  checks passed per shell; sources and owned cleanup passed. Ten resolver
+  cases passed per shell. An opt-in automated default-path smoke reserves
+  exactly one marked synthetic Music run with CreateDirectoryW and changes
+  only the disposable copy's timestamp assignment. Its exact inventory,
+  source hash, 64 kbps MP3/full decode and cleanup passed on both shells.
+  No registry changes or manual/phone evidence are claimed.
+- Independent review corrected unrelated TEMP traversal and missing-source
+  preservation checks. Final harness children use RemoteSigned; no persistent
+  policy change or unblocking operation occurred. T02 substitution commands
+  remain historical, not canonical for the changed T03 script.
+- Reports record actual test base plus payload hashes. Source equivalence to
+  code checkpoint `b5b3c8b7837dd8af17ae4e5b8405684ccdd7237e` is verified,
+  including only Git CRLF/LF normalization. Fresh advertised feature ref
+  matched the pushed code checkpoint. Draft PR #3 awaits owner integration.
+  A07/A08 pass; T04 is the next coherent task. No CI, release or phone test.
+
 ## Change entry template
 
 ID/date; reason; previous/new policy; owner authorization when required; affected
