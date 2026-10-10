@@ -35,6 +35,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - ffmpeg.exe 
   - ffprobe.exe 
 - `<MusicFolder>` is the current user's configured Windows Music folder, usually `C:\Users\<user>\Music`. Moved or redirected Music folders are supported.
+- To choose a different destination, pass `-OutputParent "D:\Phone audio"` directly to the PowerShell script. A missing directory is created; relative paths use the current PowerShell location. The run folder and recursive layout are the same under that parent.
 - Default output root is:
   - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
 - The script first looks for ffmpeg.exe / ffprobe.exe next to itself, then falls back to searching PATH.  
@@ -175,11 +176,11 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 Run the integration checks with FFmpeg and ffprobe installed as described above:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\tests\Test-AudioFileForPhone.ps1
-pwsh -NoProfile -File .\tests\Test-AudioFileForPhone.ps1
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-AudioFileForPhone.ps1
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-AudioFileForPhone.ps1
 ```
 
-The checks generate short synthetic audio clips in a temporary folder and write their output to the current user's Music folder. They verify the output location, OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Temporary inputs and the output folders created by the checks are removed afterward.
+The checks generate short synthetic audio clips and pass a dedicated temporary `OutputParent` for every conversion. They verify output isolation, OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Source hashes are compared before and after; only the marked temporary test tree is removed afterward. Optional `-FfmpegPath` and `-FfprobePath` select an installed executable pair.
 
 **Intent & License**
 This is a personal tool for a very specific workflow. Shrinking and cleaning up my podcast/audiobook MP3, M4A, and OGG files for phone listening, with predictable output and logs I can inspect later. It’s provided as-is, without warranty. Use at your own risk. If you want to reuse or adapt it, feel free, just keep in mind it intentionally avoids extra features to stay simple, and easy to reason about when something breaks in the middle of a batch.

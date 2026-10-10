@@ -7,7 +7,7 @@ cleanup; this helper never resolves the real Music folder or deletes media.
 param(
     [Parameter(Mandatory = $true)][string]$ApplicationScript,
     [Parameter(Mandatory = $true)][string]$WorkRoot,
-    [Parameter(Mandatory = $true)][string]$MusicParent,
+    [Parameter(Mandatory = $true)][string]$OutputParent,
     [Parameter(Mandatory = $true)][string]$FfmpegPath,
     [Parameter(Mandatory = $true)][string]$FfprobePath,
     [Parameter(Mandatory = $true)][string]$ResultPath
@@ -66,10 +66,14 @@ function Assert-NoReparseTree {
         Assert-True (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -eq 0) "Reparse ancestor refused: $($item.FullName)"
         $item = $item.Parent
     }
-    $reparse = @(Get-ChildItem -LiteralPath $Path -Recurse -Force | Where-Object {
-        ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0
-    })
-    Assert-True ($reparse.Count -eq 0) 'Owned test tree must contain no reparse points.'
+    $pending = New-Object 'System.Collections.Generic.Stack[string]'
+    $pending.Push($Path)
+    while ($pending.Count -gt 0) {
+        foreach ($child in @(Get-ChildItem -LiteralPath $pending.Pop() -Force)) {
+            Assert-True (($child.Attributes -band [IO.FileAttributes]::ReparsePoint) -eq 0) "Reparse child refused: $($child.FullName)"
+            if ($child.PSIsContainer) { $pending.Push($child.FullName) }
+        }
+    }
 }
 
 function New-FixtureDirectory {
@@ -170,27 +174,20 @@ function New-AudioFixture {
 
 function Invoke-Conversion {
     param([string]$Name, [string]$InputPath, [string[]]$Options = @())
-    $existingRoots = @(Get-ChildItem -LiteralPath $MusicParent -Directory | Select-Object -ExpandProperty FullName)
-    # The baseline allocates second-resolution roots. Wait only for an existing
-    # timestamp candidate inside this unique owned parent, never in real Music.
-    $watch = [Diagnostics.Stopwatch]::StartNew()
-    while ($true) {
-        $candidate = Join-Path $MusicParent ('AudioForPhone_64kbps_' + (Get-Date -Format 'yyyyMMdd_HHmmss'))
-        if (-not (Test-Path -LiteralPath $candidate)) { break }
-        Assert-True ($watch.Elapsed.TotalSeconds -lt 5) 'Timed out avoiding a reused baseline timestamp.'
-        Start-Sleep -Milliseconds 100
-    }
+    $runParent = Join-Path $OutputParent ('Run-' + [guid]::NewGuid().ToString('N'))
+    Assert-True (-not (Test-Path -LiteralPath $runParent)) 'Each conversion requires a fresh output parent.'
+    New-Item -ItemType Directory -Path $runParent | Out-Null
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
-        '-File', $ApplicationScript, '-InputFolder', $InputPath) + $Options
+        '-File', $ApplicationScript, '-InputFolder', $InputPath, '-OutputParent', $runParent) + $Options
     $native = Invoke-CapturedNative "application: $Name" $shellPath $nativeArgs -AllowFailure
     $reportedRoots = @($native.Output | ForEach-Object {
         if ($_ -match '^\[INFO\] Output root\s+: (.+)$') { $Matches[1] }
     })
     Assert-True ($reportedRoots.Count -eq 1) "$Name must report one isolated output root."
     $outputRoot = Get-AbsolutePath $reportedRoots[0]
-    Assert-True ((Split-Path -Parent $outputRoot) -eq $MusicParent) "$Name escaped the isolated Music parent."
+    Assert-True ((Split-Path -Parent $outputRoot) -ieq $runParent) "$Name escaped its explicit OutputParent."
     Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_64kbps_\d{8}_\d{6}$') "$Name root differs from the baseline naming contract."
-    Assert-True ($existingRoots -notcontains $outputRoot) "$Name reused an existing output root."
+    Assert-True (@(Get-ChildItem -LiteralPath $runParent -Directory).Count -eq 1) "$Name must create exactly one output run."
     Assert-True (Test-Path -LiteralPath $outputRoot -PathType Container) "$Name output root was not created."
     $base = Join-Path $outputRoot (Split-Path -Leaf $InputPath)
     $log = Get-Content -LiteralPath (Join-Path $outputRoot 'AudioFileForPhone_log.txt') -Raw
@@ -202,7 +199,7 @@ function Invoke-Conversion {
     }
     $files = @(Get-ChildItem -LiteralPath $base -Recurse -File | Sort-Object FullName)
     $runRecord = [pscustomobject]@{
-        name = $Name; input = $InputPath; options = @($Options); output_root = $outputRoot
+        name = $Name; input = $InputPath; options = @($Options); output_parent = $runParent; output_root = $outputRoot
         exit_code = $native.ExitCode; summary = $summary
         output_files = @($files | ForEach-Object { $_.FullName.Substring($base.Length).TrimStart('\', '/') })
     }
@@ -257,35 +254,35 @@ function Read-Mp3Frames {
 try {
     $ApplicationScript = Get-AbsolutePath $ApplicationScript
     $WorkRoot = Get-AbsolutePath $WorkRoot
-    $MusicParent = Get-AbsolutePath $MusicParent
+    $OutputParent = Get-AbsolutePath $OutputParent
     $FfmpegPath = Get-AbsolutePath $FfmpegPath
     $FfprobePath = Get-AbsolutePath $FfprobePath
     $ResultPath = Get-AbsolutePath $ResultPath
-    $ownedParent = Get-AbsolutePath (Split-Path -Parent $MusicParent)
-    $ownerFile = Join-Path $ownedParent '.t02-owner'
-    Assert-True ((Split-Path -Leaf $ownedParent) -match '^AudioFileForPhone-T02-[a-f0-9]{32}$') 'Companion requires the unique wrapper-owned parent.'
+    $ownedParent = Get-AbsolutePath (Split-Path -Parent $OutputParent)
+    $ownerFile = Join-Path $ownedParent '.t03-owner'
+    Assert-True ((Split-Path -Leaf $ownedParent) -match '^AudioFileForPhone-T03-[a-f0-9]{32}$') 'Companion requires the unique wrapper-owned parent.'
     Assert-True (Test-Path -LiteralPath $ownerFile -PathType Leaf) 'Wrapper ownership marker is required.'
     Assert-True ([IO.File]::ReadAllText($ownerFile) -match '^[a-f0-9]{32}$') 'Wrapper ownership marker must contain an exclusive token.'
-    Assert-True ((Split-Path -Parent $WorkRoot) -eq $ownedParent -and (Test-WithinPath $ApplicationScript $ownedParent)) 'ApplicationScript, WorkRoot and MusicParent must share the wrapper-owned parent.'
+    Assert-True ((Split-Path -Parent $WorkRoot) -eq $ownedParent -and (Test-WithinPath $ApplicationScript $ownedParent)) 'ApplicationScript, WorkRoot and OutputParent must share the wrapper-owned parent.'
     Assert-True ((Split-Path -Parent $ResultPath) -eq $ownedParent -and [IO.Path]::GetExtension($ResultPath) -ieq '.json' -and
         $ResultPath -ine $ApplicationScript -and -not (Test-WithinPath $ResultPath $WorkRoot) -and
-        -not (Test-WithinPath $ResultPath $MusicParent)) 'ResultPath must be a JSON sibling under the owned parent, separate from all inputs and outputs.'
+        -not (Test-WithinPath $ResultPath $OutputParent)) 'ResultPath must be a JSON sibling under the owned parent, separate from all inputs and outputs.'
     Assert-True (-not (Test-Path -LiteralPath $ResultPath)) 'ResultPath must be fresh; refusing to overwrite an existing file.'
     Assert-NoReparseTree $ownedParent
     $resultPathApproved = $true
-    Assert-True ($WorkRoot -ne $MusicParent -and -not (Test-WithinPath $WorkRoot $MusicParent) -and
-        -not (Test-WithinPath $MusicParent $WorkRoot)) 'Source and output parents must be separate.'
+    Assert-True ($WorkRoot -ne $OutputParent -and -not (Test-WithinPath $WorkRoot $OutputParent) -and
+        -not (Test-WithinPath $OutputParent $WorkRoot)) 'Source and output parents must be separate.'
     foreach ($filePath in @($ApplicationScript, $FfmpegPath, $FfprobePath, $shellPath)) {
         Assert-True (Test-Path -LiteralPath $filePath -PathType Leaf) "Required file missing: $filePath"
     }
-    Assert-True (Test-Path -LiteralPath $MusicParent -PathType Container) 'Wrapper must create the isolated Music parent.'
+    Assert-True (Test-Path -LiteralPath $OutputParent -PathType Container) 'Wrapper must create the isolated output parent.'
     if (Test-Path -LiteralPath $WorkRoot) {
         Assert-True (@(Get-ChildItem -LiteralPath $WorkRoot -Force).Count -eq 0) 'WorkRoot must be a fresh empty fixture directory.'
     } else { [IO.Directory]::CreateDirectory($WorkRoot) | Out-Null }
-    $copyText = Get-Content -LiteralPath $ApplicationScript -Raw
-    $quotedParent = "'" + $MusicParent.Replace("'", "''") + "'"
-    Assert-True ($copyText -match ('(?m)^\s*\$musicFolder\s*=\s*' + [regex]::Escape($quotedParent) + '\s*$')) 'Application copy must assign the exact absolute isolated Music parent.'
-    Assert-True ($copyText -notmatch '\[Environment\]::GetFolderPath\s*\(') 'Original Music resolver must be absent before execution.'
+    $applicationTokens = $null; $applicationErrors = $null
+    $applicationAst = [Management.Automation.Language.Parser]::ParseFile($ApplicationScript, [ref]$applicationTokens, [ref]$applicationErrors)
+    Assert-True ($applicationErrors.Count -eq 0 -and
+        @($applicationAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'OutputParent' }).Count -eq 1) 'Unchanged application copy must expose OutputParent.'
     $environmentRecord.application_sha256 = (Get-FileHash -LiteralPath $ApplicationScript -Algorithm SHA256).Hash
     $environmentRecord.ffmpeg_version = (Invoke-CapturedNative 'FFmpeg version' $FfmpegPath @('-version')).Output[0]
     $environmentRecord.ffprobe_version = (Invoke-CapturedNative 'ffprobe version' $FfprobePath @('-version')).Output[0]
@@ -476,13 +473,13 @@ finally {
     $failedChecks = @($checks | Where-Object { $_.required -and $_.status -ne 'pass' })
     $result = [ordered]@{
         schema_version = 1
-        suite = 'T02 focused baseline characterization'
+        suite = 'T03 isolated replay of T02 baseline characterization'
         started_utc = $startedUtc
         completed_utc = [DateTime]::UtcNow.ToString('o')
         status = $(if ($failedChecks.Count -eq 0) { 'pass' } else { 'fail' })
         fatal_error = $fatalError
         environment = [pscustomobject]$environmentRecord
-        isolation = [pscustomobject]@{ application_copy = $ApplicationScript; fixture_root = $WorkRoot; music_parent = $MusicParent; cleanup_owner = 'Invoke-IsolatedBaseline.ps1' }
+        isolation = [pscustomobject]@{ application_copy = $ApplicationScript; fixture_root = $WorkRoot; output_parent = $OutputParent; cleanup_owner = 'Invoke-IsolatedBaseline.ps1' }
         fixtures = @($fixtureDefinitions)
         checks = $checks.ToArray()
         runs = $runs.ToArray()
