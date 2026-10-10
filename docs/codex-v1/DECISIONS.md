@@ -151,6 +151,39 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
   `512a824ae856b4425a4012e0116f363babcc4d4e`; draft PR #4 awaits owner integration.
   Next suggested step: T05 in a new thread.
 
+## T05 reconciliation and native execution — 10 October 2026
+
+- Owner requested "T05 next please". PR #4 was already owner-merged at
+  21:06:59 UTC into main `124f3a96e1a416f6870b832d1ee1cc7543286ab9`.
+  Local main was fast-forwarded to its independently advertised ref; T05 uses
+  `codex/v1-t05-native-process`. No agent merge or broader authority was inferred.
+- One shared lazy .NET runner handles exact Windows CRT argv quoting, bounded
+  concurrent UTF-8 drains, immediate native exit code, timing and owned cleanup.
+  It closes redirected stdin and FFmpeg uses -nostdin. Default retained prefixes
+  are 1,048,576 stdout/65,536 stderr chars; overflow is fully drained/countable.
+  No conversion timeout, shell evaluation, broad termination or LASTEXITCODE
+  dependency/mutation. Tool/encoder checks run once, paths/versions enter the log.
+- Probe selects a:0 and validates one audio stream/index, which conversion maps
+  explicitly. Native startup, probe nonzero, truncated output, invalid JSON/schema
+  and missing audio are distinct file failures. A valid absent title still uses
+  the collision-adjusted filename fallback. Preserve MP3/M4A container tags and
+  Ogg first-audio-stream comments; Artist/Album and cover behavior remain.
+- Final 35 focused cases per shell pass, including exact quoted/Unicode argv,
+  full dual-pipe floods and stable handles across 40 invocations, real metadata,
+  cover/full decode and tool logs. Initial tests found a PS5.1 root-array test
+  parsing difference and retained worker handles from LongRunning tasks. The
+  harness was corrected and pool workers now avoid per-file thread allocation.
+  Failed attempts are preserved separately; final reports and regression source
+  hashes match code checkpoint `215b57c2d1fd93ab62192e07c9ba30632bf2824e`.
+- Retained real-FFmpeg suites/seven required companion checks, preflight
+  35 negatives/eight helpers and ten resolver cases pass per shell. Source/fixture
+  hashes, ACL restoration and owned cleanup pass. No ordinary Music, downloads,
+  machine setting changes, external-reference/protocol audit, manual/phone/long
+  audio, cancellation, CI or release evidence. Diagnostic prefix retention may
+  omit a final error line; truncation is explicit. Later task gates remain.
+- Draft PR #5 awaits owner integration; feature synchronization was independently
+  verified. T01–T04 are integrated. Next coherent task: T06 in a new thread.
+
 ## Change entry template
 
 ID/date; reason; previous/new policy; owner authorization when required; affected
