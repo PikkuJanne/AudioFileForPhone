@@ -94,8 +94,13 @@
       "required": true,
       "method": "isolated integration",
       "expected": "OutputParent directs runs only beneath the chosen test parent; ordinary automated tests never write into the real Music library.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T03.md",
+        "evidence/T03-baseline-ps51.json",
+        "evidence/T03-baseline-ps7.json",
+        "evidence/T03-tested-payload.json"
+      ]
     },
     {
       "id": "A08",
@@ -104,8 +109,15 @@
       "required": true,
       "method": "resolver unit test plus owner-safe smoke",
       "expected": "Default uses the configured Windows Music folder, including injected redirected-path resolver tests; a narrowly controlled manual/default test removes only its own run.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T03.md",
+        "evidence/T03-resolver-ps51.json",
+        "evidence/T03-resolver-ps7.json",
+        "evidence/T03-default-smoke-ps51.json",
+        "evidence/T03-default-smoke-ps7.json",
+        "evidence/T03-tested-payload.json"
+      ]
     },
     {
       "id": "A09",

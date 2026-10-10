@@ -1,7 +1,7 @@
 <#
-T02 test-only adapter for the unchanged legacy application and integration suite.
-Copies replace exactly one Music resolver each; production files stay untouched.
-Use -ValidateOnly to prove the adapter/cleanup without launching a conversion.
+Isolated baseline runner for the retained real-FFmpeg integration suite.
+Copies preserve application bytes and use the public OutputParent parameter.
+Use -ValidateOnly to prove copy/parameter/cleanup guards without conversion.
 Requires locally installed FFmpeg/ffprobe for execution; never downloads tools.
 #>
 [CmdletBinding()]
@@ -14,22 +14,22 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
-$testName = 'AudioFileForPhone-T02-' + [guid]::NewGuid().ToString('N')
+$testName = 'AudioFileForPhone-T03-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
 $ownerToken = [guid]::NewGuid().ToString('N')
-$ownerFile = Join-Path $testRoot '.t02-owner'
+$ownerFile = Join-Path $testRoot '.t03-owner'
+$ownedRootCreated = $false
 $originalPath = $env:PATH
-# T02 reports may only replace explicitly named T02 JSON evidence, never source,
-# control documents or files that this invocation will remove during cleanup.
+# T03 reports preserve T02 history and never replace source or control documents.
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T02-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T02-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T03-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
 }
 $report = [ordered]@{
     schema_version = 1
-    task = 'T02'
+    task = 'T03'
     mode = $(if ($ValidateOnly) { 'isolation_validation' } else { 'real_ffmpeg_baseline' })
     started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString()
@@ -37,7 +37,7 @@ $report = [ordered]@{
     windows_build = ((Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').CurrentBuildNumber + '.' + (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion').UBR)
     tested_commit = (& git -C $projectRoot rev-parse HEAD | Out-String).Trim()
     harness_sha256 = (Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    isolation = [ordered]@{ replacements_per_copy = 1; production_changes = $false; verified = $false }
+    isolation = [ordered]@{ replacements_per_copy = 0; copied_bytes_unchanged = $false; output_parameter = 'OutputParent'; verified = $false }
     source_before = @()
     source_after = @()
     source_unchanged = $false
@@ -47,13 +47,8 @@ $report = [ordered]@{
     status = $(if ($ValidateOnly) { 'fail' } else { 'blocked' })
     error = $null
 }
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1')
-$musicExpression = @'
-$musicFolder = [Environment]::GetFolderPath(
-    [Environment+SpecialFolder]::MyMusic,
-    [Environment+SpecialFolderOption]::DoNotVerify
-)
-'@.Replace("`r`n", "`n")
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1',
+    'tests/Invoke-IsolatedBaseline.ps1', 'tests/Test-BaselineCharacterization.ps1')
 
 function Get-SourceInventory {
     return @($sourceFiles | ForEach-Object {
@@ -73,20 +68,30 @@ function Assert-NoReparse {
     }
 }
 
-function Write-IsolatedCopy {
-    param([string]$SourcePath, [string]$Destination, [string]$MusicParent)
-    $source = [IO.File]::ReadAllText($SourcePath).Replace("`r`n", "`n")
-    $matches = [regex]::Matches($source, [regex]::Escape($musicExpression))
-    if ($matches.Count -ne 1) { throw "Expected exactly one Music resolver in $SourcePath; found $($matches.Count)." }
-    $replacement = '$musicFolder = ' + "'" + $MusicParent.Replace("'", "''") + "'"
-    $copy = $source.Replace($musicExpression, $replacement)
-    if ($copy.Replace($replacement, $musicExpression) -cne $source -or $copy.Contains('[Environment]::GetFolderPath(')) {
-        throw 'Copy must differ only in its single Music resolver and contain no live known-folder lookup.'
+function Copy-UnchangedScript {
+    param([string]$SourcePath, [string]$Destination)
+    Copy-Item -LiteralPath $SourcePath -Destination $Destination
+    if ((Get-FileHash -LiteralPath $SourcePath).Hash -cne (Get-FileHash -LiteralPath $Destination).Hash) {
+        throw 'Disposable script copy must preserve all source bytes.'
     }
     $tokens = $null; $parseErrors = $null
-    [Management.Automation.Language.Parser]::ParseInput($copy, [ref]$tokens, [ref]$parseErrors) | Out-Null
+    [Management.Automation.Language.Parser]::ParseFile($Destination, [ref]$tokens, [ref]$parseErrors) | Out-Null
     if ($parseErrors.Count -ne 0) { throw "Isolated copy has parser errors: $parseErrors" }
-    [IO.File]::WriteAllText($Destination, $copy, (New-Object Text.UTF8Encoding($true)))
+}
+
+function Assert-NoReparseTree {
+    param([string]$Path)
+    Assert-NoReparse $Path
+    $pending = New-Object 'System.Collections.Generic.Stack[string]'
+    $pending.Push($Path)
+    while ($pending.Count -gt 0) {
+        foreach ($child in @(Get-ChildItem -LiteralPath $pending.Pop() -Force)) {
+            if (($child.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                throw "Refusing a reparse point in the owned test tree: $($child.FullName)"
+            }
+            if ($child.PSIsContainer) { $pending.Push($child.FullName) }
+        }
+    }
 }
 
 function Find-LocalTool {
@@ -128,22 +133,33 @@ try {
     Assert-NoReparse $tempParent
     if (Test-Path -LiteralPath $testRoot) { throw 'Unique test root already exists; refusing reuse.' }
     New-Item -ItemType Directory -Path $testRoot | Out-Null
-    [IO.File]::WriteAllText($ownerFile, $ownerToken)
+    $ownedRootCreated = $true
+    $marker = [IO.File]::Open($ownerFile, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $bytes = [Text.Encoding]::ASCII.GetBytes($ownerToken)
+        $marker.Write($bytes, 0, $bytes.Length)
+    }
+    finally { $marker.Dispose() }
     $legacyRoot = Join-Path $testRoot 'Legacy app'
     $legacyTests = Join-Path $legacyRoot 'tests'
-    $legacyMusic = Join-Path $testRoot 'Legacy Music'
     $characterRoot = Join-Path $testRoot 'Characterization app'
-    $characterMusic = Join-Path $testRoot 'Characterization Music'
-    foreach ($path in @($legacyRoot, $legacyTests, $legacyMusic, $characterRoot, $characterMusic)) {
+    $characterOutput = Join-Path $testRoot 'Characterization outputs'
+    foreach ($path in @($legacyRoot, $legacyTests, $characterRoot, $characterOutput)) {
         New-Item -ItemType Directory -Path $path | Out-Null
     }
     $application = Join-Path $projectRoot 'AudioFileForPhone.ps1'
     $legacyScript = Join-Path $legacyRoot 'AudioFileForPhone.ps1'
     $legacySuite = Join-Path $legacyTests 'Test-AudioFileForPhone.ps1'
     $characterScript = Join-Path $characterRoot 'AudioFileForPhone.ps1'
-    Write-IsolatedCopy $application $legacyScript $legacyMusic
-    Write-IsolatedCopy (Join-Path $PSScriptRoot 'Test-AudioFileForPhone.ps1') $legacySuite $legacyMusic
-    Write-IsolatedCopy $application $characterScript $characterMusic
+    Copy-UnchangedScript $application $legacyScript
+    Copy-UnchangedScript (Join-Path $PSScriptRoot 'Test-AudioFileForPhone.ps1') $legacySuite
+    Copy-UnchangedScript $application $characterScript
+    $appTokens = $null; $appErrors = $null
+    $appAst = [Management.Automation.Language.Parser]::ParseFile($characterScript, [ref]$appTokens, [ref]$appErrors)
+    if (@($appAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'OutputParent' }).Count -ne 1) {
+        throw 'Application must expose the OutputParent parameter before any conversion is launched.'
+    }
+    $report.isolation.copied_bytes_unchanged = $true
     $companion = Join-Path $PSScriptRoot 'Test-BaselineCharacterization.ps1'
     $companionTokens = $null; $companionErrors = $null
     [Management.Automation.Language.Parser]::ParseFile($companion, [ref]$companionTokens, [ref]$companionErrors) | Out-Null
@@ -181,7 +197,7 @@ try {
         $characterResult = Join-Path $testRoot 'characterization-results.json'
         $characterization = Invoke-TestChild (Join-Path $PSScriptRoot 'Test-BaselineCharacterization.ps1') @(
             '-ApplicationScript', $characterScript, '-WorkRoot', (Join-Path $testRoot 'Fixtures'),
-            '-MusicParent', $characterMusic, '-FfmpegPath', $ffmpeg, '-FfprobePath', $ffprobe,
+            '-OutputParent', $characterOutput, '-FfmpegPath', $ffmpeg, '-FfprobePath', $ffprobe,
             '-ResultPath', $characterResult)
         if (Test-Path -LiteralPath $characterResult -PathType Leaf) {
             $report.characterization = Get-Content -LiteralPath $characterResult -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -203,7 +219,7 @@ finally {
     $report.source_after = Get-SourceInventory
     $report.source_unchanged = (($report.source_before | ConvertTo-Json -Compress) -ceq ($report.source_after | ConvertTo-Json -Compress))
     if (-not $report.source_unchanged) { $report.status = 'fail'; $exitCode = 1 }
-    if (Test-Path -LiteralPath $testRoot) {
+    if ($ownedRootCreated -and (Test-Path -LiteralPath $testRoot)) {
         # Verify the absolute target, its exclusive marker and the whole tree
         # immediately before deletion. Never clean by wildcard or output name.
         $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\', '/')
@@ -212,9 +228,7 @@ finally {
             [IO.File]::ReadAllText($ownerFile) -cne $ownerToken) {
             throw "Refusing cleanup without exact owned TEMP boundary: $resolved"
         }
-        Assert-NoReparse $resolved
-        $reparse = @(Get-ChildItem -LiteralPath $resolved -Recurse -Force -Attributes ReparsePoint)
-        if ($reparse.Count -ne 0) { throw 'Refusing recursive cleanup of a tree containing a reparse point.' }
+        Assert-NoReparseTree $resolved
         Remove-Item -LiteralPath $resolved -Recurse -Force
         $report.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
     }
@@ -222,7 +236,9 @@ finally {
     if (-not (Test-Path -LiteralPath (Split-Path -Parent $evidenceFullPath) -PathType Container)) {
         throw 'Evidence parent must already exist.'
     }
+    Assert-NoReparse $evidenceParent
+    if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
     $report | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
 }
-Write-Host "T02 $($report.mode): $($report.status); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)"
+Write-Host "T03 $($report.mode): $($report.status); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)"
 exit $exitCode

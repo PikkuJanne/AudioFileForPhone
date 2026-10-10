@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "task": "T03",
+  "mode": "resolver_and_default_music_smoke",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-OutputParent.ps1 -DefaultSmoke -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T03-default-smoke-ps7.json",
+  "started_utc": "2026-10-10T20:38:08.9693674Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "0818bf8206849370aa0ef2eaeccaed5b2fb1a890",
+  "harness_sha256": "6801457f72b761b50c7014f7c348bb163ec661a2e28fa9f7d2f801542217336a",
+  "application_sha256_before": "44e246455dbafa72a5cd3c3f6ea143a883f66c634122568b04501095a4807fcb",
+  "application_sha256_after": "44e246455dbafa72a5cd3c3f6ea143a883f66c634122568b04501095a4807fcb",
+  "application_unchanged": true,
+  "resolver_cases": [
+    {
+      "name": "injected configured Music, independent of user profile",
+      "status": "pass"
+    },
+    {
+      "name": "empty configured Music is rejected",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "absolute missing parent and literal brackets, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "filesystem provider-qualified override",
+      "status": "pass"
+    },
+    {
+      "name": "existing filesystem parent, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "relative missing parent uses PowerShell location",
+      "status": "pass"
+    },
+    {
+      "name": "reject non-filesystem Env",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Registry",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Variable",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "existing file is rejected as output parent",
+      "status": "pass",
+      "rejection_verified": true
+    }
+  ],
+  "default_smoke": {
+    "status": "pass",
+    "timestamp_only_copy": true,
+    "output_override_passed": false,
+    "root_exclusively_reserved": true,
+    "marker_create_new": true,
+    "configured_music_verified": true,
+    "exact_inventory_verified": true,
+    "source_sha256_before": "a2b1e121744ac9d4dc607b289be0dff8a9b40c8dac504c6b207e670d743cc1fd",
+    "source_sha256_after": "a2b1e121744ac9d4dc607b289be0dff8a9b40c8dac504c6b207e670d743cc1fd",
+    "source_unchanged": true,
+    "cleanup_verified": true,
+    "run_root_name": "AudioForPhone_64kbps_99992524_702696",
+    "ffmpeg": {
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+    },
+    "ffprobe": {
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+    },
+    "copy_sha256": "14fcc964e240246c77c62225dbd316188f99857eb2deb86b86be9d0d8c3b8e04",
+    "inventory": {
+      "files": [
+        ".t03-owner",
+        "AudioFileForPhone_log.txt",
+        "T03 generated default smoke\\2024-01-02 - Default smoke.mp3"
+      ],
+      "directories": [
+        "T03 generated default smoke"
+      ]
+    },
+    "output_sha256": "42384cc35a38409d9fef653f61bcd7a2c2cb2bc3b1dc339dc7909149c7a3601a",
+    "audio_bitrate": 64000,
+    "full_decode_passed": true
+  },
+  "temp_cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "resolver_sha256": "626ae17939418c6b8a31b2924c933c99b34885a27eb7d7a7f997fa52bccd0ef4",
+  "finished_utc": "2026-10-10T20:38:11.9695974Z"
+}

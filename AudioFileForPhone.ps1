@@ -137,6 +137,8 @@ NOTES
         - Search is recursive under the specified input folder.
     - Output:
         - Uses the current user's Windows Music folder, including moved locations.
+        - Optional -OutputParent selects another filesystem directory; a missing
+          directory is created. Relative paths use the current PowerShell location.
         - All outputs are MP3, even if input had different internal encoding.
         - Names follow the pattern:
             "YYYY-MM-DD - Sanitized title.mp3"
@@ -212,7 +214,11 @@ param(
     # Non-interactive overrides, optional
     [string]$CoverPath,
     [string]$Artist,
-    [string]$Album
+    [string]$Album,
+
+    # Optional destination parent; defaults to the configured Windows Music folder
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$OutputParent
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -450,38 +456,73 @@ catch {
 
 $InputFolder = $InputFolder.TrimEnd('\','/')
 
+function Get-OutputParent {
+    param(
+        [string]$OutputParent,
+        [scriptblock]$MusicResolver = {
+            [Environment]::GetFolderPath(
+                [Environment+SpecialFolder]::MyMusic,
+                [Environment+SpecialFolderOption]::DoNotVerify
+            )
+        }
+    )
+
+    $candidate = $OutputParent
+    if ([string]::IsNullOrWhiteSpace($candidate)) {
+        $candidate = & $MusicResolver
+        if ([string]::IsNullOrWhiteSpace($candidate)) {
+            throw "Could not resolve the current user's Music folder."
+        }
+    }
+
+    # Resolve literally through PowerShell so relative paths and FileSystem
+    # drives work even when the destination has not been created yet.
+    $provider = $null
+    $drive = $null
+    $path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+        $candidate, [ref]$provider, [ref]$drive
+    )
+    if ($provider.Name -ne 'FileSystem') {
+        throw 'OutputParent must be a filesystem directory.'
+    }
+    $path = [IO.Path]::GetFullPath($path)
+    if (Test-Path -LiteralPath $path -PathType Leaf) {
+        throw "OutputParent is an existing file: $path"
+    }
+    return $path
+}
+
 # --- Output root + log setup ---
-$musicFolder = [Environment]::GetFolderPath(
-    [Environment+SpecialFolder]::MyMusic,
-    [Environment+SpecialFolderOption]::DoNotVerify
-)
-if ([string]::IsNullOrWhiteSpace($musicFolder)) {
-    Write-Error "[FATAL] Could not resolve the current user's Music folder."
+try {
+    $outputParentPath = Get-OutputParent -OutputParent $OutputParent
+}
+catch {
+    Write-Error "[FATAL] Could not resolve output parent: $_"
     exit 1
 }
 
 $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
-$outputRoot = Join-Path $musicFolder ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
+$outputRoot = Join-Path $outputParentPath ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
 
 Write-Host "[INFO] Output root      : $outputRoot"
 
-if (-not (Test-Path $outputRoot)) {
+if (-not (Test-Path -LiteralPath $outputRoot)) {
     Write-Host "[DEBUG] Creating output root folder..."
-    New-Item -ItemType Directory -Path $outputRoot -Force | Out-Null
+    [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
 }
 
 # --- Log file ---
 $logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
-"==== AudioFileForPhone Log ====" | Out-File -FilePath $logPath -Encoding UTF8
-"Start time    : $(Get-Date)"     | Add-Content -Path $logPath
-"Input folder  : $InputFolder"    | Add-Content -Path $logPath
-"Output root   : $outputRoot"     | Add-Content -Path $logPath
-"Bitrate (kbps): $BitrateKbps"    | Add-Content -Path $logPath
-"Max base len  : $MaxBaseLength"  | Add-Content -Path $logPath
-"CoverPath     : $CoverPath"      | Add-Content -Path $logPath
-"Artist        : $Artist"         | Add-Content -Path $logPath
-"Album         : $Album"          | Add-Content -Path $logPath
-""                                   | Add-Content -Path $logPath
+"==== AudioFileForPhone Log ====" | Out-File -LiteralPath $logPath -Encoding UTF8
+"Start time    : $(Get-Date)"     | Add-Content -LiteralPath $logPath
+"Input folder  : $InputFolder"    | Add-Content -LiteralPath $logPath
+"Output root   : $outputRoot"     | Add-Content -LiteralPath $logPath
+"Bitrate (kbps): $BitrateKbps"    | Add-Content -LiteralPath $logPath
+"Max base len  : $MaxBaseLength"  | Add-Content -LiteralPath $logPath
+"CoverPath     : $CoverPath"      | Add-Content -LiteralPath $logPath
+"Artist        : $Artist"         | Add-Content -LiteralPath $logPath
+"Album         : $Album"          | Add-Content -LiteralPath $logPath
+""                                   | Add-Content -LiteralPath $logPath
 
 function Write-Log {
     param(
@@ -490,7 +531,7 @@ function Write-Log {
     )
     $line = "[{0}] {1}" -f $Level, $Message
     Write-Host $line
-    Add-Content -Path $logPath -Value $line
+    Add-Content -LiteralPath $logPath -Value $line
 }
 
 # --- Validate cover path, non-interactive parameter or interactive pick + log diagnostics ---
@@ -522,7 +563,7 @@ $outputBase = Join-Path $outputRoot $inputLeaf
 
 Write-Log ("Output base      : {0}" -f $outputBase)
 
-New-Item -ItemType Directory -Path $outputBase -Force | Out-Null
+[IO.Directory]::CreateDirectory($outputBase) | Out-Null
 
 Write-Host ""
 Write-Log "Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
@@ -575,9 +616,9 @@ foreach ($file in $files) {
         $outDir = Join-Path $outputBase $relativeDir
     }
 
-    if (-not (Test-Path $outDir)) {
+    if (-not (Test-Path -LiteralPath $outDir)) {
         Write-Log ("Creating output folder: {0}" -f $outDir) "DEBUG"
-        New-Item -ItemType Directory -Path $outDir -Force | Out-Null
+        [IO.Directory]::CreateDirectory($outDir) | Out-Null
     }
 
     # Build sanitized + shortened filename, keep date 
@@ -615,7 +656,7 @@ foreach ($file in $files) {
         $candidateName = "$newBase$extension"
         $candidatePath = Join-Path $outDir $candidateName
 
-        if (-not (Test-Path $candidatePath)) {
+        if (-not (Test-Path -LiteralPath $candidatePath)) {
             break
         }
 
@@ -728,7 +769,7 @@ foreach ($file in $files) {
 
     try {
         & $ffmpeg @ffArgs
-        if ($LASTEXITCODE -eq 0 -and (Test-Path $outPath)) {
+        if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $outPath)) {
             $ok++
             Write-Host "       [OK]   Converted successfully."
             Write-Log  ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) "OK"
