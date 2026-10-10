@@ -87,6 +87,7 @@ MY INTENDED USAGE
 SETUP
     1) Place these files together in a folder of your choice:
          - AudioFileForPhone.ps1
+         - AudioFileForPhone.Helpers.ps1
          - AudioFileForPhone.bat     (wrapper to allow drag & drop)
          - ffmpeg.exe
          - ffprobe.exe
@@ -119,9 +120,9 @@ USAGE
             -MaxBaseLength   60
     C) Direct PowerShell (custom options)
         - Example: slightly higher bitrate, tighter filename length:
-            .\AudioFileForPhone.ps1 
-                -InputFolder   "C:\MyPodcasts" 
-                -BitrateKbps   96 
+            .\AudioFileForPhone.ps1
+                -InputFolder   "C:\MyPodcasts"
+                -BitrateKbps   96
                 -MaxBaseLength 50
     D) Direct PowerShell (with batch metadata)
         - Provide cover + artist/album without interactive prompts:
@@ -234,9 +235,22 @@ Write-Host "[INFO] Max name    : $MaxBaseLength chars"
 Write-Host "[INFO] Interactive : $Interactive"
 Write-Host ""
 
-# --- Basic sanity check on param ---
-if ([string]::IsNullOrWhiteSpace($InputFolder)) {
-    Write-Error "[FATAL] InputFolder parameter is null or empty. This usually means the .bat did not pass the path correctly."
+# --- Preflight: reject prerequisites before optional prompts or run creation ---
+try {
+    . (Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1')
+    Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
+    $InputFolder = Get-InputDirectory -InputFolder $InputFolder
+    $outputParentPath = Get-OutputParent -OutputParent $OutputParent
+    $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
+    $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
+    Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+    if ($PSBoundParameters.ContainsKey('CoverPath')) {
+        $CoverPath = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg
+    }
+    Test-OutputWritable -Path $outputParentPath
+}
+catch {
+    Write-Error "[FATAL] Preflight failed: $($_.Exception.Message)" -ErrorAction Continue
     exit 1
 }
 
@@ -290,68 +304,6 @@ function Select-CoverFileDialog {
     }
 }
 
-function Validate-CoverPath {
-    param([string]$Path)
-
-    if ([string]::IsNullOrWhiteSpace($Path)) { return $false }
-    if (-not (Test-Path -LiteralPath $Path)) { return $false }
-
-    $ext = [System.IO.Path]::GetExtension($Path).ToLowerInvariant()
-    return @('.jpg', '.jpeg', '.png') -contains $ext
-}
-
-function Get-CoverDiagnostics {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$Path
-    )
-
-    $diag = [ordered]@{
-        Path      = $Path
-        SizeBytes = $null
-        SizeMB    = $null
-        Width     = $null
-        Height    = $null
-        Warnings  = @()
-    }
-
-    try {
-        $fi = Get-Item -LiteralPath $Path -ErrorAction Stop
-        $diag.SizeBytes = [int64]$fi.Length
-        $diag.SizeMB    = [Math]::Round(($fi.Length / 1MB), 2)
-
-        # Size heuristic: warn if > 2MB (can bloat every MP3)
-        if ($diag.SizeMB -gt 2.0) {
-            $diag.Warnings += ("Cover is {0} MB. Consider a smaller JPG to avoid bloating every output MP3." -f $diag.SizeMB)
-        }
-
-        # Dimension heuristic: best-effort only (System.Drawing)
-        try {
-            Add-Type -AssemblyName System.Drawing -ErrorAction Stop | Out-Null
-            $img = [System.Drawing.Image]::FromFile($Path)
-            try {
-                $diag.Width  = $img.Width
-                $diag.Height = $img.Height
-
-                if (($diag.Width -gt 1200) -or ($diag.Height -gt 1200)) {
-                    $diag.Warnings += ("Cover dimensions are {0}x{1}. Consider ~800x800 to keep file sizes sane." -f $diag.Width, $diag.Height)
-                }
-            }
-            finally {
-                $img.Dispose()
-            }
-        }
-        catch {
-            # Ignore, dimensions are optional
-        }
-    }
-    catch {
-        $diag.Warnings += ("Could not read cover file info: {0}" -f $_)
-    }
-
-    return [pscustomobject]$diag
-}
-
 # --- Optional: interactive metadata step, only if requested ---
 if ($Interactive) {
     Write-Host "==== Optional metadata step ===="
@@ -363,8 +315,12 @@ if ($Interactive) {
         $doCover = Read-YesNo -Prompt "Add album cover to output MP3 metadata?" -DefaultYes:$false
         if ($doCover) {
             $picked = Select-CoverFileDialog
-            if ($picked -and (Validate-CoverPath -Path $picked)) {
-                $CoverPath = $picked
+            if ($picked) {
+                try { $CoverPath = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg }
+                catch {
+                    Write-Error "[FATAL] $($_.Exception.Message)" -ErrorAction Continue
+                    exit 1
+                }
                 Write-Host "[INFO] Cover selected: $CoverPath"
 
                 $coverDiag = Get-CoverDiagnostics -Path $CoverPath
@@ -406,123 +362,35 @@ if ($Interactive) {
     Write-Host ""
 }
 
-# --- Helper: find ffmpeg / ffprobe either next to script or in PATH ---
-function Get-ToolPath {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$ExeName
-    )
-
-    $localPath = Join-Path $ScriptDir $ExeName
-    Write-Host "[DEBUG] Checking for $ExeName next to script: $localPath"
-    if (Test-Path $localPath) {
-        Write-Host "[INFO] Using $ExeName from script folder."
-        return $localPath
-    }
-
-    Write-Host "[DEBUG] Searching for $ExeName in PATH..."
-    foreach ($p in ($env:PATH -split ';' | Where-Object { $_ })) {
-        $candidate = Join-Path $p $ExeName
-        if (Test-Path $candidate) {
-            Write-Host "[INFO] Found $ExeName in PATH: $candidate"
-            return $candidate
-        }
-    }
-
-    throw "[FATAL] Could not find $ExeName. Put it next to this script or add it to PATH."
-}
-
-# --- Locate ffmpeg / ffprobe ---
-try {
-    $ffmpeg  = Get-ToolPath -ExeName "ffmpeg.exe"
-    $ffprobe = Get-ToolPath -ExeName "ffprobe.exe"
-}
-catch {
-    Write-Error $_
-    exit 1
-}
-
-# --- Normalise and validate input folder ---
-try {
-    Write-Host "[DEBUG] Running Resolve-Path on: '$InputFolder'"
-    $resolvedInput = Resolve-Path -LiteralPath $InputFolder -ErrorAction Stop
-    $InputFolder   = $resolvedInput.Path
-    Write-Host "[INFO] Resolved input folder: '$InputFolder'"
-}
-catch {
-    Write-Error "[FATAL] Could not resolve input folder '$InputFolder': $_"
-    exit 1
-}
-
-$InputFolder = $InputFolder.TrimEnd('\','/')
-
-function Get-OutputParent {
-    param(
-        [string]$OutputParent,
-        [scriptblock]$MusicResolver = {
-            [Environment]::GetFolderPath(
-                [Environment+SpecialFolder]::MyMusic,
-                [Environment+SpecialFolderOption]::DoNotVerify
-            )
-        }
-    )
-
-    $candidate = $OutputParent
-    if ([string]::IsNullOrWhiteSpace($candidate)) {
-        $candidate = & $MusicResolver
-        if ([string]::IsNullOrWhiteSpace($candidate)) {
-            throw "Could not resolve the current user's Music folder."
-        }
-    }
-
-    # Resolve literally through PowerShell so relative paths and FileSystem
-    # drives work even when the destination has not been created yet.
-    $provider = $null
-    $drive = $null
-    $path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
-        $candidate, [ref]$provider, [ref]$drive
-    )
-    if ($provider.Name -ne 'FileSystem') {
-        throw 'OutputParent must be a filesystem directory.'
-    }
-    $path = [IO.Path]::GetFullPath($path)
-    if (Test-Path -LiteralPath $path -PathType Leaf) {
-        throw "OutputParent is an existing file: $path"
-    }
-    return $path
-}
-
 # --- Output root + log setup ---
-try {
-    $outputParentPath = Get-OutputParent -OutputParent $OutputParent
-}
-catch {
-    Write-Error "[FATAL] Could not resolve output parent: $_"
-    exit 1
-}
-
 $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
 $outputRoot = Join-Path $outputParentPath ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
 
 Write-Host "[INFO] Output root      : $outputRoot"
 
-if (-not (Test-Path -LiteralPath $outputRoot)) {
-    Write-Host "[DEBUG] Creating output root folder..."
-    [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
-}
+try {
+    if (-not (Test-Path -LiteralPath $outputRoot -ErrorAction Stop)) {
+        Write-Host "[DEBUG] Creating output root folder..."
+        [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
+    }
 
-# --- Log file ---
-$logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
-"==== AudioFileForPhone Log ====" | Out-File -LiteralPath $logPath -Encoding UTF8
-"Start time    : $(Get-Date)"     | Add-Content -LiteralPath $logPath
-"Input folder  : $InputFolder"    | Add-Content -LiteralPath $logPath
-"Output root   : $outputRoot"     | Add-Content -LiteralPath $logPath
-"Bitrate (kbps): $BitrateKbps"    | Add-Content -LiteralPath $logPath
-"Max base len  : $MaxBaseLength"  | Add-Content -LiteralPath $logPath
-"CoverPath     : $CoverPath"      | Add-Content -LiteralPath $logPath
-"Artist        : $Artist"         | Add-Content -LiteralPath $logPath
-"Album         : $Album"          | Add-Content -LiteralPath $logPath
-""                                   | Add-Content -LiteralPath $logPath
+    # --- Log file ---
+    $logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
+    "==== AudioFileForPhone Log ====" | Out-File -LiteralPath $logPath -Encoding UTF8 -ErrorAction Stop
+    "Start time    : $(Get-Date)"     | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Input folder  : $InputFolder"    | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Output root   : $outputRoot"     | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Bitrate (kbps): $BitrateKbps"    | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Max base len  : $MaxBaseLength"  | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "CoverPath     : $CoverPath"      | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Artist        : $Artist"         | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Album         : $Album"          | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    ""                              | Add-Content -LiteralPath $logPath -ErrorAction Stop
+}
+catch {
+    Write-Error "[FATAL] Could not create output root or log '$outputRoot': $($_.Exception.Message)" -ErrorAction Continue
+    exit 1
+}
 
 function Write-Log {
     param(
@@ -531,30 +399,24 @@ function Write-Log {
     )
     $line = "[{0}] {1}" -f $Level, $Message
     Write-Host $line
-    Add-Content -LiteralPath $logPath -Value $line
+    Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
 }
 
-# --- Validate cover path, non-interactive parameter or interactive pick + log diagnostics ---
+# --- Log diagnostics for the cover already validated before run creation ---
 if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
-    if (-not (Validate-CoverPath -Path $CoverPath)) {
-        Write-Log ("Invalid CoverPath '{0}'. Continuing without cover." -f $CoverPath) "WARN"
-        $CoverPath = $null
-    }
-    else {
-        $coverDiag = Get-CoverDiagnostics -Path $CoverPath
+    $coverDiag = Get-CoverDiagnostics -Path $CoverPath
 
-        if ($coverDiag.SizeMB -ne $null) {
-            Write-Log ("Cover size: {0} MB" -f $coverDiag.SizeMB) "INFO"
-        }
-        if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
-            Write-Log ("Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height) "INFO"
-        }
-        foreach ($w in $coverDiag.Warnings) {
-            Write-Log $w "WARN"
-        }
-
-        Write-Log ("Cover enabled: {0}" -f $CoverPath) "INFO"
+    if ($coverDiag.SizeMB -ne $null) {
+        Write-Log ("Cover size: {0} MB" -f $coverDiag.SizeMB) "INFO"
     }
+    if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
+        Write-Log ("Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height) "INFO"
+    }
+    foreach ($w in $coverDiag.Warnings) {
+        Write-Log $w "WARN"
+    }
+
+    Write-Log ("Cover enabled: {0}" -f $CoverPath) "INFO"
 }
 
 # --- Output base, mirrors input folder name ---
@@ -563,15 +425,18 @@ $outputBase = Join-Path $outputRoot $inputLeaf
 
 Write-Log ("Output base      : {0}" -f $outputBase)
 
-[IO.Directory]::CreateDirectory($outputBase) | Out-Null
+try { [IO.Directory]::CreateDirectory($outputBase) | Out-Null }
+catch {
+    Write-Error "[FATAL] Could not create output base '$outputBase': $($_.Exception.Message)" -ErrorAction Continue
+    exit 1
+}
 
 Write-Host ""
 Write-Log "Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
 
 # --- Scan for MP3 + M4A + OGG ---
 try {
-    $files = @(Get-ChildItem -LiteralPath $InputFolder -Recurse -File -ErrorAction Stop |
-        Where-Object { @('.mp3', '.m4a', '.ogg') -contains $_.Extension.ToLowerInvariant() })
+    $files = @(Get-AudioFiles -InputFolder $InputFolder)
 }
 catch {
     Write-Error "[FATAL] Error searching for audio files: $_"
@@ -621,30 +486,10 @@ foreach ($file in $files) {
         [IO.Directory]::CreateDirectory($outDir) | Out-Null
     }
 
-    # Build sanitized + shortened filename, keep date 
+    # Build sanitized + shortened filename, keep date
     $originalBase = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
 
-    if ($originalBase -match '^(?<date>\d{4}-\d{2}-\d{2})\s*-?\s*(?<rest>.*)$') {
-        $datePart  = $matches['date']
-        $titlePart = $matches['rest']
-    }
-    else {
-        $datePart  = $file.LastWriteTime.ToString('yyyy-MM-dd')
-        $titlePart = $originalBase
-    }
-
-    $safeTitle = $titlePart -replace '[^\p{L}\p{Nd}\s\-_]', ''
-    $safeTitle = ($safeTitle -replace '\s+', ' ').Trim()
-
-    if ([string]::IsNullOrWhiteSpace($safeTitle)) {
-        $safeTitle = 'Episode'
-    }
-
-    $base = "$datePart - $safeTitle"
-
-    if ($base.Length -gt $MaxBaseLength) {
-        $base = $base.Substring(0, $MaxBaseLength).Trim()
-    }
+    $base = Get-SanitizedAudioBaseName -OriginalBase $originalBase -LastWriteTime $file.LastWriteTime -MaxBaseLength $MaxBaseLength
 
     Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $base, $originalBase) "DEBUG"
 
@@ -717,7 +562,7 @@ foreach ($file in $files) {
         Write-Log ("ffprobe failed for '{0}': {1}" -f $file.FullName, $_) "WARN"
     }
 
-    # Build metadata args 
+    # Build metadata args
     $metadataArgs = @("-map_metadata",$metadataSource,"-id3v2_version","3")
 
     if (-not $hasTitle) {
@@ -735,7 +580,7 @@ foreach ($file in $files) {
         Write-Host "       [INFO] Setting album tag: $Album"
     }
 
-    # ffmpeg re-encode 
+    # ffmpeg re-encode
     if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
         Write-Host "       [INFO] Embedding cover: $CoverPath"
 

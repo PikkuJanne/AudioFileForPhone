@@ -165,14 +165,14 @@
       "tested_commit": "0818bf8206849370aa0ef2eaeccaed5b2fb1a890",
       "checkpoint_commit": "b5b3c8b7837dd8af17ae4e5b8405684ccdd7237e",
       "remote_checkpoint_verified": true,
-      "notes": "A07/A08 pass on PS5.1/PS7; OutputParent preserves configured Music default, ordinary real-FFmpeg suites use owned TEMP parents including missing bracketed paths. Ten resolver cases per shell and separate instrumented configured-Music smokes passed with source hashes/full decode/exact owned cleanup. Reports record actual test base plus working hashes, equivalent to preserved code checkpoint with only documented Git CRLF/LF normalization. T02 PR #2 owner-merged; T03 draft PR #3 synchronized, main integration pending. No registry/persistent policy change, CI/phone/release evidence. Next suggested step: T04 in a new thread."
+      "notes": "A07/A08 pass on PS5.1/PS7; OutputParent preserves configured Music default, ordinary real-FFmpeg suites use owned TEMP parents including missing bracketed paths. Ten resolver cases per shell and separate instrumented configured-Music smokes passed with source hashes/full decode/exact owned cleanup. Reports record actual test base plus working hashes, equivalent to preserved code checkpoint with only documented Git CRLF/LF normalization. T02 PR #2 owner-merged; T03 PR #3 owner-merged at 2026-10-10T20:43:41Z into main bf425829d2e019911f179eb8250bfe6800f7ac81 (reconciled in T04). No registry/persistent policy change, CI/phone/release evidence. Next suggested step: T04 in a new thread."
     },
     {
       "id": "T04",
       "milestone": "M1",
       "title": "Extract small helpers and implement preflight",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T03"
       ],
@@ -186,11 +186,20 @@
         "A10",
         "A11"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T04.md",
+        "evidence/T04-preflight-ps51.json",
+        "evidence/T04-preflight-ps7.json",
+        "evidence/T04-baseline-ps51.json",
+        "evidence/T04-baseline-ps7.json",
+        "evidence/T04-resolver-ps51.json",
+        "evidence/T04-resolver-ps7.json",
+        "evidence/T04-tested-payload.json"
+      ],
+      "tested_commit": "bf425829d2e019911f179eb8250bfe6800f7ac81",
+      "checkpoint_commit": "512a824ae856b4425a4012e0116f363babcc4d4e",
+      "remote_checkpoint_verified": true,
+      "notes": "A09-A11 pass on PS5.1/PS7: functions-only helper extraction, before-prompt input/range/output/tool/cover preflight, 35 negative children and eight helper cases per shell, effective owned-TEMP ACL denials/exact restoration, ten resolver cases and retained FFmpeg suites. Source/cleanup pass; actual test base plus working hashes are equivalent to preserved/pushed code checkpoint with recorded CRLF/LF behavior. Owner merged T03 PR #3; T04 draft PR #4 synchronized, main integration pending owner review. No registry/policy/ordinary Music, disk-fill, live-share, CI/phone/release evidence. Next suggested step: T05 in a new thread."
     },
     {
       "id": "T05",

@@ -1,0 +1,84 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T04",
+    "mode":  "resolver_only",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-OutputParent.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T04-resolver-ps51.json",
+    "started_utc":  "2026-10-10T20:49:44.2172215Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "bf425829d2e019911f179eb8250bfe6800f7ac81",
+    "harness_sha256":  "25a75d1c376ce7af96e56723d3b951f293e63d823e43091a6392f7a76e59ad12",
+    "application_sha256_before":  "95aed718dd806a574e2a0a4b3f2328b91c04210766afa1bf045d0c6ba78bf225",
+    "application_sha256_after":  "95aed718dd806a574e2a0a4b3f2328b91c04210766afa1bf045d0c6ba78bf225",
+    "application_unchanged":  true,
+    "helpers_sha256_before":  "9982dd317ef20bef91c3cd3d664f7872b63198ad66d499cb8daa520be77084ae",
+    "helpers_sha256_after":  "9982dd317ef20bef91c3cd3d664f7872b63198ad66d499cb8daa520be77084ae",
+    "helpers_unchanged":  true,
+    "resolver_cases":  [
+                           {
+                               "name":  "injected configured Music, independent of user profile",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "empty configured Music is rejected",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "absolute missing parent and literal brackets, override bypasses resolver",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "filesystem provider-qualified override",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "existing filesystem parent, override bypasses resolver",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "relative missing parent uses PowerShell location",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "reject non-filesystem Env",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "reject non-filesystem Registry",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "reject non-filesystem Variable",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "existing file is rejected as output parent",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           }
+                       ],
+    "default_smoke":  {
+                          "status":  "not_run",
+                          "timestamp_only_copy":  false,
+                          "output_override_passed":  false,
+                          "root_exclusively_reserved":  false,
+                          "marker_create_new":  false,
+                          "configured_music_verified":  false,
+                          "exact_inventory_verified":  false,
+                          "source_sha256_before":  null,
+                          "source_sha256_after":  null,
+                          "source_unchanged":  null,
+                          "cleanup_verified":  null
+                      },
+    "temp_cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "resolver_sha256":  "11de5496a55f5eeea41a850fe210f1e8e0d46806c07b99a95bdae0cfd77b9d30",
+    "finished_utc":  "2026-10-10T20:49:44.9339431Z"
+}

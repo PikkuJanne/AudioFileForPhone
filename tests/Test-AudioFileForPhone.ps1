@@ -11,6 +11,7 @@ param([string]$FfmpegPath, [string]$FfprobePath)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $productionScript = Join-Path $projectRoot 'AudioFileForPhone.ps1'
+$productionHelpers = Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $originalPath = $env:PATH
@@ -104,6 +105,9 @@ function Invoke-Conversion {
     $scriptCopy = Join-Path $runDir 'AudioFileForPhone.ps1'
     Copy-Item -LiteralPath $productionScript -Destination $scriptCopy
     Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -eq (Get-FileHash -LiteralPath $productionScript).Hash) 'Application copy must be byte-identical.'
+    $helpersCopy = Join-Path $runDir 'AudioFileForPhone.Helpers.ps1'
+    Copy-Item -LiteralPath $productionHelpers -Destination $helpersCopy
+    Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $productionHelpers).Hash) 'Runtime helper copy must be byte-identical.'
     $sourceBefore = ConvertTo-Json -InputObject @(Get-SourceInventory $InputPath) -Compress
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
         '-File', $scriptCopy, '-InputFolder', $InputPath, '-OutputParent', $outputParent) + $Options

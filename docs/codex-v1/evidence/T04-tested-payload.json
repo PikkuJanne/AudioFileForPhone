@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "task": "T04",
+  "test_base_commit": "bf425829d2e019911f179eb8250bfe6800f7ac81",
+  "code_checkpoint_commit": "512a824ae856b4425a4012e0116f363babcc4d4e",
+  "files": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "95aed718dd806a574e2a0a4b3f2328b91c04210766afa1bf045d0c6ba78bf225",
+      "committed_git_blob": "e46ab992cc76197e60d2be9261824de56ad4920f",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "9982dd317ef20bef91c3cd3d664f7872b63198ad66d499cb8daa520be77084ae",
+      "committed_git_blob": "a6c5b8298f08decc0b13464bb54e4d17ee017db8",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+      "committed_git_blob": "00cbf63a11b705bb5deda1fc72db17ab71c0f467",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "README.md",
+      "sha256": "849ee6cd6c70b91a1ac85fcfc45fd0f93a461b464c03a4401e17d222bb67690d",
+      "committed_git_blob": "6c46c356db86f2bec7598afca4cba21e64268ff5",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": null,
+      "normalization": "none"
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "735e68c30375c55db4904d0ccbd1c3d21ad5e65e1805065d0f5a393de9967bd5",
+      "committed_git_blob": "e439794360bcc901588d95998b7efd7f5b738e07",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "5fd56237c85cd52886826e33b291a8909649d0be06a2ae1581c953004d046326",
+      "committed_git_blob": "5ad70302b08ff39122b7bb1da6a4d66d164ae303",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48",
+      "committed_git_blob": "4e852a61c2db81879ed3445f17709bcc44a3fc43",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-OutputParent.ps1",
+      "sha256": "25a75d1c376ce7af96e56723d3b951f293e63d823e43091a6392f7a76e59ad12",
+      "committed_git_blob": "a14d17ad14fb7ef94627fe851eb47fa915b38089",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-Preflight.ps1",
+      "sha256": "ad4fbe3cbfa02d0cd4ef1a42fe2c8463884e3155151df473603e48c7b57e7ac3",
+      "committed_git_blob": "6b5cafed8856e1f5b5691c46d5e9f54916257b40",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    }
+  ],
+  "evidence_reports": [
+    "T04-baseline-ps51.json",
+    "T04-baseline-ps7.json",
+    "T04-preflight-ps51.json",
+    "T04-preflight-ps7.json",
+    "T04-resolver-ps51.json",
+    "T04-resolver-ps7.json"
+  ],
+  "equivalence_verified": true,
+  "previous_live_main": "bf425829d2e019911f179eb8250bfe6800f7ac81",
+  "code_checkpoint_remote_verified": true,
+  "verification_method": "SHA-256 equals final report fingerprints (README is documentation only); raw git hash-object or CRLF-normalized --path hash equals each committed blob. Raw equality recorded; no path attributes/filters exist. Fresh ls-remote matched code checkpoint."
+}

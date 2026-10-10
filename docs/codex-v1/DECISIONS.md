@@ -21,7 +21,7 @@ record any owner-approved changes with rationale and impacted tests.
 | D14 | Skip directory reparse points/junctions with a recorded warning; do not follow unknown targets. | Safe initial contract |
 | D15 | Scan access failures abort before conversions, rather than silently miss subtrees. | Safe initial contract |
 | D16 | Empty/no-supported inputs return a documented nonzero outcome with no finished output. | Preserve intent |
-| D17 | Fixed-rate whitelist and name limit 24–180 finalized in T02; produced bitrate must equal request. Duration tolerance remains T09. | Contract selected; implementation pending |
+| D17 | Fixed-rate whitelist and name limit 24–180 finalized in T02; requested ranges enforced in T04. Produced-rate validation and duration tolerance remain T09. | Ranges implemented; later validation pending |
 | D18 | Main-merge authority and exact release approval are not recorded yet. | Owner gate |
 | D19 | Any post-freeze commit may change only docs/codex-v1 progress/evidence, never shipped or tested payload. | Freeze policy |
 
@@ -115,6 +115,41 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
   including only Git CRLF/LF normalization. Fresh advertised feature ref
   matched the pushed code checkpoint. Draft PR #3 awaits owner integration.
   A07/A08 pass; T04 is the next coherent task. No CI, release or phone test.
+
+## T04 reconciliation and preflight — 10 October 2026
+
+- Owner requested "T04 next please". PR #3 was already owner-merged at
+  20:43:41 UTC into main `bf425829d2e019911f179eb8250bfe6800f7ac81`.
+  Local main was fast-forwarded to its independently advertised ref; T04 uses
+  `codex/v1-t04-preflight`. No agent merge or broader authority was inferred.
+- Functions-only `AudioFileForPhone.Helpers.ps1` extracts validation, tool lookup,
+  output resolution, cover diagnostics, existing naming and discovery. Existing
+  PS1/BAT entry points and parameter order/defaults remain. Every current copy
+  harness includes the helper byte-for-byte; package work must include it too.
+- Validate selected input directory/provider/root/readability, requested bitrate
+  and name limits, output resolution, native tool identities/libmp3lame and an
+  explicit JPEG/PNG cover before optional metadata prompts or run-root/log creation.
+  Cover validation also tests one-frame FFmpeg decode/mjpeg encoding, to null output.
+  Invalid explicit or picked covers now stop clearly. Cancellation of the picker
+  still allows proceeding without cover. Syntactic UNC roots are rejected before
+  share access; live UNC support is not established. Extended/device paths are refused.
+- Normal output preflight creates a requested missing parent, then exclusively
+  reserves an empty probe directory and a CreateNew sibling file, writes/flushes
+  one byte and removes only those probes. Missing parents are retained deliberately;
+  they are user-requested destinations, not owned disposable run trees. The internal
+  SkipWriteProbe switch defers all probe/directory writes for future preview callers;
+  no public preview parameter is introduced. No disk-exhaustion test is claimed.
+- T04 keeps recursive/reparse policy for T06, calendar/Unicode/path allocation for
+  T07, production run-root reservation for T08, transactional MP3 publication for
+  T09 and aggregate exits/BAT behavior for T10/T11. Naming/DSP/metadata conversion
+  behavior is preserved; this preflight is not a complete filesystem/process audit.
+- A09–A11 pass on both shells: 35 negatives/eight helper checks, actual owned-TEMP
+  ACL denials/exact restoration, ten resolver cases and retained real-FFmpeg suites.
+  Final source/synthetic hashes and owned cleanup passed. Review corrected native
+  exit-variable scope and PS5.1 test-only diagnostic capture; no manual evidence
+  is claimed. Tested equivalent code checkpoint is
+  `512a824ae856b4425a4012e0116f363babcc4d4e`; draft PR #4 awaits owner integration.
+  Next suggested step: T05 in a new thread.
 
 ## Change entry template
 
