@@ -48,6 +48,32 @@ T01 workflow: one active branch `codex/v1-t01-checkpoint`, a small draft PR agai
 on this branch while main integration remains pending; preserve any later work.
 Do not infer merge authority from an unprotected branch or authenticated tools.
 
+## T02 reconciliation and engineering proposals — 10 October 2026
+
+- Owner requested T02 and a handoff that clearly states the next suggested step.
+  PR #1 was already merged by the owner at 19:45:49 UTC. T01 is now integrated
+  into main `483af25f8e5fa9dee295f5b74130324663339e37`; no agent merge was performed.
+  T02 uses fresh branch `codex/v1-t02-baseline` rather than the merged PR's branch.
+- `T02_REGRESSION_MATRIX.md` records formats/defaults/tags/names/exits/source
+  safety before application changes. Proposed D17 limits are the documented
+  LAME fixed-rate union, `MaxBaseLength` 24–180 UTF-16 units, default 60, with
+  independent final/working path checks below legacy Windows limits. Empirical
+  finalization remains blocked by unavailable FFmpeg/ffprobe; do not treat these
+  limits as implemented or tested. Duration tolerance remains assigned to T09.
+- Retain D13 root rejection, D14 descendant-directory reparse skips and D15
+  abort-before-conversion on scan access errors. Proposed T06 refinement also
+  rejects a selected reparse directory and skips file reparse points to avoid
+  out-of-tree source/cleanup boundaries; it needs focused Windows tests.
+- Adopt the already proposed future outcome contract 0/1/2/130 from UX_RESULTS
+  for all-success/preflight-or-empty/per-file-failure/controlled-cancel. Baseline
+  runtime results are still unrun; implementation and BAT propagation remain T10/T11.
+- The test-only T02 adapter substitutes the Music resolver in disposable copies;
+  no production environment-variable backdoor or known-folder registry change
+  is introduced. A04–A06 still require real media execution on both shells.
+  Because native dependencies are missing, the isolation-only T03 scheduling
+  exception does not apply. Next suggested step: provide a local FFmpeg/ffprobe
+  pair and resume T02; start T03 only after required baseline evidence passes.
+
 ## Change entry template
 
 ID/date; reason; previous/new policy; owner authorization when required; affected

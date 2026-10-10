@@ -92,14 +92,14 @@
       "tested_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
       "checkpoint_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
       "remote_checkpoint_verified": true,
-      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Draft PR #1 is pending main integration. Final docs follow the verified checkpoint; next task T02."
+      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Owner merged PR #1 at 2026-10-10T19:45:49Z into main 483af25f8e5fa9dee295f5b74130324663339e37; reconciled in T02."
     },
     {
       "id": "T02",
       "milestone": "M0",
       "title": "Capture baseline behavior and test contracts",
       "required": true,
-      "status": "todo",
+      "status": "blocked",
       "depends_on": [
         "T01"
       ],
@@ -115,11 +115,19 @@
         "A05",
         "A06"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T02.md",
+        "T02_REGRESSION_MATRIX.md",
+        "evidence/T02-isolation-ps51.json",
+        "evidence/T02-isolation-ps7.json",
+        "evidence/T02-baseline-ps51.json",
+        "evidence/T02-baseline-ps7.json",
+        "evidence/T02-guard-results.json"
+      ],
+      "tested_commit": "0b71b68ee044639d82bd1b7bc43e10d023258be4",
+      "checkpoint_commit": "0b71b68ee044639d82bd1b7bc43e10d023258be4",
+      "remote_checkpoint_verified": true,
+      "notes": "Prepared matrix and isolated legacy/companion harness; adapter/parser checks passed on both shells and four unsafe-path guards passed. FFmpeg/ffprobe unavailable; no fixture/media conversions run, A04-A06 blocked. Next suggested step: provide local tools and resume T02. T03 isolation-only exception does not apply. Draft PR #2; T02 main integration pending; final handoff docs follow tested/live code checkpoint."
     },
     {
       "id": "T03",

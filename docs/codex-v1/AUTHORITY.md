@@ -5,6 +5,13 @@ The imported bundle does not itself grant GitHub write authority. The actual
 startup authorization and checkout-recovery approval are recorded in DECISIONS.
 Never infer a broader approval from tool credentials or a prior unrelated project.
 
+On 10 October 2026 the owner requested "T02 next please" in the T02 thread.
+That authorizes T02 within the normal task scope below. Startup reconciliation
+found PR #1 merged by `PikkuJanne` at 19:45:49 UTC into main
+`483af25f8e5fa9dee295f5b74130324663339e37`; local main was fast-forwarded to
+that existing merge and a fresh `codex/v1-t02-baseline` branch was created.
+The owner-performed merge is integration evidence, not a new blanket merge policy.
+
 ## Normal task scope after startup
 
 Allowed: inspect/fetch, preserve work, create a relevant codex/* branch, make

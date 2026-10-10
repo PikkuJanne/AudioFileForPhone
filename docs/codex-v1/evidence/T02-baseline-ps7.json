@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "T02",
+  "mode": "real_ffmpeg_baseline",
+  "started_utc": "2026-10-10T19:54:06.0938101Z",
+  "shell": "7.6.5",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "0b71b68ee044639d82bd1b7bc43e10d023258be4",
+  "harness_sha256": "1ede09c3945145f07ab0892f4c10adcf8fbba88333a602d547bae26ea94d4414",
+  "isolation": {
+    "replacements_per_copy": 1,
+    "production_changes": false,
+    "verified": true,
+    "companion_syntax_valid": true
+  },
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "d30eb7280baff82089536797abd4ca20dec203d7e47807a5f13d0ed2fa4d0a88"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "95f2a1738d1f7743cb07a1a80e6a4d8b1f0dc82796334016d82c27be8ae4d86d"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "d30eb7280baff82089536797abd4ca20dec203d7e47807a5f13d0ed2fa4d0a88"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "95f2a1738d1f7743cb07a1a80e6a4d8b1f0dc82796334016d82c27be8ae4d86d"
+    }
+  ],
+  "source_unchanged": true,
+  "legacy": {
+    "status": "not_run",
+    "exit_code": null
+  },
+  "characterization": null,
+  "cleanup_verified": true,
+  "status": "blocked",
+  "error": "The term 'ffmpeg.exe' is not recognized as a name of a cmdlet, function, script file, or executable program.\r\nCheck the spelling of the name, or if a path was included, verify that the path is correct and try again.",
+  "companion_sha256": "092196681d75af70f5ceababe2dd6bf6039efa070860f905d0841084655f4626",
+  "finished_utc": "2026-10-10T19:54:06.4328186Z"
+}

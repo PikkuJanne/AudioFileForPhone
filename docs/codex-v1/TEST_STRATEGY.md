@@ -45,15 +45,45 @@ Music-folder isolation.
 
 ## Commands
 
-The existing suite's entry point remains the starting point after isolation:
+T02 adds a test-only adapter which retains and runs the original real-FFmpeg
+suite from disposable copies. It replaces exactly one Music resolver in each
+copy, verifies the substitution and parses the companion on the invoking shell.
+The application and original suite are untouched. Cleanup uses a unique owned
+TEMP root with an exact marker/path check and refuses reparse points. The
+adapter does not test the live configured Music destination; A08 remains T03.
+
+Adapter-only checks, verified on the active machine in T02:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -EvidencePath .\docs\codex-v1\evidence\T02-isolation-ps51.json -ValidateOnly
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -EvidencePath .\docs\codex-v1\evidence\T02-isolation-ps7.json -ValidateOnly
+```
+
+Real baseline commands, currently blocked by missing native dependencies:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -EvidencePath .\docs\codex-v1\evidence\T02-baseline-ps51.json
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -EvidencePath .\docs\codex-v1\evidence\T02-baseline-ps7.json
+```
+
+The adapter finds canonical `ffmpeg.exe`/`ffprobe.exe` locally or on PATH. Optional
+`-FfmpegPath` and `-FfprobePath` accept absolute executable paths and verify that
+the unchanged application will discover the same pair. Reports must be named
+`T02-<label>.json` directly under `docs/codex-v1/evidence`; raw generated-run logs
+are disposable. It never installs tools or changes persistent execution policy.
+`-ValidateOnly` does not generate/convert audio and cannot pass A04–A06. The
+companion's unexecuted fixtures/known-gap observations map to
+`T02_REGRESSION_MATRIX.md`; actual runs still must validate these assertions.
+
+The original suite's direct commands remain available after T03 isolation:
 
 ```powershell
 powershell.exe -NoProfile -File .\tests\Test-AudioFileForPhone.ps1
 pwsh -NoProfile -File .\tests\Test-AudioFileForPhone.ps1
 ```
 
-These commands are not claimed to have been run here. Validate actual policy and
-harness parameters in T02/T03; record canonical updated commands in STATUS. Never
+Do not run those direct commands against ordinary Music before T03. Validate
+actual policy and record canonical updated commands in STATUS. Never
 change execution policy globally or disable endpoint controls for a test. Add a
 small repository test runner only if it reduces repeated commands, not a framework.
 

@@ -1,0 +1,141 @@
+{
+  "task": "T02",
+  "suite": "unsafe report path rejection",
+  "tested_commit": "0b71b68ee044639d82bd1b7bc43e10d023258be4",
+  "executed_utc": "2026-10-10T19:54:11.0498693Z",
+  "status": "pass",
+  "checks": [
+    {
+      "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "check": "driver rejects source EvidencePath",
+      "arguments": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-ValidateOnly"
+      ],
+      "expected_exit_code": 1,
+      "observed_exit_code": 1,
+      "status": "pass"
+    },
+    {
+      "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "check": "companion rejects unowned paths and source ResultPath",
+      "arguments": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Test-BaselineCharacterization.ps1",
+        "-ApplicationScript",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-WorkRoot",
+        "C:\\projects\\AudioFileForPhone-main\\tests",
+        "-MusicParent",
+        "C:\\projects\\AudioFileForPhone-main",
+        "-FfmpegPath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-FfprobePath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-ResultPath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1"
+      ],
+      "expected_exit_code": 1,
+      "observed_exit_code": 1,
+      "status": "pass"
+    },
+    {
+      "shell": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "check": "driver rejects source EvidencePath",
+      "arguments": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-ValidateOnly"
+      ],
+      "expected_exit_code": 1,
+      "observed_exit_code": 1,
+      "status": "pass"
+    },
+    {
+      "shell": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "check": "companion rejects unowned paths and source ResultPath",
+      "arguments": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Test-BaselineCharacterization.ps1",
+        "-ApplicationScript",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-WorkRoot",
+        "C:\\projects\\AudioFileForPhone-main\\tests",
+        "-MusicParent",
+        "C:\\projects\\AudioFileForPhone-main",
+        "-FfmpegPath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-FfprobePath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+        "-ResultPath",
+        "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1"
+      ],
+      "expected_exit_code": 1,
+      "observed_exit_code": 1,
+      "status": "pass"
+    }
+  ],
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "D30EB7280BAFF82089536797ABD4CA20DEC203D7E47807A5F13D0ED2FA4D0A88"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ACE8866B5672907CF1E91C7FA03F06F78A099FE3278AEA109F9581A8AAC25"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "95F2A1738D1F7743CB07A1A80E6A4D8B1F0DC82796334016D82C27BE8AE4D86D"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "1EDE09C3945145F07AB0892F4C10ADCF8FBBA88333A602D547BAE26EA94D4414"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "092196681D75AF70F5CEABABE2DD6BF6039EFA070860F905D0841084655F4626"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "D30EB7280BAFF82089536797ABD4CA20DEC203D7E47807A5F13D0ED2FA4D0A88"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ACE8866B5672907CF1E91C7FA03F06F78A099FE3278AEA109F9581A8AAC25"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "95F2A1738D1F7743CB07A1A80E6A4D8B1F0DC82796334016D82C27BE8AE4D86D"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "1EDE09C3945145F07AB0892F4C10ADCF8FBBA88333A602D547BAE26EA94D4414"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "092196681D75AF70F5CEABABE2DD6BF6039EFA070860F905D0841084655F4626"
+    }
+  ],
+  "source_unchanged": true,
+  "media_execution": "not_run"
+}
