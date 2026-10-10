@@ -16,6 +16,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $application = Join-Path $projectRoot 'AudioFileForPhone.ps1'
+$helpers = Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
 $testName = 'AudioFileForPhone-T03-resolver-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
@@ -33,13 +34,14 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T03-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03-<label>.json or T04-<label>.json directly in docs/codex-v1/evidence.'
 }
+$evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1
-    task = 'T03'
+    task = $evidenceTask
     mode = $(if ($DefaultSmoke) { 'resolver_and_default_music_smoke' } else { 'resolver_only' })
     command = [Environment]::CommandLine
     started_utc = [DateTime]::UtcNow.ToString('o')
@@ -52,6 +54,9 @@ $report = [ordered]@{
     application_sha256_before = (Get-FileHash -LiteralPath $application -Algorithm SHA256).Hash.ToLowerInvariant()
     application_sha256_after = $null
     application_unchanged = $false
+    helpers_sha256_before = (Get-FileHash -LiteralPath $helpers -Algorithm SHA256).Hash.ToLowerInvariant()
+    helpers_sha256_after = $null
+    helpers_unchanged = $false
     resolver_cases = @()
     default_smoke = [ordered]@{
         status = 'not_run'; timestamp_only_copy = $false; output_override_passed = $false
@@ -183,12 +188,15 @@ try {
     $tokens = $null; $parseErrors = $null
     $ast = [Management.Automation.Language.Parser]::ParseFile($application, [ref]$tokens, [ref]$parseErrors)
     Assert-True ($parseErrors.Count -eq 0) 'Production application must parse before resolver extraction.'
-    $functions = @($ast.FindAll({
+    $helperTokens = $null; $helperErrors = $null
+    $helperAst = [Management.Automation.Language.Parser]::ParseFile($helpers, [ref]$helperTokens, [ref]$helperErrors)
+    Assert-True ($helperErrors.Count -eq 0) 'Production helpers must parse before resolver extraction.'
+    $functions = @($helperAst.FindAll({
         param($node)
         $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq 'Get-OutputParent'
     }, $true))
     Assert-True ($functions.Count -eq 1) 'Exactly one production Get-OutputParent function must exist.'
-    # Execute only the actual function AST; never dot-source the application.
+    # Execute only the actual resolver function AST; never run entry-point code.
     $resolverCommand = [scriptblock]::Create("param([hashtable]`$ResolverArguments)`n" +
         $functions[0].Extent.Text + "`nGet-OutputParent @ResolverArguments")
     $report['resolver_sha256'] = ([Security.Cryptography.SHA256]::Create().ComputeHash(
@@ -296,8 +304,12 @@ try {
         Assert-True ($copyText.Replace($replacement, $matches[0].Value) -ceq $sourceText) 'Smoke application copy must differ only in timestamp assignment.'
         $scriptCopy = Join-Path $testRoot 'Default smoke application.ps1'
         [IO.File]::WriteAllText($scriptCopy, $copyText, (New-Object Text.UTF8Encoding($false)))
+        $helpersCopy = Join-Path $testRoot 'AudioFileForPhone.Helpers.ps1'
+        Copy-Item -LiteralPath $helpers -Destination $helpersCopy
+        Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $helpers).Hash) 'Smoke runtime helper copy must preserve all source bytes.'
         $report.default_smoke.timestamp_only_copy = $true
         $report.default_smoke['copy_sha256'] = (Get-FileHash -LiteralPath $scriptCopy -Algorithm SHA256).Hash.ToLowerInvariant()
+        $report.default_smoke['helpers_copy_sha256'] = (Get-FileHash -LiteralPath $helpersCopy -Algorithm SHA256).Hash.ToLowerInvariant()
         $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
         $shell = Join-Path $PSHOME $shellName
         $childArguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
@@ -338,6 +350,9 @@ finally {
     $report.application_sha256_after = (Get-FileHash -LiteralPath $application -Algorithm SHA256).Hash.ToLowerInvariant()
     $report.application_unchanged = $report.application_sha256_before -ceq $report.application_sha256_after
     if (-not $report.application_unchanged) { $report.status = 'fail'; $exitCode = 1 }
+    $report.helpers_sha256_after = (Get-FileHash -LiteralPath $helpers -Algorithm SHA256).Hash.ToLowerInvariant()
+    $report.helpers_unchanged = $report.helpers_sha256_before -ceq $report.helpers_sha256_after
+    if (-not $report.helpers_unchanged) { $report.status = 'fail'; $exitCode = 1 }
     if ($report.default_smoke.source_sha256_before) {
         $report.default_smoke.source_unchanged = $false
         if (Test-Path -LiteralPath $sourceAudio -PathType Leaf) {
@@ -385,5 +400,5 @@ finally {
     if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
     $report | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
 }
-Write-Host "T03 $($report.mode): $($report.status); TEMP cleanup=$($report.temp_cleanup_verified); Music cleanup=$($report.default_smoke.cleanup_verified)"
+Write-Host "$evidenceTask $($report.mode): $($report.status); TEMP cleanup=$($report.temp_cleanup_verified); Music cleanup=$($report.default_smoke.cleanup_verified)"
 exit $exitCode

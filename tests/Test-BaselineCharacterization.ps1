@@ -39,6 +39,7 @@ $environmentRecord = [ordered]@{
     ffmpeg_version = $null
     ffprobe_version = $null
     application_sha256 = $null
+    runtime_helpers_sha256 = $null
     characterization_sha256 = (Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash
 }
 
@@ -272,7 +273,8 @@ try {
     $resultPathApproved = $true
     Assert-True ($WorkRoot -ne $OutputParent -and -not (Test-WithinPath $WorkRoot $OutputParent) -and
         -not (Test-WithinPath $OutputParent $WorkRoot)) 'Source and output parents must be separate.'
-    foreach ($filePath in @($ApplicationScript, $FfmpegPath, $FfprobePath, $shellPath)) {
+    $applicationHelpers = Join-Path (Split-Path -Parent $ApplicationScript) 'AudioFileForPhone.Helpers.ps1'
+    foreach ($filePath in @($ApplicationScript, $applicationHelpers, $FfmpegPath, $FfprobePath, $shellPath)) {
         Assert-True (Test-Path -LiteralPath $filePath -PathType Leaf) "Required file missing: $filePath"
     }
     Assert-True (Test-Path -LiteralPath $OutputParent -PathType Container) 'Wrapper must create the isolated output parent.'
@@ -284,6 +286,10 @@ try {
     Assert-True ($applicationErrors.Count -eq 0 -and
         @($applicationAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'OutputParent' }).Count -eq 1) 'Unchanged application copy must expose OutputParent.'
     $environmentRecord.application_sha256 = (Get-FileHash -LiteralPath $ApplicationScript -Algorithm SHA256).Hash
+    $helperTokens = $null; $helperErrors = $null
+    [Management.Automation.Language.Parser]::ParseFile($applicationHelpers, [ref]$helperTokens, [ref]$helperErrors) | Out-Null
+    Assert-True ($helperErrors.Count -eq 0) 'Runtime helper copy must parse without errors.'
+    $environmentRecord.runtime_helpers_sha256 = (Get-FileHash -LiteralPath $applicationHelpers -Algorithm SHA256).Hash
     $environmentRecord.ffmpeg_version = (Invoke-CapturedNative 'FFmpeg version' $FfmpegPath @('-version')).Output[0]
     $environmentRecord.ffprobe_version = (Invoke-CapturedNative 'ffprobe version' $FfprobePath @('-version')).Output[0]
     $env:PATH = (Split-Path -Parent $FfmpegPath) + ';' + (Split-Path -Parent $FfprobePath) + ';' + $originalPath
@@ -473,13 +479,13 @@ finally {
     $failedChecks = @($checks | Where-Object { $_.required -and $_.status -ne 'pass' })
     $result = [ordered]@{
         schema_version = 1
-        suite = 'T03 isolated replay of T02 baseline characterization'
+        suite = 'Isolated replay of T02 baseline characterization'
         started_utc = $startedUtc
         completed_utc = [DateTime]::UtcNow.ToString('o')
         status = $(if ($failedChecks.Count -eq 0) { 'pass' } else { 'fail' })
         fatal_error = $fatalError
         environment = [pscustomobject]$environmentRecord
-        isolation = [pscustomobject]@{ application_copy = $ApplicationScript; fixture_root = $WorkRoot; output_parent = $OutputParent; cleanup_owner = 'Invoke-IsolatedBaseline.ps1' }
+        isolation = [pscustomobject]@{ application_copy = $ApplicationScript; runtime_helpers_copy = $applicationHelpers; fixture_root = $WorkRoot; output_parent = $OutputParent; cleanup_owner = 'Invoke-IsolatedBaseline.ps1' }
         fixtures = @($fixtureDefinitions)
         checks = $checks.ToArray()
         runs = $runs.ToArray()

@@ -20,16 +20,17 @@ $ownerToken = [guid]::NewGuid().ToString('N')
 $ownerFile = Join-Path $testRoot '.t03-owner'
 $ownedRootCreated = $false
 $originalPath = $env:PATH
-# T03 reports preserve T02 history and never replace source or control documents.
+# New task reports preserve historical evidence and never replace source or control documents.
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T03-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03-<label>.json or T04-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
 }
+$evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $report = [ordered]@{
     schema_version = 1
-    task = 'T03'
+    task = $evidenceTask
     mode = $(if ($ValidateOnly) { 'isolation_validation' } else { 'real_ffmpeg_baseline' })
     started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString()
@@ -47,7 +48,7 @@ $report = [ordered]@{
     status = $(if ($ValidateOnly) { 'fail' } else { 'blocked' })
     error = $null
 }
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1',
     'tests/Invoke-IsolatedBaseline.ps1', 'tests/Test-BaselineCharacterization.ps1')
 
 function Get-SourceInventory {
@@ -148,12 +149,15 @@ try {
         New-Item -ItemType Directory -Path $path | Out-Null
     }
     $application = Join-Path $projectRoot 'AudioFileForPhone.ps1'
+    $helpers = Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'
     $legacyScript = Join-Path $legacyRoot 'AudioFileForPhone.ps1'
     $legacySuite = Join-Path $legacyTests 'Test-AudioFileForPhone.ps1'
     $characterScript = Join-Path $characterRoot 'AudioFileForPhone.ps1'
     Copy-UnchangedScript $application $legacyScript
+    Copy-UnchangedScript $helpers (Join-Path $legacyRoot 'AudioFileForPhone.Helpers.ps1')
     Copy-UnchangedScript (Join-Path $PSScriptRoot 'Test-AudioFileForPhone.ps1') $legacySuite
     Copy-UnchangedScript $application $characterScript
+    Copy-UnchangedScript $helpers (Join-Path $characterRoot 'AudioFileForPhone.Helpers.ps1')
     $appTokens = $null; $appErrors = $null
     $appAst = [Management.Automation.Language.Parser]::ParseFile($characterScript, [ref]$appTokens, [ref]$appErrors)
     if (@($appAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'OutputParent' }).Count -ne 1) {
@@ -240,5 +244,5 @@ finally {
     if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
     $report | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
 }
-Write-Host "T03 $($report.mode): $($report.status); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)"
+Write-Host "$evidenceTask $($report.mode): $($report.status); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)"
 exit $exitCode
