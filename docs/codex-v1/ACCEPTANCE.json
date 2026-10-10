@@ -34,8 +34,11 @@
       "required": true,
       "method": "isolated helper tests plus actual live read",
       "expected": "Clean matching branch passes; dirty, detached, mismatched, absent remote ref or network failure cannot pass; fetch and push destinations are both verified.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T01.md",
+        "evidence/T01-helper-results.json"
+      ]
     },
     {
       "id": "A04",

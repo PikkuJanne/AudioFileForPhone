@@ -72,7 +72,7 @@
       "milestone": "M0",
       "title": "Reconcile checkout, import handoff, establish checkpoint",
       "required": true,
-      "status": "in_progress",
+      "status": "done",
       "depends_on": [],
       "review_improvements": [
         13,
@@ -89,10 +89,10 @@
         "evidence/T01-helper-results.json",
         "evidence/T01-source-inventory.json"
       ],
-      "tested_commit": "2bf1ea1921ab33633b978bd384bbbf098648ceed",
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": "Local reconciliation, additive import and 46 Windows helper cases passed; real post-push synchronization remains pending."
+      "tested_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
+      "checkpoint_commit": "2ead61ed51a3a6aeb93d2bdb341041f6490dceaf",
+      "remote_checkpoint_verified": true,
+      "notes": "A01-A03 passed; 46 Windows helper cases and real clean live checks on both shells. Draft PR #1 is pending main integration. Final docs follow the verified checkpoint; next task T02."
     },
     {
       "id": "T02",
