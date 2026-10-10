@@ -32,12 +32,13 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T04-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T04-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T04|T05)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T04/T05-<label>.json directly in docs/codex-v1/evidence.'
 }
+$evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T04'; mode = 'preflight_negative_and_helper'
+    schema_version = 1; task = $evidenceTask; mode = 'preflight_negative_and_helper'
     command = [Environment]::CommandLine
     started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
@@ -461,5 +462,5 @@ finally {
     if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
     $report | ConvertTo-Json -Depth 14 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
 }
-Write-Host "T04 preflight: $($report.status); cases=$($report.cases.Count); ACL restored=$($report.acls_restored); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
+Write-Host "$evidenceTask preflight: $($report.status); cases=$($report.cases.Count); ACL restored=$($report.acls_restored); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
 exit $exitCode

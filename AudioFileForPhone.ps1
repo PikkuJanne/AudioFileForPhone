@@ -243,7 +243,7 @@ try {
     $outputParentPath = Get-OutputParent -OutputParent $OutputParent
     $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
     $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
-    Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+    $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
     if ($PSBoundParameters.ContainsKey('CoverPath')) {
         $CoverPath = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg
     }
@@ -385,6 +385,10 @@ try {
     "CoverPath     : $CoverPath"      | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Artist        : $Artist"         | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Album         : $Album"          | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "FFmpeg path   : $($toolInfo.Ffmpeg.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "FFmpeg version: $($toolInfo.Ffmpeg.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "FFprobe path  : $($toolInfo.Ffprobe.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "FFprobe version: $($toolInfo.Ffprobe.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     ""                              | Add-Content -LiteralPath $logPath -ErrorAction Stop
 }
 catch {
@@ -526,40 +530,21 @@ foreach ($file in $files) {
     Write-Host "       Target : $outPath"
     Write-Log  ("Output file   : {0}" -f $outPath) "DEBUG"
 
-    # Ogg Vorbis/Opus comments live on the audio stream, not the container.
-    $isOgg = $file.Extension -ieq '.ogg'
-    $metadataSource = if ($isOgg) { '0:s:a:0' } else { '0' }
-
-    # Check the same metadata source that ffmpeg will copy to the output.
-    $hasTitle = $false
-    try {
-        $ffprobeArgs   = @("-v","quiet","-print_format","json","-show_format",
-                          "-select_streams","a:0","-show_streams",$file.FullName)
-        Write-Host "       [DEBUG] Running ffprobe..."
-        $ffprobeOutput = & $ffprobe @ffprobeArgs 2>$null
-
-        if ($ffprobeOutput) {
-            $meta = $ffprobeOutput | ConvertFrom-Json
-            $sourceTags = if ($isOgg) {
-                $meta.streams | Select-Object -First 1 -ExpandProperty tags -ErrorAction SilentlyContinue
-            } else {
-                $meta.format.tags
-            }
-            if ($sourceTags -and $sourceTags.title) {
-                $hasTitle = $true
-                Write-Host "       [INFO] Existing title tag: $($sourceTags.title)"
-            }
-            else {
-                Write-Host "       [INFO] No title tag found; will set from sanitized filename."
-            }
-        }
-        else {
-            Write-Host "       [WARN] ffprobe returned no output; assuming no title tag."
-        }
+    # A failed probe is a file failure, distinct from a valid missing title.
+    Write-Host "       [DEBUG] Running ffprobe..."
+    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
+    if ($media.Status -ne 'Success') {
+        $failed++
+        Write-Log ("FAIL : '{0}' (probe {1}: {2})" -f $file.FullName, $media.Status, $media.Error) "FAIL"
+        continue
     }
-    catch {
-        Write-Host "       [WARN] ffprobe failed: $_"
-        Write-Log ("ffprobe failed for '{0}': {1}" -f $file.FullName, $_) "WARN"
+    $hasTitle = $media.TitleStatus -eq 'Present'
+    $metadataSource = $media.MetadataSource
+    if ($hasTitle) {
+        Write-Host "       [INFO] Existing title tag: $($media.Title)"
+    }
+    else {
+        Write-Host "       [INFO] No title tag found; will set from sanitized filename."
     }
 
     # Build metadata args
@@ -585,10 +570,11 @@ foreach ($file in $files) {
         Write-Host "       [INFO] Embedding cover: $CoverPath"
 
         $ffArgs = @(
+            "-nostdin",
             "-y",
             "-i", $file.FullName,
             "-i", $CoverPath,
-            "-map", "0:a:0",
+            "-map", ("0:{0}" -f $media.StreamIndex),
             "-c:a", "libmp3lame",
             "-b:a", ("{0}k" -f $BitrateKbps),
             "-map", "1:0",
@@ -600,9 +586,10 @@ foreach ($file in $files) {
     }
     else {
         $ffArgs = @(
+            "-nostdin",
             "-y",
             "-i", $file.FullName,
-            "-map", "0:a:0",
+            "-map", ("0:{0}" -f $media.StreamIndex),
             "-vn",
             "-acodec", "libmp3lame",
             "-b:a", ("{0}k" -f $BitrateKbps)
@@ -613,16 +600,18 @@ foreach ($file in $files) {
     Write-Host "              $ffmpeg " + ($ffArgs -join " ")
 
     try {
-        & $ffmpeg @ffArgs
-        if ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $outPath)) {
+        $conversion = Invoke-AudioNativeProcess -ExecutablePath $ffmpeg -Arguments $ffArgs
+        if ($conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
+        if ($conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
+        if ($conversion.Status -eq 'Completed' -and $conversion.ExitCode -eq 0 -and (Test-Path -LiteralPath $outPath)) {
             $ok++
             Write-Host "       [OK]   Converted successfully."
             Write-Log  ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) "OK"
         }
         else {
             $failed++
-            Write-Warning "       [FAIL] ffmpeg exit code: $LASTEXITCODE (or output file missing)"
-            Write-Log   ("FAIL : '{0}' (ffmpeg exit code {1})" -f $file.FullName, $LASTEXITCODE) "FAIL"
+            Write-Warning "       [FAIL] ffmpeg status: $($conversion.Status), exit code: $($conversion.ExitCode) (or output file missing)"
+            Write-Log ("FAIL : '{0}' (ffmpeg {1}, exit {2}: {3}; {4})" -f $file.FullName, $conversion.Status, $conversion.ExitCode, $conversion.Error, $conversion.Stderr) "FAIL"
         }
     }
     catch {

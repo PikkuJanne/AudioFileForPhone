@@ -99,6 +99,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 - Each run produces one log file in the AudioForPhone_* root:  
   - AudioFileForPhone_log.txt 
 - Logged details include:
+  - Absolute FFmpeg/ffprobe paths and versions checked at startup.
   - Start time, input folder, output root, bitrate, and max base length.  
   - Selected metadata options (cover/artist/album) when used.
   - Cover diagnostics warnings when a cover is used.
@@ -144,12 +145,16 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - Output is always .mp3, regardless of internal encoding details.  
 - Metadata:
   - Uses ffprobe to inspect the input file’s format and audio-stream tags.
+  - A failed probe, invalid JSON or missing audio stream is logged as a file failure. A successful probe without a title uses the filename fallback.
   - If a title tag already exists, it is preserved.  
   - If no title tag is found, the script sets the title to the sanitized base name.
   - Artist/Album tags can be set for all outputs when provided.
   - A cover image can be embedded into every output MP3 when CoverPath is provided.
   - Warns (and logs) when the selected cover is unusually large (size and/or dimensions).
   - Metadata is copied from the container for MP3/M4A and from the first audio stream for OGG, preserving Vorbis/Opus comments such as title, artist, and album. ID3v2.3 is enforced for compatibility.
+- Native execution:
+  - Uses a shared process helper on PowerShell 5.1 and 7, with literal executable paths and Windows argument quoting.
+  - Drains stdout and stderr concurrently and retains bounded diagnostic text. FFmpeg uses `-nostdin`; ordinary stderr output does not itself indicate failure.
 
 **Troubleshooting**  
 - Script window closes immediately:
