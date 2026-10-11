@@ -1,270 +1,191 @@
-# AudioFileForPhone — Audio converter + filename sanitizer for Win11 (PowerShell + FFmpeg)
-Minimal, no-frills audio converter I use to shrink and clean up podcast/audiobook MP3, M4A, and OGG files for phone listening. It’s a personal, purpose-built tool, not a general audio manager. It trades features for a simple folder-based workflow, predictable output structure, and verbose logging so I can see exactly what happened during each run.
+# AudioFileForPhone
 
-**Synopsis**  
-- Accepts a single input folder path (typically via drag & drop on a .bat wrapper).  
-- Recursively finds all .mp3, .m4a, and .ogg files under that folder and re-encodes them to MP3 at a phone-friendly bitrate:
-  - Default: 64 kbps CBR (configurable via -BitrateKbps).
-  - OGG input supports Vorbis and Opus audio; extensions are case-insensitive (including .OGG).
-  - Output is always MP3. Other input extensions, such as .opus, .wav, and .flac, are not scanned.
-- Creates a new output tree per run in the current user's Music folder:
-  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...`
-- Sanitizes and shortens filenames for Android / MTP:
-  - Keeps a YYYY-MM-DD prefix when available, or uses the file’s timestamp.  
-  - Strips problematic characters, collapses whitespace, and truncates to a configurable max length.  
-  - Avoids collisions by appending (2), (3), etc.  
-- Optional batch metadata helpers:
-  - Can embed an album cover image into every output MP3 (.jpg/.png).  
-  - Can set Artist and Album tags for all output files.  
-  - In interactive mode, cover selection uses a file picker.  
-  - Warns (and logs) if the chosen cover is unusually large (size and/or dimensions).  
-- Each final MP3 appears after encoding, audio validation and full audio decode. This adds a read/decode pass per file. A failed file preserves sources and earlier completed outputs; check the per-file log for the reason.
-- Writes a per-run log file in the output root:
-  - Each root is exclusively created. If a timestamp is occupied, a numeric suffix such as `_2` is added; existing runs are preserved.
-  - AudioFileForPhone_log.txt with detailed per-file information.
+A small Windows PowerShell/FFmpeg tool for converting a folder of podcasts or
+audiobooks to MP3 and producing shorter, date-first filenames. It scans
+recursively, preserves the relative folder layout and writes a new run under the
+current user's configured Music folder. Input files are preserved.
 
-**Requirements**  
-- Windows 11  
-- PowerShell (Windows PowerShell or PowerShell 7 is fine)  
-- ffmpeg.exe and ffprobe.exe for conversion (preview does not require them)
-  - Either next to the script or available in PATH.  
-- Optional: .bat wrapper for drag-and-drop usage
+The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it does
+**not normalize loudness**. Loudness normalization is deferred and has no current
+option. Filename Unicode normalization is a separate naming operation.
 
-**Installation**  
-- Place these files together in a folder of your choice:
-  - AudioFileForPhone.ps1  
-  - AudioFileForPhone.Helpers.ps1 (required beside the script)
-  - AudioFileForPhone.bat (wrapper for drag & drop)  
-  - ffmpeg.exe 
-  - ffprobe.exe 
-- `<MusicFolder>` is the current user's configured Windows Music folder, usually `C:\Users\<user>\Music`. Moved or redirected Music folders are supported.
-- To choose a different destination, pass `-OutputParent "D:\Phone audio"` directly to the PowerShell script. A missing directory is created; relative paths use the current PowerShell location. The run folder and recursive layout are the same under that parent.
-- Default output root is:
-  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
-- The script first looks for ffmpeg.exe / ffprobe.exe next to itself, then falls back to searching PATH.  
-- Before optional metadata prompts, the script checks the input directory, destination access, tool versions, `libmp3lame` availability and any explicit cover. Drive and share roots are rejected; choose a folder below the root. An invalid explicit cover stops the run with an error.
-- `-BitrateKbps` accepts `8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320`; the default remains 64. Some rates require a compatible source sample rate.
-- `-MaxBaseLength` accepts 24–180, with default 60. Normal preflight creates a missing destination parent and briefly tests file/directory creation using uniquely owned probes, then removes them.
-- Discovery finishes before metadata prompts or run creation. It takes a sorted input snapshot and excludes the planned run and prior runs identified by `.AudioFileForPhone-output.json`, or by a matching legacy log and mirrored input folder. A similar folder name alone is retained.
-- Selected input/output paths containing junctions or symbolic links are rejected. Descendant file and directory reparse points are skipped with a warning and recorded in the run log. An inaccessible subtree aborts the scan before conversion; selecting a prior generated run or a folder inside it is rejected.
+The app reports 1.0.0 for the planned first release; packaging, phone acceptance
+and public release verification remain pending. See [CHANGELOG.md](CHANGELOG.md) and the
+[tested boundaries in SUPPORT.md](SUPPORT.md#tested-boundaries).
 
-**Usage**
-1. Drag & drop via .bat (my default)  
-   - Drag a folder containing MP3, M4A, or OGG files onto AudioFileForPhone.bat.
-   - The wrapper calls:
-        AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
-   - The script:
-     - Recursively scans for .mp3, .m4a, and .ogg files under the input folder.
-     - Re-encodes each file to the selected bitrate.  
-     - Writes the output tree under:
-       `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\...`
-     - Sanitizes and shortens filenames while keeping a date prefix.  
-     - Optionally prompts once for:
-       - Album cover embed (file picker), and/or
-       - Artist + Album tags for all outputs.  
-   - A log file for the run is written into the AudioForPhone_* root.
-2. Direct PowerShell (default options)  
-   - Run the script directly with just an input folder:
-        .\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts"
-   - This uses:
-     - -BitrateKbps 64 
-     - -MaxBaseLength 60 
-3. Direct PowerShell (custom options)  
-   - Use when you want to adjust bitrate or maximum filename length:
-        #96 kbps, slightly shorter names 
-        .\AudioFileForPhone.ps1
-            -InputFolder   "C:\MyPodcasts"
-            -BitrateKbps   96
-            -MaxBaseLength 50
-4. Direct PowerShell (with batch metadata)  
-   - Use when you want cover + artist/album without prompts:
-        .\AudioFileForPhone.ps1
-            -InputFolder "C:\MyPodcasts"
-            -CoverPath  "C:\Images\cover.jpg"
-            -Artist     "Some Artist"
-            -Album      "Some Album"
+## Setup
 
-**Preview without writing**
+Use Windows 11 with Windows PowerShell 5.1 or PowerShell 7. Keep these files
+together:
 
-Run the same command with `-DryRun` to inspect filenames and destinations first:
+- `AudioFileForPhone.ps1`
+- `AudioFileForPhone.Helpers.ps1` (required)
+- `AudioFileForPhone.bat` (optional drag-and-drop launcher)
+
+For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe` either beside the
+scripts or in `PATH`. Each executable is found beside the script first, then in
+`PATH`. Startup checks that both run and that FFmpeg provides `libmp3lame`.
+FFmpeg stays external: the app does not download, install or update tools.
+Vendor binaries have their own licenses and provenance. Preview needs neither
+executable.
+
+The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
+before running downloaded files. The included BAT requests process-scoped
+`-ExecutionPolicy Bypass`; use direct PowerShell invocation when you need to keep
+policy checks. Never work around an enforced organization policy.
+
+## Usage
+
+Open PowerShell in the application folder. The example input `'.\Podcasts'` must
+already contain supported audio; paths resolve from the current PowerShell
+location. Without `-Interactive`, there are no metadata prompts.
+
+Convert with the defaults, using Music as the destination:
 
 ```powershell
-.\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts" -OutputParent "D:\Phone audio" -DryRun
+.\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
 ```
 
-Preview uses the same discovery and naming/collision planner as conversion. It
-shows one `[PLAN]` JSON line per source, scan exclusions, unsupported-file counts
-and naming warnings. It creates no destination directory, marker, cover cache,
-log, manifest or audio, and skips all tool calls and interactive prompts, including
-when `-Interactive` is supplied. Remove `-DryRun` to convert with the same options.
-
-The run root's timestamp and reservation suffix are provisional; the real run
-reserves its own root. Relative mappings stay the same for unchanged inputs,
-timestamps and naming options, subject to the real root's path budget. Durations
-are unknown. Destination writability, FFmpeg availability, media and cover validity
-are unverified until conversion. Supplied metadata options apply to the real run;
-preview does not select or inspect a cover. A valid preview returns `0` /
-`Previewed` with zero processed/converted files; caught preflight, scan and naming
-errors still return `1`. PowerShell parameter-binding failures follow the host's
-usual behavior before the script can report a result.
-
-**Output layout**  
-- Default root per run:
-  - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
-- For each run:
-  - A subfolder named after the input folder’s leaf name:
-    - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\`
-  - The original subfolder structure under the input is mirrored beneath <InputFolderName>.  
-- Filenames:
-  - A real leading YYYY-MM-DD calendar date is preserved:
-    - YYYY-MM-DD - Sanitized title.mp3  
-  - An absent or impossible date uses LastWriteTime. An impossible prefix remains part of the title input:
-    - YYYY-MM-DD - Sanitized title.mp3
-  - Titles use NFC, then retain letters, decimal digits, whitespace, hyphens and underscores. Other characters and remaining noncomposing combining marks are removed; whitespace becomes single spaces. An empty title becomes Episode.
-  - MaxBaseLength accepts 24–180 UTF-16 units (default 60), including the complete date, separator and collision suffix, excluding .mp3. Truncation keeps whole Unicode scalars.
-  - Case-insensitive Windows collisions get suffixes (2), (3), etc. Source paths are ordered with OrdinalIgnoreCase, then Ordinal for ties, so the source-to-output mapping is repeatable.
-  - All names and preserved folders are planned before prompts or output creation. Complete file and working paths must be below 260 UTF-16 units; created directories must be below 248 and components at most 255. Unsupported/deep folder paths fail with guidance to use a shallower input or shorter OutputParent. Folder names are preserved. These limits do not guarantee acceptance by every phone/MTP implementation.
-
-- Conversion requires a finite positive source duration. Output must have the selected MP3 audio bitrate, expected cover shape, and durations within 0.35 seconds of the source. A concurrent final destination is preserved and that conversion fails.
-- Interrupted runs can leave clearly incomplete `.AudioFileForPhone-<token>.partial` files. Later runs do not automatically reclaim them.
-
-**Logging**  
-- Each conversion run creates local records in the reserved AudioForPhone_* root:
-  - AudioFileForPhone_log.txt, a human-readable diagnostic log.
-  - AudioFileForPhone_manifest.json, a structured input-to-output record.
-- Logged details include:
-  - Absolute FFmpeg/ffprobe paths and versions checked at startup.
-  - The development app identity and SHA-256 hashes of the entry/helper scripts.
-  - Start time, input folder, output root, bitrate, and max base length.  
-  - Selected metadata options (cover/artist/album) when used.
-  - Cover diagnostics warnings when a cover is used.
-  - For each file:
-    - Original full path.  
-    - Relative path and target directory.  
-    - Original base name and chosen sanitized base name.  
-    - Final output path.  
-    - Encoding, validation and publication outcomes, including exit codes and exceptions.
-    - Bounded native stderr and per-stage timing for source probing, encoding,
-      output probing and full audio decode. Native stdout/progress is not dumped.
-  - End-of-run summary:
-    - Total files processed.  
-    - Converted count.  
-    - Failed count.  
-
-The JSON manifest contains one row for each supported input in the completed
-discovery snapshot, with exact source/output paths, status, failure reason,
-available source/output/decode durations, byte lengths and elapsed time. Unicode,
-quotes, commas, newlines and formula-like text remain JSON string data. Unknown
-durations are null. Scan exclusions and unsupported files are reported separately;
-excluded directory contents are not enumerated or counted as conversions.
-
-Manifest row statuses are Converted, Failed, Cancelled and NotProcessed. These
-four counts add up to the supported snapshot total. The existing console
-`not_processed` includes both cancelled and unstarted inputs; the manifest's
-`not_processed` counts only unstarted rows, with `not_completed` for their sum.
-Records are written at setup, after each file outcome and at finalization. A
-record write failure stops the run with code 1 while preserving actual published
-outputs and counts; cancellation keeps code 130 and reports record failures.
-The last successfully written manifest may be incomplete after a write failure
-or forced shutdown. Preflight errors before reservation have console diagnostics
-and no run records. `-DryRun` creates neither record.
-
-These records stay on your machine. Before sharing an excerpt in a public issue,
-redact full paths, filenames, names, metadata and private content. The app performs
-no automatic uploads.
-
-**Batch wrapper (included)**  
-- AudioFileForPhone.bat (drag-and-drop launcher):
-  - Drag exactly one folder onto the .bat to start a run. Zero or multiple arguments are rejected before launch.  
-  - The .bat passes the folder path as -InputFolder to AudioFileForPhone.ps1.  
-  - The provided wrapper launches PowerShell in STA mode so the cover picker works reliably.
-  - It reports the child's result and returns the same exit code after the pause. Delayed expansion is disabled to preserve literal exclamation marks in paths.
-  - If you want to extend it later (e.g. to pass custom bitrate or other flags), you can edit the wrapper to add parameters.
-
-**Results and exit codes**  
-- Batch progress counts files with a recorded outcome and shows converted and failed counts. Starting the last file does not mean the batch is complete. 100 percent processed can include failures.
-- File progress uses FFmpeg's machine-readable encoding records and a validated source duration. Unknown duration or unavailable timing is indeterminate. Encoding stays below 100 percent; validation and publication have separate status messages. File success appears only after the validated MP3 is published. No ETA is estimated.
-- `0` / `Previewed`: `-DryRun` planned the supported files without converting them.
-- `0` / `Completed`: every supported file in the input snapshot converted successfully.
-- `2` / `CompletedWithFailures`: the batch finished with one or more file failures. Independent valid files continue; sources and completed outputs are preserved.
-- `1` / `FailedBeforeConversion` or `Failed`: preflight, no supported files, run setup or a fatal error stopped the run. A required log or manifest failure is fatal and reports the actual file outcome, including an output already published.
-- The final summary includes total supported files, processed files, converted files, failures, files not processed, scan exclusions, unsupported files, elapsed seconds and actual output/log locations. Scan exclusions count skipped entries, including entire excluded directories; unsupported files are counted only in visited directories. Neither is a conversion failure.
-- `130` / `Cancelled`: Ctrl+C during conversion in a supported Windows console stops this run's current child, waits for its exit and closes its handles before removing the exact owned partial. Completed outputs remain available; the interrupted file stays in `not_processed`. Cancellation is recorded in the local log when it is writable, and the BAT forwards the code after its pause.
-- Ctrl+C capture starts after optional metadata prompts and restores the prior console mode when the run ends. Redirected input, other hosts, interruption during preflight/prompts and Ctrl+Break may use host-defined shutdown behavior. The log reports when controlled console cancellation is unavailable. Progress display errors produce a warning and conversion continues.
-- Closing the window, killing PowerShell or losing power can bypass cleanup and leave a native child running or a `.AudioFileForPhone-<token>.partial` file. Such files are incomplete outputs. The next run neither converts `.partial` files nor automatically deletes abandoned runs. If child exit or working-file identity cannot be proved, the exact incomplete path and reason are reported and the file is retained. Source files and completed outputs are preserved.
-- When invoking the BAT from an existing command shell, quote paths and account for that caller's expansion rules. The wrapper cannot recover `%NAME%` or `!NAME!` already expanded by the caller, or characters changed by an extra `CALL` expansion pass.
-
-**Technical details**  
-- Tool discovery:
-  - Checks the script directory for ffmpeg.exe and ffprobe.exe.  
-  - If not found, iterates over PATH to locate them.  
-  - If still not found, aborts with a clear fatal error.  
-- File scanning:
-  - Uses Get-ChildItem -LiteralPath -Recurse to find .mp3, .m4a, and .ogg files under the input folder.
-- Filename sanitization:
-  - Attempts to parse a leading date from the original base name:
-    - Pattern: YYYY-MM-DD - ...  
-  - If no date is present, uses the file’s LastWriteTime formatted as yyyy-MM-dd.  
-  - Removes non-safe characters, keeping:
-    - Letters, digits, spaces, - and _.  
-  - Collapses multiple spaces into one and trims surrounding whitespace.  
-  - Truncates the resulting base name to MaxBaseLength characters.  
-  - Performs a collision check in the output directory and adds numeric suffixes when needed.  
-- Re-encoding:
-  - Uses ffmpeg to convert each input file to MP3:
-    - Audio codec: libmp3lame.  
-    - Bitrate: BitrateKbps (e.g. 64k).  
-    - Video is explicitly discarded (-vn).  
-  - Output is always .mp3, regardless of internal encoding details.  
-- Metadata:
-  - Uses ffprobe to inspect the input file’s format and audio-stream tags.
-  - A failed probe, invalid JSON or missing audio stream is logged as a file failure. A successful probe without a title uses the filename fallback.
-  - MP3/M4A use container tags; OGG uses the first audio stream's comments. That source supplies title, artist, album, track, disc and other tags supported by the MP3 muxer. Conflicting tags on other streams do not take precedence.
-  - A nonempty source title is preserved, including whitespace. A missing or empty title falls back to the complete sanitized output base name, including its date and collision suffix.
-  - Nonblank `-Artist` and `-Album` values override copied tags for every output. Quoted and Unicode values are passed literally; omitted or whitespace-only values retain the source tags.
-  - Source artwork is dropped by default. A supplied JPEG/PNG replaces it with exactly one attached JPEG cover in every output MP3.
-  - Explicit covers get one image inspection and one dedicated FFmpeg decode check before conversion, with handles disposed. Each encoder then reads the cover for embedding. Missing, corrupt, wrong-format or undecodable covers stop preflight. Dimensions are preserved; no automatic resizing is applied.
-  - Warns (and logs) when the selected cover is unusually large (size and/or dimensions).
-  - ID3v2.3 is enforced for compatibility. Metadata copying does not guarantee that every source-specific tag has an MP3 equivalent.
-  - Chapters retain FFmpeg's default mapping from the first input containing chapters. See [FFmpeg chapter mapping](https://ffmpeg.org/ffmpeg.html#Advanced-options). Copied chapter fields do not establish phone chapter navigation or resume behavior; check both in your chosen player. Conversion does not split chapters into separate files. M4B scanning remains unsupported.
-- Native execution:
-  - Uses a shared process helper on PowerShell 5.1 and 7, with literal executable paths and Windows argument quoting.
-  - Drains stdout and stderr concurrently and retains bounded diagnostic text. FFmpeg uses `-nostdin`; ordinary stderr output does not itself indicate failure.
-
-**Troubleshooting**  
-- Script window closes immediately:
-  - Run AudioFileForPhone.bat from an existing cmd window to see the error output.  
-  - Check PowerShell’s ExecutionPolicy and any corporate restrictions on running scripts.  
-- “Could not find ffmpeg.exe / ffprobe.exe”:
-  - Make sure both binaries are either:
-    - In the same folder as AudioFileForPhone.ps1, or  
-    - Installed somewhere that is included in PATH.  
-- “Could not resolve input folder”:
-  - The folder path passed from the .bat may be invalid.  
-  - Ensure you are dragging a real folder, not a shortcut or an individual file.  
-- Cover picker does not open:
-  - Ensure the .bat launches PowerShell with -Sta (the provided wrapper does).
-  - If running manually, use:
-        pwsh -Sta -File .\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts" -Interactive
-- Long path / ItemNotFound errors:
-  - Extremely deep input paths combined with long filenames can hit Windows path length limits.  
-  - Workaround: move or temporarily rename the input folder to a short path (e.g. C:\P) and rerun the tool.  
-- Files appear missing on the phone:
-  - Confirm that the number of converted files in AudioForPhone_* matches your expectations.  
-  - Open AudioFileForPhone_log.txt and look for:
-    - Per-file failures or ffmpeg exit codes.  
-    - Any skipped files due to errors.  
-
-**Verification**
-
-Run the integration checks with FFmpeg and ffprobe installed as described above:
+Choose a destination, bitrate and shorter names:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-AudioFileForPhone.ps1
-pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-AudioFileForPhone.ps1
+.\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio' -BitrateKbps 96 -MaxBaseLength 50
 ```
 
-The checks generate short synthetic audio clips and pass a dedicated temporary `OutputParent` for every conversion. They verify output isolation, OGG Vorbis/Opus conversion, metadata, filename handling, cover embedding, and existing MP3/M4A support. Source hashes are compared before and after; only the marked temporary test tree is removed afterward. Optional `-FfmpegPath` and `-FfprobePath` select an installed executable pair.
+Apply an existing JPEG/PNG cover and Artist/Album tags to every output:
 
-**Intent & License**
-This is a personal tool for a very specific workflow. Shrinking and cleaning up my podcast/audiobook MP3, M4A, and OGG files for phone listening, with predictable output and logs I can inspect later. It’s provided as-is, without warranty. Use at your own risk. If you want to reuse or adapt it, feel free, just keep in mind it intentionally avoids extra features to stay simple, and easy to reason about when something breaks in the middle of a batch.
+```powershell
+.\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio' -CoverPath '.\cover.png' -Artist 'Example narrator' -Album 'Example book'
+```
+
+Preview the mapping without writes, tool calls or prompts, even with
+`-Interactive`:
+
+```powershell
+.\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio' -DryRun -Interactive
+```
+
+Read the authoritative runtime version without starting conversion:
+
+```powershell
+. .\AudioFileForPhone.Helpers.ps1; Get-AudioAppVersion
+```
+
+Full parameter help and runnable examples are available locally:
+
+```powershell
+Get-Help .\AudioFileForPhone.ps1 -Full
+Get-Help .\AudioFileForPhone.ps1 -Examples
+```
+
+For drag and drop, drop **exactly one folder** onto `AudioFileForPhone.bat`.
+It uses `pwsh` when available, otherwise Windows PowerShell, starts in STA mode
+for the optional cover picker and supplies `-Interactive`. The wrapper pauses
+before returning the child exit code. See the security note above before using it.
+
+## Inputs and options
+
+| Option | Behavior |
+| --- | --- |
+| `-InputFolder` | Required existing filesystem directory below a drive/share root; scanning is recursive. |
+| `-OutputParent` | Optional destination parent; defaults to configured Music. Conversion creates a missing parent. |
+| `-BitrateKbps` | Default 64; accepted rates are 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320. Some rates require a compatible source sample rate. |
+| `-MaxBaseLength` | Default 60, range 24-180 UTF-16 units; includes date/separator/collision suffix, excludes `.mp3`. |
+| `-CoverPath` | Optional readable `.jpg`, `.jpeg` or `.png`; replaces source artwork with one attached JPEG cover. |
+| `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
+| `-Interactive` | Optional cover and tag prompts before conversion; cover picker needs STA. Ignored during preview. |
+| `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
+
+Inputs are `.mp3`, `.m4a` and `.ogg`, case-insensitively. OGG supports Vorbis and
+Opus audio. **`.opus`, `.wav`, `.flac` and `.m4b` are not scanned.** An unsupported
+extension is reported separately from a conversion failure.
+
+Preview prints a `[PLAN]` JSON line per supported source, exclusions and naming
+warnings. The run timestamp/reservation is provisional; durations, destination
+writability, tools, media and covers are unverified. Unchanged names, timestamps
+and options keep the same relative mapping, subject to the actual root's path
+budget. Remove `-DryRun` when ready to convert.
+
+## Output, names and metadata
+
+Each conversion reserves a fresh run root; an occupied timestamp gets `_2`, `_3`,
+and so on. The layout is:
+
+```text
+<OutputParent>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\
+    <InputFolderName>\<original subfolders>\YYYY-MM-DD - Title.mp3
+    AudioFileForPhone_log.txt
+    AudioFileForPhone_manifest.json
+```
+
+A valid leading `YYYY-MM-DD` is retained; otherwise the file's LastWriteTime
+supplies the date. Names retain letters, decimal digits, whitespace, hyphens and
+underscores after NFC normalization; whitespace becomes single spaces and empty
+titles become `Episode`. Truncation keeps whole Unicode scalars. Windows
+case-insensitive collisions receive `(2)`, `(3)`, etc. Folder names are preserved.
+
+Complete output/working file paths must stay below 260 UTF-16 units, created
+directories below 248 and components at most 255. Deep or incompatible preserved
+folders fail before conversion; select a shallower input or shorter destination.
+These limits do not guarantee every phone or MTP implementation accepts the paths.
+
+Selected input/output paths containing junctions or symbolic links are rejected.
+Descendant reparse points and recognized generated runs are excluded with reasons;
+an unreadable subtree aborts scanning. An input inside a recognized generated run
+is rejected. Excluded subtrees are not enumerated or counted as conversions.
+
+The selected first audio stream is encoded with `libmp3lame` and ID3v2.3.
+MP3/M4A container tags and OGG first-audio-stream comments supply metadata. An
+existing nonempty title is retained; a missing/empty title falls back to the
+complete planned basename, including date and collision suffix. Source-specific
+tags may have no MP3 equivalent.
+
+**Source artwork is dropped by default.** An explicit JPEG/PNG replaces it for
+every output. Invalid explicit covers stop preflight; large covers warn, retain
+their dimensions and increase every output's size. Chapters follow FFmpeg's
+default mapping from the first input containing chapters. Conversion does not
+split files, and copied chapter fields do not establish phone navigation or
+resume behavior. Test your own player.
+
+## Results and interruption
+
+Final MP3s appear only after encoding, audio/bitrate/duration validation and a
+full audio decode. Validation adds a read/decode pass. Independent files continue
+after ordinary failures; completed outputs and sources remain available.
+
+| Exit | Result |
+| --- | --- |
+| `0` | `Completed`: all supported inputs converted, or `Previewed`: planning succeeded with no conversion. |
+| `1` | `FailedBeforeConversion` or `Failed`: invalid setup, no supported files, scan/fatal error, or a required record-write failure. |
+| `2` | `CompletedWithFailures`: batch finished with at least one per-file failure. |
+| `130` | `Cancelled`: controlled Ctrl+C cancellation after metadata prompts in a supported Windows console. |
+
+The summary reports actual counts and output/log/manifest paths. Processed means
+converted plus failed; 100 percent processed can include failures. Unsupported
+files and scan exclusions are separate counts. PowerShell parameter-binding
+errors and forced termination can have host-defined exit behavior.
+
+Controlled Ctrl+C stops the current owned child, waits for exit and removes the
+exact owned partial when release and file identity are proved. Completed MP3s
+remain; the interrupted file is not processed. Closing/killing the host or losing
+power can leave a running child or `.AudioFileForPhone-<token>.partial` file.
+Unproved cleanup retains the incomplete path and reports why. Later runs do not
+automatically reclaim abandoned runs or partials. See [SUPPORT.md](SUPPORT.md)
+for host limits and recovery guidance.
+
+## Local diagnostics and support
+
+Conversion writes a human-readable log and JSON manifest under its run root.
+They contain exact paths, metadata, app/tool versions, script hashes, per-file
+outcomes, timings, available durations/bytes and bounded native errors. The app
+does not upload them. Redact private paths, filenames and metadata before sharing.
+Records may be incomplete after a persistence failure or forced shutdown; use
+the console's final result too. Preflight-before-reservation and preview have no
+run records.
+
+See [SUPPORT.md](SUPPORT.md) for troubleshooting, tested limits and a bug-report
+template. Maintainers should use the recorded isolated commands in the
+[project status](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md)
+and task evidence; do not run retained suites blindly against ordinary Music.
+
+Licensed under the [MIT License](LICENSE). FFmpeg is a separate dependency.

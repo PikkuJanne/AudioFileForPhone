@@ -27,8 +27,8 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T14|T15|T16)-diagnostics-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw "EvidencePath '$evidenceFullPath' must name fresh T14/T15/T16-diagnostics-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T14|T15|T16|T18)-diagnostics-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw "EvidencePath '$evidenceFullPath' must name fresh T14/T15/T16/T18-diagnostics-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -377,7 +377,7 @@ try {
         $parent=New-OutputParent 'mixed';$result=Invoke-Entry 'mixed' $inputPath $parent -Artist $exactArtist -Album $exactAlbum;$artifacts=Get-RunArtifacts $parent;Save-CaseRun $case $result $artifacts
         Assert-True ($result.exit_code -eq 2 -and $artifacts.data.run.status -ceq 'CompletedWithFailures' -and $artifacts.data.run.exit_code -eq 2) 'Real mixed run must persist completed-with-failures and exit2.'
         Assert-ConsoleCounts $result 4 3 1 0;$case['reconciled']=Assert-ManifestTotals $artifacts $inputPath 4 3 1 -Excluded 1 -Unsupported 2
-        Assert-True ($artifacts.data.app_version -ceq 'development' -and $artifacts.data.build.entry_sha256 -ceq (Get-FileHash -LiteralPath $result.entry).Hash.ToLowerInvariant() -and $artifacts.data.build.helper_sha256 -ceq (Get-FileHash -LiteralPath (Join-Path (Split-Path -Parent $result.entry) 'AudioFileForPhone.Helpers.ps1')).Hash.ToLowerInvariant()) 'Development build fingerprint must identify actual executed entry/helper bytes.'
+        Assert-True ($artifacts.data.app_version -ceq (Get-AudioAppVersion) -and $artifacts.data.build.entry_sha256 -ceq (Get-FileHash -LiteralPath $result.entry).Hash.ToLowerInvariant() -and $artifacts.data.build.helper_sha256 -ceq (Get-FileHash -LiteralPath (Join-Path (Split-Path -Parent $result.entry) 'AudioFileForPhone.Helpers.ps1')).Hash.ToLowerInvariant()) 'App version and build fingerprint must identify actual executed entry/helper bytes.'
         foreach($name in @('ffmpeg','ffprobe')){Assert-True ($artifacts.data.tools.$name.path -ceq (Get-Variable $name -ValueOnly) -and $artifacts.data.tools.$name.version -ceq $toolInfo.$name.Version) 'Actual tool path and full version line must persist.'}
         Assert-True ($artifacts.data.policies.metadata.artist -ceq $exactArtist -and $artifacts.data.policies.metadata.album -ceq $exactAlbum -and @($artifacts.data.records|Where-Object{$_.status -ceq 'Converted' -and $_.source_title -cne $exactTitle}).Count -eq 0) 'Actual metadata policy and source titles must retain exact JSON strings.'
         $summaries=Get-NativeSummaries $artifacts.log;Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and @($summaries.stage|Select-Object -Unique).Count -eq 4) 'Local log must retain actual source failure and all probe/encoder/validation stages.';$case['native_stage_summaries']=$summaries

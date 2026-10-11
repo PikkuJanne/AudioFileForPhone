@@ -594,3 +594,24 @@ OS, shell and checked-out event SHA; a PR integration SHA differs from the sourc
 feature SHA. Hosted Windows Server results supplement local Windows 11 evidence.
 Neither source hashes nor a green workflow invent phone, physical Ctrl+C, release
 ZIP or publication evidence. See CI_SECURITY.md and evidence/T17.md.
+
+## T18 help, version and documentation
+
+`Test-HelpVersion.ps1` recognizes all nine public parameters and parses five
+actual `Get-Help` Code examples. It also parses public PowerShell code fences;
+only the first five README blocks, required to match the help exactly, execute.
+Policy inspection, unblocking and interactive setup commands remain syntax-only.
+Each copied entry/helper remains byte-identical. A recorded test-only first-helper
+load guard supplies owned synthetic Music before the platform default can run.
+Seven groups check the sole runtime version literal, release template agreement,
+four input encodings, 64/96 kbps output, tags/cover, full independent decode,
+preview/helper complete-tree equality, native release and exact owned cleanup.
+The single-line version example avoids context-sensitive help prose classification.
+
+Routine CI now runs this smoke before the final native suite, preserving all
+existing suites/security controls and current-run T17 report naming: 102 required
+groups plus three baseline observations per shell. T18 additionally runs all
+19 retained diagnostics groups locally on both shells, including real failure,
+cancellation and persistence faults, with the actual version and script hashes.
+See evidence/T18.md for exact commands and selected results. Source/fixture
+fingerprints and cleanup are required; ordinary personal Music stays unused.

@@ -148,6 +148,15 @@ Main integration, release writes and repository settings authority are unchanged
 
 ## Release gate
 
+T18 authorization: on 11 October 2026 the owner requested "T18 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T17 PR #17 merge at 12:46:33 UTC into main
+`efe928367fe6380afd754dbd2376766506dd6815`, final feature
+`a4c008d0a982d5fbb9ecc71668dcceb170957d6b`. Clean local main was fast-forwarded;
+T18 uses `codex/v1-t18-help-version` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Main integration, release writes and repository settings authority are unchanged.
+
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".
 Fresh GitHub inspection found T10 PR #10 merged by PikkuJanne at 07:18:35 UTC
 into main `82f0fd3c9da765f169c2724edc73f779cdce6525`. Normal fetch and independently

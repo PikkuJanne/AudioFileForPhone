@@ -1,5 +1,19 @@
 # v1.0.0 package and provenance contract
 
+## Authoritative version (T18)
+
+`Get-AudioAppVersion` in `AudioFileForPhone.Helpers.ps1` is the single application
+version source. The functions-only helper can be dot-sourced without conversion.
+The banner and local manifest/log read this function; the help's version example
+executes it. T19's builder must load the helper from exact commit C and use its
+result for the ZIP basename, external manifest `app_version` and `v<version>` tag.
+Reject a mismatch with the target release; do not maintain a second build constant
+or infer the version from a banner, changelog heading or example template.
+
+The template manifest's null `app_version` remains example data until a build fills
+it from C. T18 checks this version contract; it does not build or validate a release
+ZIP. Actual package building and exact-byte acceptance remain subsequent tasks.
+
 ## Required public assets
 
 - `AudioFileForPhone-v1.0.0.zip`
