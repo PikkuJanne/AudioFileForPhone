@@ -175,7 +175,9 @@ function New-AudioFixture {
 
 function Invoke-Conversion {
     param([string]$Name, [string]$InputPath, [string[]]$Options = @())
-    $runParent = Join-Path $OutputParent ('Run-' + [guid]::NewGuid().ToString('N'))
+    # The wrapper exclusively owns OutputParent; sequential child names leave
+    # path budget for real nested fixtures even under a longer hosted username.
+    $runParent = Join-Path $OutputParent ('R-' + ($runs.Count + 1))
     Assert-True (-not (Test-Path -LiteralPath $runParent)) 'Each conversion requires a fresh output parent.'
     New-Item -ItemType Directory -Path $runParent | Out-Null
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
