@@ -112,12 +112,136 @@ function Get-ToolPath {
     return $command.Source
 }
 
+function New-AudioCancellationContext {
+    param([switch]$CaptureConsole)
+    if (-not ('AudioFileForPhone.CancellationContext' -as [type])) {
+        Add-Type -TypeDefinition @'
+using System;
+using System.IO;
+using System.Threading;
+namespace AudioFileForPhone {
+    public sealed class CancellationContext : IDisposable {
+        private static readonly object consoleGate = new object();
+        private static CancellationContext consoleOwner;
+        private readonly object publicationGate = new object();
+        private int requested;
+        private int activeProcessId;
+        private bool previousControlCAsInput;
+        private bool disposed;
+        public bool ConsoleCaptureEnabled { get; private set; }
+        public string ConsoleCaptureError { get; private set; }
+        public bool IsCancellationRequested { get { return Interlocked.CompareExchange(ref requested, 0, 0) != 0; } }
+        public int ActiveProcessId { get { return Interlocked.CompareExchange(ref activeProcessId, 0, 0); } }
+        public CancellationContext(bool captureConsole) {
+            ConsoleCaptureError = "";
+            if (!captureConsole) return;
+            lock (consoleGate) {
+                if (consoleOwner != null) {
+                    ConsoleCaptureError = "Another context owns this process's console input scope.";
+                    return;
+                }
+                bool changed = false;
+                try {
+                    if (Console.IsInputRedirected) {
+                        ConsoleCaptureError = "Standard input is redirected; controlled console Ctrl+C is unavailable.";
+                        return;
+                    }
+                    previousControlCAsInput = Console.TreatControlCAsInput;
+                    Console.TreatControlCAsInput = true;
+                    changed = true;
+                    // This verifies that the host actually provides a console
+                    // input buffer; a host name alone is not evidence of that.
+                    bool available = Console.KeyAvailable;
+                    consoleOwner = this;
+                    ConsoleCaptureEnabled = true;
+                } catch (Exception error) {
+                    ConsoleCaptureError = "Controlled console Ctrl+C is unavailable: " + error.Message;
+                    if (changed) {
+                        try { Console.TreatControlCAsInput = previousControlCAsInput; }
+                        catch (Exception restoreError) { ConsoleCaptureError += "; restoring console mode failed: " + restoreError.Message; }
+                    }
+                }
+            }
+        }
+        public void Request() {
+            // A request and final publication have one ordering point: if the
+            // request wins, File.Move cannot publish; if publication wins, the
+            // already completed output remains a successful outcome.
+            lock (publicationGate) { Interlocked.Exchange(ref requested, 1); }
+        }
+        public void SetActiveProcessId(int processId) { Interlocked.Exchange(ref activeProcessId, processId); }
+        public void ClearActiveProcessId(int processId) { Interlocked.CompareExchange(ref activeProcessId, 0, processId); }
+        public void Poll() {
+            lock (consoleGate) {
+                if (!ConsoleCaptureEnabled || disposed || consoleOwner != this) return;
+                try {
+                    // Bound keyboard processing as well as native wait intervals.
+                    // Conversion has no prompts while this input scope is active.
+                    for (int count = 0; count < 32 && Console.KeyAvailable; count++) {
+                        ConsoleKeyInfo key = Console.ReadKey(true);
+                        if (key.KeyChar == '\u0003' ||
+                            (key.Key == ConsoleKey.C && (key.Modifiers & ConsoleModifiers.Control) != 0)) Request();
+                    }
+                } catch (Exception error) {
+                    ConsoleCaptureError = "Console cancellation polling failed: " + error.Message;
+                    RestoreConsole();
+                }
+            }
+        }
+        public void ThrowIfCancellationRequested() {
+            if (IsCancellationRequested) throw new OperationCanceledException("Audio conversion was cancelled by the user.");
+        }
+        public void Publish(string workingPath, string outputPath) {
+            lock (publicationGate) {
+                ThrowIfCancellationRequested();
+                File.Move(workingPath, outputPath);
+            }
+        }
+        private void RestoreConsole() {
+            if (consoleOwner != this) return;
+            try { Console.TreatControlCAsInput = previousControlCAsInput; }
+            catch (Exception error) { ConsoleCaptureError += "; restoring console mode failed: " + error.Message; }
+            finally { consoleOwner = null; ConsoleCaptureEnabled = false; }
+        }
+        public void Dispose() {
+            lock (consoleGate) {
+                if (disposed) return;
+                RestoreConsole();
+                disposed = true;
+            }
+        }
+    }
+}
+'@ -ErrorAction Stop
+    }
+    return New-Object AudioFileForPhone.CancellationContext([bool]$CaptureConsole)
+}
+
+function Get-AudioCancellationContext {
+    return Get-Variable -Name AudioCancellationContext -Scope Script -ValueOnly -ErrorAction SilentlyContinue
+}
+
+function Test-AudioCancellation {
+    param([AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+    if ($null -eq $Cancellation) { return $false }
+    $Cancellation.Poll()
+    return [bool]$Cancellation.IsCancellationRequested
+}
+
+function Assert-AudioNotCancelled {
+    param([AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+    if (Test-AudioCancellation -Cancellation $Cancellation) {
+        throw (New-Object OperationCanceledException('Audio conversion was cancelled by the user.'))
+    }
+}
+
 function Invoke-AudioNativeProcess {
     param(
         [Parameter(Mandatory = $true)][string]$ExecutablePath,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][AllowEmptyString()][string[]]$Arguments,
         [ValidateRange(0, 2147483647)][int]$MaxStdoutChars = 1048576,
-        [ValidateRange(0, 2147483647)][int]$MaxStderrChars = 65536
+        [ValidateRange(0, 2147483647)][int]$MaxStderrChars = 65536,
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
     )
 
     $result = [ordered]@{
@@ -129,6 +253,7 @@ function Invoke-AudioNativeProcess {
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
     try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         # A rooted drive-relative path such as C:tool.exe is not an absolute path.
         # FileName is passed directly to Process, never to a command interpreter.
         if (-not [IO.Path]::IsPathRooted($ExecutablePath) -or
@@ -180,6 +305,7 @@ namespace AudioFileForPhone {
         public long StderrTotalChars { get; private set; }
         public bool StdoutTruncated { get; private set; }
         public bool StderrTruncated { get; private set; }
+        public int ProcessId { get { return process.Id; } }
 
         // Quote every argument using the Windows CRT rules: backslashes preceding
         // a quote or the closing quote are doubled; other backslashes stay literal.
@@ -255,8 +381,8 @@ namespace AudioFileForPhone {
         }
         public bool WaitForExit(int milliseconds) { return process.WaitForExit(milliseconds); }
         public int CaptureExitCode() { ExitCode = process.ExitCode; return ExitCode; }
-        public void Complete() {
-            Task.WaitAll(stdoutTask, stderrTask);
+        public bool Complete(int milliseconds) {
+            if (!Task.WaitAll(new Task[] { stdoutTask, stderrTask }, milliseconds)) return false;
             Stdout = stdoutTask.Result.Text;
             Stderr = stderrTask.Result.Text;
             StdoutTotalChars = stdoutTask.Result.TotalChars;
@@ -264,6 +390,7 @@ namespace AudioFileForPhone {
             StdoutTruncated = StdoutTotalChars > Stdout.Length;
             StderrTruncated = StderrTotalChars > Stderr.Length;
             completed = true;
+            return true;
         }
         public void Dispose() {
             if (process == null) { Released = true; return; }
@@ -303,12 +430,17 @@ namespace AudioFileForPhone {
 }
 '@ -ErrorAction Stop
         }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        $result.ProcessReleased = $false
         $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
-        # Short polling permits PowerShell interruption; it is not a runtime limit.
-        while (-not $capture.WaitForExit(100)) { }
+        if ($null -ne $Cancellation) { $Cancellation.SetActiveProcessId($capture.ProcessId) }
+        # Short polls allow controlled cancellation without a conversion timeout.
+        while (-not $capture.WaitForExit(100)) { Assert-AudioNotCancelled -Cancellation $Cancellation }
         $result.ExitCode = $capture.CaptureExitCode()
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'CaptureFailed'
-        $capture.Complete()
+        while (-not $capture.Complete(100)) { Assert-AudioNotCancelled -Cancellation $Cancellation }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'Completed'
         $result.Stdout = $capture.Stdout
         $result.Stderr = $capture.Stderr
@@ -320,14 +452,17 @@ namespace AudioFileForPhone {
     catch {
         $result.Error = $_.Exception.Message
         $nativeError = $_.Exception.GetBaseException()
+        if ($nativeError -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
         if ($nativeError.Data.Contains('AudioFileForPhone.ProcessReleased')) {
             $result.ProcessReleased = [bool]$nativeError.Data['AudioFileForPhone.ProcessReleased']
         }
     }
     finally {
         if ($null -ne $capture) {
+            $ownedProcessId = $capture.ProcessId
             $capture.Dispose()
             $result.ProcessReleased = $capture.Released
+            if ($capture.Released -and $null -ne $Cancellation) { $Cancellation.ClearActiveProcessId($ownedProcessId) }
         }
         $timer.Stop()
         $result.DurationMilliseconds = $timer.ElapsedMilliseconds
@@ -336,13 +471,15 @@ namespace AudioFileForPhone {
 }
 
 function Get-AudioMediaInfo {
-    param([string]$Path, [string]$FfprobePath)
+    param([string]$Path, [string]$FfprobePath,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
     $result = [ordered]@{
         Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
         StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
         DurationSeconds = $null; DurationStatus = 'Missing'; DurationOrigin = $null
     }
     try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $provider = $null
         $drive = $null
         $localPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
@@ -356,13 +493,14 @@ function Get-AudioMediaInfo {
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
             'stream=index,codec_type,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
-        )
+        ) -Cancellation $Cancellation
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
             $result.Status = $native.Status
             $result.Error = $native.Error
             return [pscustomobject]$result
         }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($native.ExitCode -ne 0) {
             $result.Status = 'ProbeFailed'
             $result.Error = "ffprobe exited with code $($native.ExitCode): $($native.Stderr)"
@@ -440,9 +578,13 @@ function Get-AudioMediaInfo {
             $result.Title = $tags.title
         }
         else { $result.TitleStatus = 'Absent' }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'Success'
     }
-    catch { $result.Error = $_.Exception.Message }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
     return [pscustomobject]$result
 }
 
@@ -507,7 +649,8 @@ function Get-AudioOutputValidation {
         [Parameter(Mandatory = $true)][AllowNull()][object]$SourceDurationSeconds,
         [int]$BitrateKbps = 64, [bool]$HasCover = $false,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
-        [Parameter(Mandatory = $true)][string]$FfmpegPath
+        [Parameter(Mandatory = $true)][string]$FfmpegPath,
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
     )
     $result = [ordered]@{
         Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
@@ -515,19 +658,23 @@ function Get-AudioOutputValidation {
         ProcessReleased = $true
     }
     try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
         Assert-AudioNoReparseAncestor -Path $Path
         $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
         if ($item.PSIsContainer -or $item.Length -le 0) { throw 'Working output is not a nonempty regular file.' }
+        # An abrupt host unwind may prevent a native result from returning.
+        # Only a returned release proof reauthorizes working-file cleanup.
+        $result.ProcessReleased = $false
         $probe = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-show_entries',
             'stream=index,codec_type,codec_name,bit_rate,duration:stream_disposition=attached_pic:format=format_name',
             '-of', 'json', '-i', $Path
-        )
+        ) -Cancellation $Cancellation
         $result.ProbeResult = $probe
-        if ($null -ne $probe.PSObject.Properties['ProcessReleased'] -and -not $probe.ProcessReleased) {
-            $result.ProcessReleased = $false
-        }
+        $result.ProcessReleased = $null -ne $probe.PSObject.Properties['ProcessReleased'] -and $probe.ProcessReleased
+        if ($probe.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $probe.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($probe.Status -ne 'Completed' -or $probe.ExitCode -ne 0 -or -not $result.ProcessReleased) {
             $result.Status = 'ProbeFailed'
             throw "Output probe failed ($($probe.Status), exit $($probe.ExitCode)): $($probe.Error); $($probe.Stderr)"
@@ -573,17 +720,19 @@ function Get-AudioOutputValidation {
         # truncation. Decode the selected audio without re-encoding or writing a
         # media file, then compare its actual media time. Progress is emitted only
         # at start/end for ordinary files; all native capture remains bounded.
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'DecodeFailed'
+        $result.ProcessReleased = $false
         $decode = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
             '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
             '-i', $Path, '-map', ('0:{0}' -f $audio.index), '-vn', '-sn', '-dn',
             '-af', 'asetpts=N/SR/TB',
             '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
-        )
+        ) -Cancellation $Cancellation
         $result.DecodeResult = $decode
-        if ($null -ne $decode.PSObject.Properties['ProcessReleased'] -and -not $decode.ProcessReleased) {
-            $result.ProcessReleased = $false
-        }
+        $result.ProcessReleased = $null -ne $decode.PSObject.Properties['ProcessReleased'] -and $decode.ProcessReleased
+        if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($decode.Status -ne 'Completed' -or $decode.ExitCode -ne 0 -or $decode.StdoutTruncated -or
             $decode.StderrTruncated -or -not [string]::IsNullOrWhiteSpace($decode.Stderr) -or -not $result.ProcessReleased) {
             throw "Output audio decode failed ($($decode.Status), exit $($decode.ExitCode)): $($decode.Error); $($decode.Stderr)"
@@ -599,17 +748,24 @@ function Get-AudioOutputValidation {
             [math]::Abs($result.DecodedDurationSeconds - $result.DurationSeconds) -gt $result.DurationToleranceSeconds) {
             throw 'Decoded output duration is outside the 0.35-second source/header tolerance.'
         }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'Success'
     }
-    catch { $result.Error = $_.Exception.Message }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
     return [pscustomobject]$result
 }
 
 function Publish-AudioWorkingOutput {
-    param([string]$WorkingPath, [string]$OutputPath)
+    param([string]$WorkingPath, [string]$OutputPath,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
     # The two-argument API refuses an occupied destination on both supported
     # runtimes. Do not replace it with overwrite-enabled Move-Item/FFmpeg output.
-    [IO.File]::Move($WorkingPath, $OutputPath)
+    Assert-AudioNotCancelled -Cancellation $Cancellation
+    if ($null -ne $Cancellation) { $Cancellation.Publish($WorkingPath, $OutputPath) }
+    else { [IO.File]::Move($WorkingPath, $OutputPath) }
 }
 
 function Invoke-AudioOutputTransaction {
@@ -621,7 +777,8 @@ function Invoke-AudioOutputTransaction {
         [int]$BitrateKbps = 64, [bool]$HasCover = $false,
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
-        [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments,
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
     )
     $result = [ordered]@{
         Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
@@ -629,6 +786,7 @@ function Invoke-AudioOutputTransaction {
     }
     $guard = $null; $ownedIdentity = $null; $canCleanup = $true
     try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
         $result.Status = 'StageFailed'
         $OutputPath = Get-AudioPath -Path $OutputPath
@@ -647,6 +805,7 @@ function Invoke-AudioOutputTransaction {
         if (-not [IO.Directory]::Exists($OutputRoot)) { throw 'The reserved output run root does not exist.' }
         if (Test-Path -LiteralPath $OutputPath -ErrorAction Stop) { throw 'The planned final output already exists; refusing to overwrite it.' }
         if ($EncodeArguments -contains '-y' -or $EncodeArguments -contains '-n') { throw 'Encoder overwrite policy belongs to the working-file transaction.' }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         $outDir = [IO.Path]::GetDirectoryName($OutputPath)
         Assert-AudioPathBudget -Path $outDir -Kind Directory
         [IO.Directory]::CreateDirectory($outDir) | Out-Null
@@ -660,27 +819,37 @@ function Invoke-AudioOutputTransaction {
         # this invocation's exact working pathname in that interval.
         $ownedIdentity = Get-AudioWorkingFileIdentity -Stream $guard
         $result.Status = 'EncodeFailed'
-        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($EncodeArguments + @('-y', '-f', 'mp3', $working))
+        $canCleanup = $false
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($EncodeArguments + @('-y', '-f', 'mp3', $working)) -Cancellation $Cancellation
         $result.EncoderResult = $native
-        if ($null -ne $native.PSObject.Properties['ProcessReleased'] -and -not $native.ProcessReleased) { $canCleanup = $false }
+        $canCleanup = $null -ne $native.PSObject.Properties['ProcessReleased'] -and $native.ProcessReleased
+        if ($native.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $native.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $canCleanup) {
             throw "Encoder failed ($($native.Status), exit $($native.ExitCode)): $($native.Error); $($native.Stderr)"
         }
         $result.Status = 'ValidationFailed'
+        $canCleanup = $false
         $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
-            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath
+            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation
         $result.ValidationResult = $validation
-        if (-not $validation.ProcessReleased) { $canCleanup = $false }
+        $canCleanup = $validation.ProcessReleased
+        if ($validation.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $validation.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($validation.Status -ne 'Success') { throw "Output validation failed ($($validation.Status)): $($validation.Error)" }
         $result.Status = 'PromotionFailed'
         $guard.Dispose(); $guard = $null
         Assert-AudioNoReparseAncestor -Path $working
         Assert-AudioNoReparseAncestor -Path $OutputPath
         if ((Get-AudioWorkingFileIdentity -Path $working) -cne $ownedIdentity) { throw 'Working-file ownership changed before publication; preserving that path.' }
-        Publish-AudioWorkingOutput -WorkingPath $working -OutputPath $OutputPath
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        Publish-AudioWorkingOutput -WorkingPath $working -OutputPath $OutputPath -Cancellation $Cancellation
         $result.Status = 'Success'
     }
-    catch { $result.Error = $_.Exception.Message }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
     finally {
         if ($null -ne $guard) { $guard.Dispose() }
         if ($null -ne $result.WorkingPath -and $result.Status -ne 'Success') {

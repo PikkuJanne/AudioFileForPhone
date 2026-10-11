@@ -147,5 +147,10 @@ A changed/reparse path, cleanup error or unproved child exit leaves a visible
 .partial and diagnostic. Existing partials, destinations and completed outputs
 remain untouched. The brief path-check-to-move/delete interval after guard release
 is not a handle-based transaction against a hostile continuously replacing writer;
-source replacement and cancellation acceptance remain later work. No automatic
-cleanup of abandoned run trees is added.
+source replacement remains later work. T11 adds scoped controlled console Ctrl+C
+and per-instance cancellation without changing these identity/publication gates.
+Cleanup authority is suspended before each native call and validation, and returns
+only with explicit native-exit proof. Abrupt helper/host unwind conservatively
+retains the exact partial; controlled cancellation returns the release proof and
+removes the current partial when its identity matches. No automatic cleanup of
+abandoned run trees is added.
