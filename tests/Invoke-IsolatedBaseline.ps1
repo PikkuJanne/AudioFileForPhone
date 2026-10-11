@@ -14,7 +14,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
-$testName = 'AudioFileForPhone-T03-' + [guid]::NewGuid().ToString('N')
+$testName = 'AFP-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
 $ownerToken = [guid]::NewGuid().ToString('N')
 $ownerFile = Join-Path $testRoot '.t03-owner'
@@ -24,8 +24,8 @@ $originalPath = $env:PATH
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03/T04/T05/T06-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03/T04/T05/T06/T07-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
 }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $report = [ordered]@{
@@ -144,7 +144,7 @@ try {
     $legacyRoot = Join-Path $testRoot 'Legacy app'
     $legacyTests = Join-Path $legacyRoot 'tests'
     $characterRoot = Join-Path $testRoot 'Characterization app'
-    $characterOutput = Join-Path $testRoot 'Characterization outputs'
+    $characterOutput = Join-Path $testRoot 'O'
     foreach ($path in @($legacyRoot, $legacyTests, $characterRoot, $characterOutput)) {
         New-Item -ItemType Directory -Path $path | Out-Null
     }

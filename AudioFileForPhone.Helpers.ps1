@@ -37,6 +37,7 @@ function Get-InputDirectory {
         }
         $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
         if (-not $item.PSIsContainer) { throw 'InputFolder must be a directory, not a file.' }
+        Assert-AudioPathComponents -Path $item.FullName
         Assert-AudioNoReparseAncestor -Path $item.FullName
         # Enumerate just this directory to detect access denial before prompting.
         # Full discovery completes before prompting or creating the run.
@@ -621,7 +622,7 @@ function Get-AudioInputSnapshot {
         $ancestor = [IO.Path]::GetDirectoryName($ancestor)
     }
     $pending = New-Object 'System.Collections.Generic.Stack[string]'
-    $found = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::OrdinalIgnoreCase)
+    $found = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
     $skipped = New-Object 'System.Collections.Generic.List[object]'
     $pending.Push($inputPath)
     while ($pending.Count -gt 0) {
@@ -656,7 +657,7 @@ function Get-AudioInputSnapshot {
     }
     # Sort with an explicit Windows comparer, independent of shell/culture.
     $paths = [string[]]@($found.Keys)
-    [Array]::Sort($paths, [StringComparer]::OrdinalIgnoreCase)
+    [Array]::Sort($paths, (Get-AudioSourceComparer))
     $files = @($paths | ForEach-Object { $found[$_] })
     return [pscustomobject]@{ Files = $files; Skipped = $skipped.ToArray() }
 }
@@ -671,23 +672,199 @@ function Get-AudioFiles {
     return $snapshot.Files
 }
 
+function Get-AudioSourceComparer {
+    # Case-only neighbours need a stable tie-break on case-sensitive directories.
+    return [Collections.Generic.Comparer[string]]::Create([Comparison[string]]{
+        param($left, $right)
+        $result = [StringComparer]::OrdinalIgnoreCase.Compare($left, $right)
+        if ($result -eq 0) { $result = [StringComparer]::Ordinal.Compare($left, $right) }
+        return $result
+    })
+}
+
+function Assert-AudioPathComponents {
+    param([Parameter(Mandatory = $true)][string]$Path)
+
+    # Inspect original spelling BEFORE GetFullPath can trim or resolve it.
+    $spelling = $Path.Replace('/', '\')
+    if ($spelling.StartsWith('\\?\') -or $spelling.StartsWith('\\.\')) {
+        throw "Extended/device paths are not supported: '$Path'."
+    }
+    if ($spelling -match '^[A-Za-z]:\\') { $tail = $spelling.Substring(3) }
+    elseif ($spelling -match '^\\\\[^\\]+\\[^\\]+\\?') { $tail = $spelling.Substring(2) }
+    else { throw "A fully qualified Windows path is required: '$Path'." }
+
+    foreach ($component in $tail.Split('\')) {
+        if ($component.Length -eq 0) { continue }
+        try { $null = $component.Normalize([Text.NormalizationForm]::FormC) }
+        catch { throw "Invalid Unicode in path component '$component' in '$Path'." }
+        if ($component.Length -gt 255 -or $component -match '[\x00-\x1f<>:"/\\|?*]' -or
+            $component.EndsWith('.') -or $component.EndsWith(' ') -or
+            $component -match '^(?i:CON|PRN|AUX|NUL|COM[1-9\u00b9\u00b2\u00b3]|LPT[1-9\u00b9\u00b2\u00b3])(?:\.|$)') {
+            throw "Unsupported preserved path component '$component' in '$Path'. Choose a compatible source folder or a shorter output parent; folder names are not changed."
+        }
+    }
+}
+
+function Assert-AudioPathBudget {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][ValidateSet('File', 'Directory')][string]$Kind
+    )
+    Assert-AudioPathComponents -Path $Path
+    $canonical = Get-AudioPath -Path $Path
+    $limit = if ($Kind -eq 'Directory') { 248 } else { 260 }
+    if ($canonical.Length -ge $limit) {
+        throw "$Kind path is $($canonical.Length) UTF-16 units; the supported limit is $($limit - 1): '$Path'. Choose a shallower input folder or shorter OutputParent."
+    }
+}
+
+function Get-AudioNamePlan {
+    param(
+        [Parameter(Mandatory = $true)][string]$SourceRelativePath,
+        [datetime]$LastWriteTime,
+        [int]$MaxBaseLength = 60,
+        [int]$Counter = 1
+    )
+    if ($MaxBaseLength -lt 24 -or $MaxBaseLength -gt 180) { throw 'MaxBaseLength must be between 24 and 180.' }
+    if ($Counter -lt 1) { throw 'Collision Counter must be positive.' }
+    $relative = $SourceRelativePath.Replace('/', '\')
+    if ($relative.StartsWith('\') -or $relative -match '^[A-Za-z]:' -or $relative.Split('\') -contains '..' -or
+        $relative.Split('\') -contains '.' -or $relative.EndsWith('\')) {
+        throw "SourceRelativePath must be a relative file path without traversal: '$SourceRelativePath'."
+    }
+    # String operations also allow pure tests of characters Windows cannot store.
+    $separator = $relative.LastIndexOf('\')
+    $sourceName = $relative.Substring($separator + 1)
+    $dot = $sourceName.LastIndexOf('.')
+    $originalBase = if ($dot -ge 0) { $sourceName.Substring(0, $dot) } else { $sourceName }
+    $titlePart = $originalBase
+    $warnings = New-Object 'System.Collections.Generic.List[string]'
+    $culture = [Globalization.CultureInfo]::InvariantCulture
+    $datePart = $LastWriteTime.ToString('yyyy-MM-dd', $culture)
+    $prefix = [regex]::Match($originalBase, '^(?<date>[0-9]{4}-[0-9]{2}-[0-9]{2})\s*-?\s*(?<rest>[\s\S]*)$')
+    if ($prefix.Success) {
+        $parsed = [datetime]::MinValue
+        if ([datetime]::TryParseExact($prefix.Groups['date'].Value, 'yyyy-MM-dd', $culture,
+                [Globalization.DateTimeStyles]::None, [ref]$parsed)) {
+            $datePart = $parsed.ToString('yyyy-MM-dd', $culture)
+            $titlePart = $prefix.Groups['rest'].Value
+        }
+        else { $warnings.Add('Invalid leading date; using LastWriteTime and retaining the full original basename as title input.') }
+    }
+    try { $normalized = $titlePart.Normalize([Text.NormalizationForm]::FormC) }
+    catch { throw "Invalid Unicode in source name '$SourceRelativePath'." }
+    if (-not [StringComparer]::Ordinal.Equals($normalized, $titlePart)) { $warnings.Add('Title normalized to NFC.') }
+
+    $builder = New-Object Text.StringBuilder
+    for ($i = 0; $i -lt $normalized.Length;) {
+        $width = if ([char]::IsHighSurrogate($normalized[$i])) { 2 } else { 1 }
+        $category = [Globalization.CharUnicodeInfo]::GetUnicodeCategory($normalized, $i)
+        if ($category -in @([Globalization.UnicodeCategory]::UppercaseLetter,
+                [Globalization.UnicodeCategory]::LowercaseLetter, [Globalization.UnicodeCategory]::TitlecaseLetter,
+                [Globalization.UnicodeCategory]::ModifierLetter, [Globalization.UnicodeCategory]::OtherLetter,
+                [Globalization.UnicodeCategory]::DecimalDigitNumber) -or
+            [char]::IsWhiteSpace($normalized[$i]) -or $normalized[$i] -eq '-' -or $normalized[$i] -eq '_') {
+            $null = $builder.Append($normalized.Substring($i, $width))
+        }
+        $i += $width
+    }
+    $safeTitle = $builder.ToString()
+    if (-not [StringComparer]::Ordinal.Equals($safeTitle, $normalized)) { $warnings.Add('Characters outside the letters/digits/whitespace/hyphen/underscore whitelist removed.') }
+    $safeTitle = ($safeTitle -replace '\s+', ' ').Trim()
+    # Removing punctuation can join letters that compose (for example Hangul).
+    $composedTitle = $safeTitle.Normalize([Text.NormalizationForm]::FormC)
+    if (-not [StringComparer]::Ordinal.Equals($composedTitle, $safeTitle)) { $warnings.Add('Filtered title normalized to NFC.') }
+    $safeTitle = $composedTitle
+    if ([string]::IsNullOrWhiteSpace($safeTitle)) { $safeTitle = 'Episode' }
+    $suffix = if ($Counter -eq 1) { '' } else { ' (' + $Counter.ToString($culture) + ')' }
+    $prefixText = "$datePart - "
+    $titleBudget = $MaxBaseLength - $prefixText.Length - $suffix.Length
+    if ($titleBudget -lt 1) { throw "Collision suffix '$suffix' cannot fit MaxBaseLength $MaxBaseLength with the complete date and a title." }
+    $title = $safeTitle
+    if ($title.Length -gt $titleBudget) {
+        $cut = $titleBudget
+        if ([char]::IsHighSurrogate($title[$cut - 1])) { $cut-- }
+        $title = $title.Substring(0, $cut).TrimEnd()
+        $warnings.Add('Title shortened within the UTF-16 basename budget.')
+    }
+    if ($title.Length -eq 0) { throw "Collision suffix '$suffix' cannot fit MaxBaseLength $MaxBaseLength with one complete title scalar." }
+    $baseName = $prefixText + $title + $suffix
+    $relativeDir = if ($separator -ge 0) { $relative.Substring(0, $separator) } else { '' }
+    if ($relativeDir) { Assert-AudioPathComponents -Path ('C:\' + $relativeDir) }
+    $outputRelativePath = if ($relativeDir) { [IO.Path]::Combine($relativeDir, "$baseName.mp3") } else { "$baseName.mp3" }
+    return [pscustomobject]@{
+        OriginalBase = $originalBase; DatePart = $datePart; Title = $title; BaseName = $baseName
+        OutputRelativePath = $outputRelativePath; Warnings = [string[]]$warnings.ToArray()
+    }
+}
+
+function Get-AudioBatchNamePlan {
+    param(
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][object[]]$Files,
+        [Parameter(Mandatory = $true)][string]$InputFolder,
+        [Parameter(Mandatory = $true)][string]$OutputRoot,
+        [int]$MaxBaseLength = 60
+    )
+    # Pure lexical planning: no enumeration, probes, prompts or writes here.
+    if ($MaxBaseLength -lt 24 -or $MaxBaseLength -gt 180) { throw 'MaxBaseLength must be between 24 and 180.' }
+    Assert-AudioPathComponents -Path $InputFolder
+    Assert-AudioPathBudget -Path $OutputRoot -Kind Directory
+    $inputPath = Get-AudioPath -Path $InputFolder
+    $rootPath = Get-AudioPath -Path $OutputRoot
+    $inputLeaf = [IO.Path]::GetFileName($inputPath)
+    if (-not $inputLeaf) { throw 'The input folder must have a preserved leaf name.' }
+    $outputBase = [IO.Path]::Combine($rootPath, $inputLeaf)
+    Assert-AudioPathBudget -Path $outputBase -Kind Directory
+    Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, '.AudioFileForPhone-output.json')) -Kind File
+    Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, 'AudioFileForPhone_log.txt')) -Kind File
+
+    $sources = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
+    foreach ($file in $Files) {
+        $sourcePath = [string]$file.FullName
+        Assert-AudioPathComponents -Path ([IO.Path]::GetDirectoryName($sourcePath))
+        $canonicalSource = Get-AudioPath -Path $sourcePath
+        if (-not (Test-AudioPathWithin -Path $canonicalSource -Parent $inputPath) -or
+            [StringComparer]::OrdinalIgnoreCase.Equals($canonicalSource, $inputPath)) {
+            throw "Source lies outside the input folder: '$sourcePath'."
+        }
+        if ($sources.ContainsKey($canonicalSource)) { throw "Duplicate source in naming inventory: '$sourcePath'." }
+        $sources.Add($canonicalSource, $file)
+    }
+    $paths = [string[]]@($sources.Keys)
+    [Array]::Sort($paths, (Get-AudioSourceComparer))
+    $destinations = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+    $plans = New-Object 'System.Collections.Generic.List[object]'
+    foreach ($sourcePath in $paths) {
+        $file = $sources[$sourcePath]
+        $relative = $sourcePath.Substring($inputPath.Length).TrimStart('\', '/')
+        $counter = 1
+        while ($true) {
+            $name = Get-AudioNamePlan -SourceRelativePath $relative -LastWriteTime $file.LastWriteTime -MaxBaseLength $MaxBaseLength -Counter $counter
+            $outputRelative = [IO.Path]::Combine($inputLeaf, $name.OutputRelativePath)
+            if ($destinations.Add($outputRelative)) { break }
+            if ($counter -eq [int]::MaxValue) { throw "Collision counter exhausted for '$sourcePath'." }
+            $counter++
+        }
+        $outputPath = [IO.Path]::Combine($rootPath, $outputRelative)
+        $outDir = [IO.Path]::GetDirectoryName($outputPath)
+        Assert-AudioPathBudget -Path $outDir -Kind Directory
+        Assert-AudioPathBudget -Path $outputPath -Kind File
+        # T09 must use a fixed-length working name, independent of title/suffix.
+        $working = [IO.Path]::Combine($outDir, '.AudioFileForPhone-' + ('0' * 32) + '.partial')
+        Assert-AudioPathBudget -Path $working -Kind File
+        $plans.Add([pscustomobject]@{
+            SourcePath = $sourcePath; SourceFile = $file; SourceRelativePath = $relative; OriginalBase = $name.OriginalBase
+            OutputRelativePath = $outputRelative; OutputPath = $outputPath; OutputDirectory = $outDir
+            BaseName = $name.BaseName; Warnings = $name.Warnings; WorkingPathTemplate = $working
+        })
+    }
+    return $plans.ToArray()
+}
+
 function Get-SanitizedAudioBaseName {
     param([string]$OriginalBase, [datetime]$LastWriteTime, [int]$MaxBaseLength)
-    # Preserve existing naming here. Calendar/Unicode allocation changes are T07.
-    if ($OriginalBase -match '^(?<date>\d{4}-\d{2}-\d{2})\s*-?\s*(?<rest>.*)$') {
-        $datePart = $matches['date']
-        $titlePart = $matches['rest']
-    }
-    else {
-        $datePart = $LastWriteTime.ToString('yyyy-MM-dd')
-        $titlePart = $OriginalBase
-    }
-    $safeTitle = $titlePart -replace '[^\p{L}\p{Nd}\s\-_]', ''
-    $safeTitle = ($safeTitle -replace '\s+', ' ').Trim()
-    if ([string]::IsNullOrWhiteSpace($safeTitle)) { $safeTitle = 'Episode' }
-    $base = "$datePart - $safeTitle"
-    if ($base.Length -gt $MaxBaseLength) { $base = $base.Substring(0, $MaxBaseLength).Trim() }
-    return $base
+    return (Get-AudioNamePlan -SourceRelativePath ($OriginalBase + '.mp3') -LastWriteTime $LastWriteTime -MaxBaseLength $MaxBaseLength).BaseName
 }
 
 function Get-CoverDiagnostics {

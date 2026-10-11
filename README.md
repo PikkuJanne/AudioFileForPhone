@@ -90,12 +90,14 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
     - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\<InputFolderName>\`
   - The original subfolder structure under the input is mirrored beneath <InputFolderName>.  
 - Filenames:
-  - If the original base name starts with YYYY-MM-DD, that date is preserved:
+  - A real leading YYYY-MM-DD calendar date is preserved:
     - YYYY-MM-DD - Sanitized title.mp3  
-  - If no leading date is found, the file’s LastWriteTime is used:
+  - An absent or impossible date uses LastWriteTime. An impossible prefix remains part of the title input:
     - YYYY-MM-DD - Sanitized title.mp3
-  - The base name (without .mp3) is truncated to MaxBaseLength characters.  
-  - If a filename collision occurs in the same folder, suffixes (2), (3), etc. are added.  
+  - Titles use NFC, then retain letters, decimal digits, whitespace, hyphens and underscores. Other characters and remaining noncomposing combining marks are removed; whitespace becomes single spaces. An empty title becomes Episode.
+  - MaxBaseLength accepts 24–180 UTF-16 units (default 60), including the complete date, separator and collision suffix, excluding .mp3. Truncation keeps whole Unicode scalars.
+  - Case-insensitive Windows collisions get suffixes (2), (3), etc. Source paths are ordered with OrdinalIgnoreCase, then Ordinal for ties, so the source-to-output mapping is repeatable.
+  - All names and preserved folders are planned before prompts or output creation. Complete file and future working paths must be below 260 UTF-16 units; created directories must be below 248 and components at most 255. Unsupported/deep folder paths fail with guidance to use a shallower input or shorter OutputParent. Folder names are preserved. These limits do not guarantee acceptance by every phone/MTP implementation.
 
 **Logging**  
 - Each run produces one log file in the AudioForPhone_* root:  

@@ -14,7 +14,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
-$testName = 'AudioFileForPhone-T06-discovery-' + [guid]::NewGuid().ToString('N')
+$testName = 'AFP-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
 $ownerFile = Join-Path $testRoot '.t06-owner'
 $ownerToken = [guid]::NewGuid().ToString('N')
@@ -30,13 +30,13 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T06-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T06-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T06|T07)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T06/T07-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a new label to preserve prior evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T06'; mode = 'bounded_discovery_and_boundary'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'bounded_discovery_and_boundary'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -536,5 +536,5 @@ finally {
     $evidence = New-Object IO.FileStream($evidenceFullPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
     try { $evidence.Write($bytes, 0, $bytes.Length) } finally { $evidence.Dispose() }
 }
-Write-Host "T06 discovery: $($report.status); cases=$($report.cases.Count); ACL restored=$($report.acls_restored); links removed=$($report.links_removed); cleanup=$($report.cleanup_verified); source/synthetic unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
+Write-Host "$($report.task) discovery: $($report.status); cases=$($report.cases.Count); ACL restored=$($report.acls_restored); links removed=$($report.links_removed); cleanup=$($report.cleanup_verified); source/synthetic unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
 exit $exitCode
