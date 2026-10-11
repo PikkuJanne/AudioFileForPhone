@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "status": "pass",
+  "reviewed_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "read_date_utc": "2026-10-11",
+  "review_scope": "Primary-source check of frozen README/SECURITY dependency origin, licensing, checksum and signature statements; source documents unchanged.",
+  "sources": [
+    {
+      "url": "https://ffmpeg.org/download.html",
+      "publisher": "FFmpeg project",
+      "facts": [
+        "FFmpeg distributes source and links separate Windows binary publishers Gyan and BtbN.",
+        "The project describes release source-archive and signed-tag verification."
+      ],
+      "supported_document_claims": [
+        "Use the official project download page to find binary publishers.",
+        "Distinguish project source signatures from separately built executables."
+      ]
+    },
+    {
+      "url": "https://ffmpeg.org/legal.html",
+      "publisher": "FFmpeg project",
+      "facts": [
+        "Base FFmpeg licensing is LGPL 2.1 or later; use of optional GPL components changes the effective license.",
+        "The page discusses corresponding source and build configuration for distributed FFmpeg libraries."
+      ],
+      "supported_document_claims": [
+        "Review the license and notices for the chosen vendor build; application MIT licensing does not change external dependency terms."
+      ]
+    },
+    {
+      "url": "https://www.gyan.dev/ffmpeg/builds/",
+      "publisher": "Gyan Doshi",
+      "facts": [
+        "Packages include ffmpeg, ffprobe and ffplay.",
+        "Essentials and full builds differ in external library sets; the page identifies the main FFmpeg builds as GPLv3 and supplementary tools as LGPLv3.",
+        "The page supplies version and SHA-256 links and currently identifies release 9.0.2."
+      ],
+      "supported_document_claims": [
+        "Gyan supplies separate Windows builds with package-specific configuration, license and checksums.",
+        "The recorded 9.0.2 essentials provenance is a reviewed test build."
+      ]
+    },
+    {
+      "url": "https://github.com/BtbN/FFmpeg-Builds",
+      "publisher": "BtbN/FFmpeg-Builds repository",
+      "facts": [
+        "The README describes Windows and Linux builds.",
+        "Available variants include GPL, LGPL and nonfree configurations; dependencies and configuration vary.",
+        "A floating latest build and daily builds are described."
+      ],
+      "supported_document_claims": [
+        "BtbN is a separate binary-build publisher linked by FFmpeg.",
+        "Select and review a specific build and its actual license/configuration."
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature?view=powershell-7.5",
+      "publisher": "Microsoft Learn",
+      "facts": [
+        "Get-AuthenticodeSignature inspects Authenticode information on Windows.",
+        "LiteralPath uses the specified path without wildcard interpretation."
+      ],
+      "supported_document_claims": [
+        "Use read-only Authenticode inspection on the exact resolved vendor files and app scripts."
+      ]
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/get-filehash?view=powershell-7.5",
+      "publisher": "Microsoft Learn",
+      "facts": [
+        "Get-FileHash computes content digests and defaults to SHA256.",
+        "LiteralPath avoids wildcard interpretation."
+      ],
+      "supported_document_claims": [
+        "Compute SHA-256 on exact resolved files and compare with a trusted reference."
+      ]
+    }
+  ],
+  "explicit_inferences": [
+    {
+      "claim": "An FFmpeg source-release signature does not authenticate a separately compiled vendor Windows executable.",
+      "reason": "The project signature applies to the specified source archive/tag, while the Windows executable is a different artifact built and supplied by another publisher."
+    },
+    {
+      "claim": "A checksum match identifies reviewed bytes without independently identifying the publisher.",
+      "reason": "Digest comparison establishes content equality against its reference; trusting the origin of the reference is a separate step."
+    },
+    {
+      "claim": "Manual trusted setup, same-build executable pairing and checking the actual app-selected path are application guidance.",
+      "reason": "They follow the external dependency execution boundary and inspected Get-ToolPath behavior; they are not represented as vendor certification."
+    }
+  ],
+  "limits": [
+    "No vendor binaries were downloaded or executed for this source-document check.",
+    "No claim that Gyan or BtbN vendor executables have an FFmpeg-project Authenticode signature.",
+    "This check supplies primary-source support and does not accept final release assets, physical-device use, or arbitrary future vendor builds."
+  ],
+  "frozen_documents": [
+    "README.md",
+    "SECURITY.md"
+  ]
+}

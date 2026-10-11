@@ -1,0 +1,1203 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "mode": "synthetic_clean_commit_packaging_policy",
+  "status": "fail",
+  "error": "Owned native command failed: ",
+  "started_utc": "2026-10-11T13:42:39.4142744Z",
+  "ended_utc": "2026-10-11T13:43:06.6591027Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0",
+  "synthetic_source_commit": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+  "command": "<SHELL_ROOT>\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-Package.ps1 -EvidencePath docs/codex-v1/evidence/T19-package-ps7-attempt1.json -FfmpegPath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+  "owned_temp_root": "<OWNED_TEMP>",
+  "temp_exclusively_reserved": true,
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "bytes": 1507
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "bytes": 1070
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "bytes": 12523
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "bytes": 6589
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "bytes": 12940
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+      "bytes": 24811
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "bytes": 227
+    },
+    {
+      "relative_path": "tests/Test-Package.ps1",
+      "sha256": "2682299a691ccba3fb4514065a72c0159cf1c4b74d7f80457693a8c7b48ecc5f",
+      "bytes": 35222
+    },
+    {
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "bytes": 2840
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "bytes": 1507
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "bytes": 1070
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "bytes": 12523
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "bytes": 6589
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "bytes": 12940
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+      "bytes": 24811
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "bytes": 227
+    },
+    {
+      "relative_path": "tests/Test-Package.ps1",
+      "sha256": "2682299a691ccba3fb4514065a72c0159cf1c4b74d7f80457693a8c7b48ecc5f",
+      "bytes": 35222
+    },
+    {
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "bytes": 2840
+    }
+  ],
+  "source_unchanged": true,
+  "fixture_before": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "bytes": 1507
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "bytes": 1070
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "bytes": 12523
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "bytes": 6589
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "bytes": 12940
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+      "bytes": 24811
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "bytes": 227
+    }
+  ],
+  "fixture_after": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "bytes": 1507
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "bytes": 1070
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "bytes": 12523
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "bytes": 6589
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "bytes": 12940
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+      "bytes": 24811
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "bytes": 227
+    }
+  ],
+  "synthetic_unchanged": true,
+  "dependencies": [
+    {
+      "tool": "ffmpeg",
+      "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "bundled": false
+    },
+    {
+      "tool": "ffprobe",
+      "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "bundled": false
+    }
+  ],
+  "native_runs": [
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<REPOSITORY>",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 184,
+      "stdout": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "init",
+        "--quiet"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 100,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 54,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.symlinks",
+        "false"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 146,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "T19 deterministic synthetic package fixture"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 188,
+      "stdout": "[master (root-commit) 2c50e7d] T19 deterministic synthetic package fixture\n 21 files changed, 3893 insertions(+)\n create mode 100644 .gitignore\n create mode 100644 AudioFileForPhone.Helpers.ps1\n create mode 100644 AudioFileForPhone.bat\n create mode 100644 AudioFileForPhone.ps1\n create mode 100644 AudioFileForPhone_poster.png\n create mode 100644 CHANGELOG.md\n create mode 100644 LICENSE\n create mode 100644 README.md\n create mode 100644 SECURITY.md\n create mode 100644 SUPPORT.md\n create mode 100644 cache/temp.txt\n create mode 100644 docs/codex-v1/private-evidence.json\n create mode 100644 ffmpeg.exe\n create mode 100644 ffprobe.exe\n create mode 100644 private.log\n create mode 100644 private.m4a\n create mode 100644 private.mp3\n create mode 100644 private.ogg\n create mode 100644 tests/fixture.txt\n create mode 100644 tools/Build-Package.ps1\n create mode 100644 tools/package-files.json\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 107,
+      "stdout": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 110,
+      "stdout": "",
+      "stderr": "HEAD is now at 2c50e7d T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "ffmpeg.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 47,
+      "stdout": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev3, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61.  1.102 / 61.  1.102\r\nlibavcodec     63.  1.102 / 63.  1.102\r\nlibavformat    63.  1.102 / 63.  1.102\r\nlibavdevice    63.  1.102 / 63.  1.102\r\nlibavfilter    12.  1.102 / 12.  1.102\r\nlibswscale     10.  1.102 / 10.  1.102\r\nlibswresample   7.  1.102 /  7.  1.102\r\n\r\nExiting with exit code 0\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "ffprobe.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 42,
+      "stdout": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev3, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61.  1.102 / 61.  1.102\r\nlibavcodec     63.  1.102 / 63.  1.102\r\nlibavformat    63.  1.102 / 63.  1.102\r\nlibavdevice    63.  1.102 / 63.  1.102\r\nlibavfilter    12.  1.102 / 12.  1.102\r\nlibswscale     10.  1.102 / 10.  1.102\r\nlibswresample   7.  1.102 /  7.  1.102\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\first",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5017,
+      "stdout": "{\r\n  \"status\": \"pass\",\r\n  \"source_commit\": \"2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2\",\r\n  \"app_version\": \"1.0.0\",\r\n  \"output_directory\": \"C:\\\\Windows\\\\TEMP\\\\T19P-2fb345e1\\\\builds\\\\first\",\r\n  \"zip_name\": \"AudioFileForPhone-v1.0.0.zip\",\r\n  \"zip_sha256\": \"57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99\",\r\n  \"manifest_sha256\": \"6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\second",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 4912,
+      "stdout": "{\r\n  \"status\": \"pass\",\r\n  \"source_commit\": \"2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2\",\r\n  \"app_version\": \"1.0.0\",\r\n  \"output_directory\": \"C:\\\\Windows\\\\TEMP\\\\T19P-2fb345e1\\\\builds\\\\second\",\r\n  \"zip_name\": \"AudioFileForPhone-v1.0.0.zip\",\r\n  \"zip_sha256\": \"57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99\",\r\n  \"manifest_sha256\": \"6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\first",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 807,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | OutputDirectory already exists; select a new directory.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1196,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit requires the full lowercase 40-character commit identifier.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "0000000000000000000000000000000000000000",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1300,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit must match checkout HEAD exactly.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2C50E7DB7B88ADC2A1E50CE20C4EF54E4F9957B2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1202,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit requires the full lowercase 40-character commit identifier.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v9.9.9",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-tag",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3912,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | TargetTag must match the exact source helper application version.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\source\\not-a-package",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1298,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | OutputDirectory must be outside the source checkout.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "switch",
+        "-c",
+        "synthetic-attached"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 58,
+      "stdout": "",
+      "stderr": "Switched to a new branch 'synthetic-attached'\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\attached",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1216,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must use detached HEAD.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "",
+      "stderr": "HEAD is now at 2c50e7d T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\tracked-dirty",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1330,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\untracked",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1327,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\untracked",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 685,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:411\r\nLine |\r\n 411 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 45,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission required omission: AudioFileForPhone.Helpers.ps1"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 58,
+      "stdout": "HEAD detached at 2c50e7d\nnothing to commit, working tree clean\n",
+      "stderr": ""
+    }
+  ],
+  "cases": [
+    {
+      "name": "fixture contains exact copied application and build bytes",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "files": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "bytes": 114373
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "bytes": 1800
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "bytes": 40032
+        },
+        {
+          "relative_path": "CHANGELOG.md",
+          "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+          "bytes": 1507
+        },
+        {
+          "relative_path": "LICENSE",
+          "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+          "bytes": 1070
+        },
+        {
+          "relative_path": "README.md",
+          "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+          "bytes": 12523
+        },
+        {
+          "relative_path": "SECURITY.md",
+          "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+          "bytes": 6589
+        },
+        {
+          "relative_path": "SUPPORT.md",
+          "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+          "bytes": 12940
+        },
+        {
+          "relative_path": "tools/Build-Package.ps1",
+          "sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+          "bytes": 24811
+        },
+        {
+          "relative_path": "tools/package-files.json",
+          "sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+          "bytes": 227
+        }
+      ]
+    },
+    {
+      "name": "explicit eight-file allowlist excludes committed binary/media/log/cache/poster/evidence fixtures",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "source_commit": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+      "inventory": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "bytes": 114373
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "bytes": 1800
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "bytes": 40032
+        },
+        {
+          "relative_path": "CHANGELOG.md",
+          "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+          "bytes": 1507
+        },
+        {
+          "relative_path": "LICENSE",
+          "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+          "bytes": 1070
+        },
+        {
+          "relative_path": "README.md",
+          "sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+          "bytes": 12523
+        },
+        {
+          "relative_path": "SECURITY.md",
+          "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+          "bytes": 6589
+        },
+        {
+          "relative_path": "SUPPORT.md",
+          "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+          "bytes": 12940
+        }
+      ],
+      "excluded_fixtures": [
+        "ffmpeg.exe",
+        "ffprobe.exe",
+        "private.mp3",
+        "private.m4a",
+        "private.ogg",
+        "private.log",
+        "AudioFileForPhone_poster.png",
+        "cache/temp.txt",
+        "tests/fixture.txt",
+        "docs/codex-v1/private-evidence.json"
+      ]
+    },
+    {
+      "name": "external manifest binds actual version commit per-member hashes signing and tool provenance without checksum self-reference",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "manifest": {
+        "schema_version": 1,
+        "repository": "PikkuJanne/AudioFileForPhone",
+        "app_version": "1.0.0",
+        "tag": "v1.0.0",
+        "release_commit": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+        "zip": {
+          "name": "AudioFileForPhone-v1.0.0.zip",
+          "bytes": 53541,
+          "sha256": "57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99"
+        },
+        "signing_status": "unsigned",
+        "signatures": {
+          "AudioFileForPhone.Helpers.ps1": {
+            "status": "NotSigned",
+            "signer_thumbprint": null
+          },
+          "AudioFileForPhone.ps1": {
+            "status": "NotSigned",
+            "signer_thumbprint": null
+          }
+        },
+        "dependencies": {
+          "bundled": false,
+          "ffmpeg": {
+            "executable_name": "ffmpeg.exe",
+            "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+            "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+            "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+            "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+          },
+          "ffprobe": {
+            "executable_name": "ffprobe.exe",
+            "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+            "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+            "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+            "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+          }
+        },
+        "files": {
+          "AudioFileForPhone.Helpers.ps1": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "AudioFileForPhone.bat": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "AudioFileForPhone.ps1": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "CHANGELOG.md": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+          "LICENSE": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+          "README.md": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+          "SECURITY.md": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+          "SUPPORT.md": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4"
+        },
+        "file_bytes": {
+          "AudioFileForPhone.Helpers.ps1": 114373,
+          "AudioFileForPhone.bat": 1800,
+          "AudioFileForPhone.ps1": 40032,
+          "CHANGELOG.md": 1507,
+          "LICENSE": 1070,
+          "README.md": 12523,
+          "SECURITY.md": 6589,
+          "SUPPORT.md": 12940
+        },
+        "test_evidence": [
+          {
+            "reference": "synthetic/fixture-copy-policy.json",
+            "tested_commit": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+            "sha256": "1e21bdedc590cfec12164ae3c9d8364baca24e79d01fff55549a22d245618c7f",
+            "status": "pass"
+          }
+        ],
+        "build": {
+          "source_mode": "clean_detached_exact_git_blobs",
+          "archive_order": "Ordinal",
+          "zip_timestamp_utc": "1980-01-01T00:00:00Z",
+          "powershell_version": "7.6.5",
+          "powershell_edition": "Core",
+          "git_version": "git version 2.56.0.windows.2",
+          "builder_sha256": "bbc7e2f9b1906c2336bc8ff7187b05abfe7175cde6368c0d6169b5eab68fbcb0",
+          "allowlist_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+          "inputs": {
+            "dependency_provenance_sha256": "4d432220487f475de593eb7155548f1df226c2aaf2985c8f6540b45a8baf336b",
+            "test_evidence_sha256": "d0727f53ff22f1b7b88a85950b3bbe7ead38d18fe75d846bc653feaceaceddfc"
+          },
+          "evidence_scope": "Supplied passing report references; this build does not establish release acceptance or authorization."
+        }
+      },
+      "checksum_lines": [
+        "57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99  AudioFileForPhone-v1.0.0.zip",
+        "6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1  release-manifest.json"
+      ]
+    },
+    {
+      "name": "same-shell repeated clean build compares ZIP manifest and checksum bytes",
+      "acceptance_case": "A47",
+      "status": "pass",
+      "first": [
+        {
+          "relative_path": "AudioFileForPhone-v1.0.0.zip",
+          "sha256": "57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99",
+          "bytes": 53541
+        },
+        {
+          "relative_path": "release-manifest.json",
+          "sha256": "6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1",
+          "bytes": 3885
+        },
+        {
+          "relative_path": "SHA256SUMS.txt",
+          "sha256": "9dfe1df20700402cd0fe57bcd98abe66af9c8e545cf05d0d5a0b7257e3bbc363",
+          "bytes": 183
+        }
+      ],
+      "second": [
+        {
+          "relative_path": "AudioFileForPhone-v1.0.0.zip",
+          "sha256": "57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99",
+          "bytes": 53541
+        },
+        {
+          "relative_path": "release-manifest.json",
+          "sha256": "6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1",
+          "bytes": 3885
+        },
+        {
+          "relative_path": "SHA256SUMS.txt",
+          "sha256": "9dfe1df20700402cd0fe57bcd98abe66af9c8e545cf05d0d5a0b7257e3bbc363",
+          "bytes": 183
+        }
+      ],
+      "byte_identical": true
+    },
+    {
+      "name": "existing artifact directory is preserved without overwrite",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "preserved": true
+    },
+    {
+      "name": "abbreviated source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "wrong full source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "uppercase source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "wrong target tag cannot override the authoritative helper version",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "output inside source is refused before any directory creation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "attached branch checkout is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty tracked source is refused and restored byte-for-byte",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty untracked-fixture.log is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty ignored-fixture.log is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: AudioFileForPhone.Helpers.ps1",
+      "acceptance_case": "A47",
+      "status": "fail"
+    }
+  ],
+  "artifacts": [
+    {
+      "relative_path": "AudioFileForPhone-v1.0.0.zip",
+      "sha256": "57d635f227a8669ad288fb3cfcf0e267376232ecb44ff151dd53b8e4f0b25d99",
+      "bytes": 53541
+    },
+    {
+      "relative_path": "release-manifest.json",
+      "sha256": "6e0aa7d19b152dabc1ee8fa889918037e3d2f3587cf1d7f9f61c10b51f6369d1",
+      "bytes": 3885
+    },
+    {
+      "relative_path": "SHA256SUMS.txt",
+      "sha256": "9dfe1df20700402cd0fe57bcd98abe66af9c8e545cf05d0d5a0b7257e3bbc363",
+      "bytes": 183
+    }
+  ],
+  "ordinary_music_access": false,
+  "media_conversion": false,
+  "physical_manual_evidence": false,
+  "release_candidate_acceptance": false,
+  "descendant_release_proved": true,
+  "cleanup_verified": false,
+  "error_location": "at Assert-True, <REPOSITORY>\\tests\\Test-Package.ps1: line 63\r\nat Invoke-OwnedNative, <REPOSITORY>\\tests\\Test-Package.ps1: line 141\r\nat Invoke-FixtureGit, <REPOSITORY>\\tests\\Test-Package.ps1: line 145\r\nat Commit-Fixture, <REPOSITORY>\\tests\\Test-Package.ps1: line 149\r\nat <ScriptBlock>, <REPOSITORY>\\tests\\Test-Package.ps1: line 361\r\nat Invoke-Case, <REPOSITORY>\\tests\\Test-Package.ps1: line 110\r\nat <ScriptBlock>, <REPOSITORY>\\tests\\Test-Package.ps1: line 359",
+  "verification_error": "Access is denied."
+}

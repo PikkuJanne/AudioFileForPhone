@@ -761,8 +761,18 @@
       "required": true,
       "method": "packaging allowlist tests",
       "expected": "Package includes required entry points/helpers/docs/license, excludes personal media/logs, build junk and unnecessary poster; no FFmpeg binaries accidentally bundled.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T19.md",
+        "evidence/T19-tested-payload.json",
+        "evidence/T17-package-ps51-final21.json",
+        "evidence/T17-package-ps7-final21.json",
+        "evidence/T19-exploratory-builds.json",
+        "evidence/T19-exploratory-manifest-ps51.json",
+        "evidence/T19-exploratory-manifest-ps7.json",
+        "evidence/T19-exploratory-command-bindings.json",
+        "evidence/T19-hosted-payload-final3.json"
+      ]
     },
     {
       "id": "A48",
@@ -771,8 +781,19 @@
       "required": true,
       "method": "source/diff/package security review",
       "expected": "Runtime remains local, no telemetry/downloader; resolved tool identity reported; tracked-change scan finds no credentials or private paths/media; licensing notices accurate.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T19.md",
+        "evidence/T19-source-review-final3.json",
+        "evidence/T19-dependency-sources.json",
+        "evidence/T19-tested-payload.json",
+        "evidence/T19-exploratory-builds.json",
+        "evidence/T19-ci-runs-final3.json",
+        "evidence/T19-hosted-payload-final3.json",
+        "evidence/T19-preliminary-cleanup-limit.json",
+        "evidence/T19-hosted-capture-limit.json",
+        "evidence/T19-final-review.json"
+      ]
     },
     {
       "id": "A49",

@@ -1,0 +1,30 @@
+{
+  "task": "T19",
+  "status": "pass",
+  "actual_base_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "scope": "Precommit corrected working sources, not duplicate required-case acceptance.",
+  "analyzer_version": "1.25.0",
+  "dependency_report": "T17-dependencies-ps7-final19.json",
+  "dependency_report_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+  "files": [
+    "tools/Build-Package.ps1",
+    "tests/Test-Package.ps1"
+  ],
+  "gate": "default Errors and explicit ten-rule settings",
+  "diagnostics": 0,
+  "commands": [
+    "Import-Module -Name $r.analyzer_module_path -Force",
+    "Invoke-ScriptAnalyzer -Path <each file> -Severity Error",
+    "Invoke-ScriptAnalyzer -Path <each file> -Settings .github/scripts/PSScriptAnalyzerSettings.psd1"
+  ],
+  "source_sha256": [
+    {
+      "path": "tools/Build-Package.ps1",
+      "sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0"
+    },
+    {
+      "path": "tests/Test-Package.ps1",
+      "sha256": "94acbaa748fb7cad3283fd455d6f29dde82a76f56eb52cc8dc1b6ab8879bcd07"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+    "schema_version":  1,
+    "repository":  "PikkuJanne/AudioFileForPhone",
+    "app_version":  "1.0.0",
+    "tag":  "v1.0.0",
+    "release_commit":  "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+    "zip":  {
+                "name":  "AudioFileForPhone-v1.0.0.zip",
+                "bytes":  53272,
+                "sha256":  "75f587a60bb52fc2a94c10fd2b62435e5978d5a457cb2dc5266576f9c0279577"
+            },
+    "signing_status":  "unsigned",
+    "signatures":  {
+                       "AudioFileForPhone.Helpers.ps1":  {
+                                                             "status":  "NotSigned",
+                                                             "signer_thumbprint":  null
+                                                         },
+                       "AudioFileForPhone.ps1":  {
+                                                     "status":  "NotSigned",
+                                                     "signer_thumbprint":  null
+                                                 }
+                   },
+    "dependencies":  {
+                         "bundled":  false,
+                         "ffmpeg":  {
+                                        "executable_name":  "ffmpeg.exe",
+                                        "version":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                                        "sha256":  "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+                                        "source_url":  "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+                                        "license_notice":  "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+                                    },
+                         "ffprobe":  {
+                                         "executable_name":  "ffprobe.exe",
+                                         "version":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                                         "sha256":  "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+                                         "source_url":  "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+                                         "license_notice":  "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+                                     }
+                     },
+    "files":  {
+                  "AudioFileForPhone.Helpers.ps1":  "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+                  "AudioFileForPhone.bat":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+                  "AudioFileForPhone.ps1":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+                  "CHANGELOG.md":  "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+                  "LICENSE":  "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+                  "README.md":  "1e21747ceaa2604bca2b30f3d0f052239e28465b6b0083f6b4ecc4e5f3958536",
+                  "SECURITY.md":  "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+                  "SUPPORT.md":  "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0"
+              },
+    "file_bytes":  {
+                       "AudioFileForPhone.Helpers.ps1":  112323,
+                       "AudioFileForPhone.bat":  1800,
+                       "AudioFileForPhone.ps1":  40032,
+                       "CHANGELOG.md":  1481,
+                       "LICENSE":  1070,
+                       "README.md":  12293,
+                       "SECURITY.md":  6589,
+                       "SUPPORT.md":  12788
+                   },
+    "test_evidence":  [
+                          {
+                              "reference":  "docs/codex-v1/evidence/T17-ci-ps51-final21.json",
+                              "tested_commit":  "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+                              "sha256":  "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+                              "status":  "pass"
+                          },
+                          {
+                              "reference":  "docs/codex-v1/evidence/T17-ci-ps7-final21.json",
+                              "tested_commit":  "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+                              "sha256":  "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+                              "status":  "pass"
+                          }
+                      ],
+    "build":  {
+                  "source_mode":  "clean_detached_exact_git_blobs",
+                  "archive_order":  "Ordinal",
+                  "zip_timestamp_utc":  "1980-01-01T00:00:00Z",
+                  "powershell_version":  "5.1.26100.9444",
+                  "powershell_edition":  "Desktop",
+                  "git_version":  "git version 2.56.0.windows.2",
+                  "builder_sha256":  "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+                  "allowlist_sha256":  "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+                  "inputs":  {
+                                 "dependency_provenance_sha256":  "4d432220487f475de593eb7155548f1df226c2aaf2985c8f6540b45a8baf336b",
+                                 "test_evidence_sha256":  "9f161fb243fd91ce9062b758b99d4c1e2883f82aa2489928cec641d59c5702ab"
+                             },
+                  "evidence_scope":  "Supplied passing report references; this build does not establish release acceptance or authorization."
+              }
+}

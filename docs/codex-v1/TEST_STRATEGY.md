@@ -619,7 +619,12 @@ fingerprints and cleanup are required; ordinary personal Music stays unused.
 ## T19 package policy and M4 boundary
 
 `Test-Package.ps1` uses a fresh marked synthetic local Git repository containing
-exact application/build copies and inert exclusion fixtures. It tests the actual
+exact application/build copies and inert exclusion fixtures. It verifies the actual
+copy bytes before deliberately removing CR only before LF in its owned README
+fixture. That setup records before/after hashes, preserves BOM/lone CR and leaves
+production README unchanged. The archive regression requires this LF README,
+builds under actual true/crlf settings, verifies unchanged source/config, restores
+false/lf and compares all three repeated assets. The harness tests the actual
 builder against clean detached commits, required omissions, allowlist expansion,
 archive attributes, dirty/ignored/untracked source, unsafe paths, reparse points,
 existing output, helper-derived version and tool/test provenance. It independently

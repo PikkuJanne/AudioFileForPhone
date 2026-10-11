@@ -1,0 +1,418 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "mode": "independent_read_only_working_source_and_historical_retained_root_review",
+  "status": "pass",
+  "reviewed_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "reviewed_at_utc": "2026-10-11T13:52:38.7546555Z",
+  "scope": "Static source/diff review bound to the implementation code commit and actual working bytes; source_inventory proves exact bytes or strict UTF-8 CRLF/LF conversion preserving BOM. This status is not task or release acceptance, and final test-report binding remains the parent payload responsibility.",
+  "implementation_test_suites_executed_by_reviewer": false,
+  "build_executed_by_reviewer": false,
+  "filesystem_mutation_during_root_audit": false,
+  "environment": {
+    "shell": "7.6.5",
+    "edition": "Core",
+    "os": "10.0.26300.0",
+    "windows_build": "26300.9457"
+  },
+  "source_inventory": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "reviewed_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "reviewed_git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "reviewed_git_blob_bytes": 40032,
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_bytes": 40032,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "reviewed_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "reviewed_git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "reviewed_git_blob_bytes": 112323,
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "working_bytes": 114373,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "reviewed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "reviewed_git_blob_bytes": 1800,
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_bytes": 1800,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "README.md",
+      "reviewed_git_blob": "775b7d2111d2df6625740f5c41dbe6704a8e193c",
+      "reviewed_git_blob_sha256": "1e21747ceaa2604bca2b30f3d0f052239e28465b6b0083f6b4ecc4e5f3958536",
+      "reviewed_git_blob_bytes": 12293,
+      "working_sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "working_bytes": 12523,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "SUPPORT.md",
+      "reviewed_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "reviewed_git_blob_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "reviewed_git_blob_bytes": 12788,
+      "working_sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "working_bytes": 12940,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "SECURITY.md",
+      "reviewed_git_blob": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "reviewed_git_blob_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "reviewed_git_blob_bytes": 6589,
+      "working_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "working_bytes": 6589,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "reviewed_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "reviewed_git_blob_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "reviewed_git_blob_bytes": 1481,
+      "working_sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "working_bytes": 1507,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "LICENSE",
+      "reviewed_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "reviewed_git_blob_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "reviewed_git_blob_bytes": 1070,
+      "working_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "working_bytes": 1070,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tools/Build-Package.ps1",
+      "reviewed_git_blob": "41e3040480515074221d62cd9ebae7e9238755b4",
+      "reviewed_git_blob_sha256": "bfdd72877ff9524f3dd20ee21d13dff870002cd7ffc627c7b57082c6d7de1eb4",
+      "reviewed_git_blob_bytes": 25060,
+      "working_sha256": "bfdd72877ff9524f3dd20ee21d13dff870002cd7ffc627c7b57082c6d7de1eb4",
+      "working_bytes": 25060,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tools/package-files.json",
+      "reviewed_git_blob": "d0810372063cac978c0a7a49471f4cf865d6c4af",
+      "reviewed_git_blob_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "reviewed_git_blob_bytes": 227,
+      "working_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "working_bytes": 227,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tests/Test-Package.ps1",
+      "reviewed_git_blob": "d0598381ac7bcfdc4d19bdb6cfef497490da697a",
+      "reviewed_git_blob_sha256": "586c497264b0bb7ef7496c9b8c83205eb0ac2795658d71c1e23493d878b180bd",
+      "reviewed_git_blob_bytes": 41596,
+      "working_sha256": "586c497264b0bb7ef7496c9b8c83205eb0ac2795658d71c1e23493d878b180bd",
+      "working_bytes": 41596,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "reviewed_git_blob": "5af79a0c44b83f9ac2ecd8facee6ec2d42fe3bc6",
+      "reviewed_git_blob_sha256": "de2de0a6e92f4ac64f5f6350873ab0780a599d8b4fa0b2e7d3e06a86399800e9",
+      "reviewed_git_blob_bytes": 19160,
+      "working_sha256": "936863590bb8063761a2a7bdc8c48c11fd81d3270555183831f60c49aa2f0a53",
+      "working_bytes": 19412,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/workflows/windows-ci.yml",
+      "reviewed_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "reviewed_git_blob_bytes": 2016,
+      "working_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "working_bytes": 2071,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/dependencies.json",
+      "reviewed_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "reviewed_git_blob_bytes": 2798,
+      "working_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "working_bytes": 2840,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "reviewed_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "reviewed_git_blob_bytes": 19344,
+      "working_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "working_bytes": 19639,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/CI_SECURITY.md",
+      "reviewed_git_blob": "83d1d45d340d8cd4e04341229da5ef6c5a575e03",
+      "reviewed_git_blob_sha256": "e4ad765cde51d985f0a834d0544720764b007469a445fb8c4e658239b1c2fcea",
+      "reviewed_git_blob_bytes": 5982,
+      "working_sha256": "3b8f0b949ef77fc8cd7723d0c4328ea7e803d8e1903a9be2c589734d5c4b6280",
+      "working_bytes": 6076,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/TEST_STRATEGY.md",
+      "reviewed_git_blob": "b587bc338680a5820633dbf74d516bccf0171520",
+      "reviewed_git_blob_sha256": "febb84c939c721185474e47c251278a36e416c0c568ba69a27785941f01bc935",
+      "reviewed_git_blob_bytes": 42524,
+      "working_sha256": "ba64e2eac97c1de5665a488bbf507095890652c0a5e2944c610ecd42fd045058",
+      "working_bytes": 43167,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "reviewed_git_blob": "5d5b888ae5c6613ddbb2141b43e5ba0505596122",
+      "reviewed_git_blob_sha256": "8d83432f7eb328f005b395cf78a85be61811b0fc4d1d26f1585e1778e530f02b",
+      "reviewed_git_blob_bytes": 7363,
+      "working_sha256": "c4738f0a8b55c1375b4fa9ab320dedd6790d38568aae5a3bbeee60a8759fddd5",
+      "working_bytes": 7476,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/templates/release-manifest.example.json",
+      "reviewed_git_blob": "104839690c83b789378fb3e9caa3a3f42e5055d0",
+      "reviewed_git_blob_sha256": "ae1508af0138933312cfef4f3d306f8366c7ae4bf1f58db93d21b5ff30f9f73a",
+      "reviewed_git_blob_bytes": 686,
+      "working_sha256": "5364a57638e526a447fa29cc160039efaf6983d55e9be708b03fe3423be1fe19",
+      "working_bytes": 718,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    }
+  ],
+  "static_checks": {
+    "runtime_bat_workflow_lock_initializer_legacy_git_diff_unchanged": true,
+    "unchanged_paths": [
+      "AudioFileForPhone.ps1",
+      "AudioFileForPhone.Helpers.ps1",
+      "AudioFileForPhone.bat",
+      ".github/workflows/windows-ci.yml",
+      ".github/dependencies.json",
+      ".github/scripts/Initialize-CiDependencies.ps1",
+      "tests/Test-AudioFileForPhone.ps1"
+    ],
+    "git_diff_check": "pass",
+    "public_credential_private_profile_scan_paths": [
+      "README.md",
+      "SECURITY.md",
+      "tools/Build-Package.ps1",
+      "tools/package-files.json",
+      "tests/Test-Package.ps1",
+      ".github/scripts/Invoke-CiChecks.ps1"
+    ],
+    "public_credential_private_profile_scan_hits": 0,
+    "new_production_download_upload_telemetry_or_policy_change": false,
+    "new_hosted_service_account_ui_or_python_dependency": false,
+    "new_global_process_termination_or_Invoke_Expression": false,
+    "new_untrusted_wildcard_filesystem_operations": false,
+    "new_bundled_vendor_binary_personal_media_or_private_log": false,
+    "runtime_signatures": [
+      {
+        "path": "AudioFileForPhone.ps1",
+        "status": "NotSigned"
+      },
+      {
+        "path": "AudioFileForPhone.Helpers.ps1",
+        "status": "NotSigned"
+      }
+    ]
+  },
+  "syntax_only": {
+    "powershell_versions": [
+      "5.1.26100.9444",
+      "7.6.5"
+    ],
+    "sources": [
+      "tools/Build-Package.ps1",
+      "tests/Test-Package.ps1",
+      ".github/scripts/Invoke-CiChecks.ps1"
+    ],
+    "source_parse_errors": 0,
+    "readme_powershell_blocks": 7,
+    "security_powershell_blocks": 1,
+    "doc_parse_errors": 0,
+    "doc_commands_executed": false
+  },
+  "reviewed_contracts": [
+    "Eight explicit required ZIP-root members preserve app/helper/BAT relative layout and exclude vendor binaries, fake exclusion fixtures, logs, caches, poster and evidence.",
+    "Clean detached full lowercase exact-HEAD source is required; dirty, untracked, ignored source and reparse paths are refused.",
+    "Commit Git blob bytes are staged through an explicit archive; postarchive hash-object comparison rejects attributes that omit or substitute member bytes.",
+    "Staged exact-commit functions-only helper supplies the app version and target tag must match; fixed ordinal ordering and ZIP epoch are recorded without assuming cross-shell reproducibility.",
+    "External tool JSON is validated, installed executable hashes/version/libmp3lame queries are checked with native release proof, and public manifest strips executable paths.",
+    "Test references are caller attestations with exact supplied commit/digest/pass shape; builder does not read referenced reports, execute acceptance, or authenticate publishers.",
+    "ZIP inventory/size/member digest is reopened and checked before one directory move publishes three assets; existing output is not overwritten.",
+    "External manifest carries ZIP digest and member/signing/source/provenance identities; checksum file hashes ZIP and manifest but never itself.",
+    "Staging cleanup targets explicit owned files/directories with nonrecursive removal. Package harness recursive cleanup first validates its own exact root, marker, safe tree and child release; only read-only synthetic .git regular files may have attributes cleared.",
+    "CI changes add builder/allowlist/test syntax/analyzer coverage and sequential package-policy harness; workflow permissions/action pins/dependency provisioning and JSON-only upload boundary are unchanged.",
+    "SECURITY and README distinguish official FFmpeg source signatures from third-party Windows builds, build-specific licenses, observed unsigned state, checksums from authenticity and real acceptance from package mechanics."
+  ],
+  "resolved_review_findings": [
+    {
+      "finding": "Drive-root TrimEnd could turn C:\\ into drive-relative C:.",
+      "resolution": "Current builder preserves GetPathRoot and validates raw alias/stream/wildcard input before normalization."
+    },
+    {
+      "finding": "External JSON contract was initially documented without source containment enforcement.",
+      "resolution": "Current builder rejects dependency/test input JSON inside source."
+    },
+    {
+      "finding": "Manifest test name initially exceeded assertions for signatures and dependencies.",
+      "resolution": "Harness now independently checks actual unsigned status, external version/hash/source URL/executable name, member sizes, builder/allowlist/input digests and supplied test attestation."
+    },
+    {
+      "finding": "Plain-path redaction missed JSON-escaped and forward-slash stdout paths.",
+      "resolution": "Harness now replaces escaped, slash-normalized and plain path spellings; initial reports remain original."
+    }
+  ],
+  "historical_reports": [
+    {
+      "path": "docs/codex-v1/evidence/T19-package-ps7-attempt1.json",
+      "sha256": "6abb54265323594d0c413a43e8785bdd89609a4b8e1d5134a2c781ad8591bc3d",
+      "status": "fail",
+      "cases": 15,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": false,
+      "tested_commit": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0",
+      "error": "Owned native command failed: ",
+      "verification_error": "Access is denied."
+    },
+    {
+      "path": "docs/codex-v1/evidence/T19-package-ps7-attempt2.json",
+      "sha256": "81ddabd9571565e9e0a9312ed029ae2db05591519e68a3efe896f86c14c826b7",
+      "status": "fail",
+      "cases": 49,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": false,
+      "tested_commit": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0",
+      "error": null,
+      "verification_error": "Access is denied."
+    },
+    {
+      "path": "docs/codex-v1/evidence/T19-package-ps7-attempt3.json",
+      "sha256": "97d5576f0fecd85f0e67f5ddcc04be1a31fc4c19c9f89746a7e6d52aad57af05",
+      "status": "pass",
+      "cases": 50,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "tested_commit": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0",
+      "error": null,
+      "verification_error": null
+    }
+  ],
+  "attempt1_retained_root_audit": {
+    "derivation": "Two successful historical builder stdout output_directory JSON values; their parent(parent) is one exact T19P-[8hex] direct C:\\Windows\\TEMP child.",
+    "root": "C:\\Windows\\TEMP\\T19P-2fb345e1",
+    "root_resolution_match_ordinal_ignore_case": true,
+    "root_ancestor_and_descendant_reparse_count": 0,
+    "descendants": 115,
+    "source_commit": "2c50e7db7b88adc2a1e50ce20c4ef54e4f9957b2",
+    "source_commit_matches_original_report": true,
+    "git_status_rows": 0,
+    "fixture_members_compared": 10,
+    "fixture_member_sha256_and_size_matches": 10,
+    "first_second_assets_compared": 6,
+    "first_second_asset_sha256_and_size_matches": 6,
+    "synthetic_exclusion_members": 10,
+    "exact_inert_exclusion_marker_matches": 10,
+    "synthetic_marker_text": "SYNTHETIC EXCLUSION MARKER; no personal content or executable binary.",
+    "observed_marker_32_lowerhex": true,
+    "observed_marker_sha256": "03655b9174d894349194607b90bfc80b37ef1903302749df8508334423f9ae81",
+    "original_marker_token_or_hash_persisted": false,
+    "original_marker_equality_established": false,
+    "complete_inventory_repeat_same": true,
+    "observed_complete_inventory_sha256": "acff47181f3f2244345d9b40c73d136cfa296cc3cd30b150daf3738f3b72c3f3",
+    "inventory_fingerprint_method": "Sorted relative path/directory flag/attributes/bytes/LastWriteTimeUtc/SHA256 objects -> compact JSON -> UTF-8 SHA256, repeated read-only in this reviewer shell.",
+    "git_regular_files": 44,
+    "git_regular_readonly_files": 19,
+    "active_git_hooks": 0,
+    "git_config": "core-only, no remote",
+    "git_log_all": "Only original synthetic fixture commit",
+    "git_fsck_full_exit_code": 0,
+    "git_fsck_full_diagnostics": 0,
+    "current_synthetic_attestation_commit_and_actual_digest_match": true,
+    "unrelated_content_observed": false,
+    "filesystem_mutation": false,
+    "cleanup_attempted_by_reviewer": false,
+    "cleanup_verified": false,
+    "diagnosis": "Read-only .git regular files are observed; exact initial Access denied cause is not independently proved by the report. Parent Windows TEMP enumeration limit and cleanup diagnosis remain separate observations/inferences.",
+    "observed_marker_repeat_same": true
+  },
+  "parent_reported_recovery_limit": {
+    "reporting_source": "Parent agent message",
+    "action": "Exact audited attempt1-root recovery",
+    "automatic_approval_review_result": "Rejected before process creation",
+    "literal_reason": "blocked by policy",
+    "additional_reason_detail": null,
+    "mutation_reported": false,
+    "retry_reported": false,
+    "directly_observed_by_this_reviewer": false,
+    "original_false_cleanup_relabelled": false
+  },
+  "attempt2_retained_limit": {
+    "original_status": "fail",
+    "original_cleanup_verified": false,
+    "root_fully_redacted_without_recoverable_name": true,
+    "root_independently_located_or_audited_by_reviewer": false,
+    "cleanup_attempted_by_reviewer": false,
+    "blind_directory_enumeration_or_delete": false,
+    "original_report_relabelled": false
+  },
+  "primary_documentation_checked": [
+    {
+      "url": "https://ffmpeg.org/download.html",
+      "supports": "FFmpeg publishes source only, links Windows binary vendors and source-release signature verification."
+    },
+    {
+      "url": "https://ffmpeg.org/legal.html",
+      "supports": "LGPL base and optional GPL components; licenses depend on build."
+    },
+    {
+      "url": "https://www.gyan.dev/ffmpeg/builds/",
+      "supports": "Vendor FFmpeg/ffprobe packages, essentials/full libraries, build-specific GPLv3 terms and publisher checksums."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/get-authenticodesignature",
+      "supports": "Windows Authenticode status observation and literal paths."
+    }
+  ],
+  "unresolved_source_security_blockers": [],
+  "limitations": [
+    "Final committed source/working byte relationships are verified here; final selected local/hosted test-report binding remains the parent payload responsibility.",
+    "Historical attempts1/2 remain failed with cleanup false. Attempt3 actual 50-case passing precommit report is separate and does not erase them.",
+    "Attempt1 root remains retained; observed marker/fingerprint is current evidence, not original-token equality. Parent recovery was auto-review rejected, with no mutation or retry reported.",
+    "Attempt2 retained root is not independently located; no blind cleanup claim.",
+    "No real media conversion, ordinary Music mutation, physical Windows/phone/Explorer/NAS acceptance, frozen C/exact ZIP execution, signing action, tag or public release was performed by this reviewer.",
+    "No claim that checksums authenticate a publisher or supplied test attestations independently execute/validate the referenced reports."
+  ],
+  "prior_main_commit": "948d27c264a825e49e0ec3b6cc6b5c54542a70b0",
+  "reviewed_sources_unchanged_from_committed_diff": true,
+  "separate_parent_reported_probe_rejections": {
+    "source": "Parent and package-test agent messages",
+    "paths": [
+      "docs/codex-v1/evidence/T19-package-attempt1.ps1.txt",
+      "docs/codex-v1/evidence/T19-package-attempt2.ps1.txt"
+    ],
+    "result": "Automatic approval review rejected before execution",
+    "literal_reason": "blocked by policy",
+    "further_reason_detail": null,
+    "process_created": false,
+    "mutation": false,
+    "not_relabelled_as_success": true,
+    "reviewer_did_not_execute_or_retry": true
+  },
+  "source_binding_at_utc": "2026-10-11T13:54:12.2139092Z"
+}

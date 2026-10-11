@@ -630,3 +630,66 @@ with a bare “approved” assertion without a traceable reference.
   two green runs; no failed report is rewritten as passing.
   PR #18 remains draft, main owner-gated; exactly next T19 after
   integration. Project/release and existing manual/device/security limits remain.
+
+## T19 — exact-commit packages and external dependencies (11 October 2026)
+
+- Owner requested "T19 next please". Fresh fetch, independently advertised refs
+  and live GitHub verified owner T18 PR #18 merge at 13:35:59 UTC into main
+  948d27c264a825e49e0ec3b6cc6b5c54542a70b0. Clean main was fast-forwarded before
+  codex/v1-t19-package. Normal feature edits/tests/commits/push/draft PR remain
+  authorized; main integration, repository settings and release gates are unchanged.
+- Choose an explicit eight-root-file allowlist: entry PS1, functions-only helper,
+  BAT, README, SUPPORT, CHANGELOG, SECURITY and MIT LICENSE. Keep FFmpeg/ffprobe,
+  tests/CI/build rules, media/logs/caches, poster and handoff evidence outside ZIP.
+  A supplied clean detached full lowercase commit must equal HEAD. The builder
+  verifies exact Git blob bytes, member modes, path/reparse boundaries, source/
+  input preservation and required omissions. Get-AudioAppVersion supplies the
+  version/tag; no independent build version constant or runtime behavior change.
+- Publish three complete local assets in one move after verification: ZIP,
+  external manifest and SHA256SUMS covering ZIP/manifest only. Record actual
+  member hashes/sizes, signatures, tool/version/capability identities and build/
+  input digests. Supplied test references are caller attestations; the builder
+  checks schema/commit/status/hash, while the operator independently audits real
+  reports. Unsigned scripts and external vendor licenses/trust limits remain
+  explicit. No downloader, telemetry, account, global setting or production Python.
+- Preserve initial C0 d69732aa91bde6ccf966cb584544251b463004e4 and all its raw
+  evidence. Actual clean-source builds failed because ambient Git autocrlf=true
+  changed eight LF blobs to CRLF. C1 1cb92a18ed162861b286a47cabb6ae365ee8b4e0
+  applies archive-command-only autocrlf=false/eol=lf, retaining byte/attribute
+  checks and making no persistent config change. C1 hosted 51-case reports had
+  empty LF member lists, despite local LF coverage. C2 verifies ten copied files
+  before normalizing only owned fixture README CRLF bytes; source/BOM/lone CR stay
+  unchanged and README must be in the regression's LF list. Both actual C2 hosted
+  shells prove that member and exact same-shell repeated asset bytes.
+- Reviewed C2 70d1e2f3b47b84b595915c73a6ecb1b09d981d8e was normally committed,
+  pushed and independently matched to its live feature ref. Active Windows 11
+  PS5.1.26100.9444/PS7.6.5 selection passes 1,196 required executions plus six
+  observations, 34 aggregate/48 raw reports, 45 sources and 644 relationships.
+  Thirty actual C0 milestone and two actual C1 guarded Music reports are retained
+  only with independently proved source equivalence at C2. Final21 routine CI
+  actually tests C2: 153 groups/three observations each, 34 parsed sources and
+  nine-file pinned analyzer 1.25.0 Error/ten-rule gate with zero diagnostics.
+  Children/focused runs are not counted twice. Dependency copies retain actual
+  setup 15d8dc1 and byte-identical final4 provenance; no fresh provisioning.
+- Two actual clean detached C2 builds pass independent eight-member Git blob,
+  manifest/checksum/tool/report/signing audits; all 659 tracked files stay unchanged.
+  Cross-shell ZIP, manifest and checksum bytes differ, although decompressed
+  members match. These are exploratory source builds; integrated freeze and exact
+  ZIP runtime/device acceptance remain later gates. Original manifest copies and
+  concrete expanded argv/raw-stream bindings remain evidence, with ZIPs outside Git.
+- C2 push 38147793935 and PR 38147797740 pass all four hosted Windows jobs.
+  Actual test merge 20f9a65b00fc884a96f46f918eec65584c6fe391 has complete tree
+  4cd70be37d41ee9debda25cfc53f6894dad6417d equal to C2. Sixteen original PR
+  reports bind 45 sources/332 relationships and pass 306 groups/six observations.
+  Actual Server 2025/PS5.1.26100.33438/PS7.6.6 remains separate from local evidence.
+- Preserve all preliminary false cleanup/archive failures, unsupported analyzer
+  wrapper parameter and captured C2 inspector module-autoload failure. Child-only
+  removal of inherited PSModulePath resolves the latter without global/source
+  changes; earlier C0 inspector cause remains unproved. Three automatic cleanup
+  reviews rejected actions before execution, citing only "blocked by policy";
+  retained scopes and raw flags stay documented, with no equivalent retry.
+- A47/A48 pass; independent review has no unresolved source/security finding.
+  Final docs-only evidence checkpoint, latest checks and fresh advertised-ref match
+  belong in draft PR #19 and the response without a self-referential containing SHA.
+  Main remains owner-gated; exactly next T20 after owner integration. Project/release
+  and existing manual/device/security limits remain incomplete; loudness deferred.

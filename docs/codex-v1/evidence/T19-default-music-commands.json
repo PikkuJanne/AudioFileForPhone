@@ -1,0 +1,51 @@
+{
+  "task": "T19",
+  "tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+  "status": "pass",
+  "invocations": [
+    {
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-OutputParent.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-music-ps51-final19.json",
+        "-DefaultSmoke",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T16-music-ps51-final19.json"
+    },
+    {
+      "shell": "ps7",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-OutputParent.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-music-ps7-final19.json",
+        "-DefaultSmoke",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T16-music-ps7-final19.json"
+    }
+  ]
+}

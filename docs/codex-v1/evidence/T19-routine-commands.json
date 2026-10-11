@@ -1,0 +1,66 @@
+{
+  "task": "T19",
+  "tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+  "status": "pass",
+  "scope": "Selected committed-source final21 routine parents, children and unchanged dependency provenance; no child double count.",
+  "invocations": [
+    {
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        ".github/scripts/Invoke-CiChecks.ps1",
+        "-DependenciesPath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps51-final21.json",
+        "-RunLabel",
+        "final21"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T17-ci-ps51-final21.json"
+    },
+    {
+      "shell": "ps7",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        ".github/scripts/Invoke-CiChecks.ps1",
+        "-DependenciesPath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps7-final21.json",
+        "-RunLabel",
+        "final21"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T17-ci-ps7-final21.json"
+    }
+  ],
+  "dependency_copies": [
+    {
+      "original_report": "T17-dependencies-ps51-final4.json",
+      "copy_report": "T17-dependencies-ps51-final21.json",
+      "original_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "copy_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "literal_byte_equal": true,
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "new_provisioning": false
+    },
+    {
+      "original_report": "T17-dependencies-ps7-final4.json",
+      "copy_report": "T17-dependencies-ps7-final21.json",
+      "original_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "copy_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "literal_byte_equal": true,
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "new_provisioning": false
+    }
+  ]
+}
