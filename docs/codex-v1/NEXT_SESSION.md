@@ -2,80 +2,80 @@
 
 ## Next suggested step
 
-**T06 in a new thread: bound recursive scanning and exclude prior output.**
-T05 is complete on `codex/v1-t05-native-process`; A12–A14 passed on PS5.1/PS7.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/5 awaits owner integration.
-T04 PR #4 was owner-merged at 21:06:59 UTC on 10 October 2026 into main
-`124f3a96e1a416f6870b832d1ee1cc7543286ab9`. No agent merge occurred and no
-blanket main merge or release authority has been recorded.
+**T07 in a new thread: make date and filename allocation deterministic.**
+T06 is complete on `codex/v1-t06-safe-discovery`; A15–A17 pass on PS5.1/PS7.
+Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/6 awaits owner integration.
+T05 PR #5 was owner-merged at 23:50:14 UTC on 10 October 2026 into main
+`f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f`. No agent merge or blanket main/release
+authority was inferred. Read AGENTS.md, INDEX.md, STATUS.md, TASKS.json,
+AUTHORITY.md, SYNC_PROTOCOL.md, tasks/T07.md and specs/FILENAMES.md. Refresh actual
+Git/GitHub and overrides. Reconcile a newer owner merge; otherwise branch
+separately from the latest T06 head and state its dependency. Preserve work.
 
-Read AGENTS.md, INDEX.md, STATUS.md, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md,
-tasks/T06.md and specs/SAFETY.md. Refresh actual Git/GitHub and overrides.
-Reconcile a newer owner merge if present; otherwise branch separately from the
-latest T05 head and state its dependency. Preserve unrelated work.
+Equivalent T06 code checkpoint: `65bca07ab85bec00dd3f578d9ab38880e36e43e8`.
+Final handoff follows it; inspect fresh HEAD/live refs. Reports retain actual base
+and working hashes; `evidence/T06-tested-payload.json` verifies equivalence with
+only Git CRLF/LF normalization. Functions-only helpers remain beside the PS1;
+current harness copies are byte-identical. Shared bounded native/probe APIs remain.
 
-T05 tested equivalent code checkpoint: `215b57c2d1fd93ab62192e07c9ba30632bf2824e`.
-Final evidence/handoff follows it; inspect fresh HEAD/live refs. Reports retain
-the actual test base and working fingerprints; `evidence/T05-tested-payload.json`
-establishes checkpoint equivalence including only Git line-ending normalization.
+Complete literal snapshots now precede destination probing/prompts/run creation.
+Separator-aware Windows boundaries, visible file/directory reparse skips and
+abort-on-access-error enforce T06 policy. Selected reparse/generated ancestry is
+rejected. Output may be inside input but cannot equal/contain it. Empty scans
+create no run/log. New CreateNew JSON markers and conservative exact legacy
+log/layout recognition exclude prior output while retaining prefix/malformed
+user content. Identity grants exclusion only; moved/copied runs with old absolute
+identity are unrecognized. Existing planned roots are refused; exclusive races
+remain T08. Snapshots do not lock against subsequent external source replacement.
 
-The required functions-only `AudioFileForPhone.Helpers.ps1` stays beside the entry
-PS1 and is copied byte-for-byte by current harnesses. Its lazy .NET runner handles
-Windows CRT quoting, bounded concurrent stream drains, explicit native status/exit,
-closed stdin and owned cleanup on PS5.1/PS7. FFmpeg calls use -nostdin. Media probes
-validate first-audio stream/index and distinguish native/probe/JSON/audio failures
-from successful absent title. Ogg stream versus MP3/M4A container metadata precedence
-and all existing defaults/names/layout are preserved. Tool paths/versions are logged.
+Per shell: eight groups (17 inputs/8 skips), real junction loops/outside targets,
+actual inert custom file reparse, selected ancestry, owned ACL denial/restoration,
+legacy casing/relative-path negatives, two repeated real 64 kbps runs with tags/
+layout/full decode. File symlink privilege is unavailable (Win32 1314); reports
+separate this from actual file-reparse coverage. Focused final reports: PS51
+`-final`, PS7 `-final2`. Final `-verified` retained suite/seven companions,
+35 preflight negatives/eight helpers and ten resolvers pass per shell. Source/
+fixture hashes and owned cleanup pass. Failed/intermediate reports remain separate.
 
-Per shell: 35 native cases, full 2.45M-character dual-pipe drains, 40-invocation zero
-handle growth, exact quoted/Unicode argv plus real metadata/cover/full decode;
-retained FFmpeg suite/seven required companion checks; 35 preflight negatives/eight
-helper checks and ten resolver cases pass. All final source/fixture hashes, owned
-TEMP cleanup and ACL restoration pass. Initial native failures are retained and
-explained in evidence/T05.md, with final passing reports explicitly named.
+Windows 11 build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5. Use installed
+`C:\ffmpeg\bin\ffmpeg.exe`/`ffprobe.exe`; never download. Use STATUS/TEST_STRATEGY
+TEMP-only commands with fresh labels. No ordinary Music, settings changes,
+manual/phone/long-audio/cancellation/CI/release evidence. Current optional
+configured-Music smoke stops before setup until T08 adapts its pre-reserved-root
+ownership; ordinary resolver mode remains current. Do not bypass this limitation.
 
-Environment: Windows 11 build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
-Use installed `C:\ffmpeg\bin\ffmpeg.exe` and `ffprobe.exe`; never download.
-Use STATUS/TEST_STRATEGY TEMP-only commands. Native reports are CreateNew; choose a
-fresh T05 label to repeat them. No ordinary Music, registry/policy, live-share,
-manual/phone/long-audio, cancellation, CI or release evidence was created in T05.
-External-reference media remains unaudited; no protocol whitelist was adopted.
-
-T06 must snapshot/exclude inputs before creating the production run root. Current
-production discovery still recurses with Get-ChildItem and run output exists before
-scan; these are the next task's gaps. Adopt recorded reparse/access policies from
-DECISIONS: reject selected reparse directory; skip directory and file reparse points
-with visible reasons; abort inaccessible scans before conversions. Recognize actual
-generated output conservatively; retain arbitrary similarly prefixed user content.
-Keep date/Unicode/full path budgeting T07, production run reservation T08,
-transactional output T09 and aggregate/BAT outcomes T10/T11 out of this thread.
+T07 plans valid calendar dates/fallback, NFC, safe Unicode truncation, stable
+Windows collision allocation with ordinal tie-break and complete path budgets.
+Reject problematic source folder paths without mutation. Test permutations,
+mixed extension/case collisions, invalid leap dates, accents/surrogate pairs and
+suffix growth past (9). Keep T08 reservation, T09 transactional output, T10/T11
+aggregate/BAT results and later UX/release work out of this thread.
 
 ## Copy-ready next-thread prompt
 
 ```text
 Work in C:\projects\AudioFileForPhone-main for PikkuJanne/AudioFileForPhone.
-T06 only: bound recursive scanning and exclude prior output. Read AGENTS.md and
+T07 only: make date and filename allocation deterministic. Read AGENTS.md and
 docs/codex-v1/INDEX.md, STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md,
-SYNC_PROTOCOL.md, tasks/T06.md and specs/SAFETY.md. Inspect actual status,
+SYNC_PROTOCOL.md, tasks/T07.md and specs/FILENAMES.md. Inspect actual status,
 overrides, fetch/push URLs, fresh advertised branch/main refs and live GitHub.
-Fetch normally and preserve work. T04 is owner-merged into main
-124f3a96e1a416f6870b832d1ee1cc7543286ab9. T05 tested code checkpoint
-215b57c2d1fd93ab62192e07c9ba30632bf2824e has A12–A14 passing on both Windows shells;
-final handoff follows it and draft PR #5 awaits owner integration. Reconcile any
-newer owner merge; otherwise base focused T06 work on latest T05 head and state dependency.
-Use separator-aware canonical relationships and deterministic discovered-input
-snapshot; exclude planned/current/generated and conservatively recognized legacy
-outputs before creating a run. Test overlap, Music-like nested ancestry, prefix
-neighbors, arbitrary similarly named user folders, junction loops/file reparse
-points and owned ACL denials. Reject selected reparse directories; skip descendant
-reparse files/directories visibly; abort inaccessible scans before conversions.
-Keep functions-only helper loading and shared bounded native/probe APIs. Preserve
-OutputParent/configured Music, defaults, formats, names/layout, metadata and BAT.
-Use C:\ffmpeg\bin pair and owned TEMP tests; no ordinary Music traversal, source
-mutation, downloads, registry/policy changes, unrelated refactor or invented manual evidence.
-Normal tests, commits, feature pushes and draft PR updates are authorized;
-main merge/release gates remain. Review/stage intended diff, record exact tested
-source hashes/results, update evidence/tracking/handoff, commit/push and compare
-HEAD with fresh ls-remote. Report feature sync and main integration separately.
-After T06, suggest T07 as the next coherent new thread.
+Fetch normally and preserve work. T05 is owner-merged into main
+f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f. T06 equivalent tested code checkpoint
+65bca07ab85bec00dd3f578d9ab38880e36e43e8 has A15-A17 passing on both shells;
+final handoff follows it and draft PR #6 awaits owner integration. Reconcile a
+newer owner merge; otherwise base T07 on latest T06 head and state dependency.
+Build one pure naming planner for valid dates/LastWriteTime fallback, NFC and
+Unicode budgeting. Preserve date-first names, safe character set, suffix style,
+metadata/defaults/formats/Music/OutputParent and BAT. Use stable Windows collision
+allocation with ordinal tie-break; test permuted inventories, mixed extensions/
+case, leap dates, accents/surrogates and suffixes past (9). Budget complete paths
+and reject problematic folders without source mutation. Retain T06 snapshot/
+exclusion/reparse/access policy and shared bounded native/probe functions.
+Use C:\ffmpeg\bin pair and owned TEMP tests; no ordinary Music, downloads,
+registry/policy/privilege changes, unrelated refactor or invented manual evidence.
+Configured-Music smoke remains deferred to T08 ownership adaptation. Normal
+tests/commits/feature pushes/draft PR updates are authorized; merge/release gates
+remain. Review intended diff, record exact hashes/results, update evidence/
+handoff, commit/push and compare HEAD with fresh ls-remote. Report feature sync
+and main integration separately. After T07 suggest T08 in a new thread.
 ```

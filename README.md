@@ -43,6 +43,8 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 - Before optional metadata prompts, the script checks the input directory, destination access, tool versions, `libmp3lame` availability and any explicit cover. Drive and share roots are rejected; choose a folder below the root. An invalid explicit cover stops the run with an error.
 - `-BitrateKbps` accepts `8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320`; the default remains 64. Some rates require a compatible source sample rate.
 - `-MaxBaseLength` accepts 24–180, with default 60. Normal preflight creates a missing destination parent and briefly tests file/directory creation using uniquely owned probes, then removes them.
+- Discovery finishes before metadata prompts or run creation. It takes a sorted input snapshot and excludes the planned run and prior runs identified by `.AudioFileForPhone-output.json`, or by a matching legacy log and mirrored input folder. A similar folder name alone is retained.
+- Selected input/output paths containing junctions or symbolic links are rejected. Descendant file and directory reparse points are skipped with a warning and recorded in the run log. An inaccessible subtree aborts the scan before conversion; selecting a prior generated run or a folder inside it is rejected.
 
 **Usage**
 1. Drag & drop via .bat (my default)  

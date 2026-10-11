@@ -54,7 +54,8 @@ and source inventories. Production PATH discovery is checked against the
 selected installed pair. Cleanup verifies exact canonical ownership and rejects
 reparse points before recursively removing only its own tree.
 
-Canonical integration/evidence commands on the active Windows machine:
+Recorded T04 integration/evidence commands (historical labels; do not overwrite):
+Use STATUS.md or evidence/T06.md for current passing commands with fresh labels.
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T04-baseline-ps51.json
@@ -68,7 +69,7 @@ powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-Audio
 pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-AudioFileForPhone.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe
 ```
 
-Canonical TEMP-only resolver commands (both passed):
+Recorded T04 TEMP-only resolver commands (both passed their recorded payload):
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-OutputParent.ps1 -EvidencePath .\docs\codex-v1\evidence\T04-resolver-ps51.json
@@ -77,12 +78,13 @@ pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-OutputParent.ps
 
 The focused `tests/Test-OutputParent.ps1` tests the actual resolver function
 extracted from the functions-only runtime helper AST, injected redirected Music paths and literal
-explicit output paths. Its normal mode uses TEMP only. `-DefaultSmoke` opts into
-the separate narrow configured-Music test described in `evidence/T03.md`; this
-is excluded from ordinary runs. No registry or persistent PATH/policy change is
-needed. Neither mode is phone/manual playback evidence.
+explicit output paths. Its normal mode uses TEMP only. The historical T03
+`-DefaultSmoke` exercised the narrow configured-Music test in `evidence/T03.md`;
+current T06 mode is deferred before setup until T08 ownership adaptation below.
+No registry or persistent PATH/policy change is
+needed. Neither recorded mode is phone/manual playback evidence.
 
-The wrapper writes only explicitly named `T03-<label>.json`, `T04-<label>.json` or `T05-<label>.json`
+The wrapper writes only explicitly named `T03-<label>.json`, `T04-<label>.json`, `T05-<label>.json` or `T06-<label>.json`
 reports directly in `docs/codex-v1/evidence`, preserving historical reports. `-ValidateOnly`
 checks copies, syntax and owned cleanup without generating media and cannot
 establish codec behavior. No helper downloads tools.
@@ -126,6 +128,29 @@ tests accompany stubs. Retained baseline, preflight and resolver harnesses accep
 T05 evidence filenames so their historical T03/T04 reports remain unchanged.
 Native evidence uses CreateNew; repeat with a fresh T05 label instead of replacing
 an existing report. The commands above record the original final runs.
+
+## T06 discovery checks
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-Discovery.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-discovery-ps51-final.json
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-Discovery.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-discovery-ps7-final2.json
+```
+
+The focused harness uses owned TEMP trees for Music-like overlap, explicit/new/legacy
+output exclusions, malformed identities and similarly named user content. Real
+junctions exercise loops and outside targets; a real file reparse fixture exercises
+the file skip policy. Symlink creation capability is recorded separately without
+changing machine settings. Owned ACL denial proves complete scan abort before
+prompts/run/conversion; original ACLs, fixture hashes and exact cleanup are checked.
+Repeated short real-FFmpeg runs retain default bitrate/layout/tags/full decode and
+do not rescan the first generated run. Reports use CreateNew; retry with fresh labels.
+
+Use T06 labels for ordinary retained baseline/preflight/resolver reports; preserve
+all earlier reports. The retained suite now asserts empty scans create no run/log.
+Historical T03 configured-Music smoke evidence remains valid for its original
+payload. Current `Test-OutputParent.ps1 -DefaultSmoke` stops before any setup because
+its pre-reserved run conflicts with production's no-reuse check; T08 must adapt
+that ownership scheme. Ordinary resolver mode remains TEMP-only and current.
 
 ## Cadence and status vocabulary
 
