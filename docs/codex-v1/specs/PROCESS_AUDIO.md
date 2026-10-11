@@ -35,7 +35,8 @@ to that invocation and are disposed when it returns.
 
 The focused probe selects `a:0`, validates exactly one audio stream and its
 absolute stream index, and inspects only stream/container tags plus stream
-identity. Conversion maps that validated stream. Failed startup, nonzero probe,
+identity and selected audio duration (container fallback only when stream duration
+is absent). Conversion maps that validated stream. Failed startup, nonzero probe,
 truncated output, invalid JSON/schema and no audio are file failures; successful
 inspection reports title presence separately. MP3/M4A container tags and Ogg
 first-audio-stream comments keep their existing precedence. Version/encoder
