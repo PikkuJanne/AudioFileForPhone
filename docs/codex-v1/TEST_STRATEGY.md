@@ -408,3 +408,50 @@ known-root recovery records and in-memory historical-harness reconstruction prov
 later exact removal. No recovery record counts toward A33/A34. These are targeted
 affected checks; prior physical T11 evidence remains historical, with the next
 full applicable suite at a milestone boundary.
+
+## T14 diagnostics and affected regressions
+
+Exact selected commands/results are in evidence/T14.md. Run Test-Diagnostics.ps1
+with fresh T14-diagnostics-ps51/ps7-attempt/finalN.json labels. Final1 directly tests
+code b272cfda on both shells: 19 groups, 14 independent 64 kbps MP3 probes and full
+decodes per shell, source/output byte and probe-duration equality, real metadata
+and JSON Unicode/quotes/commas/CR/LF/formula-like strings. Construct Unicode from
+explicit code points and put UTF-8 BOMs on generated PS5.1 drivers. Newline fixtures
+are metadata/structured values, not invalid Windows filenames.
+
+Actual corrupt source, encoder filter, output probe option and decode filter
+failures retain local native stage/status/exit/release/timing/stderr. A compiled
+disposable child floods both pipes through the actual native runner; persisted
+stderr is at most 16,384 characters per stage, reason/error 2,048 and measurement
+error 512. No stdout dump/upload. Mixed supported/failed/excluded/unsupported
+counts reconcile; manifest cancelled/unstarted states are exclusive and legacy
+console not_processed includes both. Unknown measurements remain null.
+
+Inject initial/boundary/final log and manifest failures, occupied/foreign identity,
+post-promotion guard-open failure, three timer cancellation variants and immediate
+startup cancellation. Preserve actual 0/1/2 publications/counts through recording
+failure; fatal exit1 and cancellation130 remain explicit. Persistent write failures
+leave honest last-good Running JSON. Source/helper copies identify actual bytes;
+entry remains byte-identical, audit/fault wrappers append only in owned TEMP.
+
+Reserve Win32/CreateNew token-marked exact TEMP scope, retain hosts before Start,
+suspend release proof before every call and restore only positive proof preserving
+prior uncertainty. Drain/join owned hosts and refuse recursive deletion when any
+descendant is unproved. Check canonical root, token/digest, nonreparse inventory,
+source/synthetic hashes, release/disposal and final absence. Ordinary Music unused.
+
+Fourteen affected finals also pass: native 35, transaction 27/61 decoded outputs,
+script 13, preview 8, automated cancellation 9, progress 17 and baseline 7 required
+checks per shell. Quiet native handles 667->667/577->577 retain allowance 16;
+progress actually converts 3,605 seconds and fully decodes 3605.047982 seconds with
+live samples.
+The manifest compares all selected source fingerprints and independently hashes
+committed blobs, allowing only literal bytes or strict UTF-8 CRLF-to-LF equivalence.
+
+Retain 19 raw tests, including 2 preliminary passes and 1 failed new-harness path/BOM
+attempt. Original false children/cleanup flags stay unchanged. Three separate
+proof/recovery records reconstruct exact historical harness 258aec1c and native/
+host boundaries. First recovery refused before deletion on ISO text formatting;
+second compares exact UTC ticks and all other fields without tolerance, then removes
+only the independently reviewed known scope. These records are provenance only.
+No repeat physical/phone/CI/release claim; next full applicable suite at M3 boundary.

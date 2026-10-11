@@ -534,8 +534,13 @@
       "required": true,
       "method": "failure fixtures + log inspection",
       "expected": "Useful native error details survive in the run log with tool/app versions, timings and final outcome; large native output is bounded; logs are not uploaded.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T14.md",
+        "evidence/T14-tested-payload.json",
+        "evidence/T14-diagnostics-ps51-final1.json",
+        "evidence/T14-diagnostics-ps7-final1.json"
+      ]
     },
     {
       "id": "A36",
@@ -544,8 +549,13 @@
       "required": true,
       "method": "structured roundtrip and totals tests",
       "expected": "One row per discovered candidate outcome; Unicode, commas, newlines and formula-like text safely represented; input/output paths, duration, bytes and failure reasons are traceable.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T14.md",
+        "evidence/T14-tested-payload.json",
+        "evidence/T14-diagnostics-ps51-final1.json",
+        "evidence/T14-diagnostics-ps7-final1.json"
+      ]
     },
     {
       "id": "A37",
@@ -554,8 +564,13 @@
       "required": true,
       "method": "mixed outcomes tests",
       "expected": "Discovered/converted/failed/skipped/cancelled counts reconcile; actual bytes and elapsed time are reported; scan exclusions are distinguishable from successful conversions.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T14.md",
+        "evidence/T14-tested-payload.json",
+        "evidence/T14-diagnostics-ps51-final1.json",
+        "evidence/T14-diagnostics-ps7-final1.json"
+      ]
     },
     {
       "id": "A38",
