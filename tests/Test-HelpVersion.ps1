@@ -78,11 +78,21 @@ function Get-SafeTree {
 }
 function Get-TreeInventory {
     param([string]$Root)
-    $items = @((Get-Item -LiteralPath $Root -Force)) + @(Get-SafeTree $Root)
+    $inventoryRoot = [IO.Path]::GetFullPath($Root).TrimEnd('\', '/')
+    $descendantPrefix = $inventoryRoot + '\'
+    $items = @((Get-Item -LiteralPath $inventoryRoot -Force)) + @(Get-SafeTree $inventoryRoot)
     return @($items | ForEach-Object {
         $_.Refresh()
+        # Windows can report the same literal root with different casing. Only
+        # root identity and containment use its case-insensitive path semantics;
+        # every relative name and inventory field stays exact for before/after.
+        $relativePath = '.'
+        if (-not [StringComparer]::OrdinalIgnoreCase.Equals($_.FullName, $inventoryRoot)) {
+            Assert-True ($_.FullName.StartsWith($descendantPrefix, [StringComparison]::OrdinalIgnoreCase)) 'Inventory entry must be a strict descendant of the exact owned root.'
+            $relativePath = $_.FullName.Substring($descendantPrefix.Length)
+        }
         [pscustomobject][ordered]@{
-            relative_path = $(if ($_.FullName -ceq $Root) { '.' } else { $_.FullName.Substring($Root.Length + 1) })
+            relative_path = $relativePath
             kind = $(if ($_.PSIsContainer) { 'directory' } else { 'file' })
             length = $(if ($_.PSIsContainer) { $null } else { $_.Length })
             sha256 = $(if ($_.PSIsContainer) { $null } else { (Get-FileHash -LiteralPath $_.FullName).Hash.ToLowerInvariant() })
@@ -296,6 +306,11 @@ try {
     Invoke-Case 'Get-Help recognizes all public parameters and exact executable examples without entry execution' 'A45,A46' {
         param($case)
         $before = Get-TreeInventory $testRoot
+        $alternateRoot = $testRoot.ToUpperInvariant()
+        Assert-True ($alternateRoot -cne $testRoot) 'Regression requires a differently cased spelling of the same owned Windows root.'
+        $alternateInventory = Get-TreeInventory $alternateRoot
+        Assert-True (($before | ConvertTo-Json -Compress -Depth 8) -ceq ($alternateInventory | ConvertTo-Json -Compress -Depth 8)) 'Owned inventory must retain exact relative names and node fields across differently cased spellings of its Windows root.'
+        $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
         $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun')
