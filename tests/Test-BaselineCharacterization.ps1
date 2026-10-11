@@ -261,7 +261,7 @@ try {
     $ResultPath = Get-AbsolutePath $ResultPath
     $ownedParent = Get-AbsolutePath (Split-Path -Parent $OutputParent)
     $ownerFile = Join-Path $ownedParent '.t03-owner'
-    Assert-True ((Split-Path -Leaf $ownedParent) -match '^AudioFileForPhone-T03-[a-f0-9]{32}$') 'Companion requires the unique wrapper-owned parent.'
+    Assert-True ((Split-Path -Leaf $ownedParent) -match '^AFP-[a-f0-9]{32}$') 'Companion requires the unique wrapper-owned parent.'
     Assert-True (Test-Path -LiteralPath $ownerFile -PathType Leaf) 'Wrapper ownership marker is required.'
     Assert-True ([IO.File]::ReadAllText($ownerFile) -match '^[a-f0-9]{32}$') 'Wrapper ownership marker must contain an exclusive token.'
     Assert-True ((Split-Path -Parent $WorkRoot) -eq $ownedParent -and (Test-WithinPath $ApplicationScript $ownedParent)) 'ApplicationScript, WorkRoot and OutputParent must share the wrapper-owned parent.'

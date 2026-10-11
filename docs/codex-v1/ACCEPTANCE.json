@@ -272,8 +272,13 @@
       "required": true,
       "method": "unit cases including leap days",
       "expected": "Real YYYY-MM-DD prefix retained; impossible dates fall back to LastWriteTime with a defined title rule; locale does not change the result.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T07.md",
+        "evidence/T07-naming-ps51-final2.json",
+        "evidence/T07-naming-ps7-final2.json",
+        "evidence/T07-tested-payload.json"
+      ]
     },
     {
       "id": "A19",
@@ -282,8 +287,13 @@
       "required": true,
       "method": "unit and generated filesystem fixtures",
       "expected": "NFC/decomposed accents, Finnish/German letters, punctuation and whitespace normalize predictably; literal-path operations do not interpret brackets as wildcards.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T07.md",
+        "evidence/T07-naming-ps51-final2.json",
+        "evidence/T07-naming-ps7-final2.json",
+        "evidence/T07-tested-payload.json"
+      ]
     },
     {
       "id": "A20",
@@ -292,8 +302,13 @@
       "required": true,
       "method": "permuted input inventories",
       "expected": "Stable ordinal ordering produces a repeatable source-to-output mapping even with mixed extensions, case collisions and duplicate sanitized names.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T07.md",
+        "evidence/T07-naming-ps51-final2.json",
+        "evidence/T07-naming-ps7-final2.json",
+        "evidence/T07-tested-payload.json"
+      ]
     },
     {
       "id": "A21",
@@ -302,8 +317,13 @@
       "required": true,
       "method": "boundary unit and Windows path tests",
       "expected": "Date prefix, basename, suffix and extension budgets are enforced; long directories are rejected clearly rather than source-renamed; surrogate pairs are not split.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T07.md",
+        "evidence/T07-naming-ps51-final2.json",
+        "evidence/T07-naming-ps7-final2.json",
+        "evidence/T07-tested-payload.json"
+      ]
     },
     {
       "id": "A22",

@@ -1,0 +1,83 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T07",
+    "mode":  "real_ffmpeg_baseline",
+    "started_utc":  "2026-10-11T00:32:46.1546257Z",
+    "shell":  "5.1.26100.9444",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "8599dfd9706d99119d4a38fb511968529e914246",
+    "harness_sha256":  "9fc2feaa5b323b0b85c68912ff742a70316cccada9cd9d06c8481a8ba26c3f72",
+    "isolation":  {
+                      "replacements_per_copy":  0,
+                      "copied_bytes_unchanged":  true,
+                      "output_parameter":  "OutputParent",
+                      "verified":  true,
+                      "companion_syntax_valid":  true
+                  },
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "f91edb45d4c31e896ec016d2e8c83e45741809c8fb8143617e007a3876ebc741"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "b8d5ae94f2035cef3429685d04d6831e6928f19c7887222e25f5d2047d4fe159"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "9fc2feaa5b323b0b85c68912ff742a70316cccada9cd9d06c8481a8ba26c3f72"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "f91edb45d4c31e896ec016d2e8c83e45741809c8fb8143617e007a3876ebc741"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "b8d5ae94f2035cef3429685d04d6831e6928f19c7887222e25f5d2047d4fe159"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "9fc2feaa5b323b0b85c68912ff742a70316cccada9cd9d06c8481a8ba26c3f72"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "legacy":  {
+                   "status":  "pass",
+                   "exit_code":  0
+               },
+    "characterization":  null,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "Baseline checks failed (legacy=0, characterization=1).",
+    "companion_sha256":  "24532d26a902b7e3722e753fb1f542d2bb7666b58c525fc7d208c4460da56c48",
+    "ffmpeg":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "finished_utc":  "2026-10-11T00:32:58.2098759Z"
+}

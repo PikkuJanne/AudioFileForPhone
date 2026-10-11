@@ -42,11 +42,13 @@ FEATURES
     - Filename sanitization + shortening for Android:
         - Tries to keep a leading date if present:
             "YYYY-MM-DD - Rest of name"
-        - If no leading date is found, uses the file’s LastWriteTime.
+        - An absent or impossible leading date uses the file’s LastWriteTime.
+          Impossible date prefixes remain part of the title input.
         - Removes non-safe characters, keeps letters, digits, spaces, - and _.
         - Collapses whitespace and trims the result.
         - Truncates the base name to a configurable max length
-          (default: 60 characters) to avoid long-path / phone issues.
+          (default: 60 UTF-16 units, including any collision suffix).
+        - Normalizes titles to NFC; shortening keeps complete Unicode scalars.
         - Automatically adds " (2)", " (3)", etc. to avoid collisions.
     - Subfolder structure preserved:
         - Relative directory layout under the input folder is mirrored
@@ -145,7 +147,7 @@ NOTES
             "YYYY-MM-DD - Sanitized title.mp3"
           truncated to MaxBaseLength characters for the base name.
     - Dates:
-        - If the original filename starts with "YYYY-MM-DD", that date is kept.
+        - A real leading "YYYY-MM-DD" calendar date is kept.
         - Otherwise, the file’s LastWriteTime is used as the date for naming.
     - Metadata:
         - Existing title tags are preserved when present.
@@ -167,8 +169,9 @@ LIMITATIONS
         - Date-first, then sanitized title, truncated to MaxBaseLength.
         - No alternative patterns.
     - Long path edge cases:
-        - Extremely deep input folder paths combined with long names
-          may still hit Windows path length limits.
+        - Complete destination/working paths must be below 260 UTF-16 units;
+          created directories must be below 248. Unsupported preserved folder
+          names or paths fail preflight with guidance; folders are not renamed.
         - In practice, keeping the input folder path short (e.g. C:\P)
           avoids most issues.
 
@@ -252,6 +255,7 @@ try {
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
     $files = @($snapshot.Files)
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
+    $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
     $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
     $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
@@ -460,7 +464,8 @@ $ok     = 0
 $failed = 0
 $total  = $files.Count
 
-foreach ($file in $files) {
+foreach ($plan in $plans) {
+    $file = $plan.SourceFile
     $index++
     $percent = [int](($index / $total) * 100)
     $status  = "{0} / {1}: {2}" -f $index, $total, $file.Name
@@ -472,14 +477,14 @@ foreach ($file in $files) {
                    -Status $status `
                    -PercentComplete $percent
 
-    # Preserve subfolder structure, directories only
-    $relativePath = $file.FullName.Substring($InputFolder.Length).TrimStart('\','/')
-    $relativeDir  = Split-Path $relativePath -Parent
-
-    if ([string]::IsNullOrEmpty($relativeDir)) {
-        $outDir = $outputBase
-    } else {
-        $outDir = Join-Path $outputBase $relativeDir
+    $outDir = $plan.OutputDirectory
+    $outPath = $plan.OutputPath
+    $newBase = $plan.BaseName
+    foreach ($warning in $plan.Warnings) { Write-Log ("{0}: {1}" -f $file.FullName, $warning) 'WARN' }
+    if (Test-Path -LiteralPath $outPath -ErrorAction Stop) {
+        $failed++
+        Write-Log ("FAIL : Planned output already exists; refusing to overwrite '$outPath'.") 'FAIL'
+        continue
     }
 
     if (-not (Test-Path -LiteralPath $outDir)) {
@@ -487,41 +492,7 @@ foreach ($file in $files) {
         [IO.Directory]::CreateDirectory($outDir) | Out-Null
     }
 
-    # Build sanitized + shortened filename, keep date
-    $originalBase = [System.IO.Path]::GetFileNameWithoutExtension($file.Name)
-
-    $base = Get-SanitizedAudioBaseName -OriginalBase $originalBase -LastWriteTime $file.LastWriteTime -MaxBaseLength $MaxBaseLength
-
-    Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $base, $originalBase) "DEBUG"
-
-    $newBase    = $base
-    $counter    = 1
-    $extension  = '.mp3'
-
-    while ($true) {
-        $candidateName = "$newBase$extension"
-        $candidatePath = Join-Path $outDir $candidateName
-
-        if (-not (Test-Path -LiteralPath $candidatePath)) {
-            break
-        }
-
-        $counter++
-        $suffix = " ($counter)"
-        $limit  = [Math]::Max(1, $MaxBaseLength - $suffix.Length)
-
-        $trimmedBase = if ($base.Length -gt $limit) {
-            $base.Substring(0, $limit).TrimEnd()
-        }
-        else {
-            $base
-        }
-
-        $newBase = "$trimmedBase$suffix"
-    }
-
-    $outFileName = "$newBase$extension"
-    $outPath     = Join-Path $outDir $outFileName
+    Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $newBase, $plan.OriginalBase) "DEBUG"
 
     Write-Host "       Source : $($file.FullName)"
     Write-Host "       Target : $outPath"
@@ -568,7 +539,7 @@ foreach ($file in $files) {
 
         $ffArgs = @(
             "-nostdin",
-            "-y",
+            "-n",
             "-i", $file.FullName,
             "-i", $CoverPath,
             "-map", ("0:{0}" -f $media.StreamIndex),
@@ -584,7 +555,7 @@ foreach ($file in $files) {
     else {
         $ffArgs = @(
             "-nostdin",
-            "-y",
+            "-n",
             "-i", $file.FullName,
             "-map", ("0:{0}" -f $media.StreamIndex),
             "-vn",

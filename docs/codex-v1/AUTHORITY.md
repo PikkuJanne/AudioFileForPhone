@@ -53,6 +53,13 @@ within the normal scope above. Fresh GitHub inspection found PR #5 merged by
 that independently advertised commit; T06 uses `codex/v1-t06-safe-discovery`.
 This owner merge does not change the main-integration or release gates.
 
+On 11 October 2026 the owner requested "T07 next please". This authorizes T07
+within the normal scope above. Fresh GitHub inspection found PR #6 merged by
+`PikkuJanne` at 00:25:18 UTC into main
+`8599dfd9706d99119d4a38fb511968529e914246`. Local main was fast-forwarded to
+that independently advertised commit; T07 uses `codex/v1-t07-naming-planner`.
+This owner merge does not change the main-integration or release gates.
+
 Default: owner approval for a reviewed PR or milestone integration. Optional
 bounded policy the owner may approve once: integrate in-scope reviewed PRs only
 when required local tests and GitHub checks pass, no conflicts or unrelated changes

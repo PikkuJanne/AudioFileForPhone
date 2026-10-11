@@ -225,6 +225,49 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
   release evidence. Source replacement after discovery remains outside this
   snapshot's guarantees; date/Unicode/path allocation is the next task, T07.
 
+## T07 reconciliation and naming — 11 October 2026
+
+- Owner requested "T07 next please". PR #6 was owner-merged at 00:25:18 UTC
+  into main `8599dfd9706d99119d4a38fb511968529e914246`. Local main was
+  fast-forwarded to the independently advertised ref; T07 uses
+  `codex/v1-t07-naming-planner`. No agent merge/release authority was inferred.
+- A complete pure plan now precedes tools, write probes, prompts and run creation.
+  Real invariant Gregorian dates are retained; impossible dates use LastWriteTime
+  and keep the whole original basename as title input. NFC applies before and
+  after filtering, including punctuation-joined Hangul. L/Nd scalar categories,
+  whitespace, hyphen and underscore remain permitted. Noncomposing marks are
+  removed; scalar-safe truncation does not claim full grapheme preservation.
+- MaxBaseLength 24–180 measures UTF-16 units excluding .mp3, including date,
+  separator, whole title scalar and complete suffix. Every collision recomputes
+  from the untruncated title. Source order is OrdinalIgnoreCase then Ordinal;
+  collisions use an OrdinalIgnoreCase destination set. Canonical duplicate inputs
+  reject; case-only sources are retained. All rows validate before any plan emits.
+- Preserved folder components are validated before normalization and never
+  mutated. Complete destination file/working paths <260, directory paths <248
+  and components <=255 remain the T02 compatibility policy. T09 must honor the
+  fixed `.AudioFileForPhone-<32 hex>.partial` working-name length. Marker/log
+  paths are included. Unexpected planned targets fail and FFmpeg uses `-n`.
+- A18–A21 pass on both shells: 11 focused groups, shuffled 12-source mappings,
+  date/locale/Unicode/counter boundaries, actual native file 259/260 and dir 247/248,
+  real problematic-folder rejection, 19 fully decoded real MP3s per shell,
+  12 collision suffixes and actual 180 basename/path 253. Retained FFmpeg/seven
+  required companion checks, discovery eight groups, preflight 35/eight helpers
+  and resolver ten cases pass. Final sources/fixtures, ACL restoration and cleanup
+  pass. Test root names were shortened to fit enforced budgets; no limit was waived.
+- Intermediate reports preserve actual failures and working hashes. Initial
+  naming PS5.1 cleanup is unverified: native entries were removed but provider
+  recursive cleanup failed; its short root leaf was not recorded and the machine
+  TEMP parent disallows enumeration, leaving an unknown possible synthetic
+  residue. No broad cleanup or ACL change was attempted. Later runs record owned
+  identity and verify checked .NET cleanup. Final passing reports are explicitly
+  identified; their hashes equal reviewed code checkpoint
+  `e99f81ca3eb2c24102882e5723c52c236105450c` (only recorded CRLF/LF differences).
+- Draft PR #7 is feature-synchronized; main awaits owner review. No ordinary
+  Music traversal, settings/downloads, manual/phone, long-audio, cancellation, CI
+  or release evidence. T08 is next: exclusive run/log reservation, synchronized
+  races/sentinel preservation and adaptation of the deferred configured-Music
+  smoke ownership scheme. This task does not complete the project/release.
+
 ## Change entry template
 
 ID/date; reason; previous/new policy; owner authorization when required; affected

@@ -1,0 +1,291 @@
+{
+    "schema_version":  1,
+    "task":  "T07",
+    "mode":  "pure_naming_path_and_real_conversion",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-NamingPlan.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T07-naming-ps51.json",
+    "started_utc":  "2026-10-11T00:31:41.5134633Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "8599dfd9706d99119d4a38fb511968529e914246",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "62d5eb05fbf83b94a3196d7a5f0c053ab761db7bc266fe19a19737306f5d5e78"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NamingPlan.ps1",
+                              "sha256":  "3e1d1c27ac445fe7225e453cb63e5877d93623d35ea956e4106a3c064e2e663a"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "62d5eb05fbf83b94a3196d7a5f0c053ab761db7bc266fe19a19737306f5d5e78"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NamingPlan.ps1",
+                             "sha256":  "3e1d1c27ac445fe7225e453cb63e5877d93623d35ea956e4106a3c064e2e663a"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "seed.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E!pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E#pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E$pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E%pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E\u0026pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E\u0027pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E(pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E)pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E+pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E=pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E[pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - E]pisode.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2023-02-29 - Impossible.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - Café.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 - Café.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\Prefix [literal] O\u0027Brien\\2024-01-02 - Literal [x].mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\Prefix [literal] O\u0027Brien2\\2024-01-02 - Literal [x].mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-02-29 - Metadata.mp3",
+                                 "sha256":  "5fe4a10318335d126cf1ad4a998514c5585f468248a21e96703de4be5ecab815"
+                             },
+                             {
+                                 "relative_path":  "L\\2024-01-02 - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "B\\f259-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.mp3",
+                                 "sha256":  "a7b3429e18657c47000d20c191e0f7e66c3dbb9a2f07aa56ea9324e26bd2a7fa"
+                             },
+                             {
+                                 "relative_path":  "B\\f260-fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.mp3",
+                                 "sha256":  "a7b3429e18657c47000d20c191e0f7e66c3dbb9a2f07aa56ea9324e26bd2a7fa"
+                             },
+                             {
+                                 "relative_path":  "Long\\ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\\2024-01-02 - Deep.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "Bad\\bad.\\2024-01-02 - Unsafe.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             },
+                             {
+                                 "relative_path":  "Bad\\bad \\2024-01-02 - Unsafe.mp3",
+                                 "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "seed.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E!pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E#pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E$pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E%pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E\u0026pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E\u0027pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E(pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E)pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E+pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E=pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E[pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - E]pisode.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2023-02-29 - Impossible.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - Café.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 - Café.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\Prefix [literal] O\u0027Brien\\2024-01-02 - Literal [x].mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\Prefix [literal] O\u0027Brien2\\2024-01-02 - Literal [x].mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "I\\2024-02-29 - Metadata.mp3",
+                                "sha256":  "5fe4a10318335d126cf1ad4a998514c5585f468248a21e96703de4be5ecab815"
+                            },
+                            {
+                                "relative_path":  "L\\2024-01-02 - xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "B\\f259-ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.mp3",
+                                "sha256":  "a7b3429e18657c47000d20c191e0f7e66c3dbb9a2f07aa56ea9324e26bd2a7fa"
+                            },
+                            {
+                                "relative_path":  "B\\f260-fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff.mp3",
+                                "sha256":  "a7b3429e18657c47000d20c191e0f7e66c3dbb9a2f07aa56ea9324e26bd2a7fa"
+                            },
+                            {
+                                "relative_path":  "Long\\ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd\\2024-01-02 - Deep.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "Bad\\bad.\\2024-01-02 - Unsafe.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            },
+                            {
+                                "relative_path":  "Bad\\bad \\2024-01-02 - Unsafe.mp3",
+                                "sha256":  "1602576c0abdc3d4d5f28844060d63a136abce776f367b835d2d59f8f26410c3"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "temp_parent_selection":  "shorter existing user/machine TEMP, read-only environment lookup",
+    "cases":  [
+                  {
+                      "name":  "real calendar dates fallback whole title and locale independence",
+                      "acceptance_case":  "A18",
+                      "status":  "pass",
+                      "calendar_rows":  7,
+                      "cultures":  [
+                                       "en-US",
+                                       "fi-FI",
+                                       "de-DE",
+                                       "ar-SA"
+                                   ]
+                  },
+                  {
+                      "name":  "NFC scalar whitelist whitespace punctuation and empty title",
+                      "acceptance_case":  "A19",
+                      "status":  "fail"
+                  }
+              ],
+    "native_fixture_cleanup":  true,
+    "cleanup_verified":  false,
+    "status":  "fail",
+    "error":  "Exception calling \"IsPathRooted\" with \"1\" argument(s): \"Illegal characters in path.\"",
+    "ffmpeg":  {
+                   "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                   "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+               },
+    "ffprobe":  {
+                    "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                    "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+                },
+    "cleanup_error":  "Access is denied",
+    "finished_utc":  "2026-10-11T00:31:43.4752460Z"
+}

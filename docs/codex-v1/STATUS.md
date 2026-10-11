@@ -1,93 +1,91 @@
 # Current project status
 
-State: **T06 complete — bounded discovery and output exclusion verified.**
-Last completed task: T06. Exact next task: T07.
+State: **T07 complete — deterministic date, Unicode and path allocation verified.**
+Last completed task: T07. Exact next task: T08.
 Required improvements: 1–15. Optional O01: deferred.
 
 ## Next suggested step
 
-**Start T07 in a new thread: make date and filename allocation deterministic.**
-Use NEXT_SESSION.md. A15, A16 and A17 passed on both required Windows shells.
+**Start T08 in a new thread: reserve unique run roots and logs exclusively.**
+Use NEXT_SESSION.md. A18–A21 pass on both required Windows shells.
 
 ## Environment and checkpoints
 
-- Windows 11 Pro build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
-- Checkout: `C:\projects\AudioFileForPhone-main`; branch `codex/v1-t06-safe-discovery`.
-  Fetch/push origin: `https://github.com/PikkuJanne/AudioFileForPhone.git`.
-- Owner merged T05 PR #5 at 23:50:14 UTC on 10 October 2026 into main
-  `f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f`. Local main was fast-forwarded
-  to that independently advertised ref before T06. No agent merge occurred.
-- Actual test base: `f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f`; equivalent tested
-  code checkpoint: `65bca07ab85bec00dd3f578d9ab38880e36e43e8`. Reports retain
-  working hashes; `evidence/T06-tested-payload.json` verifies committed equivalence
-  including only recorded CRLF/LF normalization. Code push matched fresh ls-remote.
-  Final evidence/handoff follows it; final HEAD is reported in the response.
-- Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/6.
-  **T06 feature synchronized; main integration pending owner review.**
-  T01–T05 are integrated into main.
-- Installed tools: `C:\ffmpeg\bin\ffmpeg.exe` and `ffprobe.exe`, build
-  `2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev`; hashes are in reports.
+- Windows 11 Pro26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
+- Checkout: `C:\projects\AudioFileForPhone-main`; branch `codex/v1-t07-naming-planner`.
+  Origin fetch/push: `https://github.com/PikkuJanne/AudioFileForPhone.git`.
+- Owner merged T06 PR #6 at 00:25:18 UTC on 11 October 2026 into main
+  `8599dfd9706d99119d4a38fb511968529e914246`. Local main was fast-forwarded
+  to that independently advertised ref before T07. No agent merge occurred.
+- Actual test base: `8599dfd9706d99119d4a38fb511968529e914246`; equivalent
+  reviewed code checkpoint: `e99f81ca3eb2c24102882e5723c52c236105450c`.
+  Reports retain actual base/working hashes. `evidence/T07-tested-payload.json`
+  verifies committed equivalence (only recorded Git CRLF/LF normalization).
+  Code push matched fresh ls-remote. Final evidence/handoff follows it; final
+  HEAD/live ref is reported in the response/PR without a self-referential commit.
+- Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/7.
+  **T07 feature synchronized; main integration pending owner review.**
+  T01–T06 are integrated into main. No GitHub CI checks are configured/claimed.
+- Installed `C:\ffmpeg\bin\ffmpeg.exe`/`ffprobe.exe`, build
+  `2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev`; report hashes retained.
 
 ## Verified behavior and evidence
 
-Discovery uses canonical separator-aware OrdinalIgnoreCase boundaries and a
-literal explicit walk. Complete sorted inputs precede destination probing,
-metadata prompts, run/log creation and conversion. Empty/access-failed scans
-create no run/log. Selected input/output reparse ancestry is rejected; descendant
-directory/file reparse points are skipped with console and successful-run log
-reasons. Planned output may be beneath input but cannot equal/contain it.
-Selecting any part of a recognized generated tree is rejected.
+Conversion consumes an all-or-nothing pure batch naming plan before tools, write
+probes, prompts or run creation. Leading dates use real invariant Gregorian parsing;
+invalid dates use LastWriteTime and retain the entire original basename as title
+input. Titles normalize to NFC before/after whitelist filtering. Unicode L/Nd
+scalars, whitespace, hyphen/underscore remain; noncomposing marks are removed.
+Truncation protects whole scalars, not arbitrary grapheme clusters. Empty title
+becomes Episode. MaxBaseLength 24–180 includes complete date/separator/title/suffix,
+excludes .mp3, and measures UTF-16 units. Every suffix recomputes from full title.
 
-New runs write a bounded self-matching CreateNew JSON marker. Legacy recognition
-requires exact valid timestamp/rate root names, matching initial log fields with
-absolute paths, and a direct mirrored input-leaf directory. Long logs use a
-bounded prefix; arbitrary prefix names and malformed/mismatched identity remain
-eligible. Reparse identity files are not followed. Read/access errors abort;
-identity grants exclusion only, never deletion/reclamation authority. Moved/copied
-runs retaining old absolute identity remain unrecognized. Existing planned roots
-are refused; exclusive concurrent reservation remains T08. Snapshots do not lock
-source paths against later external replacement.
+Source order is OrdinalIgnoreCase then Ordinal. Destinations collide under
+OrdinalIgnoreCase; canonical duplicate sources reject, case-only files are retained.
+Preserved folders are validated before canonicalization and never renamed.
+Complete destination/future working files must be <260 units, created directories
+<248, components <=255. Marker/log paths are budgeted too. T09 must honor the
+fixed `.AudioFileForPhone-<32 hex>.partial` working name. T07 creates no working
+file. Existing unexpected planned targets fail; FFmpeg `-n` also refuses overwrite.
 
-**A15–A17 pass.** Per shell: eight focused groups, deterministic 17-file/8-skip
-snapshot, real loop/outside junctions and file reparse, selected reparse/generated
-ancestry, legacy casing/malformed relative paths, owned ACL-denied subtree,
-two repeated short real-FFmpeg runs with 64 kbps/title/layout/full decode.
-File symlinks lack host privilege (Win32 1314); actual inert custom file reparse
-coverage passed and is reported separately. Final reports are PS51 `-final` and
-PS7 `-final2`. Retained FFmpeg suite/seven required companions, 35 preflight
-negatives/eight helpers and ten resolvers pass per shell with `-verified` labels.
-Final source/fixture hashes, exact ACL restoration and owned TEMP cleanup pass.
-Failed/intermediate reports remain separate; see `evidence/T06.md`.
+Current passing evidence: [T07.md](evidence/T07.md) and ten reports listed there/
+in `T07-tested-payload.json`. Per shell: 11 focused groups with 28 date/culture
+combinations, scalar/NFC/Hangul/counter cases, shuffled 12-source mappings, zero
+partial-plan emission, actual native dir 247/248/file 259/260, long/problematic
+folder rejection and 19 fully decoded real MP3 outputs (12 collisions and actual
+180-unit basename/path 253). Retained FFmpeg/seven required companions, discovery 8,
+preflight 35/eight helpers and resolver 10 pass. Final source/fixture hashes, exact
+ACL restoration and owned cleanup pass. Fixture paths were shortened to fit the
+production budgets; no limit was waived. Independent runtime/harness review has
+no remaining blocking finding.
 
-Functions-only helpers, shared bounded native/probe APIs, 64 kbps CBR default,
-formats, Music/OutputParent resolution, names/layout, metadata and BAT remain.
-Calendar/NFC/collision/path allocation remains T07; reservation, transactional
-output and aggregate/BAT outcomes remain T08–T11. No ordinary Music traversal,
-registry/policy/privilege changes, downloads, manual/phone/long-audio/cancellation,
-CI, release ZIP, tag or release occurred.
+## Preserved limitations
 
-## Canonical isolated commands
+The initial failed PS5.1 naming report has cleanup=false. Native entries were
+removed, but provider recursive cleanup failed; its short machine-TEMP root leaf
+was not recorded and the parent denies enumeration. An unknown possible synthetic
+residue remains unverified. No broad cleanup or ACL/settings change was attempted.
+Later reports record recoverable ownership identity and verify checked .NET cleanup.
+All earlier failed/intermediate reports are preserved and are not current passes.
 
-Both shells passed these with the installed tools; ordinary tests use TEMP only.
+No ordinary Music traversal, personal media, downloads/settings change, manual/
+phone/long-audio/cancellation or release evidence. No universal Android/MTP limit
+is claimed. T06 file-symlink privilege limitation remains distinct from performed
+file-reparse coverage. Configured-Music smoke remains deferred before setup until
+T08 adapts its historical pre-reserved-run ownership scheme; normal resolver mode
+is TEMP-only and current. Concurrency reservation is T08; transaction/cancellation/
+source-replacement policies remain later task gates. Project/release is incomplete.
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-Discovery.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-discovery-ps51-final.json
-pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-Discovery.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-discovery-ps7-final2.json
-powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-baseline-ps51-verified.json
-pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T06-baseline-ps7-verified.json
-```
+## Verified commands
 
-Use fresh T06 labels to rerun and preserve historical reports. Discovery uses
-CreateNew. Final preflight/resolver commands are in `evidence/T06.md`.
-Current optional `Test-OutputParent.ps1 -DefaultSmoke` stops before any setup:
-its pre-reserved Music run conflicts with production's no-reuse check. T08 must
-adapt that ownership scheme. Ordinary TEMP resolver mode is current; T03 smoke
-and T05 native reports describe their historical payloads. Frozen T02 substitution
-helpers are not canonical current harnesses.
+Exact current commands are in `evidence/T07.md` and TEST_STRATEGY.md. Rerun with
+fresh T07 labels; never overwrite historical reports. Tests run on the active
+Codex Windows machine, with existing installed tools and synthetic owned TEMP.
+Do not run the historical T02 resolver-substitution helpers against the new runtime.
 
-## Authority and completion boundary
+## Integration and release gates
 
-Normal in-scope edits/tests/commits/feature pushes/draft PR updates are authorized.
-Main integration and exact release/tag/publication retain their gates. T06 awaits
-owner integration. Project completion still requires remaining tasks, public
-download verification and final-main closure.
+Owner review is required for main integration. Feature pushes are not merge,
+visibility/protection/history or release authority. No tag/release was created.
+Release publication still requires the exact reviewed commit and assets under
+AUTHORITY.md/RELEASE_RUNBOOK.md. Refresh live refs before the next task.

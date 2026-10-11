@@ -1,81 +1,57 @@
-# Next session
+# Next session — T08
 
-## Next suggested step
+Suggested owner request: **T08 next please**.
+One coherent task: reserve unique run roots and logs exclusively.
 
-**T07 in a new thread: make date and filename allocation deterministic.**
-T06 is complete on `codex/v1-t06-safe-discovery`; A15–A17 pass on PS5.1/PS7.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/6 awaits owner integration.
-T05 PR #5 was owner-merged at 23:50:14 UTC on 10 October 2026 into main
-`f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f`. No agent merge or blanket main/release
-authority was inferred. Read AGENTS.md, INDEX.md, STATUS.md, TASKS.json,
-AUTHORITY.md, SYNC_PROTOCOL.md, tasks/T07.md and specs/FILENAMES.md. Refresh actual
-Git/GitHub and overrides. Reconcile a newer owner merge; otherwise branch
-separately from the latest T06 head and state its dependency. Preserve work.
+## Read first and reconcile
 
-Equivalent T06 code checkpoint: `65bca07ab85bec00dd3f578d9ab38880e36e43e8`.
-Final handoff follows it; inspect fresh HEAD/live refs. Reports retain actual base
-and working hashes; `evidence/T06-tested-payload.json` verifies equivalence with
-only Git CRLF/LF normalization. Functions-only helpers remain beside the PS1;
-current harness copies are byte-identical. Shared bounded native/probe APIs remain.
+Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
+AGENTS instructions. Inspect actual git status/branch, all origin fetch/push URLs,
+pushurl/overrides and live GitHub. Normal fetch and fresh advertised refs are
+required; stored done flags or tracking refs are not synchronization proof.
 
-Complete literal snapshots now precede destination probing/prompts/run creation.
-Separator-aware Windows boundaries, visible file/directory reparse skips and
-abort-on-access-error enforce T06 policy. Selected reparse/generated ancestry is
-rejected. Output may be inside input but cannot equal/contain it. Empty scans
-create no run/log. New CreateNew JSON markers and conservative exact legacy
-log/layout recognition exclude prior output while retaining prefix/malformed
-user content. Identity grants exclusion only; moved/copied runs with old absolute
-identity are unrecognized. Existing planned roots are refused; exclusive races
-remain T08. Snapshots do not lock against subsequent external source replacement.
+T07 code checkpoint: `e99f81ca3eb2c24102882e5723c52c236105450c`, branch
+`codex/v1-t07-naming-planner`, draft PR #7:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/7.
+Evidence follows in a docs-only checkpoint; inspect current live HEAD. T06 was
+owner-merged into main `8599dfd9706d99119d4a38fb511968529e914246`. T07 main
+integration remains owner-gated. Preserve local/remote work; no reset/clean/force.
+If PR #7 is owner-merged, fast-forward local main to its verified live ref and
+start the T08 branch from that merge. Do not infer agent merge authority.
 
-Per shell: eight groups (17 inputs/8 skips), real junction loops/outside targets,
-actual inert custom file reparse, selected ancestry, owned ACL denial/restoration,
-legacy casing/relative-path negatives, two repeated real 64 kbps runs with tags/
-layout/full decode. File symlink privilege is unavailable (Win32 1314); reports
-separate this from actual file-reparse coverage. Focused final reports: PS51
-`-final`, PS7 `-final2`. Final `-verified` retained suite/seven companions,
-35 preflight negatives/eight helpers and ten resolvers pass per shell. Source/
-fixture hashes and owned cleanup pass. Failed/intermediate reports remain separate.
+Read only tasks/T08.md and relevant specs/SAFETY.md next, then the current run/log
+code and tests. Use specs/FILENAMES.md/evidence/T07.md for dependent name budgets.
 
-Windows 11 build 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5. Use installed
-`C:\ffmpeg\bin\ffmpeg.exe`/`ffprobe.exe`; never download. Use STATUS/TEST_STRATEGY
-TEMP-only commands with fresh labels. No ordinary Music, settings changes,
-manual/phone/long-audio/cancellation/CI/release evidence. Current optional
-configured-Music smoke stops before setup until T08 adapts its pre-reserved-root
-ownership; ordinary resolver mode remains current. Do not bypass this limitation.
+## T08 bounded implementation
 
-T07 plans valid calendar dates/fallback, NFC, safe Unicode truncation, stable
-Windows collision allocation with ordinal tie-break and complete path budgets.
-Reject problematic source folder paths without mutation. Test permutations,
-mixed extension/case collisions, invalid leap dates, accents/surrogate pairs and
-suffix growth past (9). Keep T08 reservation, T09 transactional output, T10/T11
-aggregate/BAT results and later UX/release work out of this thread.
+- Reserve roots through proven exclusive ownership, readable timestamp plus
+  entropy/collision suffix. A GUID suggestion is not an exclusive reservation.
+- Create logs and marker with CreateNew semantics. Never reuse an existing run.
+  Record exact cleanup scope; preserve prior roots/logs/sentinels byte-for-byte.
+- Use a synchronization barrier for concurrent launches, not sleeps as race proof.
+  A22/A23 require distinct owned roots/logs and no preexisting overwrite.
+- Adapt second-resolution root assumptions in tests and the paused configured-
+  Music smoke. Keep that smoke narrow and owner-bounded; never enumerate ordinary
+  Music or clean by naming convention. Normal resolver tests remain TEMP-only.
+- Replan/validate the exact reserved root spelling using the T07 pure batch
+  planner. Its complete file/directory/future working budgets remain enforced;
+  added root entropy must fit. Preserve default 64 kbps, formats/layout/date-first
+  naming/metadata and script/BAT entry points. No downloads/new framework.
 
-## Copy-ready next-thread prompt
+## Tests and handoff
 
-```text
-Work in C:\projects\AudioFileForPhone-main for PikkuJanne/AudioFileForPhone.
-T07 only: make date and filename allocation deterministic. Read AGENTS.md and
-docs/codex-v1/INDEX.md, STATUS.md, NEXT_SESSION.md, TASKS.json, AUTHORITY.md,
-SYNC_PROTOCOL.md, tasks/T07.md and specs/FILENAMES.md. Inspect actual status,
-overrides, fetch/push URLs, fresh advertised branch/main refs and live GitHub.
-Fetch normally and preserve work. T05 is owner-merged into main
-f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f. T06 equivalent tested code checkpoint
-65bca07ab85bec00dd3f578d9ab38880e36e43e8 has A15-A17 passing on both shells;
-final handoff follows it and draft PR #6 awaits owner integration. Reconcile a
-newer owner merge; otherwise base T07 on latest T06 head and state dependency.
-Build one pure naming planner for valid dates/LastWriteTime fallback, NFC and
-Unicode budgeting. Preserve date-first names, safe character set, suffix style,
-metadata/defaults/formats/Music/OutputParent and BAT. Use stable Windows collision
-allocation with ordinal tie-break; test permuted inventories, mixed extensions/
-case, leap dates, accents/surrogates and suffixes past (9). Budget complete paths
-and reject problematic folders without source mutation. Retain T06 snapshot/
-exclusion/reparse/access policy and shared bounded native/probe functions.
-Use C:\ffmpeg\bin pair and owned TEMP tests; no ordinary Music, downloads,
-registry/policy/privilege changes, unrelated refactor or invented manual evidence.
-Configured-Music smoke remains deferred to T08 ownership adaptation. Normal
-tests/commits/feature pushes/draft PR updates are authorized; merge/release gates
-remain. Review intended diff, record exact hashes/results, update evidence/
-handoff, commit/push and compare HEAD with fresh ls-remote. Report feature sync
-and main integration separately. After T07 suggest T08 in a new thread.
-```
+Tests run on this active Windows 11 machine under PS5.1/PS7 with the installed
+C:\ffmpeg\bin pair, short synthetic fixtures and exclusively owned TEMP. Current
+passing command families/labels are in evidence/T07.md and TEST_STRATEGY.md;
+new harnesses/report guards need T08 labels while preserving all historical JSON.
+Run targeted reservation/sentinel/concurrency tests and affected retained suites.
+Final T07 reports use current hashes and verified cleanup; the initial failed
+naming attempt's possible unknown machine-TEMP synthetic residue is documented.
+Do not claim that attempt cleaned or attempt broad cleanup without exact ownership.
+
+Update evidence/T08.md, A22/A23 links, TASKS, STATUS, this handoff and decisions.
+Review intended diff/source safety, commit/push, independently compare local HEAD
+to fresh advertised branch and report main integration/CI/approval separately.
+Leave T09 as exactly the next coherent task. No release/tag/main merge authority
+is granted by this handoff; project completion still requires final publication,
+independent public download and main closure under the release runbook.
