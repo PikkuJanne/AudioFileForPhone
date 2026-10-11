@@ -28,8 +28,8 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T12|T13)-preview-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw "EvidencePath '$evidenceFullPath' must name fresh T12/T13-preview-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T12|T13|T14)-preview-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw "EvidencePath '$evidenceFullPath' must name fresh T12/T13/T14-preview-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -133,6 +133,7 @@ function Get-ValidatedCoverPath { param($Path,$FfmpegPath); Stop-T12Forbidden 'c
 function Test-OutputWritable { param($Path,[switch]$SkipWriteProbe); Stop-T12Forbidden 'destination write probe' }
 function New-AudioRunReservation { param($OutputParent,$InputFolder,$Files,$BitrateKbps,$MaxBaseLength,$Timestamp,$StartCounter,$MaximumAttempts); Stop-T12Forbidden 'run reservation' }
 function New-AudioRunLog { param($OutputRoot); Stop-T12Forbidden 'log creation' }
+function Write-AudioRunManifest { param($Manifest,$Checkpoint); Stop-T12Forbidden 'manifest write' }
 function Write-AudioOutputMarker { param($OutputRoot,$InputFolder,$BitrateKbps,$OwnershipToken); Stop-T12Forbidden 'marker creation' }
 function New-AudioCancellationContext { param([switch]$CaptureConsole); Stop-T12Forbidden 'console cancellation scope' }
 function New-AudioProgressParser { Stop-T12Forbidden 'progress parser compilation' }

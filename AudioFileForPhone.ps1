@@ -250,12 +250,15 @@ $ScriptPath = $MyInvocation.MyCommand.Path
 $ScriptDir  = Split-Path -Parent $ScriptPath
 
 $ErrorActionPreference = 'Stop'
+$runStartedUtc = [datetime]::UtcNow.ToString('o')
 $runWatch = [Diagnostics.Stopwatch]::StartNew()
 $run = $null; $logPath = $null; $outputBase = $null
 $total = 0; $ok = 0; $failed = 0; $scanExcluded = 0; $unsupported = 0
 $batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $null
 $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
+$manifest = $null; $manifestPath = $null; $activeRecordIndex = -1; $fileWatch = $null
+$media = $null; $transaction = $null; $diagnosticError = ''
 $script:AudioCancellationContext = $null
 $script:AudioProgressDisplayEnabled = $true
 
@@ -468,6 +471,44 @@ if ($Interactive) {
 # Console input belongs to this invocation only after interactive prompts finish.
 # Native calls share this context; redirected/unsupported hosts retain their own
 # interruption behavior and cannot promise a controlled exit code.
+function Write-Log {
+    param([string]$Message, [string]$Level = 'INFO')
+    $line = '[{0}] {1}' -f $Level, $Message
+    Write-Host $line
+    Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
+}
+
+function Save-AudioManifest {
+    param([string]$Checkpoint, [string]$Status = 'Running', [AllowNull()][object]$ExitCode)
+    Update-AudioRunManifest -Manifest $manifest -Status $Status -ExitCode $ExitCode `
+        -ElapsedSeconds $runWatch.Elapsed.TotalSeconds -DiagnosticError $diagnosticError
+    if ($manifest.Data.totals.converted -ne $ok -or $manifest.Data.totals.failed -ne $failed) {
+        throw 'Run manifest outcomes do not match the committed conversion counts.'
+    }
+    Write-AudioRunManifest -Manifest $manifest -Checkpoint $Checkpoint
+}
+
+function Write-FileNativeDiagnostics {
+    foreach ($entry in @(
+        @{ Stage = 'SourceProbe'; Result = if ($media) { $media.NativeResult } else { $null } },
+        @{ Stage = 'Encoder'; Result = if ($transaction) { $transaction.EncoderResult } else { $null } },
+        @{ Stage = 'OutputProbe'; Result = if ($transaction -and $transaction.ValidationResult) { $transaction.ValidationResult.ProbeResult } else { $null } },
+        @{ Stage = 'OutputDecode'; Result = if ($transaction -and $transaction.ValidationResult) { $transaction.ValidationResult.DecodeResult } else { $null } }
+    )) {
+        foreach ($line in @(Get-AudioNativeDiagnosticLines -Stage $entry.Stage -NativeResult $entry.Result)) { Write-Log $line 'DEBUG' }
+    }
+}
+
+function Set-ActiveAudioRecordCancelled {
+    if ($null -eq $manifest -or $activeRecordIndex -lt 0) { return }
+    $record = $manifest.Data.records[$activeRecordIndex]
+    if ($record.status -ne 'NotProcessed') { return }
+    if ($fileWatch) { $fileWatch.Stop() }
+    $elapsed = if ($fileWatch) { $fileWatch.Elapsed.TotalSeconds } else { 0 }
+    Set-AudioManifestRecord -Record $record -Status Cancelled -Code Cancelled -Reason 'User requested cancellation.' `
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $elapsed
+}
+
 $script:AudioCancellationContext = New-AudioCancellationContext -CaptureConsole
 $consoleCaptureNotice = $script:AudioCancellationContext.ConsoleCaptureError
 Assert-AudioNotCancelled
@@ -478,11 +519,16 @@ try {
     $outputRoot = $run.OutputRoot
     $plans = @($run.Plans)
     $logPath = $run.LogPath
+    $manifest = New-AudioRunManifest -Run $run -Snapshot $snapshot -InputFolder $InputFolder -ScriptPath $ScriptPath `
+        -ToolInfo $toolInfo -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength -CoverPath $CoverPath -Artist $Artist -Album $Album
+    $manifestPath = $manifest.Path
+    $manifest.Data.run.started_utc = $runStartedUtc
+    Save-AudioManifest -Checkpoint Initial
     Write-Host "[INFO] Output root      : $outputRoot"
 
     # --- Log file ---
     "==== AudioFileForPhone Log ====" | Add-Content -LiteralPath $logPath -ErrorAction Stop
-    "Start time    : $(Get-Date)"     | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Start time    : $runStartedUtc" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Input folder  : $InputFolder"    | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Output root   : $outputRoot"     | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Bitrate (kbps): $BitrateKbps"    | Add-Content -LiteralPath $logPath -ErrorAction Stop
@@ -494,20 +540,15 @@ try {
     "FFmpeg version: $($toolInfo.Ffmpeg.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe path  : $($toolInfo.Ffprobe.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe version: $($toolInfo.Ffprobe.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "App version   : $($manifest.Data.app_version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Entry SHA256  : $($manifest.Data.build.entry_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Helper SHA256 : $($manifest.Data.build.helper_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Manifest      : $manifestPath" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    ('Policies      : ' + ($manifest.Data.policies | ConvertTo-Json -Depth 4 -Compress)) | Add-Content -LiteralPath $logPath -ErrorAction Stop
     ""                              | Add-Content -LiteralPath $logPath -ErrorAction Stop
 }
 catch {
-    throw "Could not create output root or log '$outputRoot': $($_.Exception.Message)"
-}
-
-function Write-Log {
-    param(
-        [string]$Message,
-        [string]$Level = "INFO"
-    )
-    $line = "[{0}] {1}" -f $Level, $Message
-    Write-Host $line
-    Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
+    throw "Could not initialize output root, log or manifest '$outputRoot': $($_.Exception.Message)"
 }
 
 if ($script:AudioCancellationContext.ConsoleCaptureEnabled) {
@@ -563,6 +604,10 @@ foreach ($plan in $plans) {
     $currentOutcome = $null
     $file = $plan.SourceFile
     $index++
+    $activeRecordIndex = $index - 1
+    $fileWatch = [Diagnostics.Stopwatch]::StartNew()
+    $media = $null; $transaction = $null
+    $outPath = $plan.OutputPath
 
     Write-Host "------------------------------------------------------------"
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
@@ -685,10 +730,17 @@ foreach ($plan in $plans) {
     $currentOutcome = if ($fileStatus -eq 'Success') {
         "Validated output was published to '$outPath'"
     } else { "File '$($file.FullName)' failed ($fileStatus`: $fileReason)" }
+    $fileWatch.Stop()
+    $recordStatus = if ($fileStatus -eq 'Success') { 'Converted' } else { 'Failed' }
+    Set-AudioManifestRecord -Record $manifest.Data.records[$activeRecordIndex] -Status $recordStatus -Code $fileStatus -Reason $fileReason `
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $fileWatch.Elapsed.TotalSeconds
+    $activeRecordIndex = -1
+    Save-AudioManifest -Checkpoint FileBoundary
     $displayOutcome = if ($fileStatus -eq 'Success') { 'Converted; validated output published' } else { "Failed: $fileStatus" }
     $filePercent = if ($fileStatus -eq 'Success') { 100 } else { -1 }
     Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $displayOutcome -PercentComplete $filePercent -Completed
     Write-AudioBatchProgress -Detail $displayOutcome
+    Write-FileNativeDiagnostics
     if ($null -ne $transaction) {
         $conversion = $transaction.EncoderResult
         if ($null -ne $conversion -and $conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
@@ -700,7 +752,7 @@ foreach ($plan in $plans) {
     }
     else {
         Write-Warning "       [FAIL] $fileStatus`: $fileReason"
-        Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $fileStatus, $fileReason) 'FAIL'
+        Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $fileStatus, (Get-AudioBoundedText -Value $fileReason)) 'FAIL'
     }
     if ($null -ne $transaction -and $transaction.CleanupError) {
         Write-Warning "       [WARN] Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
@@ -715,12 +767,14 @@ $currentOutcome = $null
 $runStatus = if ($failed -gt 0) { 'CompletedWithFailures' } else { 'Completed' }
 Write-Log ("Summary: total={0}, converted={1}, failed={2}" -f $total, $ok, $failed)
 Write-Log ("Log file saved to: {0}" -f $logPath)
+Write-Log ("Manifest saved to: {0}" -f $manifestPath)
 Write-Log (Get-AudioResultSummary) 'RESULT'
 $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
 }
 }
 catch [OperationCanceledException] {
     $runStatus = 'Cancelled'; $batchExitCode = 130
+    Set-ActiveAudioRecordCancelled
     Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
     $cancelProcessNote = $null
     if ($null -ne $script:AudioCancellationContext -and $script:AudioCancellationContext.ActiveProcessId -ne 0) {
@@ -729,40 +783,105 @@ catch [OperationCanceledException] {
     }
     if ($logPath) {
         try {
+            if ($manifest) { Save-AudioManifest -Checkpoint Cancelled -Status Cancelled -ExitCode 130 }
+        }
+        catch {
+            $diagnosticError = $_.Exception.Message
+            Write-Warning "Cancellation manifest could not be written: $diagnosticError" -ErrorAction Continue
+        }
+        try {
+            Write-FileNativeDiagnostics
             Write-Log 'Controlled cancellation requested; completed outputs preserved.' 'CANCELLED'
             if ($cancelCleanupNote) { Write-Log $cancelCleanupNote 'WARN' }
             if ($cancelProcessNote) { Write-Log $cancelProcessNote 'WARN' }
             Write-Log (Get-AudioResultSummary) 'RESULT'
         }
-        catch { Write-Warning "Cancellation diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+        catch {
+            $diagnosticError = $_.Exception.Message
+            Write-Warning "Cancellation diagnostic could not be logged: $diagnosticError" -ErrorAction Continue
+        }
     }
 }
 catch {
     $rootCause = $_.Exception.Message
-    $runStatus = if (($ok + $failed) -eq 0) { 'FailedBeforeConversion' } else { 'Failed' }
-    $batchExitCode = 1
+    $diagnosticError = $rootCause
+    if ($null -ne $script:AudioCancellationContext -and (Test-AudioCancellation)) {
+        $runStatus = 'Cancelled'; $batchExitCode = 130
+        Set-ActiveAudioRecordCancelled
+    }
+    else {
+        $runStatus = if (($ok + $failed) -eq 0) { 'FailedBeforeConversion' } else { 'Failed' }
+        $batchExitCode = 1
+    }
     $fatal = if ($currentOutcome) {
         "$currentOutcome, but its diagnostics could not be recorded in '$logPath'. The run stopped: $rootCause"
     } else { "The run stopped: $rootCause" }
     Write-Error "[FATAL] $fatal" -ErrorAction Continue
     # Keep the primary error on the console even when the same log is unavailable.
     if ($logPath) {
-        try { Write-Log $fatal 'FATAL' }
+        try {
+            Write-FileNativeDiagnostics
+            if ($runStatus -eq 'Cancelled') { Write-Log 'Controlled cancellation requested; diagnostic failure did not change exit 130.' 'CANCELLED' }
+            Write-Log (Get-AudioBoundedText -Value $fatal) 'FATAL'
+            Write-Log (Get-AudioResultSummary) 'RESULT'
+        }
         catch { Write-Warning "Fatal diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
     }
 }
 finally {
     if ($null -ne $script:AudioCancellationContext) {
+        if (Test-AudioCancellation) {
+            $lateCancellation = $runStatus -ne 'Cancelled'
+            $runStatus = 'Cancelled'; $batchExitCode = 130
+            Set-ActiveAudioRecordCancelled
+            if ($lateCancellation -and $logPath) {
+                try { Write-Log 'Controlled cancellation requested at the final run boundary; completed outputs preserved.' 'CANCELLED' }
+                catch { $diagnosticError = $_.Exception.Message; Write-Warning "Cancellation diagnostic could not be logged: $diagnosticError" -ErrorAction Continue }
+            }
+        }
         $script:AudioCancellationContext.Dispose()
         $consoleError = $script:AudioCancellationContext.ConsoleCaptureError
         if ($consoleError -and $consoleError -cne $consoleCaptureNotice) {
             Write-Warning $consoleError -ErrorAction Continue
             if ($logPath) {
                 try { Write-Log $consoleError 'WARN' }
-                catch { Write-Warning "Console diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+                catch {
+                    $diagnosticError = $_.Exception.Message
+                    if ($runStatus -ne 'Cancelled') {
+                        $runStatus = if (($ok + $failed) -eq 0) { 'FailedBeforeConversion' } else { 'Failed' }
+                        $batchExitCode = 1
+                    }
+                    Write-Warning "Console diagnostic could not be logged: $diagnosticError" -ErrorAction Continue
+                }
             }
         }
         $script:AudioCancellationContext = $null
+    }
+    if ($manifest) {
+        try {
+            # Required final human records precede a Completed JSON snapshot.
+            # A final log failure therefore cannot leave a false full success.
+            Write-Log (Get-AudioResultSummary) 'RESULT'
+            Save-AudioManifest -Checkpoint Final -Status $runStatus -ExitCode $batchExitCode
+        }
+        catch {
+            $diagnosticError = $_.Exception.Message
+            if ($runStatus -ne 'Cancelled') {
+                $runStatus = if (($ok + $failed) -eq 0) { 'FailedBeforeConversion' } else { 'Failed' }
+                $batchExitCode = 1
+            }
+            Write-Error "[FATAL] $diagnosticError" -ErrorAction Continue
+            if ($logPath) {
+                try { Write-Log (Get-AudioBoundedText -Value $diagnosticError) 'FATAL'; Write-Log (Get-AudioResultSummary) 'RESULT' }
+                catch { Write-Warning "Final diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+            }
+            # One best-effort correction can persist the failed/cancelled outcome
+            # after a transient final write error. A last good Running snapshot
+            # remains visibly incomplete if required recording is unavailable.
+            try { Save-AudioManifest -Checkpoint Final -Status $runStatus -ExitCode $batchExitCode }
+            catch { Write-Warning "Final manifest correction could not be written: $($_.Exception.Message)" -ErrorAction Continue }
+        }
+        finally { Close-AudioRunManifest -Manifest $manifest }
     }
     if (-not $DryRun) {
         Write-AudioProgress -Id 1 -ParentId 0 -Activity 'Current file' -Status $runStatus -PercentComplete -1 -Completed
@@ -788,6 +907,8 @@ finally {
     Write-Host "  Converted    : $ok"
     Write-Host "  Failed       : $failed"
     Write-Host "  Log file     : $actualLog"
+    $actualManifest = if ($manifestPath) { $manifestPath } elseif ($DryRun) { '(not created during preview)' } else { '(not available)' }
+    Write-Host "  Manifest     : $actualManifest"
     Write-Host "  Exit code    : $batchExitCode"
     Write-Host "============================================================"
 }

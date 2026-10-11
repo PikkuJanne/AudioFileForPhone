@@ -142,6 +142,15 @@ write failure explicitly reports the actual published path or file failure and
 stops with a fatal logging error; it cannot reclassify a published output as an
 encoder failure or increment the same file twice.
 
+T14 also requires a local JSON manifest. Initial creation uses a CreateNew owned
+partial and a non-overwriting move; updates replace only the retained owned
+manifest identity after ancestry/identity checks. Staging failures remove only
+the exact proved owned partial. An occupied or replaced manifest is preserved and
+reported as a fatal record failure. The brief path-check-to-replace interval after
+releasing the guard has the same hostile concurrent-writer limitation as audio
+publication. No marker or manifest authorizes next-run reclamation. Required
+record failure preserves published outputs/counts; cancellation keeps code 130.
+
 On failure, remove only the exact current working file after matching its identity.
 A changed/reparse path, cleanup error or unproved child exit leaves a visible
 .partial and diagnostic. Existing partials, destinations and completed outputs

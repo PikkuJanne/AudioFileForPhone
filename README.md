@@ -129,10 +129,12 @@ usual behavior before the script can report a result.
 - Interrupted runs can leave clearly incomplete `.AudioFileForPhone-<token>.partial` files. Later runs do not automatically reclaim them.
 
 **Logging**  
-- Each run produces one log file in the AudioForPhone_* root:  
-  - AudioFileForPhone_log.txt 
+- Each conversion run creates local records in the reserved AudioForPhone_* root:
+  - AudioFileForPhone_log.txt, a human-readable diagnostic log.
+  - AudioFileForPhone_manifest.json, a structured input-to-output record.
 - Logged details include:
   - Absolute FFmpeg/ffprobe paths and versions checked at startup.
+  - The development app identity and SHA-256 hashes of the entry/helper scripts.
   - Start time, input folder, output root, bitrate, and max base length.  
   - Selected metadata options (cover/artist/album) when used.
   - Cover diagnostics warnings when a cover is used.
@@ -142,10 +144,34 @@ usual behavior before the script can report a result.
     - Original base name and chosen sanitized base name.  
     - Final output path.  
     - Encoding, validation and publication outcomes, including exit codes and exceptions.
+    - Bounded native stderr and per-stage timing for source probing, encoding,
+      output probing and full audio decode. Native stdout/progress is not dumped.
   - End-of-run summary:
     - Total files processed.  
     - Converted count.  
     - Failed count.  
+
+The JSON manifest contains one row for each supported input in the completed
+discovery snapshot, with exact source/output paths, status, failure reason,
+available source/output/decode durations, byte lengths and elapsed time. Unicode,
+quotes, commas, newlines and formula-like text remain JSON string data. Unknown
+durations are null. Scan exclusions and unsupported files are reported separately;
+excluded directory contents are not enumerated or counted as conversions.
+
+Manifest row statuses are Converted, Failed, Cancelled and NotProcessed. These
+four counts add up to the supported snapshot total. The existing console
+`not_processed` includes both cancelled and unstarted inputs; the manifest's
+`not_processed` counts only unstarted rows, with `not_completed` for their sum.
+Records are written at setup, after each file outcome and at finalization. A
+record write failure stops the run with code 1 while preserving actual published
+outputs and counts; cancellation keeps code 130 and reports record failures.
+The last successfully written manifest may be incomplete after a write failure
+or forced shutdown. Preflight errors before reservation have console diagnostics
+and no run records. `-DryRun` creates neither record.
+
+These records stay on your machine. Before sharing an excerpt in a public issue,
+redact full paths, filenames, names, metadata and private content. The app performs
+no automatic uploads.
 
 **Batch wrapper (included)**  
 - AudioFileForPhone.bat (drag-and-drop launcher):
@@ -161,7 +187,7 @@ usual behavior before the script can report a result.
 - `0` / `Previewed`: `-DryRun` planned the supported files without converting them.
 - `0` / `Completed`: every supported file in the input snapshot converted successfully.
 - `2` / `CompletedWithFailures`: the batch finished with one or more file failures. Independent valid files continue; sources and completed outputs are preserved.
-- `1` / `FailedBeforeConversion` or `Failed`: preflight, no supported files, run setup or a fatal error stopped the run. A log failure is fatal and reports the actual file outcome, including an output already published.
+- `1` / `FailedBeforeConversion` or `Failed`: preflight, no supported files, run setup or a fatal error stopped the run. A required log or manifest failure is fatal and reports the actual file outcome, including an output already published.
 - The final summary includes total supported files, processed files, converted files, failures, files not processed, scan exclusions, unsupported files, elapsed seconds and actual output/log locations. Scan exclusions count skipped entries, including entire excluded directories; unsupported files are counted only in visited directories. Neither is a conversion failure.
 - `130` / `Cancelled`: Ctrl+C during conversion in a supported Windows console stops this run's current child, waits for its exit and closes its handles before removing the exact owned partial. Completed outputs remain available; the interrupted file stays in `not_processed`. Cancellation is recorded in the local log when it is writable, and the BAT forwards the code after its pause.
 - Ctrl+C capture starts after optional metadata prompts and restores the prior console mode when the run ends. Redirected input, other hosts, interruption during preflight/prompts and Ctrl+Break may use host-defined shutdown behavior. The log reports when controlled console cancellation is unavailable. Progress display errors produce a warning and conversion continues.

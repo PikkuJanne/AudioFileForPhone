@@ -27,13 +27,13 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T13-progress-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw "EvidencePath '$evidenceFullPath' must name fresh T13-progress-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T13|T14)-progress-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw "EvidencePath '$evidenceFullPath' must name fresh T13/T14-progress-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T13'; mode = 'bounded_machine_progress_and_hour_plus_real_smoke'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'bounded_machine_progress_and_hour_plus_real_smoke'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR

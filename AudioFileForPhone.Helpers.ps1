@@ -1374,6 +1374,224 @@ function New-AudioRunLog {
     return $logPath
 }
 
+function Get-AudioBoundedText {
+    param([AllowNull()][object]$Value, [ValidateRange(0, 65536)][int]$MaximumChars = 2048)
+    $text = [string]$Value
+    if ($text.Length -le $MaximumChars) { return $text }
+    $suffix = ' [truncated; see local native diagnostics]'
+    if ($MaximumChars -lt $suffix.Length) { return $text.Substring(0, $MaximumChars) }
+    return $text.Substring(0, $MaximumChars - $suffix.Length) + $suffix
+}
+
+function Get-AudioNativeDiagnosticLines {
+    param([string]$Stage, [AllowNull()][object]$NativeResult, [ValidateRange(0, 65536)][int]$MaxStderrChars = 16384)
+    if ($null -eq $NativeResult) { return }
+    $stderr = [string]$NativeResult.Stderr
+    $retained = [math]::Min($stderr.Length, $MaxStderrChars)
+    $truncated = [bool]$NativeResult.StderrTruncated -or $retained -lt $stderr.Length
+    $summary = [ordered]@{
+        stage = $Stage; status = $NativeResult.Status; exit_code = $NativeResult.ExitCode
+        process_released = $NativeResult.ProcessReleased; elapsed_ms = $NativeResult.DurationMilliseconds
+        stdout_total_chars = $NativeResult.StdoutTotalChars; stdout_truncated = $NativeResult.StdoutTruncated
+        stderr_total_chars = $NativeResult.StderrTotalChars; stderr_retained_chars = $retained; stderr_truncated = $truncated
+        error = (Get-AudioBoundedText -Value $NativeResult.Error)
+    }
+    '[NATIVE] ' + ($summary | ConvertTo-Json -Compress)
+    if ($retained -gt 0) { '[NATIVE_STDERR] ' + $Stage + "`n" + $stderr.Substring(0, $retained) }
+}
+
+function New-AudioRunManifest {
+    param([object]$Run, [object]$Snapshot, [string]$InputFolder, [string]$ScriptPath,
+          [object]$ToolInfo, [int]$BitrateKbps, [int]$MaxBaseLength,
+          [AllowNull()][string]$CoverPath, [AllowNull()][string]$Artist, [AllowNull()][string]$Album)
+    $path = Join-Path $Run.OutputRoot 'AudioFileForPhone_manifest.json'
+    Assert-AudioPathBudget -Path $path -Kind File
+    $records = @($Run.Plans | ForEach-Object {
+        $plan = $_; $inputBytes = $null; $measurementError = ''
+        try {
+            Assert-AudioNoReparseAncestor -Path $plan.SourcePath
+            $source = Get-Item -LiteralPath $plan.SourcePath -Force -ErrorAction Stop
+            if ($source.PSIsContainer) { throw 'Source is no longer a regular file.' }
+            $inputBytes = [long]$source.Length
+        }
+        catch { $measurementError = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512 }
+        [pscustomobject]@{
+            source_relative_path = [string]$plan.SourceRelativePath; output_relative_path = [string]$plan.OutputRelativePath
+            status = 'NotProcessed'; code = 'NotProcessed'; reason = 'Not started'
+            input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
+            input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
+            source_title = $null; measurement_error = $measurementError
+        }
+    })
+    $data = [pscustomobject][ordered]@{
+        schema_version = 1; kind = 'AudioFileForPhone.RunManifest'; app_version = 'development'
+        build = [ordered]@{
+            entry_sha256 = (Get-FileHash -LiteralPath $ScriptPath -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
+            helper_sha256 = (Get-FileHash -LiteralPath (Join-Path ([IO.Path]::GetDirectoryName($ScriptPath)) 'AudioFileForPhone.Helpers.ps1') -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
+        }
+        tools = [ordered]@{
+            ffmpeg = [ordered]@{ path = $ToolInfo.Ffmpeg.Path; version = $ToolInfo.Ffmpeg.Version }
+            ffprobe = [ordered]@{ path = $ToolInfo.Ffprobe.Path; version = $ToolInfo.Ffprobe.Version }
+        }
+        policies = [ordered]@{
+            bitrate_kbps = $BitrateKbps; max_base_length = $MaxBaseLength
+            supported_extensions = @('.mp3', '.m4a', '.ogg'); recursive_relative_layout = $true
+            source_duration_policy = 'finite positive selected audio duration required'
+            output_duration_tolerance_seconds = 0.35; full_output_decode_required = $true
+            overwrite_policy = 'publish validated output without overwriting an occupied final path'
+            metadata = [ordered]@{ artist = $Artist; album = $Album; cover_path = $CoverPath; title_policy = 'preserve existing title; otherwise use planned base name' }
+        }
+        run = [pscustomobject]@{
+            input_root = $InputFolder; output_root = $Run.OutputRoot; status = 'Running'; exit_code = $null
+            elapsed_seconds = [double]0; started_utc = [datetime]::UtcNow.ToString('o'); updated_utc = [datetime]::UtcNow.ToString('o')
+            diagnostic_error = ''
+        }
+        checkpoint = 'Initial'; revision = 0; totals = $null
+        scan_exclusions = @($Snapshot.Skipped | ForEach-Object { [pscustomobject]@{ path = $_.Path; reason = $_.Reason } })
+        records = $records
+    }
+    return [pscustomobject]@{
+        Path = $path; OutputRoot = $Run.OutputRoot; Data = $data
+        Guard = $null; Identity = $null; UnsupportedCount = [int]$Snapshot.UnsupportedCount
+    }
+}
+
+function Set-AudioManifestRecord {
+    param([object]$Record, [string]$Status, [string]$Code, [AllowNull()][string]$Reason,
+          [string]$SourcePath, [string]$OutputPath, [AllowNull()][object]$Media,
+          [AllowNull()][object]$Transaction, [double]$ElapsedSeconds)
+    # Commit the outcome before optional measurements, which cannot reclassify
+    # an already published output. Missing measurements are explicit nulls.
+    $Record.status = $Status; $Record.code = $Code
+    $Record.reason = Get-AudioBoundedText -Value $Reason
+    $Record.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
+    $Record.measurement_error = ''; $Record.input_bytes = $null
+    try {
+        Assert-AudioNoReparseAncestor -Path $SourcePath
+        $source = Get-Item -LiteralPath $SourcePath -Force -ErrorAction Stop
+        if ($source.PSIsContainer) { throw 'Source is no longer a regular file.' }
+        $Record.input_bytes = [long]$source.Length
+    }
+    catch { $Record.measurement_error = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512 }
+    if ($null -ne $Media) {
+        try { $Record.input_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Media.DurationSeconds } catch { }
+        if ($Media.TitleStatus -eq 'Present') { $Record.source_title = [string]$Media.Title }
+    }
+    $Record.output_bytes = [long]0; $Record.output_duration_seconds = $null; $Record.decoded_duration_seconds = $null
+    if ($Status -eq 'Converted') {
+        $Record.output_bytes = $null
+        try {
+            Assert-AudioNoReparseAncestor -Path $OutputPath
+            $output = Get-Item -LiteralPath $OutputPath -Force -ErrorAction Stop
+            if ($output.PSIsContainer) { throw 'Published output is no longer a regular file.' }
+            $Record.output_bytes = [long]$output.Length
+            $Record.output_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DurationSeconds
+            $Record.decoded_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DecodedDurationSeconds
+        }
+        catch {
+            $Record.measurement_error = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512
+            throw "Published output '$OutputPath' could not be measured for the run manifest: $($_.Exception.Message)"
+        }
+        if ($null -eq $Record.input_bytes) { throw "Published output '$OutputPath' has an unavailable source-byte measurement: $($Record.measurement_error)" }
+    }
+}
+
+function Update-AudioRunManifest {
+    param([object]$Manifest, [string]$Status, [AllowNull()][object]$ExitCode, [double]$ElapsedSeconds,
+          [AllowNull()][string]$DiagnosticError)
+    $data = $Manifest.Data
+    $data.run.status = $Status; $data.run.exit_code = $ExitCode
+    $data.run.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
+    $data.run.updated_utc = [datetime]::UtcNow.ToString('o')
+    $data.run.diagnostic_error = Get-AudioBoundedText -Value $DiagnosticError
+    $converted = 0; $failed = 0; $cancelled = 0; $pending = 0
+    $inputBytes = [long]0; $outputBytes = [long]0; $inputUnknown = 0; $outputUnknown = 0
+    $inputDuration = [double]0; $outputDuration = [double]0; $durationUnknown = 0
+    foreach ($record in $data.records) {
+        switch ($record.status) {
+            'Converted' { $converted++ }
+            'Failed' { $failed++ }
+            'Cancelled' { $cancelled++ }
+            'NotProcessed' { $pending++ }
+            default { throw "Unknown manifest outcome '$($record.status)'." }
+        }
+        if ($null -ne $record.input_bytes) { $inputBytes += [long]$record.input_bytes } else { $inputUnknown++ }
+        if ($null -ne $record.output_bytes) { $outputBytes += [long]$record.output_bytes } else { $outputUnknown++ }
+        if ($null -ne $record.input_duration_seconds) { $inputDuration += [double]$record.input_duration_seconds } else { $durationUnknown++ }
+        if ($null -ne $record.output_duration_seconds) { $outputDuration += [double]$record.output_duration_seconds }
+        if ($Status -ne 'Running' -and $record.status -eq 'NotProcessed') { $record.reason = "Run ended with $Status before this candidate was processed." }
+    }
+    $data.totals = [ordered]@{
+        supported = @($data.records).Count; processed = $converted + $failed; converted = $converted; failed = $failed
+        cancelled = $cancelled; not_processed = $pending; not_completed = $cancelled + $pending
+        scan_excluded = @($data.scan_exclusions).Count; unsupported = $Manifest.UnsupportedCount
+        input_bytes = $inputBytes; output_bytes = $outputBytes
+        input_bytes_unknown_count = $inputUnknown; output_bytes_unknown_count = $outputUnknown
+        input_duration_seconds = $inputDuration; output_duration_seconds = $outputDuration
+        input_duration_unknown_count = $durationUnknown
+    }
+}
+
+function Write-AudioRunManifest {
+    param([object]$Manifest, [ValidateSet('Initial', 'FileBoundary', 'Cancelled', 'Final')][string]$Checkpoint)
+    $working = $null; $workingGuard = $null; $workingIdentity = $null; $published = $false
+    try {
+        Assert-AudioNoReparseAncestor -Path $Manifest.OutputRoot
+        Assert-AudioNoReparseAncestor -Path $Manifest.Path
+        if (-not (Test-AudioPathWithin -Path $Manifest.Path -Parent $Manifest.OutputRoot)) { throw 'Manifest is outside its owned run.' }
+        Assert-AudioPathBudget -Path $Manifest.Path -Kind File
+        $working = Join-Path $Manifest.OutputRoot ('.AudioFileForPhone-' + [guid]::NewGuid().ToString('N') + '.partial')
+        Assert-AudioPathBudget -Path $working -Kind File
+        $workingGuard = New-Object IO.FileStream($working, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::Read)
+        $workingIdentity = Get-AudioWorkingFileIdentity -Stream $workingGuard
+        $Manifest.Data.checkpoint = $Checkpoint; $Manifest.Data.revision++
+        $text = $Manifest.Data | ConvertTo-Json -Depth 10 -Compress
+        $bytes = (New-Object Text.UTF8Encoding($false)).GetBytes($text + "`n")
+        $workingGuard.Write($bytes, 0, $bytes.Length); $workingGuard.Flush($true)
+        if ($null -ne $Manifest.Identity) {
+            # A prior promotion may have succeeded before guard acquisition
+            # failed. Reacquire only that recorded live identity for a truthful
+            # failed/cancelled final snapshot, never trust a parsed JSON marker.
+            if ($null -eq $Manifest.Guard) {
+                $Manifest.Guard = New-Object IO.FileStream($Manifest.Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+            }
+            if ((Get-AudioWorkingFileIdentity -Stream $Manifest.Guard) -cne $Manifest.Identity) { throw 'Manifest ownership guard changed.' }
+            $Manifest.Guard.Dispose(); $Manifest.Guard = $null
+        }
+        $workingGuard.Dispose(); $workingGuard = $null
+        Assert-AudioNoReparseAncestor -Path $working
+        Assert-AudioNoReparseAncestor -Path $Manifest.Path
+        if ((Get-AudioWorkingFileIdentity -Path $working) -cne $workingIdentity) { throw 'Manifest working-file identity changed; preserving that path.' }
+        if ($null -eq $Manifest.Identity) { [IO.File]::Move($working, $Manifest.Path) }
+        else {
+            if ((Get-AudioWorkingFileIdentity -Path $Manifest.Path) -cne $Manifest.Identity) { throw 'Published manifest identity changed; refusing to replace it.' }
+            # Replace only the manifest created by this live invocation, never an
+            # arbitrary occupied path. The complete sibling snapshot is atomic.
+            [IO.File]::Replace($working, $Manifest.Path, [NullString]::Value)
+        }
+        $published = $true
+        $Manifest.Identity = $workingIdentity
+        $Manifest.Guard = New-Object IO.FileStream($Manifest.Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+        if ((Get-AudioWorkingFileIdentity -Stream $Manifest.Guard) -cne $Manifest.Identity) { throw 'Manifest identity changed after publication.' }
+    }
+    catch { throw "Required run manifest '$($Manifest.Path)' could not be written ($Checkpoint): $($_.Exception.Message)" }
+    finally {
+        if ($null -ne $workingGuard) { $workingGuard.Dispose() }
+        if ($working -and -not $published -and $workingIdentity) {
+            try {
+                Assert-AudioNoReparseAncestor -Path $working
+                if ([IO.File]::Exists($working) -and (Get-AudioWorkingFileIdentity -Path $working) -ceq $workingIdentity) { [IO.File]::Delete($working) }
+            }
+            catch { Write-Warning "Manifest working path retained '$working': $($_.Exception.Message)" -ErrorAction Continue }
+        }
+    }
+}
+
+function Close-AudioRunManifest {
+    param([AllowNull()][object]$Manifest)
+    if ($null -ne $Manifest -and $null -ne $Manifest.Guard) { $Manifest.Guard.Dispose(); $Manifest.Guard = $null }
+}
+
 function New-AudioRunReservation {
     param([string]$OutputParent, [string]$InputFolder,
           [Parameter(Mandatory = $true)][AllowEmptyCollection()][object[]]$Files,
@@ -1642,6 +1860,8 @@ function Get-AudioBatchNamePlan {
     Assert-AudioPathBudget -Path $outputBase -Kind Directory
     Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, '.AudioFileForPhone-output.json')) -Kind File
     Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, 'AudioFileForPhone_log.txt')) -Kind File
+    Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, 'AudioFileForPhone_manifest.json')) -Kind File
+    Assert-AudioPathBudget -Path ([IO.Path]::Combine($rootPath, '.AudioFileForPhone-' + ('0' * 32) + '.partial')) -Kind File
 
     $sources = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
     foreach ($file in $Files) {
