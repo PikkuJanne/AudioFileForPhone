@@ -243,13 +243,51 @@ try {
     Assert-True ($report.tested_commit -cmatch '^[a-f0-9]{40}$') 'Actual test checkout commit must be a full SHA.'
     foreach ($name in $required + $buildFiles) { [IO.File]::Copy((Join-Path $projectRoot $name), (Join-Path $fixtureRoot $name), $false) }
     $report.fixture_before = Get-Inventory $fixtureRoot ($required + $buildFiles)
-    Invoke-Case 'fixture contains exact copied application and build bytes' 'A47,A48' {
+    Invoke-Case 'fixture preserves exact copied source bytes before owned README LF setup' 'A47,A48' {
         param($case)
         foreach ($entry in $report.fixture_before) {
             $source = @($report.source_before | Where-Object { $_.relative_path -ceq $entry.relative_path })
             Assert-True ($source.Count -eq 1 -and $source[0].sha256 -ceq $entry.sha256 -and $source[0].bytes -eq $entry.bytes) 'Fixture copy must preserve exact source bytes.'
         }
-        $case['files'] = $report.fixture_before
+        $case['copied_files'] = $report.fixture_before
+        $ownedReadmePath = Join-Path $fixtureRoot 'README.md'
+        $sourceReadmePath = Join-Path $projectRoot 'README.md'
+        $readmeBefore = @(Get-Inventory $fixtureRoot @('README.md'))[0]
+        $readmeBytes = [IO.File]::ReadAllBytes($ownedReadmePath)
+        $lfReadmeBytes = New-Object 'Collections.Generic.List[byte]'
+        $removedCrCount = 0; $loneCrBefore = 0
+        for ($readmeByteIndex = 0; $readmeByteIndex -lt $readmeBytes.Length; $readmeByteIndex++) {
+            if ($readmeBytes[$readmeByteIndex] -eq 13) {
+                if ($readmeByteIndex + 1 -lt $readmeBytes.Length -and $readmeBytes[$readmeByteIndex + 1] -eq 10) {
+                    $removedCrCount++
+                    continue
+                }
+                $loneCrBefore++
+            }
+            $lfReadmeBytes.Add($readmeBytes[$readmeByteIndex])
+        }
+        [IO.File]::WriteAllBytes($ownedReadmePath, $lfReadmeBytes.ToArray())
+        $readmeAfter = @(Get-Inventory $fixtureRoot @('README.md'))[0]
+        $writtenReadmeBytes = [IO.File]::ReadAllBytes($ownedReadmePath)
+        $bomBefore = $readmeBytes.Length -ge 3 -and $readmeBytes[0] -eq 239 -and $readmeBytes[1] -eq 187 -and $readmeBytes[2] -eq 191
+        $bomAfter = $writtenReadmeBytes.Length -ge 3 -and $writtenReadmeBytes[0] -eq 239 -and $writtenReadmeBytes[1] -eq 187 -and $writtenReadmeBytes[2] -eq 191
+        $loneCrAfter = 0
+        for ($readmeByteIndex = 0; $readmeByteIndex -lt $writtenReadmeBytes.Length; $readmeByteIndex++) {
+            if ($writtenReadmeBytes[$readmeByteIndex] -eq 13 -and ($readmeByteIndex + 1 -ge $writtenReadmeBytes.Length -or $writtenReadmeBytes[$readmeByteIndex + 1] -ne 10)) { $loneCrAfter++ }
+        }
+        $case['readme_normalization'] = [ordered]@{
+            relative_path = 'README.md'
+            policy = 'Owned README fixture only: remove CR byte only immediately before LF; preserve all other bytes, including UTF-8 BOM, existing LF and lone CR.'
+            before = $readmeBefore; after = $readmeAfter; crlf_pairs_removed = $removedCrCount
+            utf8_bom_before = $bomBefore; utf8_bom_after = $bomAfter; bom_preserved = ($bomBefore -eq $bomAfter)
+            lone_cr_before = $loneCrBefore; lone_cr_after = $loneCrAfter; lone_cr_preserved = ($loneCrBefore -eq $loneCrAfter)
+            source_readme_sha256 = Get-Hash $sourceReadmePath
+            source_readme_unchanged = ((Get-Hash $sourceReadmePath) -ceq $readmeBefore.sha256)
+        }
+        Assert-True ($readmeAfter.bytes -eq $readmeBefore.bytes - $removedCrCount -and [BitConverter]::ToString($writtenReadmeBytes) -ceq [BitConverter]::ToString($lfReadmeBytes.ToArray())) 'Owned README setup must write only the specified byte transformation.'
+        Assert-True ($case.readme_normalization.bom_preserved -and $case.readme_normalization.lone_cr_preserved) 'Owned README setup must preserve BOM and lone CR bytes.'
+        Assert-True $case.readme_normalization.source_readme_unchanged 'Owned README setup must leave production README bytes unchanged.'
+        $report.fixture_before = Get-Inventory $fixtureRoot ($required + $buildFiles)
     }
     [Environment]::SetEnvironmentVariable('GIT_AUTHOR_DATE', '2000-01-01T00:00:00Z', 'Process')
     [Environment]::SetEnvironmentVariable('GIT_COMMITTER_DATE', '2000-01-01T00:00:00Z', 'Process')
@@ -297,6 +335,7 @@ try {
                 }
             }
         })
+        Assert-True ($case.lf_fixture_members -ccontains 'README.md') 'CRLF archive regression must contain the deliberately prepared LF README fixture.'
         try {
             Invoke-FixtureGit @('config', 'core.autocrlf', 'true') | Out-Null
             Invoke-FixtureGit @('config', 'core.eol', 'crlf') | Out-Null
