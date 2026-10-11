@@ -148,6 +148,16 @@ Main integration, release writes and repository settings authority are unchanged
 
 ## Release gate
 
+T19 authorization: on 11 October 2026 the owner requested "T19 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T18 PR #18 merge at 13:35:59 UTC into main
+`948d27c264a825e49e0ec3b6cc6b5c54542a70b0`, final feature
+`0172cc3583dc2379ba04340a8c0c37217e53a9a3`. Clean local main was fast-forwarded;
+T19 uses `codex/v1-t19-package` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Package construction is local validation, with no tag or release authorization.
+Main integration, release writes and repository settings gates are unchanged.
+
 T18 authorization: on 11 October 2026 the owner requested "T18 next please".
 Fresh fetch, independently advertised refs and live GitHub verify the owner's
 T17 PR #17 merge at 12:46:33 UTC into main

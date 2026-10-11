@@ -89,7 +89,7 @@ function Invoke-CiHarness {
         $child.task -cne 'T17' -or $child.tested_commit -cne $report.tested_commit -or $child.shell -cne $report.shell) {
         throw "$Family requires exit zero, pass status and unchanged source bytes."
     }
-    if (($RealMedia -or $Family -ceq 'ci-dependencyguards') -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
+    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
     if ($Family -ceq 'baseline') {
         if ($child.mode -cne 'real_ffmpeg_baseline' -or $child.legacy.exit_code -ne 0 -or $child.legacy.status -cne 'pass' -or
             $child.characterization.status -cne 'pass' -or $child.isolation.verified -ne $true -or $child.isolation.copied_bytes_unchanged -ne $true) {
@@ -193,8 +193,8 @@ try {
     $report.dependencies_rechecked_against_lock = $true
     $allPaths = @(& git -C $projectRoot ls-files --cached --others --exclude-standard)
     if ($LASTEXITCODE -ne 0) { throw 'Cannot enumerate reviewed repository sources.' }
-    $sourcePaths = @($allPaths | Where-Object { $_ -match '\.(ps1|psd1)$' -and ($_ -notmatch '/' -or $_ -match '^(tests/|\.github/scripts/|docs/codex-v1/tools/)') } | Sort-Object -Unique)
-    $sourcePaths += @('.github/workflows/windows-ci.yml', '.github/dependencies.json')
+    $sourcePaths = @($allPaths | Where-Object { $_ -match '\.(ps1|psd1)$' -and ($_ -notmatch '/' -or $_ -match '^(tests/|tools/|\.github/scripts/|docs/codex-v1/tools/)') } | Sort-Object -Unique)
+    $sourcePaths += @('.github/workflows/windows-ci.yml', '.github/dependencies.json', 'tools/package-files.json')
     $sourcePaths = @($sourcePaths | Sort-Object -Unique)
     $report.source_before = Get-CiSourceInventory $sourcePaths
     foreach ($relative in @($sourcePaths | Where-Object { $_ -match '\.(ps1|psd1)$' })) {
@@ -210,7 +210,7 @@ try {
         throw 'Exact pinned analyzer module/version must be loaded from the verified extraction.'
     }
     $report.analysis.analyzer_version = $analyzer[0].Version.ToString()
-    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$' })
+    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -228,6 +228,8 @@ try {
     $report.analysis.status = 'pass'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiContracts.ps1' -Family 'unit'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiDependencies.ps1' -Family 'ci-dependencyguards'
+    # Package tests inspect the verified external tool identity; they do not convert media.
+    Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Invoke-IsolatedBaseline.ps1' -Family 'baseline' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-HelpVersion.ps1' -Family 'help' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.

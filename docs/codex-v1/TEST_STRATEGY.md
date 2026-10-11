@@ -615,3 +615,29 @@ groups plus three baseline observations per shell. T18 additionally runs all
 cancellation and persistence faults, with the actual version and script hashes.
 See evidence/T18.md for exact commands and selected results. Source/fixture
 fingerprints and cleanup are required; ordinary personal Music stays unused.
+
+## T19 package policy and M4 boundary
+
+`Test-Package.ps1` uses a fresh marked synthetic local Git repository containing
+exact application/build copies and inert exclusion fixtures. It tests the actual
+builder against clean detached commits, required omissions, allowlist expansion,
+archive attributes, dirty/ignored/untracked source, unsafe paths, reparse points,
+existing output, helper-derived version and tool/test provenance. It independently
+checks all ZIP member bytes, manifest fields, actual script signing status and the
+two checksum lines. Repeated builds compare actual artifact bytes within each
+shell; cross-shell reproducibility requires its own comparison.
+
+The harness runs external pinned tool identity/capability queries without media
+conversion or Music lookup. Owned native children must complete and release.
+Cleanup validates the exact TEMP root, recorded marker SHA/token and entire tree;
+only read-only files under that fixture's synthetic `.git` can have their attribute
+cleared before removal. Sources and fixture payloads must remain byte-identical.
+Fresh reports are `T19-package-ps51/ps7-attempt/finalN.json`; routine CI retains its
+`T17-package-<edition>-<label>.json` namespace with the actual tested commit.
+
+At the M4 boundary, retain the original isolated real-FFmpeg baseline and all
+regression families, with exact new invocations/evidence rather than inferred
+results. Packaging mechanics and an exploratory exact-commit build do not freeze
+release C or establish exact-ZIP runtime, physical Windows, phone or publication
+acceptance. Those remain assigned to T20–T27. See evidence/T19.md for actual
+selected outcomes, preliminary failures and reproduction commands.

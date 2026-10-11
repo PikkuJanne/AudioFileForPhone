@@ -69,6 +69,15 @@ Git and artifacts. Failed checks remain failed even when evidence upload succeed
 
 ## Release gate
 
+T19 adds the repository package builder and package-policy harness to the existing
+syntax/analyzer gate and runs the harness sequentially with the existing checks.
+It uses a marked synthetic Git repository and the already verified external
+tools' identity/capability queries, with no conversion or ordinary Music access.
+Its test packages stay outside Git and CI uploads only its current-run JSON.
+Workflow/action pins, permissions, dependency lock/provisioning and release rights
+are unchanged. The local developer builder has no downloader or release-writing
+operation; supplied test attestations are not independent acceptance or approval.
+
 CI has no release-writing capability. The existing `RELEASE_RUNBOOK.md` requires
 prepublication automated, Windows and phone acceptance, reviewed integrated commit
 C, validated exact ZIP/manifest bytes and recorded owner approval before tag/draft.
