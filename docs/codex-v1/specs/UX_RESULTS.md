@@ -12,19 +12,42 @@ be returned before optional metadata prompts. Exactly one dropped folder is the
 BAT contract; reject zero/multiple arguments clearly, not silent first-only use.
 The wrapper remains STA-capable and preserves its child exit result across pause.
 
-## Outcome contract to finalize in T02/T10
+## Outcome contract selected in T10
 
-Suggested bounded codes: 0=all requested conversions succeeded; 1=preflight/no
-supported files/fatal problem; 2=completed batch with one or more per-file failures;
-130=controlled user cancellation where the host permits capture. These are a proposed
-project contract, not claims about current behavior. Record any alternative and
-update tests/help/BAT consistently. PowerShell parameter-binding failures and
+Selected bounded codes: 0=all supported snapshot files succeeded; 1=preflight/no
+supported files/fatal problem; 2=completed batch with one or more per-file failures.
+130 is reserved for controlled user cancellation in T11 and handled by the BAT;
+T10 does not claim cancellation capture. PowerShell parameter-binding failures and
 forced OS termination may have host-defined codes; the minimum invariant is no
 failure being presented as success. Report forced-close limitations honestly.
 
 Continue independent files after ordinary conversion failure. Fatal preflight or
 inaccessible scan prevents conversions. Scan exclusions, unsupported extensions,
 conversion failures and cancellation are separate outcomes in the summary.
+
+T10 result names: Completed (0), CompletedWithFailures (2),
+FailedBeforeConversion (1, no file outcome recorded) and Failed (1, at least one
+file outcome recorded). Processed equals converted plus failed; not_processed
+equals supported snapshot total minus processed. Count only after the file's
+probe/transaction boundary finishes; success requires T09 publication. Commit
+the count before diagnostics so a log failure cannot reclassify or double-count
+the file. A diagnostic write failure stops the run with code 1 and console root
+cause/mapping. Progress display failure warns and continues.
+
+Scan exclusions count skipped entries, including excluded directory subtrees;
+unsupported files count only ordinary files in visited directories. These counts
+are separate from supported files and conversion failures. The final console
+summary includes elapsed seconds, counts, actual reserved output/log locations
+and exit code even after a caught fatal error. Normal logs retain the legacy
+Summary totals plus the explicit RESULT status/counts line. Structured persistent
+manifests and detailed native diagnostics remain T14/T13 work.
+
+BAT disables delayed expansion, accepts exactly one nonempty argument, keeps STA,
+captures child errorlevel on the immediately following line outside a parenthesized
+launch block, and returns it after pause. Messages distinguish completion, file
+failures, fatal error, reserved cancellation and unknown nonzero results. Caller
+expansion (for example raw %NAME%, delayed !NAME!, or an extra CALL pass) cannot
+be undone by the wrapper; tests must identify how literal paths reach cmd.exe.
 
 ## Preview
 

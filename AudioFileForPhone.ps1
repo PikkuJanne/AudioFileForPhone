@@ -159,6 +159,14 @@ NOTES
         - A single log file is created per run in the AudioForPhone_* root.
         - All important operations and failures are logged, including
           cover diagnostics warnings when a cover is used.
+    - Results:
+        - Exit 0: all supported snapshot files converted successfully.
+        - Exit 2: batch completed with one or more per-file failures; other
+          independent files continue. Exit 1: preflight, empty scan or fatal error.
+        - Summary distinguishes processed, converted, failed, not processed,
+          scan exclusions and unsupported files, with elapsed time and locations.
+        - Parameter-binding failures and forced host termination can use host
+          codes. Controlled cancellation (130) is deferred to T11.
 
 LIMITATIONS
     - Input extensions limited to .mp3, .m4a, and .ogg:
@@ -229,6 +237,28 @@ param(
 $ScriptPath = $MyInvocation.MyCommand.Path
 $ScriptDir  = Split-Path -Parent $ScriptPath
 
+$ErrorActionPreference = 'Stop'
+$runWatch = [Diagnostics.Stopwatch]::StartNew()
+$run = $null; $logPath = $null; $outputBase = $null
+$total = 0; $ok = 0; $failed = 0; $scanExcluded = 0; $unsupported = 0
+$batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $null
+
+function Write-AudioProgress {
+    param([string]$Status, [int]$PercentComplete, [switch]$Completed)
+    try {
+        Write-Progress -Activity ("Converting audio to {0}kbps MP3" -f $BitrateKbps) `
+            -Status $Status -PercentComplete $PercentComplete -Completed:$Completed -ErrorAction Stop
+    }
+    catch { Write-Warning "Progress display failed: $($_.Exception.Message)" -ErrorAction Continue }
+}
+
+function Get-AudioResultSummary {
+    $elapsed = $runWatch.Elapsed.TotalSeconds.ToString('F3', [Globalization.CultureInfo]::InvariantCulture)
+    return ('status={0}; total={1}; processed={2}; converted={3}; failed={4}; not_processed={5}; scan_excluded={6}; unsupported={7}; elapsed_seconds={8}' -f `
+        $runStatus, $total, ($ok + $failed), $ok, $failed, ($total - $ok - $failed), $scanExcluded, $unsupported, $elapsed)
+}
+
+try {
 Write-Host "==== AudioFileForPhone ===="
 Write-Host "[INFO] Script path : $ScriptPath"
 Write-Host "[INFO] Script dir  : $ScriptDir"
@@ -252,6 +282,9 @@ try {
     $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
     $files = @($snapshot.Files)
+    $total = $files.Count
+    $scanExcluded = @($snapshot.Skipped).Count
+    $unsupported = $snapshot.UnsupportedCount
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
@@ -263,8 +296,7 @@ try {
     Test-OutputWritable -Path $outputParentPath
 }
 catch {
-    Write-Error "[FATAL] Preflight failed: $($_.Exception.Message)" -ErrorAction Continue
-    exit 1
+    throw "Preflight failed: $($_.Exception.Message)"
 }
 
 function Read-YesNo {
@@ -331,8 +363,7 @@ if ($Interactive) {
             if ($picked) {
                 try { $CoverPath = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg }
                 catch {
-                    Write-Error "[FATAL] $($_.Exception.Message)" -ErrorAction Continue
-                    exit 1
+                    throw "Selected cover failed validation: $($_.Exception.Message)"
                 }
                 Write-Host "[INFO] Cover selected: $CoverPath"
 
@@ -400,8 +431,7 @@ try {
     ""                              | Add-Content -LiteralPath $logPath -ErrorAction Stop
 }
 catch {
-    Write-Error "[FATAL] Could not create output root or log '$outputRoot': $($_.Exception.Message)" -ErrorAction Continue
-    exit 1
+    throw "Could not create output root or log '$outputRoot': $($_.Exception.Message)"
 }
 
 function Write-Log {
@@ -441,8 +471,7 @@ Write-Log ("Output base      : {0}" -f $outputBase)
 
 try { [IO.Directory]::CreateDirectory($outputBase) | Out-Null }
 catch {
-    Write-Error "[FATAL] Could not create output base '$outputBase': $($_.Exception.Message)" -ErrorAction Continue
-    exit 1
+    throw "Could not create output base '$outputBase': $($_.Exception.Message)"
 }
 
 Write-Host ""
@@ -457,6 +486,7 @@ $failed = 0
 $total  = $files.Count
 
 foreach ($plan in $plans) {
+    $currentOutcome = $null
     $file = $plan.SourceFile
     $index++
     $percent = [int](($index / $total) * 100)
@@ -465,9 +495,7 @@ foreach ($plan in $plans) {
     Write-Host "------------------------------------------------------------"
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
-    Write-Progress -Activity ("Converting audio to {0}kbps MP3" -f $BitrateKbps) `
-                   -Status $status `
-                   -PercentComplete $percent
+    Write-AudioProgress -Status $status -PercentComplete $percent
 
     $outDir = $plan.OutputDirectory
     $outPath = $plan.OutputPath
@@ -480,18 +508,19 @@ foreach ($plan in $plans) {
     Write-Log  ("Output file   : {0}" -f $outPath) "DEBUG"
 
     # A failed probe is a file failure, distinct from a valid missing title.
+    $transaction = $null
+    $fileStatus = 'ProbeFailed'; $fileReason = ''
+    try {
     Write-Host "       [DEBUG] Running ffprobe..."
     $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
     if ($media.Status -ne 'Success') {
-        $failed++
-        Write-Log ("FAIL : '{0}' (probe {1}: {2})" -f $file.FullName, $media.Status, $media.Error) "FAIL"
-        continue
+        throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
+    $fileStatus = 'InvalidSourceDuration'
     if ($media.DurationStatus -ne 'Valid') {
-        $failed++
-        Write-Log ("FAIL : '{0}' (source duration {1}; a finite positive source duration is required before conversion.)" -f $file.FullName, $media.DurationStatus) 'FAIL'
-        continue
+        throw "Source duration $($media.DurationStatus); a finite positive source duration is required before conversion."
     }
+    $fileStatus = 'Exception'
     $hasTitle = $media.TitleStatus -eq 'Present'
     $metadataSource = $media.MetadataSource
     if ($hasTitle) {
@@ -551,55 +580,80 @@ foreach ($plan in $plans) {
     Write-Host "       [DEBUG] ffmpeg encoding arguments (working path added by transaction):"
     Write-Host "              $ffmpeg " + ($ffArgs -join " ")
 
-    $transaction = $null
-    $resultCounted = $false
-    try {
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs
-        if ($transaction.Status -eq 'Success') { $ok++ } else { $failed++ }
-        $resultCounted = $true
-        $conversion = $transaction.EncoderResult
-        if ($conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
-        if ($conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
-        if ($transaction.Status -eq 'Success') {
-            Write-Host "       [OK]   Converted successfully."
-            Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
-        }
-        else {
-            Write-Warning "       [FAIL] $($transaction.Status): $($transaction.Error)"
-            Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $transaction.Status, $transaction.Error) 'FAIL'
-        }
-        if ($transaction.CleanupError) {
-            Write-Warning "       [WARN] Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
-            Write-Log ("Working path retained: '{0}'; {1}" -f $transaction.WorkingPath, $transaction.CleanupError) 'WARN'
-        }
+        $fileStatus = $transaction.Status
+        $fileReason = $transaction.Error
     }
-    catch {
-        if ($resultCounted) {
-            $outcome = if ($transaction.Status -eq 'Success') { "Validated output was published to '$outPath'" } else { "File '$($file.FullName)' failed ($($transaction.Status): $($transaction.Error))" }
-            Write-Error "[FATAL] $outcome, but its diagnostics could not be recorded in '$logPath'. The run stopped: $($_.Exception.Message)" -ErrorAction Continue
-            exit 1
-        }
-        $failed++
-        Write-Warning "       [FAIL] Error converting file: $_"
-        Write-Log ("FAIL : '{0}' (exception: {1})" -f $file.FullName, $_) "FAIL"
+    catch { $fileReason = $_.Exception.Message }
+
+    # Commit the actual file outcome before optional diagnostics. A published
+    # file stays successful even if its log write fails; the run then exits 1.
+    if ($fileStatus -eq 'Success') { $ok++ } else { $failed++ }
+    $currentOutcome = if ($fileStatus -eq 'Success') {
+        "Validated output was published to '$outPath'"
+    } else { "File '$($file.FullName)' failed ($fileStatus`: $fileReason)" }
+    if ($null -ne $transaction) {
+        $conversion = $transaction.EncoderResult
+        if ($null -ne $conversion -and $conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
+        if ($null -ne $conversion -and $conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
+    }
+    if ($fileStatus -eq 'Success') {
+        Write-Host "       [OK]   Converted successfully."
+        Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
+    }
+    else {
+        Write-Warning "       [FAIL] $fileStatus`: $fileReason"
+        Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $fileStatus, $fileReason) 'FAIL'
+    }
+    if ($null -ne $transaction -and $transaction.CleanupError) {
+        Write-Warning "       [WARN] Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
+        Write-Log ("Working path retained: '{0}'; {1}" -f $transaction.WorkingPath, $transaction.CleanupError) 'WARN'
     }
 
     Write-Host ""
 }
 
-Write-Progress -Activity "Converting MP3s" -Completed
-
-Write-Host "============================================================"
-Write-Host "==== Summary ===="
-Write-Host "  Input folder : $InputFolder"
-Write-Host "  Output base  : $outputBase"
-Write-Host "  Total files  : $total"
-Write-Host "  Converted    : $ok"
-Write-Host "  Failed       : $failed"
-Write-Host "  Log file     : $logPath"
-Write-Host "============================================================"
-
+$currentOutcome = $null
+$runStatus = if ($failed -gt 0) { 'CompletedWithFailures' } else { 'Completed' }
 Write-Log ("Summary: total={0}, converted={1}, failed={2}" -f $total, $ok, $failed)
 Write-Log ("Log file saved to: {0}" -f $logPath)
+Write-Log (Get-AudioResultSummary) 'RESULT'
+$batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
+}
+catch {
+    $rootCause = $_.Exception.Message
+    $runStatus = if (($ok + $failed) -eq 0) { 'FailedBeforeConversion' } else { 'Failed' }
+    $batchExitCode = 1
+    $fatal = if ($currentOutcome) {
+        "$currentOutcome, but its diagnostics could not be recorded in '$logPath'. The run stopped: $rootCause"
+    } else { "The run stopped: $rootCause" }
+    Write-Error "[FATAL] $fatal" -ErrorAction Continue
+    # Keep the primary error on the console even when the same log is unavailable.
+    if ($logPath) {
+        try { Write-Log $fatal 'FATAL' }
+        catch { Write-Warning "Fatal diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+    }
+}
+finally {
+    Write-AudioProgress -Status 'Finished' -PercentComplete 100 -Completed
+    $runWatch.Stop()
+    Write-Host "============================================================"
+    Write-Host "==== Summary ===="
+    Write-Host ("[RESULT] " + (Get-AudioResultSummary))
+    Write-Host "  Input folder : $InputFolder"
+    # A setup failure can leave the exact reserved scope named in its error
+    # before the reservation object returns. Do not imply that nothing exists.
+    $actualOutput = if ($run) { $run.OutputRoot } else { '(not available; see error for any reserved scope)' }
+    $actualLog = if ($logPath) { $logPath } else { '(not available)' }
+    Write-Host "  Output root  : $actualOutput"
+    Write-Host "  Output base  : $outputBase"
+    Write-Host "  Total files  : $total"
+    Write-Host "  Converted    : $ok"
+    Write-Host "  Failed       : $failed"
+    Write-Host "  Log file     : $actualLog"
+    Write-Host "  Exit code    : $batchExitCode"
+    Write-Host "============================================================"
+}
+exit $batchExitCode

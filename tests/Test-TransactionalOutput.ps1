@@ -30,13 +30,13 @@ $sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'Audi
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T09-transaction-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T09-transaction-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T09|T10)-transaction-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T09/T10-transaction-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T09'; mode = 'transactional_output_real_and_faults'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'transactional_output_real_and_faults'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
