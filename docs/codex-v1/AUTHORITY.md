@@ -109,6 +109,15 @@ T13 uses `codex/v1-t13-progress` from that verified merge. Normal task edits,
 isolated tests, commits, feature push and a relevant draft PR remain authorized.
 Main integration and release authority are unchanged.
 
+T14 authorization: on 11 October 2026 the owner requested "T14 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T13 PR #13 merge at 10:20:45 UTC into main
+`1af19a7d4f0d898a1fadc0914c81b99490affd80`, with final feature
+`b9d1652258ba31c20d832de505b7fe8828db3410`. Clean local main was fast-forwarded;
+T14 uses `codex/v1-t14-diagnostics` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Main integration and release authority are unchanged.
+
 ## Release gate
 
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".

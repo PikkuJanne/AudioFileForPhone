@@ -30,8 +30,8 @@ $sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'Audi
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T09|T10|T11|T13)-transaction-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T09/T10/T11/T13-transaction-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T09|T10|T11|T13|T14)-transaction-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T09/T10/T11/T13/T14-transaction-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'

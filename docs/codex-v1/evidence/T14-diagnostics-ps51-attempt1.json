@@ -1,0 +1,505 @@
+{
+    "schema_version":  1,
+    "task":  "T14",
+    "mode":  "persistent_local_diagnostics_json_manifest_and_record_faults",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T14-diagnostics-ps51-attempt1.json",
+    "started_utc":  "2026-10-11T10:33:31.2462590Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "1af19a7d4f0d898a1fadc0914c81b99490affd80",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "2bd5e6eb7f2422b13ad43c840bfd975fbe2a3d35e33f83c60c172ed43c3b2744"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "93827fbacfc076f0e2f0f41ad405ba0cc8bed24a5a1ea71ba790754af5f7286f"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Diagnostics.ps1",
+                              "sha256":  "258aec1c15e57e38fd4856849e5d8fd56d5713846172b2ef6a304b242b444cca"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "2bd5e6eb7f2422b13ad43c840bfd975fbe2a3d35e33f83c60c172ed43c3b2744"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "93827fbacfc076f0e2f0f41ad405ba0cc8bed24a5a1ea71ba790754af5f7286f"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Diagnostics.ps1",
+                             "sha256":  "258aec1c15e57e38fd4856849e5d8fd56d5713846172b2ef6a304b242b444cca"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Child.cs",
+                                 "sha256":  "064ffa0f019409e13c30f023eeb37c6304cc59fb7ef98d7bb68b8140438cc839"
+                             },
+                             {
+                                 "relative_path":  "Child.exe",
+                                 "sha256":  "63263f9ec8a96e1a6782b3585f7eb3cba880b97b87e9520fe5d93577566978ab"
+                             },
+                             {
+                                 "relative_path":  "seed.mp3",
+                                 "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                             },
+                             {
+                                 "relative_path":  "seed.m4a",
+                                 "sha256":  "20211c8cad87cf52cf3b6dce88539505d01d3b17a399e13c8f1430ce5e684d3d"
+                             },
+                             {
+                                 "relative_path":  "seed.ogg",
+                                 "sha256":  "f064d43adf17612f074e460bc2b3a740c25d8fb9e0a586014ad672e7031235aa"
+                             },
+                             {
+                                 "relative_path":  "slow.m4a",
+                                 "sha256":  "1c07bcf2deda71ae19fb01249989b3339750d3432074e6a65baa0a0c9a5da3f8"
+                             },
+                             {
+                                 "relative_path":  "I-roundtrip\\2024-01-01 Item0, é中 =SUM(1,2).mp3",
+                                 "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                             },
+                             {
+                                 "relative_path":  "O-roundtrip\\Synthetic existing sibling.mp3",
+                                 "sha256":  "30cdb8f0bdb387246f57ae0ba2ced4df66ea5c8768a780bc711e1455112cb903"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\2024-01-01 Item0, é中 =SUM(1,2).mp3",
+                                 "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\2024-01-02 Item1, é中 =SUM(1,2).m4a",
+                                 "sha256":  "20211c8cad87cf52cf3b6dce88539505d01d3b17a399e13c8f1430ce5e684d3d"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\2024-01-03 Item2, é中 =SUM(1,2).ogg",
+                                 "sha256":  "f064d43adf17612f074e460bc2b3a740c25d8fb9e0a586014ad672e7031235aa"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\2024-01-04 Bad.mp3",
+                                 "sha256":  "faaddf4e129bfb8e83c47156f406e284133d68eef34302ca068a0de587f2177c"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\notes.txt",
+                                 "sha256":  "da145a090de70eb22128e705f7ed5aa4ea5eb8396d95ff058e2291dc65a00759"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\.AudioFileForPhone-orphan.partial",
+                                 "sha256":  "da145a090de70eb22128e705f7ed5aa4ea5eb8396d95ff058e2291dc65a00759"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\Prior\\.AudioFileForPhone-output.json",
+                                 "sha256":  "3f0cd2d7ce8439ffb7f9a6588e225b73f76890339c7d212152b7d01c4becfce2"
+                             },
+                             {
+                                 "relative_path":  "I-mixed\\Prior\\excluded.mp3",
+                                 "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                             },
+                             {
+                                 "relative_path":  "O-mixed\\Synthetic existing sibling.mp3",
+                                 "sha256":  "30cdb8f0bdb387246f57ae0ba2ced4df66ea5c8768a780bc711e1455112cb903"
+                             },
+                             {
+                                 "relative_path":  "A-mixed\\AudioFileForPhone.ps1",
+                                 "sha256":  "2bd5e6eb7f2422b13ad43c840bfd975fbe2a3d35e33f83c60c172ed43c3b2744"
+                             },
+                             {
+                                 "relative_path":  "A-mixed\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "ba7a597446f144ead8b9ee74efa526e1e9d6dec880fa75f83dab54fb5bee9409"
+                             },
+                             {
+                                 "relative_path":  "mixed-driver.ps1",
+                                 "sha256":  "3e08c9f809df1f89278b5583bb8235ccd2d9ab8bd5b9302a7aec48e35ee600fb"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Child.cs",
+                                "sha256":  "064ffa0f019409e13c30f023eeb37c6304cc59fb7ef98d7bb68b8140438cc839"
+                            },
+                            {
+                                "relative_path":  "Child.exe",
+                                "sha256":  "63263f9ec8a96e1a6782b3585f7eb3cba880b97b87e9520fe5d93577566978ab"
+                            },
+                            {
+                                "relative_path":  "seed.mp3",
+                                "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                            },
+                            {
+                                "relative_path":  "seed.m4a",
+                                "sha256":  "20211c8cad87cf52cf3b6dce88539505d01d3b17a399e13c8f1430ce5e684d3d"
+                            },
+                            {
+                                "relative_path":  "seed.ogg",
+                                "sha256":  "f064d43adf17612f074e460bc2b3a740c25d8fb9e0a586014ad672e7031235aa"
+                            },
+                            {
+                                "relative_path":  "slow.m4a",
+                                "sha256":  "1c07bcf2deda71ae19fb01249989b3339750d3432074e6a65baa0a0c9a5da3f8"
+                            },
+                            {
+                                "relative_path":  "I-roundtrip\\2024-01-01 Item0, é中 =SUM(1,2).mp3",
+                                "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                            },
+                            {
+                                "relative_path":  "O-roundtrip\\Synthetic existing sibling.mp3",
+                                "sha256":  "30cdb8f0bdb387246f57ae0ba2ced4df66ea5c8768a780bc711e1455112cb903"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\2024-01-01 Item0, é中 =SUM(1,2).mp3",
+                                "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\2024-01-02 Item1, é中 =SUM(1,2).m4a",
+                                "sha256":  "20211c8cad87cf52cf3b6dce88539505d01d3b17a399e13c8f1430ce5e684d3d"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\2024-01-03 Item2, é中 =SUM(1,2).ogg",
+                                "sha256":  "f064d43adf17612f074e460bc2b3a740c25d8fb9e0a586014ad672e7031235aa"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\2024-01-04 Bad.mp3",
+                                "sha256":  "faaddf4e129bfb8e83c47156f406e284133d68eef34302ca068a0de587f2177c"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\notes.txt",
+                                "sha256":  "da145a090de70eb22128e705f7ed5aa4ea5eb8396d95ff058e2291dc65a00759"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\.AudioFileForPhone-orphan.partial",
+                                "sha256":  "da145a090de70eb22128e705f7ed5aa4ea5eb8396d95ff058e2291dc65a00759"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\Prior\\.AudioFileForPhone-output.json",
+                                "sha256":  "3f0cd2d7ce8439ffb7f9a6588e225b73f76890339c7d212152b7d01c4becfce2"
+                            },
+                            {
+                                "relative_path":  "I-mixed\\Prior\\excluded.mp3",
+                                "sha256":  "52fa05e45b4413abdc7d2614f6ab05ed4f51d3add8171bd8ef11fd5c7a2d7790"
+                            },
+                            {
+                                "relative_path":  "O-mixed\\Synthetic existing sibling.mp3",
+                                "sha256":  "30cdb8f0bdb387246f57ae0ba2ced4df66ea5c8768a780bc711e1455112cb903"
+                            },
+                            {
+                                "relative_path":  "A-mixed\\AudioFileForPhone.ps1",
+                                "sha256":  "2bd5e6eb7f2422b13ad43c840bfd975fbe2a3d35e33f83c60c172ed43c3b2744"
+                            },
+                            {
+                                "relative_path":  "A-mixed\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "ba7a597446f144ead8b9ee74efa526e1e9d6dec880fa75f83dab54fb5bee9409"
+                            },
+                            {
+                                "relative_path":  "mixed-driver.ps1",
+                                "sha256":  "3e08c9f809df1f89278b5583bb8235ccd2d9ab8bd5b9302a7aec48e35ee600fb"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T14D-294c0f7c",
+    "owner_marker_sha256":  "dc3bb5a4187275189b81cc0fd1144a33446528fbdef53a9176517baf277353a5",
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  false,
+    "ordinary_music_access":  false,
+    "physical_manual_evidence":  false,
+    "native_runs":  [
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-version"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  314
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                            "arguments":  [
+                                              "-version"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  48
+                        },
+                        {
+                            "executable":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                            "arguments":  [
+                                              "/nologo",
+                                              "/noconfig",
+                                              "/nostdlib+",
+                                              "/target:exe",
+                                              "/main:T14Support.Child",
+                                              "/out:\u003cOWNED_TEMP\u003e\\Child.exe",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorlib.dll",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.dll",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.Core.dll",
+                                              "\u003cOWNED_TEMP\u003e\\Child.cs"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  104
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-f",
+                                              "lavfi",
+                                              "-i",
+                                              "sine=frequency=733:sample_rate=22050",
+                                              "-t",
+                                              "0.25",
+                                              "-c:a",
+                                              "libmp3lame",
+                                              "-b:a",
+                                              "64k",
+                                              "-metadata",
+                                              "title==SUM(1,2), \"quoted\" é中\r\nline two\nline three",
+                                              "\u003cOWNED_TEMP\u003e\\seed.mp3"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  52
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-f",
+                                              "lavfi",
+                                              "-i",
+                                              "sine=frequency=733:sample_rate=22050",
+                                              "-t",
+                                              "0.25",
+                                              "-c:a",
+                                              "aac",
+                                              "-b:a",
+                                              "64k",
+                                              "-metadata",
+                                              "title==SUM(1,2), \"quoted\" é中\r\nline two\nline three",
+                                              "\u003cOWNED_TEMP\u003e\\seed.m4a"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  63
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-f",
+                                              "lavfi",
+                                              "-i",
+                                              "sine=frequency=733:sample_rate=22050",
+                                              "-t",
+                                              "0.25",
+                                              "-c:a",
+                                              "libvorbis",
+                                              "-b:a",
+                                              "64k",
+                                              "-metadata",
+                                              "title==SUM(1,2), \"quoted\" é中\r\nline two\nline three",
+                                              "\u003cOWNED_TEMP\u003e\\seed.ogg"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  71
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-f",
+                                              "lavfi",
+                                              "-i",
+                                              "sine=frequency=733:sample_rate=22050",
+                                              "-t",
+                                              "5",
+                                              "-c:a",
+                                              "aac",
+                                              "-b:a",
+                                              "64k",
+                                              "-metadata",
+                                              "title==SUM(1,2), \"quoted\" é中\r\nline two\nline three",
+                                              "\u003cOWNED_TEMP\u003e\\slow.m4a"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  122
+                        }
+                    ],
+    "cases":  [
+                  {
+                      "name":  "JSON exact structured strings survive initial boundary and final atomic snapshots",
+                      "acceptance_case":  "A36",
+                      "status":  "pass",
+                      "newline_fixture_kind":  "actual source metadata and synthetic structured reason; no newline Windows filename",
+                      "exact_unicode_codepoints":  [
+                                                       "U+00E9",
+                                                       "U+4E2D",
+                                                       "U+03A9",
+                                                       "U+65E5",
+                                                       "U+672C"
+                                                   ],
+                      "roundtrip_json":  {
+                                             "schema_version":  1,
+                                             "kind":  "AudioFileForPhone.RunManifest",
+                                             "app_version":  "development",
+                                             "build":  {
+                                                           "entry_sha256":  "2bd5e6eb7f2422b13ad43c840bfd975fbe2a3d35e33f83c60c172ed43c3b2744",
+                                                           "helper_sha256":  "93827fbacfc076f0e2f0f41ad405ba0cc8bed24a5a1ea71ba790754af5f7286f"
+                                                       },
+                                             "tools":  {
+                                                           "ffmpeg":  {
+                                                                          "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                                                                          "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                                                                      },
+                                                           "ffprobe":  {
+                                                                           "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                                                                           "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                                                                       }
+                                                       },
+                                             "policies":  {
+                                                              "bitrate_kbps":  64,
+                                                              "max_base_length":  40,
+                                                              "supported_extensions":  [
+                                                                                           ".mp3",
+                                                                                           ".m4a",
+                                                                                           ".ogg"
+                                                                                       ],
+                                                              "recursive_relative_layout":  true,
+                                                              "source_duration_policy":  "finite positive selected audio duration required",
+                                                              "output_duration_tolerance_seconds":  0.35,
+                                                              "full_output_decode_required":  true,
+                                                              "overwrite_policy":  "publish validated output without overwriting an occupied final path",
+                                                              "metadata":  {
+                                                                               "artist":  "+artist, \"quoted\" Ω\r\nartist line",
+                                                                               "album":  "@album, 日本\nsecond line",
+                                                                               "cover_path":  "",
+                                                                               "title_policy":  "preserve existing title; otherwise use planned base name"
+                                                                           }
+                                                          },
+                                             "run":  {
+                                                         "input_root":  "C:\\Windows\\TEMP\\T14D-294c0f7c\\I-roundtrip",
+                                                         "output_root":  "C:\\Windows\\TEMP\\T14D-294c0f7c\\O-roundtrip\\AudioForPhone_64kbps_20240101_000000",
+                                                         "status":  "Failed",
+                                                         "exit_code":  1,
+                                                         "elapsed_seconds":  1.234,
+                                                         "started_utc":  "2026-10-11T10:33:33.8359819Z",
+                                                         "updated_utc":  "2026-10-11T10:33:34.1362593Z",
+                                                         "diagnostic_error":  ""
+                                                     },
+                                             "checkpoint":  "Final",
+                                             "revision":  3,
+                                             "totals":  {
+                                                            "supported":  1,
+                                                            "processed":  1,
+                                                            "converted":  0,
+                                                            "failed":  1,
+                                                            "cancelled":  0,
+                                                            "not_processed":  0,
+                                                            "not_completed":  0,
+                                                            "scan_excluded":  0,
+                                                            "unsupported":  0,
+                                                            "input_bytes":  2817,
+                                                            "output_bytes":  0,
+                                                            "input_bytes_unknown_count":  0,
+                                                            "output_bytes_unknown_count":  0,
+                                                            "input_duration_seconds":  0.274014,
+                                                            "output_duration_seconds":  0,
+                                                            "input_duration_unknown_count":  0
+                                                        },
+                                             "scan_exclusions":  [
+
+                                                                 ],
+                                             "records":  [
+                                                             {
+                                                                 "source_relative_path":  "2024-01-01 Item0, é中 =SUM(1,2).mp3",
+                                                                 "output_relative_path":  "I-roundtrip\\2024-01-01 - Item0 é中 SUM12.mp3",
+                                                                 "status":  "Failed",
+                                                                 "code":  "SyntheticStructuredFailure",
+                                                                 "reason":  "-failure, \"quote\" é\r\n=SUM(1,2)\nlast line",
+                                                                 "input_duration_seconds":  0.274014,
+                                                                 "output_duration_seconds":  null,
+                                                                 "decoded_duration_seconds":  null,
+                                                                 "input_bytes":  2817,
+                                                                 "output_bytes":  0,
+                                                                 "elapsed_seconds":  1.234,
+                                                                 "source_title":  "=SUM(1,2), \"quoted\" é中\r\nline two\nline three",
+                                                                 "measurement_error":  ""
+                                                             }
+                                                         ]
+                                         }
+                  },
+                  {
+                      "name":  "mixed real formats corrupt input excluded subtree and unsupported files reconcile",
+                      "acceptance_case":  "A35,A36,A37",
+                      "status":  "fail"
+                  }
+              ],
+    "children_disposed":  false,
+    "cleanup_verified":  false,
+    "status":  "fail",
+    "error":  "FAIL: Released native and manifest operations must leave no final-looking or sibling partial.",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1: line 49\r\nat Get-RunArtifacts, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1: line 254\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1: line 376\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1: line 53\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Diagnostics.ps1: line 372",
+    "descendant_release_proved":  false,
+    "owned_host_objects":  [
+                               {
+                                   "started":  true,
+                                   "disposed":  true,
+                                   "timed_out":  false
+                               }
+                           ],
+    "cleanup_error":  "FAIL: Exact owned TEMP cleanup must be verified.",
+    "finished_utc":  "2026-10-11T10:33:38.8045265Z"
+}

@@ -51,8 +51,8 @@ unsupported files count only ordinary files in visited directories. These counts
 are separate from supported files and conversion failures. The final console
 summary includes elapsed seconds, counts, actual reserved output/log locations
 and exit code even after a caught fatal error. Normal logs retain the legacy
-Summary totals plus the explicit RESULT status/counts line. Structured persistent
-manifests and persistent native diagnostics remain T14 work.
+Summary totals plus the explicit RESULT status/counts line. The structured
+manifest and persistent native diagnostics follow the T14 contract below.
 
 BAT disables delayed expansion, accepts exactly one nonempty argument, keeps STA,
 captures child errorlevel on the immediately following line outside a parenthesized
@@ -105,6 +105,29 @@ time. Format can be CSV or JSON; use one schema and roundtrip tests. CSV needs p
 escaping/UTF-8 and a defined spreadsheet formula-safety approach; JSON avoids that
 specific spreadsheet behavior. Do not change original metadata just to sanitize a
 log. A separate display-safe field can coexist with exact structured values.
+
+T14 uses local AudioFileForPhone_manifest.json with one row for every supported
+snapshot candidate. Converted, Failed, Cancelled and NotProcessed are exclusive
+row states and reconcile to discovered supported inputs. Manifest not_processed
+is the unstarted count; not_completed is cancelled plus unstarted and matches the
+existing console not_processed. Scan exclusions retain paths/reasons separately;
+unsupported counts cover ordinary files in visited directories. No traversal of
+an excluded subtree is introduced. Unknown/unmeasured durations remain null.
+Output bytes and durations come from the actual published file and validation;
+no extra probe is launched to fill a missing value.
+
+Initialize rows after reservation and persist setup, each committed file boundary
+and final state. A required log/manifest failure produces fatal code 1 without
+changing or recounting an actual file outcome. Cancellation remains 130 even when
+records fail. The last durable manifest may be incomplete; final console reports
+the record failure explicitly. Preview and preflight-before-reservation remain
+without persistent records. No next-run reclamation is inferred from a manifest.
+
+The log includes actual tool versions, selected policies and the app's explicit
+development identity plus entry/helper SHA-256 hashes until a semantic version
+is established. Persist bounded native stderr/error and status, exit, release and
+timing for source probe, encoder, output probe and full decode; do not dump stdout
+or progress records. Public issue guidance requires redacting paths/content.
 
 Final messages: completed, completed with failures, cancelled or failed before
 conversion. Include actual totals, elapsed time, output location and local log/

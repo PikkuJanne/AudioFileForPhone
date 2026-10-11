@@ -1,60 +1,68 @@
-# Next session — T14 after owner integration
+# Next session — T15 after owner integration
 
-T13 is complete: A33/A34 pass on Windows PowerShell 5.1 and PowerShell 7.
-Exactly next implementation task: T14, persistent diagnostics and a usable run
-manifest, after owner integration of T13. Project/release remain incomplete.
+T14 is complete: A35/A36/A37 pass on Windows PowerShell 5.1 and PowerShell 7.
+Exactly next implementation task: T15, metadata, explicit covers and chapter
+documentation, after owner integration of T14. Project/release remain incomplete.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
 AGENTS guidance. Inspect dirty/untracked state, active branch, fetch/push URLs,
 overrides, normal fetch, independently advertised refs and live GitHub. Preserve
-all work; no reset/clean/force. T12 PR #12 was owner-merged at 09:05:48 UTC on
-11 October 2026 into main ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c. T01-T12 integrated.
+all work; no reset/clean/force. T13 PR #13 was owner-merged at 10:20:45 UTC on
+11 October 2026 into main 1af19a7d4f0d898a1fadc0914c81b99490affd80. T01-T13 integrated.
 
-T13 branch codex/v1-t13-progress, reviewed/tested code
-8607569a7147aba836c2e7c4c36f4f0219369d58, pushed/live-matched.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/13.
+T14 branch codex/v1-t14-diagnostics, reviewed/tested code
+b272cfda70861e0058aceaa60066e06d3c0ffc17, pushed/live-matched.
+Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/14.
 Evidence/handoff follows in a docs-only checkpoint; inspect fresh final HEAD/ref.
 Main integration remains owner-gated.
 
-## Preserve progress and earlier contracts
+## Preserve diagnostics and earlier contracts
 
-Encoder progress uses bounded stdout records independently of stderr. Keep only
-the latest complete record, 1,024-character lines, 8,192-character records and
-sampling every 500 ms within a phase, immediate changes and drainage after observer
-fault. Prefer out_time_us, legacy out_time_ms also microseconds, then arbitrary-hour
-timestamp. Unknown timing/duration is indeterminate; no ETA. progress=end is only
-an encoding boundary. File success at 100 percent follows validation/publication/
-count; failure clear stays indeterminate. Batch uses ok+failed and visibly retains
-failures at 100 percent.
+Each actual reserved run writes local human log and JSON manifest. Persist actual
+tool versions, policies, development app identity/hashes and bounded native stderr/
+status/exit/release/timing without stdout noise. Supported snapshot rows use exclusive
+Converted/Failed/Cancelled/NotProcessed states; manifest not_completed matches
+legacy console not_processed, which includes cancelled. Separate scan exclusions
+and unsupported counts. Unknown measurements remain null; publication bytes and
+probe/decode durations use existing results. No extra native probes for records.
 
-Read evidence/T13.md and manifest: fourteen selected final passes; 17 focused
-progress groups per shell at the reviewed commit, actual 3,605-second synthetic
-conversions and independent full decode at 3605.047982 seconds, with live positive
-machine samples before publication. Native 35, transaction 27/61 decoded, script
-13, preview 8, cancellation 9 and retained baseline pass both shells.
-Native handle counts stay 667->667 and 576->576;
-source/synthetic/child/exact TEMP gates pass; ordinary Music unused. Manifest
-independently matches 14 files to code, literally or only CRLF-to-LF.
+Outcomes/counts precede required diagnostics. Required record failure exits 1
+without losing/recounting actual publications; cancellation remains 130. Initialize
+and update complete staged JSON only for this live owned identity, preserving
+occupied/replaced files. Last-good Running snapshots are incomplete. Preflight
+before reservation and DryRun create no records. No automatic upload/reclamation.
 
-Retain all 18 raw test reports, including two preliminary passes and two failed
-harness variable-collision attempts. Separate recovery records plus historical
-harness reconstruction prove later removal of two exact known owned roots;
-original failed cleanup flags remain false. No blanket cleanup is authorized.
+Read evidence/T14.md and tested-payload manifest: sixteen selected finals pass,
+270 required groups/checks plus six baseline observations. Nineteen diagnostics
+groups per shell directly test code b272cfda, including structured Unicode/multiline
+metadata, actual failures/flood bounds, six persistence faults, foreign identity,
+post-promotion guard failure, cancellation and startup interruption. Each shell
+independently probes/full-decodes fourteen published synthetic MP3s. Fourteen
+affected regression reports pass, including native handles 667->667 / 577->577
+and actual 3,605-second progress/full-decode smoke.
 
-Preserve DryRun's no tools/writes/cover/prompts/cancellation/progress/parser and
-Previewed/0 contract. Keep T09 publication/ownership, T10 truthful counts/0/2/1,
-T11 Ctrl+C/130/release/context restoration and forced-close limits. T07 possible
-unknown residue and T09 path interval remain. Physical T11 evidence remains
-historical; no new phone/manual/CI/release acceptance is inferred.
+Retain all nineteen raw tests and three separate proof/recovery records. Failed
+attempt1's original children/cleanup flags remain false. Its exact historical
+harness and local native/host evidence prove later narrow cleanup; recovery1
+refused before delete on timestamp formatting, recovery2 used exact UTC ticks and
+all fields without tolerance. Independent review confirms only the known scope
+was deleted and absent. No blanket cleanup authority follows.
+
+Preserve T09 publication/ownership, T10 counts/0/2/1, T11 scoped Ctrl+C/130/release/
+restoration/forced-close limits, T12 preview zero tools/writes/prompts/contexts/
+progress/parser, and T13 live bounded progress below100 until publication. Public
+issue excerpts require redaction. T07 possible unknown residue and T09 path interval
+remain. Prior physical T11 evidence is historical; no new phone/manual/CI/release
+acceptance is inferred.
 
 ## Start the next coherent task
 
-If PR #13 is owner-merged, independently verify the advertised main merge,
-fast-forward clean local main and create a relevant T14 codex branch. Read only
-tasks/T14.md and relevant specs next. Add local persistent diagnostics/structured
-run manifest without changing preview, progress, outcomes or source safety.
-Main/release gates are unchanged; next full applicable suite is at a milestone.
+If PR #14 is owner-merged, independently verify the advertised main merge,
+fast-forward clean local main and create a relevant T15 codex branch. Read only
+tasks/T15.md and relevant metadata/cover/chapter specs next. Preserve local records,
+existing metadata/default artwork behavior and both shells. Run the full applicable
+suite at the M3 milestone boundary. Main/release gates are unchanged.
 
-Copy-ready prompt: T14 next please
+Copy-ready prompt: T15 next please
