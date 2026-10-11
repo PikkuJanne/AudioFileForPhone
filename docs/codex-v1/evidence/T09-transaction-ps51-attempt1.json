@@ -1,0 +1,915 @@
+{
+    "schema_version":  1,
+    "task":  "T09",
+    "mode":  "transactional_output_real_and_faults",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-TransactionalOutput.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T09-transaction-ps51-attempt1.json",
+    "started_utc":  "2026-10-11T05:23:53.7269532Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "347b8656068b5e26b45410b830025de51000659f",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "abf0043aae3d714c5c0c66af14090c5b09d8f9a6253c96e977501ffbbc11f88f"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "2e14e78a6bcc3cb3827fe99ee4d9537025f12030b7c56ca61a09d1159abb3216"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                          },
+                          {
+                              "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                              "sha256":  "32d934d076b9812ec2954cfd56a6b7d2b771b54244bd1ac9bfc1afdfb22e3cf2"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "abf0043aae3d714c5c0c66af14090c5b09d8f9a6253c96e977501ffbbc11f88f"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "2e14e78a6bcc3cb3827fe99ee4d9537025f12030b7c56ca61a09d1159abb3216"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+                         },
+                         {
+                             "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                             "sha256":  "32d934d076b9812ec2954cfd56a6b7d2b771b54244bd1ac9bfc1afdfb22e3cf2"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-8000.mp3",
+                                 "sha256":  "3fa4fb0649d4e6bedfbc53a7d7242f6f3b945373e21ee5b6027cbea3aee65ca7"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-11025.mp3",
+                                 "sha256":  "5922925a315972d619942c5e7ac78087ca310e8e5a1ad303c9b26d882f381bae"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-16000.mp3",
+                                 "sha256":  "7d94e3ea080e24ad72423932b0ff1586955a792131da4ebbd7215dbfab1e37c2"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-22050.mp3",
+                                 "sha256":  "a7ec1413c765c1a5ce8ddd8bceeac3bb1cae28f90cccc7345d7582fb96748a7d"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-44100.mp3",
+                                 "sha256":  "49d58791091c939b231483ca771b670c7809fd9fa465c395463c53ee0417f927"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.025-48000.mp3",
+                                 "sha256":  "8a9378ccb24318509b83bfe5cf553635b776c0c843685e669c9281e6f537402a"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-8000.mp3",
+                                 "sha256":  "c26cfc10c39e0909b26c704818bbaf61d5736693003e2cc4c42f9bcda8f3c59e"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-11025.mp3",
+                                 "sha256":  "2425461b33a2f25370f853ff22c8a1979b91e50ae132ba4b2d1cbb5baae98339"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-16000.mp3",
+                                 "sha256":  "35f3189b1dfa57a42c15a56dcd53177d9b1e9fe056ba74bc0e3d4ded58032a2b"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-22050.mp3",
+                                 "sha256":  "9b258d58b85bacc623b8dc0095f3c3ed4e35055b219324e1ad60c3c742f565a6"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-44100.mp3",
+                                 "sha256":  "404c40fed6602982848d67d3c2e249d21445b858dd8d4efa55f06c110402c4be"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-0.200-48000.mp3",
+                                 "sha256":  "bdcf8d92b7d9dba81cf48feb7873ded5deee34c55a5b2f75cb4822a14cf51daa"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-8000.mp3",
+                                 "sha256":  "13c40714302fa1d6be21e6ca111c7356fa124633ac4b48d76565aad0a03cc6c1"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-11025.mp3",
+                                 "sha256":  "2688257074aadc1226a5379f0889c1785cb13be4c64ab6f710b23ecae44890a0"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-16000.mp3",
+                                 "sha256":  "a110962cc4912cae766a47c2b53c411ec7c5c05f68fee6f3b6845e1c54a9352c"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-22050.mp3",
+                                 "sha256":  "8f817b29637ef61ec6b1a365066d0cba6e0cd8d06ecd7035982ece1f0b3d4b3d"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-44100.mp3",
+                                 "sha256":  "8a65b772f76f736f08d52b7c71de4a3a796a53b17b58cc7742c9cf51760a2ac9"
+                             },
+                             {
+                                 "relative_path":  "S\\m-mp3-2.000-48000.mp3",
+                                 "sha256":  "20ac867c86ebd6d1d0849fb9452698c60302d2ed181528d43550a2f7131b797a"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-mp3-8.mp3",
+                                 "sha256":  "cbaa66f9dfa1d914ee94e6367315328472dbd97ab953d2b98bd3e11098bdeafc"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-mp3-320.mp3",
+                                 "sha256":  "5b5101ed01adf7429fc941d4ee7679606845888efb5c79f003f1fd2d73ebca0a"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-8000.m4a",
+                                 "sha256":  "d5281321dd4e3306c2b110b0e90774180c566b095a7b9365c8b99baf3af306cd"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-11025.m4a",
+                                 "sha256":  "0fdc3388b7aed6e64738d7c8dbe92d23386945c423abe883813f377d79c26b65"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-16000.m4a",
+                                 "sha256":  "11b5967d6f9dd3864a5931b6db26f2ec3f383aee2e5e32cca3c2e1def0ad0fcb"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-22050.m4a",
+                                 "sha256":  "0a21eaddc872e065e936354e45c68f217b3b3f786b1c305af713fec782ce560d"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-44100.m4a",
+                                 "sha256":  "042ceeb9fec2d85aef8435183f621fc43a3cec3903b2a86c04b986086ac02939"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.025-48000.m4a",
+                                 "sha256":  "28efa36e28ecdde015495928366743fa5b8a66892b9889b040992348b8368824"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-8000.m4a",
+                                 "sha256":  "f1f37cbc0bd24e6ae4b23db801259be6d5a77bd3a35c8a128bff5e443ad2e2e7"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-11025.m4a",
+                                 "sha256":  "230ae7035041d1b0be36137d98eefe100699fdd583d46fd33386ede287b1889c"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-16000.m4a",
+                                 "sha256":  "b9b2bca0b9b0f6762bbdcae1a7667756072fee7c117a3dc83b091e84dc988aa6"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-22050.m4a",
+                                 "sha256":  "295fd73be9c26292726fe89e1ee61984848002cf1dd6d35030fedac1a0b6858c"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-44100.m4a",
+                                 "sha256":  "13057380aabcfb76c8363b3286bc455ac62afbee9c13ed6a96ec514f01c24480"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-0.200-48000.m4a",
+                                 "sha256":  "54e60bfc432be11643267da4404e371c0c8d621040d96115345bbd9699b4db1e"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-8000.m4a",
+                                 "sha256":  "9e2effb8837973c91a96278a72b210a2f56bb9d19ad0f167b68bf783163d27f4"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-11025.m4a",
+                                 "sha256":  "26346ac7bfdcf6d67f9222268b7c818bc254023ea3d0484468a7e11f31abde9a"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-16000.m4a",
+                                 "sha256":  "c4505c4aa1a89bfdb7d8772c27063b8fdba6260a0981d9ea25999b869e7609c2"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-22050.m4a",
+                                 "sha256":  "4c03d76502aaa18a76d489bc5d176be3f72319b419e2fc972e77d551b99c5d1e"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-44100.m4a",
+                                 "sha256":  "ab347511e6241c35150785708c3f5b48e954ca2b126d1fc5735eef05adf6a8e3"
+                             },
+                             {
+                                 "relative_path":  "S\\m-m4a-2.000-48000.m4a",
+                                 "sha256":  "bbffd0aae6280c3e688c24bc1ac6db00291fe76b72e79d9299b3cae59a284370"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-m4a-8.m4a",
+                                 "sha256":  "9117013395d69af3970e4ab8a961d24e41b481dd27f16b0787c85624f4d54fe1"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-m4a-320.m4a",
+                                 "sha256":  "bf206baea085d4530dfb03bd73ee051f3d2f77edd289bdd8ce3b73767db58c1c"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-8000.ogg",
+                                 "sha256":  "b35e760441669da6708879a768f7f4662bdf171c3082373d41acd3af84c94ba2"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-11025.ogg",
+                                 "sha256":  "6da7bfb0b4e7fe0d77ba9fa0c605ad36c7d2a00bef708984f0b8c594318cda54"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-16000.ogg",
+                                 "sha256":  "ec757deb44ea21de9dbfa77157c3290b627c0836d9380e7410b82eeecd5bdbd7"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-22050.ogg",
+                                 "sha256":  "cb2fca98398b55b41ffbca596ffd3c246c9d5fcd032c9158e066593f1e62eeeb"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-44100.ogg",
+                                 "sha256":  "ed5054b4a095e9c20c4d39638f37b8c529faab6d74d2cfb757feab17ce109548"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.025-48000.ogg",
+                                 "sha256":  "2e00f5c7fe5756d09f8a3465a4487fa43c70f9b94676f9ca86bf0951aa237a33"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-8000.ogg",
+                                 "sha256":  "d96917a2d3a521bfc58b52d1a6da96392b1827aa0bfdae6e04d4946da40b494c"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-11025.ogg",
+                                 "sha256":  "2d3f42f9aae697c8b7a3236a972b13f11c20e1f8bf889f60837082d37f147124"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-16000.ogg",
+                                 "sha256":  "d0c28868f8f9a255f536612ee2b6707866904697a2444be025d1402bf196a3d6"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-22050.ogg",
+                                 "sha256":  "d44656df0edc8916eefe70096dd04db7cff934fc9e3567be9149655601cf1027"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-44100.ogg",
+                                 "sha256":  "78ea31ad32fb380638418f5a68497155a90d1acf10015ccb4e162756b7c67a44"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-0.200-48000.ogg",
+                                 "sha256":  "f6af065be1170b2c46b8da40b15a9ea9771e09b31c4e7250dee9fedf1f577864"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-8000.ogg",
+                                 "sha256":  "c36f2cb0766593e3c8076ae084459152cc915df618f218b6b07eba4d6d9e9e4d"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-11025.ogg",
+                                 "sha256":  "1559b638f62cea0c1637e680a6ffd82211d35584c5d1584a592b2594776cfb10"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-16000.ogg",
+                                 "sha256":  "d06396e6b95870ee1d8eb17464ddcce00cdd0358be2e93d24169447a5d0a206a"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-22050.ogg",
+                                 "sha256":  "d24974af0fbc2a90aabe525991ad0d222fc72420e3e32c6cb608bb8cc915a2ae"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-44100.ogg",
+                                 "sha256":  "c44b399340db24aaf7c9a314fd62e00a3b77bc9be65b169d58f34901b1e96ae5"
+                             },
+                             {
+                                 "relative_path":  "S\\m-ogg-2.000-48000.ogg",
+                                 "sha256":  "bfd6206c4a8bc0ab8d14ca621ea43bce911f19c0850ce7a6eedd8a541196795a"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-ogg-8.ogg",
+                                 "sha256":  "df17bc67da0b225f9204d163a96ef519e3f23c76e046d36e2ad38d20baffd8b1"
+                             },
+                             {
+                                 "relative_path":  "S\\edge-ogg-320.ogg",
+                                 "sha256":  "d60f1c16201ef40262f3c829ed3506a121b14e1eb1d290e54fad2b7cda5c4580"
+                             },
+                             {
+                                 "relative_path":  "S\\opus.ogg",
+                                 "sha256":  "27d544876c6ee6708a3e02044fe411c97237b4232b355a337d3eb0a42380826b"
+                             },
+                             {
+                                 "relative_path":  "S\\valid.mp3",
+                                 "sha256":  "ef976a7c59a8e7bc9720a5b676f7d29a15dcbbe589066fd35759600fe8f3a43a"
+                             },
+                             {
+                                 "relative_path":  "S\\wrong-codec.m4a",
+                                 "sha256":  "873b3a6a6b13ec8ac1e7b765671127a1231d7b088e2535602b22dba81ee3210e"
+                             },
+                             {
+                                 "relative_path":  "S\\wrong-rate.mp3",
+                                 "sha256":  "641cb848d4deeaa3443c80fd71c08196a3711e94ec122e6ff9754a373b931975"
+                             },
+                             {
+                                 "relative_path":  "S\\picture.png",
+                                 "sha256":  "50b192ebf203ad52d91439d7d9d11b20290d55fd495e2a43971e6fb77846c181"
+                             },
+                             {
+                                 "relative_path":  "S\\cover.jpg",
+                                 "sha256":  "efcd0f26dae2fda85c220dc015418950102033c42e2dafe8832957af69cabfea"
+                             },
+                             {
+                                 "relative_path":  "S\\cover-rate.mp3",
+                                 "sha256":  "9d044dcee2bed83209102dc7415647f6ce01e1a28d329b2e1b455d6047af5ae9"
+                             },
+                             {
+                                 "relative_path":  "S\\good64.mp3",
+                                 "sha256":  "3301268b89bca70e0723d30ffe9d0ec6e3fc99d7ff1339c395694b6e58335f14"
+                             },
+                             {
+                                 "relative_path":  "S\\corrupt.mp3",
+                                 "sha256":  "13cb4671cfe55571d8f6d13f530bf4ac94b0e728b6fa7d93dc6378fabe66d2ec"
+                             },
+                             {
+                                 "relative_path":  "S\\truncated.mp3",
+                                 "sha256":  "e56571af6d0c506cceff2ad2d71436f42d2733611b5294d0978d832731bb4610"
+                             },
+                             {
+                                 "relative_path":  "S\\payload-corrupt.mp3",
+                                 "sha256":  "d86fe71cd7598b782441e6e17be51c01cc12b7cb5187178405a21a6b59a2e8ab"
+                             },
+                             {
+                                 "relative_path":  "O\\.AudioFileForPhone-e2aaee5bc52b4b6ca9c25512300297b2.partial",
+                                 "sha256":  "573cd813c092f84fe5aa448133645d7fc685f8d60c2bcbf36cce97e5f3e27f0d"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-8000.mp3",
+                                "sha256":  "3fa4fb0649d4e6bedfbc53a7d7242f6f3b945373e21ee5b6027cbea3aee65ca7"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-11025.mp3",
+                                "sha256":  "5922925a315972d619942c5e7ac78087ca310e8e5a1ad303c9b26d882f381bae"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-16000.mp3",
+                                "sha256":  "7d94e3ea080e24ad72423932b0ff1586955a792131da4ebbd7215dbfab1e37c2"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-22050.mp3",
+                                "sha256":  "a7ec1413c765c1a5ce8ddd8bceeac3bb1cae28f90cccc7345d7582fb96748a7d"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-44100.mp3",
+                                "sha256":  "49d58791091c939b231483ca771b670c7809fd9fa465c395463c53ee0417f927"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.025-48000.mp3",
+                                "sha256":  "8a9378ccb24318509b83bfe5cf553635b776c0c843685e669c9281e6f537402a"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-8000.mp3",
+                                "sha256":  "c26cfc10c39e0909b26c704818bbaf61d5736693003e2cc4c42f9bcda8f3c59e"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-11025.mp3",
+                                "sha256":  "2425461b33a2f25370f853ff22c8a1979b91e50ae132ba4b2d1cbb5baae98339"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-16000.mp3",
+                                "sha256":  "35f3189b1dfa57a42c15a56dcd53177d9b1e9fe056ba74bc0e3d4ded58032a2b"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-22050.mp3",
+                                "sha256":  "9b258d58b85bacc623b8dc0095f3c3ed4e35055b219324e1ad60c3c742f565a6"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-44100.mp3",
+                                "sha256":  "404c40fed6602982848d67d3c2e249d21445b858dd8d4efa55f06c110402c4be"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-0.200-48000.mp3",
+                                "sha256":  "bdcf8d92b7d9dba81cf48feb7873ded5deee34c55a5b2f75cb4822a14cf51daa"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-8000.mp3",
+                                "sha256":  "13c40714302fa1d6be21e6ca111c7356fa124633ac4b48d76565aad0a03cc6c1"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-11025.mp3",
+                                "sha256":  "2688257074aadc1226a5379f0889c1785cb13be4c64ab6f710b23ecae44890a0"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-16000.mp3",
+                                "sha256":  "a110962cc4912cae766a47c2b53c411ec7c5c05f68fee6f3b6845e1c54a9352c"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-22050.mp3",
+                                "sha256":  "8f817b29637ef61ec6b1a365066d0cba6e0cd8d06ecd7035982ece1f0b3d4b3d"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-44100.mp3",
+                                "sha256":  "8a65b772f76f736f08d52b7c71de4a3a796a53b17b58cc7742c9cf51760a2ac9"
+                            },
+                            {
+                                "relative_path":  "S\\m-mp3-2.000-48000.mp3",
+                                "sha256":  "20ac867c86ebd6d1d0849fb9452698c60302d2ed181528d43550a2f7131b797a"
+                            },
+                            {
+                                "relative_path":  "S\\edge-mp3-8.mp3",
+                                "sha256":  "cbaa66f9dfa1d914ee94e6367315328472dbd97ab953d2b98bd3e11098bdeafc"
+                            },
+                            {
+                                "relative_path":  "S\\edge-mp3-320.mp3",
+                                "sha256":  "5b5101ed01adf7429fc941d4ee7679606845888efb5c79f003f1fd2d73ebca0a"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-8000.m4a",
+                                "sha256":  "d5281321dd4e3306c2b110b0e90774180c566b095a7b9365c8b99baf3af306cd"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-11025.m4a",
+                                "sha256":  "0fdc3388b7aed6e64738d7c8dbe92d23386945c423abe883813f377d79c26b65"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-16000.m4a",
+                                "sha256":  "11b5967d6f9dd3864a5931b6db26f2ec3f383aee2e5e32cca3c2e1def0ad0fcb"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-22050.m4a",
+                                "sha256":  "0a21eaddc872e065e936354e45c68f217b3b3f786b1c305af713fec782ce560d"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-44100.m4a",
+                                "sha256":  "042ceeb9fec2d85aef8435183f621fc43a3cec3903b2a86c04b986086ac02939"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.025-48000.m4a",
+                                "sha256":  "28efa36e28ecdde015495928366743fa5b8a66892b9889b040992348b8368824"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-8000.m4a",
+                                "sha256":  "f1f37cbc0bd24e6ae4b23db801259be6d5a77bd3a35c8a128bff5e443ad2e2e7"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-11025.m4a",
+                                "sha256":  "230ae7035041d1b0be36137d98eefe100699fdd583d46fd33386ede287b1889c"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-16000.m4a",
+                                "sha256":  "b9b2bca0b9b0f6762bbdcae1a7667756072fee7c117a3dc83b091e84dc988aa6"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-22050.m4a",
+                                "sha256":  "295fd73be9c26292726fe89e1ee61984848002cf1dd6d35030fedac1a0b6858c"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-44100.m4a",
+                                "sha256":  "13057380aabcfb76c8363b3286bc455ac62afbee9c13ed6a96ec514f01c24480"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-0.200-48000.m4a",
+                                "sha256":  "54e60bfc432be11643267da4404e371c0c8d621040d96115345bbd9699b4db1e"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-8000.m4a",
+                                "sha256":  "9e2effb8837973c91a96278a72b210a2f56bb9d19ad0f167b68bf783163d27f4"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-11025.m4a",
+                                "sha256":  "26346ac7bfdcf6d67f9222268b7c818bc254023ea3d0484468a7e11f31abde9a"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-16000.m4a",
+                                "sha256":  "c4505c4aa1a89bfdb7d8772c27063b8fdba6260a0981d9ea25999b869e7609c2"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-22050.m4a",
+                                "sha256":  "4c03d76502aaa18a76d489bc5d176be3f72319b419e2fc972e77d551b99c5d1e"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-44100.m4a",
+                                "sha256":  "ab347511e6241c35150785708c3f5b48e954ca2b126d1fc5735eef05adf6a8e3"
+                            },
+                            {
+                                "relative_path":  "S\\m-m4a-2.000-48000.m4a",
+                                "sha256":  "bbffd0aae6280c3e688c24bc1ac6db00291fe76b72e79d9299b3cae59a284370"
+                            },
+                            {
+                                "relative_path":  "S\\edge-m4a-8.m4a",
+                                "sha256":  "9117013395d69af3970e4ab8a961d24e41b481dd27f16b0787c85624f4d54fe1"
+                            },
+                            {
+                                "relative_path":  "S\\edge-m4a-320.m4a",
+                                "sha256":  "bf206baea085d4530dfb03bd73ee051f3d2f77edd289bdd8ce3b73767db58c1c"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-8000.ogg",
+                                "sha256":  "b35e760441669da6708879a768f7f4662bdf171c3082373d41acd3af84c94ba2"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-11025.ogg",
+                                "sha256":  "6da7bfb0b4e7fe0d77ba9fa0c605ad36c7d2a00bef708984f0b8c594318cda54"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-16000.ogg",
+                                "sha256":  "ec757deb44ea21de9dbfa77157c3290b627c0836d9380e7410b82eeecd5bdbd7"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-22050.ogg",
+                                "sha256":  "cb2fca98398b55b41ffbca596ffd3c246c9d5fcd032c9158e066593f1e62eeeb"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-44100.ogg",
+                                "sha256":  "ed5054b4a095e9c20c4d39638f37b8c529faab6d74d2cfb757feab17ce109548"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.025-48000.ogg",
+                                "sha256":  "2e00f5c7fe5756d09f8a3465a4487fa43c70f9b94676f9ca86bf0951aa237a33"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-8000.ogg",
+                                "sha256":  "d96917a2d3a521bfc58b52d1a6da96392b1827aa0bfdae6e04d4946da40b494c"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-11025.ogg",
+                                "sha256":  "2d3f42f9aae697c8b7a3236a972b13f11c20e1f8bf889f60837082d37f147124"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-16000.ogg",
+                                "sha256":  "d0c28868f8f9a255f536612ee2b6707866904697a2444be025d1402bf196a3d6"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-22050.ogg",
+                                "sha256":  "d44656df0edc8916eefe70096dd04db7cff934fc9e3567be9149655601cf1027"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-44100.ogg",
+                                "sha256":  "78ea31ad32fb380638418f5a68497155a90d1acf10015ccb4e162756b7c67a44"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-0.200-48000.ogg",
+                                "sha256":  "f6af065be1170b2c46b8da40b15a9ea9771e09b31c4e7250dee9fedf1f577864"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-8000.ogg",
+                                "sha256":  "c36f2cb0766593e3c8076ae084459152cc915df618f218b6b07eba4d6d9e9e4d"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-11025.ogg",
+                                "sha256":  "1559b638f62cea0c1637e680a6ffd82211d35584c5d1584a592b2594776cfb10"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-16000.ogg",
+                                "sha256":  "d06396e6b95870ee1d8eb17464ddcce00cdd0358be2e93d24169447a5d0a206a"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-22050.ogg",
+                                "sha256":  "d24974af0fbc2a90aabe525991ad0d222fc72420e3e32c6cb608bb8cc915a2ae"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-44100.ogg",
+                                "sha256":  "c44b399340db24aaf7c9a314fd62e00a3b77bc9be65b169d58f34901b1e96ae5"
+                            },
+                            {
+                                "relative_path":  "S\\m-ogg-2.000-48000.ogg",
+                                "sha256":  "bfd6206c4a8bc0ab8d14ca621ea43bce911f19c0850ce7a6eedd8a541196795a"
+                            },
+                            {
+                                "relative_path":  "S\\edge-ogg-8.ogg",
+                                "sha256":  "df17bc67da0b225f9204d163a96ef519e3f23c76e046d36e2ad38d20baffd8b1"
+                            },
+                            {
+                                "relative_path":  "S\\edge-ogg-320.ogg",
+                                "sha256":  "d60f1c16201ef40262f3c829ed3506a121b14e1eb1d290e54fad2b7cda5c4580"
+                            },
+                            {
+                                "relative_path":  "S\\opus.ogg",
+                                "sha256":  "27d544876c6ee6708a3e02044fe411c97237b4232b355a337d3eb0a42380826b"
+                            },
+                            {
+                                "relative_path":  "S\\valid.mp3",
+                                "sha256":  "ef976a7c59a8e7bc9720a5b676f7d29a15dcbbe589066fd35759600fe8f3a43a"
+                            },
+                            {
+                                "relative_path":  "S\\wrong-codec.m4a",
+                                "sha256":  "873b3a6a6b13ec8ac1e7b765671127a1231d7b088e2535602b22dba81ee3210e"
+                            },
+                            {
+                                "relative_path":  "S\\wrong-rate.mp3",
+                                "sha256":  "641cb848d4deeaa3443c80fd71c08196a3711e94ec122e6ff9754a373b931975"
+                            },
+                            {
+                                "relative_path":  "S\\picture.png",
+                                "sha256":  "50b192ebf203ad52d91439d7d9d11b20290d55fd495e2a43971e6fb77846c181"
+                            },
+                            {
+                                "relative_path":  "S\\cover.jpg",
+                                "sha256":  "efcd0f26dae2fda85c220dc015418950102033c42e2dafe8832957af69cabfea"
+                            },
+                            {
+                                "relative_path":  "S\\cover-rate.mp3",
+                                "sha256":  "9d044dcee2bed83209102dc7415647f6ce01e1a28d329b2e1b455d6047af5ae9"
+                            },
+                            {
+                                "relative_path":  "S\\good64.mp3",
+                                "sha256":  "3301268b89bca70e0723d30ffe9d0ec6e3fc99d7ff1339c395694b6e58335f14"
+                            },
+                            {
+                                "relative_path":  "S\\corrupt.mp3",
+                                "sha256":  "13cb4671cfe55571d8f6d13f530bf4ac94b0e728b6fa7d93dc6378fabe66d2ec"
+                            },
+                            {
+                                "relative_path":  "S\\truncated.mp3",
+                                "sha256":  "e56571af6d0c506cceff2ad2d71436f42d2733611b5294d0978d832731bb4610"
+                            },
+                            {
+                                "relative_path":  "S\\payload-corrupt.mp3",
+                                "sha256":  "d86fe71cd7598b782441e6e17be51c01cc12b7cb5187178405a21a6b59a2e8ab"
+                            },
+                            {
+                                "relative_path":  "O\\.AudioFileForPhone-e2aaee5bc52b4b6ca9c25512300297b2.partial",
+                                "sha256":  "573cd813c092f84fe5aa448133645d7fc685f8d60c2bcbf36cce97e5f3e27f0d"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "owned_temp_root_name":  "T9-1f2b2793",
+    "temp_parent_selection":  "shorter user/machine TEMP, read-only lookup",
+    "cases":  [
+                  {
+                      "name":  "empirical short format/sample-rate/bitrate matrix fully decodes",
+                      "acceptance_case":  "A24,A25",
+                      "status":  "fail"
+                  }
+              ],
+    "duration_matrix":  [
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  8000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.091125,
+                                "output_duration_seconds":  0.15725,
+                                "absolute_probe_delta_seconds":  0.066125,
+                                "decoded_duration_seconds":  0.15725,
+                                "source_decode_delta_seconds":  0.066125,
+                                "output_sample_rate":  8000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  11025,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.073016,
+                                "output_duration_seconds":  0.120998,
+                                "absolute_probe_delta_seconds":  0.047982,
+                                "decoded_duration_seconds":  0.120998,
+                                "source_decode_delta_seconds":  0.047982,
+                                "output_sample_rate":  11025,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  16000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.058062,
+                                "output_duration_seconds":  0.091125,
+                                "absolute_probe_delta_seconds":  0.033062999999999995,
+                                "decoded_duration_seconds":  0.091125,
+                                "source_decode_delta_seconds":  0.033062999999999995,
+                                "output_sample_rate":  16000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  22050,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.04898,
+                                "output_duration_seconds":  0.072971,
+                                "absolute_probe_delta_seconds":  0.023990999999999991,
+                                "decoded_duration_seconds":  0.072971,
+                                "source_decode_delta_seconds":  0.023990999999999991,
+                                "output_sample_rate":  22050,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  44100,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.025011,
+                                "output_duration_seconds":  0.025011,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  0.024989,
+                                "source_decode_delta_seconds":  2.1999999999997716E-05,
+                                "output_sample_rate":  44100,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.025,
+                                "source_sample_rate":  48000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.025,
+                                "output_duration_seconds":  0.025,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  0.025,
+                                "source_decode_delta_seconds":  0,
+                                "output_sample_rate":  48000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  8000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.266125,
+                                "output_duration_seconds":  0.33225,
+                                "absolute_probe_delta_seconds":  0.066124999999999989,
+                                "decoded_duration_seconds":  0.33225,
+                                "source_decode_delta_seconds":  0.066124999999999989,
+                                "output_sample_rate":  8000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  11025,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.247982,
+                                "output_duration_seconds":  0.295964,
+                                "absolute_probe_delta_seconds":  0.047982,
+                                "decoded_duration_seconds":  0.295964,
+                                "source_decode_delta_seconds":  0.047982,
+                                "output_sample_rate":  11025,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  16000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.233063,
+                                "output_duration_seconds":  0.266125,
+                                "absolute_probe_delta_seconds":  0.033062000000000008,
+                                "decoded_duration_seconds":  0.266125,
+                                "source_decode_delta_seconds":  0.033062000000000008,
+                                "output_sample_rate":  16000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  22050,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.223991,
+                                "output_duration_seconds":  0.247982,
+                                "absolute_probe_delta_seconds":  0.023991000000000012,
+                                "decoded_duration_seconds":  0.247982,
+                                "source_decode_delta_seconds":  0.023991000000000012,
+                                "output_sample_rate":  22050,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  44100,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.2,
+                                "output_duration_seconds":  0.2,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  0.2,
+                                "source_decode_delta_seconds":  0,
+                                "output_sample_rate":  44100,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  0.2,
+                                "source_sample_rate":  48000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  0.2,
+                                "output_duration_seconds":  0.2,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  0.2,
+                                "source_decode_delta_seconds":  0,
+                                "output_sample_rate":  48000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  8000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2.066125,
+                                "output_duration_seconds":  2.13225,
+                                "absolute_probe_delta_seconds":  0.066124999999999989,
+                                "decoded_duration_seconds":  2.13225,
+                                "source_decode_delta_seconds":  0.066124999999999989,
+                                "output_sample_rate":  8000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  11025,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2.047982,
+                                "output_duration_seconds":  2.095964,
+                                "absolute_probe_delta_seconds":  0.047981999999999747,
+                                "decoded_duration_seconds":  2.095964,
+                                "source_decode_delta_seconds":  0.047981999999999747,
+                                "output_sample_rate":  11025,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  16000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2.033062,
+                                "output_duration_seconds":  2.066125,
+                                "absolute_probe_delta_seconds":  0.033062999999999843,
+                                "decoded_duration_seconds":  2.066125,
+                                "source_decode_delta_seconds":  0.033062999999999843,
+                                "output_sample_rate":  16000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  22050,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2.023991,
+                                "output_duration_seconds":  2.047982,
+                                "absolute_probe_delta_seconds":  0.023991000000000096,
+                                "decoded_duration_seconds":  2.047982,
+                                "source_decode_delta_seconds":  0.023991000000000096,
+                                "output_sample_rate":  22050,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  44100,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2,
+                                "output_duration_seconds":  2,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  2,
+                                "source_decode_delta_seconds":  0,
+                                "output_sample_rate":  44100,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            },
+                            {
+                                "extension":  "mp3",
+                                "generated_seconds":  2,
+                                "source_sample_rate":  48000,
+                                "selected_bitrate_kbps":  64,
+                                "source_duration_seconds":  2,
+                                "output_duration_seconds":  2,
+                                "absolute_probe_delta_seconds":  0,
+                                "decoded_duration_seconds":  2,
+                                "source_decode_delta_seconds":  0,
+                                "output_sample_rate":  48000,
+                                "full_decode":  true,
+                                "status":  "Success"
+                            }
+                        ],
+    "acls_restored":  true,
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Real transaction failed: ValidationFailed Output validation failed (InvalidProbeData): Output audio-stream bitrate does not match the selected bitrate.",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-TransactionalOutput.ps1: line 52\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-TransactionalOutput.ps1: line 259\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-TransactionalOutput.ps1: line 56\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-TransactionalOutput.ps1: line 252",
+    "finished_utc":  "2026-10-11T05:24:06.8216523Z"
+}

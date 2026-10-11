@@ -235,3 +235,37 @@ Task status: todo, in_progress, blocked, verified, done, deferred. “verified�
 implementation evidence exists; “done” adds reviewed/pushed checkpoint. Record
 prior verified code/evidence commit, not a self-referential current-commit hash.
 A final live check is always required independently of stored status.
+
+## T09 staged output checks
+
+Use tests/Test-TransactionalOutput.ps1 under PS5.1 and PS7 with existing
+C:\ffmpeg\bin tools and fresh create-new evidence labels. Current exact commands,
+18 final report names, observed failures and runtime equivalence are in
+evidence/T09.md and evidence/T09-tested-payload.json. Final focused reports are
+T09-transaction-ps51-attempt6.json and T09-transaction-ps7-final1.json.
+
+Each focused run verifies 27 groups: 61 real short decoded conversions and three
+separate unsupported selected-rate rejections; false successes, physical stale-Xing
+truncation/corruption, actual locked rename, independent final sentinel, retained
+ownership/changed identity, unproved native exit and actual entry postpublication
+log failure. The matrix spans tiny/normal durations, MP3/AAC/Vorbis/Opus and
+8000 through 48000 Hz; max measured source/header/decoded difference 0.066125 s
+supports the conservative fixed 0.35 s allowance. The simulated two-hour duration
+mismatch is a policy test, not long-file evidence. Do not fill an ordinary volume
+to test disk exhaustion or equate mocked failures with a real disk-full experiment.
+
+Function substitutions exist only in the test process; production has no injection
+switches. Runtime copies preserve bytes. All native children, sentinel events,
+fixtures/raw diagnostics and temporary driver files remain in exclusively owned
+TEMP; sources/sentinels and exact cleanup are checked. Named-event readiness and
+release establish final-destination race timing, not sleeps. Diagnostic -File
+drivers must forward nested LASTEXITCODE and handle PS5.1 display wrapping without
+waiving published-path/exit/output assertions. Never persist unredacted OS host
+identity from CLIXML; attempt4's explicit privacy-only redaction remains recorded.
+
+Retain the baseline suite and affected preflight/discovery/naming/reservation/
+native/resolver companions. The 16 existing final reports pass; native handle
+checks run quietly/sequentially, preserve allowance 16 and every failed attempt.
+Configured-Music smoke keeps its exact returned-root/token/inventory cleanup gates.
+Ordinary tests never enumerate Music. Use fresh next-task labels and extend only
+affected guard patterns; intermediate passes do not replace final payload hashes.

@@ -362,8 +362,13 @@
       "required": true,
       "method": "real conversion plus staged fault injection",
       "expected": "A final .mp3 appears only after a nonempty working file has valid expected audio, plausible duration and a no-overwrite final promotion.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T09.md",
+        "evidence/T09-transaction-ps51-attempt6.json",
+        "evidence/T09-transaction-ps7-final1.json",
+        "evidence/T09-tested-payload.json"
+      ]
     },
     {
       "id": "A25",
@@ -372,8 +377,13 @@
       "required": true,
       "method": "stub process plus output probe fixtures",
       "expected": "Zero exit with empty/corrupt/non-audio/truncated/implausibly long output is failure; container bitrate including cover is not mistaken for audio bitrate.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T09.md",
+        "evidence/T09-transaction-ps51-attempt6.json",
+        "evidence/T09-transaction-ps7-final1.json",
+        "evidence/T09-tested-payload.json"
+      ]
     },
     {
       "id": "A26",
@@ -382,8 +392,13 @@
       "required": true,
       "method": "fault-injection and sentinel tests",
       "expected": "Nonzero encoder/probe/rename errors cannot leave a final-looking partial or overwrite a concurrent final file; only current owned temporary files are removed.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T09.md",
+        "evidence/T09-transaction-ps51-attempt6.json",
+        "evidence/T09-transaction-ps7-final1.json",
+        "evidence/T09-tested-payload.json"
+      ]
     },
     {
       "id": "A27",

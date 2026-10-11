@@ -67,6 +67,15 @@ to that independently advertised ref; T08 uses `codex/v1-t08-exclusive-runs`.
 Normal task commits, feature push and draft PR are authorized. This owner merge
 does not change the main-integration or release gates.
 
+T09 authorization: on 11 October 2026 the owner requested "T09 next please".
+Fresh GitHub inspection found T08 PR #8 merged by PikkuJanne at 05:17:22 UTC
+into main `347b8656068b5e26b45410b830025de51000659f`. Normal fetch and independently
+advertised main/feature refs matched the owner merge and T08 final checkpoint.
+The clean local main was fast-forwarded; T09 uses
+`codex/v1-t09-transactional-output` from that verified merge. Normal task
+commits, feature push and draft PR are authorized under the existing scope.
+This owner merge does not change main integration or release authority.
+
 Default: owner approval for a reviewed PR or milestone integration. Optional
 bounded policy the owner may approve once: integrate in-scope reviewed PRs only
 when required local tests and GitHub checks pass, no conflicts or unrelated changes

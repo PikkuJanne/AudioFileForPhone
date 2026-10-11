@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "task": "T09",
+  "mode": "resolver_and_default_music_smoke",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-OutputParent.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1/evidence/T09-music-ps7-final1.json -DefaultSmoke",
+  "started_utc": "2026-10-11T05:28:07.4668002Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "347b8656068b5e26b45410b830025de51000659f",
+  "harness_sha256": "1e370107477f7893b784641dd83bdd4c410132fd1e2c83e57836a208333eb5ff",
+  "application_sha256_before": "fa5d55bab4433deef45892fd5fef7b41fe47bef095f76f77336a727562043cf7",
+  "application_sha256_after": "fa5d55bab4433deef45892fd5fef7b41fe47bef095f76f77336a727562043cf7",
+  "application_unchanged": true,
+  "helpers_sha256_before": "2e14e78a6bcc3cb3827fe99ee4d9537025f12030b7c56ca61a09d1159abb3216",
+  "helpers_sha256_after": "2e14e78a6bcc3cb3827fe99ee4d9537025f12030b7c56ca61a09d1159abb3216",
+  "helpers_unchanged": true,
+  "resolver_cases": [
+    {
+      "name": "injected configured Music, independent of user profile",
+      "status": "pass"
+    },
+    {
+      "name": "empty configured Music is rejected",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "absolute missing parent and literal brackets, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "filesystem provider-qualified override",
+      "status": "pass"
+    },
+    {
+      "name": "existing filesystem parent, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "relative missing parent uses PowerShell location",
+      "status": "pass"
+    },
+    {
+      "name": "reject non-filesystem Env",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Registry",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Variable",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "existing file is rejected as output parent",
+      "status": "pass",
+      "rejection_verified": true
+    }
+  ],
+  "default_smoke": {
+    "status": "pass",
+    "byte_identical_copies": true,
+    "output_override_passed": false,
+    "root_exclusively_reserved": true,
+    "marker_create_new": true,
+    "trusted_child_execution": true,
+    "runtime_ownership_verified": true,
+    "configured_music_verified": true,
+    "exact_inventory_verified": true,
+    "source_sha256_before": "4659cae6ac40ae250c91f1a3ddc21185af6e59d3018c63e5f8ca6ce5460d8959",
+    "source_sha256_after": "4659cae6ac40ae250c91f1a3ddc21185af6e59d3018c63e5f8ca6ce5460d8959",
+    "source_unchanged": true,
+    "cleanup_verified": true,
+    "ffmpeg": {
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+    },
+    "ffprobe": {
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+    },
+    "copy_sha256": "fa5d55bab4433deef45892fd5fef7b41fe47bef095f76f77336a727562043cf7",
+    "helpers_copy_sha256": "2e14e78a6bcc3cb3827fe99ee4d9537025f12030b7c56ca61a09d1159abb3216",
+    "child_exit_code": 0,
+    "reported_roots": [
+      "C:\\Users\\jtvuo\\Music\\AudioForPhone_64kbps_20261011_072809"
+    ],
+    "recoverable_reported_root": "C:\\Users\\jtvuo\\Music\\AudioForPhone_64kbps_20261011_072809",
+    "runtime_owner_token": "1c547c7eddfc40d388d589267f7e71d6",
+    "cleanup_scope": "C:\\Users\\jtvuo\\Music\\AudioForPhone_64kbps_20261011_072809",
+    "run_root_name": "AudioForPhone_64kbps_20261011_072809",
+    "inventory": {
+      "files": [
+        ".AudioFileForPhone-output.json",
+        ".t08-owner",
+        "AudioFileForPhone_log.txt",
+        "T08 generated default smoke\\2024-01-02 - Default smoke.mp3"
+      ],
+      "directories": [
+        "T08 generated default smoke"
+      ]
+    },
+    "output_sha256": "8bfd23f98de19ed58c0bc2ccf6ada0b00cb0d6f08e00d68cf12637084b860a4b",
+    "audio_bitrate": 64000,
+    "full_decode_passed": true
+  },
+  "temp_cleanup_verified": true,
+  "temp_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-331625e512c44bb3acab3d0e080c3bad",
+  "status": "pass",
+  "error": null,
+  "resolver_sha256": "62fbddf0ea1763988a462a0e5481d29e85449b29037047f34a55de1c013c5043",
+  "finished_utc": "2026-10-11T05:28:12.0869055Z"
+}

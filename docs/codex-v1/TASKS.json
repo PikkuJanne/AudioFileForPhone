@@ -350,14 +350,14 @@
       "tested_commit": "e1ea2a95a5a9b7461d69101b6a111f26b51abbf6",
       "checkpoint_commit": "3b6c4164c6e4dd4b58f0be074c17f6fb854b41be",
       "remote_checkpoint_verified": true,
-      "notes": "A22/A23 pass on PS5.1/PS7: 13 focused groups, four fixed-timestamp barrier children reserve exact counters 3/4/5/6 with isolated roots/tokens/logs, two real-entry children exercise relative and FileSystem PSDrive destinations and decode at 64 kbps. Occupied dirs/files/logs/markers/sentinels retain SHA256; CreateNew collisions, exhaustion, raw component rejection, exact suffix budgets and owned ACL/setup failures verified. Full M1 matrix 16 current reports: baseline/seven companions, preflight 35/eight helpers, discovery 8, naming 11/19 decoded outputs, native 35, resolver 10 and configured-Music synthetic default smoke. Source/fixture hashes, original ACL restoration, child disposal and exact owned cleanup pass. Sequential native handle counts 667->667 and 575->575 retain threshold 16; earlier failed handle/path/guard/harness observations preserved. Test base/current byte hashes verified equivalent to reviewed pushed code checkpoint. Owner merged T07 PR7; T08 draft PR8 feature synchronized, main integration owner-gated. T07 unknown possible TEMP residue remains unverified; no broad cleanup. No ordinary Music enumeration, personal media, settings/downloads/phone/manual/CI/release evidence. Exactly next T09."
+      "notes": "A22/A23 pass on PS5.1/PS7: 13 focused groups, four fixed-timestamp barrier children reserve exact counters 3/4/5/6 with isolated roots/tokens/logs, two real-entry children exercise relative and FileSystem PSDrive destinations and decode at 64 kbps. Occupied dirs/files/logs/markers/sentinels retain SHA256; CreateNew collisions, exhaustion, raw component rejection, exact suffix budgets and owned ACL/setup failures verified. Full M1 matrix 16 current reports: baseline/seven companions, preflight 35/eight helpers, discovery 8, naming 11/19 decoded outputs, native 35, resolver 10 and configured-Music synthetic default smoke. Source/fixture hashes, original ACL restoration, child disposal and exact owned cleanup pass. Sequential native handle counts 667->667 and 575->575 retain threshold 16; earlier failed handle/path/guard/harness observations preserved. Test base/current byte hashes verified equivalent to reviewed pushed code checkpoint. Owner merged T07 PR7; T08 PR8 owner-merged at 2026-10-11T05:17:22Z into main 347b8656068b5e26b45410b830025de51000659f, reconciled before T09. T07 unknown possible TEMP residue remains unverified; no broad cleanup. No ordinary Music enumeration, personal media, settings/downloads/phone/manual/CI/release evidence. Exactly next T09."
     },
     {
       "id": "T09",
       "milestone": "M2",
       "title": "Stage, validate and safely publish each output",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T08"
       ],
@@ -370,11 +370,32 @@
         "A25",
         "A26"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T09.md",
+        "evidence/T09-tested-payload.json",
+        "evidence/T09-transaction-ps51-attempt6.json",
+        "evidence/T09-transaction-ps7-final1.json",
+        "evidence/T09-baseline-ps51-final1.json",
+        "evidence/T09-baseline-ps7-final1.json",
+        "evidence/T09-preflight-ps51-final1.json",
+        "evidence/T09-preflight-ps7-final1.json",
+        "evidence/T09-discovery-ps51-final1.json",
+        "evidence/T09-discovery-ps7-final1.json",
+        "evidence/T09-naming-ps51-final1.json",
+        "evidence/T09-naming-ps7-final1.json",
+        "evidence/T09-reservation-ps51-final1.json",
+        "evidence/T09-reservation-ps7-final1.json",
+        "evidence/T09-native-ps51-final1.json",
+        "evidence/T09-native-ps7-final1.json",
+        "evidence/T09-resolver-ps51-final1.json",
+        "evidence/T09-resolver-ps7-final1.json",
+        "evidence/T09-music-ps51-final1.json",
+        "evidence/T09-music-ps7-final1.json"
+      ],
+      "tested_commit": "347b8656068b5e26b45410b830025de51000659f",
+      "checkpoint_commit": "fcce28736081d799b29f4594b56bebafbad1a9f7",
+      "remote_checkpoint_verified": true,
+      "notes": "A24-A26 pass on PS5.1/PS7: 27 focused groups each, 61 real decoded conversions plus 3 selected-rate rejection rows, max source/probe/decode delta 0.066125s under fixed 0.35s bound. CreateNew retained guard/file identity owns explicit-MP3 partial; expected stream/audio bitrate/full decode precede no-overwrite File.Move. Empty/corrupt/non-audio/codec/rate/missing-duration/stale-Xing truncation/long/probe/encoder/decode/promotion failures, actual locked rename, independent final sentinel, path replacement, unknown child exit and actual postpublish log failure verified. All 18 final reports pass; retained suite/seven companions and affected preflight/discovery/naming/reservation/native/resolver/default Music checks retain source/sentinel SHA256 and exact owned cleanup. Native handles 668->668 and 576->576 keep allowance16. Manifest proves 13 tested runtime/test files equivalent to code checkpoint; 27 attempts (21pass/6fail) retained, privacy-only diagnostic redaction noted. Owner merged T08 PR8 into main347b865; T09 draftPR9 feature synchronized, main owner-gated. No CI/phone/manual/long-file/cancellation/source-replacement/release claim; T07 possible unknown TEMP residue remains unverified. Exactly next T10."
     },
     {
       "id": "T10",
