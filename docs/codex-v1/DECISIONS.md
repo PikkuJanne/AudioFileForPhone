@@ -472,3 +472,34 @@ with a bare “approved” assertion without a traceable reference.
   pushed/live-matched. This manual acceptance closure changes only docs/evidence,
   so existing automated results remain valid. Exactly next implementation T12
   requires owner integration of T11 first.
+
+## T12 — no-write preview (11 October 2026)
+
+- Owner requested "T12 next please". Normal fetch, independently advertised refs
+  and live GitHub verify owner T11 PR #11 merge at 08:06:36 UTC into main
+  cb4ffc44d5ad78b575656ba44461db8b64ae7580, final feature f6633103. Clean local
+  main was fast-forwarded before codex/v1-t12-preview. Normal feature scope
+  continues; main and release gates are unchanged.
+- Choose one documented DryRun switch. Existing discovery and complete batch
+  naming allocation stay shared; branch before tools, write probes, cover work,
+  prompts, cancellation registration and reservation. Previewed/0 counts no
+  conversions and reaches the common explicit exit. Provisional timestamp/root,
+  unknown durations and unverified permissions/tools/media/cover are visible.
+- Six selected final reports pass on both shells: preview eight groups/eleven
+  exact logged source-target mappings, independent 64 kbps MP3 probes/full decode;
+  retained baseline/characterization; script 13 groups/14 decoded publications.
+  Strict directories/files/hashes/modification-time/attribute inventories, zero
+  guarded calls, source/fixture preservation, child disposal and exact cleanup pass.
+  Default preview branch uses only an owned synthetic Music resolver.
+- Preserve four failed harness attempts and one intermediate pass. Refresh stale
+  enumeration metadata before inventory reads, fix driver array composition,
+  assert actual warning meanings and the unchanged 259-unit file-path limit.
+  Runtime was unchanged through those repairs; strict timestamp equality remains.
+- Independent runtime/harness/raw evidence review passes. Code checkpoint
+  b0c20f66e0d2c6af4f99232dc633c4eb201c6a57 was committed, pushed and matched its
+  fresh advertised feature ref. Manifest proves eight tested files: three literal,
+  five CRLF-to-LF only. Evidence/handoff follows in a docs-only checkpoint.
+  Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/12.
+  T12 main integration remains owner-gated; zero workflows/checks, no CI or release
+  claim. Existing T07/T09/T11 limitations remain. Exactly next task is T13 after
+  independently verified owner integration of T12.

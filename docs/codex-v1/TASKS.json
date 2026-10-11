@@ -489,7 +489,7 @@
       "tested_commit": "82f0fd3c9da765f169c2724edc73f779cdce6525",
       "checkpoint_commit": "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5",
       "remote_checkpoint_verified": true,
-      "notes": "A29/A30 pass; T11 complete and M2 local acceptance passed. Owner-confirmed physical Ctrl+C passes on PS5.1 manual1 at 71eee22 with the original harness and Store PS7 7.6.6 manual2 at actual test base 18fd7a6 with current runtime/repaired harness. Both verify exit 130/Cancelled, total=3/processed=1/converted=1/failed=0/not_processed=2, preserved decoded first output/hash, removed partial, cancellation log, mode restoration, unrelated FFmpeg, unchanged source/fixture hashes, child disposal and exact owned cleanup. 26 selected automated reports pass: full M2 matrix on both shells and nine-group cancellation/crash checks on PS5.1, bundled PS7 and Store PS7 from repository/Store directories. Quiet native handles 673->673/580->580, allowance 16. Compiler-only ac9cded fix pins Framework references; runtime unchanged. Manifest proves 16 current files and original manual harness separately, CRLF/LF only; actual test bases retained. All 36 raw reports retained: 33 automated (29 pass/4 fail), three physical-mode (two passes/one compiler setup failure). Immediate guard rejection created no fixtures/report; cause unobserved, successful direct invocation recorded. Attempt1 original DLL cleanup=false/narrow recovery limitation remains. Code/test/evidence checkpoints pushed and independently live-matched. Final manual closure is docs-only; main integration owner-gated via draft PR #11, zero workflows/CI claim. Exactly next implementation T12 after owner integration. No phone/window-close/full-disk/long-file/source-replacement/release claim; prior T07 residue/T09 path interval remain.",
+      "notes": "A29/A30 pass; T11 complete and M2 local acceptance passed. Owner-confirmed physical Ctrl+C passes on PS5.1 manual1 at 71eee22 with the original harness and Store PS7 7.6.6 manual2 at actual test base 18fd7a6 with current runtime/repaired harness. Both verify exit 130/Cancelled, total=3/processed=1/converted=1/failed=0/not_processed=2, preserved decoded first output/hash, removed partial, cancellation log, mode restoration, unrelated FFmpeg, unchanged source/fixture hashes, child disposal and exact owned cleanup. 26 selected automated reports pass: full M2 matrix on both shells and nine-group cancellation/crash checks on PS5.1, bundled PS7 and Store PS7 from repository/Store directories. Quiet native handles 673->673/580->580, allowance 16. Compiler-only ac9cded fix pins Framework references; runtime unchanged. Manifest proves 16 current files and original manual harness separately, CRLF/LF only; actual test bases retained. All 36 raw reports retained: 33 automated (29 pass/4 fail), three physical-mode (two passes/one compiler setup failure). Immediate guard rejection created no fixtures/report; cause unobserved, successful direct invocation recorded. Attempt1 original DLL cleanup=false/narrow recovery limitation remains. Code/test/evidence checkpoints pushed and independently live-matched. Final manual closure is docs-only; main integration owner-gated via draft PR #11, zero workflows/CI claim. Exactly next implementation T12 after owner integration. No phone/window-close/full-disk/long-file/source-replacement/release claim; prior T07 residue/T09 path interval remain. T12 startup independently verified owner merge of PR #11 at 08:06:36 UTC on 11 October 2026 into main cb4ffc44d5ad78b575656ba44461db8b64ae7580, with final T11 feature f66331032d4debc96c07b2c0b1cb8fe5d474cf6c; T11 main integration is complete.",
       "runtime_checkpoint_commit": "71eee22c87b57cea60079419f063149703c7df5a",
       "automated_test_bases": [
         "82f0fd3c9da765f169c2724edc73f779cdce6525",
@@ -500,14 +500,16 @@
         "71eee22c87b57cea60079419f063149703c7df5a",
         "18fd7a6cef6208db415c7fea17de07d7d4b50628"
       ],
-      "verified_evidence_checkpoint": "18fd7a6cef6208db415c7fea17de07d7d4b50628"
+      "verified_evidence_checkpoint": "18fd7a6cef6208db415c7fea17de07d7d4b50628",
+      "main_integration_commit": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+      "owner_merged_utc": "2026-10-11T08:06:36Z"
     },
     {
       "id": "T12",
       "milestone": "M3",
       "title": "Add side-effect-free preview using the real planner",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T11"
       ],
@@ -519,11 +521,29 @@
         "A31",
         "A32"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T12.md",
+        "evidence/T12-tested-payload.json",
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json",
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json",
+        "evidence/T12-script-ps51-final1.json",
+        "evidence/T12-script-ps7-final1.json",
+        "evidence/T12-preview-ps51-attempt1.json",
+        "evidence/T12-preview-ps51-attempt2.json",
+        "evidence/T12-preview-ps51-attempt3.json",
+        "evidence/T12-preview-ps51-attempt4.json",
+        "evidence/T12-preview-ps51-attempt5.json"
+      ],
+      "tested_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+      "checkpoint_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+      "remote_checkpoint_verified": true,
+      "notes": "A31/A32 pass. One documented -DryRun interface shares existing discovery and complete naming/collision allocation; no tools, writes, cover preparation, prompts, cancellation registration or conversion progress. Previewed/0 counts zero processed/converted/failed; root timestamp/reservation provisional, durations unknown and writability/tools/media/cover unverified. Final preview checks directly test b0c20f66 on PS5.1/7: eight groups and eleven exact logged source-to-output mappings, independently 64 kbps MP3 probed/full decoded, per shell. Strict refreshed owned-tree directories/files/hash/modification-time/attribute inventories equal; source/synthetic/child/exact cleanup gates pass. Four baseline/script final regressions also pass, script 13 groups/14 decoded outputs each. Manifest matches eight tested files to committed Git blobs: three literal/five CRLF-to-LF only. Eleven raw reports retained: six selected final passes, intermediate attempt5 pass and four harness development failures with historical fingerprints. Independent runtime/harness/evidence review passes. Code checkpoint pushed/live-matched; docs-only evidence/handoff checkpoint follows. Draft PR #12; main integration owner-gated, zero workflows/checks and no CI/release/phone claim. T11 owner integration verified at cb4ffc44. Exactly next implementation T13 after owner integration of T12.",
+      "automated_test_bases": [
+        "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+        "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57"
+      ]
     },
     {
       "id": "T13",

@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "task": "T12",
+  "code_checkpoint_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+  "code_checkpoint_advertised_ref_verified": true,
+  "prior_verified_main_checkpoint": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+  "regression_test_base_commit": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+  "preview_test_base_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+  "equivalence_policy": "Selected raw SHA256 fingerprints match working bytes, and independently computed Git blob hashes match the code checkpoint literally or after CRLF-to-LF only.",
+  "selected_reports": [
+    {
+      "path": "evidence/T12-preview-ps51-final1.json",
+      "sha256": "dd5e3b20aab4599af6aeb8ac32141fbb4799fffdedb9a56779fa299f5c34ab0f",
+      "status": "pass",
+      "actual_test_base": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+      "shell": "5.1.26100.9444"
+    },
+    {
+      "path": "evidence/T12-preview-ps7-final1.json",
+      "sha256": "71fc9eb6eae28e888438cede70cd376f063043d3b3e26a753c5d3ceca69c4495",
+      "status": "pass",
+      "actual_test_base": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
+      "shell": "7.6.5"
+    },
+    {
+      "path": "evidence/T12-baseline-ps51-final1.json",
+      "sha256": "0fbcdf019fdb1dd615145161d196247d49f889e107346fc68d836593e48dc738",
+      "status": "pass",
+      "actual_test_base": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+      "shell": "5.1.26100.9444"
+    },
+    {
+      "path": "evidence/T12-baseline-ps7-final1.json",
+      "sha256": "11d512e00a1d2cf802ed5f90ed47d9d771d9d5199618c7ded9546a81b92ffc0a",
+      "status": "pass",
+      "actual_test_base": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+      "shell": "7.6.5"
+    },
+    {
+      "path": "evidence/T12-script-ps51-final1.json",
+      "sha256": "3a75c075a1393dcd5c68d29a4e58f85bf2bfd77358fbd9d134cbb03da6e29277",
+      "status": "pass",
+      "actual_test_base": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+      "shell": "5.1.26100.9444"
+    },
+    {
+      "path": "evidence/T12-script-ps7-final1.json",
+      "sha256": "f252c8e68c0660a4acaf1dd785ff7506455aeef81c05435bb033e0e773bc0412",
+      "status": "pass",
+      "actual_test_base": "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+      "shell": "7.6.5"
+    }
+  ],
+  "files": [
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "committed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "independently_computed_literal_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "independently_computed_crlf_to_lf_git_blob": "318af6797b099fe47aac13c04e95bf735178b066",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json",
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json",
+        "evidence/T12-script-ps51-final1.json",
+        "evidence/T12-script-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b",
+      "committed_git_blob": "55f5730367332b3ad4d7625381b97a210339bc33",
+      "independently_computed_literal_git_blob": "f7c4e58e2e7d971b27ca5e4ec54274418180459b",
+      "independently_computed_crlf_to_lf_git_blob": "55f5730367332b3ad4d7625381b97a210339bc33",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json",
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json",
+        "evidence/T12-script-ps51-final1.json",
+        "evidence/T12-script-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137",
+      "committed_git_blob": "8423d375300daf1169e5912dc26990f871bf10d7",
+      "independently_computed_literal_git_blob": "8423d375300daf1169e5912dc26990f871bf10d7",
+      "independently_computed_crlf_to_lf_git_blob": "cbca1c3eed3a331f441c7337ad8d2fa2623b3db0",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json",
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json",
+        "evidence/T12-script-ps51-final1.json",
+        "evidence/T12-script-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "0ab99bc2855b5e03325b63ca8a0790f730484f1e8f7b563bf3f4cf8da151ea77",
+      "committed_git_blob": "4ceb5712ef7ba6fe721df0d5b9b14126e1be8bf4",
+      "independently_computed_literal_git_blob": "34d12f1dca4cf3ebdb421175158bcc644ea6a337",
+      "independently_computed_crlf_to_lf_git_blob": "4ceb5712ef7ba6fe721df0d5b9b14126e1be8bf4",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "committed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "independently_computed_literal_git_blob": "a8a94f98ea890fd209a466415a33ef2d689c4f25",
+      "independently_computed_crlf_to_lf_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+      "committed_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "independently_computed_literal_git_blob": "cddd54077d7ea164534b079874f8428514fb2c54",
+      "independently_computed_crlf_to_lf_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-baseline-ps51-final1.json",
+        "evidence/T12-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-Preview.ps1",
+      "sha256": "a5a91e00587eb1889f957e1421a2e68fc780728c728d2c729d32a515586fc6f5",
+      "committed_git_blob": "26c366f104211568f5efe09f77e52866ade56c56",
+      "independently_computed_literal_git_blob": "26c366f104211568f5efe09f77e52866ade56c56",
+      "independently_computed_crlf_to_lf_git_blob": "26c366f104211568f5efe09f77e52866ade56c56",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-ScriptResults.ps1",
+      "sha256": "cfc08dfea604a927e6d4cbbfab84cfc10a023aeef17f76526646509ce455eed5",
+      "committed_git_blob": "6c2eb895b60724ee6f97ef7d94369a158d4f87b7",
+      "independently_computed_literal_git_blob": "db219941b475e44674df0ecd0465139c6ca7e907",
+      "independently_computed_crlf_to_lf_git_blob": "6c2eb895b60724ee6f97ef7d94369a158d4f87b7",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T12-script-ps51-final1.json",
+        "evidence/T12-script-ps7-final1.json"
+      ]
+    }
+  ],
+  "all_selected_gates_pass": true,
+  "development_reports": [
+    "evidence/T12-preview-ps51-attempt1.json",
+    "evidence/T12-preview-ps51-attempt2.json",
+    "evidence/T12-preview-ps51-attempt3.json",
+    "evidence/T12-preview-ps51-attempt4.json",
+    "evidence/T12-preview-ps51-attempt5.json"
+  ],
+  "development_report_policy": "Attempts 1-4 remain failures with historical harness fingerprints; attempt5 passes before the code checkpoint. Final preview reports directly test the committed code."
+}

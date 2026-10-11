@@ -1,0 +1,910 @@
+{
+    "schema_version":  1,
+    "task":  "T12",
+    "mode":  "preview_inventory_equality_and_real_plan_equivalence",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-Preview.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T12-preview-ps51-attempt3.json",
+    "started_utc":  "2026-10-11T08:19:23.5685895Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preview.ps1",
+                              "sha256":  "b2f2f2b4c07e04799c8192a52eb9ddc8faa99d44104870035a5689d8b5a930b8"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preview.ps1",
+                             "sha256":  "b2f2f2b4c07e04799c8192a52eb9ddc8faa99d44104870035a5689d8b5a930b8"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Seed\\good.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Seed\\good.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Seed\\good.ogg",
+                                 "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                 "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                 "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                 "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                 "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                 "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                 "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                 "sha256":  "58dea89c6a5b8581805c4954f329448636a0f1395d7c63d6c03fe83f5e381212"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Existing\\existing.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                 "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                             },
+                             {
+                                 "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                 "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                             },
+                             {
+                                 "relative_path":  "guarded-driver.ps1",
+                                 "sha256":  "dd5048975c2b575c72e0d4847ed4255f2387d002b80a65732a7e930e3d5484cb"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Seed\\good.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Seed\\good.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Seed\\good.ogg",
+                                "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                "sha256":  "58dea89c6a5b8581805c4954f329448636a0f1395d7c63d6c03fe83f5e381212"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Existing\\existing.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                            },
+                            {
+                                "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                            },
+                            {
+                                "relative_path":  "guarded-driver.ps1",
+                                "sha256":  "dd5048975c2b575c72e0d4847ed4255f2387d002b80a65732a7e930e3d5484cb"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  true,
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T12P-eefd2014",
+    "owner_marker_sha256":  "100232be6b91e0c6e67435c2782be7cda5247eec37df737577ec742145c6cb36",
+    "inventory_fields":  [
+                             "relative_path",
+                             "kind",
+                             "length",
+                             "sha256",
+                             "last_write_utc",
+                             "attributes"
+                         ],
+    "access_time_excluded":  true,
+    "ordinary_music_access":  false,
+    "cases":  [
+                  {
+                      "name":  "guarded preview ignores Interactive/invalid cover and preserves every directory/file property",
+                      "acceptance_case":  "A31",
+                      "status":  "fail",
+                      "inventory_before":  [
+                                               {
+                                                   "relative_path":  ".",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:25.0483597Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  ".t12-owner",
+                                                   "kind":  "file",
+                                                   "length":  32,
+                                                   "sha256":  "100232be6b91e0c6e67435c2782be7cda5247eec37df737577ec742145c6cb36",
+                                                   "last_write_utc":  "2026-10-11T08:19:23.8464352Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "A-guarded",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8990801Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                                   "kind":  "file",
+                                                   "length":  85459,
+                                                   "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.9425550Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                                   "kind":  "file",
+                                                   "length":  35821,
+                                                   "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137",
+                                                   "last_write_utc":  "2026-10-11T08:12:21.3397988Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "A-plain",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:25.0049379Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                                   "kind":  "file",
+                                                   "length":  83884,
+                                                   "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b",
+                                                   "last_write_utc":  "2026-10-11T08:07:26.9379378Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                                   "kind":  "file",
+                                                   "length":  35821,
+                                                   "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137",
+                                                   "last_write_utc":  "2026-10-11T08:12:21.3397988Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Existing",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8623946Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Existing\\existing.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "guarded-driver.ps1",
+                                                   "kind":  "file",
+                                                   "length":  1516,
+                                                   "sha256":  "dd5048975c2b575c72e0d4847ed4255f2387d002b80a65732a7e930e3d5484cb",
+                                                   "last_write_utc":  "2026-10-11T08:19:25.0483597Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8153347Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                                   "kind":  "file",
+                                                   "length":  30,
+                                                   "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8153347Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                                   "kind":  "file",
+                                                   "length":  4254,
+                                                   "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                                   "kind":  "file",
+                                                   "length":  4254,
+                                                   "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                                   "kind":  "file",
+                                                   "length":  2979,
+                                                   "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                                   "kind":  "file",
+                                                   "length":  2979,
+                                                   "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                                   "kind":  "file",
+                                                   "length":  4254,
+                                                   "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8028250Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                                   "kind":  "file",
+                                                   "length":  2979,
+                                                   "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                                   "kind":  "file",
+                                                   "length":  30,
+                                                   "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8128566Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8552264Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                                   "kind":  "file",
+                                                   "length":  171,
+                                                   "sha256":  "58dea89c6a5b8581805c4954f329448636a0f1395d7c63d6c03fe83f5e381212",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8450896Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.8028250Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                                   "kind":  "file",
+                                                   "length":  4254,
+                                                   "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                   "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Seed",
+                                                   "kind":  "directory",
+                                                   "length":  null,
+                                                   "sha256":  null,
+                                                   "last_write_utc":  "2026-10-11T08:19:24.7154784Z",
+                                                   "attributes":  16
+                                               },
+                                               {
+                                                   "relative_path":  "Seed\\good.m4a",
+                                                   "kind":  "file",
+                                                   "length":  2979,
+                                                   "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.6725866Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Seed\\good.mp3",
+                                                   "kind":  "file",
+                                                   "length":  2561,
+                                                   "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                   "attributes":  32
+                                               },
+                                               {
+                                                   "relative_path":  "Seed\\good.ogg",
+                                                   "kind":  "file",
+                                                   "length":  4254,
+                                                   "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                   "last_write_utc":  "2026-10-11T08:19:24.7317926Z",
+                                                   "attributes":  32
+                                               }
+                                           ],
+                      "inventory_after":  [
+                                              {
+                                                  "relative_path":  ".",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:25.0483597Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  ".t12-owner",
+                                                  "kind":  "file",
+                                                  "length":  32,
+                                                  "sha256":  "100232be6b91e0c6e67435c2782be7cda5247eec37df737577ec742145c6cb36",
+                                                  "last_write_utc":  "2026-10-11T08:19:23.8464352Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "A-guarded",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8990801Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                                  "kind":  "file",
+                                                  "length":  85459,
+                                                  "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.9425550Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                                  "kind":  "file",
+                                                  "length":  35821,
+                                                  "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137",
+                                                  "last_write_utc":  "2026-10-11T08:12:21.3397988Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "A-plain",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:25.0049379Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                                  "kind":  "file",
+                                                  "length":  83884,
+                                                  "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b",
+                                                  "last_write_utc":  "2026-10-11T08:07:26.9379378Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                                  "kind":  "file",
+                                                  "length":  35821,
+                                                  "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137",
+                                                  "last_write_utc":  "2026-10-11T08:12:21.3397988Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Existing",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8623946Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Existing\\existing.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "guarded-driver.ps1",
+                                                  "kind":  "file",
+                                                  "length":  1516,
+                                                  "sha256":  "dd5048975c2b575c72e0d4847ed4255f2387d002b80a65732a7e930e3d5484cb",
+                                                  "last_write_utc":  "2026-10-11T08:19:25.0483597Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8153347Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                                  "kind":  "file",
+                                                  "length":  30,
+                                                  "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8153347Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                                  "kind":  "file",
+                                                  "length":  4254,
+                                                  "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                                  "kind":  "file",
+                                                  "length":  4254,
+                                                  "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                                  "kind":  "file",
+                                                  "length":  2979,
+                                                  "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                                  "kind":  "file",
+                                                  "length":  2979,
+                                                  "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                                  "kind":  "file",
+                                                  "length":  4254,
+                                                  "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8028250Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                                  "kind":  "file",
+                                                  "length":  2979,
+                                                  "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                                  "kind":  "file",
+                                                  "length":  30,
+                                                  "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8128566Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8552264Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                                  "kind":  "file",
+                                                  "length":  171,
+                                                  "sha256":  "58dea89c6a5b8581805c4954f329448636a0f1395d7c63d6c03fe83f5e381212",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8450896Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.8028250Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                                  "kind":  "file",
+                                                  "length":  4254,
+                                                  "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                  "last_write_utc":  "2023-06-07T10:34:56.0000000Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Seed",
+                                                  "kind":  "directory",
+                                                  "length":  null,
+                                                  "sha256":  null,
+                                                  "last_write_utc":  "2026-10-11T08:19:24.7154784Z",
+                                                  "attributes":  16
+                                              },
+                                              {
+                                                  "relative_path":  "Seed\\good.m4a",
+                                                  "kind":  "file",
+                                                  "length":  2979,
+                                                  "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.6725866Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Seed\\good.mp3",
+                                                  "kind":  "file",
+                                                  "length":  2561,
+                                                  "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.5875787Z",
+                                                  "attributes":  32
+                                              },
+                                              {
+                                                  "relative_path":  "Seed\\good.ogg",
+                                                  "kind":  "file",
+                                                  "length":  4254,
+                                                  "sha256":  "688faca101835e2233cfbf8bbb2bd2882d45280bada87318551dbd2bcecfd12a",
+                                                  "last_write_utc":  "2026-10-11T08:19:24.7317926Z",
+                                                  "attributes":  32
+                                              }
+                                          ],
+                      "preview_diagnostics":  "==== AudioFileForPhone ====\r\n[INFO] Script path : \u003cOWNED_TEMP\u003e\\A-guarded\\AudioFileForPhone.ps1\r\n[INFO] Script dir  : \u003cOWNED_TEMP\u003e\\A-guarded\r\n[INFO] Raw input   : \u0027\u003cOWNED_TEMP\u003e\\Input [x] O\u0027Brien \u0026 !%^\u0027\r\n[INFO] Bitrate     : 64kbps\r\n[INFO] Max name    : 40 chars\r\n[INFO] Interactive : True\r\n\r\n[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: \u003cOWNED_TEMP\u003e\\Input [x] O\u0027Brien \u0026 !%^\r\nMarked AudioFileForPhone output root: \u003cOWNED_TEMP\u003e\\Input [x] O\u0027Brien \u0026 !%^\\Prior\r\n[PREVIEW] Provisional output root: \u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\r\n[PREVIEW] Timestamp and reservation are provisional; an actual run can use a different root.\r\n[PREVIEW] Durations: unknown (media has not been probed).\r\n[PREVIEW] Destination writability: unverified (no write probe).\r\n[PREVIEW] Tools, media and cover validation: unverified.\r\n[PREVIEW] -Interactive is ignored; no metadata prompts are shown.\r\n[PREVIEW] Scan exclusions: 1; unsupported files: 2 (all extensions except .mp3, .m4a and .ogg).\r\n[PREVIEW] Naming, date prefixes and collision suffixes use the same planner as conversion.\r\n[PREVIEW] 2023-02-29 - Impossible.ogg -\u003e Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - 2023-02-29 - Impossible.mp3\r\n2023-02-29 - Impossible.ogg: Invalid leading date; using LastWriteTime and retaining the full original basename as title input.\r\n[PLAN] {\"source_relative_path\":\"2023-02-29 - Impossible.ogg\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2023-06-07 - 2023-02-29 - Impossible.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2023-06-07 - 2023-02-29 - Impossible.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-01-02 - A\u0026B.mp3 -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.mp3\r\n2024-01-02 - A\u0026B.mp3: Characters outside the letters/digits/whitespace/hyphen/underscore whitelist removed.\r\n[PLAN] {\"source_relative_path\":\"2024-01-02 - A\\u0026B.mp3\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - AB.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - AB.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-01-02 - AB.ogg -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB (2).mp3\r\n[PLAN] {\"source_relative_path\":\"2024-01-02 - AB.ogg\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - AB (2).mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - AB (2).mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-01-02 - café.m4a -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3\r\n2024-01-02 - café.m4a: Title normalized to NFC.\r\n[PLAN] {\"source_relative_path\":\"2024-01-02 - café.m4a\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - café.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - café.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-01-02 - café.mp3 -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café (2).mp3\r\n[PLAN] {\"source_relative_path\":\"2024-01-02 - café.mp3\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - café (2).mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-01-02 - café (2).mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-02-29 - Episode.m4a -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3\r\n[PLAN] {\"source_relative_path\":\"2024-02-29 - Episode.m4a\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-02-29 - Episode.mp3 -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (2).mp3\r\n[PLAN] {\"source_relative_path\":\"2024-02-29 - Episode.mp3\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode (2).mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode (2).mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] 2024-02-29 - Episode.ogg -\u003e Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (3).mp3\r\n[PLAN] {\"source_relative_path\":\"2024-02-29 - Episode.ogg\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode (3).mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2024-02-29 - Episode (3).mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a -\u003e Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.mp3\r\n[PLAN] {\"source_relative_path\":\"AudioForPhone_64kbps_20240101_000000\\\\2024-03-02 - Prefix is ordinary.m4a\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\AudioForPhone_64kbps_20240101_000000\\\\2024-03-02 - Prefix is ordinary.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\AudioForPhone_64kbps_20240101_000000\\\\2024-03-02 - Prefix is ordinary.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] No date !% ^ O\u0027Brien \u0026 [brackets].mp3 -\u003e Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - No date OBrien brackets.mp3\r\nNo date !% ^ O\u0027Brien \u0026 [brackets].mp3: Characters outside the letters/digits/whitespace/hyphen/underscore whitelist removed.\r\n[PLAN] {\"source_relative_path\":\"No date !% ^ O\\u0027Brien \\u0026 [brackets].mp3\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\2023-06-07 - No date OBrien brackets.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\2023-06-07 - No date OBrien brackets.mp3\",\"duration\":\"unknown\"}\r\n[PREVIEW] Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg -\u003e Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.mp3\r\n[PLAN] {\"source_relative_path\":\"Sub [x] !% ^ O\\u0027Brien \\u0026\\\\2024-03-01 - Ünicode 漢字.ogg\",\"output_relative_path\":\"Input [x] O\\u0027Brien \\u0026 !%^\\\\Sub [x] !% ^ O\\u0027Brien \\u0026\\\\2024-03-01 - Ünicode 漢字.mp3\",\"provisional_output_path\":\"C:\\\\Windows\\\\TEMP\\\\T12P-eefd2014\\\\Existing\\\\AudioForPhone_64kbps_20261011_101925\\\\Input [x] O\\u0027Brien \\u0026 !%^\\\\Sub [x] !% ^ O\\u0027Brien \\u0026\\\\2024-03-01 - Ünicode 漢字.mp3\",\"duration\":\"unknown\"}\r\n============================================================\r\n==== Summary ====\r\n[RESULT] status=Previewed; total=11; processed=0; converted=0; failed=0; not_processed=11; scan_excluded=1; unsupported=2; elapsed_seconds=0.533\r\n  Input folder : \u003cOWNED_TEMP\u003e\\Input [x] O\u0027Brien \u0026 !%^\r\n  Output root  : \u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925 (provisional; not reserved)\r\n  Output base  : \u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\r\n  Total files  : 11\r\n  Converted    : 0\r\n  Failed       : 0\r\n  Log file     : (not created during preview)\r\n  Exit code    : 0\r\n============================================================\r\n[GUARD] {\"calls\":[]}\r\n\n",
+                      "inventory_changes":  [
+
+                                            ],
+                      "exit_code":  0,
+                      "complete_inventory_equal":  true,
+                      "guarded_operations_called":  0,
+                      "plans_emitted":  11,
+                      "plans":  [
+                                    {
+                                        "source_relative_path":  "2023-02-29 - Impossible.ogg",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - 2023-02-29 - Impossible.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - 2023-02-29 - Impossible.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-01-02 - A\u0026B.mp3",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-01-02 - AB.ogg",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB (2).mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB (2).mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-01-02 - café.m4a",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-01-02 - café.mp3",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café (2).mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café (2).mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-02-29 - Episode.m4a",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-02-29 - Episode.mp3",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (2).mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (2).mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "2024-02-29 - Episode.ogg",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (3).mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode (3).mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - No date OBrien brackets.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\2023-06-07 - No date OBrien brackets.mp3",
+                                        "duration":  "unknown"
+                                    },
+                                    {
+                                        "source_relative_path":  "Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                        "output_relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.mp3",
+                                        "provisional_output_path":  "\u003cOWNED_TEMP\u003e\\Existing\\AudioForPhone_64kbps_20261011_101925\\Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.mp3",
+                                        "duration":  "unknown"
+                                    }
+                                ]
+                  }
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Preview must expose planner warnings.",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 51\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 254\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 55\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 249",
+    "finished_utc":  "2026-10-11T08:19:26.3152692Z"
+}
