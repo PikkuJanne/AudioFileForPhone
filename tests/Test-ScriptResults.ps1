@@ -28,8 +28,8 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11|T12)-script-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T10/T11/T12-script-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11|T12|T13)-script-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T10/T11/T12/T13-script-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -283,9 +283,9 @@ try {
     $throwHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
     if (@($Arguments | Where-Object { $_ -match '2024-01-02 throw\.m4a$' }).Count -gt 0) { throw 'controlled source probe native boundary exception' }
-    return & $script:T10OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments
+    return & $script:T10OriginalNative @PSBoundParameters
 }
 '@
     $throwEntry = New-AppCopy 'throw' $throwHelper
@@ -299,10 +299,10 @@ function Invoke-AudioNativeProcess {
     $encodeThrowHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
     if ([IO.Path]::GetFileName($ExecutablePath) -ieq 'ffmpeg.exe' -and
         @($Arguments | Where-Object { $_ -match 'encode-throw\.mp3$' }).Count -gt 0) { throw 'controlled encoder native boundary exception' }
-    return & $script:T10OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments
+    return & $script:T10OriginalNative @PSBoundParameters
 }
 '@
     $encodeThrowEntry = New-AppCopy 'encode-throw' $encodeThrowHelper
@@ -358,7 +358,7 @@ function New-AudioRunLog {
     }
     $progressPrefix = @'
 function global:Write-Progress {
-    [CmdletBinding()] param([string]$Activity,[string]$Status,[int]$PercentComplete,[switch]$Completed)
+    [CmdletBinding()] param([string]$Activity,[string]$Status,[int]$PercentComplete,[int]$Id,[int]$ParentId,[switch]$Completed)
     throw 'controlled progress display exception'
 }
 '@

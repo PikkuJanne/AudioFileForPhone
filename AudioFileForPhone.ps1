@@ -257,14 +257,28 @@ $batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $nu
 $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
 $script:AudioCancellationContext = $null
+$script:AudioProgressDisplayEnabled = $true
 
 function Write-AudioProgress {
-    param([string]$Status, [int]$PercentComplete, [switch]$Completed)
+    param([string]$Status, [int]$PercentComplete, [switch]$Completed,
+          [int]$Id = 0, [int]$ParentId = -1, [string]$Activity = ("Converting audio to {0}kbps MP3" -f $BitrateKbps))
+    if (-not $script:AudioProgressDisplayEnabled) { return }
     try {
-        Write-Progress -Activity ("Converting audio to {0}kbps MP3" -f $BitrateKbps) `
+        Write-Progress -Id $Id -ParentId $ParentId -Activity $Activity `
             -Status $Status -PercentComplete $PercentComplete -Completed:$Completed -ErrorAction Stop
     }
-    catch { Write-Warning "Progress display failed: $($_.Exception.Message)" -ErrorAction Continue }
+    catch {
+        $script:AudioProgressDisplayEnabled = $false
+        Write-Warning "Progress display failed: $($_.Exception.Message); display disabled." -ErrorAction Continue
+    }
+}
+
+function Write-AudioBatchProgress {
+    param([string]$Detail, [switch]$Completed)
+    $processed = $ok + $failed
+    $percent = if ($total -gt 0) { [int][math]::Floor(100.0 * $processed / $total) } else { 0 }
+    $status = '{0} / {1} processed; {2} converted; {3} failed; {4}' -f $processed, $total, $ok, $failed, $Detail
+    Write-AudioProgress -Status $status -PercentComplete $percent -Completed:$Completed
 }
 
 function Get-AudioResultSummary {
@@ -549,13 +563,20 @@ foreach ($plan in $plans) {
     $currentOutcome = $null
     $file = $plan.SourceFile
     $index++
-    $percent = [int](($index / $total) * 100)
-    $status  = "{0} / {1}: {2}" -f $index, $total, $file.Name
 
     Write-Host "------------------------------------------------------------"
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
-    Write-AudioProgress -Status $status -PercentComplete $percent
+    Write-AudioBatchProgress -Detail ("Inspecting file {0} / {1}: {2}" -f $index, $total, $file.Name)
+    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status 'Inspecting source; duration unknown' -PercentComplete -1
+    $fileProgressCallback = {
+        param($progress)
+        $detail = if ($progress.Phase -eq 'Encoding') {
+            if ($progress.PercentComplete -ge 0) { 'Encoding ({0}%)' -f $progress.PercentComplete }
+            else { 'Encoding (indeterminate)' }
+        } else { $progress.Phase }
+        Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $detail -PercentComplete $progress.PercentComplete
+    }
 
     $outDir = $plan.OutputDirectory
     $outPath = $plan.OutputPath
@@ -643,7 +664,8 @@ foreach ($plan in $plans) {
 
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
-            -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs
+            -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
+            -ProgressCallback $fileProgressCallback
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -663,6 +685,10 @@ foreach ($plan in $plans) {
     $currentOutcome = if ($fileStatus -eq 'Success') {
         "Validated output was published to '$outPath'"
     } else { "File '$($file.FullName)' failed ($fileStatus`: $fileReason)" }
+    $displayOutcome = if ($fileStatus -eq 'Success') { 'Converted; validated output published' } else { "Failed: $fileStatus" }
+    $filePercent = if ($fileStatus -eq 'Success') { 100 } else { -1 }
+    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $displayOutcome -PercentComplete $filePercent -Completed
+    Write-AudioBatchProgress -Detail $displayOutcome
     if ($null -ne $transaction) {
         $conversion = $transaction.EncoderResult
         if ($null -ne $conversion -and $conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
@@ -738,7 +764,10 @@ finally {
         }
         $script:AudioCancellationContext = $null
     }
-    if (-not $DryRun) { Write-AudioProgress -Status 'Finished' -PercentComplete 100 -Completed }
+    if (-not $DryRun) {
+        Write-AudioProgress -Id 1 -ParentId 0 -Activity 'Current file' -Status $runStatus -PercentComplete -1 -Completed
+        Write-AudioBatchProgress -Detail $runStatus -Completed
+    }
     $runWatch.Stop()
     Write-Host "============================================================"
     Write-Host "==== Summary ===="

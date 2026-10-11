@@ -28,13 +28,13 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T12-preview-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw "EvidencePath '$evidenceFullPath' must name fresh T12-preview-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T12|T13)-preview-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw "EvidencePath '$evidenceFullPath' must name fresh T12/T13-preview-ps51/ps7-attempt/finalN.json directly in '$evidenceParent'."
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T12'; mode = 'preview_inventory_equality_and_real_plan_equivalence'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'preview_inventory_equality_and_real_plan_equivalence'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -135,6 +135,7 @@ function New-AudioRunReservation { param($OutputParent,$InputFolder,$Files,$Bitr
 function New-AudioRunLog { param($OutputRoot); Stop-T12Forbidden 'log creation' }
 function Write-AudioOutputMarker { param($OutputRoot,$InputFolder,$BitrateKbps,$OwnershipToken); Stop-T12Forbidden 'marker creation' }
 function New-AudioCancellationContext { param([switch]$CaptureConsole); Stop-T12Forbidden 'console cancellation scope' }
+function New-AudioProgressParser { Stop-T12Forbidden 'progress parser compilation' }
 function Initialize-AudioDirectoryInterop { Stop-T12Forbidden 'write interop compilation' }
 $script:T12OriginalOutputParent=(Get-Item -LiteralPath Function:Get-OutputParent).ScriptBlock
 function Get-OutputParent {
@@ -162,6 +163,7 @@ function New-Driver {
         'function global:Stop-T12Forbidden { param([string]$Name); $global:T12ForbiddenCalls.Add($Name); throw (''T12 forbidden preview operation: ''+$Name) }',
         'function global:Read-Host { param($Prompt,[switch]$AsSecureString,[switch]$MaskInput); Stop-T12Forbidden ''interactive prompt'' }')
     if ($Preview) {
+        $prefix += 'function global:Write-Progress { [CmdletBinding()] param($Activity,$Status,$PercentComplete,$Id,$ParentId,[switch]$Completed); Stop-T12Forbidden ''progress display'' }'
         $prefix += 'function global:Add-Content { param($LiteralPath,$Path,$Value,$Encoding); Stop-T12Forbidden ''content/log append'' }'
         $prefix += 'function global:New-Item { param($Path,$ItemType,$Name,$Value); Stop-T12Forbidden ''directory/file creation'' }'
     }

@@ -235,25 +235,195 @@ function Assert-AudioNotCancelled {
     }
 }
 
+function New-AudioProgressParser {
+    # Compile only for an actual progress consumer, never for a preview.
+    if (-not ('AudioFileForPhone.ProgressParser' -as [type])) {
+        Add-Type -TypeDefinition @'
+using System;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
+namespace AudioFileForPhone {
+    public sealed class ProgressRecord {
+        public long Sequence { get; private set; }
+        public double? MediaSeconds { get; private set; }
+        public string ProgressState { get; private set; }
+        public ProgressRecord(long sequence, double? seconds, string state) {
+            Sequence = sequence; MediaSeconds = seconds; ProgressState = state;
+        }
+    }
+    public sealed class ProgressParser {
+        private const int lineLimit = 1024;
+        private const int recordLimit = 8192;
+        private readonly object gate = new object();
+        private readonly StringBuilder line = new StringBuilder();
+        private string microseconds, legacyMicroseconds, timestamp;
+        private int recordChars, maximumBufferedChars;
+        private bool lineOverflow, invalidRecord;
+        private long sequence, droppedRecords;
+        private ProgressRecord snapshot;
+        public Action<char[], int> Consumer { get { return Feed; } }
+        public ProgressRecord Snapshot { get { lock (gate) { return snapshot; } } }
+        public int BufferedChars { get { lock (gate) { return Buffered(); } } }
+        public int MaximumBufferedChars { get { lock (gate) { return maximumBufferedChars; } } }
+        public long DroppedRecords { get { lock (gate) { return droppedRecords; } } }
+        private int Buffered() {
+            return line.Length + (microseconds == null ? 0 : microseconds.Length) +
+                (legacyMicroseconds == null ? 0 : legacyMicroseconds.Length) +
+                (timestamp == null ? 0 : timestamp.Length);
+        }
+        private void ObserveBuffer() { maximumBufferedChars = Math.Max(maximumBufferedChars, Buffered()); }
+        private void Feed(char[] chars, int count) {
+            lock (gate) { for (int i = 0; i < count; i++) AddCharacter(chars[i]); }
+        }
+        public void Add(string chunk) {
+            if (chunk == null) return;
+            lock (gate) { foreach (char c in chunk) AddCharacter(c); }
+        }
+        private void AddCharacter(char c) {
+            // Count the whole record without retaining arbitrary FFmpeg fields.
+            if (recordChars <= recordLimit) recordChars++;
+            if (recordChars > recordLimit) invalidRecord = true;
+            if (c == '\n') { EndLine(); return; }
+            if (c == '\r') return;
+            if (lineOverflow) return;
+            if (line.Length == lineLimit) {
+                lineOverflow = true; invalidRecord = true; line.Clear(); return;
+            }
+            line.Append(c); ObserveBuffer();
+        }
+        private static double? ParseMicroseconds(string value) {
+            long time;
+            if (value != null && Int64.TryParse(value, NumberStyles.None, CultureInfo.InvariantCulture, out time))
+                return (double)time / 1000000.0;
+            return null;
+        }
+        private static double? ParseTimestamp(string value) {
+            if (value == null || !Regex.IsMatch(value, @"^[0-9]{2,}:[0-5][0-9]:[0-5][0-9](\.[0-9]{1,9})?$")) return null;
+            string[] parts = value.Split(':');
+            long hours; double seconds;
+            if (!Int64.TryParse(parts[0], NumberStyles.None, CultureInfo.InvariantCulture, out hours) ||
+                !Double.TryParse(parts[2], NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out seconds)) return null;
+            double time = hours * 3600.0 + Int32.Parse(parts[1], CultureInfo.InvariantCulture) * 60.0 + seconds;
+            return Double.IsNaN(time) || Double.IsInfinity(time) ? (double?)null : time;
+        }
+        private void ResetRecord() {
+            microseconds = legacyMicroseconds = timestamp = null;
+            recordChars = 0; invalidRecord = false;
+        }
+        private void EndLine() {
+            if (lineOverflow) { lineOverflow = false; line.Clear(); return; }
+            string text = line.ToString(); line.Clear();
+            if (text.Length == 0) return;
+            int separator = text.IndexOf('=');
+            if (separator <= 0) { invalidRecord = true; return; }
+            string key = text.Substring(0, separator), value = text.Substring(separator + 1);
+            if (key == "progress") {
+                if (!invalidRecord && (value == "continue" || value == "end")) {
+                    // FFmpeg's historical out_time_ms field also uses microseconds.
+                    double? seconds = ParseMicroseconds(microseconds) ?? ParseMicroseconds(legacyMicroseconds) ?? ParseTimestamp(timestamp);
+                    snapshot = new ProgressRecord(++sequence, seconds, value);
+                } else { droppedRecords++; }
+                ResetRecord();
+            } else if (key == "out_time_us" || key == "out_time_ms" || key == "out_time") {
+                if (value.Length > 128) { invalidRecord = true; return; }
+                if (key == "out_time_us") microseconds = value;
+                else if (key == "out_time_ms") legacyMicroseconds = value;
+                else timestamp = value;
+            }
+            ObserveBuffer();
+        }
+        public void Complete() { lock (gate) { if (line.Length != 0 || lineOverflow) EndLine(); } }
+    }
+}
+'@ -ErrorAction Stop
+    }
+    return New-Object AudioFileForPhone.ProgressParser
+}
+
+function Get-AudioProgressState {
+    param([AllowNull()][object]$Record, [AllowNull()][object]$DurationSeconds, [string]$Phase = 'Encoding')
+    $duration = $null; $mediaSeconds = $null; $sequence = [long]0; $progressState = $null
+    try { $duration = ConvertTo-AudioPositiveSeconds -Value $DurationSeconds } catch { }
+    if ($null -ne $Record) {
+        $sequence = $Record.Sequence; $progressState = $Record.ProgressState
+        if ($null -ne $Record.MediaSeconds) {
+            $candidate = [double]$Record.MediaSeconds
+            if (-not [double]::IsNaN($candidate) -and -not [double]::IsInfinity($candidate) -and $candidate -ge 0) { $mediaSeconds = $candidate }
+        }
+    }
+    $percent = -1
+    if ($null -ne $duration -and $null -ne $mediaSeconds) {
+        # Encoding completion is not validated, published file completion.
+        $fraction = [math]::Min(1.0, [math]::Max(0.0, $mediaSeconds / $duration))
+        $percent = [int][math]::Min(99, [math]::Floor(100 * $fraction))
+    }
+    return [pscustomobject]@{
+        Phase = $Phase; PercentComplete = $percent; MediaSeconds = $mediaSeconds
+        DurationSeconds = $duration; RecordSequence = $sequence; ProgressState = $progressState
+    }
+}
+
+function New-AudioProgressCallbackState {
+    return [pscustomobject]@{ Enabled = $true; LastPhase = ''; LastTimestamp = [long]0; LastRecordSequence = [long]0 }
+}
+
+function Invoke-AudioProgressCallback {
+    param([AllowNull()][scriptblock]$Callback, [object]$State, [object]$Progress)
+    if ($null -eq $Callback -or -not $State.Enabled) { return $false }
+    $now = [Diagnostics.Stopwatch]::GetTimestamp()
+    if ($State.LastPhase -ceq $Progress.Phase -and
+        ($now - $State.LastTimestamp) / [double][Diagnostics.Stopwatch]::Frequency -lt 0.5) { return $false }
+    try {
+        # The caller is the PowerShell polling thread; worker drains never run
+        # scriptblocks. Discard display output so it cannot change result shape.
+        & $Callback $Progress | Out-Null
+        $State.LastPhase = $Progress.Phase; $State.LastTimestamp = $now
+        return $true
+    }
+    catch {
+        $State.Enabled = $false
+        Write-Warning "Progress callback failed and was disabled: $($_.Exception.Message)" -ErrorAction Continue
+        return $false
+    }
+}
+
+function Send-AudioNativeProgress {
+    param([object]$Parser, [AllowNull()][scriptblock]$Callback, [object]$State, [AllowNull()][object]$DurationSeconds)
+    if ($null -eq $Parser -or $null -eq $Callback -or -not $State.Enabled) { return }
+    $record = $Parser.Snapshot
+    if ($null -eq $record -or $record.Sequence -le $State.LastRecordSequence) { return }
+    $progress = Get-AudioProgressState -Record $record -DurationSeconds $DurationSeconds
+    if (Invoke-AudioProgressCallback -Callback $Callback -State $State -Progress $progress) {
+        $State.LastRecordSequence = $record.Sequence
+    }
+}
+
 function Invoke-AudioNativeProcess {
     param(
         [Parameter(Mandatory = $true)][string]$ExecutablePath,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][AllowEmptyString()][string[]]$Arguments,
         [ValidateRange(0, 2147483647)][int]$MaxStdoutChars = 1048576,
         [ValidateRange(0, 2147483647)][int]$MaxStderrChars = 65536,
-        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+        [AllowNull()][scriptblock]$ProgressCallback,
+        [AllowNull()][object]$ProgressDurationSeconds,
+        [AllowNull()][object]$ProgressParser,
+        [AllowNull()][object]$ProgressCallbackState
     )
 
     $result = [ordered]@{
         Status = 'StartFailed'; ExecutablePath = $ExecutablePath; Arguments = [string[]]$Arguments.Clone()
         ExitCode = $null; Stdout = ''; Stderr = ''; StdoutTruncated = $false; StderrTruncated = $false
         StdoutTotalChars = [long]0; StderrTotalChars = [long]0; DurationMilliseconds = [long]0; Error = ''
-        ProcessReleased = $true
+        ProcessReleased = $true; ProgressError = ''
     }
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($null -ne $ProgressCallback -and $null -eq $ProgressParser) { $ProgressParser = New-AudioProgressParser }
+        if ($null -eq $ProgressCallbackState) { $ProgressCallbackState = New-AudioProgressCallbackState }
         # A rooted drive-relative path such as C:tool.exe is not an absolute path.
         # FileName is passed directly to Process, never to a command interpreter.
         if (-not [IO.Path]::IsPathRooted($ExecutablePath) -or
@@ -291,6 +461,7 @@ namespace AudioFileForPhone {
         private sealed class DrainResult {
             public string Text;
             public long TotalChars;
+            public string ConsumerError;
         }
         private Process process;
         private Task<DrainResult> stdoutTask;
@@ -305,6 +476,7 @@ namespace AudioFileForPhone {
         public long StderrTotalChars { get; private set; }
         public bool StdoutTruncated { get; private set; }
         public bool StderrTruncated { get; private set; }
+        public string ProgressConsumerError { get; private set; }
         public int ProcessId { get { return process.Id; } }
 
         // Quote every argument using the Windows CRT rules: backslashes preceding
@@ -330,19 +502,45 @@ namespace AudioFileForPhone {
             quoted.Append('"');
             return quoted.ToString();
         }
-        private static DrainResult Drain(StreamReader reader, int limit) {
+        private static DrainResult Drain(StreamReader reader, int limit, Action<char[], int> consumer) {
             StringBuilder retained = new StringBuilder(Math.Min(limit, 4096));
             char[] buffer = new char[4096];
             long total = 0;
-            int count;
-            while ((count = reader.Read(buffer, 0, buffer.Length)) != 0) {
+            string consumerError = "";
+            while (true) {
+                int count = 0;
+                if (consumer == null) { count = reader.Read(buffer, 0, buffer.Length); }
+                else {
+                    // StreamReader.Read(buffer,...) may wait to fill the buffer.
+                    // Feed progress at line boundaries so sparse records are
+                    // visible promptly while keeping worker buffers bounded.
+                    while (count < buffer.Length) {
+                        int character = reader.Read();
+                        if (character == -1) break;
+                        buffer[count++] = (char)character;
+                        if (character == '\n') break;
+                    }
+                }
+                if (count == 0) break;
                 total += count;
                 int keep = Math.Min(count, limit - retained.Length);
                 if (keep > 0) retained.Append(buffer, 0, keep);
+                if (consumer != null) {
+                    try { consumer(buffer, count); }
+                    catch (Exception error) {
+                        consumerError = error.GetType().Name + ": " + error.Message;
+                        if (consumerError.Length > 1024) consumerError = consumerError.Substring(0, 1024);
+                        // A failed optional observer cannot stop pipe drainage
+                        // and leave the owned child blocked on its stdout pipe.
+                        consumer = null;
+                    }
+                }
             }
-            return new DrainResult { Text = retained.ToString(), TotalChars = total };
+            return new DrainResult { Text = retained.ToString(), TotalChars = total, ConsumerError = consumerError };
         }
-        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit) {
+        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit)
+            : this(executablePath, arguments, stdoutLimit, stderrLimit, null) { }
+        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit, Action<char[], int> stdoutConsumer) {
             try {
                 StringBuilder commandLine = new StringBuilder();
                 foreach (string argument in arguments) {
@@ -367,8 +565,8 @@ namespace AudioFileForPhone {
                 StreamReader stderrReader = process.StandardError;
                 // Reuse pool workers rather than allocate two CLR threads and
                 // their native handles for every media item in a long batch.
-                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
                 // Observe faults even if an interrupted caller cannot join a drain.
                 stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
@@ -389,6 +587,7 @@ namespace AudioFileForPhone {
             StderrTotalChars = stderrTask.Result.TotalChars;
             StdoutTruncated = StdoutTotalChars > Stdout.Length;
             StderrTruncated = StderrTotalChars > Stderr.Length;
+            ProgressConsumerError = stdoutTask.Result.ConsumerError;
             completed = true;
             return true;
         }
@@ -432,14 +631,29 @@ namespace AudioFileForPhone {
         }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.ProcessReleased = $false
-        $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
+        if ($null -eq $ProgressParser) {
+            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
+        }
+        else {
+            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars, $ProgressParser.Consumer)
+        }
         if ($null -ne $Cancellation) { $Cancellation.SetActiveProcessId($capture.ProcessId) }
         # Short polls allow controlled cancellation without a conversion timeout.
-        while (-not $capture.WaitForExit(100)) { Assert-AudioNotCancelled -Cancellation $Cancellation }
+        while (-not $capture.WaitForExit(100)) {
+            Assert-AudioNotCancelled -Cancellation $Cancellation
+            Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
+        }
         $result.ExitCode = $capture.CaptureExitCode()
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'CaptureFailed'
-        while (-not $capture.Complete(100)) { Assert-AudioNotCancelled -Cancellation $Cancellation }
+        while (-not $capture.Complete(100)) {
+            Assert-AudioNotCancelled -Cancellation $Cancellation
+            Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
+        }
+        if ($null -ne $ProgressParser) {
+            $ProgressParser.Complete()
+            Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
+        }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'Completed'
         $result.Stdout = $capture.Stdout
@@ -448,6 +662,8 @@ namespace AudioFileForPhone {
         $result.StderrTruncated = $capture.StderrTruncated
         $result.StdoutTotalChars = $capture.StdoutTotalChars
         $result.StderrTotalChars = $capture.StderrTotalChars
+        $result.ProgressError = $capture.ProgressConsumerError
+        if ($result.ProgressError) { Write-Warning "Progress parsing failed and was disabled: $($result.ProgressError)" -ErrorAction Continue }
     }
     catch {
         $result.Error = $_.Exception.Message
@@ -778,13 +994,15 @@ function Invoke-AudioOutputTransaction {
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments,
-        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+        [AllowNull()][scriptblock]$ProgressCallback
     )
     $result = [ordered]@{
         Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
         EncoderResult = $null; ValidationResult = $null; CleanupError = ''
     }
     $guard = $null; $ownedIdentity = $null; $canCleanup = $true
+    $progressCallbackState = New-AudioProgressCallbackState
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
@@ -819,8 +1037,21 @@ function Invoke-AudioOutputTransaction {
         # this invocation's exact working pathname in that interval.
         $ownedIdentity = Get-AudioWorkingFileIdentity -Stream $guard
         $result.Status = 'EncodeFailed'
+        $nativeArguments = $EncodeArguments
+        if ($null -ne $ProgressCallback) {
+            $nativeArguments += @('-progress', 'pipe:1', '-stats_period', '0.5', '-nostats')
+            $encodingProgress = Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds
+            Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState -Progress $encodingProgress | Out-Null
+        }
         $canCleanup = $false
-        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($EncodeArguments + @('-y', '-f', 'mp3', $working)) -Cancellation $Cancellation
+        if ($null -eq $ProgressCallback) {
+            $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) -Cancellation $Cancellation
+        }
+        else {
+            $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) `
+                -MaxStdoutChars 8192 -Cancellation $Cancellation -ProgressCallback $ProgressCallback `
+                -ProgressDurationSeconds $sourceSeconds -ProgressCallbackState $progressCallbackState
+        }
         $result.EncoderResult = $native
         $canCleanup = $null -ne $native.PSObject.Properties['ProcessReleased'] -and $native.ProcessReleased
         if ($native.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $native.Error }
@@ -829,6 +1060,8 @@ function Invoke-AudioOutputTransaction {
             throw "Encoder failed ($($native.Status), exit $($native.ExitCode)): $($native.Error); $($native.Stderr)"
         }
         $result.Status = 'ValidationFailed'
+        Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState `
+            -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Validating') | Out-Null
         $canCleanup = $false
         $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
             -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation
@@ -838,6 +1071,8 @@ function Invoke-AudioOutputTransaction {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($validation.Status -ne 'Success') { throw "Output validation failed ($($validation.Status)): $($validation.Error)" }
         $result.Status = 'PromotionFailed'
+        Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState `
+            -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Promoting') | Out-Null
         $guard.Dispose(); $guard = $null
         Assert-AudioNoReparseAncestor -Path $working
         Assert-AudioNoReparseAncestor -Path $OutputPath

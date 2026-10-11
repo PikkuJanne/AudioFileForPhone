@@ -100,6 +100,15 @@ fast-forwarded; T12 uses `codex/v1-t12-preview` from that verified merge. Normal
 task edits, isolated tests, commits, feature push and a relevant draft PR remain
 authorized. Main integration and release authority are unchanged.
 
+T13 authorization: on 11 October 2026 the owner requested "T13 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T12 PR #12 merge at 09:05:48 UTC into main
+`ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c`, with final feature
+`fac5f09c0b13fb5f114542d41452daa880442fa1`. Clean local main was fast-forwarded;
+T13 uses `codex/v1-t13-progress` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Main integration and release authority are unchanged.
+
 ## Release gate
 
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".
