@@ -1,0 +1,134 @@
+{
+    "task":  "T17",
+    "schema_version":  1,
+    "status":  "pass",
+    "shell":  "5.1.26100.9444",
+    "edition":  "Desktop",
+    "root":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CiDependencyGuards-7cfef07bab1749f1a1c250fba527b996",
+    "tested_commit":  "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+    "source_before":  [
+                          {
+                              "path":  "C:\\projects\\AudioFileForPhone-main\\.github\\scripts\\Initialize-CiDependencies.ps1",
+                              "sha256":  "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf"
+                          },
+                          {
+                              "path":  "C:\\projects\\AudioFileForPhone-main\\.github\\dependencies.json",
+                              "sha256":  "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851"
+                          },
+                          {
+                              "path":  "C:\\projects\\AudioFileForPhone-main\\tests\\ci\\Test-CiDependencies.ps1",
+                              "sha256":  "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "path":  "C:\\projects\\AudioFileForPhone-main\\.github\\scripts\\Initialize-CiDependencies.ps1",
+                             "sha256":  "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf"
+                         },
+                         {
+                             "path":  "C:\\projects\\AudioFileForPhone-main\\.github\\dependencies.json",
+                             "sha256":  "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851"
+                         },
+                         {
+                             "path":  "C:\\projects\\AudioFileForPhone-main\\tests\\ci\\Test-CiDependencies.ps1",
+                             "sha256":  "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "cleanup_verified":  true,
+    "no_network_or_dependency_tool_execution":  true,
+    "identity_scope":  "Synchronous git rev-parse only; no FFmpeg or analyzer execution.",
+    "cases":  [
+                  {
+                      "case":  "unsafe member /absolute.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member ../outside.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member folder/../outside.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member C:/absolute.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member folder\\backslash.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member folder//empty.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member ./dot.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member NUL.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member trailing./file.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member space /file.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "unsafe member wild*.txt",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "control character ZIP metadata",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "case collision",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "file ancestor",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "Windows reparse attribute",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "Unix symlink type",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "actual safe ZIP extraction and inventory",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "preexisting extraction root preserved",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "invalid URL/digest/size before download",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "invalid URL/digest/size before download",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "invalid URL/digest/size before download",
+                      "status":  "pass"
+                  },
+                  {
+                      "case":  "invalid URL/digest/size before download",
+                      "status":  "pass"
+                  }
+              ],
+    "error":  null,
+    "started_utc":  "2026-10-11T13:09:59.7411215Z",
+    "ended_utc":  "2026-10-11T13:10:00.2063266Z"
+}

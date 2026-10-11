@@ -1,0 +1,829 @@
+{
+  "schema_version": 1,
+  "task": "T18",
+  "status": "pass_after_test_harness_repair",
+  "recorded_utc": "2026-10-11 13:16:23 UTC",
+  "source": "Live gh run view JSON; independently read failure logs for all four failed runs and exact selected uploaded JSON artifacts. Failed runs remain failed.",
+  "selected_source_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+  "feature_ref": "refs/heads/codex/v1-t18-help-version",
+  "independently_advertised_feature_sha": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+  "independently_advertised_main_sha": "efe928367fe6380afd754dbd2376766506dd6815",
+  "main_integration": "pending_owner",
+  "pr_url": "https://github.com/PikkuJanne/AudioFileForPhone/pull/18",
+  "pr_is_draft": true,
+  "repair_integration": {
+    "head": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+    "base": "efe928367fe6380afd754dbd2376766506dd6815",
+    "merge": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+    "tree": "95a284e2dc656fe41300aedf2ead11c2f062dde9"
+  },
+  "failure": {
+    "cause": "Inferred from the failing inventory line and old case-sensitive root comparison: differently cased Windows root identity is misclassified as a descendant, so Substring(root.Length+1) exceeds the root length. The failed raw report does not record the exact returned FullName casing; the alternate-case regression and repaired hosted passes support this diagnosis without establishing a shell-version-specific defect.",
+    "error": "Exception calling Substring: startIndex cannot be larger than length of string.",
+    "affected_family": "help",
+    "failed_case_count": 1,
+    "source_unchanged": true,
+    "synthetic_sources_unchanged": true,
+    "positive_descendant_release": true,
+    "owned_cleanup_completed": true,
+    "original_run_artifact": 38141841561,
+    "preserved_raw_reports": [
+      "T17-dependencies-ps7-run38141841561_1.json",
+      "T17-ci-ps7-run38141841561_1.json",
+      "T17-unit-ps7-run38141841561_1.json",
+      "T17-ci-dependencyguards-ps7-run38141841561_1.json",
+      "T17-baseline-ps7-run38141841561_1.json",
+      "T17-help-ps7-run38141841561_1.json"
+    ],
+    "repair": "Test-only canonical root and strict descendant-prefix comparison using OrdinalIgnoreCase; remaining node/path/kind/size/hash/time/attribute equality is exact. Alternate-case owned-root regression added within existing group1. Production unchanged."
+  },
+  "repair_selected_artifact_run": 38142299941,
+  "repair_report_prefix": "T17-*-{ps51,ps7}-run38142299941_1.json",
+  "repair_artifacts_binding": "T18-hosted-payload.json",
+  "repair_required_groups_per_shell": 102,
+  "repair_separate_observations_per_shell": 3,
+  "run_count": 6,
+  "runs": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T13:06:10Z",
+      "databaseId": 38141841561,
+      "event": "push",
+      "headSha": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:07:24Z",
+          "conclusion": "success",
+          "databaseId": 114477112786,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:06:12Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:06:14Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:06:13Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:06:21Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:06:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:19Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:06:21Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:20Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:07:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:22Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:07:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:22Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:07:22Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141841561/job/114477112786"
+        },
+        {
+          "completedAt": "2026-10-11T13:07:15Z",
+          "conclusion": "failure",
+          "databaseId": 114477112943,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:06:12Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:06:14Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:06:13Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:06:22Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:06:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:11Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:06:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:12Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:07:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:14Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:07:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:14Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:07:14Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141841561/job/114477112943"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:07:25Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141841561"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T13:06:23Z",
+      "databaseId": 38141855067,
+      "event": "pull_request",
+      "headSha": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:08:01Z",
+          "conclusion": "success",
+          "databaseId": 114477153453,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:06:25Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:06:27Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:06:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:06:36Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:06:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:57Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:06:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:58Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:07:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:00Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:07:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:00Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:08:00Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141855067/job/114477153453"
+        },
+        {
+          "completedAt": "2026-10-11T13:07:30Z",
+          "conclusion": "failure",
+          "databaseId": 114477153583,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:06:25Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:06:26Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:06:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:06:35Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:06:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:26Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:06:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:27Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:07:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:28Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:07:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:07:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141855067/job/114477153583"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:08:02Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141855067"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T13:07:24Z",
+      "databaseId": 38141923121,
+      "event": "push",
+      "headSha": "634cc5981ca5a6364cbd0474f8d19ffd38f00539",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:08:54Z",
+          "conclusion": "success",
+          "databaseId": 114477356346,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:07:27Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:07:29Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:07:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:36Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:07:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:48Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:07:36Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:50Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:08:48Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:52Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:08:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:52Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:08:52Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141923121/job/114477356346"
+        },
+        {
+          "completedAt": "2026-10-11T13:08:49Z",
+          "conclusion": "failure",
+          "databaseId": 114477356517,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:07:27Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:07:29Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:07:28Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:50Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:07:29Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:45Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:07:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:46Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:08:45Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:48Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:08:46Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:48Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:08:48Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141923121/job/114477356517"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:08:54Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141923121"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T13:07:29Z",
+      "databaseId": 38141927318,
+      "event": "pull_request",
+      "headSha": "634cc5981ca5a6364cbd0474f8d19ffd38f00539",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:08:44Z",
+          "conclusion": "failure",
+          "databaseId": 114477368865,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:07:31Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:07:35Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:07:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:43Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:07:35Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:38Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:07:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:39Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:08:38Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:41Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:08:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:41Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:08:41Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141927318/job/114477368865"
+        },
+        {
+          "completedAt": "2026-10-11T13:09:03Z",
+          "conclusion": "success",
+          "databaseId": 114477369044,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:07:31Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:07:33Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:07:32Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:07:41Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:07:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:58Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:07:41Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:08:59Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:08:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:09:01Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:08:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:09:01Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:09:01Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141927318/job/114477369044"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:09:04Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38141927318"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-11T13:13:08Z",
+      "databaseId": 38142296899,
+      "event": "push",
+      "headSha": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:14:46Z",
+          "conclusion": "success",
+          "databaseId": 114478465000,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:13:10Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:13:12Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:13:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:13:24Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:13:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:42Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:13:24Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:43Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:14:42Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:45Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:14:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:45Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:14:45Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142296899/job/114478465000"
+        },
+        {
+          "completedAt": "2026-10-11T13:14:41Z",
+          "conclusion": "success",
+          "databaseId": 114478465089,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:13:10Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:13:12Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:13:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:13:20Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:13:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:37Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:13:20Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:37Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:14:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:39Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:14:37Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:39Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:14:39Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142296899/job/114478465089"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:14:47Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142296899"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-11T13:13:11Z",
+      "databaseId": 38142299941,
+      "event": "pull_request",
+      "headSha": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T13:14:42Z",
+          "conclusion": "success",
+          "databaseId": 114478473962,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T13:13:13Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:13:14Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:13:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:13:22Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:13:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:39Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:13:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:39Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:14:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:41Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:14:39Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:41Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:14:41Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142299941/job/114478473962"
+        },
+        {
+          "completedAt": "2026-10-11T13:14:46Z",
+          "conclusion": "success",
+          "databaseId": 114478474084,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T13:13:13Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T13:13:15Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T13:13:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:13:23Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T13:13:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:42Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T13:13:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:43Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T13:14:42Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:45Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T13:14:43Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T13:14:45Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T13:14:45Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142299941/job/114478474084"
+        }
+      ],
+      "status": "completed",
+      "updatedAt": "2026-10-11T13:14:47Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38142299941"
+    }
+  ],
+  "final_docs_checkpoint": "A later docs-only containing commit is pushed and independently verified in the PR/session response. Its checks are inspected live without storing a self-referential SHA here."
+}

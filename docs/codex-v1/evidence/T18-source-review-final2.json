@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "task": "T18",
+  "mode": "independent_test_only_hosted_failure_repair_and_current_payload_review",
+  "status": "pass",
+  "reviewed_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+  "pre_repair_commit": "634cc5981ca5a6364cbd0474f8d19ffd38f00539",
+  "original_runtime_code_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+  "main_commit": "efe928367fe6380afd754dbd2376766506dd6815",
+  "reviewed_at_utc": "2026-10-11T13:15:00.420Z",
+  "native_or_test_suites_executed_by_reviewer": false,
+  "repair_scope": {
+    "changed_paths": [
+      "tests/Test-HelpVersion.ps1"
+    ],
+    "production_bat_docs_ci_provisioning_lock_legacy_unchanged": true,
+    "inventory_root_identity": "Only root identity uses OrdinalIgnoreCase after GetFullPath/TrimEnd; handles C:\\Windows\\TEMP and C:\\Windows\\Temp as the same Windows root",
+    "descendant_containment": "OrdinalIgnoreCase StartsWith exact owned-root plus separator; strict descendant required before substring",
+    "exact_fields_preserved": [
+      "relative_path",
+      "kind",
+      "length",
+      "sha256",
+      "last_write_utc",
+      "attributes"
+    ],
+    "regression": "Differently cased spelling of exact owned root produces identical complete inventory; passes in existing first help group on both final4 shells",
+    "case_count_not_inflated": true
+  },
+  "source_inventory": [
+    {
+      "path": "tests/Test-HelpVersion.ps1",
+      "prior_git_blob": "c514fe33b80080d9d48f0f4dadd2fd5c2078ccf1",
+      "reviewed_git_blob": "241b0d6f98822e67a95760f18860719e844f855f",
+      "reviewed_git_blob_sha256": "aee91c5d6e9055b31c7d47be8af669a779e69375c43ef819f800824c7e7705fc",
+      "working_sha256": "aee91c5d6e9055b31c7d47be8af669a779e69375c43ef819f800824c7e7705fc",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": false
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "prior_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "reviewed_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "reviewed_git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": true
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "prior_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "reviewed_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "reviewed_git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "prior_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": true
+    },
+    {
+      "path": "tests/Test-Diagnostics.ps1",
+      "prior_git_blob": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "reviewed_git_blob": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "reviewed_git_blob_sha256": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+      "working_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "prior_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "reviewed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "reviewed_git_blob_sha256": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+      "working_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "prior_git_blob": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "reviewed_git_blob": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "reviewed_git_blob_sha256": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+      "working_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/windows-ci.yml",
+      "prior_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "working_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "prior_git_blob": "339796fb8dbfb1292875b53afa174cbaaab70d62",
+      "reviewed_git_blob": "339796fb8dbfb1292875b53afa174cbaaab70d62",
+      "reviewed_git_blob_sha256": "dad5eafbd8b59e273085b20a71438a05bc24cc9dcd1ca4c0b4d56c3689e0d34b",
+      "working_sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "prior_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "working_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": ".github/dependencies.json",
+      "prior_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "working_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "prior_git_blob": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "reviewed_git_blob": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "reviewed_git_blob_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+      "working_sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "unchanged": true
+    },
+    {
+      "path": "README.md",
+      "prior_git_blob": "ef5a897964c2f1680955cf2e5c909f6a71f1b2fc",
+      "reviewed_git_blob": "ef5a897964c2f1680955cf2e5c909f6a71f1b2fc",
+      "reviewed_git_blob_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "working_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": true
+    },
+    {
+      "path": "SUPPORT.md",
+      "prior_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "reviewed_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "reviewed_git_blob_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "working_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "prior_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "reviewed_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "reviewed_git_blob_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "working_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "unchanged": true
+    }
+  ],
+  "harness_equivalence": {
+    "method": "Replace only repaired Get-TreeInventory definition with original and remove only alternate-cased-root regression lines; every remaining source character matches pre-repair harness after CRLF/LF normalization",
+    "remaining_harness_equivalent": true,
+    "original_comparison_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+    "repaired_comparison_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+    "native_music_interception_release_cleanup_guards_unchanged": true
+  },
+  "runtime_lineage": {
+    "original_source_review": "evidence/T18-source-review.json",
+    "original_source_review_sha256": "17c87cd38ee912ec64f0a8edfa8087dbcd8d6a637f1357854d3755649e2f235a",
+    "four_retained_diagnostics_sources": [
+      {
+        "path": "AudioFileForPhone.ps1",
+        "original_15d_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "reviewed_3766_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "equal": true
+      },
+      {
+        "path": "AudioFileForPhone.Helpers.ps1",
+        "original_15d_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "reviewed_3766_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "equal": true
+      },
+      {
+        "path": "AudioFileForPhone.bat",
+        "original_15d_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "reviewed_3766_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "equal": true
+      },
+      {
+        "path": "tests/Test-Diagnostics.ps1",
+        "original_15d_git_blob": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+        "reviewed_3766_git_blob": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+        "equal": true
+      }
+    ],
+    "claim": "The original entry/helper/banner/version review continues to bind production; current3766 differs from634 only in the synthetic help inventory helper/regression"
+  },
+  "hosted_failure": {
+    "report": "evidence/T17-help-ps7-run38141841561_1.json",
+    "sha256": "3fb4281c8bc1b83e5f21919db9b67eb3e8831ecfa83e2cce3ae423c65e423cff",
+    "status": "fail",
+    "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+    "case_count": 1,
+    "error": "Exception calling \"Substring\" with \"1\" argument(s): \"startIndex cannot be larger than length of string. (Parameter 'startIndex')\"",
+    "source_unchanged": true,
+    "synthetic_unchanged": true,
+    "descendant_release_proved": true,
+    "cleanup_verified": true,
+    "limit": "One independently read retained hosted failure; initial failed cloud runs remain failed. Local repaired checks do not substitute for hosted repair acceptance."
+  },
+  "final_local_payload": {
+    "path": "evidence/T18-tested-payload-final2.json",
+    "sha256": "d035b607c4f7b9d40666808c96458df7d8a159c0a299a0c5eabaea7cd9192163",
+    "selected_report_count": 16,
+    "covered_file_count": 40,
+    "before_after_relationship_count": 284,
+    "required_groups": 242,
+    "separate_baseline_observations": 6,
+    "raw_report_digests_and_literal_actual_fields_verified": true,
+    "all_git_blob_and_strict_utf8_lf_crlf_variant_hashes_verified": true,
+    "bom_bytes_preserved": true,
+    "source_array_completeness_and_uniqueness_verified": true,
+    "ci_child_digests_and_actual_group_counts_verified": true,
+    "current_ci_code_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+    "retained_diagnostics_and_setup_actual_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+    "setup_aliases": [
+      {
+        "alias": "evidence/T17-dependencies-ps51-final4.json",
+        "original": "evidence/T17-dependencies-ps51-final3.json",
+        "sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+        "byte_identical": true,
+        "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+        "original_invocation_preserved": true,
+        "new_provisioning_claimed": false,
+        "source_arrays_fabricated": false
+      },
+      {
+        "alias": "evidence/T17-dependencies-ps7-final4.json",
+        "original": "evidence/T17-dependencies-ps7-final3.json",
+        "sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+        "byte_identical": true,
+        "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+        "original_invocation_preserved": true,
+        "new_provisioning_claimed": false,
+        "source_arrays_fabricated": false
+      }
+    ],
+    "setup_arrays_fabricated": false,
+    "ci_publisher_lock_and_complete_dependency_inventory_rechecked_before_import": true,
+    "help_casing_regression_ps51": true,
+    "help_casing_regression_ps7": true
+  },
+  "fresh_advertised_refs": [
+    {
+      "sha": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+      "ref": "refs/heads/codex/v1-t18-help-version"
+    },
+    {
+      "sha": "efe928367fe6380afd754dbd2376766506dd6815",
+      "ref": "refs/heads/main"
+    }
+  ],
+  "external_limits": [
+    "Feature3766 independently live-ref matched; main remains efe9283 and integration remains owner-gated",
+    "New repaired hosted jobs were running when root reported dispatch; their final acceptance is recorded separately, never inferred from local passes",
+    "Actual package builder and frozen release ZIP remain future work",
+    "No new phone/MTP/player/chapter-navigation/resume, Explorer/NAS/UNC/networkMusic, physicalCtrl+C, signing or publication evidence",
+    "Original local256-group payload/source review and hosted failed report bytes remain unchanged"
+  ],
+  "blockers": [],
+  "creation_boundary": "Only fresh T18-tested-payload-final2.json and T18-source-review-final2.json written with exclusive wx/CreateNew-equivalent; no other files edited"
+}

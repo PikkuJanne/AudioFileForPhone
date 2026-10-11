@@ -1,0 +1,2728 @@
+{
+  "schema_version": 1,
+  "task": "T18",
+  "status": "pass",
+  "generated_utc": "2026-10-11T13:20:19.007Z",
+  "review_scope": "Independent read-only audit of fourteen raw reports from repaired pull-request CI run 38142299941 attempt 1; no test, audio, dependency tool, or cleanup execution during this audit.",
+  "source_feature_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+  "actual_tested_merge_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+  "verified_complete_tree": "95a284e2dc656fe41300aedf2ead11c2f062dde9",
+  "git_relation": {
+    "source_tree": "95a284e2dc656fe41300aedf2ead11c2f062dde9",
+    "actual_merge_tree": "95a284e2dc656fe41300aedf2ead11c2f062dde9",
+    "complete_trees_identical": true,
+    "actual_merge_parents": [
+      "efe928367fe6380afd754dbd2376766506dd6815",
+      "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+    ],
+    "independently_advertised_pull_merge_ref": "refs/pull/18/merge",
+    "independently_advertised_pull_merge_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873"
+  },
+  "github_run_id": "38142299941",
+  "github_run_attempt": "1",
+  "github_event": "pull_request",
+  "pull_request_number": 18,
+  "execution_environment": "github_hosted_windows",
+  "environments": [
+    {
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "os": "10.0.26100.0",
+      "tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_sha": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_event": "pull_request",
+      "github_run_id": "38142299941",
+      "github_run_attempt": "1",
+      "github_ref": "refs/pull/18/merge",
+      "github_head_ref": "codex/v1-t18-help-version",
+      "github_base_ref": "main",
+      "runner_os": "Windows",
+      "runner_arch": "X64",
+      "runner_image": "win25-vs2026",
+      "runner_image_version": "20260925.250.1",
+      "execution_environment": "github_hosted_windows"
+    },
+    {
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "os": "10.0.26100.0",
+      "tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_sha": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_event": "pull_request",
+      "github_run_id": "38142299941",
+      "github_run_attempt": "1",
+      "github_ref": "refs/pull/18/merge",
+      "github_head_ref": "codex/v1-t18-help-version",
+      "github_base_ref": "main",
+      "runner_os": "Windows",
+      "runner_arch": "X64",
+      "runner_image": "win25-vs2026",
+      "runner_image_version": "20260925.250.1",
+      "execution_environment": "github_hosted_windows"
+    }
+  ],
+  "selected_report_count": 14,
+  "required_hosted_groups": 204,
+  "separate_baseline_observations": 6,
+  "covered_file_count": 40,
+  "source_report_relationship_count": 268,
+  "raw_artifact_provenance": {
+    "downloaded_parent_directory_name": "AFP-T18-Hosted-d942ca2e99854559b2d2ad60f3b4f803",
+    "artifact_directories": [
+      "windows-ci-ps51-38142299941-1",
+      "windows-ci-ps7-38142299941-1"
+    ],
+    "copied_raw_report_files_are_byte_identical": true,
+    "raw_reports_preserved_without_edits": true,
+    "raw_digests_include_original_encoding_and_BOM": true
+  },
+  "scope": {
+    "counting": "Count each parent CI required-check total once: 102 per shell. Parent child reports verify the totals and are not counted a second time. Six baseline observed-behavior rows are separate from 204 required groups.",
+    "source_arrays": "Only original report source_before/source_after arrays are bound. Dependency setup reports do not contain these arrays; their reviewed manifest/setup fingerprints and independently recomputed complete extracted-inventory digests are checked separately.",
+    "actual_context": "Every selected raw report retains actual tested_commit c721ed64d188fbdc9c761e19bb7f16d64ff70873. GitHub context is preserved only where explicitly present; absent child run/event fields remain null. Parent-to-child raw digests bind children to both literal parent contexts.",
+    "lineage": "The actual PR merge commit and feature source commit have the same complete Git tree; their commit identities are not relabelled.",
+    "acceptance_limit": "Hosted Windows evidence supplements the separately recorded local Windows 11 matrix. This audit does not claim device, Explorer drag/drop, release ZIP, signing, or public-release acceptance."
+  },
+  "equivalence_policy": "For every source fingerprint, compare reviewed source-feature Git blob bytes literally, or strict UTF-8 decoded/re-encoded bytes with only LF/CRLF substitution. Preserve an existing UTF-8 BOM; do not ignore content, paths, whitespace, or encoding errors.",
+  "sources": [
+    {
+      "relative_path": ".github/dependencies.json",
+      "git_blob_oid": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "git_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "utf8_lf_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "utf8_crlf_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851"
+    },
+    {
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "git_blob_oid": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "git_blob_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "utf8_lf_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "utf8_crlf_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf"
+    },
+    {
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "git_blob_oid": "339796fb8dbfb1292875b53afa174cbaaab70d62",
+      "git_blob_sha256": "dad5eafbd8b59e273085b20a71438a05bc24cc9dcd1ca4c0b4d56c3689e0d34b",
+      "utf8_lf_sha256": "dad5eafbd8b59e273085b20a71438a05bc24cc9dcd1ca4c0b4d56c3689e0d34b",
+      "utf8_crlf_sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273"
+    },
+    {
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "git_blob_oid": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "git_blob_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+      "utf8_lf_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+      "utf8_crlf_sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8"
+    },
+    {
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "git_blob_oid": "f39b72f5c776662b41e577bec1078f4d1dd71f52",
+      "git_blob_sha256": "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89",
+      "utf8_lf_sha256": "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89",
+      "utf8_crlf_sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a"
+    },
+    {
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "git_blob_oid": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "git_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "utf8_lf_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "utf8_crlf_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "git_blob_oid": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "utf8_lf_sha256": "6a1a1d370d69ede8f4fb575ec9f9b4cea482112932525705e8d18abf26f3ca1b",
+      "utf8_crlf_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "git_blob_oid": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "utf8_lf_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "utf8_crlf_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "git_blob_oid": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "utf8_lf_sha256": "787d6ad64ebb3feb9f7e5b57a190f1c1f0e15e6abf59e574355834ef92948e8a",
+      "utf8_crlf_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "git_blob_oid": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "git_blob_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "utf8_lf_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "utf8_crlf_sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa"
+    },
+    {
+      "relative_path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "git_blob_oid": "a3412f53ba01dce917a2e5d7e8e5b6d2c8886991",
+      "git_blob_sha256": "9709f824a6f77c54afefbeaa978e7af193aea945b1965c0607efb65671c33b19",
+      "utf8_lf_sha256": "9709f824a6f77c54afefbeaa978e7af193aea945b1965c0607efb65671c33b19",
+      "utf8_crlf_sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83"
+    },
+    {
+      "relative_path": "docs/codex-v1/templates/release-manifest.example.json",
+      "git_blob_oid": "0fc06632b10a0efcad8c2fe75c51ebf3ccbc53d1",
+      "git_blob_sha256": "acf7ec122efc9aef13c3059cab364e5e70e5879b4ddb7e051b710f2317c121c2",
+      "utf8_lf_sha256": "acf7ec122efc9aef13c3059cab364e5e70e5879b4ddb7e051b710f2317c121c2",
+      "utf8_crlf_sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-GitSync.ps1",
+      "git_blob_oid": "6e6fa4913f40c3c3d6728136a58197057f8f8fe0",
+      "git_blob_sha256": "53259e95e846a33786c5b686ed23bbd225def429b88c6f5e745a978483ac5ffe",
+      "utf8_lf_sha256": "53259e95e846a33786c5b686ed23bbd225def429b88c6f5e745a978483ac5ffe",
+      "utf8_crlf_sha256": "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "git_blob_oid": "9329c1c0ab2cd026061352854513628edbd2c3a4",
+      "git_blob_sha256": "1abd0ccf8edf7baa5cb32b57f7ed01733af600565575cf2462dc8c4500e5d538",
+      "utf8_lf_sha256": "1abd0ccf8edf7baa5cb32b57f7ed01733af600565575cf2462dc8c4500e5d538",
+      "utf8_crlf_sha256": "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "git_blob_oid": "2fd1fa635ed55d2066b77f5c8b8af353b5706344",
+      "git_blob_sha256": "527d15541a3d604394debb34bfbd478bd55cfdfdb314dcab0ccabb20f8bda228",
+      "utf8_lf_sha256": "527d15541a3d604394debb34bfbd478bd55cfdfdb314dcab0ccabb20f8bda228",
+      "utf8_crlf_sha256": "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa"
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "git_blob_oid": "f186155461efc1031a72ff001e3d5b0b03d78712",
+      "git_blob_sha256": "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+      "utf8_lf_sha256": "2991a8d10b293bd27a92836daaf1a6c2d265b817db44f594e835afabfd37a7f8",
+      "utf8_crlf_sha256": "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd"
+    },
+    {
+      "relative_path": "README.md",
+      "git_blob_oid": "ef5a897964c2f1680955cf2e5c909f6a71f1b2fc",
+      "git_blob_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "utf8_lf_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "utf8_crlf_sha256": "985feb44600ee0aef27176844432c85403add6e31f76e3cdbc8c4e39881b9f08"
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "git_blob_oid": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "git_blob_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "utf8_lf_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "utf8_crlf_sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "git_blob_oid": "ee39f3b44cf7012f36bb66f34169d8f801b5f8a5",
+      "git_blob_sha256": "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5",
+      "utf8_lf_sha256": "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5",
+      "utf8_crlf_sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "git_blob_oid": "098d931f658e909a38dbbf09cdd102ac34f1320e",
+      "git_blob_sha256": "c158da7c1ab7dc0bcbc4bcad459509dbaaae69cf3485ca705dc83686a0982abf",
+      "utf8_lf_sha256": "c158da7c1ab7dc0bcbc4bcad459509dbaaae69cf3485ca705dc83686a0982abf",
+      "utf8_crlf_sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "git_blob_oid": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "git_blob_sha256": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+      "utf8_lf_sha256": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+      "utf8_crlf_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "git_blob_oid": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "git_blob_sha256": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+      "utf8_lf_sha256": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+      "utf8_crlf_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "git_blob_oid": "d4455b32d03b42c65ab6573f51c03afd90c98b2a",
+      "git_blob_sha256": "30ba1f5e4faa2ea0d94a4983691678260c6e4a1e462ba17149fe368a54c94f76",
+      "utf8_lf_sha256": "30ba1f5e4faa2ea0d94a4983691678260c6e4a1e462ba17149fe368a54c94f76",
+      "utf8_crlf_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+    },
+    {
+      "relative_path": "tests/Test-Cancellation.ps1",
+      "git_blob_oid": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+      "git_blob_sha256": "173e25d852c1ad8fc3138b753fa061bf52b6e9957c390fe664bbd837cc07df25",
+      "utf8_lf_sha256": "173e25d852c1ad8fc3138b753fa061bf52b6e9957c390fe664bbd837cc07df25",
+      "utf8_crlf_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+    },
+    {
+      "relative_path": "tests/Test-CleanupSafety.ps1",
+      "git_blob_oid": "7290494ef531cb7f34011ca9ca53f9c1249717ce",
+      "git_blob_sha256": "53e25716e915f526c4809ced35ed1aeaf71e7fc685f24e18818bb57cbcc5e4b1",
+      "utf8_lf_sha256": "53e25716e915f526c4809ced35ed1aeaf71e7fc685f24e18818bb57cbcc5e4b1",
+      "utf8_crlf_sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+    },
+    {
+      "relative_path": "tests/Test-Diagnostics.ps1",
+      "git_blob_oid": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "git_blob_sha256": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+      "utf8_lf_sha256": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+      "utf8_crlf_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+    },
+    {
+      "relative_path": "tests/Test-Discovery.ps1",
+      "git_blob_oid": "417192382d8385f6f93f722cfef77b9e2eef693c",
+      "git_blob_sha256": "27b4c510c23ba4c1e1bf137c234ca622c736928e65850fac413d96e666c71fcc",
+      "utf8_lf_sha256": "27b4c510c23ba4c1e1bf137c234ca622c736928e65850fac413d96e666c71fcc",
+      "utf8_crlf_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+    },
+    {
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "git_blob_oid": "241b0d6f98822e67a95760f18860719e844f855f",
+      "git_blob_sha256": "aee91c5d6e9055b31c7d47be8af669a779e69375c43ef819f800824c7e7705fc",
+      "utf8_lf_sha256": "aee91c5d6e9055b31c7d47be8af669a779e69375c43ef819f800824c7e7705fc",
+      "utf8_crlf_sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71"
+    },
+    {
+      "relative_path": "tests/Test-LauncherResults.ps1",
+      "git_blob_oid": "dda9a007a543385c67740432f1f33f3b9178ade8",
+      "git_blob_sha256": "3b7472b650aef167b29dac3c0bf4af483c1d9566ad400d3acec542628dc5b74e",
+      "utf8_lf_sha256": "3b7472b650aef167b29dac3c0bf4af483c1d9566ad400d3acec542628dc5b74e",
+      "utf8_crlf_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+    },
+    {
+      "relative_path": "tests/Test-Metadata.ps1",
+      "git_blob_oid": "7364dd56f395f267d0e4c45d82572a96a8955c66",
+      "git_blob_sha256": "d41ed4842977d256865a8e15ed4df16235e7efeee3d63da619d490a65151973e",
+      "utf8_lf_sha256": "d41ed4842977d256865a8e15ed4df16235e7efeee3d63da619d490a65151973e",
+      "utf8_crlf_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+    },
+    {
+      "relative_path": "tests/Test-NamingPlan.ps1",
+      "git_blob_oid": "e228e28b78e548b2e391cdb601a9233d906c61ed",
+      "git_blob_sha256": "942caca14ae939d832c1b2a512eef0233bf61f7820e25de41b34b827f57e3b1d",
+      "utf8_lf_sha256": "942caca14ae939d832c1b2a512eef0233bf61f7820e25de41b34b827f57e3b1d",
+      "utf8_crlf_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+    },
+    {
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "git_blob_oid": "25e6298b6c4202af7b96091d1c90b6c6299587d6",
+      "git_blob_sha256": "c535ea65d87831d65316a04c5d7d4dd3605596e51b82ebb428175ec40baa9c25",
+      "utf8_lf_sha256": "c535ea65d87831d65316a04c5d7d4dd3605596e51b82ebb428175ec40baa9c25",
+      "utf8_crlf_sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+    },
+    {
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "git_blob_oid": "aea05ad7750c174e8dc2c9622521136d2b8a0610",
+      "git_blob_sha256": "099849ada3019dc24cfcfaf224b887f48a51d0f17d57b026ef38f4d764aa09ff",
+      "utf8_lf_sha256": "099849ada3019dc24cfcfaf224b887f48a51d0f17d57b026ef38f4d764aa09ff",
+      "utf8_crlf_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "relative_path": "tests/Test-Preflight.ps1",
+      "git_blob_oid": "53bf5d59daaf33c79799839c03c967ea9a5f6cef",
+      "git_blob_sha256": "513b0c1c4da0c2230c9d07904ebc03e7e553694c3ac774514e8ba9cee8eaad91",
+      "utf8_lf_sha256": "513b0c1c4da0c2230c9d07904ebc03e7e553694c3ac774514e8ba9cee8eaad91",
+      "utf8_crlf_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    },
+    {
+      "relative_path": "tests/Test-Preview.ps1",
+      "git_blob_oid": "b2ba1e52bf32d5b554ff4fba9873f2befd2fbad6",
+      "git_blob_sha256": "b8bd421d2945d44fc06c9183b70b082ecd55e667d9b3d336d7b910751e9e189c",
+      "utf8_lf_sha256": "b8bd421d2945d44fc06c9183b70b082ecd55e667d9b3d336d7b910751e9e189c",
+      "utf8_crlf_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+    },
+    {
+      "relative_path": "tests/Test-Progress.ps1",
+      "git_blob_oid": "9d1aed963a28c4f544e5106e51db5b1716e4b5e8",
+      "git_blob_sha256": "49fd149ed5f9beb4f2dc4e76eedb363436208df33f6b793c2738027f1f4a99ca",
+      "utf8_lf_sha256": "49fd149ed5f9beb4f2dc4e76eedb363436208df33f6b793c2738027f1f4a99ca",
+      "utf8_crlf_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+    },
+    {
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "git_blob_oid": "a96938fa863da7d38dbd2c1615f1edc284dd0bd8",
+      "git_blob_sha256": "ba1ab8113c814cc5ba761520a2a9f84bb7e73632d933b511d0bebba6bc983d6f",
+      "utf8_lf_sha256": "ba1ab8113c814cc5ba761520a2a9f84bb7e73632d933b511d0bebba6bc983d6f",
+      "utf8_crlf_sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+    },
+    {
+      "relative_path": "tests/Test-RunReservation.ps1",
+      "git_blob_oid": "afa7d149e3cc96ed713ca3e381122f6c6580b16a",
+      "git_blob_sha256": "115fc30144023bc26103e202ee3a2dd967c9fd06c66eff00451afc21441243ff",
+      "utf8_lf_sha256": "115fc30144023bc26103e202ee3a2dd967c9fd06c66eff00451afc21441243ff",
+      "utf8_crlf_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+    },
+    {
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "git_blob_oid": "1628ec0a86d5a082597ea497eb87b375c240a58c",
+      "git_blob_sha256": "1e07ff24b8e4670709cc5b9e730c6446f37e421a2a7ed52f390e312e56dff6a0",
+      "utf8_lf_sha256": "1e07ff24b8e4670709cc5b9e730c6446f37e421a2a7ed52f390e312e56dff6a0",
+      "utf8_crlf_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+    },
+    {
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "git_blob_oid": "a24c5e4a54ae637f76921ac826dfcb60ab222624",
+      "git_blob_sha256": "bc7c83dc7c5651ee1a7e978e9a9db89f2679d02feec3f830c11c070fac905488",
+      "utf8_lf_sha256": "bc7c83dc7c5651ee1a7e978e9a9db89f2679d02feec3f830c11c070fac905488",
+      "utf8_crlf_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    }
+  ],
+  "selected_reports": [
+    {
+      "path": "evidence/T17-baseline-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "1fb73ad67c5acb319e647d13430d063e9fc385aa0840cbe1ecdc64640ccdd26a",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": null,
+      "mode": "real_ffmpeg_baseline",
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 6,
+      "source_after_count": 6,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "07d2d5a3c8bac66951eb7e4c5c8a761cbb5978ea1b7a80874c7dc2214b6f1943",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": null,
+      "case_count": 22,
+      "source_unchanged": true,
+      "source_before_count": 3,
+      "source_after_count": 3,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-ci-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "f5f42abece6ee2e9e8a7749574a127171069bcfb0e80a57a66ce6722779cd19c",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": "syntax_analysis_unit_real_ffmpeg",
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 34,
+      "source_after_count": 34,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_event": "pull_request",
+      "github_run_id": "38142299941",
+      "github_run_attempt": "1"
+    },
+    {
+      "path": "evidence/T17-dependencies-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "f145fa17ebd923502cbbbbb33c15918c35cb7d150cc5d6fba9b1bc81c59cec9d",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": null,
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 0,
+      "source_after_count": 0,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-help-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "a42697a2491d04c685551fc6164e2c9a301fe49c3fe871393dfc14e6b15ac690",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "case_count": 7,
+      "source_unchanged": true,
+      "source_before_count": 9,
+      "source_after_count": 9,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-native-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "31763d3a3c4756e0ebbee9ef018c4f5df3421fce30da06d6a8c37e82a5d9297c",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": "native_process_and_probe",
+      "case_count": 35,
+      "source_unchanged": true,
+      "source_before_count": 9,
+      "source_after_count": 9,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-unit-ps51-run38142299941_1.json",
+      "artifact": "windows-ci-ps51-38142299941-1",
+      "sha256": "55fffef590ef8709078fe98129f21b64d79251c1379091b6c81a6ec5d4a8144d",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "5.1.26100.33438",
+      "shell_edition": "Desktop",
+      "mode": "pure_runtime_and_ci_contracts",
+      "case_count": 31,
+      "source_unchanged": true,
+      "source_before_count": 6,
+      "source_after_count": 6,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-baseline-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "801ace07274ec3e44dbb257b12acadeb595b54a523a64d94958fa385abe422e3",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": null,
+      "mode": "real_ffmpeg_baseline",
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 6,
+      "source_after_count": 6,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "de6409a74a1c7bc94c14bbc6b5ba08c1718dea1398d063363966f3643b88809e",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": null,
+      "case_count": 22,
+      "source_unchanged": true,
+      "source_before_count": 3,
+      "source_after_count": 3,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-ci-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "3139e50b21fc48ea7c2ce548c2cbde1a9dbb32294e6623112be77e05d1a17dc0",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": "syntax_analysis_unit_real_ffmpeg",
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 34,
+      "source_after_count": 34,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "github_event": "pull_request",
+      "github_run_id": "38142299941",
+      "github_run_attempt": "1"
+    },
+    {
+      "path": "evidence/T17-dependencies-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "1f598a6b29b4ae85188a47464b8704b740ba8dcf247a374488c7dd239af383e0",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": null,
+      "case_count": 0,
+      "source_unchanged": true,
+      "source_before_count": 0,
+      "source_after_count": 0,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-help-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "f91f9eca1161e1e9121ffb97e75c5d5e72ee4021c0ff2fa027e2f7f502274794",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "case_count": 7,
+      "source_unchanged": true,
+      "source_before_count": 9,
+      "source_after_count": 9,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-native-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "6d5ae4d6ed01009bf2e77fce43679452800aab6749ab8ca3afa644b0e90b1b96",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": "native_process_and_probe",
+      "case_count": 35,
+      "source_unchanged": true,
+      "source_before_count": 9,
+      "source_after_count": 9,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    },
+    {
+      "path": "evidence/T17-unit-ps7-run38142299941_1.json",
+      "artifact": "windows-ci-ps7-38142299941-1",
+      "sha256": "a6932a858c4a4bf1d54acb43350a39760051ff07016f37831381e0e5b986626a",
+      "status": "pass",
+      "actual_tested_commit": "c721ed64d188fbdc9c761e19bb7f16d64ff70873",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "mode": "pure_runtime_and_ci_contracts",
+      "case_count": 31,
+      "source_unchanged": true,
+      "source_before_count": 6,
+      "source_after_count": 6,
+      "synthetic_unchanged": null,
+      "descendant_release_proved": null,
+      "cleanup_verified": null,
+      "github_sha": null,
+      "github_event": null,
+      "github_run_id": null,
+      "github_run_attempt": null
+    }
+  ],
+  "parent_child_digest_bindings": [
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-unit-ps51-run38142299941_1.json",
+      "sha256": "55fffef590ef8709078fe98129f21b64d79251c1379091b6c81a6ec5d4a8144d",
+      "family": "unit",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 31,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "sha256": "07d2d5a3c8bac66951eb7e4c5c8a761cbb5978ea1b7a80874c7dc2214b6f1943",
+      "family": "ci-dependencyguards",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 22,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-baseline-ps51-run38142299941_1.json",
+      "sha256": "1fb73ad67c5acb319e647d13430d063e9fc385aa0840cbe1ecdc64640ccdd26a",
+      "family": "baseline",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 7,
+      "observations": 3
+    },
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-help-ps51-run38142299941_1.json",
+      "sha256": "a42697a2491d04c685551fc6164e2c9a301fe49c3fe871393dfc14e6b15ac690",
+      "family": "help",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 7,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-native-ps51-run38142299941_1.json",
+      "sha256": "31763d3a3c4756e0ebbee9ef018c4f5df3421fce30da06d6a8c37e82a5d9297c",
+      "family": "native",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 35,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps51-run38142299941_1.json",
+      "child": "T17-dependencies-ps51-run38142299941_1.json",
+      "sha256": "f145fa17ebd923502cbbbbb33c15918c35cb7d150cc5d6fba9b1bc81c59cec9d",
+      "family": "dependencies",
+      "status": "pass",
+      "required_checks": 0,
+      "observations": 0,
+      "whole_locked_ffmpeg_inventory_files": 45,
+      "whole_locked_analyzer_inventory_files": 53
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-unit-ps7-run38142299941_1.json",
+      "sha256": "a6932a858c4a4bf1d54acb43350a39760051ff07016f37831381e0e5b986626a",
+      "family": "unit",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 31,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "sha256": "de6409a74a1c7bc94c14bbc6b5ba08c1718dea1398d063363966f3643b88809e",
+      "family": "ci-dependencyguards",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 22,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-baseline-ps7-run38142299941_1.json",
+      "sha256": "801ace07274ec3e44dbb257b12acadeb595b54a523a64d94958fa385abe422e3",
+      "family": "baseline",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 7,
+      "observations": 3
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-help-ps7-run38142299941_1.json",
+      "sha256": "f91f9eca1161e1e9121ffb97e75c5d5e72ee4021c0ff2fa027e2f7f502274794",
+      "family": "help",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 7,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-native-ps7-run38142299941_1.json",
+      "sha256": "6d5ae4d6ed01009bf2e77fce43679452800aab6749ab8ca3afa644b0e90b1b96",
+      "family": "native",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 35,
+      "observations": 0
+    },
+    {
+      "parent": "T17-ci-ps7-run38142299941_1.json",
+      "child": "T17-dependencies-ps7-run38142299941_1.json",
+      "sha256": "1f598a6b29b4ae85188a47464b8704b740ba8dcf247a374488c7dd239af383e0",
+      "family": "dependencies",
+      "status": "pass",
+      "required_checks": 0,
+      "observations": 0,
+      "whole_locked_ffmpeg_inventory_files": 45,
+      "whole_locked_analyzer_inventory_files": 53
+    }
+  ],
+  "source_bindings": [
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-GitSync.ps1",
+      "sha256": "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "sha256": "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "sha256": "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "sha256": "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Cancellation.ps1",
+      "sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-CleanupSafety.ps1",
+      "sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Diagnostics.ps1",
+      "sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Discovery.ps1",
+      "sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-LauncherResults.ps1",
+      "sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Metadata.ps1",
+      "sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NamingPlan.ps1",
+      "sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preview.ps1",
+      "sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Progress.ps1",
+      "sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-RunReservation.ps1",
+      "sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-GitSync.ps1",
+      "sha256": "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "sha256": "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "sha256": "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "sha256": "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Cancellation.ps1",
+      "sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-CleanupSafety.ps1",
+      "sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Diagnostics.ps1",
+      "sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Discovery.ps1",
+      "sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-LauncherResults.ps1",
+      "sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Metadata.ps1",
+      "sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NamingPlan.ps1",
+      "sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preview.ps1",
+      "sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Progress.ps1",
+      "sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-RunReservation.ps1",
+      "sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "README.md",
+      "sha256": "985feb44600ee0aef27176844432c85403add6e31f76e3cdbc8c4e39881b9f08",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/templates/release-manifest.example.json",
+      "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "README.md",
+      "sha256": "985feb44600ee0aef27176844432c85403add6e31f76e3cdbc8c4e39881b9f08",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/templates/release-manifest.example.json",
+      "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps51-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-baseline-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-dependencyguards-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-GitSync.ps1",
+      "sha256": "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "sha256": "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "sha256": "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "sha256": "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Cancellation.ps1",
+      "sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-CleanupSafety.ps1",
+      "sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Diagnostics.ps1",
+      "sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Discovery.ps1",
+      "sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-LauncherResults.ps1",
+      "sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Metadata.ps1",
+      "sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NamingPlan.ps1",
+      "sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preview.ps1",
+      "sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Progress.ps1",
+      "sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-RunReservation.ps1",
+      "sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-GitSync.ps1",
+      "sha256": "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+      "sha256": "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02Launcher.ps1",
+      "sha256": "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+      "sha256": "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Cancellation.ps1",
+      "sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-CleanupSafety.ps1",
+      "sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Diagnostics.ps1",
+      "sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Discovery.ps1",
+      "sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-LauncherResults.ps1",
+      "sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Metadata.ps1",
+      "sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NamingPlan.ps1",
+      "sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preview.ps1",
+      "sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Progress.ps1",
+      "sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-RunReservation.ps1",
+      "sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-ci-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "README.md",
+      "sha256": "985feb44600ee0aef27176844432c85403add6e31f76e3cdbc8c4e39881b9f08",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/templates/release-manifest.example.json",
+      "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-HelpVersion.ps1",
+      "sha256": "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "README.md",
+      "sha256": "985feb44600ee0aef27176844432c85403add6e31f76e3cdbc8c4e39881b9f08",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "SUPPORT.md",
+      "sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "CHANGELOG.md",
+      "sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/templates/release-manifest.example.json",
+      "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-help-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "matching_variant": "literal"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-native-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_before",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "matching_variant": "strict_utf8_crlf"
+    },
+    {
+      "report": "T17-unit-ps7-run38142299941_1.json",
+      "field": "source_after",
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "matching_variant": "strict_utf8_crlf"
+    }
+  ],
+  "verified_gates": [
+    {
+      "shell": "ps51",
+      "alternate_cased_root_inventory_equal": true,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "byte_identical_application_copy": true,
+      "ordinary_music_access": false,
+      "physical_manual_evidence": false,
+      "exact_help_examples_executed": 5,
+      "help_descendant_native_proofs": 58,
+      "help_parent_native_calls": 36,
+      "fully_decoded_help_outputs": 12,
+      "preview_and_version_inventory_unchanged": true,
+      "help_descendant_release_proved": true,
+      "help_children_disposed": true,
+      "native_descendant_release_proved": true,
+      "native_recorded_calls": 98,
+      "legacy_baseline_pass": true,
+      "baseline_isolation_verified": true,
+      "baseline_sources_unchanged": true,
+      "all_reported_cleanup_gates_verified": true,
+      "whole_publisher_locked_dependency_inventories_verified": true
+    },
+    {
+      "shell": "ps7",
+      "alternate_cased_root_inventory_equal": true,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "byte_identical_application_copy": true,
+      "ordinary_music_access": false,
+      "physical_manual_evidence": false,
+      "exact_help_examples_executed": 5,
+      "help_descendant_native_proofs": 58,
+      "help_parent_native_calls": 36,
+      "fully_decoded_help_outputs": 12,
+      "preview_and_version_inventory_unchanged": true,
+      "help_descendant_release_proved": true,
+      "help_children_disposed": true,
+      "native_descendant_release_proved": true,
+      "native_recorded_calls": 98,
+      "legacy_baseline_pass": true,
+      "baseline_isolation_verified": true,
+      "baseline_sources_unchanged": true,
+      "all_reported_cleanup_gates_verified": true,
+      "whole_publisher_locked_dependency_inventories_verified": true
+    }
+  ],
+  "preserved_local_evidence": {
+    "tested_payload_final2_sha256": "d035b607c4f7b9d40666808c96458df7d8a159c0a299a0c5eabaea7cd9192163",
+    "source_review_final2_sha256": "d54c659333141b390d9fa825fe931e49af3d49879800e938d4093ed73c78c2c4",
+    "existing_records_unchanged": true
+  },
+  "pending_evidence": [
+    "Exact T19 release ZIP packaging and packaged application version/tag/filename checks",
+    "Physical phone/player and manual Windows Explorer/interactive/console acceptance where required",
+    "Authorized exact-commit release tag/assets, public download verification, and final main integration"
+  ],
+  "findings": [],
+  "blockers": [],
+  "creation_boundary": "This audit creates only this new evidence JSON using exclusive CreateNew semantics and modifies no existing evidence or application file."
+}
