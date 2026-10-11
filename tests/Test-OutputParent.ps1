@@ -1,8 +1,7 @@
 <#
 T03 focused resolver checks. Ordinary mode uses only an owned TEMP directory.
--DefaultSmoke additionally exercises configured Windows Music without an override.
-That smoke changes only the timestamp in a disposable application copy, exclusively
-reserves the exact synthetic run root, and cleans only that marked, verified tree.
+-DefaultSmoke is paused at T06: its historical pre-reserved run is now refused.
+T08 must adapt its exclusive ownership scheme before it can touch Music again.
 No known-folder settings are changed and unrelated Music entries are never listed.
 #>
 [CmdletBinding()]
@@ -14,6 +13,9 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+if ($DefaultSmoke) {
+    throw 'The configured-Music smoke is deferred until T08 adapts its pre-reserved run root to the no-reuse production check. Use the ordinary TEMP-only resolver mode.'
+}
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $application = Join-Path $projectRoot 'AudioFileForPhone.ps1'
 $helpers = Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'
@@ -34,8 +36,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03/T04/T05-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03/T04/T05/T06-<label>.json directly in docs/codex-v1/evidence.'
 }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'

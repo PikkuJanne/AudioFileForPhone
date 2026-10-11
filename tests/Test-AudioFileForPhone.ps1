@@ -97,7 +97,7 @@ function New-Audio {
 }
 
 function Invoke-Conversion {
-    param([string]$Name, [string]$InputPath, [string[]]$Options = @(), [int]$ExpectedExitCode = 0)
+    param([string]$Name, [string]$InputPath, [string[]]$Options = @(), [int]$ExpectedExitCode = 0, [switch]$ExpectNoRun)
     $runDir = Join-Path $testRoot $Name
     New-Item -ItemType Directory -Path $runDir | Out-Null
     $outputParent = Join-Path $runDir 'Outputs [literal]'
@@ -120,6 +120,12 @@ function Invoke-Conversion {
     $roots = @($nativeOutput | ForEach-Object {
         if ("$_" -match '^\[INFO\] Output root\s+: (.+)$') { $Matches[1] }
     })
+    if ($ExpectNoRun) {
+        Assert-True ($nativeExitCode -eq $ExpectedExitCode) "$Name should return the expected nonzero outcome."
+        Assert-True ($roots.Count -eq 0) "$Name must stop before reporting a created output run."
+        Assert-True (-not (Test-Path -LiteralPath $outputParent)) "$Name must not create its missing destination parent or a run/log."
+        return [pscustomobject]@{ Base = $null; Log = ($nativeOutput -join "`n") }
+    }
     Assert-True ($roots.Count -eq 1) "$Name should report exactly one output root."
     $outputRoot = [IO.Path]::GetFullPath($roots[0]).TrimEnd('\', '/')
     Assert-True ((Split-Path -Parent $outputRoot) -ieq $outputParent) "$Name should write only under its explicit OutputParent."
@@ -246,9 +252,9 @@ try {
     $emptyInput = Join-Path $testRoot 'Unsupported input'
     New-Item -ItemType Directory -Path $emptyInput | Out-Null
     Set-Content -LiteralPath (Join-Path $emptyInput 'ignore.txt') -Value 'Not audio'
-    $empty = Invoke-Conversion 'Empty run' $emptyInput @() 1
+    $empty = Invoke-Conversion 'Empty run' $emptyInput @() 1 -ExpectNoRun
     Assert-True ($empty.Log -match '(?im)No [^\r\n]*OGG[^\r\n]*files found') 'No-supported-files message should mention OGG.'
-    Assert-True (@(Get-ChildItem -LiteralPath $empty.Base -Recurse -File).Count -eq 0) 'Unsupported files should create no audio output.'
+    Assert-True ($null -eq $empty.Base) 'Unsupported files should create no output run.'
     Write-Host 'PASS: No-supported-files behavior and OGG diagnostic.'
     Write-Host "All integration checks passed on PowerShell $($PSVersionTable.PSVersion)."
 }

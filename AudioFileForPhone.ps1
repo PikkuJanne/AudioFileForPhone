@@ -241,6 +241,17 @@ try {
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $InputFolder = Get-InputDirectory -InputFolder $InputFolder
     $outputParentPath = Get-OutputParent -OutputParent $OutputParent
+    $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
+    $outputRoot = Join-Path $outputParentPath ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
+    Assert-AudioOutputBoundary -InputFolder $InputFolder -OutputRoot $outputRoot
+    if (Test-Path -LiteralPath $outputRoot -ErrorAction Stop) {
+        throw "The planned output run root already exists; try again with a fresh run: '$outputRoot'."
+    }
+    Write-Host "[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
+    $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
+    foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
+    $files = @($snapshot.Files)
+    if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
     $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
     $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
@@ -363,16 +374,17 @@ if ($Interactive) {
 }
 
 # --- Output root + log setup ---
-$timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
-$outputRoot = Join-Path $outputParentPath ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
-
 Write-Host "[INFO] Output root      : $outputRoot"
 
 try {
-    if (-not (Test-Path -LiteralPath $outputRoot -ErrorAction Stop)) {
-        Write-Host "[DEBUG] Creating output root folder..."
-        [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
+    # Recheck after prompts. Exclusive concurrent reservation is implemented in T08.
+    Assert-AudioOutputBoundary -InputFolder $InputFolder -OutputRoot $outputRoot
+    if (Test-Path -LiteralPath $outputRoot -ErrorAction Stop) {
+        throw "The planned output run root now exists: '$outputRoot'."
     }
+    Write-Host "[DEBUG] Creating output root folder..."
+    [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
+    Write-AudioOutputMarker -OutputRoot $outputRoot
 
     # --- Log file ---
     $logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
@@ -406,6 +418,8 @@ function Write-Log {
     Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
 }
 
+foreach ($skip in $snapshot.Skipped) { Write-Log ("{0}: {1}" -f $skip.Reason, $skip.Path) 'WARN' }
+
 # --- Log diagnostics for the cover already validated before run creation ---
 if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
     $coverDiag = Get-CoverDiagnostics -Path $CoverPath
@@ -436,24 +450,7 @@ catch {
 }
 
 Write-Host ""
-Write-Log "Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
-
-# --- Scan for MP3 + M4A + OGG ---
-try {
-    $files = @(Get-AudioFiles -InputFolder $InputFolder)
-}
-catch {
-    Write-Error "[FATAL] Error searching for audio files: $_"
-    Write-Log ("FATAL: Error searching for audio files: {0}" -f $_) "FATAL"
-    exit 1
-}
-
-if (-not $files) {
-    Write-Warning "[WARN] No MP3/M4A/OGG files found under: $InputFolder"
-    Write-Log ("No MP3/M4A/OGG files found under: {0}" -f $InputFolder) "WARN"
-    exit 1
-}
-
+Write-Log "Using completed input snapshot from: $InputFolder"
 Write-Log ("Found {0} audio file(s) (.mp3/.m4a/.ogg)." -f $files.Count)
 Write-Host ""
 

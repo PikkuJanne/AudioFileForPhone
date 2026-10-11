@@ -37,8 +37,9 @@ function Get-InputDirectory {
         }
         $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
         if (-not $item.PSIsContainer) { throw 'InputFolder must be a directory, not a file.' }
+        Assert-AudioNoReparseAncestor -Path $item.FullName
         # Enumerate just this directory to detect access denial before prompting.
-        # Recursive discovery/reparse policy is handled separately in T06.
+        # Full discovery completes before prompting or creating the run.
         Get-ChildItem -LiteralPath $item.FullName -Force -ErrorAction Stop | Out-Null
         return $item.FullName.TrimEnd('\', '/')
     }
@@ -456,10 +457,218 @@ function Get-ValidatedCoverPath {
     catch { throw "Invalid CoverPath '$Path': $($_.Exception.Message)" }
 }
 
+function Get-AudioPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $provider = $null; $drive = $null
+    $full = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath(
+        $Path, [ref]$provider, [ref]$drive
+    )
+    if ($provider.Name -ne 'FileSystem') { throw 'An audio path must use the FileSystem provider.' }
+    $full = [IO.Path]::GetFullPath($full).Replace('/', '\')
+    if ($full.StartsWith('\\?\') -or $full.StartsWith('\\.\')) {
+        throw 'Extended/device audio paths are not supported.'
+    }
+    $root = [IO.Path]::GetPathRoot($full)
+    if ($full.Length -gt $root.Length) { $full = $full.TrimEnd('\') }
+    return $full
+}
+
+function Test-AudioPathWithin {
+    param([Parameter(Mandatory = $true)][string]$Path,
+          [Parameter(Mandatory = $true)][string]$Parent)
+    $child = Get-AudioPath $Path
+    $ancestor = Get-AudioPath $Parent
+    return $child.Equals($ancestor, [StringComparison]::OrdinalIgnoreCase) -or
+        $child.StartsWith($ancestor.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase)
+}
+
+function Assert-AudioNoReparseAncestor {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $current = Get-AudioPath $Path
+    while ($current) {
+        try { $item = Get-Item -LiteralPath $current -Force -ErrorAction Stop }
+        catch [Management.Automation.ItemNotFoundException] { $item = $null }
+        if ($null -ne $item -and ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Reparse points in selected input/output paths are not supported: '$current'."
+        }
+        $current = [IO.Path]::GetDirectoryName($current)
+    }
+}
+
+function Assert-AudioOutputBoundary {
+    param([Parameter(Mandatory = $true)][string]$InputFolder,
+          [Parameter(Mandatory = $true)][string]$OutputRoot)
+    Assert-AudioNoReparseAncestor $InputFolder
+    Assert-AudioNoReparseAncestor $OutputRoot
+    if (Test-AudioPathWithin -Path $InputFolder -Parent $OutputRoot) {
+        throw "The output run root must not equal or contain the input directory: '$OutputRoot'."
+    }
+}
+
+function Get-AudioIdentityFile {
+    param([string]$Path)
+    try { $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop }
+    catch [Management.Automation.ItemNotFoundException] { return $null }
+    if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+        return $null
+    }
+    return $item
+}
+
+function Read-AudioIdentityPrefix {
+    param([string]$Path, [int]$Limit)
+    # Bound reads even for a large legacy batch log. Access/read errors propagate.
+    $reader = New-Object IO.StreamReader($Path, [Text.Encoding]::UTF8, $true)
+    try {
+        $buffer = New-Object char[] ($Limit + 1)
+        $count = $reader.ReadBlock($buffer, 0, $buffer.Length)
+        return [pscustomobject]@{
+            Text = (New-Object string($buffer, 0, [Math]::Min($count, $Limit)))
+            Truncated = $count -gt $Limit
+        }
+    }
+    finally { $reader.Dispose() }
+}
+
+function Get-AudioGeneratedRootReason {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $root = Get-AudioPath $Path
+    $marker = Get-AudioIdentityFile (Join-Path $root '.AudioFileForPhone-output.json')
+    if ($null -ne $marker) {
+        $prefix = Read-AudioIdentityPrefix -Path $marker.FullName -Limit 8192
+        if (-not $prefix.Truncated) {
+            # Invalid marker content does not confer identity; unreadability aborts.
+            try { $identity = ConvertFrom-Json -InputObject $prefix.Text -ErrorAction Stop }
+            catch { $identity = $null }
+            if ($null -ne $identity -and ($identity.schema_version -is [int] -or $identity.schema_version -is [long]) -and
+                $identity.schema_version -eq 1 -and
+                $identity.kind -ceq 'AudioFileForPhone.Output' -and
+                $identity.output_root -is [string] -and
+                [string]::Equals($identity.output_root, $root, [StringComparison]::OrdinalIgnoreCase)) {
+                return 'Marked AudioFileForPhone output root'
+            }
+        }
+    }
+
+    # A name alone is never identity. Legacy roots need the exact log prefix and
+    # mirrored input-leaf directory as well as a valid timestamp/rate root name.
+    $leaf = [IO.Path]::GetFileName($root)
+    if ($leaf -notmatch '^AudioForPhone_(8|16|24|32|40|48|56|64|80|96|112|128|144|160|192|224|256|320)kbps_(\d{8}_\d{6})$') {
+        return $null
+    }
+    $rate = $matches[1]; $stamp = $matches[2]; $date = [datetime]::MinValue
+    if (-not [datetime]::TryParseExact($stamp, 'yyyyMMdd_HHmmss', [Globalization.CultureInfo]::InvariantCulture,
+        [Globalization.DateTimeStyles]::None, [ref]$date)) { return $null }
+    $log = Get-AudioIdentityFile (Join-Path $root 'AudioFileForPhone_log.txt')
+    if ($null -eq $log) { return $null }
+    $prefix = Read-AudioIdentityPrefix -Path $log.FullName -Limit 65536
+    $lines = $prefix.Text -split '\r?\n'
+    if ($lines.Count -lt 6 -or $lines[0] -cne '==== AudioFileForPhone Log ====' -or
+        $lines[1] -notmatch '^Start time    : .+$' -or
+        $lines[2] -notmatch '^Input folder  : (.+)$' -or
+        $lines[3] -notmatch '^Output root   : .+$' -or
+        $lines[4] -cne ('Bitrate (kbps): ' + $rate) -or
+        $lines[5] -notmatch '^Max base len  : \d+$') { return $null }
+    $sourcePath = $lines[2].Substring('Input folder  : '.Length)
+    $recordedRoot = $lines[3].Substring('Output root   : '.Length)
+    try {
+        if ($recordedRoot -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\/]+[\\/][^\\/]+[\\/])' -or
+            -not [string]::Equals((Get-AudioPath $recordedRoot), $root, [StringComparison]::OrdinalIgnoreCase)) {
+            return $null
+        }
+    }
+    catch { return $null } # Malformed historical path content, no filesystem read.
+    # Do not resolve or touch the historical source path. Only use its leaf.
+    if ($sourcePath -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\/]+[\\/][^\\/]+[\\/])') { return $null }
+    try { $sourceLeaf = [IO.Path]::GetFileName($sourcePath.TrimEnd('\', '/')) }
+    catch { return $null }
+    if ([string]::IsNullOrWhiteSpace($sourceLeaf) -or $sourceLeaf -eq '.' -or $sourceLeaf -eq '..' -or
+        $sourceLeaf.IndexOfAny([IO.Path]::GetInvalidFileNameChars()) -ge 0) { return $null }
+    try { $base = Get-Item -LiteralPath (Join-Path $root $sourceLeaf) -Force -ErrorAction Stop }
+    catch [Management.Automation.ItemNotFoundException] { return $null }
+    if ($base.PSIsContainer -and ($base.Attributes -band [IO.FileAttributes]::ReparsePoint) -eq 0) {
+        return 'Recognized legacy AudioFileForPhone output root (log and layout)'
+    }
+    return $null
+}
+
+function Write-AudioOutputMarker {
+    param([Parameter(Mandatory = $true)][string]$OutputRoot)
+    $markerPath = Join-Path $OutputRoot '.AudioFileForPhone-output.json'
+    $json = [ordered]@{
+        schema_version = 1; kind = 'AudioFileForPhone.Output'; output_root = (Get-AudioPath $OutputRoot)
+    } | ConvertTo-Json -Compress
+    $stream = New-Object IO.FileStream($markerPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $bytes = (New-Object Text.UTF8Encoding($false)).GetBytes($json)
+        $stream.Write($bytes, 0, $bytes.Length)
+        $stream.Flush()
+    }
+    finally { $stream.Dispose() }
+}
+
+function Get-AudioInputSnapshot {
+    param([Parameter(Mandatory = $true)][string]$InputFolder,
+          [Parameter(Mandatory = $true)][string]$OutputRoot)
+    $inputPath = Get-AudioPath (Get-InputDirectory -InputFolder $InputFolder)
+    $outputPath = Get-AudioPath $OutputRoot
+    Assert-AudioOutputBoundary -InputFolder $inputPath -OutputRoot $outputPath
+    # Selecting any part of a recognized run tree is an explicit input error.
+    $ancestor = $inputPath
+    while ($ancestor -and $ancestor -ne [IO.Path]::GetPathRoot($ancestor)) {
+        $reason = Get-AudioGeneratedRootReason $ancestor
+        if ($reason) { throw "InputFolder is inside generated output: '$ancestor' ($reason)." }
+        $ancestor = [IO.Path]::GetDirectoryName($ancestor)
+    }
+    $pending = New-Object 'System.Collections.Generic.Stack[string]'
+    $found = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::OrdinalIgnoreCase)
+    $skipped = New-Object 'System.Collections.Generic.List[object]'
+    $pending.Push($inputPath)
+    while ($pending.Count -gt 0) {
+        $directory = $pending.Pop()
+        try {
+            # Explicit recursion avoids following any directory/file reparse point.
+            foreach ($item in @(Get-ChildItem -LiteralPath $directory -Force -ErrorAction Stop)) {
+                $path = Get-AudioPath $item.FullName
+                if (-not (Test-AudioPathWithin -Path $path -Parent $inputPath)) {
+                    throw "Discovered a path outside InputFolder: '$path'."
+                }
+                if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                    $kind = if ($item.PSIsContainer) { 'directory' } else { 'file' }
+                    $skipped.Add([pscustomobject]@{ Path = $path; Reason = "Skipped $kind reparse point" })
+                    continue
+                }
+                if (Test-AudioPathWithin -Path $path -Parent $outputPath) {
+                    $skipped.Add([pscustomobject]@{ Path = $path; Reason = 'Planned output run root' })
+                    continue
+                }
+                if ($item.PSIsContainer) {
+                    $reason = Get-AudioGeneratedRootReason $path
+                    if ($reason) { $skipped.Add([pscustomobject]@{ Path = $path; Reason = $reason }) }
+                    else { $pending.Push($path) }
+                }
+                elseif (@('.mp3', '.m4a', '.ogg') -contains $item.Extension.ToLowerInvariant()) {
+                    $found.Add($path, $item)
+                }
+            }
+        }
+        catch { throw "Audio scan failed at '$directory'; no conversion started: $($_.Exception.Message)" }
+    }
+    # Sort with an explicit Windows comparer, independent of shell/culture.
+    $paths = [string[]]@($found.Keys)
+    [Array]::Sort($paths, [StringComparer]::OrdinalIgnoreCase)
+    $files = @($paths | ForEach-Object { $found[$_] })
+    return [pscustomobject]@{ Files = $files; Skipped = $skipped.ToArray() }
+}
+
 function Get-AudioFiles {
-    param([string]$InputFolder)
-    Get-ChildItem -LiteralPath $InputFolder -Recurse -File -ErrorAction Stop |
-        Where-Object { @('.mp3', '.m4a', '.ogg') -contains $_.Extension.ToLowerInvariant() }
+    param([string]$InputFolder, [string]$OutputRoot)
+    if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
+        $OutputRoot = Join-Path $InputFolder ('.AudioFileForPhone-planned-' + [guid]::NewGuid().ToString('N'))
+    }
+    $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $OutputRoot
+    foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
+    return $snapshot.Files
 }
 
 function Get-SanitizedAudioBaseName {
