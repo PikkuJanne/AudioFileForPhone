@@ -194,6 +194,14 @@ representative local long file remain required; no such evidence is inferred
 from this task request. Main integration, release writes and repository settings
 gates remain unchanged.
 
+T20 continuation: Janne Vuorela supplied his tester identity and one exact local
+podcast path, requesting that the test be much simpler or automated. This
+authorizes read/copy/conversion checks on that selected file in an owned TEMP
+scope, private retention of media/raw captures, a simpler guided physical check
+and a recorded quantitative A50 method revision. It authorizes neither scanning
+personal media directories nor claiming actions he has not performed. Normal
+feature-checkpoint scope continues; main integration/release gates stay unchanged.
+
 ## Never authorized implicitly
 
 History rewriting, force push, deletion/reset of unrelated work, existing tags or

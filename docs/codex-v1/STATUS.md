@@ -1,12 +1,57 @@
 # Current project status
 
-State: **T20 automated support passes; required named Windows/manual long-file
-acceptance is pending owner observations and a selected representative input.**
+State: **T20 selected long-file and default-Music acceptance passes automatically;
+named physical Windows interactions remain pending in a one-command guide.**
 Last completed task: T19, now owner-integrated. Exactly next task:
 continue T20. Required improvements 1-15; optional O01 deferred.
 Project/release remain incomplete.
 
-## T20 active checkpoint
+## T20 active checkpoint — simplified continuation
+
+- Janne Vuorela supplied his tester identity and exactly one local podcast, asking
+  for a much simpler or automated test. Only that selected file was inspected and
+  copied; its private path/name/tags/media/raw logs stay outside Git. Private ID
+  `T20-long-01`: mono MP3, 44.1 kHz, 4,775.055646 seconds (79m35s), 38,249,841 bytes.
+  A50's quantitative method was explicitly revised at his request; expected
+  duration/resource/default-path/policy outcomes remain intact. A49 actual human
+  interactions and T21 phone/listening evidence are not substituted.
+- `tools/Test-T20LongAudio.ps1` actually passes on ordinary-user PS5.1/PS7 at
+  application candidate `f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e` (runtime blobs
+  identical to integrated main da2a627). Both outputs are 38,201,262 bytes and
+  SHA256 `2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e`.
+  Duration difference is zero; 182,798 audio frames all encode at 64 kbps.
+  Independent full decode and 20-second near-end decode pass. Host elapsed times
+  are 34.633/37.353 seconds; observed lifetime host working-set peaks are about
+  144/215 MiB and encoder peaks about 20.5/20.3 MiB. These are measured processes,
+  not total-system memory or universal performance limits.
+- Original/copy/application/runner/marker hashes remain unchanged. Both runs
+  record eight completed/released bounded verification natives, natural observed
+  process exits and no controller kill. Exact runner snapshots/private invocation
+  hashes and sanitized reports are bound in `evidence/T20-long-bindings.json`.
+  Three exclusive TEMP trees stay retained outside Git. Preliminary PS5.1 attempt
+  failed a harness flat-output assumption despite successful app conversion; its
+  original report remains failed, without invented final verification or an old
+  runner snapshot. Fresh final runs validate the intended recursive layout.
+- A50 now **passes** through the real selected long-file measurements and the
+  controlled both-shell default-Music smoke below. A49/T20 remain **blocked** until
+  Janne performs and confirms the remaining physical actions. `T20_MANUAL_STEPS.md`
+  now gives one `Start-T20Guided.ps1` command: one Explorer folder-on-unchanged-BAT
+  drop, actual STA select/Cancel and physical READY Ctrl+C in each shell. Output
+  verification and local evidence collection are automatic. No owner action has
+  been run by Codex; no playback/phone/forced-close/fallback observation is claimed.
+  The BAT selected shell, raw exit and unknown Music output stay explicit capture
+  limits; unknown Music output is retained and never scanned or cleaned.
+- Final guided working SHA256 is
+  `ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d`.
+  Both actual shell/parser and `-ValidateOnly` runs pass; generated picker-driver
+  fingerprints match across shells. `evidence/T20-guided-validation.json` binds
+  exact invocations/captures and prepared-tree/source/tool before/after hashes.
+  Validation opens no UI, runs no application and creates no tool copies.
+- Draft PR #20 holds this coherent partial task. Feature synchronization and CI
+  after this revision belong in the PR/response; T20 main integration remains
+  owner-gated. Exactly next: continue T20, not T21. No freeze/release authority.
+
+## T20 preserved preparation checkpoint
 
 - Owner PikkuJanne merged T19 PR #19 at 15:19:08 UTC on 11 October 2026 into
   main `da2a6273ff9aceb86af75ad4aa2d2942ec745d66`; final T19 feature was
@@ -31,13 +76,13 @@ Project/release remain incomplete.
   to T20. All recorded source/fixture preservation, child release and owned
   cleanup gates pass. Configured-Music runs inspect/remove only their returned
   exact owned run and leave unrelated Music entries unenumerated.
-- A49/A50 remain **blocked pending named manual evidence**. No physical BAT
+- At the first checkpoint A49/A50 remained **blocked pending named manual evidence**. No physical BAT
   drag/drop, STA picker, fresh physical Ctrl+C, representative long source,
   manual default-path or playback observation is claimed. Prior T11 physical
   evidence and T19 automated long/default checks remain historical, without
   substitution for this task. Native app UI control is unavailable in this
-  session. The owner has been asked for tester identity, an explicitly selected
-  legally held over-hour local source and availability for physical checks.
+  session. The subsequent named input and requested automated method revision
+  above supersede that checkpoint's missing-identity/long-input state.
 - `T20_MANUAL_STEPS.md` gives the continuation procedure. Preparation/commands
   are not successful observations. T21 remains dependent on T20; no source
   freeze, exact release-ZIP acceptance, tag or publication is authorized.

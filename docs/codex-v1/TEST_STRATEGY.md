@@ -33,6 +33,14 @@ than raw filename/content in GitHub. Check phone/player versions and actual tags
 cover, order, seeking/resume. Do not create fake screenshots or fill a template as
 though tests were performed.
 
+T20 method revision requested by Janne Vuorela on 11 October 2026: automate
+duration, full decode, near-end decode, CBR verification, source preservation and
+resource measurement on his explicitly selected representative local file. Bind
+private command/source identities without publishing its path, name, tags or
+content. Controlled automated default-Music evidence may establish A50. Keep
+actual physical Windows actions under A49 and actual phone/player listening,
+seeking and resume under T21; successful decoding is not a listening observation.
+
 ## Safe baseline and isolation ordering
 
 At the T02 checkpoint, the original suite wrote into Music and timed runs to avoid collisions.

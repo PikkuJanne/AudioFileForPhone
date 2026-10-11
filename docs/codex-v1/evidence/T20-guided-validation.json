@@ -1,0 +1,468 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "scope": "Read-only parser and ValidateOnly verification of the final guided owner procedure on both Windows shells.",
+  "started_utc": "2026-10-11T16:01:28.9208005Z",
+  "finished_utc": "2026-10-11T16:01:32.0597844Z",
+  "status": "pass",
+  "guided_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+  "guide_sha256": "53ef2ae971ffe05b97d01d8465b4f6afa39c8c505dcb44a7e3687896986775d9",
+  "generated_driver_utf8_sha256": "04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07",
+  "generated_driver_utf8_bom_sha256": "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+  "generated_driver_fingerprints_match_both_shells": true,
+  "generated_driver_written": false,
+  "physical_manual_evidence": false,
+  "application_executed": false,
+  "ui_launched": false,
+  "tool_copies_created": false,
+  "prepared_root_name": "AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+  "preparation_report_sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+  "preparation_owner_marker_sha256": "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+  "invocations": [
+    {
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-Command",
+        "$ErrorActionPreference='Stop'\n$t20GuidedPath='C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Start-T20Guided.ps1'\n$t20Tokens=$null;$t20Errors=$null\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq '$pickerDriver'},$true))\nif($t20Assignments.Count -ne 1){throw 'Expected one generated driver assignment.'}\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\nif($t20Strings.Count -ne 1){throw 'Expected one literal generated driver.'}\n$t20Driver=$t20Strings[0].Value\n$t20DriverTokens=$null;$t20DriverErrors=$null\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\n$t20Utf8=New-Object Text.UTF8Encoding($false)\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\n$t20Sha=[Security.Cryptography.SHA256]::Create()\ntry{\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace('-','').ToLowerInvariant()\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace('-','').ToLowerInvariant()\n}finally{$t20Sha.Dispose()}\n$t20Validation=& $t20GuidedPath -ValidateOnly\n[ordered]@{\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\nwindows_version=[Environment]::OSVersion.Version.ToString()\nstarted_command=[Environment]::CommandLine\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\ngenerated_driver_characters=$t20Driver.Length\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\nvalidate_only=$t20Validation\n}|ConvertTo-Json -Depth 8 -Compress\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne 'validated'){exit 1}\nexit 0"
+      ],
+      "working_directory": "C:\\projects\\AudioFileForPhone-main",
+      "started_utc": "2026-10-11T16:01:28.9208005Z",
+      "finished_utc": "2026-10-11T16:01:30.0279993Z",
+      "child_environment": "Inherited except PSModulePath removed in owned ProcessStartInfo environment. Parent environment unchanged.",
+      "create_no_window": true,
+      "exit_code": 0,
+      "stdout": "{\"schema_version\":1,\"shell\":\"5.1.26100.9444\",\"edition\":\"Desktop\",\"windows_version\":\"10.0.26300.0\",\"started_command\":\"\\\"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\\\\powershell.exe\\\" \\\"-NoLogo\\\" \\\"-NoProfile\\\" \\\"-NonInteractive\\\" \\\"-ExecutionPolicy\\\" \\\"RemoteSigned\\\" \\\"-Command\\\" \\\"$ErrorActionPreference=\\u0027Stop\\u0027\\n$t20GuidedPath=\\u0027C:\\\\projects\\\\AudioFileForPhone-main\\\\docs\\\\codex-v1\\\\tools\\\\Start-T20Guided.ps1\\u0027\\n$t20Tokens=$null;$t20Errors=$null\\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq \\u0027$pickerDriver\\u0027},$true))\\nif($t20Assignments.Count -ne 1){throw \\u0027Expected one generated driver assignment.\\u0027}\\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\\nif($t20Strings.Count -ne 1){throw \\u0027Expected one literal generated driver.\\u0027}\\n$t20Driver=$t20Strings[0].Value\\n$t20DriverTokens=$null;$t20DriverErrors=$null\\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\\n$t20Utf8=New-Object Text.UTF8Encoding($false)\\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\\n$t20Sha=[Security.Cryptography.SHA256]::Create()\\ntry{\\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace(\\u0027-\\u0027,\\u0027\\u0027).ToLowerInvariant()\\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace(\\u0027-\\u0027,\\u0027\\u0027).ToLowerInvariant()\\n}finally{$t20Sha.Dispose()}\\n$t20Validation=\\u0026 $t20GuidedPath -ValidateOnly\\n[ordered]@{\\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\\nwindows_version=[Environment]::OSVersion.Version.ToString()\\nstarted_command=[Environment]::CommandLine\\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\\ngenerated_driver_characters=$t20Driver.Length\\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\\nvalidate_only=$t20Validation\\n}|ConvertTo-Json -Depth 8 -Compress\\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne \\u0027validated\\u0027){exit 1}\\nexit 0\\\"\",\"guided_sha256\":\"ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d\",\"guided_parser_errors\":[],\"generated_driver_characters\":4003,\"generated_driver_utf8_sha256\":\"04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07\",\"generated_driver_utf8_bom_sha256\":\"63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653\",\"generated_driver_parser_errors\":[],\"validate_only\":{\"status\":\"validated\",\"ui_launched\":false,\"application_run\":false,\"files_created\":false,\"shell\":\"5.1.26100.9444\",\"edition\":\"Desktop\",\"preparation_sha256\":\"b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692\",\"prepared_root\":\"C:\\\\Users\\\\jtvuo\\\\AppData\\\\Local\\\\Temp\\\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\",\"source_commit\":\"da2a6273ff9aceb86af75ad4aa2d2942ec745d66\",\"picker_driver_parse_errors\":0}}\r\n",
+      "stderr": "",
+      "parsed_result": {
+        "schema_version": 1,
+        "shell": "5.1.26100.9444",
+        "edition": "Desktop",
+        "windows_version": "10.0.26300.0",
+        "started_command": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-Command\" \"$ErrorActionPreference='Stop'\n$t20GuidedPath='C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Start-T20Guided.ps1'\n$t20Tokens=$null;$t20Errors=$null\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq '$pickerDriver'},$true))\nif($t20Assignments.Count -ne 1){throw 'Expected one generated driver assignment.'}\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\nif($t20Strings.Count -ne 1){throw 'Expected one literal generated driver.'}\n$t20Driver=$t20Strings[0].Value\n$t20DriverTokens=$null;$t20DriverErrors=$null\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\n$t20Utf8=New-Object Text.UTF8Encoding($false)\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\n$t20Sha=[Security.Cryptography.SHA256]::Create()\ntry{\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace('-','').ToLowerInvariant()\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace('-','').ToLowerInvariant()\n}finally{$t20Sha.Dispose()}\n$t20Validation=& $t20GuidedPath -ValidateOnly\n[ordered]@{\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\nwindows_version=[Environment]::OSVersion.Version.ToString()\nstarted_command=[Environment]::CommandLine\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\ngenerated_driver_characters=$t20Driver.Length\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\nvalidate_only=$t20Validation\n}|ConvertTo-Json -Depth 8 -Compress\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne 'validated'){exit 1}\nexit 0\"",
+        "guided_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+        "guided_parser_errors": [],
+        "generated_driver_characters": 4003,
+        "generated_driver_utf8_sha256": "04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07",
+        "generated_driver_utf8_bom_sha256": "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+        "generated_driver_parser_errors": [],
+        "validate_only": {
+          "status": "validated",
+          "ui_launched": false,
+          "application_run": false,
+          "files_created": false,
+          "shell": "5.1.26100.9444",
+          "edition": "Desktop",
+          "preparation_sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+          "prepared_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+          "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+          "picker_driver_parse_errors": 0
+        }
+      },
+      "owned_host_completed": true,
+      "owned_host_disposed": true
+    },
+    {
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-Command",
+        "$ErrorActionPreference='Stop'\n$t20GuidedPath='C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Start-T20Guided.ps1'\n$t20Tokens=$null;$t20Errors=$null\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq '$pickerDriver'},$true))\nif($t20Assignments.Count -ne 1){throw 'Expected one generated driver assignment.'}\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\nif($t20Strings.Count -ne 1){throw 'Expected one literal generated driver.'}\n$t20Driver=$t20Strings[0].Value\n$t20DriverTokens=$null;$t20DriverErrors=$null\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\n$t20Utf8=New-Object Text.UTF8Encoding($false)\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\n$t20Sha=[Security.Cryptography.SHA256]::Create()\ntry{\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace('-','').ToLowerInvariant()\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace('-','').ToLowerInvariant()\n}finally{$t20Sha.Dispose()}\n$t20Validation=& $t20GuidedPath -ValidateOnly\n[ordered]@{\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\nwindows_version=[Environment]::OSVersion.Version.ToString()\nstarted_command=[Environment]::CommandLine\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\ngenerated_driver_characters=$t20Driver.Length\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\nvalidate_only=$t20Validation\n}|ConvertTo-Json -Depth 8 -Compress\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne 'validated'){exit 1}\nexit 0"
+      ],
+      "working_directory": "C:\\projects\\AudioFileForPhone-main",
+      "started_utc": "2026-10-11T16:01:30.0315282Z",
+      "finished_utc": "2026-10-11T16:01:31.7691223Z",
+      "child_environment": "Inherited except PSModulePath removed in owned ProcessStartInfo environment. Parent environment unchanged.",
+      "create_no_window": true,
+      "exit_code": 0,
+      "stdout": "{\"schema_version\":1,\"shell\":\"7.6.5\",\"edition\":\"Core\",\"windows_version\":\"10.0.26300.0\",\"started_command\":\"C:\\\\Users\\\\jtvuo\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command \\\"$ErrorActionPreference='Stop'\\n$t20GuidedPath='C:\\\\projects\\\\AudioFileForPhone-main\\\\docs\\\\codex-v1\\\\tools\\\\Start-T20Guided.ps1'\\n$t20Tokens=$null;$t20Errors=$null\\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq '$pickerDriver'},$true))\\nif($t20Assignments.Count -ne 1){throw 'Expected one generated driver assignment.'}\\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\\nif($t20Strings.Count -ne 1){throw 'Expected one literal generated driver.'}\\n$t20Driver=$t20Strings[0].Value\\n$t20DriverTokens=$null;$t20DriverErrors=$null\\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\\n$t20Utf8=New-Object Text.UTF8Encoding($false)\\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\\n$t20Sha=[Security.Cryptography.SHA256]::Create()\\ntry{\\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace('-','').ToLowerInvariant()\\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace('-','').ToLowerInvariant()\\n}finally{$t20Sha.Dispose()}\\n$t20Validation=& $t20GuidedPath -ValidateOnly\\n[ordered]@{\\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\\nwindows_version=[Environment]::OSVersion.Version.ToString()\\nstarted_command=[Environment]::CommandLine\\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\\ngenerated_driver_characters=$t20Driver.Length\\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\\nvalidate_only=$t20Validation\\n}|ConvertTo-Json -Depth 8 -Compress\\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne 'validated'){exit 1}\\nexit 0\\\"\",\"guided_sha256\":\"ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d\",\"guided_parser_errors\":[],\"generated_driver_characters\":4003,\"generated_driver_utf8_sha256\":\"04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07\",\"generated_driver_utf8_bom_sha256\":\"63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653\",\"generated_driver_parser_errors\":[],\"validate_only\":{\"status\":\"validated\",\"ui_launched\":false,\"application_run\":false,\"files_created\":false,\"shell\":\"7.6.5\",\"edition\":\"Core\",\"preparation_sha256\":\"b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692\",\"prepared_root\":\"C:\\\\Users\\\\jtvuo\\\\AppData\\\\Local\\\\Temp\\\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\",\"source_commit\":\"da2a6273ff9aceb86af75ad4aa2d2942ec745d66\",\"picker_driver_parse_errors\":0}}\r\n",
+      "stderr": "",
+      "parsed_result": {
+        "schema_version": 1,
+        "shell": "7.6.5",
+        "edition": "Core",
+        "windows_version": "10.0.26300.0",
+        "started_command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command \"$ErrorActionPreference='Stop'\n$t20GuidedPath='C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Start-T20Guided.ps1'\n$t20Tokens=$null;$t20Errors=$null\n$t20Ast=[Management.Automation.Language.Parser]::ParseFile($t20GuidedPath,[ref]$t20Tokens,[ref]$t20Errors)\n$t20Assignments=@($t20Ast.FindAll({param($node)$node -is [Management.Automation.Language.AssignmentStatementAst] -and $node.Left.Extent.Text -ceq '$pickerDriver'},$true))\nif($t20Assignments.Count -ne 1){throw 'Expected one generated driver assignment.'}\n$t20Strings=@($t20Assignments[0].Right.FindAll({param($node)$node -is [Management.Automation.Language.StringConstantExpressionAst]},$true))\nif($t20Strings.Count -ne 1){throw 'Expected one literal generated driver.'}\n$t20Driver=$t20Strings[0].Value\n$t20DriverTokens=$null;$t20DriverErrors=$null\n[void][Management.Automation.Language.Parser]::ParseInput($t20Driver,[ref]$t20DriverTokens,[ref]$t20DriverErrors)\n$t20Utf8=New-Object Text.UTF8Encoding($false)\n$t20BomUtf8=New-Object Text.UTF8Encoding($true)\n$t20Sha=[Security.Cryptography.SHA256]::Create()\ntry{\n$t20DriverSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20Utf8.GetBytes($t20Driver)))).Replace('-','').ToLowerInvariant()\n[byte[]]$t20BomBytes=$t20BomUtf8.GetPreamble()+$t20BomUtf8.GetBytes($t20Driver)\n$t20BomSha=([BitConverter]::ToString($t20Sha.ComputeHash($t20BomBytes))).Replace('-','').ToLowerInvariant()\n}finally{$t20Sha.Dispose()}\n$t20Validation=& $t20GuidedPath -ValidateOnly\n[ordered]@{\nschema_version=1;shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition\nwindows_version=[Environment]::OSVersion.Version.ToString()\nstarted_command=[Environment]::CommandLine\nguided_sha256=(Get-FileHash -LiteralPath $t20GuidedPath -Algorithm SHA256).Hash.ToLowerInvariant()\nguided_parser_errors=@($t20Errors|ForEach-Object{$_.Message})\ngenerated_driver_characters=$t20Driver.Length\ngenerated_driver_utf8_sha256=$t20DriverSha;generated_driver_utf8_bom_sha256=$t20BomSha\ngenerated_driver_parser_errors=@($t20DriverErrors|ForEach-Object{$_.Message})\nvalidate_only=$t20Validation\n}|ConvertTo-Json -Depth 8 -Compress\nif(@($t20Errors).Count -ne 0 -or @($t20DriverErrors).Count -ne 0 -or $t20Validation.status -ne 'validated'){exit 1}\nexit 0\"",
+        "guided_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+        "guided_parser_errors": [],
+        "generated_driver_characters": 4003,
+        "generated_driver_utf8_sha256": "04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07",
+        "generated_driver_utf8_bom_sha256": "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+        "generated_driver_parser_errors": [],
+        "validate_only": {
+          "status": "validated",
+          "ui_launched": false,
+          "application_run": false,
+          "files_created": false,
+          "shell": "7.6.5",
+          "edition": "Core",
+          "preparation_sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+          "prepared_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+          "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+          "picker_driver_parse_errors": 0
+        }
+      },
+      "owned_host_completed": true,
+      "owned_host_disposed": true
+    }
+  ],
+  "before_after": {
+    "scope": "Exact marker-owned prepared synthetic tree, selected candidate/preparer/guided sources and external executables. Last access times excluded because reads can update them.",
+    "prepared_tree_before": {
+      "directories": [
+        "app",
+        "Covers [picker] & images",
+        "Input spaces ä Ω [brackets] & ampersand",
+        "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder",
+        "Mixed valid & corrupt [batch]",
+        "Output [owned] & empty"
+      ],
+      "files": [
+        {
+          "relative_path": ".t20-manual-owner",
+          "bytes": 32,
+          "sha256": "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+          "creation_utc_ticks": 639273291854767241,
+          "last_write_utc_ticks": 639273291854767241
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.bat",
+          "bytes": 1800,
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "creation_utc_ticks": 639273291863636725,
+          "last_write_utc_ticks": 639272999478194169
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.Helpers.ps1",
+          "bytes": 114373,
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "creation_utc_ticks": 639273291863236694,
+          "last_write_utc_ticks": 639273225980103809
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.ps1",
+          "bytes": 40032,
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "creation_utc_ticks": 639273291862875488,
+          "last_write_utc_ticks": 639273225980103809
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Blue [valid] & cover.jpg",
+          "bytes": 248,
+          "sha256": "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+          "creation_utc_ticks": 639273291869299659,
+          "last_write_utc_ticks": 639273291869299659
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Blue ä [valid] & cover.png",
+          "bytes": 203,
+          "sha256": "ff5f9946ba45ef5f6e711c72fbcb2c65f291da18f050ac525de268da311f168d",
+          "creation_utc_ticks": 639273291870529436,
+          "last_write_utc_ticks": 639273291870539461
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Invalid [cover] & image.jpg",
+          "bytes": 53,
+          "sha256": "e55945a29fa5b73d83528b0ab7ada325a632048d8805e4fc362c59cb62e077e7",
+          "creation_utc_ticks": 639273291871256422,
+          "last_write_utc_ticks": 639273291871256422
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3",
+          "bytes": 8679,
+          "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+          "creation_utc_ticks": 639273291864572715,
+          "last_write_utc_ticks": 639273291864677725
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg",
+          "bytes": 6852,
+          "sha256": "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+          "creation_utc_ticks": 639273291867432557,
+          "last_write_utc_ticks": 639273291867603043
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a",
+          "bytes": 14584,
+          "sha256": "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+          "creation_utc_ticks": 639273291865930775,
+          "last_write_utc_ticks": 639273291866222487
+        },
+        {
+          "relative_path": "Mixed valid & corrupt [batch]\\Corrupt [MP3] & example.mp3",
+          "bytes": 48,
+          "sha256": "62cf56f6253e70b0f35065de95492037dfd7fc2b21b3dce4f1625926d2b68d3d",
+          "creation_utc_ticks": 639273291868767705,
+          "last_write_utc_ticks": 639273291868767705
+        },
+        {
+          "relative_path": "Mixed valid & corrupt [batch]\\Valid [MP3] & example.mp3",
+          "bytes": 8679,
+          "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+          "creation_utc_ticks": 639273291868429439,
+          "last_write_utc_ticks": 639273291864677725
+        },
+        {
+          "relative_path": "preparation.json",
+          "bytes": 24469,
+          "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+          "creation_utc_ticks": 639273291871819492,
+          "last_write_utc_ticks": 639273291871829497
+        }
+      ]
+    },
+    "prepared_tree_after": {
+      "directories": [
+        "app",
+        "Covers [picker] & images",
+        "Input spaces ä Ω [brackets] & ampersand",
+        "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder",
+        "Mixed valid & corrupt [batch]",
+        "Output [owned] & empty"
+      ],
+      "files": [
+        {
+          "relative_path": ".t20-manual-owner",
+          "bytes": 32,
+          "sha256": "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+          "creation_utc_ticks": 639273291854767241,
+          "last_write_utc_ticks": 639273291854767241
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.bat",
+          "bytes": 1800,
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "creation_utc_ticks": 639273291863636725,
+          "last_write_utc_ticks": 639272999478194169
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.Helpers.ps1",
+          "bytes": 114373,
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "creation_utc_ticks": 639273291863236694,
+          "last_write_utc_ticks": 639273225980103809
+        },
+        {
+          "relative_path": "app\\AudioFileForPhone.ps1",
+          "bytes": 40032,
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "creation_utc_ticks": 639273291862875488,
+          "last_write_utc_ticks": 639273225980103809
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Blue [valid] & cover.jpg",
+          "bytes": 248,
+          "sha256": "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+          "creation_utc_ticks": 639273291869299659,
+          "last_write_utc_ticks": 639273291869299659
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Blue ä [valid] & cover.png",
+          "bytes": 203,
+          "sha256": "ff5f9946ba45ef5f6e711c72fbcb2c65f291da18f050ac525de268da311f168d",
+          "creation_utc_ticks": 639273291870529436,
+          "last_write_utc_ticks": 639273291870539461
+        },
+        {
+          "relative_path": "Covers [picker] & images\\Invalid [cover] & image.jpg",
+          "bytes": 53,
+          "sha256": "e55945a29fa5b73d83528b0ab7ada325a632048d8805e4fc362c59cb62e077e7",
+          "creation_utc_ticks": 639273291871256422,
+          "last_write_utc_ticks": 639273291871256422
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3",
+          "bytes": 8679,
+          "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+          "creation_utc_ticks": 639273291864572715,
+          "last_write_utc_ticks": 639273291864677725
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg",
+          "bytes": 6852,
+          "sha256": "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+          "creation_utc_ticks": 639273291867432557,
+          "last_write_utc_ticks": 639273291867603043
+        },
+        {
+          "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a",
+          "bytes": 14584,
+          "sha256": "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+          "creation_utc_ticks": 639273291865930775,
+          "last_write_utc_ticks": 639273291866222487
+        },
+        {
+          "relative_path": "Mixed valid & corrupt [batch]\\Corrupt [MP3] & example.mp3",
+          "bytes": 48,
+          "sha256": "62cf56f6253e70b0f35065de95492037dfd7fc2b21b3dce4f1625926d2b68d3d",
+          "creation_utc_ticks": 639273291868767705,
+          "last_write_utc_ticks": 639273291868767705
+        },
+        {
+          "relative_path": "Mixed valid & corrupt [batch]\\Valid [MP3] & example.mp3",
+          "bytes": 8679,
+          "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+          "creation_utc_ticks": 639273291868429439,
+          "last_write_utc_ticks": 639273291864677725
+        },
+        {
+          "relative_path": "preparation.json",
+          "bytes": 24469,
+          "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+          "creation_utc_ticks": 639273291871819492,
+          "last_write_utc_ticks": 639273291871829497
+        }
+      ]
+    },
+    "prepared_tree_unchanged": true,
+    "selected_sources_before": [
+      {
+        "relative_path": "AudioFileForPhone.ps1",
+        "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+        "bytes": 40032,
+        "last_write_utc_ticks": 639273225980103809
+      },
+      {
+        "relative_path": "AudioFileForPhone.Helpers.ps1",
+        "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+        "bytes": 114373,
+        "last_write_utc_ticks": 639273225980103809
+      },
+      {
+        "relative_path": "AudioFileForPhone.bat",
+        "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+        "bytes": 1800,
+        "last_write_utc_ticks": 639272999478194169
+      },
+      {
+        "relative_path": "docs/codex-v1/tools/Start-T20Guided.ps1",
+        "sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+        "bytes": 34768,
+        "last_write_utc_ticks": 639273312060337618
+      },
+      {
+        "relative_path": "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+        "sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+        "bytes": 16399,
+        "last_write_utc_ticks": 639273291745277368
+      },
+      {
+        "relative_path": "docs/codex-v1/T20_MANUAL_STEPS.md",
+        "sha256": "53ef2ae971ffe05b97d01d8465b4f6afa39c8c505dcb44a7e3687896986775d9",
+        "bytes": 1943,
+        "last_write_utc_ticks": 639273310644690307
+      },
+      {
+        "relative_path": "docs/codex-v1/evidence/T20-preparation-ps7.json",
+        "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+        "bytes": 24469,
+        "last_write_utc_ticks": 639273291871829497
+      }
+    ],
+    "selected_sources_after": [
+      {
+        "relative_path": "AudioFileForPhone.ps1",
+        "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+        "bytes": 40032,
+        "last_write_utc_ticks": 639273225980103809
+      },
+      {
+        "relative_path": "AudioFileForPhone.Helpers.ps1",
+        "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+        "bytes": 114373,
+        "last_write_utc_ticks": 639273225980103809
+      },
+      {
+        "relative_path": "AudioFileForPhone.bat",
+        "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+        "bytes": 1800,
+        "last_write_utc_ticks": 639272999478194169
+      },
+      {
+        "relative_path": "docs/codex-v1/tools/Start-T20Guided.ps1",
+        "sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+        "bytes": 34768,
+        "last_write_utc_ticks": 639273312060337618
+      },
+      {
+        "relative_path": "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+        "sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+        "bytes": 16399,
+        "last_write_utc_ticks": 639273291745277368
+      },
+      {
+        "relative_path": "docs/codex-v1/T20_MANUAL_STEPS.md",
+        "sha256": "53ef2ae971ffe05b97d01d8465b4f6afa39c8c505dcb44a7e3687896986775d9",
+        "bytes": 1943,
+        "last_write_utc_ticks": 639273310644690307
+      },
+      {
+        "relative_path": "docs/codex-v1/evidence/T20-preparation-ps7.json",
+        "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+        "bytes": 24469,
+        "last_write_utc_ticks": 639273291871829497
+      }
+    ],
+    "selected_sources_unchanged": true,
+    "external_tools_before": [
+      {
+        "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+      },
+      {
+        "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+      }
+    ],
+    "external_tools_after": [
+      {
+        "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+      },
+      {
+        "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+      }
+    ],
+    "external_tools_unchanged": true,
+    "parent_psmodulepath_unchanged": true,
+    "validator_files_created": false
+  },
+  "limitations": [
+    "This validates prepared bytes and parser/read-only control flow. It does not execute BAT, picker, cancellation, media conversion, tool-copy staging or any human action.",
+    "A49 requires actual guided results and named tester confirmation. No acceptance pass is inferred from ValidateOnly.",
+    "The read-only validator created no files. After both snapshots, its outer collector wrote the evidence report; a later provenance controller reserved a separate marked TEMP tree, retained exact validated guided and original-record bytes, and appended snapshot provenance without changing raw invocations.",
+    "Future Git checkout line-ending normalization must be independently proved against the retained exact validated snapshot; no future-byte validation is claimed here."
+  ],
+  "validated_source_snapshot": {
+    "outer_controller_created_snapshot": true,
+    "validator_created_snapshot": false,
+    "recorded_utc": "2026-10-11T16:02:44.9934539Z",
+    "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2",
+    "root_exclusively_reserved": true,
+    "marker_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\.t20-validation-owner",
+    "marker_sha256": "fe59508e92b5192147152f36f0d8882e3be2eb9da3854c058ee14ec4a0912190",
+    "snapshot_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\Start-T20Guided.validated.ps1",
+    "snapshot_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "snapshot_bytes": 34768,
+    "current_source_before_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "current_source_after_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "all_equal": true,
+    "bom_present": false,
+    "crlf_count": 0,
+    "lone_lf_count": 439,
+    "lone_cr_count": 0,
+    "original_validation_record_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\T20-guided-validation.before-snapshot-provenance.json",
+    "original_validation_record_sha256": "b9db6f4db44f60f6b2427a0cbda06595f8be8f679e2e46e1528aa11d0b2d2b56",
+    "original_validation_record_bytes_preserved": true,
+    "retained_for_checkout_line_ending_equivalence": true
+  }
+}

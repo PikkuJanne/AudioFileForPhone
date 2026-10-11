@@ -806,7 +806,9 @@
       "evidence": [
         "evidence/T20.md",
         "evidence/T20-supplemental.json",
-        "T20_MANUAL_STEPS.md"
+        "T20_MANUAL_STEPS.md",
+        "evidence/T20-guided-validation.json",
+        "evidence/T20-revision-review.json"
       ]
     },
     {
@@ -814,13 +816,17 @@
       "task": "T20",
       "title": "Windows long-file and default-path smoke",
       "required": true,
-      "method": "manual release-candidate smoke",
+      "method": "owner-selected representative media with automated quantitative checks and controlled default-Music smoke; revised at Janne Vuorela request on 2026-10-11",
       "expected": "Representative long audio completes with correct duration and resource behavior; controlled default Music destination works; managed-policy restrictions are not bypassed.",
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "evidence/T20.md",
         "evidence/T20-supplemental.json",
-        "T20_MANUAL_STEPS.md"
+        "T20_MANUAL_STEPS.md",
+        "evidence/T20-long-bindings.json",
+        "evidence/T20-long-ps51-final1.json",
+        "evidence/T20-long-ps7-final1.json",
+        "evidence/T20-revision-review.json"
       ]
     },
     {

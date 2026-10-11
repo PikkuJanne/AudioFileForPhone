@@ -1,0 +1,476 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "mode": "user_selected_representative_long_audio_automated",
+  "private_id": "T20-long-01",
+  "tester": "Codex automation",
+  "input_selected_by": "Janne Vuorela",
+  "started_utc": "2026-10-11T15:53:51.1786088Z",
+  "finished_utc": "2026-10-11T15:54:34.1162832Z",
+  "status": "pass",
+  "tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "runner_sha256": "5ac40076ce82f451a25ff59c3f98144f19ee29b6e38edc1a844ff0ff60fe1761",
+  "runner_snapshot_sha256": "5ac40076ce82f451a25ff59c3f98144f19ee29b6e38edc1a844ff0ff60fe1761",
+  "runner_after_sha256": "5ac40076ce82f451a25ff59c3f98144f19ee29b6e38edc1a844ff0ff60fe1761",
+  "runner_bytes_unchanged": true,
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "shell_executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "windows_build": "26300.9457",
+  "os_architecture": true,
+  "elevated": false,
+  "execution_policy": [
+    {
+      "scope": "MachinePolicy",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "UserPolicy",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "Process",
+      "policy": "RemoteSigned"
+    },
+    {
+      "scope": "CurrentUser",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "LocalMachine",
+      "policy": "RemoteSigned"
+    }
+  ],
+  "command": "same-shell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PROJECT>\\docs\\codex-v1\\tools\\Test-T20LongAudio.ps1 -SourcePath <PRIVATE_SOURCE> -EvidencePath <PUBLIC_EVIDENCE>",
+  "private_invocation_sha256": "33c321b54f41ccb0914cd4484d02bb10d89fa7fe76ba24a9da0133baa5a6086d",
+  "original_source_path_redacted": true,
+  "ordinary_music_access": false,
+  "manual_playback": "not_run",
+  "physical_manual_evidence": false,
+  "ownership": {
+    "root_name": "T20L-8a2614f96c2a",
+    "exclusive_directory": true,
+    "marker_sha256": "da1d1c7e43a239dc22863438383b94b8636f9b1794a84b92d7e7f308c25b21c9",
+    "marker_unchanged": true,
+    "retained": true,
+    "cleanup_attempted": false
+  },
+  "tools": {
+    "ffmpeg": {
+      "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  },
+  "sources": [
+    {
+      "name": "AudioFileForPhone.ps1",
+      "source_sha256_before": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "copy_sha256_before": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "source_sha256_after": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "copy_sha256_after": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "name": "AudioFileForPhone.Helpers.ps1",
+      "source_sha256_before": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "copy_sha256_before": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "source_sha256_after": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "copy_sha256_after": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "name": "AudioFileForPhone.bat",
+      "source_sha256_before": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "copy_sha256_before": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "source_sha256_after": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "copy_sha256_after": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "source": {
+    "private_id": "T20-long-01",
+    "length": 38249841,
+    "sha256_before": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+    "sha256_after": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+    "copy_sha256_before": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+    "copy_sha256_after": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+    "attributes": "Archive",
+    "probe": {
+      "codec": "mp3",
+      "sample_rate": 44100,
+      "channels": 1,
+      "audio_bitrate": 64000,
+      "duration_seconds": 4775.055646,
+      "non_audio_codecs": [
+        "mjpeg"
+      ]
+    }
+  },
+  "output": {
+    "private_id": "T20-long-01",
+    "length": 38201262,
+    "sha256_before_decode": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+    "sha256_after_decode": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+    "probe": {
+      "codec": "mp3",
+      "sample_rate": 44100,
+      "channels": 1,
+      "audio_bitrate": 64000,
+      "duration_seconds": 4775.055646,
+      "non_audio_codecs": []
+    },
+    "duration_difference_seconds": 0.0,
+    "tolerance_seconds": 0.35,
+    "cbr_frame_scan": {
+      "frame_count": 182798,
+      "unique_bitrates_kbps": [
+        64
+      ],
+      "cbr_64kbps": true
+    },
+    "independent_full_decode": true,
+    "near_end_decode_start_seconds": 4745.055646,
+    "near_end_decode_length_seconds": 20,
+    "independent_near_end_decode": true
+  },
+  "manifest": {
+    "sha256": "3cf3ca672f3ee402ab22f1999cbc087ec6e7e21041601cdf41e1a501f44da115",
+    "status": "Completed",
+    "exit_code": 0,
+    "totals": {
+      "supported": 1,
+      "processed": 1,
+      "converted": 1,
+      "failed": 0,
+      "cancelled": 0,
+      "not_processed": 0,
+      "not_completed": 0,
+      "scan_excluded": 0,
+      "unsupported": 0,
+      "input_bytes": 38249841,
+      "output_bytes": 38201262,
+      "input_bytes_unknown_count": 0,
+      "output_bytes_unknown_count": 0,
+      "input_duration_seconds": 4775.055646,
+      "output_duration_seconds": 4775.055646,
+      "input_duration_unknown_count": 0
+    },
+    "input_duration_seconds": 4775.055646,
+    "output_duration_seconds": 4775.055646,
+    "decoded_duration_seconds": 4775.055646,
+    "elapsed_seconds": 36.323,
+    "entry_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+    "helper_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+  },
+  "native_runs": [
+    {
+      "label": "source_commit",
+      "executable": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "arguments": [
+        "-C",
+        "<PROJECT>",
+        "rev-parse",
+        "HEAD"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 51.3179,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "ffmpeg_version",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": "-version",
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 39.4016,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "ffprobe_version",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": "-version",
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 37.748,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "source_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,duration:format=duration,size",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\input\\T20-long-01.mp3"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 44.1099,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "unchanged_application_default64kbps",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\app\\AudioFileForPhone.ps1",
+        "-InputFolder",
+        "<OWNED_TEMP>\\input",
+        "-OutputParent",
+        "<OWNED_TEMP>\\output"
+      ],
+      "deadline_ms": 180000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 37380.3613,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "output_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,duration:format=duration,size",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_175354\\input\\2026-02-09 - T20-long-01.mp3"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 41.4854,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "independent_full_decode",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-hide_banner",
+        "-v",
+        "error",
+        "-xerror",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_175354\\input\\2026-02-09 - T20-long-01.mp3",
+        "-map",
+        "0:a:0",
+        "-f",
+        "null",
+        "NUL"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 2774.8189,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    },
+    {
+      "label": "independent_near_end_decode",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-hide_banner",
+        "-v",
+        "error",
+        "-xerror",
+        "-ss",
+        "4745.055646",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_175354\\input\\2026-02-09 - T20-long-01.mp3",
+        "-t",
+        "20",
+        "-map",
+        "0:a:0",
+        "-f",
+        "null",
+        "NUL"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_ms": 144.7213,
+      "process_released": true,
+      "capture_truncated": false,
+      "observation_error": false,
+      "controller_forced_termination": false
+    }
+  ],
+  "application_resources": [
+    {
+      "Role": "application_host",
+      "Pid": 13696,
+      "StartedUtc": "2026-10-11T15:53:53.1834508Z",
+      "ElapsedMilliseconds": 37352.8408,
+      "CpuMilliseconds": 8218.75,
+      "SampledWorkingSetPeakBytes": 224968704,
+      "ProcessLifetimeWorkingSetPeakBytes": 224968704,
+      "Samples": 431,
+      "FirstSampleMilliseconds": 607.7601,
+      "LastSampleMilliseconds": 37336.9024,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "other_owned_child",
+      "Pid": 14588,
+      "StartedUtc": "2026-10-11T15:53:53.7763669Z",
+      "ElapsedMilliseconds": 36762.9665,
+      "CpuMilliseconds": 0.0,
+      "SampledWorkingSetPeakBytes": 7946240,
+      "ProcessLifetimeWorkingSetPeakBytes": 7946240,
+      "Samples": 430,
+      "FirstSampleMilliseconds": 692.1478,
+      "LastSampleMilliseconds": 37340.691,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "ffmpeg",
+      "Pid": 21264,
+      "StartedUtc": "2026-10-11T15:53:57.0065783Z",
+      "ElapsedMilliseconds": 30163.1651,
+      "CpuMilliseconds": 36625.0,
+      "SampledWorkingSetPeakBytes": 20262912,
+      "ProcessLifetimeWorkingSetPeakBytes": 21311488,
+      "Samples": 353,
+      "FirstSampleMilliseconds": 3880.1328,
+      "LastSampleMilliseconds": 33977.5482,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "other_owned_child",
+      "Pid": 22760,
+      "StartedUtc": "2026-10-11T15:53:57.0130002Z",
+      "ElapsedMilliseconds": 30158.0249,
+      "CpuMilliseconds": 15.625,
+      "SampledWorkingSetPeakBytes": 7745536,
+      "ProcessLifetimeWorkingSetPeakBytes": 7745536,
+      "Samples": 353,
+      "FirstSampleMilliseconds": 3884.1759,
+      "LastSampleMilliseconds": 33981.8127,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "ffprobe",
+      "Pid": 14760,
+      "StartedUtc": "2026-10-11T15:54:27.1985822Z",
+      "ElapsedMilliseconds": 40.0964,
+      "CpuMilliseconds": 15.625,
+      "SampledWorkingSetPeakBytes": 0,
+      "ProcessLifetimeWorkingSetPeakBytes": 0,
+      "Samples": 0,
+      "FirstSampleMilliseconds": 0.0,
+      "LastSampleMilliseconds": 0.0,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "other_owned_child",
+      "Pid": 26812,
+      "StartedUtc": "2026-10-11T15:54:27.2064512Z",
+      "ElapsedMilliseconds": 33.6172,
+      "CpuMilliseconds": 15.625,
+      "SampledWorkingSetPeakBytes": 0,
+      "ProcessLifetimeWorkingSetPeakBytes": 0,
+      "Samples": 0,
+      "FirstSampleMilliseconds": 0.0,
+      "LastSampleMilliseconds": 0.0,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "ffmpeg",
+      "Pid": 3696,
+      "StartedUtc": "2026-10-11T15:54:27.2599412Z",
+      "ElapsedMilliseconds": 2861.5426,
+      "CpuMilliseconds": 6593.75,
+      "SampledWorkingSetPeakBytes": 19304448,
+      "ProcessLifetimeWorkingSetPeakBytes": 19304448,
+      "Samples": 32,
+      "FirstSampleMilliseconds": 34132.6211,
+      "LastSampleMilliseconds": 36927.0878,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    },
+    {
+      "Role": "other_owned_child",
+      "Pid": 2260,
+      "StartedUtc": "2026-10-11T15:54:27.2670407Z",
+      "ElapsedMilliseconds": 2855.6712,
+      "CpuMilliseconds": 31.25,
+      "SampledWorkingSetPeakBytes": 7733248,
+      "ProcessLifetimeWorkingSetPeakBytes": 7733248,
+      "Samples": 32,
+      "FirstSampleMilliseconds": 34137.4569,
+      "LastSampleMilliseconds": 36931.8003,
+      "Exited": true,
+      "Disposed": true,
+      "ExitCode": 0,
+      "ControllerKillAttempted": false
+    }
+  ],
+  "resources_method": "nominal 50ms wait plus Toolhelp snapshot/sample work; actual first/last sample times and count per retained process; sampled working set and process-reported lifetime peak",
+  "source_bytes_unchanged": true,
+  "source_copy_unchanged": true,
+  "application_bytes_unchanged": true,
+  "all_observed_processes_exited_and_disposed": true,
+  "failure_stage": null,
+  "raw_capture_retained_privately": true
+}

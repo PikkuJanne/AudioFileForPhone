@@ -717,3 +717,43 @@ with a bare “approved” assertion without a traceable reference.
   automated input/long/default evidence cannot invent current named observations.
   Asked owner for tester identity/local selected path and availability; no personal
   media search. Exactly next continue T20, not T21; project/release incomplete.
+
+## T20 simpler owner check and automated representative file — 11 October 2026
+
+- Janne Vuorela supplied his identity and exactly one local legally held podcast,
+  requesting: "The test needs to be much simpler for me, or automated, please
+  revise". This steers the same T20 task. The file is 79m35.055646s mono MP3;
+  only that selected regular file was read/copied, without personal-folder search.
+  Its public identity is T20-long-01; paths/names/tags/media/raw logs stay private.
+- Revise A50's quantitative method explicitly in task/strategy/acceptance tracking
+  to automated owner-selected real-media checks plus controlled default-Music
+  smoke, preserving duration/resources/default-path/policy expected outcomes.
+  A49 physical actions and T21 actual player/phone listening/seeking remain.
+  No automated decoder result is a named playback observation.
+- Fresh PS5.1/PS7 final1 runs actually test f992a54, whose runtime blobs equal
+  integrated main da2a627. App host elapsed34.633/37.353s; actual host/FFmpeg
+  CPU/memory/sample scopes are recorded. Both Completed/exit0 outputs are
+  38,201,262bytes with identical hashes, zero duration delta, 182,798frames all
+  64kbps, independent full+near-end decode and preservation gates passed.
+  Observed retained processes exit/dispose naturally without controller kill;
+  eight bounded native verifications per shell finish/release. These are two
+  real acceptance runs, not added to the earlier 182 supplemental-case count.
+- Preserve failed PS5.1 attempt1: runner assumed flat output rather than the
+  unchanged app's recursive wrapper. It does not have completed independent
+  verification or an original runner snapshot; no pass is inferred. Fresh finals
+  use owned literal recursion, PID-reuse acquisition guard, forced-kill fail gate
+  and exact runner before/snapshot/after hashes. Three owned roots remain retained
+  outside Git; no cleanup attempted and no old retained-scope record changed.
+- Replace the 129-line manual procedure with one guided command. Owner only does
+  one mixed-corrupt folder-on-unchanged-BAT drop, actual STA select/Cancel in both
+  shells and physical READY Ctrl+C in both; windows, preset synthetic metadata,
+  verification and local capture are automated. Hash-bound copies of installed
+  FFmpeg may be placed beside the private app for existing Explorer discovery;
+  no download/global setting/runtime/Git/package binary change. BAT shell/exit/
+  output are explicit uncaptured limits, and unknown Music output remains untouched.
+  Original newly created cancellation reports keep their task/A29/commit IDs and
+  bytes when relocated from exact fresh paths to local owned guided-results root.
+- A50 passes; A49/T20 remain blocked until Janne's actual actions/confirmation and
+  captured evidence are reviewed. Old T20-review.json stays frozen; new revision
+  review/feature sync/CI accompany this checkpoint. Main integration remains
+  owner-gated, exactly next continue T20, with project/release/phone unfinished.
