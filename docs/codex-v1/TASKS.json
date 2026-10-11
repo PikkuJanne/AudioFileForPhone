@@ -884,14 +884,14 @@
       "tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74",
       "checkpoint_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74",
       "remote_checkpoint_verified": true,
-      "notes": "A43/A44 pass: actual Windows 11 PS5.1/PS7 final2 checks and green normal push/PR Windows jobs at reviewed code 8cb3c07, actual PR integration f8f9d71 with identical trees. 24 selected original reports, 380 required groups/checks and twelve observations; 34 source files bound through 236 actual relationships. Full official action SHAs, contents: read, no secrets/privileged release triggers, CI-only fixed SHA/size downloads, whole inventories, syntax, explicit analyzer Error/ten-rule gates, 31 pure + 22 dependency guards + seven baseline + 35 native groups per execution. Original legacy integration and production PS/helper/BAT unchanged; source/fixture/release/media cleanup gates pass. Initial hosted failures and all preliminaries remain preserved: only redundant private baseline GUID parents shortened, actual working path 260 refusal becomes 227 without relaxing production limits. Research archive TEMP cleanup was blocked by automatic approval review before execution; exact proof/false outcome retained, outside Git, distinct from passing fixture cleanup. Owner T16 PR #16 integration dc88a1d independently reconciled. Code pushed/live-ref matched; draft PR #17, T17 main integration owner-gated. Evidence/handoff follows docs-only; final HEAD/ref and new CI proof in PR/response without a stored self-hash. Exactly next T18 after owner integration. No fresh manual/phone/frozen ZIP/release acceptance."
+      "notes": "A43/A44 pass: actual Windows 11 PS5.1/PS7 final2 checks and green normal push/PR Windows jobs at reviewed code 8cb3c07, actual PR integration f8f9d71 with identical trees. 24 selected original reports, 380 required groups/checks and twelve observations; 34 source files bound through 236 actual relationships. Full official action SHAs, contents: read, no secrets/privileged release triggers, CI-only fixed SHA/size downloads, whole inventories, syntax, explicit analyzer Error/ten-rule gates, 31 pure + 22 dependency guards + seven baseline + 35 native groups per execution. Original legacy integration and production PS/helper/BAT unchanged; source/fixture/release/media cleanup gates pass. Initial hosted failures and all preliminaries remain preserved: only redundant private baseline GUID parents shortened, actual working path 260 refusal becomes 227 without relaxing production limits. Research archive TEMP cleanup was blocked by automatic approval review before execution; exact proof/false outcome retained, outside Git, distinct from passing fixture cleanup. Owner T16 PR #16 integration dc88a1d independently reconciled. Code pushed/live-ref matched; draft PR #17, T17 main integration owner-gated. Evidence/handoff follows docs-only; final HEAD/ref and new CI proof in PR/response without a stored self-hash. Exactly next T18 after owner integration. No fresh manual/phone/frozen ZIP/release acceptance. Owner PikkuJanne merged PR #17 at 2026-10-11T12:46:33Z into main efe928367fe6380afd754dbd2376766506dd6815, final feature a4c008d0a982d5fbb9ecc71668dcceb170957d6b; fresh fetch/advertised refs/live GitHub were independently reconciled in T18, so T01-T17 are now integrated."
     },
     {
       "id": "T18",
       "milestone": "M4",
       "title": "Finish help, docs, version and support boundaries",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T17"
       ],
@@ -903,11 +903,35 @@
         "A45",
         "A46"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T18.md",
+        "evidence/T18-start.json",
+        "evidence/T18-tested-payload.json",
+        "evidence/T18-source-review.json",
+        "evidence/T18-help-ps51-attempt1.json",
+        "evidence/T18-help-ps51-attempt2.json",
+        "evidence/T18-help-ps7-attempt2.json",
+        "evidence/T18-diagnostics-ps51-final1.json",
+        "evidence/T18-diagnostics-ps7-final1.json",
+        "evidence/T17-dependencies-ps51-final3.json",
+        "evidence/T17-dependencies-ps7-final3.json",
+        "evidence/T17-ci-ps51-final3.json",
+        "evidence/T17-ci-ps7-final3.json",
+        "evidence/T17-unit-ps51-final3.json",
+        "evidence/T17-unit-ps7-final3.json",
+        "evidence/T17-ci-dependencyguards-ps51-final3.json",
+        "evidence/T17-ci-dependencyguards-ps7-final3.json",
+        "evidence/T17-baseline-ps51-final3.json",
+        "evidence/T17-baseline-ps7-final3.json",
+        "evidence/T17-help-ps51-final3.json",
+        "evidence/T17-help-ps7-final3.json",
+        "evidence/T17-native-ps51-final3.json",
+        "evidence/T17-native-ps7-final3.json"
+      ],
+      "tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "checkpoint_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "remote_checkpoint_verified": true,
+      "notes": "A45/A46 pass locally on Windows 11 PS5.1.26100.9444/PS7.6.5 at code 15d8dc1. Proper comment-help, nine parameters and five exact executable Code examples match README; 12 independently decoded outputs per shell, all ten public fences parse, preview/helper exact inventories unchanged. Get-AudioAppVersion has the sole runtime 1.0.0 literal; banner/manifest/log consume it and T19 packaging must read it. Help attempt2 seven plus diagnostics final1 nineteen plus routine final3 102 groups per shell give 256 required groups/six observations without CI child double count. Syntax covers 32 sources; the explicit seven-file default Error/ten-rule analyzer gate is clean. Source/fixture/positive release/child/owned cleanup pass; no ordinary Music. Raw setup/CI final3 retain the T17 namespace but test T18 code; historical T17 final2 is untouched. Preserve failed PS5.1 help attempt1 at 5eb1374: fifth multiline Code truncated after helper import; source/fixture/release/cleanup true, fixed production help/README use one line. Earlier direct dependency host-check failure made no root/report. BAT/legacy/workflow/lock/initializer unchanged; routine help adds no rights/downloader change. Unsigned/external dependency/device/phone/MTP/player/manual/release boundaries are explicit and no website placeholder added. Owner T17 PR #17 merge at 2026-10-11T12:46:33Z into efe9283, final feature a4c008d, independently reconciled; T01-T17 integrated. Reviewed code 15d8dc1 was pushed and independently matched its advertised feature ref; draft PR #18. Final evidence checkpoint/hosted checks belong in final PR/response; T18 main integration remains owner-gated. Exactly next T19 after integration. No frozen ZIP/public release/new device or manual acceptance; loudness deferred."
     },
     {
       "id": "T19",

@@ -537,3 +537,61 @@ with a bare “approved” assertion without a traceable reference.
   code in a docs-only checkpoint. Main owner-gated; zero workflows/no CI pass,
   no phone/manual/release claim. Existing T07/T09/T11 limitations remain.
   Exactly next task T14 after independently verified owner integration of T13.
+
+## T18 — help, docs, version and support boundaries (11 October 2026)
+
+- Owner requested "T18 next please". Normal fetch, independently advertised refs
+  and live GitHub verify owner T17 PR #17 merge at 12:46:33 UTC into main
+  efe928367fe6380afd754dbd2376766506dd6815, final feature
+  a4c008d0a982d5fbb9ecc71668dcceb170957d6b. Clean main was fast-forwarded before
+  codex/v1-t18-help-version. Normal feature edits/tests/commits/push/draft PR
+  remain authorized; main integration and exact release gates are unchanged.
+- Choose functions-only Get-AudioAppVersion as the sole authoritative runtime
+  1.0.0 literal. Banner and manifest call it; log uses the manifest's value.
+  Version example executes the real helper. T19 package builder must consume it;
+  unknown app/provenance template fields stay null until real build evidence.
+  No package, frozen ZIP or publication result is inferred from version setup.
+- Replace the header with proper comment-help for all nine public parameters and
+  five exact executable examples shared with README. Keep PS/BAT entry points,
+  64 kbps CBR, Music default, MP3/M4A/OGG, layout, names and metadata. CHANGELOG
+  marks 1.0.0 unreleased; SUPPORT maps claims to actual suite/evidence boundaries.
+  No website placeholder, production downloader, telemetry or default loudness.
+- Preserve the BAT's existing process Bypass and disclose it. Recommend read-only
+  policy inspection/direct RemoteSigned, with optional personal-machine unblocking
+  restricted to reviewed exact files when permitted. Never bypass enforced policy
+  or disable endpoint protection; actual signing status remains unsigned. Public
+  docs specify unsupported extensions, default artwork dropping/explicit replacement,
+  chapter/player limits, exits, cancellation/partials and private local records.
+- At code 15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d, help attempt2 passes seven
+  groups per shell and diagnostics final1 nineteen. Exact Get-Help Code examples
+  produce twelve independently probed/full-decoded outputs per shell. Ten public
+  PowerShell fences parse; policy/unblock/setup/interactive blocks are syntax-only.
+  Preview/helper strict tree/hash/time/attribute inventories remain unchanged.
+  Source/synthetic/positive release/child/exact owned cleanup gates pass; ordinary
+  Music remains unused and no physical/manual result is claimed.
+- Expanded routine CI final3 passes 102 required groups/three observations per
+  shell: unit31, dependencyguards22, retained baseline7, help7 and native35;
+  original legacy real-media passes. Local total is 256 groups/six observations,
+  without double-counting CI child reports. Syntax covers 32 sources; explicit
+  seven-file analyzer default Error/ten-rule gate is clean. Dependency records
+  verify FFmpeg/ffprobe 9.0.2 and analyzer 1.25.0, retained outside Git. Raw final3
+  keeps T17 namespaces but records actual T18 code; T17 final2 remains untouched.
+- Adding help to routine CI preserves workflow/lock/initializer bytes, action
+  pins, contents: read/no secrets/privileged triggers/persisted checkout token and
+  current-run JSON-only uploads. BAT and original retained integration bytes are
+  unchanged. Local Windows 11 PS5.1.26100.9444/PS7.6.5 acceptance is separate from
+  historical hosted Server 2025 PS5.1.26100.33438/PS7.6.6 and future actual checks.
+- Preserve failed PS5.1 help attempt1 at 5eb1374: helper import made the fifth
+  multiline example's second line remarks, not executable Code. Hash/release/
+  cleanup gates were true. Production help and README now share one line and
+  both attempt2 reports pass. Earlier direct dependency host-check failure made
+  no root/report. No failed attempt is retroactively relabelled successful.
+- Review has no implementation/security blocker. Evidence/payload/source review
+  bind actual reports to reviewed code; final push/live-ref and real hosted
+  outcomes are recorded in the draft PR/response, not as a self-hash here.
+  Main remains owner-gated. Historical T01/T11 manual, T16 regression, T07 residue,
+  T09 path interval, T11 forced-host and T14 persistence limits remain. No fresh
+  phone/MTP/player/Explorer/NAS/UNC/network Music/frozen ZIP/public acceptance.
+  Exactly next task is T19 after independently verified owner integration of T18.
+
+- Reviewed T18 code 15d8dc1 was pushed and independently matched its live advertised feature ref; draft PR #18 is attached. Evidence checkpoint and actual new hosted checks follow without a self-referential containing SHA. Main integration remains owner-gated.

@@ -1,0 +1,793 @@
+{
+  "schema_version": 1,
+  "task": "T18",
+  "mode": "independent_source_security_document_and_existing_report_review",
+  "status": "pass",
+  "reviewed_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+  "base_main_commit": "efe928367fe6380afd754dbd2376766506dd6815",
+  "reviewed_at_utc": "2026-10-11T13:06:01.210Z",
+  "native_or_test_suites_executed_by_reviewer": false,
+  "scope": {
+    "source_changes": [
+      {
+        "status": "M",
+        "path": ".github/scripts/Invoke-CiChecks.ps1"
+      },
+      {
+        "status": "M",
+        "path": "AudioFileForPhone.Helpers.ps1"
+      },
+      {
+        "status": "M",
+        "path": "AudioFileForPhone.ps1"
+      },
+      {
+        "status": "A",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "status": "M",
+        "path": "README.md"
+      },
+      {
+        "status": "A",
+        "path": "SUPPORT.md"
+      },
+      {
+        "status": "M",
+        "path": "docs/codex-v1/specs/RELEASE_PACKAGE.md"
+      },
+      {
+        "status": "M",
+        "path": "docs/codex-v1/specs/UX_RESULTS.md"
+      },
+      {
+        "status": "M",
+        "path": "docs/codex-v1/templates/release-manifest.example.json"
+      },
+      {
+        "status": "M",
+        "path": "tests/Test-Diagnostics.ps1"
+      },
+      {
+        "status": "A",
+        "path": "tests/Test-HelpVersion.ps1"
+      }
+    ],
+    "changed_file_count": 11,
+    "allowed_artifact_extensions": [
+      ".ps1",
+      ".md",
+      ".json"
+    ],
+    "binary_diffs": 0,
+    "added_files": [
+      "CHANGELOG.md",
+      "SUPPORT.md",
+      "tests/Test-HelpVersion.ps1"
+    ],
+    "unexpected_artifacts": [],
+    "working_source_to_git_relationship": "Exact bytes, or only strict UTF8 LF/CRLF conversion preserving BOM; raw hashes retained rather than trusting clean-filter output",
+    "separate_handoff_changes": "Root-owned authority/tracking/evidence changes are outside reviewed source commit"
+  },
+  "source_inventory": [
+    {
+      "path": ".github/dependencies.json",
+      "length": 2840,
+      "working_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "base_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "working_raw_git_blob": "d17c9d3791dd7b81c4ce0936240b21e7a0e0034a",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "length": 19639,
+      "working_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "base_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "working_raw_git_blob": "90c1d4c47dd05cc0074527a8920fc7d655970ba8",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "length": 19139,
+      "working_sha256": "39f7a7a09ecfd95abd25825098da876a140c4edc24ab521c608dc69c5b9bf273",
+      "base_git_blob": "2c7b4cebe693979b478114d1e96516a05b33615c",
+      "reviewed_git_blob": "339796fb8dbfb1292875b53afa174cbaaab70d62",
+      "reviewed_git_blob_sha256": "dad5eafbd8b59e273085b20a71438a05bc24cc9dcd1ca4c0b4d56c3689e0d34b",
+      "working_raw_git_blob": "45506c5f22da6386b67abb9930bfd2c4e5eefc2c",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "length": 701,
+      "working_sha256": "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8",
+      "base_git_blob": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "reviewed_git_blob": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "reviewed_git_blob_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+      "working_raw_git_blob": "b16da8e3643297d2bb445a5ec25b4084eb03ffe9",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": ".github/workflows/windows-ci.yml",
+      "length": 2071,
+      "working_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "base_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "working_raw_git_blob": "c533c0d1c6404a6cf8e9c2b01676dec680d079fa",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "AudioFileForPhone_icon.ico",
+      "length": 19765,
+      "working_sha256": "32ab3d7c50ed738640d5283d8c1db2b1b29314fb4abcb885b2b09a807ea48df1",
+      "base_git_blob": "4a2e6fd71f256580bcbd288821066f14c03356e8",
+      "reviewed_git_blob": "4a2e6fd71f256580bcbd288821066f14c03356e8",
+      "reviewed_git_blob_sha256": "32ab3d7c50ed738640d5283d8c1db2b1b29314fb4abcb885b2b09a807ea48df1",
+      "working_raw_git_blob": "4a2e6fd71f256580bcbd288821066f14c03356e8",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "AudioFileForPhone_icon.png",
+      "length": 10307,
+      "working_sha256": "26a2095d9fe9bdbe52a6b727de67ecaeb7f59910d1eed4bd7ee9d58906e22bb4",
+      "base_git_blob": "b09725d9d2c3b306083d62568dc26a9f2bcd7970",
+      "reviewed_git_blob": "b09725d9d2c3b306083d62568dc26a9f2bcd7970",
+      "reviewed_git_blob_sha256": "26a2095d9fe9bdbe52a6b727de67ecaeb7f59910d1eed4bd7ee9d58906e22bb4",
+      "working_raw_git_blob": "b09725d9d2c3b306083d62568dc26a9f2bcd7970",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "AudioFileForPhone_poster.png",
+      "length": 7011504,
+      "working_sha256": "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+      "base_git_blob": "6c932c3427a13419b1fc2a0269253bd8b948fd37",
+      "reviewed_git_blob": "6c932c3427a13419b1fc2a0269253bd8b948fd37",
+      "reviewed_git_blob_sha256": "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+      "working_raw_git_blob": "6c932c3427a13419b1fc2a0269253bd8b948fd37",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "length": 1800,
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "base_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_raw_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "length": 114373,
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "base_git_blob": "221c71fa1c6d1648261c9a329fc12420b86a3d91",
+      "reviewed_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "reviewed_git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "working_raw_git_blob": "219dc41f04428ff11d1c050a31e1849d27cdf9a3",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "length": 40032,
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "base_git_blob": "aa910dcf6896368b8bd3c6869cc9e74677c6a51f",
+      "reviewed_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "reviewed_git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_raw_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "CHANGELOG.md",
+      "length": 1481,
+      "working_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "base_git_blob": null,
+      "reviewed_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "reviewed_git_blob_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "working_raw_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "length": 4267,
+      "working_sha256": "478cec9195246e2bf913d0d9f07f5a921c60ced9a128e0890598059fc8ec90f8",
+      "base_git_blob": "30547a9e213e72d908ae90909b454a0c4708e65f",
+      "reviewed_git_blob": "185ad873a0effe74b7f1d72faacb28d26573d75f",
+      "reviewed_git_blob_sha256": "3b653c58b50a5897ba6b505fca416877ef509c07359f1d0837619ac2244b9aa1",
+      "working_raw_git_blob": "b9fa3736e5b925bdabc49dc9bf5315dab655125b",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "docs/codex-v1/specs/UX_RESULTS.md",
+      "length": 8860,
+      "working_sha256": "d2573266cbf2f7de0e7a84ab02cfa7ee42c1c4f2c98f898bb9d9125b68600572",
+      "base_git_blob": "503ceaebea9239cdaf6e5480df6c2eede9ccd429",
+      "reviewed_git_blob": "bf8e3e1147a2545c6f3a5f73c7b8196b45ce47a1",
+      "reviewed_git_blob_sha256": "8c0e575ca585459c7a1ca1c3fb2409fbda2527e51e243dcc5b7141939ba43e9e",
+      "working_raw_git_blob": "3d14d828ea44ecd1544cd827f0b1e35d395a8a27",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+      "length": 540,
+      "working_sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+      "base_git_blob": "a3412f53ba01dce917a2e5d7e8e5b6d2c8886991",
+      "reviewed_git_blob": "a3412f53ba01dce917a2e5d7e8e5b6d2c8886991",
+      "reviewed_git_blob_sha256": "9709f824a6f77c54afefbeaa978e7af193aea945b1965c0607efb65671c33b19",
+      "working_raw_git_blob": "bcdc0ef004bba2168df396be8547b1ebf14ac66f",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "docs/codex-v1/templates/release-manifest.example.json",
+      "length": 637,
+      "working_sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+      "base_git_blob": "16eb193be9181a34913edbbbee46a5d383ea79b9",
+      "reviewed_git_blob": "0fc06632b10a0efcad8c2fe75c51ebf3ccbc53d1",
+      "reviewed_git_blob_sha256": "acf7ec122efc9aef13c3059cab364e5e70e5879b4ddb7e051b710f2317c121c2",
+      "working_raw_git_blob": "334964d3f4483a95175e5581bd145a3e255fa4ef",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "LICENSE",
+      "length": 1070,
+      "working_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "base_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "reviewed_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "reviewed_git_blob_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "working_raw_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "README.md",
+      "length": 9719,
+      "working_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "base_git_blob": "60c7ef54fbf306b3c2cc7d53f9caf8caa8186651",
+      "reviewed_git_blob": "ef5a897964c2f1680955cf2e5c909f6a71f1b2fc",
+      "reviewed_git_blob_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+      "working_raw_git_blob": "ef5a897964c2f1680955cf2e5c909f6a71f1b2fc",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "SUPPORT.md",
+      "length": 12788,
+      "working_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "base_git_blob": null,
+      "reviewed_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "reviewed_git_blob_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "working_raw_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "length": 14449,
+      "working_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "base_git_blob": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "reviewed_git_blob": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "reviewed_git_blob_sha256": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+      "working_raw_git_blob": "7d3a291e4d045ded99a3e21d35a81d0944c3d543",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "length": 16896,
+      "working_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "base_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "reviewed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "reviewed_git_blob_sha256": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+      "working_raw_git_blob": "a8a94f98ea890fd209a466415a33ef2d689c4f25",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": true
+    },
+    {
+      "path": "tests/Test-Diagnostics.ps1",
+      "length": 50288,
+      "working_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "base_git_blob": "bc71f1c86951fa05164304a5620a95c31ac52148",
+      "reviewed_git_blob": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "reviewed_git_blob_sha256": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+      "working_raw_git_blob": "d28ef5e4fed1e19d6853eaf6d9b643c8ff823443",
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom",
+      "mode": "100644",
+      "unchanged_from_main": false
+    },
+    {
+      "path": "tests/Test-HelpVersion.ps1",
+      "length": 35220,
+      "working_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+      "base_git_blob": null,
+      "reviewed_git_blob": "c514fe33b80080d9d48f0f4dadd2fd5c2078ccf1",
+      "reviewed_git_blob_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+      "working_raw_git_blob": "c514fe33b80080d9d48f0f4dadd2fd5c2078ccf1",
+      "working_to_reviewed_relationship": "exact_bytes",
+      "mode": "100644",
+      "unchanged_from_main": false
+    }
+  ],
+  "equivalence": {
+    "comparison": "Git sources decoded as UTF8 text with CRLF/LF normalized to LF; no code/text characters discarded",
+    "entry": {
+      "leading_comment_help_removed": true,
+      "removed_base_banner": "Write-Host \"==== AudioFileForPhone ====\"",
+      "removed_reviewed_banner": "    Write-Host (\"==== AudioFileForPhone v{0} ====\" -f (Get-AudioAppVersion))",
+      "runtime_body_equivalent": true,
+      "base_comparison_sha256": "295849249f1140983ae6768651f199c019a1d97d13ea47135a37fcae3f4bc4fb",
+      "reviewed_comparison_sha256": "295849249f1140983ae6768651f199c019a1d97d13ea47135a37fcae3f4bc4fb"
+    },
+    "helper": {
+      "removed_exact_version_function": "function Get-AudioAppVersion {\n    # Authoritative application version; banner, manifest and package metadata consume this.\n    return '1.0.0'\n}",
+      "reverted_reviewed_manifest_expression": "app_version = (Get-AudioAppVersion)",
+      "restored_base_manifest_expression": "app_version = 'development'",
+      "remaining_helper_equivalent": true,
+      "base_comparison_sha256": "69597fc2cb20b19e7f18ae5a5040eb04b1fe848d51d8513d7fc8440114547b6d",
+      "reviewed_comparison_sha256": "69597fc2cb20b19e7f18ae5a5040eb04b1fe848d51d8513d7fc8440114547b6d"
+    }
+  },
+  "unchanged_contracts": {
+    "fingerprinted_paths": [
+      "AudioFileForPhone.bat",
+      "tests/Test-AudioFileForPhone.ps1",
+      "tests/Invoke-IsolatedBaseline.ps1",
+      ".github/workflows/windows-ci.yml",
+      ".github/scripts/Initialize-CiDependencies.ps1",
+      ".github/dependencies.json",
+      ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "LICENSE",
+      "AudioFileForPhone_icon.ico",
+      "AudioFileForPhone_icon.png",
+      "AudioFileForPhone_poster.png"
+    ],
+    "bat_policy_and_exit_transport_unchanged": true,
+    "original_real_ffmpeg_suite_unchanged": true,
+    "workflow_permissions_action_pins_triggers_upload_rules_unchanged": true,
+    "dependency_provisioner_lock_and_analyzer_gate_unchanged": true
+  },
+  "secret_artifact_review": {
+    "method": "Complete bounded source diff/path/mode review plus narrow changed-source scanning for private-key headers, GitHub token forms and credential-bearing HTTP URLs",
+    "patterns": [
+      "/\\b(?:ghp_|github_pat_|gho_|ghs_|ghu_|ghr_)[A-Za-z0-9_]{20,}/i",
+      "/-----BEGIN(?: RSA| EC| OPENSSH)? PRIVATE KEY-----/",
+      "/https?:\\/\\/[^/\\s:@]+:[^/@\\s]+@/i"
+    ],
+    "hits": [],
+    "new_binaries_personal_media_credentials_private_logs": false,
+    "limitation": "Pattern checks supplement source review and do not establish universal secret detection"
+  },
+  "unsigned_scripts": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "status": "NotSigned"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "status": "NotSigned"
+    }
+  ],
+  "version_review": {
+    "single_authoritative_function": "Get-AudioAppVersion",
+    "function_value": "1.0.0",
+    "banner_and_manifest_consume_function": true,
+    "log_consumes_manifest": true,
+    "help_version_example": "Single code line dot-sources functions-only helper then calls Get-AudioAppVersion",
+    "build_contract": "T19 builder must read helper from exact C for ZIP/tag/external manifest app_version; template null does not claim package completion",
+    "diagnostic_assertion": "Version assertion updated while retaining executed entry/helper byte hashes"
+  },
+  "documents_review": {
+    "reviewed": [
+      "README.md",
+      "SUPPORT.md",
+      "CHANGELOG.md",
+      "docs/codex-v1/specs/UX_RESULTS.md",
+      "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "docs/codex-v1/templates/release-manifest.example.json"
+    ],
+    "result": "No blocker; public claims match production and explicitly bounded historical evidence",
+    "preserved": [
+      "64 kbps CBR MP3 default",
+      "MP3/M4A/OGG recursive input policy including Ogg Vorbis/Opus",
+      "configured Music default and optional output parent",
+      "date-first collision planning and preserved folders",
+      "source metadata/title/Artist/Album precedence",
+      "explicit JPEG/PNG cover and source-artwork default drop",
+      "chapter fields distinguished from phone navigation/resume",
+      "0/1/2/130 outcomes and forced-host cancellation limits",
+      "local logs/manifests with redaction guidance",
+      "loudness deferred without a current option"
+    ],
+    "unsigned_policy": "NotSigned confirmed via Get-AuthenticodeSignature for entry/helper. Existing BAT process-only Bypass is disclosed without changing it; docs distinguish Group Policy, approved direct launch, reviewed exact-file unblocking and no persistent policy change",
+    "release_limit": "1.0.0 is a planned unreleased app identity; no frozen ZIP, device acceptance or public-release success inferred",
+    "primary_references": [
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies/",
+      "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/unblock-file?view=powershell-7.6"
+    ]
+  },
+  "harness_review": {
+    "source": "tests/Test-HelpVersion.ps1",
+    "copies": "Byte-identical entry/helper live in exclusive CreateDirectoryW root with CreateNew marker",
+    "music_guard": "First exact entry helper-load Join-Path interception injects test-only wrappers; owned MusicResolver supplied explicitly before platform default execution; resolved output must remain beneath owned root",
+    "example_execution": "Get-Help Code is parsed then saved verbatim in ordinary -File child drivers; first five README commands match exact Code; policy/setup/interactive documentation commands are syntax-only",
+    "native_release": "Child invocations register default-false proof before starting. Parent release alone leaves descendant proof false; exactly one child finally audit and all positive native proofs restore it. Deadline, audit or release failure blocks cleanup",
+    "preview_version": "Preview forbids tool lookup/native/cover/writability/reservation/manifest/marker/prompt/capture; preview/version compare full owned inventories; version example has no native descendant",
+    "cleanup": "Requires exclusive root flag, exact resolved direct TEMP child/root spelling, CreateNew owner token, no reparse ancestors/descendants and positive release; then deletes only exact owned root and verifies absence",
+    "ci": "Sequential help family uses current-run T17 labels and existing RealMedia parameters; unchanged source/fixtures and released descendants plus cleanup are required before existing JSON uploads",
+    "limitations": "Instrumented synthetic Music smoke does not establish real network Music or new physical manual evidence"
+  },
+  "existing_help_report_review": [
+    {
+      "path": "docs/codex-v1/evidence/T18-help-ps51-attempt1.json",
+      "sha256": "8f888fb8d130da8f1851a0af107845d7f740ca091f3cc61e2452d88bd287d454",
+      "status": "fail",
+      "tested_commit": "5eb137472b5f3c5bde21ab6b2b430a6cd1b78058",
+      "shell": "5.1.26100.9444",
+      "cases": 1,
+      "passed": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "ordinary_music_access": false,
+      "error": "FAIL: First five README commands must be the same exact executable help examples.",
+      "source_bindings": [
+        {
+          "path": "AudioFileForPhone.ps1",
+          "sha256": "5cfa3c9a4ca9a8248f780d4bcadb757052d34c712a4be64e8365d99d99d63c28",
+          "current_source_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+        },
+        {
+          "path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "current_source_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+        },
+        {
+          "path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "current_source_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+        },
+        {
+          "path": "tests/Test-HelpVersion.ps1",
+          "sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+          "current_source_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b"
+        },
+        {
+          "path": "README.md",
+          "sha256": "54bd7043febb9c1905e5c707c3d3895c1688a1fa49b8744364b183dd924a6a7a",
+          "current_source_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+          "current_source_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+          "current_source_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0"
+        },
+        {
+          "path": "docs/codex-v1/templates/release-manifest.example.json",
+          "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+          "current_source_sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f"
+        },
+        {
+          "path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+          "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+          "current_source_sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83"
+        }
+      ],
+      "case_review": [
+        {
+          "name": "Get-Help recognizes all public parameters and exact executable examples without entry execution",
+          "status": "fail",
+          "acceptance_case": "A45,A46"
+        }
+      ]
+    },
+    {
+      "path": "docs/codex-v1/evidence/T18-help-ps51-attempt2.json",
+      "sha256": "86b63cb79e6023a46219b5fb29447d94006c0dfbefb0ee1b554223e43222b1c8",
+      "status": "pass",
+      "tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "shell": "5.1.26100.9444",
+      "cases": 7,
+      "passed": 7,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "ordinary_music_access": false,
+      "error": null,
+      "source_bindings": [
+        {
+          "path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "current_source_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+        },
+        {
+          "path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "current_source_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+        },
+        {
+          "path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "current_source_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+        },
+        {
+          "path": "tests/Test-HelpVersion.ps1",
+          "sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+          "current_source_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b"
+        },
+        {
+          "path": "README.md",
+          "sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+          "current_source_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+          "current_source_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+          "current_source_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0"
+        },
+        {
+          "path": "docs/codex-v1/templates/release-manifest.example.json",
+          "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+          "current_source_sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f"
+        },
+        {
+          "path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+          "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+          "current_source_sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83"
+        }
+      ],
+      "case_review": [
+        {
+          "name": "Get-Help recognizes all public parameters and exact executable examples without entry execution",
+          "status": "pass",
+          "acceptance_case": "A45,A46"
+        },
+        {
+          "name": "one runtime version literal and real helper output are consistent",
+          "status": "pass",
+          "acceptance_case": "A46"
+        },
+        {
+          "name": "execute exact Get-Help example 1",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 1,
+          "child_native_proof_count": 19,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 2",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 19,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 3",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 20,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 4",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 0,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0
+        },
+        {
+          "name": "execute exact Get-Help example 5",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 0,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 0,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0
+        }
+      ]
+    },
+    {
+      "path": "docs/codex-v1/evidence/T18-help-ps7-attempt2.json",
+      "sha256": "a71af382216a03c7e37f313e82a5d91b877e60ae6aec4a11e27218ce2eecf4b1",
+      "status": "pass",
+      "tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "shell": "7.6.5",
+      "cases": 7,
+      "passed": 7,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "ordinary_music_access": false,
+      "error": null,
+      "source_bindings": [
+        {
+          "path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "current_source_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+        },
+        {
+          "path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "current_source_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+        },
+        {
+          "path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "current_source_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+        },
+        {
+          "path": "tests/Test-HelpVersion.ps1",
+          "sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b",
+          "current_source_sha256": "e50aefa5582b385ab168e0b5e5e170955a32596fcd51991ef7a9f725c731765b"
+        },
+        {
+          "path": "README.md",
+          "sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6",
+          "current_source_sha256": "080f5661f571ed2ecd751d27df89a91c099e170452960a0e102f00f706b30ba6"
+        },
+        {
+          "path": "SUPPORT.md",
+          "sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+          "current_source_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0"
+        },
+        {
+          "path": "CHANGELOG.md",
+          "sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+          "current_source_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0"
+        },
+        {
+          "path": "docs/codex-v1/templates/release-manifest.example.json",
+          "sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f",
+          "current_source_sha256": "0c9747dee944d237c1494eeba82a3452ff2b80e28fbbe504d0f42d017280b69f"
+        },
+        {
+          "path": "docs/codex-v1/templates/RELEASE_CANDIDATE.example.json",
+          "sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83",
+          "current_source_sha256": "66da2f04ff4ff79dbe2a6c41a3ee31da07045815a96df4293f7c847860112c83"
+        }
+      ],
+      "case_review": [
+        {
+          "name": "Get-Help recognizes all public parameters and exact executable examples without entry execution",
+          "status": "pass",
+          "acceptance_case": "A45,A46"
+        },
+        {
+          "name": "one runtime version literal and real helper output are consistent",
+          "status": "pass",
+          "acceptance_case": "A46"
+        },
+        {
+          "name": "execute exact Get-Help example 1",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 1,
+          "child_native_proof_count": 19,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 2",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 19,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 3",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 20,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0,
+          "decoded_output_count": 4
+        },
+        {
+          "name": "execute exact Get-Help example 4",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 1,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 0,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0
+        },
+        {
+          "name": "execute exact Get-Help example 5",
+          "status": "pass",
+          "acceptance_case": "A45,A46",
+          "helper_loads": 0,
+          "music_resolver_calls": 0,
+          "child_native_proof_count": 0,
+          "unreleased_child_native_count": 0,
+          "forbidden_count": 0
+        }
+      ]
+    }
+  ],
+  "historical_failed_attempt_preserved": "T18-help-ps51-attempt1 at 5eb137472b5f3c5bde21ab6b2b430a6cd1b78058 failed README/Get-Help code equality before conversion; source/fixtures/release/cleanup true. Fifth help example became one executable line; attempts2 are separate fresh reports, not relabelled",
+  "diff_whitespace": "CRLF-aware git diff --check against base passed",
+  "pending_evidence": [
+    "Root records completed CI/diagnostics outcomes and full tested-payload bindings separately; this review does not execute them",
+    "Actual package builder and exact frozen ZIP remain T19/T23 work",
+    "Phone/Android/MTP/player/chapter navigation/resume, Explorer drag/drop and NAS/UNC acceptance remain pending",
+    "No release tag/draft/public bytes or project completion established by source review"
+  ],
+  "blockers": []
+}

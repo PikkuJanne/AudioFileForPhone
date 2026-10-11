@@ -8,6 +8,16 @@ in exclusively owned TEMP trees; the owner's ordinary Music folder is not a test
 destination. Local Windows 11 results and hosted Windows Server results are
 recorded separately.
 
+T18 adds the seven-group `Test-HelpVersion.ps1` smoke to that same read-only
+workflow before the final native suite. It executes actual `Get-Help` examples
+with byte-identical app copies and an explicit owned Music resolver, verifies
+real MP3s and version propagation, and proves preview/helper inventory equality.
+Public policy/setup examples are syntax-checked only. The routine gate now has
+102 required groups plus three separate baseline observations per shell.
+Reports retain the established T17 current-run namespace; no upload, dependency,
+permission, action pin or release policy is broadened. Historical T17 counts stay
+bound to their original sources.
+
 ## Workflow authority
 
 Only `contents: read` is granted. Checkout uses the event's `github.sha`, with
