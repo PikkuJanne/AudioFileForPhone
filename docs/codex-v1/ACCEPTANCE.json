@@ -407,8 +407,13 @@
       "required": true,
       "method": "spawn script as child process",
       "expected": "Good+bad inputs continue per contract, record both outcomes and return nonzero; successful conversions return zero; preflight/no-supported-files remain nonzero.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T10.md",
+        "evidence/T10-tested-payload.json",
+        "evidence/T10-script-ps51-final3.json",
+        "evidence/T10-script-ps7-final2.json"
+      ]
     },
     {
       "id": "A28",
@@ -417,8 +422,13 @@
       "required": true,
       "method": "cmd.exe smoke and special-character tests",
       "expected": "BAT captures and returns child code even after pause; not always Done; zero/multiple dropped folders rejected clearly; tricky Windows paths do not expand unexpectedly.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T10.md",
+        "evidence/T10-tested-payload.json",
+        "evidence/T10-launcher-ps51-final2.json",
+        "evidence/T10-launcher-ps7-final2.json"
+      ]
     },
     {
       "id": "A29",

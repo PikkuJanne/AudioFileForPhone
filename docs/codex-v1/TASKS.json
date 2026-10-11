@@ -395,14 +395,14 @@
       "tested_commit": "347b8656068b5e26b45410b830025de51000659f",
       "checkpoint_commit": "fcce28736081d799b29f4594b56bebafbad1a9f7",
       "remote_checkpoint_verified": true,
-      "notes": "A24-A26 pass on PS5.1/PS7: 27 focused groups each, 61 real decoded conversions plus 3 selected-rate rejection rows, max source/probe/decode delta 0.066125s under fixed 0.35s bound. CreateNew retained guard/file identity owns explicit-MP3 partial; expected stream/audio bitrate/full decode precede no-overwrite File.Move. Empty/corrupt/non-audio/codec/rate/missing-duration/stale-Xing truncation/long/probe/encoder/decode/promotion failures, actual locked rename, independent final sentinel, path replacement, unknown child exit and actual postpublish log failure verified. All 18 final reports pass; retained suite/seven companions and affected preflight/discovery/naming/reservation/native/resolver/default Music checks retain source/sentinel SHA256 and exact owned cleanup. Native handles 668->668 and 576->576 keep allowance16. Manifest proves 13 tested runtime/test files equivalent to code checkpoint; 27 attempts (21pass/6fail) retained, privacy-only diagnostic redaction noted. Owner merged T08 PR8 into main347b865; T09 draftPR9 feature synchronized, main owner-gated. No CI/phone/manual/long-file/cancellation/source-replacement/release claim; T07 possible unknown TEMP residue remains unverified. Exactly next T10."
+      "notes": "A24-A26 pass on PS5.1/PS7: 27 focused groups each, 61 real decoded conversions plus 3 selected-rate rejection rows, max source/probe/decode delta 0.066125s under fixed 0.35s bound. CreateNew retained guard/file identity owns explicit-MP3 partial; expected stream/audio bitrate/full decode precede no-overwrite File.Move. Empty/corrupt/non-audio/codec/rate/missing-duration/stale-Xing truncation/long/probe/encoder/decode/promotion failures, actual locked rename, independent final sentinel, path replacement, unknown child exit and actual postpublish log failure verified. All 18 final reports pass; retained suite/seven companions and affected preflight/discovery/naming/reservation/native/resolver/default Music checks retain source/sentinel SHA256 and exact owned cleanup. Native handles 668->668 and 576->576 keep allowance16. Manifest proves 13 tested runtime/test files equivalent to code checkpoint; 27 attempts (21pass/6fail) retained, privacy-only diagnostic redaction noted. Owner merged T08 PR8 into main347b865; Owner merged T09 PR9 at 2026-10-11T07:01:10Z into main d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6 (reconciled T10). No CI/phone/manual/long-file/cancellation/source-replacement/release claim; T07 possible unknown TEMP residue remains unverified. Exactly next T10."
     },
     {
       "id": "T10",
       "milestone": "M2",
       "title": "Unify script and BAT result reporting",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T09"
       ],
@@ -414,11 +414,26 @@
         "A27",
         "A28"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T10.md",
+        "evidence/T10-tested-payload.json",
+        "evidence/T10-script-ps51-final3.json",
+        "evidence/T10-script-ps7-final2.json",
+        "evidence/T10-launcher-ps51-final2.json",
+        "evidence/T10-launcher-ps7-final2.json",
+        "evidence/T10-baseline-ps51-final1.json",
+        "evidence/T10-baseline-ps7-final1.json",
+        "evidence/T10-transaction-ps51-final1.json",
+        "evidence/T10-transaction-ps7-final1.json",
+        "evidence/T10-preflight-ps51-final1.json",
+        "evidence/T10-preflight-ps7-final1.json",
+        "evidence/T10-discovery-ps51-final1.json",
+        "evidence/T10-discovery-ps7-final1.json"
+      ],
+      "tested_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "checkpoint_commit": "478c0a0c6a2935eb7271c9d28771a63455307599",
+      "remote_checkpoint_verified": true,
+      "notes": "A27-A28 pass on PS5.1/PS7: explicit Completed=0/CompletedWithFailures=2/fatal=1, per-file native boundary continuation, counts after publication, fatal log error preserving root cause/output/count, warning-only progress faults and truthful reserved-setup residue. 13 focused script groups/14 decoded publications per shell; 52 real cmd cases per driver each exercising both actual shells, exact one-argument/STA/exit-after-pause and quoted ! % & ^ apostrophe/space forms. Caller percent expansion separately characterized; cancellation 130 only inert forwarding. Twelve final reports retain baseline/seven companions, transaction 27/61+3 rejects, preflight 35/eight helpers and discovery eight, source/fixture hashes, child disposal, applicable ACL/link restoration and exact owned cleanup. Manifest independently proves 11 tested files against code 478c0a0 with CRLF/LF-only normalization. 32 raw reports (26 pass/6 fail) preserved; final payload selected after reviewed harness/reporting fixes. Owner merged T09 PR #9 into main d31f2de; T10 draft PR #10 feature synchronized, main owner-gated, no GitHub workflows or CI claim. No phone/manual/cancellation/forced-close/release claim; T07 possible unknown TEMP residue and T09 path interval remain. Exactly next T11."
     },
     {
       "id": "T11",

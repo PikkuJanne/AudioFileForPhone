@@ -1,0 +1,737 @@
+{
+  "schema_version": 1,
+  "task": "T10",
+  "mode": "script_child_result_contract_real_and_faults",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-ScriptResults.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T10-script-ps7-final1.json",
+  "started_utc": "2026-10-11T07:08:27.8084414Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "0f2b880e66a4c09f0c77a983d5925d339d4a3ff56181e08a08d004fdea04fd77"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-ScriptResults.ps1",
+      "sha256": "0f2b880e66a4c09f0c77a983d5925d339d4a3ff56181e08a08d004fdea04fd77"
+    }
+  ],
+  "source_unchanged": true,
+  "synthetic_before": [
+    {
+      "relative_path": "S\\good.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "S\\good.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "S\\good.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "A-plain\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-plain\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+    },
+    {
+      "relative_path": "I-success\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-success\\2024-01-02 Second.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "I-success\\Sub\\2024-01-03 Third.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "I-success\\notes.txt",
+      "sha256": "77e1d3693dfea5e052823e0e82df74a1153e31b368038a62be6e8491936d84d2"
+    },
+    {
+      "relative_path": "I-success\\Prior\\.AudioFileForPhone-output.json",
+      "sha256": "f3f0c7ad08c0bbff330b3d9875d009d68b152d57935a473af27ed48650906a70"
+    },
+    {
+      "relative_path": "I-success\\Prior\\excluded.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "success-driver.ps1",
+      "sha256": "d047f15fdefc34406b4bf63c199130d8bea85f0bfd53ce133bbb937867e7ecbd"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-02 bad.m4a",
+      "sha256": "a1cb0c665295924495d85fa5207216a755de6351363f9628de4a962cd274c8a1"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "partial-driver.ps1",
+      "sha256": "d99570a2711ddd573783d3a257c7d26e62a2f6b8f8a314bfb36846a3ed6293f0"
+    },
+    {
+      "relative_path": "I-bad\\2024-01-02 bad.mp3",
+      "sha256": "a1cb0c665295924495d85fa5207216a755de6351363f9628de4a962cd274c8a1"
+    },
+    {
+      "relative_path": "bad-driver.ps1",
+      "sha256": "1874b64656923afc5cf5c44ce78258227871d37961e4c65948dc23be17e79fc0"
+    },
+    {
+      "relative_path": "invalid-rate-driver.ps1",
+      "sha256": "2b6017fa2b0b717be07824446bfe715a7a41fb8e93ab1084a0acf36a9748023c"
+    },
+    {
+      "relative_path": "missing-driver.ps1",
+      "sha256": "6eef79988f1b44a0619648e7edad75bcc1de1ea6dd8ded161e40407ece58b7e6"
+    },
+    {
+      "relative_path": "I-empty\\unsupported.txt",
+      "sha256": "6f8291c1c12dc11f0c7645ca90c415fabf39e95131fb247e4a45083dc45c3ddb"
+    },
+    {
+      "relative_path": "empty-driver.ps1",
+      "sha256": "ec3bf4410541bee9c3b280ce62944ca5128e5c6f4ff7608b111e6818083f3ab5"
+    },
+    {
+      "relative_path": "A-throw\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-throw\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "1c7e276a3e35809e68a2d60d7a0311f05ef8754f9bb2bfec10c77cf3b3ee85e5"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-02 throw.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "native-throw-driver.ps1",
+      "sha256": "eed143897d7ca685d1cd71f88b28436ad7521fe9214b2d168a2a96af1cf74e49"
+    },
+    {
+      "relative_path": "A-encode-throw\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-encode-throw\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "81d6deee9f19ffcce0d13b08dbcef3170bef70ce91196688907cdd500ca6e4b7"
+    },
+    {
+      "relative_path": "I-encode-throw\\2024-01-01 encode-throw.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-encode-throw\\2024-01-02 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "encoder-throw-driver.ps1",
+      "sha256": "37530e661a96096834388504518ff1a0919a7ff53d4de7ddfbba8bd6326467a9"
+    },
+    {
+      "relative_path": "I-two\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-two\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "published-log-fault-driver.ps1",
+      "sha256": "b6d4452a1cfc4d8cb03f4ec887d475db2fa4ec68428d4280d4a127949aaf3a32"
+    },
+    {
+      "relative_path": "failed-log-fault-driver.ps1",
+      "sha256": "3c90a44b33adf667fb72561e573ab6fd9b79a0ca38b48c517ea7bb31f290f36e"
+    },
+    {
+      "relative_path": "summary-log-fault-driver.ps1",
+      "sha256": "b0801475f1304b195579c3258a1c81931c3c589a3bcd80e306c121eeec7ea797"
+    },
+    {
+      "relative_path": "progress-fault-driver.ps1",
+      "sha256": "2a46f29b54b8e62486a4cb6e3ffd0382b66d298d63d27badc4ff23d763446348"
+    }
+  ],
+  "synthetic_after": [
+    {
+      "relative_path": "S\\good.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "S\\good.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "S\\good.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "A-plain\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-plain\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+    },
+    {
+      "relative_path": "I-success\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-success\\2024-01-02 Second.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "I-success\\Sub\\2024-01-03 Third.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "I-success\\notes.txt",
+      "sha256": "77e1d3693dfea5e052823e0e82df74a1153e31b368038a62be6e8491936d84d2"
+    },
+    {
+      "relative_path": "I-success\\Prior\\.AudioFileForPhone-output.json",
+      "sha256": "f3f0c7ad08c0bbff330b3d9875d009d68b152d57935a473af27ed48650906a70"
+    },
+    {
+      "relative_path": "I-success\\Prior\\excluded.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "success-driver.ps1",
+      "sha256": "d047f15fdefc34406b4bf63c199130d8bea85f0bfd53ce133bbb937867e7ecbd"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-02 bad.m4a",
+      "sha256": "a1cb0c665295924495d85fa5207216a755de6351363f9628de4a962cd274c8a1"
+    },
+    {
+      "relative_path": "I-partial\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "partial-driver.ps1",
+      "sha256": "d99570a2711ddd573783d3a257c7d26e62a2f6b8f8a314bfb36846a3ed6293f0"
+    },
+    {
+      "relative_path": "I-bad\\2024-01-02 bad.mp3",
+      "sha256": "a1cb0c665295924495d85fa5207216a755de6351363f9628de4a962cd274c8a1"
+    },
+    {
+      "relative_path": "bad-driver.ps1",
+      "sha256": "1874b64656923afc5cf5c44ce78258227871d37961e4c65948dc23be17e79fc0"
+    },
+    {
+      "relative_path": "invalid-rate-driver.ps1",
+      "sha256": "2b6017fa2b0b717be07824446bfe715a7a41fb8e93ab1084a0acf36a9748023c"
+    },
+    {
+      "relative_path": "missing-driver.ps1",
+      "sha256": "6eef79988f1b44a0619648e7edad75bcc1de1ea6dd8ded161e40407ece58b7e6"
+    },
+    {
+      "relative_path": "I-empty\\unsupported.txt",
+      "sha256": "6f8291c1c12dc11f0c7645ca90c415fabf39e95131fb247e4a45083dc45c3ddb"
+    },
+    {
+      "relative_path": "empty-driver.ps1",
+      "sha256": "ec3bf4410541bee9c3b280ce62944ca5128e5c6f4ff7608b111e6818083f3ab5"
+    },
+    {
+      "relative_path": "A-throw\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-throw\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "1c7e276a3e35809e68a2d60d7a0311f05ef8754f9bb2bfec10c77cf3b3ee85e5"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-02 throw.m4a",
+      "sha256": "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+    },
+    {
+      "relative_path": "I-throw\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "native-throw-driver.ps1",
+      "sha256": "eed143897d7ca685d1cd71f88b28436ad7521fe9214b2d168a2a96af1cf74e49"
+    },
+    {
+      "relative_path": "A-encode-throw\\AudioFileForPhone.ps1",
+      "sha256": "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+    },
+    {
+      "relative_path": "A-encode-throw\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "81d6deee9f19ffcce0d13b08dbcef3170bef70ce91196688907cdd500ca6e4b7"
+    },
+    {
+      "relative_path": "I-encode-throw\\2024-01-01 encode-throw.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-encode-throw\\2024-01-02 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "encoder-throw-driver.ps1",
+      "sha256": "37530e661a96096834388504518ff1a0919a7ff53d4de7ddfbba8bd6326467a9"
+    },
+    {
+      "relative_path": "I-two\\2024-01-01 First.mp3",
+      "sha256": "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+    },
+    {
+      "relative_path": "I-two\\2024-01-03 Last.ogg",
+      "sha256": "c65d538c345167b625a9195bf3fd117afc55dca63adf1ec8d9507a2420745ce1"
+    },
+    {
+      "relative_path": "published-log-fault-driver.ps1",
+      "sha256": "b6d4452a1cfc4d8cb03f4ec887d475db2fa4ec68428d4280d4a127949aaf3a32"
+    },
+    {
+      "relative_path": "failed-log-fault-driver.ps1",
+      "sha256": "3c90a44b33adf667fb72561e573ab6fd9b79a0ca38b48c517ea7bb31f290f36e"
+    },
+    {
+      "relative_path": "summary-log-fault-driver.ps1",
+      "sha256": "b0801475f1304b195579c3258a1c81931c3c589a3bcd80e306c121eeec7ea797"
+    },
+    {
+      "relative_path": "progress-fault-driver.ps1",
+      "sha256": "2a46f29b54b8e62486a4cb6e3ffd0382b66d298d63d27badc4ff23d763446348"
+    }
+  ],
+  "synthetic_unchanged": true,
+  "temp_exclusively_reserved": true,
+  "marker_create_new": true,
+  "copied_entry_bytes_unchanged": true,
+  "owned_temp_root_name": "T10R-fa2c9399",
+  "temp_parent_selection": "shorter user/machine TEMP, read-only lookup",
+  "cases": [
+    {
+      "name": "real all-success with accurate unsupported/excluded counts and recursive mapping",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 0,
+      "outcome": {
+        "total": "3",
+        "processed": "3",
+        "unsupported": "1",
+        "elapsed_seconds": "2.755",
+        "converted": "3",
+        "not_processed": "0",
+        "status": "Completed",
+        "scan_excluded": "1",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-success\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-success\\2024-01-02 - Second.mp3",
+          "sha256": "c71bc0fe53c2a9b78c60196aeb9686227db085fc300eb0e3bd2c1d9a693a9fca",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-success\\Sub\\2024-01-03 - Third.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "recursive_mapping_verified": true,
+      "exact_per_file_log_mappings_verified": true
+    },
+    {
+      "name": "real good-bad-good continues both independent valid files and exits2",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 2,
+      "outcome": {
+        "total": "3",
+        "processed": "3",
+        "unsupported": "0",
+        "elapsed_seconds": "2.336",
+        "converted": "2",
+        "not_processed": "0",
+        "status": "CompletedWithFailures",
+        "scan_excluded": "0",
+        "failed": "1"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-partial\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-partial\\2024-01-03 - Last.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "failure_mapping_verified": true,
+      "later_valid_file_completed": true,
+      "exact_per_file_log_mappings_verified": true
+    },
+    {
+      "name": "real failures-only completed batch exits2 with zero publication",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 2,
+      "outcome": {
+        "total": "1",
+        "processed": "1",
+        "unsupported": "0",
+        "elapsed_seconds": "1.367",
+        "converted": "0",
+        "not_processed": "0",
+        "status": "CompletedWithFailures",
+        "scan_excluded": "0",
+        "failed": "1"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true
+    },
+    {
+      "name": "invalid requested rate fails before conversion with exit1",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "0",
+        "processed": "0",
+        "unsupported": "0",
+        "elapsed_seconds": "0.073",
+        "converted": "0",
+        "not_processed": "0",
+        "status": "FailedBeforeConversion",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "no_run_writes": true
+    },
+    {
+      "name": "missing input fails before conversion with exit1",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "0",
+        "processed": "0",
+        "unsupported": "0",
+        "elapsed_seconds": "0.088",
+        "converted": "0",
+        "not_processed": "0",
+        "status": "FailedBeforeConversion",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "no_run_writes": true
+    },
+    {
+      "name": "no supported files fails before conversion and reports unsupported separately",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "0",
+        "processed": "0",
+        "unsupported": "1",
+        "elapsed_seconds": "0.231",
+        "converted": "0",
+        "not_processed": "0",
+        "status": "FailedBeforeConversion",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "no_run_writes": true
+    },
+    {
+      "name": "thrown native source-probe exception belongs to its file and next valid file continues",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 2,
+      "outcome": {
+        "total": "3",
+        "processed": "3",
+        "unsupported": "0",
+        "elapsed_seconds": "2.830",
+        "converted": "2",
+        "not_processed": "0",
+        "status": "CompletedWithFailures",
+        "scan_excluded": "0",
+        "failed": "1"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-throw\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-throw\\2024-01-03 - Last.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "test_helper_append_only": true,
+      "native_root_cause_preserved": true
+    },
+    {
+      "name": "thrown encoder exception removes owned partial and next valid file continues",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 2,
+      "outcome": {
+        "total": "2",
+        "processed": "2",
+        "unsupported": "0",
+        "elapsed_seconds": "1.986",
+        "converted": "1",
+        "not_processed": "0",
+        "status": "CompletedWithFailures",
+        "scan_excluded": "0",
+        "failed": "1"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-encode-throw\\2024-01-02 - Last.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "test_helper_append_only": true,
+      "native_root_cause_preserved": true
+    },
+    {
+      "name": "postpublication log failure keeps one conversion and truthful not-processed count",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "2",
+        "processed": "1",
+        "unsupported": "0",
+        "elapsed_seconds": "2.078",
+        "converted": "1",
+        "not_processed": "1",
+        "status": "Failed",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-two\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "published_mapping_reported": true,
+      "converted_not_reclassified": true
+    },
+    {
+      "name": "failure-log exception preserves source failure and never counts the same file twice",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "3",
+        "processed": "2",
+        "unsupported": "0",
+        "elapsed_seconds": "1.792",
+        "converted": "1",
+        "not_processed": "1",
+        "status": "Failed",
+        "scan_excluded": "0",
+        "failed": "1"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-throw\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "original_and_diagnostic_causes_preserved": true,
+      "test_helper_append_only": true
+    },
+    {
+      "name": "summary-log failure yields fatal status while retaining all published conversions",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 1,
+      "outcome": {
+        "total": "2",
+        "processed": "2",
+        "unsupported": "0",
+        "elapsed_seconds": "2.196",
+        "converted": "2",
+        "not_processed": "0",
+        "status": "Failed",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-two\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-two\\2024-01-03 - Last.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true
+    },
+    {
+      "name": "progress display exception is diagnostic and preserves successful conversions",
+      "acceptance_case": "A27",
+      "status": "pass",
+      "exit_code": 0,
+      "outcome": {
+        "total": "2",
+        "processed": "2",
+        "unsupported": "0",
+        "elapsed_seconds": "2.557",
+        "converted": "2",
+        "not_processed": "0",
+        "status": "Completed",
+        "scan_excluded": "0",
+        "failed": "0"
+      },
+      "explicit_exit_verified": true,
+      "published_outputs": [
+        {
+          "relative_path": "I-two\\2024-01-01 - First.mp3",
+          "sha256": "3b89aabe1e3eba6a5c27ac5591f098a521d67ea69cda0cd8cc91fd4fcbadafe8",
+          "fully_decoded": true
+        },
+        {
+          "relative_path": "I-two\\2024-01-03 - Last.mp3",
+          "sha256": "a9253aafdf4ebcd75fce638514b8334dc85e35327ee1af1391e28989a3e33977",
+          "fully_decoded": true
+        }
+      ],
+      "publication_count_verified": true,
+      "no_partials": true,
+      "output_and_log_reported": true,
+      "progress_fault_reported": true
+    }
+  ],
+  "children_disposed": true,
+  "cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "tools": [
+    {
+      "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    {
+      "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  ],
+  "finished_utc": "2026-10-11T07:09:05.6560166Z"
+}

@@ -372,3 +372,50 @@ with a bare “approved” assertion without a traceable reference.
   Evidence/handoff checkpoint follows; its final HEAD/live comparison is external.
   T09 main integration remains owner-gated; no CI/phone/manual/long-file/
   cancellation/source-replacement/release acceptance. Exactly next is T10.
+
+## T10 — script and BAT results (11 October 2026)
+
+- Owner requested "T10 next please". Fresh fetch/advertised refs and live GitHub
+  verify owner-performed T09 PR #9 merge at 07:01:10 UTC into main
+  d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6, with feature 84270ac6. Clean local main
+  was fast-forwarded and codex/v1-t10-results created. Existing normal task scope
+  grants feature edits/tests/commits/push/draft PR, not main merge or release.
+- Select explicit 0 / Completed, 2 / CompletedWithFailures and 1 /
+  FailedBeforeConversion or Failed. Reserve 130 for later controlled cancellation;
+  BAT forwards inert 130 only in T10. Host binding/forced termination can differ.
+  Independent files continue after source probe/native/transaction failure.
+- Count the actual file outcome before diagnostics, success only after T09
+  publication. Log errors are fatal and preserve original reason, mapping/output
+  and counts; progress display errors warn/continue. Summary separates processed,
+  converted, failed, unprocessed, excluded and unsupported, elapsed time and
+  available paths. Keep legacy Summary totals and add normal RESULT record.
+- A failed reserved setup can retain marker-only residue before returning its
+  object. Primary helper error records exact scope/token; final availability text
+  must not imply nothing was created. Actual child regression verifies it; no
+  production cleanup/reclamation or filesystem transaction rewrite is added.
+- BAT rejects zero/empty/multiple arguments including quoted-empty extras; keeps
+  STA/DisableDelayedExpansion; captures child code immediately and preserves it
+  through result printing/pause. Quoted input/script !/%/&/^/apostrophe/space forms
+  pass. Percent transport is one caller substitution; previous caller expansion
+  or extra CALL passes cannot be undone and Explorer/manual forms remain unrun.
+- A27/A28 pass on both shells: 13 focused script groups, 14 independently decoded
+  publications each; 52 cmd cases per driver, both actual branches each. Twelve
+  final reports also retain FFmpeg/seven companions, transaction 27/61+three rate
+  rejects, preflight 35/eight helpers and discovery eight. Source/fixture/sentinel hashes,
+  byte-identical copies, child disposal, applicable ACL/link restore and exact
+  owned TEMP cleanup pass. No ordinary Music enumeration or new resource claim.
+- Preserve 32 raw attempts (26 pass/six fail). Empty-argument transport, automatic
+  $Input, missing expected filename separator, multiline mapping and old fatal
+  prefix matcher failures were harness errors, documented without waiving gates.
+  Final payload reruns follow reviewed timeout guards and reserved-setup reporting
+  refinement. All attempts retain source preservation/exact cleanup.
+- Independent runtime/harness review has no remaining blocker. Code checkpoint
+  478c0a0c6a2935eb7271c9d28771a63455307599 was pushed and matched fresh advertised
+  feature ref. T10-tested-payload.json matches 11 runtime/test fingerprints from
+  12 final reports to committed blobs, permitting only proven CRLF/LF conversion.
+  Draft PR #10: https://github.com/PikkuJanne/AudioFileForPhone/pull/10.
+  Evidence/handoff follows code; final HEAD/live comparison is external.
+- GitHub lists zero Actions workflows; no CI execution claimed. Main integration
+  is owner-gated. No cancellation, forced-close, phone/manual, full-disk, long-file,
+  source-replacement or release acceptance. T07 unknown possible TEMP residue and
+  T09 brief post-guard path interval remain. Exactly next task is T11, closing M2.

@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "task": "T10",
+  "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+  "code_checkpoint_commit": "478c0a0c6a2935eb7271c9d28771a63455307599",
+  "prior_verified_feature_checkpoint": "84270ac61ab39614a4346cf5ff429e49b77ca779",
+  "code_checkpoint_advertised_ref_verified": true,
+  "files": [
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "committed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00",
+      "committed_git_blob": "ae1cf934ed274527e462131fded896eafc9045e0",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "ff26e766fc0f0695566ceaa3ebdb5e68e2ea2a3c6269108c20793678ca5a9422",
+      "committed_git_blob": "93469605ecfd3f664c95e00ff20ce17ba4506a90",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "c5161ef6e0770fafb456d443f7e0d5850cd4dd8b2f70bb18332821033d9269e0",
+      "committed_git_blob": "db77cf7b7f3816331efc647267ee5abc7fe607ba",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "committed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+      "committed_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "tests/Test-Discovery.ps1",
+      "sha256": "091bff98d4177548669b5fd846ba2f0fbc8fbf9c2dcc980ba2da7512293c89e2",
+      "committed_git_blob": "68b9d6a44ec0ab37698ce2c217bd7914d9cd3341",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "tests/Test-LauncherResults.ps1",
+      "sha256": "a824dc76a651389499fb4fc7570a17b0ceaf500b33aeca7f365c92bada570854",
+      "committed_git_blob": "16ff02661d8a47461699e815cbf888a46ae903ac",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "tests/Test-Preflight.ps1",
+      "sha256": "7490a09d69bc434e2c4c6d0218be82fb9d2531f5ca0c28c90fa8b18e7336f9e6",
+      "committed_git_blob": "104ada4a8867e8f06d87905aec1cdf71c897039a",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    },
+    {
+      "path": "tests/Test-ScriptResults.ps1",
+      "sha256": "f8ccab6b20512c3b577d0d1c848f89a1e7589dd67e6c2964932f25be3e40ca9c",
+      "committed_git_blob": "e8110adcf673f77ef7f0b118dbe6fc0f9325fef7",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "bc98eb1d7563f3255752da1d5c623da779d43cdbeac099d9ea9830cdabb1d24f",
+      "committed_git_blob": "fbe36f703b789de7990ea7fb9896089624215010",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; normalized bytes independently hash to committed blob"
+    }
+  ],
+  "final_reports": [
+    {
+      "path": "evidence/T10-script-ps51-final3.json",
+      "sha256": "af28f9878ebd36e7732535d48c7dc2b62ab8b06c9af3e7831cc54fe6bfbe4667",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-script-ps7-final2.json",
+      "sha256": "85f3c7993e3c002cfb66eaa4a9abacdf4ef233bf6d4e4331a68ba158feb56518",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-launcher-ps51-final2.json",
+      "sha256": "c5a327a14d91e4a3cd5646a637ad79880ef9ecbe77cb0d926610e359701c25ac",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-launcher-ps7-final2.json",
+      "sha256": "cbf647770f870c445f962ff3d2436bdfcbeb9474e19e3c321468ddd757fe423c",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-baseline-ps51-final1.json",
+      "sha256": "6ce2874fe8f821104e1c01678da19cd17fca9ca813b4fc557cee078f40f93093",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-baseline-ps7-final1.json",
+      "sha256": "94ffb2c462c1d1e68e990f296552c74a1f9801bee504c3edd3899a6493610efc",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-transaction-ps51-final1.json",
+      "sha256": "693e4bdbb287a76616be89c038eb5bc3c935914e0d99cf1f5c3ed4d1a0029888",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-transaction-ps7-final1.json",
+      "sha256": "02da56f6c90116f0f512095d4afda219a64034fcc404347a8f7bedb18ca1d7f2",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-preflight-ps51-final1.json",
+      "sha256": "cbec7d1f9f6ffed03d7bee8b4a06e9d9b9ecfeb3091afde89a08648e72b8de9c",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-preflight-ps7-final1.json",
+      "sha256": "b8bdc8b8537ddb306fa75a4192777d7cf06ab57dda13751dab407f4baa77f0f4",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-discovery-ps51-final1.json",
+      "sha256": "4a8cc04f5239f3c3bb235f860a1a15573f1312d768c27a26769b37a52e6eeefa",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T10-discovery-ps7-final1.json",
+      "sha256": "35d10c86e519f4911ea92ec4155fc4de142a5d45665409f896255d9d767d24e8",
+      "status": "pass",
+      "test_base_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+      "source_fingerprints_match": true,
+      "cleanup_verified": true
+    }
+  ],
+  "verification": "Every final before/after test fingerprint matches current bytes. Independently computed Git blob SHA1 matches committed bytes exactly or only after CRLF-to-LF normalization. Raw reports preserve actual base and working-byte hashes."
+}

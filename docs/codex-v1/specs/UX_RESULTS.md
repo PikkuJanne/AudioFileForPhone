@@ -40,7 +40,7 @@ are separate from supported files and conversion failures. The final console
 summary includes elapsed seconds, counts, actual reserved output/log locations
 and exit code even after a caught fatal error. Normal logs retain the legacy
 Summary totals plus the explicit RESULT status/counts line. Structured persistent
-manifests and detailed native diagnostics remain T14/T13 work.
+manifests and persistent native diagnostics remain T14 work; richer progress is T13.
 
 BAT disables delayed expansion, accepts exactly one nonempty argument, keeps STA,
 captures child errorlevel on the immediately following line outside a parenthesized

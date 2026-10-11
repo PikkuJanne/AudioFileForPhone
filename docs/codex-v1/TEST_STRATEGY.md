@@ -269,3 +269,36 @@ checks run quietly/sequentially, preserve allowance 16 and every failed attempt.
 Configured-Music smoke keeps its exact returned-root/token/inventory cleanup gates.
 Ordinary tests never enumerate Music. Use fresh next-task labels and extend only
 affected guard patterns; intermediate passes do not replace final payload hashes.
+
+## T10 outcome and launcher checks
+
+Current exact commands are in evidence/T10.md. Final script reports are
+T10-script-ps51-final3.json and T10-script-ps7-final2.json: 13 real child groups,
+14 independently probed/full-decoded publications per shell. Assert explicit
+0/2/1, good-bad-good continuation, failures-only, preflight/empty scan, thrown
+native boundaries, exact logged source/target mappings, diagnostic/summary faults,
+warning-only progress faults and actual marker-only reserved setup residue.
+Summary counts must match independently observed outputs, including fatal stops.
+
+Final launcher reports are T10-launcher-ps51-final2.json and
+T10-launcher-ps7-final2.json. Each runs 52 real cmd cases across both installed
+PowerShell branches with an inert capture/exit child and byte-identical production
+BAT. Validate exact argument count, including quoted empty extra arguments; STA;
+code-specific messages; preserved 0/1/2/130/37 after actual pause; input and script
+locations with spaces/!/percent/&/^/apostrophes. Percent-bearing strings use one
+caller substitution; direct caller percent expansion is explicitly characterized.
+No physical keypress/Explorer or real application cancellation is claimed.
+
+Eight final1 regression reports across baseline/transaction/preflight/discovery
+retain real FFmpeg/seven companions, 27 transactional groups/61 decoded successes/
+three requested-rate rejects, preflight 35/eight helpers and discovery eight.
+Source/fixture hashes, child disposal, applicable ACL/link restoration and exact
+owned TEMP cleanup pass. The 12-report manifest independently matches 11 source
+fingerprints to committed blobs with CRLF/LF-only normalization. Preserve all 32
+raw attempts, including six failed harness match/fixture cases and earlier passes.
+
+Harness driver/pipe waits are bounded and cleanup is refused whenever descendant
+release is unproved. Production entry copies retain bytes; fault substitutions are
+only appended helpers or driver cmdlet overrides inside exact owned TEMP. No
+Music enumeration, new native-resource measurement or configured-Music smoke is
+claimed for T10. T11 closes M2 and must run the full applicable suite at that gate.

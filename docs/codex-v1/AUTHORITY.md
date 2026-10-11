@@ -83,6 +83,15 @@ exist, and a fresh comparison confirms the reviewed PR head. Preserve branch
 protection; do not use admin override. Record which policy is actually approved.
 Until then, feature-branch synchronization is valid but main integration is pending.
 
+T10 authorization: on 11 October 2026 the owner requested "T10 next please".
+Fresh GitHub inspection found T09 PR #9 merged by PikkuJanne at 07:01:10 UTC
+into main `d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6`. Normal fetch and independently
+advertised main/feature refs matched that merge and T09 final checkpoint
+`84270ac61ab39614a4346cf5ff429e49b77ca779`. Clean local main was fast-forwarded;
+T10 uses `codex/v1-t10-results` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and relevant draft PR remain authorized.
+This owner merge does not change main integration or release authority.
+
 ## Release gate
 
 The supplied release prompt authorizes annotated v1.0.0 tagging, draft creation,

@@ -1,88 +1,99 @@
-# Next session — T10
+# Next session — T11
 
-Suggested owner request: **T10 next please**.
-One coherent task: unify script and BAT result reporting.
+Suggested owner request: **T11 next please**.
+One coherent task: handle cancellation and crash leftovers safely.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS instructions. Inspect actual git status/branch, all origin fetch/push URLs,
-pushurl/overrides and live GitHub. Normal fetch and fresh advertised refs are
-required; stored done flags or tracking refs are not synchronization proof.
+AGENTS guidance. Inspect git status/branch, all fetch/push URLs, pushurl/overrides
+and live GitHub. Normal fetch and independently advertised main/feature refs are
+required; stored done flags or tracking refs alone are not sync proof.
 
-T09 code checkpoint: fcce28736081d799b29f4594b56bebafbad1a9f7, branch
-codex/v1-t09-transactional-output, draft PR:
-https://github.com/PikkuJanne/AudioFileForPhone/pull/9.
-Actual test base: 347b8656068b5e26b45410b830025de51000659f, owner-performed T08
-PR #8 merge at 05:17:22 UTC on 11 October 2026. Evidence/handoff follows code;
-inspect actual live HEAD and STATUS.md for the final synchronization outcome.
+T10 code checkpoint: 478c0a0c6a2935eb7271c9d28771a63455307599, branch
+codex/v1-t10-results, draft PR:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/10.
+Actual test base: d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6, owner-performed T09
+PR #9 merge at 07:01:10 UTC on 11 October 2026. Evidence/handoff follows code;
+inspect live HEAD and STATUS.md for the final feature synchronization outcome.
 
-T09 main integration remains owner-gated. Preserve local/remote work; no reset/
-clean/force. If PR #9 is owner-merged, fast-forward local main to its independently
-advertised merge and start T10 from there. Do not infer agent merge authority or
-start before the T09 dependency is verified complete.
+T10 main integration remains owner-gated. Preserve all local/remote work; no reset,
+clean or force. If PR #10 is owner-merged, fast-forward clean local main to its
+independently advertised merge and start T11 there. Do not infer merge authority
+or start before the T10 dependency is verified complete.
 
-Read only tasks/T10.md and relevant specs/UX_RESULTS.md and specs/SAFETY.md next,
-then current conversion/result/log handling, BAT launch behavior and affected tests.
-Use evidence/T09.md for exact commands, payload equivalence and limitations.
+Read only tasks/T11.md and relevant specs/SAFETY.md and specs/PROCESS_AUDIO.md next,
+then current native runner, transaction cleanup and result handling plus affected
+tests. Use evidence/T10.md for exact current commands/equivalence and limitations.
 
-## T09 behavior to preserve
+## Behavior to preserve
 
-Only CreateNew-owned sibling .AudioFileForPhone-<32 hex>.partial files receive
-FFmpeg overwrite permission with explicit MP3 muxer. Keep fixed working-name/path
-budget and retained no-delete ownership guard through all native process use.
-Volume/file-index checks gate no-overwrite File.Move and exact partial cleanup.
-Concurrent finals preserve bytes and fail the original planned mapping.
-Changed/reparse paths or unproved child exit retain visible incomplete residue
-plus cleanup diagnostics; never reclaim other runs.
+T10 explicit outcomes: Completed=0, CompletedWithFailures=2,
+FailedBeforeConversion/Failed=1. Independent files continue after ordinary probe
+or conversion failure. Processed=converted+failed; not_processed=total-processed.
+Commit each actual outcome before diagnostic writes; published outputs remain
+successful even if fatal log error stops the run with 1. Preserve the original
+file cause plus secondary diagnostic reason. Progress display faults warn/continue.
 
-Require nonempty MP3, one requested-rate MP3 audio stream, expected optional JPEG
-and finite positive source/header/decoded durations within fixed 0.35 s. Container
-duration is a fallback only for absent/N/A stream duration; missing/invalid data
-fails before encoding. Full error-fatal output decode uses validation-only sample
-time, adds a read/decode pass and changes no DSP. Encoder exit zero or artwork-
-inflated container bitrate never establishes success. Rounded selected rates must
-fail validation; do not force a new sample rate.
+Final summary includes counts, scan exclusions/unsupported files, elapsed seconds,
+available output/log paths and explicit exit. Exclusions count entries/subtrees;
+unsupported counts cover visited ordinary files only. Reserved setup can leave
+marker-only residue before returning a run object; primary error names exact scope
+and token while availability fallback does not falsely imply nothing exists.
+Structured persistent manifests and detailed native progress remain later tasks.
 
-General batch/BAT exit policy is still T10. Count success only after promotion.
-Postpublication diagnostic failure already reports actual published path or actual
-file failure, stops with exit 1 and avoids double counting. Keep mapping truthful
-when introducing consistent results. Preserve sources/completed outputs.
-Controlled cancellation is T11; preview T12. No new UI, unrelated DSP or downloads.
+BAT validates exactly one nonempty argument, keeps STA and DisableDelayedExpansion,
+captures child code immediately outside launch blocks, reports truthful outcomes
+and returns it after pause. 130 is reserved and inert forwarding verified only;
+T11 must establish real controlled cancellation. Prior caller expansion or extra
+CALL passes cannot be undone; literal percent tests use single caller substitution.
 
-T08 exclusive Win32 root/CreateNew marker/log reservation, bounded occupied-only
-numeric suffix retries, ownership token/scope and exact replanning remain.
-T07 date/NFC/scalar/order/name/path budgets and literal/reparse guards remain.
+T09 encodes only to CreateNew-owned .AudioFileForPhone-<32 hex>.partial siblings,
+with explicit MP3 muxer and retained no-delete guard/volume-file-index identity.
+Require finite positive source duration, nonempty MP3 with selected audio bitrate
+and exact optional JPEG, and source/header/full-decode duration within fixed 0.35 s.
+Only validated output reaches no-overwrite File.Move. Cleanup requires exact current
+identity and proved native exit; changed/reparse paths or unknown exit retain
+visible incomplete residue with a reason. No global process termination/reclamation.
+Keep original source/completed outputs and default DSP/rate/sample/layout behavior.
+
+T08 exclusive root/CreateNew marker/log, exact token/scope, occupied-only suffix
+retries and complete replanning remain. T07 literal boundaries, reparse exclusions,
+NFC/scalar/ordinal/date/name/path budgets remain. Do not broaden T11 into a handle-
+based filesystem rewrite or alter the fixed native teardown/resource thresholds
+without actual evidence. Controlled cancellation and forced host close are distinct.
 
 ## Tests and handoff
 
-Tests run on this active Windows 11 machine under PS5.1/PS7, existing C:\ffmpeg\bin,
-short synthetic fixtures and exclusively owned TEMP. Final focused reports:
-T09-transaction-ps51-attempt6.json and T09-transaction-ps7-final1.json.
-Each passes 27 groups, 61 decoded conversions and three incompatible-rate rejects.
-16 other final reports across eight families and exact commands are in evidence/T09.md.
-Native resource checks ran quietly/sequentially; keep allowance 16. Use fresh T10
-labels and extend only affected report-label guards; preserve historical attempts.
+Active Windows 11 machine; PS5.1/PS7; installed C:\ffmpeg\bin; short synthetic owned
+TEMP. Final focused reports: T10-script-ps51-final3.json and
+T10-script-ps7-final2.json (13 groups/14 independent decoded publications each),
+T10-launcher-ps51-final2.json and T10-launcher-ps7-final2.json (52 cmd cases each,
+both real shell branches). Eight final regression reports across baseline,
+transaction/preflight/discovery are in evidence/T10.md; all 12 final payloads pass.
 
-Retain real FFmpeg integration and affected companions. Never run a baseline
-against ordinary Music. Configured-Music smoke may touch only its exact successful
-returned token/inventory-proved synthetic run; preserve narrow cleanup guards,
-no parent traversal, no settings/ACL change.
+T10-tested-payload.json verifies 11 runtime/test fingerprints against code with
+only proven CRLF/LF normalization. 32 raw reports remain (26 pass/six fail), all
+source preservation/exact cleanup verified. Earlier passing harnesses/runtime
+preceded timeout guards, mapping refinements or reserved-setup reporting; only
+manifest-selected reports establish final equivalence. Use fresh T11 labels and
+extend only affected label guards. Preserve every failure and exact thresholds.
 
-T09 retains 27 raw reports (21 pass/six fail), with 18 final equivalents.
-Earlier baseline source mutations and diagnostic/driver harness failures remain
-explicit. Attempt4 identity-only redaction is documented. No full-disk, long-file/
-phone/manual, cancellation, source-replacement, CI or release acceptance is claimed.
-The brief post-guard filesystem check interval remains; do not expand T10 into
-a handle-based filesystem rewrite.
+T11 closes M2; run its focused checks and the full applicable suite at that boundary.
+Native resource checks run quietly/sequentially with existing allowance 16. T09's
+prior handle results were 668->668 and 576->576; T10 claims no new measurement.
+Ordinary tests never touch ordinary Music. Configured-Music smoke must keep its
+single successful returned root/token/CreateNew test marker/nonreparse exact
+synthetic-inventory cleanup proof; no parent traversal/settings/ACL changes.
 
-T07's initial failed naming cleanup leaves unknown possible synthetic machine-TEMP
-residue. Exact leaf is unrecorded and parent enumeration denied. Do not claim it
-cleaned or attempt broad cleanup/ACL changes without exact ownership.
+No real cancellation, forced-close, phone/manual, source-replacement, full-disk,
+long-file/performance, CI or release acceptance is claimed. T09's brief post-guard
+path interval remains. T07 possible unknown TEMP residue remains unverified; no
+exact leaf is known and no broad cleanup/recovery is authorized.
 
-Create evidence/T10.md; update A27–A28, TASKS, STATUS, this handoff and decisions
-with actual results/exact payload. Review diff/source safety; commit/push intended
-paths; independently compare HEAD to fresh advertised feature ref. Report main
-integration, CI and approval separately. Leave T11 as exactly the next task.
-No tag/release/main merge authority is granted here; final publication, independent
-public download and main closure remain gated by the release runbook.
+Create evidence/T11.md; update A29–A30, TASKS, STATUS, this handoff and decisions
+with actual tested payload/results. Review diff/source safety, commit intended
+paths, push feature and independently compare HEAD to a fresh advertised ref.
+Report main integration, CI and approval separately. Leave exactly T12 next.
+No tag/release/main merge authority is granted here; final publication/public
+download/main closure remain gated by the release runbook.
