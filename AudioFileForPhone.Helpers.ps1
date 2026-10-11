@@ -1,5 +1,10 @@
 # Functions only: safe to dot-source for focused tests. No prompts or conversion on load.
 
+function Get-AudioAppVersion {
+    # Authoritative application version; banner, manifest and package metadata consume this.
+    return '1.0.0'
+}
+
 function Assert-AudioParameters {
     param([int]$BitrateKbps, [int]$MaxBaseLength)
     $rates = @(8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320)
@@ -1462,7 +1467,7 @@ function New-AudioRunManifest {
         }
     })
     $data = [pscustomobject][ordered]@{
-        schema_version = 1; kind = 'AudioFileForPhone.RunManifest'; app_version = 'development'
+        schema_version = 1; kind = 'AudioFileForPhone.RunManifest'; app_version = (Get-AudioAppVersion)
         build = [ordered]@{
             entry_sha256 = (Get-FileHash -LiteralPath $ScriptPath -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
             helper_sha256 = (Get-FileHash -LiteralPath (Join-Path ([IO.Path]::GetDirectoryName($ScriptPath)) 'AudioFileForPhone.Helpers.ps1') -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()

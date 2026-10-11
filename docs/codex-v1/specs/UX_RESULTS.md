@@ -123,10 +123,10 @@ records fail. The last durable manifest may be incomplete; final console reports
 the record failure explicitly. Preview and preflight-before-reservation remain
 without persistent records. No next-run reclamation is inferred from a manifest.
 
-The log includes actual tool versions, selected policies and the app's explicit
-development identity plus entry/helper SHA-256 hashes until a semantic version
-is established. Persist bounded native stderr/error and status, exit, release and
-timing for source probe, encoder, output probe and full decode; do not dump stdout
+The log includes actual tool versions, selected policies and the authoritative
+`Get-AudioAppVersion` value plus entry/helper SHA-256 hashes. A semantic version
+alone does not prove release provenance. Persist bounded native stderr/error and
+status, exit, release and timing for source probe, encoder, output probe and full decode; do not dump stdout
 or progress records. Public issue guidance requires redacting paths/content.
 
 Final messages: completed, completed with failures, cancelled or failed before
