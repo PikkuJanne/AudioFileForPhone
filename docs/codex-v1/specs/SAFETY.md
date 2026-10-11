@@ -27,8 +27,9 @@ descendant file/directory reparse points are skipped visibly. Planned output mus
 not equal or contain the selected input; an output run beneath the input is valid
 and excluded. Selecting a recognized run root or any folder inside one is rejected.
 Scan failure or an empty snapshot stops before prompts, destination write probing,
-run-root/log creation and conversion. Existing planned run roots are refused;
-exclusive reservation against concurrent creation remains T08.
+run-root/log creation and conversion. Read-only provisional selection picks a
+nonexistent candidate so occupied unmarked audio folders remain in discovery.
+This selection does not establish ownership; T08 reserves the final root atomically.
 
 New runs write `.AudioFileForPhone-output.json` with CreateNew. Recognition requires
 an integer schema 1, exact kind `AudioFileForPhone.Output`, and a self-matching
@@ -53,6 +54,18 @@ process launches, including log/sentinel checks, not sleeps that avoid the race.
 Creation/cleanup decisions must preserve ownership evidence and be safe when a
 second run or external writer appears. Do not reclaim directories based only on
 names, timestamps or a parsed log supplied by another process.
+
+T08 uses Win32 CreateDirectoryW, which fails for an occupied directory or file.
+Only ERROR_FILE_EXISTS (80) and ERROR_ALREADY_EXISTS (183) advance the numeric
+counter; other failures abort. Names use invariant yyyyMMdd_HHmmss and optional
+_2, _3, ... suffixes. Parent ancestry and raw components are checked; the pure
+batch plan validates every candidate's exact path budget before creation. The
+successfully created root is checked again before CreateNew marker/log writes.
+The marker records a fresh ownership_token and cleanup_scope equal to the exact
+canonical root. These fields describe this invocation; parsed identity alone
+still never confers cleanup authority. Production does not recursively remove a
+run after setup failure; it reports that exact scope/token and leaves it visible.
+The log is CreateNew with a UTF-8 BOM; headers and later records append.
 
 ## Transactional per-file output
 

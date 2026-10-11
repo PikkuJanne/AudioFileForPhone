@@ -75,5 +75,7 @@ and explicit output format; T07 creates no working file. Deep paths may therefor
 reject even when the final short MP3 name alone would fit.
 
 An unexpected existing planned target fails instead of being renamed. FFmpeg `-n`
-also refuses overwrite after the literal guard. Concurrent run reservation and
-transactional publication remain T08/T09. BAT metacharacter tests remain T14.
+also refuses overwrite after the literal guard. T08 reserves run roots with
+CreateDirectoryW and a numeric _N collision suffix (N >= 2), replanning complete
+paths before each attempt. Occupied roots are never reused. Transactional file
+publication remains T09. BAT metacharacter tests remain T14.

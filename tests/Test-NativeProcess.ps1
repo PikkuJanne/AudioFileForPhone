@@ -14,7 +14,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
-$testName = 'AudioFileForPhone-T05-native-' + [guid]::NewGuid().ToString('N')
+$testName = 'AFP-N-' + [guid]::NewGuid().ToString('N')
 $testRoot = Join-Path $tempParent $testName
 $ownerFile = Join-Path $testRoot '.t05-owner'
 $ownerToken = [guid]::NewGuid().ToString('N')
@@ -30,13 +30,13 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T05-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T05-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T05|T08)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T05/T08-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a new label to preserve prior evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T05'; mode = 'native_process_and_probe'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'native_process_and_probe'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -479,5 +479,5 @@ finally {
     try { $bytes = [Text.Encoding]::UTF8.GetBytes($json); $evidence.Write($bytes, 0, $bytes.Length) }
     finally { $evidence.Dispose() }
 }
-Write-Host "T05 native: $($report.status); cases=$($report.cases.Count); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
+Write-Host "$($report.task) native: $($report.status); cases=$($report.cases.Count); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)/$($report.synthetic_unchanged)"
 exit $exitCode

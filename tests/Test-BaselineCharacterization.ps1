@@ -187,7 +187,7 @@ function Invoke-Conversion {
     Assert-True ($reportedRoots.Count -eq 1) "$Name must report one isolated output root."
     $outputRoot = Get-AbsolutePath $reportedRoots[0]
     Assert-True ((Split-Path -Parent $outputRoot) -ieq $runParent) "$Name escaped its explicit OutputParent."
-    Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_64kbps_\d{8}_\d{6}$') "$Name root differs from the baseline naming contract."
+    Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_64kbps_\d{8}_\d{6}(?:_[2-9]\d*|_1\d+)?$') "$Name root differs from the run naming contract."
     Assert-True (@(Get-ChildItem -LiteralPath $runParent -Directory).Count -eq 1) "$Name must create exactly one output run."
     Assert-True (Test-Path -LiteralPath $outputRoot -PathType Container) "$Name output root was not created."
     $base = Join-Path $outputRoot (Split-Path -Leaf $InputPath)

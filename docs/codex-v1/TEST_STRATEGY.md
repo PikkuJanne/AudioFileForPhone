@@ -80,7 +80,7 @@ The focused `tests/Test-OutputParent.ps1` tests the actual resolver function
 extracted from the functions-only runtime helper AST, injected redirected Music paths and literal
 explicit output paths. Its normal mode uses TEMP only. The historical T03
 `-DefaultSmoke` exercised the narrow configured-Music test in `evidence/T03.md`;
-current T06 mode is deferred before setup until T08 ownership adaptation below.
+T06/T07 deferred that mode before setup; T08 ownership adaptation is below.
 No registry or persistent PATH/policy change is
 needed. Neither recorded mode is phone/manual playback evidence.
 
@@ -148,9 +148,10 @@ do not rescan the first generated run. Reports use CreateNew; retry with fresh l
 Use T06 labels for ordinary retained baseline/preflight/resolver reports; preserve
 all earlier reports. The retained suite now asserts empty scans create no run/log.
 Historical T03 configured-Music smoke evidence remains valid for its original
-payload. Current `Test-OutputParent.ps1 -DefaultSmoke` stops before any setup because
-its pre-reserved run conflicts with production's no-reuse check; T08 must adapt
-that ownership scheme. Ordinary resolver mode remains TEMP-only and current.
+payload. At T06/T07, `Test-OutputParent.ps1 -DefaultSmoke` stopped before any setup
+because its pre-reserved run conflicted with production's no-reuse check. T08 uses
+a successful controlled child returning its exclusive root instead. Ordinary
+resolver mode remains TEMP-only.
 
 ## T07 naming checks
 
@@ -183,9 +184,38 @@ then checks exact path/token/nonreparse boundaries before .NET owned-tree deleti
 Final hashes/cleanup pass. Initial failed PS5.1 report has unverified cleanup and
 an unknown possible synthetic residue because its leaf was not recorded and
 machine TEMP parent enumeration is denied; evidence/T07.md preserves that limit.
-No broad cleanup or ACL change was attempted. Current configured-Music smoke
-remains deferred before setup to T08 ownership adaptation; ordinary resolver
-mode stays TEMP-only. No phone/manual/release evidence.
+No broad cleanup or ACL change was attempted. Configured-Music smoke was deferred
+at T07 and adapted in T08; ordinary resolver mode stays TEMP-only. No phone/manual/
+release evidence.
+
+## T08 reservation and M1 regression checks
+
+Use fresh T08 report labels. Both shells run Test-RunReservation.ps1, the isolated
+retained baseline/seven companions, Test-Preflight.ps1, Test-Discovery.ps1,
+Test-NamingPlan.ps1, Test-NativeProcess.ps1 and normal Test-OutputParent.ps1.
+The current exact commands/reports are in evidence/T08.md. Historical reports
+remain tied to their recorded hashes, including intermediate passes and failures.
+Run process-resource handle checks with reduced test load; keep their threshold
+and every failed observation. They do not establish reservation race correctness.
+
+Reservation correctness uses named ready/release events in separate processes,
+forcing four helper children to contend on the same fixed timestamp/candidates.
+All must signal ready before release; no sleeps avoid the race. A separate two-
+child real-entry barrier verifies decoded outputs, distinct roots/logs, relative
+OutputParent and a process-local FileSystem PSDrive. That production launch does
+not require both wall-clock timestamps to match; the fixed-candidate helper test
+is the collision proof. Existing directories/files/logs/markers/sentinels retain
+SHA256, CreateNew collisions refuse writes, suffix path overflow rejects before
+creation, and owned ACL failures exercise Win32/setup diagnostics and exact scope.
+
+The configured-Music smoke runs unmodified runtime copies with one synthetic
+TEMP source and no OutputParent override. Inspect only the single direct Music
+root returned after successful controlled exclusive reservation. Validate the
+runtime token/scope, add a CreateNew test marker, require exact allowed inventory
+and nonreparse ancestry, then remove only that run. Never enumerate ordinary
+Music, change its settings/ACLs, pre-reserve candidates or modify timestamps.
+If child/ownership/cleanup proof fails, preserve the recorded exact candidate
+instead of guessing ownership. Final source hashes and scoped cleanup are required.
 
 ## Cadence and status vocabulary
 

@@ -1,0 +1,506 @@
+{
+  "schema_version": 1,
+  "task": "T08",
+  "test_base_commit": "e1ea2a95a5a9b7461d69101b6a111f26b51abbf6",
+  "code_checkpoint_commit": "3b6c4164c6e4dd4b58f0be074c17f6fb854b41be",
+  "files": [
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25",
+      "committed_git_blob": "00cbf63a11b705bb5deda1fc72db17ab71c0f467",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "00e67c8a92d10643ba44bd1ec24afe0b6ccc6712d72636d726bbbc2df8b18b72",
+      "committed_git_blob": "1192398cfe35db7c99316467bfa5c721e8d9c8ec",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "ea28051659e5e3619203d86588f53336f0248d3c966c146d246e66ef4387bb5f",
+      "committed_git_blob": "9e345fafde2cae3852f6c667ed72a1a3ac559f89",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "a8230582a134a91eeba13c5faf466b8c3816bb16d5f846b8ad087a279260a34f",
+      "committed_git_blob": "cae95d803f81725372f3ebfa1127aec6545614b9",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "committed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+      "committed_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-Discovery.ps1",
+      "sha256": "5418e87dc9127f1c841b81b805497a5b0ffd95ecb7597d6967c03fcdf95bbbf7",
+      "committed_git_blob": "3c24a3c45098c90d253ea7c8a9c61f3f9e0b0c2d",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-NamingPlan.ps1",
+      "sha256": "e7ca650abd9ed6959326ba22e9c5101002dcef49fd2f21402b044732a502f597",
+      "committed_git_blob": "f4e8d6b8dc3bc159a2d0a999ed01486dccefaab9",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-NativeProcess.ps1",
+      "sha256": "45bc6a4cbb3f82520c967aea1f4f63fdad37a7212584dd93f97a7f5a36d73eb8",
+      "committed_git_blob": "283e493ac5a43c77943d3809f88000796dc8270b",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-OutputParent.ps1",
+      "sha256": "549320fa40e3b31ad59deaac1b99759ff30eff3986507e1f5dee457b00d0f7ff",
+      "committed_git_blob": "c770f55e09216d4c7edbe49554359ed145433dd5",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-Preflight.ps1",
+      "sha256": "fc3031eaa67e179b01d5614a0d1663b83b78230838a72dc4099045115ae0a393",
+      "committed_git_blob": "ed7e7fa2541379e9245b04f51b452a3000d3a668",
+      "literal_bytes_equal": false,
+      "test_fingerprint_matches": true,
+      "normalization": "Git CRLF/LF only; no path attributes/filters"
+    },
+    {
+      "path": "tests/Test-RunReservation.ps1",
+      "sha256": "c4ff11945b960766b01838bb9212ca9df68125803fe8c4002714b6b94a82372a",
+      "committed_git_blob": "f03f09fe7567b232064b8110d5ea24d721d38645",
+      "literal_bytes_equal": true,
+      "test_fingerprint_matches": true,
+      "normalization": "none"
+    }
+  ],
+  "final_reports": [
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-final3.json",
+      "sha256": "96661a20f92aaa7bea6dfbf5d26db8ff0dd266ddc09ea7bec0b44c352b700b64",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps7-final3.json",
+      "sha256": "2a717e7ec33de4009cd2fa1e0ce52239d71114b3ad568e97a0f21ba5795ede6a",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps51-verified3.json",
+      "sha256": "3dd134706b389d0547ca7f0bb2e590981441a01614d504aaedd676e17a289188",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps7-verified3.json",
+      "sha256": "e1db12e2bd42be00c42ac6dca1e6f9220f072db2bce379b7bd879f071d8e88ee",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps51-verified3.json",
+      "sha256": "8967ed7ab377989b38cb56b2b9d20638b8011fc9c1c1ffb2da31d29d565eb1a8",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps7-verified3.json",
+      "sha256": "7e568a65d647a73c77030c8ee361118433257aa224a7584f966587b4f7cc5122",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps51-verified3.json",
+      "sha256": "1fcffcfd34afba759c1f852e3295895d281edb32d05a701388e11304402c1a67",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps7-verified3.json",
+      "sha256": "cd8b2906ca1ab44592f6371f4733bc986a24623b81476537645a0773b903d0b3",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps51-verified3.json",
+      "sha256": "5ebc006bec42a216af0edc01a9298bb88295e5cc040a25f6547680f1c37e17c4",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps7-verified3.json",
+      "sha256": "1704214494599e93dc6794bd37e36b81ed80a44182625e156c1e1c47e0295c53",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps51-verified3.json",
+      "sha256": "fa4cbb0ea3a3300946709eb079be20091ed8bc1c9d9b8762a8f5743d179dde3f",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps7-verified3.json",
+      "sha256": "ffa06c8e3880477a2727d1c1210a4811b52d29fdef49c221e232b2131d599b2a",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps51-verified3.json",
+      "sha256": "74bcec193f4d474b04fa8b790a960efdecc75aabb219b02aa45d4ed0b655c8bf",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps7-verified3.json",
+      "sha256": "4bb37cf1d903d98df90b391b4019dfe17cb5aedbb84a6d6fd66aaa4334bdfae0",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps51-verified3.json",
+      "sha256": "5b868c5de2e242ef9359e637a6ca5b00f584832c8e74c77e29172bfc60349ade",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps7-verified3.json",
+      "sha256": "b3c8ea4a46e92d0d3d5056fd0f0e0418dffb53d78f97485a412dd7e839be1ad4",
+      "status": "pass",
+      "test_fingerprints_match_current": true
+    }
+  ],
+  "all_attempt_reports": [
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps51-final.json",
+      "sha256": "4ad3cf9fddbd82308a528b28229075dbd059bb0f1b2a588213f19c969ecf4605",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps51-verified2.json",
+      "sha256": "d97cb05976d1d7c629baf68a6f760e99a848198e260ea97a2291162d54884472",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps51-verified3.json",
+      "sha256": "3dd134706b389d0547ca7f0bb2e590981441a01614d504aaedd676e17a289188",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps51.json",
+      "sha256": "192a743ab7e0a6defac8cd5f7a711c633ee084717077a4c0f1a70459a799b25c",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps7-final.json",
+      "sha256": "a469ee8c6776f86ed26d538e009febc82a9135e8efaf5ddd5f257358141628b0",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps7-verified2.json",
+      "sha256": "b3878a0e3fd4fae3a4fc8eeea8727f52a52e3de9602f9ff21cdc8956a25cb1ed",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps7-verified3.json",
+      "sha256": "e1db12e2bd42be00c42ac6dca1e6f9220f072db2bce379b7bd879f071d8e88ee",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-baseline-ps7.json",
+      "sha256": "8abc8cfbb022252176ad4c937734e511236aa11dcc3487f2fcf1dca227e83ab1",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps51-final.json",
+      "sha256": "b3bf4b636e1db9ca60ac15442eb64a62da65c8a2e04b63a04b587f3e10bde37d",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps51-verified2.json",
+      "sha256": "be3457f11cfc5d7a777e5df5bcdbd3bf7631106254cefc7b7b66665f7a256d64",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps51-verified3.json",
+      "sha256": "1fcffcfd34afba759c1f852e3295895d281edb32d05a701388e11304402c1a67",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps7-final.json",
+      "sha256": "77c3bb4945b6c03460c382ed19a671b251a038b1eed29dd811d8a414f773b60c",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps7-verified2.json",
+      "sha256": "faf88138ee1f92ca5e5aed8421d713b9d0178eff5e94e00c8a5ac88074d0e47a",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-discovery-ps7-verified3.json",
+      "sha256": "cd8b2906ca1ab44592f6371f4733bc986a24623b81476537645a0773b903d0b3",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps51-final.json",
+      "sha256": "9efa95abc55a2f4cf70d6fc88c89d9a3300a6995753ba673f49b3bf0f381c7f4",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps51-verified.json",
+      "sha256": "efd4650a91f65808da52581123904a4ddc9785596159fdd41db17fdc8775d5f1",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps51-verified3.json",
+      "sha256": "5b868c5de2e242ef9359e637a6ca5b00f584832c8e74c77e29172bfc60349ade",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps51.json",
+      "sha256": "3053464672dea5df97b1e0563caf4ce5e3a2e79c9268b77d0b506c2b536bfa80",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps7-final.json",
+      "sha256": "484e835626018aecdb323e581162f1faea9d58d9afea9e31aabd2a73e57eb0a1",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps7-verified.json",
+      "sha256": "f504a2065f6e34d5e414fb5faada1ed2821bd9d927379dc518827204a29dd51e",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps7-verified3.json",
+      "sha256": "b3c8ea4a46e92d0d3d5056fd0f0e0418dffb53d78f97485a412dd7e839be1ad4",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-music-ps7.json",
+      "sha256": "a5be7ad6c404354ecfdf1518face1b5a0a778490fd9ec99672e82a42bf182627",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps51-final.json",
+      "sha256": "c5742976e33fba3eb29e0df4cd3a8dfc749d487e84860304787d385a04d6bc54",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps51-verified2.json",
+      "sha256": "72b24fb29ea65240725ac8c717b7947fa0317ec8c7537cb91219960b9ed670d6",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps51-verified3.json",
+      "sha256": "5ebc006bec42a216af0edc01a9298bb88295e5cc040a25f6547680f1c37e17c4",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps7-final.json",
+      "sha256": "5f05e9c3eb79c16b06156421221a28fa984f8cc0b045c2a78dce5e00275dfe23",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps7-verified2.json",
+      "sha256": "6592f11b9e7b8464b318a3c24898e7d0cd1f208a440667317da86bdfe967eda0",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-naming-ps7-verified3.json",
+      "sha256": "1704214494599e93dc6794bd37e36b81ed80a44182625e156c1e1c47e0295c53",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps51-final.json",
+      "sha256": "7283fdb4d52282181eac81bc63622ed6238b174748dc0b5f35afce0bc17517b1",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps51-verified.json",
+      "sha256": "c20b9243c465d8393047d33a81c361853ad9d918c120c9319601201dcae47b55",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps51-verified2.json",
+      "sha256": "6f55e75e3257bd6987009fc53f387a2d86501cd053605de4813062792649e5eb",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps51-verified3.json",
+      "sha256": "fa4cbb0ea3a3300946709eb079be20091ed8bc1c9d9b8762a8f5743d179dde3f",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps7-final.json",
+      "sha256": "019e8dea674f05d68693da24069c6ea43860ab2a7384f25ec57d9242a07f6875",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps7-verified.json",
+      "sha256": "c8043a13322794ab118ff11d8c766f37c056a99783efcf6854413147a8183c13",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps7-verified2.json",
+      "sha256": "cf479aa194aa29481b3fea206f624066a82e315ebb0c14247489564e56a5c754",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-native-ps7-verified3.json",
+      "sha256": "ffa06c8e3880477a2727d1c1210a4811b52d29fdef49c221e232b2131d599b2a",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps51-final.json",
+      "sha256": "367c1b90c9f7830a23f7d67ba5305b942afcae26cc15f48d11e1ed0d10b95cdc",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps51-verified2.json",
+      "sha256": "634288c39fc4cf3879dd63600bc9158e91708818f92f5b900c99e1f819eb97e8",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps51-verified3.json",
+      "sha256": "8967ed7ab377989b38cb56b2b9d20638b8011fc9c1c1ffb2da31d29d565eb1a8",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps51.json",
+      "sha256": "7c1838a2ce51442e5c028469afb0ef1489068ac7328472e29d9a54bbacaa3025",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps7-final.json",
+      "sha256": "cbe93cc793bb15b26d4c8bd699296ea4f64bfc106ed9c94ac818318648968bcc",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps7-verified2.json",
+      "sha256": "46eab29cbbf8d29140dd237a5e4731b56e84380737277aa79d4ca8d7f03af5bc",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-preflight-ps7-verified3.json",
+      "sha256": "7e568a65d647a73c77030c8ee361118433257aa224a7584f966587b4f7cc5122",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-attempt1.json",
+      "sha256": "610d05138905d329d41396ba2325a6ec0413ab8ab1f6cb4477d26a56bab2ec8a",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-attempt2.json",
+      "sha256": "1dd6fbbe880b711f0bc9d2b11372dc3a8645dfd78f487da12f9556dbd90142af",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-attempt3.json",
+      "sha256": "ee7a264a41da361bfb020f0aae98da5c1f623d70cbba9e48563447ddfcac527a",
+      "status": "fail"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-final1.json",
+      "sha256": "8adce07d1f8fb2d952ad65ca263f6f21d7298b787a6a37d11cb908e7417160fc",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-final2.json",
+      "sha256": "100648d93a5c561ef13a7317537fdf2bfc7e9264a674323a0daeb6ea0fe0bfbc",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps51-final3.json",
+      "sha256": "96661a20f92aaa7bea6dfbf5d26db8ff0dd266ddc09ea7bec0b44c352b700b64",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps7-final1.json",
+      "sha256": "47333f8732ba4dcaf1eb0cf8841aa34cb42994919b397f8a09201a828acfa2c2",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps7-final2.json",
+      "sha256": "3089ac7239c460350b527cba2f20cd2a3836ee39924f77a4f4708c5262ed84b5",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-reservation-ps7-final3.json",
+      "sha256": "2a717e7ec33de4009cd2fa1e0ce52239d71114b3ad568e97a0f21ba5795ede6a",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps51-final.json",
+      "sha256": "76ed5b03e1014827b727fa0e04e6a570ae3c1b43b5fce0975d6e7b681561d0e2",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps51-verified.json",
+      "sha256": "85e3f42ad83085cab406fcf3232f5e71b387d4a723657743479f26914751bc50",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps51-verified3.json",
+      "sha256": "74bcec193f4d474b04fa8b790a960efdecc75aabb219b02aa45d4ed0b655c8bf",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps51.json",
+      "sha256": "fd55f6c5e07a30a0e234356e9b95513931b25bb94a6a6477d1081ba6b6629ca3",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps7-final.json",
+      "sha256": "e7de38e127c4a465f25bc3b7eb8a93364b00445b42895eb59033223b58f51bcd",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps7-verified.json",
+      "sha256": "598ae8e21eafe28ab3f1ea9fcb8d3b8ac021c9089e8db13d68956f6c28b7cc59",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps7-verified3.json",
+      "sha256": "4bb37cf1d903d98df90b391b4019dfe17cb5aedbb84a6d6fd66aaa4334bdfae0",
+      "status": "pass"
+    },
+    {
+      "path": "docs/codex-v1/evidence/T08-resolver-ps7.json",
+      "sha256": "99325bed462429337430c008742dfcb4bc62e6628a93d704f6f1d8f115568afa",
+      "status": "pass"
+    }
+  ],
+  "equivalence_verified": true,
+  "notes": "Actual test base/working hashes retained. Commit equivalence permits only recorded Git CRLF/LF normalization; no attributes or filters. Only final_reports establish the final payload. Earlier passes/failures remain tied to recorded hashes."
+}

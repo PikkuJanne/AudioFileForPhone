@@ -1,91 +1,92 @@
 # Current project status
 
-State: **T07 complete — deterministic date, Unicode and path allocation verified.**
-Last completed task: T07. Exact next task: T08.
+State: **T08 complete — exclusive run reservation and M1 regression verified.**
+Last completed task: T08. Exact next task: T09.
 Required improvements: 1–15. Optional O01: deferred.
 
 ## Next suggested step
 
-**Start T08 in a new thread: reserve unique run roots and logs exclusively.**
-Use NEXT_SESSION.md. A18–A21 pass on both required Windows shells.
+**Start T09: stage, validate and safely publish each output.** Use NEXT_SESSION.md.
+A22/A23 pass under PS5.1 and PS7; per-file publication remains a separate gate.
 
 ## Environment and checkpoints
 
-- Windows 11 Pro26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
-- Checkout: `C:\projects\AudioFileForPhone-main`; branch `codex/v1-t07-naming-planner`.
-  Origin fetch/push: `https://github.com/PikkuJanne/AudioFileForPhone.git`.
-- Owner merged T06 PR #6 at 00:25:18 UTC on 11 October 2026 into main
-  `8599dfd9706d99119d4a38fb511968529e914246`. Local main was fast-forwarded
-  to that independently advertised ref before T07. No agent merge occurred.
-- Actual test base: `8599dfd9706d99119d4a38fb511968529e914246`; equivalent
-  reviewed code checkpoint: `e99f81ca3eb2c24102882e5723c52c236105450c`.
-  Reports retain actual base/working hashes. `evidence/T07-tested-payload.json`
-  verifies committed equivalence (only recorded Git CRLF/LF normalization).
-  Code push matched fresh ls-remote. Final evidence/handoff follows it; final
-  HEAD/live ref is reported in the response/PR without a self-referential commit.
-- Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/7.
-  **T07 feature synchronized; main integration pending owner review.**
-  T01–T06 are integrated into main. No GitHub CI checks are configured/claimed.
-- Installed `C:\ffmpeg\bin\ffmpeg.exe`/`ffprobe.exe`, build
-  `2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev`; report hashes retained.
+- Windows 11 Pro 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
+- Checkout `C:\projects\AudioFileForPhone-main`, branch `codex/v1-t08-exclusive-runs`.
+  Origin fetch/push https://github.com/PikkuJanne/AudioFileForPhone.git.
+- Owner merged T07 PR #7 at 01:04:14 UTC on 11 October 2026 into main
+  `e1ea2a95a5a9b7461d69101b6a111f26b51abbf6`. Local main was fast-forwarded
+  to that independently advertised ref before T08. No agent merge occurred.
+- Actual test base is that main commit. Reviewed equivalent code checkpoint:
+  `3b6c4164c6e4dd4b58f0be074c17f6fb854b41be`. Final reports retain actual base
+  and working hashes; `evidence/T08-tested-payload.json` verifies 12 runtime/test
+  fingerprints against committed blobs (only recorded Git CRLF/LF normalization).
+  Code push matched fresh advertised ref. Evidence/handoff follows in a docs-only
+  checkpoint; final HEAD/live comparison is in the response/PR, not a self-reference.
+- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/8.
+  **T08 feature synchronized; main integration pending owner review.** T01–T07
+  are integrated. No GitHub CI checks are configured/claimed.
+- Existing C:\ffmpeg\bin pair, build 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev.
+  Tool hashes/versions remain in reports; no downloads/settings change.
 
 ## Verified behavior and evidence
 
-Conversion consumes an all-or-nothing pure batch naming plan before tools, write
-probes, prompts or run creation. Leading dates use real invariant Gregorian parsing;
-invalid dates use LastWriteTime and retain the entire original basename as title
-input. Titles normalize to NFC before/after whitelist filtering. Unicode L/Nd
-scalars, whitespace, hyphen/underscore remain; noncomposing marks are removed.
-Truncation protects whole scalars, not arbitrary grapheme clusters. Empty title
-becomes Episode. MaxBaseLength 24–180 includes complete date/separator/title/suffix,
-excludes .mp3, and measures UTF-16 units. Every suffix recomputes from full title.
+Readable invariant timestamp roots acquire numeric _2/_3/... suffixes on collision.
+CreateDirectoryW establishes exclusive ownership; only Win32 occupied errors 80/183
+retry, bounded to 1000 default attempts. Marker/log use CreateNew and the log header
+appends after a UTF-8 BOM. The marker records fresh token and exact cleanup scope.
+No preexisting root is reused and production never recursively reclaims setup
+failures: their exact new scope/token stays visible in the diagnostic.
 
-Source order is OrdinalIgnoreCase then Ordinal. Destinations collide under
-OrdinalIgnoreCase; canonical duplicate sources reject, case-only files are retained.
-Preserved folders are validated before canonicalization and never renamed.
-Complete destination/future working files must be <260 units, created directories
-<248, components <=255. Marker/log paths are budgeted too. T09 must honor the
-fixed `.AudioFileForPhone-<32 hex>.partial` working name. T07 creates no working
-file. Existing unexpected planned targets fail; FFmpeg `-n` also refuses overwrite.
+Provisional free selection is read-only and keeps occupied unmarked source audio
+visible during discovery. Each exact suffix revalidates the complete pure batch
+plan before creation. Raw output-parent checks precede provider normalization,
+retain relative navigation/FileSystem PSDrive syntax and reject invalid components.
+Existing T07 date/NFC/scalar/order/name/path budgets and conversion defaults remain.
+T09 must use the fixed `.AudioFileForPhone-<32 hex>.partial` working name and an
+explicit MP3 muxer. Output publication/validation is not yet transactional.
 
-Current passing evidence: [T07.md](evidence/T07.md) and ten reports listed there/
-in `T07-tested-payload.json`. Per shell: 11 focused groups with 28 date/culture
-combinations, scalar/NFC/Hangul/counter cases, shuffled 12-source mappings, zero
-partial-plan emission, actual native dir 247/248/file 259/260, long/problematic
-folder rejection and 19 fully decoded real MP3 outputs (12 collisions and actual
-180-unit basename/path 253). Retained FFmpeg/seven required companions, discovery 8,
-preflight 35/eight helpers and resolver 10 pass. Final source/fixture hashes, exact
-ACL restoration and owned cleanup pass. Fixture paths were shortened to fit the
-production budgets; no limit was waived. Independent runtime/harness review has
-no remaining blocking finding.
+Sixteen current reports in evidence/T08.md and the manifest pass on both shells:
+13 focused groups with four same-candidate barrier children obtaining counters 3/4/5/6,
+two real-entry relative/PSDrive conversions and immutable collision sentinels;
+retained FFmpeg/seven companions, preflight 35/eight helpers, discovery 8, naming 11
+with 19 decoded outputs, native 35, resolver 10 and configured-Music default smoke.
+Sources/fixtures, byte-identical runtime copies, owned ACL restoration, child disposal
+and scoped cleanup pass. Final sequential native handles stayed 667->667 and 575->575
+with threshold 16 unchanged. Independent review has no remaining blocking finding.
+
+The Music smoke inspects only one exact direct root returned after a successful
+controlled unmodified child. Runtime token/scope and a CreateNew test marker,
+nonreparse ancestry and exact synthetic inventory gate cleanup of only that root.
+It verifies 64 kbps/full decode/title/source and exact Music/TEMP cleanup. Ordinary
+resolver/tests use owned TEMP; no ordinary Music enumeration or Music ACL change.
 
 ## Preserved limitations
 
-The initial failed PS5.1 naming report has cleanup=false. Native entries were
-removed, but provider recursive cleanup failed; its short machine-TEMP root leaf
-was not recorded and the parent denies enumeration. An unknown possible synthetic
-residue remains unverified. No broad cleanup or ACL/settings change was attempted.
-Later reports record recoverable ownership identity and verify checked .NET cleanup.
-All earlier failed/intermediate reports are preserved and are not current passes.
+Sixty T08 attempt reports are retained: 52 pass and 8 fail. Only the 16 current
+reports establish final-payload equivalence. Initial harness failures, old native
+fixture path 261, provisional guard/provider errors and one parallel PS7 handle-growth
+observation are documented in evidence/T08.md. No path/handle threshold was waived;
+failed diagnostic OS user/computer names alone were redacted. Every T08 attempt
+verified its owned cleanup; intermediate passes do not substitute for final hashes.
 
-No ordinary Music traversal, personal media, downloads/settings change, manual/
-phone/long-audio/cancellation or release evidence. No universal Android/MTP limit
-is claimed. T06 file-symlink privilege limitation remains distinct from performed
-file-reparse coverage. Configured-Music smoke remains deferred before setup until
-T08 adapts its historical pre-reserved-run ownership scheme; normal resolver mode
-is TEMP-only and current. Concurrency reservation is T08; transaction/cancellation/
-source-replacement policies remain later task gates. Project/release is incomplete.
+T07's initial naming attempt still has unverified cleanup and an unknown possible
+synthetic machine-TEMP residue. Its leaf was not recorded and parent enumeration
+is denied. No broad recovery or ACL/settings change was attempted. Later exact
+owned cleanup does not retroactively prove that attempt cleaned.
 
-## Verified commands
+No phone/manual playback, long-audio, cancellation, source-replacement, CI or release
+result is claimed. No universal Android/MTP path limit is claimed. T06 file-symlink
+privilege limitation remains distinct from performed file-reparse coverage. Project
+and release remain incomplete; transaction/cancellation/later acceptance gates stand.
 
-Exact current commands are in `evidence/T07.md` and TEST_STRATEGY.md. Rerun with
-fresh T07 labels; never overwrite historical reports. Tests run on the active
-Codex Windows machine, with existing installed tools and synthetic owned TEMP.
-Do not run the historical T02 resolver-substitution helpers against the new runtime.
+## Commands and authority
 
-## Integration and release gates
+Exact final commands and report labels: evidence/T08.md and TEST_STRATEGY.md.
+Use fresh T08 or next-task labels; never overwrite historical reports. All tests
+run on this active Windows machine using short synthetic owned fixtures.
 
-Owner review is required for main integration. Feature pushes are not merge,
+Owner review remains required for main integration. Feature pushes are not merge,
 visibility/protection/history or release authority. No tag/release was created.
-Release publication still requires the exact reviewed commit and assets under
-AUTHORITY.md/RELEASE_RUNBOOK.md. Refresh live refs before the next task.
+Publication requires exact reviewed commit/assets under AUTHORITY.md and the
+RELEASE_RUNBOOK.md, then independent public download and final main closure.
