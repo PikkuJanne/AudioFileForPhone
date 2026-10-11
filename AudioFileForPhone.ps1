@@ -133,11 +133,18 @@ USAGE
                 -CoverPath  "C:\Images\cover.jpg"
                 -Artist     "PowerShell After Dark"
                 -Album      "PSConfEU 2024"
+    E) Preview source-to-output names without creating files
+        - .\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts" -DryRun
+        - Uses the conversion discovery and naming planner. The output root is
+          provisional; durations, writability, tools, media and cover validation
+          are unverified. -Interactive is ignored during preview.
 
 NOTES
     - Input:
         - Only .mp3, .m4a, and .ogg files are processed (case-insensitive).
         - Search is recursive under the specified input folder.
+        - -DryRun previews mappings without creating output, logs or audio,
+          running tools, validating a cover or showing interactive prompts.
     - Output:
         - Uses the current user's Windows Music folder, including moved locations.
         - Optional -OutputParent selects another filesystem directory; a missing
@@ -160,6 +167,8 @@ NOTES
         - All important operations and failures are logged, including
           cover diagnostics warnings when a cover is used.
     - Results:
+        - -DryRun exits 0 with Previewed when planning succeeds; no conversions
+          are counted and the displayed output root is not reserved.
         - Exit 0: all supported snapshot files converted successfully.
         - Exit 2: batch completed with one or more per-file failures; other
           independent files continue. Exit 1: preflight, empty scan or fatal error.
@@ -230,7 +239,10 @@ param(
 
     # Optional destination parent; defaults to the configured Windows Music folder
     [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
-    [string]$OutputParent
+    [string]$OutputParent,
+
+    # Read-only preview using the same discovery and naming planner as conversion
+    [switch]$DryRun
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -290,17 +302,47 @@ try {
     $unsupported = $snapshot.UnsupportedCount
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
-    $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
-    $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
-    $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
-    if ($PSBoundParameters.ContainsKey('CoverPath')) {
-        $CoverPath = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg
+    if (-not $DryRun) {
+        $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
+        $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
+        $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+        if ($PSBoundParameters.ContainsKey('CoverPath')) {
+            $CoverPath = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg
+        }
+        Test-OutputWritable -Path $outputParentPath
     }
-    Test-OutputWritable -Path $outputParentPath
 }
 catch {
     throw "Preflight failed: $($_.Exception.Message)"
 }
+
+if ($DryRun) {
+    $outputBase = Join-Path $outputRoot (Split-Path $InputFolder -Leaf)
+    Write-Host "[PREVIEW] Provisional output root: $outputRoot"
+    Write-Host '[PREVIEW] Timestamp and reservation are provisional; an actual run can use a different root.'
+    Write-Host '[PREVIEW] Durations: unknown (media has not been probed).'
+    Write-Host '[PREVIEW] Destination writability: unverified (no write probe).'
+    Write-Host '[PREVIEW] Tools, media and cover validation: unverified.'
+    if ($Interactive) { Write-Host '[PREVIEW] -Interactive is ignored; no metadata prompts are shown.' }
+    Write-Host ('[PREVIEW] Scan exclusions: {0}; unsupported files: {1} (all extensions except .mp3, .m4a and .ogg).' -f $scanExcluded, $unsupported)
+    Write-Host '[PREVIEW] Naming, date prefixes and collision suffixes use the same planner as conversion.'
+    foreach ($plan in $plans) {
+        Write-Host ('[PREVIEW] {0} -> {1}' -f $plan.SourceRelativePath, $plan.OutputRelativePath)
+        foreach ($warning in $plan.Warnings) {
+            Write-Warning ('{0}: {1}' -f $plan.SourceRelativePath, $warning)
+        }
+        $previewPlan = [ordered]@{
+            source_relative_path = [string]$plan.SourceRelativePath
+            output_relative_path = [string]$plan.OutputRelativePath
+            provisional_output_path = [string]$plan.OutputPath
+            duration = 'unknown'
+        } | ConvertTo-Json -Compress
+        Write-Host ('[PLAN] ' + $previewPlan)
+    }
+    $runStatus = 'Previewed'
+    $batchExitCode = 0
+}
+else {
 
 function Read-YesNo {
     param(
@@ -650,6 +692,7 @@ Write-Log ("Log file saved to: {0}" -f $logPath)
 Write-Log (Get-AudioResultSummary) 'RESULT'
 $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
 }
+}
 catch [OperationCanceledException] {
     $runStatus = 'Cancelled'; $batchExitCode = 130
     Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
@@ -695,7 +738,7 @@ finally {
         }
         $script:AudioCancellationContext = $null
     }
-    Write-AudioProgress -Status 'Finished' -PercentComplete 100 -Completed
+    if (-not $DryRun) { Write-AudioProgress -Status 'Finished' -PercentComplete 100 -Completed }
     $runWatch.Stop()
     Write-Host "============================================================"
     Write-Host "==== Summary ===="
@@ -703,8 +746,13 @@ finally {
     Write-Host "  Input folder : $InputFolder"
     # A setup failure can leave the exact reserved scope named in its error
     # before the reservation object returns. Do not imply that nothing exists.
-    $actualOutput = if ($run) { $run.OutputRoot } else { '(not available; see error for any reserved scope)' }
-    $actualLog = if ($logPath) { $logPath } else { '(not available)' }
+    $actualOutput = if ($run) { $run.OutputRoot }
+        elseif ($runStatus -eq 'Previewed') { "$outputRoot (provisional; not reserved)" }
+        elseif ($DryRun) { '(not planned; preview made no reservation)' }
+        else { '(not available; see error for any reserved scope)' }
+    $actualLog = if ($logPath) { $logPath }
+        elseif ($DryRun) { '(not created during preview)' }
+        else { '(not available)' }
     Write-Host "  Output root  : $actualOutput"
     Write-Host "  Output base  : $outputBase"
     Write-Host "  Total files  : $total"

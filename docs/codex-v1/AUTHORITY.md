@@ -92,6 +92,14 @@ T10 uses `codex/v1-t10-results` from that verified merge. Normal task edits,
 isolated tests, commits, feature push and relevant draft PR remain authorized.
 This owner merge does not change main integration or release authority.
 
+T12 authorization: on 11 October 2026 the owner requested "T12 next please".
+Fresh fetch/advertised refs and live GitHub verify the owner's T11 PR #11 merge
+at 08:06:36 UTC into main `cb4ffc44d5ad78b575656ba44461db8b64ae7580`, with
+final feature `f66331032d4debc96c07b2c0b1cb8fe5d474cf6c`. Clean local main was
+fast-forwarded; T12 uses `codex/v1-t12-preview` from that verified merge. Normal
+task edits, isolated tests, commits, feature push and a relevant draft PR remain
+authorized. Main integration and release authority are unchanged.
+
 ## Release gate
 
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".
