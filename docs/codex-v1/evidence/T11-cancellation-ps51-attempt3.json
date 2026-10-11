@@ -1,0 +1,90 @@
+{
+    "schema_version":  1,
+    "task":  "T11",
+    "mode":  "controlled_native_console_input_and_forced_host",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-Cancellation.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T11-cancellation-ps51-attempt3.json",
+    "started_utc":  "2026-10-11T07:28:22.2005737Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "82f0fd3c9da765f169c2724edc73f779cdce6525",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "7366041b30a764d024edc7614449895110ecbe5cdb7e4f2447cef6abb23212af"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Cancellation.ps1",
+                              "sha256":  "20949a2bb4de8a09ba4c4b3a0c6a961b9472ddd3d57e9562210281f61fb82c1d"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "7366041b30a764d024edc7614449895110ecbe5cdb7e4f2447cef6abb23212af"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Cancellation.ps1",
+                             "sha256":  "20949a2bb4de8a09ba4c4b3a0c6a961b9472ddd3d57e9562210281f61fb82c1d"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Support.cs",
+                                 "sha256":  "2ca35ead57db01adf3bd5a7c9b030d0e0dc7244a2002f1123603a9d8c6aa64a9"
+                             }
+                         ],
+    "synthetic_after":  {
+                            "relative_path":  "Support.cs",
+                            "sha256":  "2ca35ead57db01adf3bd5a7c9b030d0e0dc7244a2002f1123603a9d8c6aa64a9"
+                        },
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  false,
+    "owned_temp_root_name":  "T11C-d82b9676",
+    "temp_parent_selection":  "shorter user/machine TEMP, read-only lookup",
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T11C-d82b9676",
+    "owner_marker_sha256":  "eebb770a185e01b34eb367ab4ce5f95e2169585627ac52c2a8dfbcbf0593e2c2",
+    "cases":  [
+
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Real fixture/check failed: status=Completed, exit=1   c:\\Windows\\Temp\\t11c-d82b9676\\Support.cs(75,14): error CS0165: Use of unassigned local variable \u0027childCreated\u0027\r\n",
+    "manual_requested":  false,
+    "physical_manual_ctrl_c":  false,
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1: line 54\r\nat Invoke-RealSuccess, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1: line 101\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1: line 319",
+    "finished_utc":  "2026-10-11T07:28:23.6344285Z"
+}

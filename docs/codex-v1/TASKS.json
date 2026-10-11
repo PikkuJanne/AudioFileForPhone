@@ -433,14 +433,14 @@
       "tested_commit": "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
       "checkpoint_commit": "478c0a0c6a2935eb7271c9d28771a63455307599",
       "remote_checkpoint_verified": true,
-      "notes": "A27-A28 pass on PS5.1/PS7: explicit Completed=0/CompletedWithFailures=2/fatal=1, per-file native boundary continuation, counts after publication, fatal log error preserving root cause/output/count, warning-only progress faults and truthful reserved-setup residue. 13 focused script groups/14 decoded publications per shell; 52 real cmd cases per driver each exercising both actual shells, exact one-argument/STA/exit-after-pause and quoted ! % & ^ apostrophe/space forms. Caller percent expansion separately characterized; cancellation 130 only inert forwarding. Twelve final reports retain baseline/seven companions, transaction 27/61+3 rejects, preflight 35/eight helpers and discovery eight, source/fixture hashes, child disposal, applicable ACL/link restoration and exact owned cleanup. Manifest independently proves 11 tested files against code 478c0a0 with CRLF/LF-only normalization. 32 raw reports (26 pass/6 fail) preserved; final payload selected after reviewed harness/reporting fixes. Owner merged T09 PR #9 into main d31f2de; T10 draft PR #10 feature synchronized, main owner-gated, no GitHub workflows or CI claim. No phone/manual/cancellation/forced-close/release claim; T07 possible unknown TEMP residue and T09 path interval remain. Exactly next T11."
+      "notes": "A27-A28 pass on PS5.1/PS7: explicit Completed=0/CompletedWithFailures=2/fatal=1, per-file native boundary continuation, counts after publication, fatal log error preserving root cause/output/count, warning-only progress faults and truthful reserved-setup residue. 13 focused script groups/14 decoded publications per shell; 52 real cmd cases per driver each exercising both actual shells, exact one-argument/STA/exit-after-pause and quoted ! % & ^ apostrophe/space forms. Caller percent expansion separately characterized; cancellation 130 only inert forwarding. Twelve final reports retain baseline/seven companions, transaction 27/61+3 rejects, preflight 35/eight helpers and discovery eight, source/fixture hashes, child disposal, applicable ACL/link restoration and exact owned cleanup. Manifest independently proves 11 tested files against code 478c0a0 with CRLF/LF-only normalization. 32 raw reports (26 pass/6 fail) preserved; final payload selected after reviewed harness/reporting fixes. Owner merged T09 PR #9 into main d31f2de; T10 draft PR #10 feature synchronized, main owner-gated, no GitHub workflows or CI claim. No phone/manual/cancellation/forced-close/release claim; T07 possible unknown TEMP residue and T09 path interval remain. Exactly next T11. Owner merged PR #10 at 2026-10-11T07:18:35Z into main 82f0fd3c9da765f169c2724edc73f779cdce6525; independently reconciled in T11."
     },
     {
       "id": "T11",
       "milestone": "M2",
       "title": "Handle cancellation and crash leftovers safely",
       "required": true,
-      "status": "todo",
+      "status": "blocked",
       "depends_on": [
         "T10"
       ],
@@ -453,11 +453,48 @@
         "A29",
         "A30"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T11.md",
+        "evidence/T11-tested-payload.json",
+        "evidence/T11-cancellation-ps51-final2.json",
+        "evidence/T11-cancellation-ps7-final2.json",
+        "evidence/T11-cancellation-ps7-final3.json",
+        "evidence/T11-cancellation-ps7-final4.json",
+        "evidence/T11-cancellation-ps51-manual1.json",
+        "evidence/T11-cancellation-ps7-manual1.json",
+        "evidence/T11-script-ps51-final2.json",
+        "evidence/T11-script-ps7-final2.json",
+        "evidence/T11-baseline-ps51-final1.json",
+        "evidence/T11-baseline-ps7-final1.json",
+        "evidence/T11-transaction-ps51-final1.json",
+        "evidence/T11-transaction-ps7-final1.json",
+        "evidence/T11-preflight-ps51-final1.json",
+        "evidence/T11-preflight-ps7-final1.json",
+        "evidence/T11-discovery-ps51-final1.json",
+        "evidence/T11-discovery-ps7-final1.json",
+        "evidence/T11-naming-ps51-final1.json",
+        "evidence/T11-naming-ps7-final1.json",
+        "evidence/T11-reservation-ps51-final1.json",
+        "evidence/T11-reservation-ps7-final1.json",
+        "evidence/T11-resolver-ps51-final1.json",
+        "evidence/T11-resolver-ps7-final1.json",
+        "evidence/T11-launcher-ps51-final1.json",
+        "evidence/T11-launcher-ps7-final1.json",
+        "evidence/T11-music-ps51-final1.json",
+        "evidence/T11-music-ps7-final1.json",
+        "evidence/T11-native-ps51-final1.json",
+        "evidence/T11-native-ps7-final1.json"
+      ],
+      "tested_commit": "82f0fd3c9da765f169c2724edc73f779cdce6525",
+      "checkpoint_commit": "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5",
+      "remote_checkpoint_verified": true,
+      "notes": "Implementation and 26 selected automated reports verified; A30 pass, A29 controlled component and owner-confirmed PS5.1 physical manual1 pass. Store PS7 physical manual2 pending: manual1 failed Framework fixture compiler before cases (cleanup/hashes pass, physical=false); compiler-only ac9cded fix uses exact Framework references and passes nine-group reruns on PS5.1, bundled PS7 7.6.5 and Store PS7 7.6.6 from repository/Store directories. Immediate owner path-guard rejection created no fixtures/report; cause unobserved, shorter direct invocation requested. Scoped per-instance Ctrl+C after prompts, Cancelled=130, explicit exit proof before exact partial cleanup, publication ordering, completed outputs preserved, interrupted file not_processed. Full M2 matrix pass; quiet native handles 673->673/580->580 allowance16. Manifest proves 16 current runtime/test files and original manual harness separately, CRLF/LF only; preserves actual test bases. 33 raw automatic reports (29 pass/4 fail), two manual reports (1 pass/1 compiler fail) retained. Attempt1 original DLL cleanup=false and narrow recovery limitation documented. Draft PR11 feature synchronized; main owner-gated, zero workflows/CI claim. T11/M2 await PS7 physical result before T12. No phone/window-close/full-disk/long-file/source-replacement/release claim; prior T07 residue/T09 path interval remain.",
+      "runtime_checkpoint_commit": "71eee22c87b57cea60079419f063149703c7df5a",
+      "automated_test_bases": [
+        "82f0fd3c9da765f169c2724edc73f779cdce6525",
+        "71eee22c87b57cea60079419f063149703c7df5a",
+        "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5"
+      ]
     },
     {
       "id": "T12",

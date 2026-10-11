@@ -419,3 +419,49 @@ with a bare “approved” assertion without a traceable reference.
   is owner-gated. No cancellation, forced-close, phone/manual, full-disk, long-file,
   source-replacement or release acceptance. T07 unknown possible TEMP residue and
   T09 brief post-guard path interval remain. Exactly next task is T11, closing M2.
+
+## T11 — cancellation and crash leftovers (11 October 2026)
+
+- Owner requested "T11 next please". Fresh fetch/advertised refs/live GitHub verify
+  owner T10 PR #10 merge at 07:18:35 UTC into main 82f0fd3, feature eeb15703.
+  Clean main fast-forwarded before codex/v1-t11-cancellation. Normal feature scope
+  remains authorized; main/release gates remain unchanged.
+- Choose scoped supported-console Ctrl+C input after prompts; restore prior mode.
+  Internal context flows through native/probe/validation/transaction; wait/drain
+  polls 100 ms without ordinary runtime limit. Retain 5000 ms/1000 ms teardown.
+  Request and non-overwrite publication have one per-instance ordering point.
+  Completed output remains success; cancelled current file stays not_processed.
+  Record Cancelled/130; diagnostics cannot mask cancellation.
+- Suspend cleanup before native/validation until explicit exit proof returns.
+  Exact identity/nonreparse working cleanup follows released native/guard handles.
+  Abrupt unknown-exit throw retains recognizable partial and exact logged reason.
+  No runtime process-name/PID termination or next-run reclamation is introduced.
+- A30 pass; A29 controlled component and owner-confirmed PS5.1 physical manual1
+  pass. Store PS7 manual1 failed in test-helper compiler setup before cases; its
+  cleanup/hashes pass and physical=false. Explicit Framework references repair
+  only the harness. PS7 manual2 retry remains pending; T11/M2 remain incomplete.
+  Automated key records are labelled automated; no phone result is invented.
+- All 26 selected automated invocations pass: focused nine groups on PS5.1,
+  bundled PS7 and Store PS7;
+  full M2 retained/transaction/script/launcher/preflight/discovery/naming/reservation/
+  resolver/default-Music/native matrix. Quiet native handles 673->673/580->580,
+  unchanged allowance16. Selected hashes, child/ACL/link/TEMP/Music gates pass.
+  Ordinary Music never enumerated. Manifest proves 16 runtime/test files against
+  runtime code 71eee22c87b57cea60079419f063149703c7df5a and test-only compiler
+  followup ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5, only CRLF/LF normalization.
+  Distinct original/repaired harness bytes and actual report test bases remain.
+- Preserve 33 raw automated reports (29 pass/four fail). Old optimistic partial
+  assertion, inherited-console/DLL-lock fixture fault and CS0165 compiler failures
+  remain. Attempt1 original cleanup=false survives later exact known sole-DLL
+  hash/nonreparse/child-proof recovery; its marker/token had already gone, so later
+  root absence does not retroactively satisfy original cleanup contract.
+- Independent runtime/entry/harness review has no implementation blocker. Fixed
+  controller candidate ownership (held parent/creation/image identity) and separate
+  descendant-release cleanup guards before final tests. Actual killed hosts left
+  live native children on both shells; known retained owned handles stopped them
+  before fixture cleanup. No physical window-close/power-loss claim.
+- Code checkpoint committed/pushed and freshly advertised-ref matched; draft PR
+  https://github.com/PikkuJanne/AudioFileForPhone/pull/11. Evidence/handoff follows
+  code. Zero GitHub workflows/checks; no CI/main merge/tag/release claim. Prior T07
+  residue and T09 path interval remain. Next implementation T12 requires manual
+  acceptance and owner integration of T11 first.
