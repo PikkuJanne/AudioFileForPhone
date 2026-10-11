@@ -19,6 +19,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - In interactive mode, cover selection uses a file picker.  
   - Warns (and logs) if the chosen cover is unusually large (size and/or dimensions).  
 - Writes a per-run log file in the output root:
+  - Each root is exclusively created. If a timestamp is occupied, a numeric suffix such as `_2` is added; existing runs are preserved.
   - AudioFileForPhone_log.txt with detailed per-file information.
 
 **Requirements**  

@@ -129,7 +129,7 @@ function Invoke-Conversion {
     Assert-True ($roots.Count -eq 1) "$Name should report exactly one output root."
     $outputRoot = [IO.Path]::GetFullPath($roots[0]).TrimEnd('\', '/')
     Assert-True ((Split-Path -Parent $outputRoot) -ieq $outputParent) "$Name should write only under its explicit OutputParent."
-    Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_\d+kbps_\d{8}_\d{6}$') "$Name should use the timestamped output name."
+    Assert-True ((Split-Path -Leaf $outputRoot) -match '^AudioForPhone_\d+kbps_\d{8}_\d{6}(?:_[2-9]\d*|_1\d+)?$') "$Name should use the timestamped output name with an optional collision counter."
     Assert-True (Test-Path -LiteralPath $outputParent -PathType Container) "$Name should create its missing OutputParent literally."
     Assert-True (@(Get-ChildItem -LiteralPath $outputParent -Directory).Count -eq 1) "$Name should create exactly one owned output run."
     Assert-True ($nativeExitCode -eq $ExpectedExitCode) "$Name exited $nativeExitCode (expected $ExpectedExitCode).`n$($nativeOutput -join "`n")"

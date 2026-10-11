@@ -35,13 +35,13 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T07-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T07-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T07|T08)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T07/T08-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label to preserve prior evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T07'; mode = 'pure_naming_path_and_real_conversion'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'pure_naming_path_and_real_conversion'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR

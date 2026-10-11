@@ -47,18 +47,9 @@ function Get-InputDirectory {
     catch { throw "Invalid or unreadable InputFolder '$InputFolder': $($_.Exception.Message)" }
 }
 
-function Test-OutputWritable {
-    param([Parameter(Mandatory = $true)][string]$Path, [switch]$SkipWriteProbe)
-    # Preview callers can resolve a destination without creating/probing anything.
-    if ($SkipWriteProbe) { return }
-    $probeDirectory = $null
-    $probeFile = $null
-    $reserved = $false
-    $stream = $null
-    try {
-        [IO.Directory]::CreateDirectory($Path) | Out-Null
-        if (-not ('AudioFileForPhone.PreflightDirectory' -as [type])) {
-            Add-Type -TypeDefinition @'
+function Initialize-AudioDirectoryInterop {
+    if (-not ('AudioFileForPhone.PreflightDirectory' -as [type])) {
+        Add-Type -TypeDefinition @'
 using System;
 using System.Runtime.InteropServices;
 namespace AudioFileForPhone {
@@ -69,7 +60,20 @@ namespace AudioFileForPhone {
     }
 }
 '@ -ErrorAction Stop
-        }
+    }
+}
+
+function Test-OutputWritable {
+    param([Parameter(Mandatory = $true)][string]$Path, [switch]$SkipWriteProbe)
+    # Preview callers can resolve a destination without creating/probing anything.
+    if ($SkipWriteProbe) { return }
+    $probeDirectory = $null
+    $probeFile = $null
+    $reserved = $false
+    $stream = $null
+    try {
+        [IO.Directory]::CreateDirectory($Path) | Out-Null
+        Initialize-AudioDirectoryInterop
         $probeDirectory = Join-Path $Path ('.AudioFileForPhone-write-' + [guid]::NewGuid().ToString('N'))
         $reserved = [AudioFileForPhone.PreflightDirectory]::CreateDirectoryW($probeDirectory, [IntPtr]::Zero)
         if (-not $reserved) {
@@ -594,10 +598,13 @@ function Get-AudioGeneratedRootReason {
 }
 
 function Write-AudioOutputMarker {
-    param([Parameter(Mandatory = $true)][string]$OutputRoot)
+    param([Parameter(Mandatory = $true)][string]$OutputRoot,
+          [string]$OwnerToken = ([guid]::NewGuid().ToString('N')))
+    if ($OwnerToken -cnotmatch '^[0-9a-f]{32}$') { throw 'Invalid run ownership token.' }
     $markerPath = Join-Path $OutputRoot '.AudioFileForPhone-output.json'
     $json = [ordered]@{
         schema_version = 1; kind = 'AudioFileForPhone.Output'; output_root = (Get-AudioPath $OutputRoot)
+        ownership_token = $OwnerToken; cleanup_scope = (Get-AudioPath $OutputRoot)
     } | ConvertTo-Json -Compress
     $stream = New-Object IO.FileStream($markerPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
     try {
@@ -606,6 +613,110 @@ function Write-AudioOutputMarker {
         $stream.Flush()
     }
     finally { $stream.Dispose() }
+}
+
+function Get-AudioRunCandidate {
+    param([Parameter(Mandatory = $true)][string]$OutputParent,
+          [int]$BitrateKbps,
+          [Parameter(Mandatory = $true)][string]$Timestamp,
+          [ValidateRange(1, 2147483647)][int]$Counter = 1)
+    Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength 120
+    $date = [datetime]::MinValue
+    if ($Timestamp -cnotmatch '^\d{8}_\d{6}$' -or -not [datetime]::TryParseExact(
+        $Timestamp, 'yyyyMMdd_HHmmss', [Globalization.CultureInfo]::InvariantCulture,
+        [Globalization.DateTimeStyles]::None, [ref]$date)) { throw 'Invalid run timestamp.' }
+    Assert-AudioPathComponents -Path $OutputParent
+    $parent = Get-AudioPath $OutputParent
+    $leaf = 'AudioForPhone_{0}kbps_{1}' -f $BitrateKbps, $Timestamp
+    if ($Counter -gt 1) { $leaf += '_' + $Counter.ToString([Globalization.CultureInfo]::InvariantCulture) }
+    return (Get-AudioPath (Join-Path $parent $leaf))
+}
+
+function Assert-AudioRunCandidateBoundary {
+    param([string]$InputFolder, [string]$OutputParent, [string]$OutputRoot)
+    # Check the parent, not an occupied candidate that could itself be a junction.
+    Assert-AudioPathComponents -Path $OutputParent
+    Assert-AudioNoReparseAncestor -Path $OutputParent
+    Assert-AudioNoReparseAncestor -Path $InputFolder
+    if (Test-AudioPathWithin -Path $InputFolder -Parent $OutputRoot) {
+        throw "The output run root must not equal or contain the input directory: '$OutputRoot'."
+    }
+}
+
+function Get-AudioAvailableRunCandidate {
+    param([string]$OutputParent, [string]$InputFolder, [int]$BitrateKbps,
+          [string]$Timestamp,
+          [ValidateRange(1, 2147483647)][int]$StartCounter = 1,
+          [ValidateRange(1, 100000)][int]$MaximumAttempts = 1000)
+    for ($attempt = 0; $attempt -lt $MaximumAttempts; $attempt++) {
+        $counter = [long]$StartCounter + $attempt
+        if ($counter -gt [int]::MaxValue) { throw 'Run collision counter exhausted.' }
+        $candidate = Get-AudioRunCandidate -OutputParent $OutputParent -BitrateKbps $BitrateKbps -Timestamp $Timestamp -Counter $counter
+        Assert-AudioRunCandidateBoundary -InputFolder $InputFolder -OutputParent $OutputParent -OutputRoot $candidate
+        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) {
+            # Read-only selection for discovery/planning; this does not claim ownership.
+            return [pscustomobject]@{ OutputRoot = $candidate; Counter = [int]$counter }
+        }
+    }
+    throw "No available run candidate after $MaximumAttempts attempts under '$OutputParent'."
+}
+
+function New-AudioRunLog {
+    param([Parameter(Mandatory = $true)][string]$OutputRoot)
+    $logPath = Join-Path $OutputRoot 'AudioFileForPhone_log.txt'
+    $stream = New-Object IO.FileStream($logPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        # BOM lets PS5.1 and PS7 append consistent UTF-8 without truncating the file.
+        $bytes = (New-Object Text.UTF8Encoding($true)).GetPreamble()
+        $stream.Write($bytes, 0, $bytes.Length)
+        $stream.Flush()
+    }
+    finally { $stream.Dispose() }
+    return $logPath
+}
+
+function New-AudioRunReservation {
+    param([string]$OutputParent, [string]$InputFolder,
+          [Parameter(Mandatory = $true)][AllowEmptyCollection()][object[]]$Files,
+          [int]$BitrateKbps, [int]$MaxBaseLength,
+          [string]$Timestamp = ([datetime]::Now.ToString('yyyyMMdd_HHmmss', [Globalization.CultureInfo]::InvariantCulture)),
+          [ValidateRange(1, 2147483647)][int]$StartCounter = 1,
+          [ValidateRange(1, 100000)][int]$MaximumAttempts = 1000)
+    Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
+    $InputFolder = Get-InputDirectory -InputFolder $InputFolder
+    Assert-AudioPathComponents -Path $OutputParent
+    $OutputParent = Get-AudioPath $OutputParent
+    Initialize-AudioDirectoryInterop
+    for ($attempt = 0; $attempt -lt $MaximumAttempts; $attempt++) {
+        $counter = [long]$StartCounter + $attempt
+        if ($counter -gt [int]::MaxValue) { throw 'Run collision counter exhausted.' }
+        $candidate = Get-AudioRunCandidate -OutputParent $OutputParent -BitrateKbps $BitrateKbps -Timestamp $Timestamp -Counter $counter
+        Assert-AudioRunCandidateBoundary -InputFolder $InputFolder -OutputParent $OutputParent -OutputRoot $candidate
+        # Validate the entire actual suffix/path budget before claiming this root.
+        $plans = @(Get-AudioBatchNamePlan -Files $Files -InputFolder $InputFolder -OutputRoot $candidate -MaxBaseLength $MaxBaseLength)
+        $created = [AudioFileForPhone.PreflightDirectory]::CreateDirectoryW($candidate, [IntPtr]::Zero)
+        if (-not $created) {
+            $code = [Runtime.InteropServices.Marshal]::GetLastWin32Error()
+            if ($code -eq 80 -or $code -eq 183) { continue }
+            throw "Could not reserve run root '$candidate' (Win32 $code)."
+        }
+        $ownerToken = [guid]::NewGuid().ToString('N')
+        try {
+            Assert-AudioOutputBoundary -InputFolder $InputFolder -OutputRoot $candidate
+            Write-AudioOutputMarker -OutputRoot $candidate -OwnerToken $ownerToken
+            $logPath = New-AudioRunLog -OutputRoot $candidate
+            return [pscustomobject]@{
+                OutputRoot = $candidate; LogPath = $logPath; OwnerToken = $ownerToken
+                Plans = $plans; Counter = [int]$counter
+            }
+        }
+        catch {
+            # Leave setup failures visible. Never infer recursive cleanup authority
+            # from a name/marker or reclaim a pre-existing candidate.
+            throw "Reserved run setup failed. Exact owned scope '$candidate', token '$ownerToken': $($_.Exception.Message)"
+        }
+    }
+    throw "Could not reserve a run after $MaximumAttempts occupied candidates under '$OutputParent'."
 }
 
 function Get-AudioInputSnapshot {
@@ -680,6 +791,18 @@ function Get-AudioSourceComparer {
         if ($result -eq 0) { $result = [StringComparer]::Ordinal.Compare($left, $right) }
         return $result
     })
+}
+
+function Assert-AudioOutputParentSpelling {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    # Preserve relative paths, navigation and filesystem PSDrive/provider syntax.
+    # The existing resolver determines the provider and canonical destination.
+    # Check raw physical components before that resolver can trim trailing dots.
+    $spelling = $Path.Replace('/', '\') -replace '^.*?::', '' -replace '^[^\\:]+:', ''
+    foreach ($component in $spelling.Split('\')) {
+        if ($component.Length -eq 0 -or $component -ceq '.' -or $component -ceq '..') { continue }
+        Assert-AudioPathComponents -Path ('C:\' + $component)
+    }
 }
 
 function Assert-AudioPathComponents {

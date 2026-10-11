@@ -32,7 +32,7 @@ FEATURES
     - Folder-based workflow:
         - Input:  a folder containing .mp3, .m4a, and .ogg files, recursively processed.
         - Output: a new root folder per run:
-            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
+            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS[_N]\
               <InputFolderName>\subfolders...
     - One-preset audio conversion:
         - Re-encodes all input .mp3, .m4a, and .ogg files using ffmpeg.
@@ -110,7 +110,7 @@ USAGE
         - The .bat calls:
             AudioFileForPhone.ps1 -InputFolder "<that folder>" -Interactive
         - Output:
-            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS\
+            <MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHMMSS[_N]\
                 <InputFolderName>\...
             plus:
                 AudioFileForPhone_log.txt    (in the AudioForPhone_* root)
@@ -243,13 +243,11 @@ try {
     . (Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1')
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $InputFolder = Get-InputDirectory -InputFolder $InputFolder
+    if (-not [string]::IsNullOrWhiteSpace($OutputParent)) { Assert-AudioOutputParentSpelling -Path $OutputParent }
     $outputParentPath = Get-OutputParent -OutputParent $OutputParent
-    $timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
-    $outputRoot = Join-Path $outputParentPath ("AudioForPhone_{0}kbps_{1}" -f $BitrateKbps, $timestamp)
-    Assert-AudioOutputBoundary -InputFolder $InputFolder -OutputRoot $outputRoot
-    if (Test-Path -LiteralPath $outputRoot -ErrorAction Stop) {
-        throw "The planned output run root already exists; try again with a fresh run: '$outputRoot'."
-    }
+    $timestamp = [datetime]::Now.ToString('yyyyMMdd_HHmmss', [Globalization.CultureInfo]::InvariantCulture)
+    $provisionalRun = Get-AudioAvailableRunCandidate -OutputParent $outputParentPath -InputFolder $InputFolder -BitrateKbps $BitrateKbps -Timestamp $timestamp
+    $outputRoot = $provisionalRun.OutputRoot
     Write-Host "[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
     $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
@@ -378,21 +376,15 @@ if ($Interactive) {
 }
 
 # --- Output root + log setup ---
-Write-Host "[INFO] Output root      : $outputRoot"
-
 try {
-    # Recheck after prompts. Exclusive concurrent reservation is implemented in T08.
-    Assert-AudioOutputBoundary -InputFolder $InputFolder -OutputRoot $outputRoot
-    if (Test-Path -LiteralPath $outputRoot -ErrorAction Stop) {
-        throw "The planned output run root now exists: '$outputRoot'."
-    }
-    Write-Host "[DEBUG] Creating output root folder..."
-    [IO.Directory]::CreateDirectory($outputRoot) | Out-Null
-    Write-AudioOutputMarker -OutputRoot $outputRoot
+    $run = New-AudioRunReservation -OutputParent $outputParentPath -InputFolder $InputFolder -Files $files -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength -Timestamp $timestamp -StartCounter $provisionalRun.Counter
+    $outputRoot = $run.OutputRoot
+    $plans = @($run.Plans)
+    $logPath = $run.LogPath
+    Write-Host "[INFO] Output root      : $outputRoot"
 
     # --- Log file ---
-    $logPath = Join-Path $outputRoot "AudioFileForPhone_log.txt"
-    "==== AudioFileForPhone Log ====" | Out-File -LiteralPath $logPath -Encoding UTF8 -ErrorAction Stop
+    "==== AudioFileForPhone Log ====" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Start time    : $(Get-Date)"     | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Input folder  : $InputFolder"    | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Output root   : $outputRoot"     | Add-Content -LiteralPath $logPath -ErrorAction Stop

@@ -1,7 +1,7 @@
 <#
 T03 focused resolver checks. Ordinary mode uses only an owned TEMP directory.
--DefaultSmoke is paused at T06: its historical pre-reserved run is now refused.
-T08 must adapt its exclusive ownership scheme before it can touch Music again.
+-DefaultSmoke runs one synthetic source through unmodified runtime copies.
+Only the successfully returned exclusive run is inspected and removed from Music.
 No known-folder settings are changed and unrelated Music entries are never listed.
 #>
 [CmdletBinding()]
@@ -13,9 +13,6 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
-if ($DefaultSmoke) {
-    throw 'The configured-Music smoke is deferred until T08 adapts its pre-reserved run root to the no-reuse production check. Use the ordinary TEMP-only resolver mode.'
-}
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $application = Join-Path $projectRoot 'AudioFileForPhone.ps1'
 $helpers = Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'
@@ -28,6 +25,12 @@ $originalPath = $env:PATH
 $musicRoot = $null
 $musicParent = $null
 $musicOwnerFile = $null
+$runtimeOwnerFile = $null
+$runtimeOwnerToken = $null
+$musicCleanupAuthorized = $false
+$tempRootReserved = $false
+$tempMarkerCreated = $false
+$evidenceStream = $null
 $sourceAudio = $null
 $expectedMusicFiles = @()
 $expectedMusicDirectories = @()
@@ -36,8 +39,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03/T04/T05/T06/T07-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07|T08)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03/T04/T05/T06/T07/T08-<label>.json directly in docs/codex-v1/evidence.'
 }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -61,13 +64,15 @@ $report = [ordered]@{
     helpers_unchanged = $false
     resolver_cases = @()
     default_smoke = [ordered]@{
-        status = 'not_run'; timestamp_only_copy = $false; output_override_passed = $false
+        status = 'not_run'; byte_identical_copies = $false; output_override_passed = $false
         root_exclusively_reserved = $false; marker_create_new = $false
+        trusted_child_execution = $false; runtime_ownership_verified = $false
         configured_music_verified = $false; exact_inventory_verified = $false
         source_sha256_before = $null; source_sha256_after = $null; source_unchanged = $null
         cleanup_verified = $null
     }
     temp_cleanup_verified = $false
+    temp_root = $testRoot
     status = 'fail'
     error = $null
 }
@@ -84,7 +89,9 @@ function Assert-NoReparse {
         if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
             throw 'Refusing a reparse point in the test path or its ancestors.'
         }
-        $item = $item.Parent
+        $parentPath = Split-Path -Parent $item.FullName
+        if (-not $parentPath -or $parentPath -ceq $item.FullName) { break }
+        $item = Get-Item -LiteralPath $parentPath -Force
     }
 }
 
@@ -136,6 +143,31 @@ function New-OwnerMarker {
     finally { $stream.Dispose() }
 }
 
+function Write-EvidenceCheckpoint {
+    # This stream was reserved with CreateNew before tests started. Retain the
+    # exact returned Music path immediately, including when later checks fail.
+    $bytes = [Text.Encoding]::UTF8.GetBytes(($report | ConvertTo-Json -Depth 12))
+    $evidenceStream.Position = 0
+    $evidenceStream.SetLength(0)
+    $evidenceStream.Write($bytes, 0, $bytes.Length)
+    $evidenceStream.Flush($true)
+}
+
+function Assert-RuntimeOwnership {
+    Assert-True $musicCleanupAuthorized 'Music inspection requires the controlled successful child and verified runtime ownership.'
+    Assert-NoReparse $musicRoot
+    $markerItem = Get-Item -LiteralPath $runtimeOwnerFile -Force
+    Assert-True (-not $markerItem.PSIsContainer -and $markerItem.Length -le 8192) 'Runtime marker must be a small regular file.'
+    Assert-NoReparse $runtimeOwnerFile
+    $identity = [IO.File]::ReadAllText($runtimeOwnerFile) | ConvertFrom-Json
+    Assert-True (($identity.schema_version -is [int] -or $identity.schema_version -is [long]) -and $identity.schema_version -eq 1 -and
+        $identity.kind -ceq 'AudioFileForPhone.Output') 'Runtime marker must retain the exact production identity.'
+    Assert-True ($identity.output_root -is [string] -and $identity.output_root -ceq $musicRoot -and
+        $identity.cleanup_scope -is [string] -and $identity.cleanup_scope -ceq $musicRoot -and
+        $identity.ownership_token -is [string] -and $identity.ownership_token -ceq $runtimeOwnerToken -and
+        $identity.ownership_token -cmatch '^[0-9a-f]{32}$') 'Runtime marker token and cleanup scope must still match the controlled child run.'
+}
+
 function Invoke-ResolverCase {
     param([string]$Name, [hashtable]$Arguments, [string]$Expected, [string]$ExpectedError)
     $entry = [ordered]@{ name = $Name; status = 'fail' }
@@ -165,6 +197,7 @@ function Invoke-Native {
 }
 
 function Get-ExactMusicInventory {
+    Assert-RuntimeOwnership
     $items = @(Get-SafeTree $musicRoot)
     $files = @($items | Where-Object { -not $_.PSIsContainer } | ForEach-Object {
         $_.FullName.Substring($musicRoot.Length + 1)
@@ -178,15 +211,20 @@ function Get-ExactMusicInventory {
     foreach ($path in $directories) {
         Assert-True ($expectedMusicDirectories -ccontains $path) 'Owned Music run must contain no unexpected directory before cleanup.'
     }
+    Assert-True (($files -join "`n") -ceq ($expectedMusicFiles -join "`n")) 'Owned Music run must retain the complete expected file inventory.'
+    Assert-True (($directories -join "`n") -ceq ($expectedMusicDirectories -join "`n")) 'Owned Music run must retain the complete expected directory inventory.'
     return [pscustomobject]@{ files = $files; directories = $directories }
 }
 
+Assert-NoReparse $evidenceParent
+$evidenceStream = New-Object IO.FileStream($evidenceFullPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::Read)
 try {
-    Assert-NoReparse $evidenceParent
-    if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
+    Write-EvidenceCheckpoint
     Assert-NoReparse $tempParent
     New-ExclusiveDirectory $testRoot
+    $tempRootReserved = $true
     New-OwnerMarker $ownerFile
+    $tempMarkerCreated = $true
     $tokens = $null; $parseErrors = $null
     $ast = [Management.Automation.Language.Parser]::ParseFile($application, [ref]$tokens, [ref]$parseErrors)
     Assert-True ($parseErrors.Count -eq 0) 'Production application must parse before resolver extraction.'
@@ -255,21 +293,8 @@ try {
         $configured = [Environment]::GetFolderPath([Environment+SpecialFolder]::MyMusic, [Environment+SpecialFolderOption]::DoNotVerify)
         Assert-True ($musicParent -ieq [IO.Path]::GetFullPath($configured).TrimEnd('\', '/')) 'Default resolver must equal Windows configured Music.'
         $report.default_smoke.configured_music_verified = $true
-        $digitSource = [guid]::NewGuid().ToString('N').Substring(0, 10)
-        $digits = -join ($digitSource.ToCharArray() | ForEach-Object { [Convert]::ToInt32("$_", 16) % 10 })
-        $stamp = '9999' + $digits.Substring(0, 4) + '_' + $digits.Substring(4, 6)
-        $musicRoot = Join-Path $musicParent ('AudioForPhone_64kbps_' + $stamp)
-        $musicOwnerFile = Join-Path $musicRoot '.t03-owner'
-        $expectedMusicDirectories = @('T03 generated default smoke')
-        $expectedMusicFiles = @('.t03-owner', 'AudioFileForPhone_log.txt',
-            'T03 generated default smoke\2024-01-02 - Default smoke.mp3') | Sort-Object
-        New-ExclusiveDirectory $musicRoot
-        $report.default_smoke.root_exclusively_reserved = $true
-        New-OwnerMarker $musicOwnerFile
-        $report.default_smoke.marker_create_new = $true
-        $report.default_smoke['run_root_name'] = Split-Path -Leaf $musicRoot
 
-        $sourceAudio = Join-Path $testRoot 'T03 generated default smoke\2024-01-02 - Default smoke.mp3'
+        $sourceAudio = Join-Path $testRoot 'T08 generated default smoke\2024-01-02 - Default smoke.mp3'
         [IO.Directory]::CreateDirectory((Split-Path -Parent $sourceAudio)) | Out-Null
         $ffmpeg = (Resolve-Path -LiteralPath $FfmpegPath).ProviderPath
         $ffprobe = (Resolve-Path -LiteralPath $FfprobePath).ProviderPath
@@ -294,22 +319,16 @@ try {
         }
         Invoke-Native $ffmpeg @('-hide_banner', '-loglevel', 'error', '-nostdin', '-f', 'lavfi', '-i',
             'sine=frequency=440:sample_rate=44100:duration=0.4', '-c:a', 'libmp3lame', '-metadata',
-            'title=T03 synthetic default smoke', $sourceAudio) | Out-Null
+            'title=T08 synthetic default smoke', $sourceAudio) | Out-Null
         $report.default_smoke.source_sha256_before = (Get-FileHash -LiteralPath $sourceAudio -Algorithm SHA256).Hash.ToLowerInvariant()
 
-        $sourceText = [IO.File]::ReadAllText($application)
-        $timestampPattern = '(?m)^\$timestamp\s*=\s*Get-Date -Format "yyyyMMdd_HHmmss"\r?$'
-        $matches = [regex]::Matches($sourceText, $timestampPattern)
-        Assert-True ($matches.Count -eq 1) 'Smoke copy must find exactly one timestamp assignment.'
-        $replacement = '$timestamp = ' + "'" + $stamp + "'"
-        $copyText = $sourceText.Remove($matches[0].Index, $matches[0].Length).Insert($matches[0].Index, $replacement)
-        Assert-True ($copyText.Replace($replacement, $matches[0].Value) -ceq $sourceText) 'Smoke application copy must differ only in timestamp assignment.'
         $scriptCopy = Join-Path $testRoot 'Default smoke application.ps1'
-        [IO.File]::WriteAllText($scriptCopy, $copyText, (New-Object Text.UTF8Encoding($false)))
+        Copy-Item -LiteralPath $application -Destination $scriptCopy
         $helpersCopy = Join-Path $testRoot 'AudioFileForPhone.Helpers.ps1'
         Copy-Item -LiteralPath $helpers -Destination $helpersCopy
+        Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -ceq (Get-FileHash -LiteralPath $application).Hash) 'Smoke application copy must preserve all source bytes.'
         Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $helpers).Hash) 'Smoke runtime helper copy must preserve all source bytes.'
-        $report.default_smoke.timestamp_only_copy = $true
+        $report.default_smoke.byte_identical_copies = $true
         $report.default_smoke['copy_sha256'] = (Get-FileHash -LiteralPath $scriptCopy -Algorithm SHA256).Hash.ToLowerInvariant()
         $report.default_smoke['helpers_copy_sha256'] = (Get-FileHash -LiteralPath $helpersCopy -Algorithm SHA256).Hash.ToLowerInvariant()
         $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
@@ -318,22 +337,67 @@ try {
             '-File', $scriptCopy, '-InputFolder', (Split-Path -Parent $sourceAudio))
         $report.default_smoke.output_override_passed = $childArguments -contains '-OutputParent'
         Assert-True (-not $report.default_smoke.output_override_passed) 'Default smoke child must omit OutputParent.'
-        $nativeOutput = Invoke-Native $shell $childArguments
-        $nativeOutput | ForEach-Object { "$_" } | Set-Content -LiteralPath (Join-Path $testRoot 'default-smoke-child.log') -Encoding UTF8
+        $savedPreference = $ErrorActionPreference
+        try {
+            $ErrorActionPreference = 'Continue'
+            $nativeOutput = @(& $shell @childArguments 2>&1)
+            $childExitCode = $LASTEXITCODE
+        }
+        finally { $ErrorActionPreference = $savedPreference }
+        $report.default_smoke['child_exit_code'] = $childExitCode
         $roots = @($nativeOutput | ForEach-Object {
             if ("$_" -match '^\[INFO\] Output root\s+: (.+)$') { $Matches[1] }
         })
-        Assert-True ($roots.Count -eq 1 -and [IO.Path]::GetFullPath($roots[0]) -ceq $musicRoot) 'Default smoke must report exactly its exclusively owned root under configured Music.'
+        $report.default_smoke['reported_roots'] = @($roots)
+        if ($roots.Count -eq 1) {
+            $report.default_smoke['recoverable_reported_root'] = $roots[0]
+        }
+        Write-EvidenceCheckpoint
+        $nativeOutput | ForEach-Object { "$_" } | Set-Content -LiteralPath (Join-Path $testRoot 'default-smoke-child.log') -Encoding UTF8
+        Assert-True ($roots.Count -eq 1) 'Default smoke must report one exact run root; uncertain roots cannot be inspected or cleaned.'
+        Assert-True ($childExitCode -eq 0) 'Default smoke requires a successful controlled child; its reported candidate remains recorded if unsuccessful.'
+        $canonicalRoot = [IO.Path]::GetFullPath($roots[0]).TrimEnd('\', '/')
+        Assert-True ($canonicalRoot -ceq $roots[0] -and (Split-Path -Parent $canonicalRoot) -ieq $musicParent -and
+            (Split-Path -Leaf $canonicalRoot) -cmatch '^AudioForPhone_64kbps_\d{8}_\d{6}(?:_(?:[2-9]|[1-9]\d+))?$') 'Default smoke returned root must be canonical and directly inside configured Music.'
+        Assert-True ($report.default_smoke.byte_identical_copies -and $report.application_sha256_before -ceq
+            (Get-FileHash -LiteralPath $scriptCopy -Algorithm SHA256).Hash.ToLowerInvariant() -and $report.helpers_sha256_before -ceq
+            (Get-FileHash -LiteralPath $helpersCopy -Algorithm SHA256).Hash.ToLowerInvariant()) 'Successful child cleanup authority requires the exact reviewed application/helper bytes.'
+        $musicRoot = $canonicalRoot
+        $report.default_smoke.trusted_child_execution = $true
+        Assert-NoReparse $musicRoot
+        $runtimeOwnerFile = Join-Path $musicRoot '.AudioFileForPhone-output.json'
+        $markerItem = Get-Item -LiteralPath $runtimeOwnerFile -Force
+        Assert-True (-not $markerItem.PSIsContainer -and $markerItem.Length -le 8192) 'Returned run requires a small production ownership marker.'
+        Assert-NoReparse $runtimeOwnerFile
+        $identity = [IO.File]::ReadAllText($runtimeOwnerFile) | ConvertFrom-Json
+        Assert-True (($identity.schema_version -is [int] -or $identity.schema_version -is [long]) -and $identity.schema_version -eq 1 -and
+            $identity.kind -ceq 'AudioFileForPhone.Output' -and $identity.output_root -is [string] -and $identity.output_root -ceq $musicRoot -and
+            $identity.cleanup_scope -is [string] -and $identity.cleanup_scope -ceq $musicRoot -and $identity.ownership_token -is [string] -and
+            $identity.ownership_token -cmatch '^[0-9a-f]{32}$') 'Returned marker must match the controlled successful child, exact cleanup scope and production ownership identity.'
+        $runtimeOwnerToken = $identity.ownership_token
+        $report.default_smoke['runtime_owner_token'] = $runtimeOwnerToken
+        $report.default_smoke['cleanup_scope'] = $musicRoot
+        $report.default_smoke['run_root_name'] = Split-Path -Leaf $musicRoot
+        $report.default_smoke.root_exclusively_reserved = $true
+        $report.default_smoke.runtime_ownership_verified = $true
+        $musicCleanupAuthorized = $true
+        $musicOwnerFile = Join-Path $musicRoot '.t08-owner'
+        New-OwnerMarker $musicOwnerFile
+        $report.default_smoke.marker_create_new = $true
+        $expectedMusicDirectories = @('T08 generated default smoke')
+        $expectedMusicFiles = @('.t08-owner', '.AudioFileForPhone-output.json', 'AudioFileForPhone_log.txt',
+            'T08 generated default smoke\2024-01-02 - Default smoke.mp3') | Sort-Object
+        Write-EvidenceCheckpoint
         $inventory = Get-ExactMusicInventory
         Assert-True (($inventory.files -join "`n") -ceq ($expectedMusicFiles -join "`n")) 'Default smoke must produce only the marker, log and one synthetic MP3.'
         Assert-True (($inventory.directories -join "`n") -ceq ($expectedMusicDirectories -join "`n")) 'Default smoke must preserve the exact synthetic input folder.'
         $report.default_smoke['inventory'] = $inventory
         $report.default_smoke.exact_inventory_verified = $true
-        $outputAudio = Join-Path $musicRoot 'T03 generated default smoke\2024-01-02 - Default smoke.mp3'
+        $outputAudio = Join-Path $musicRoot 'T08 generated default smoke\2024-01-02 - Default smoke.mp3'
         $media = (Invoke-Native $ffprobe @('-v', 'error', '-show_streams', '-show_format', '-of', 'json', $outputAudio)) -join "`n" | ConvertFrom-Json
         $audio = @($media.streams | Where-Object { $_.codec_type -eq 'audio' })
         Assert-True ($audio.Count -eq 1 -and $audio[0].codec_name -eq 'mp3' -and [int]$audio[0].bit_rate -eq 64000) 'Default smoke output must contain 64 kbps MP3 audio.'
-        Assert-True ($media.format.tags.title -eq 'T03 synthetic default smoke') 'Default smoke must preserve source title metadata.'
+        Assert-True ($media.format.tags.title -eq 'T08 synthetic default smoke') 'Default smoke must preserve source title metadata.'
         Invoke-Native $ffmpeg @('-hide_banner', '-loglevel', 'error', '-nostdin', '-i', $outputAudio, '-f', 'null', '-') | Out-Null
         $report.default_smoke['output_sha256'] = (Get-FileHash -LiteralPath $outputAudio -Algorithm SHA256).Hash.ToLowerInvariant()
         $report.default_smoke['audio_bitrate'] = [int]$audio[0].bit_rate
@@ -367,10 +431,13 @@ finally {
         if ($musicRoot -and (Test-Path -LiteralPath $musicRoot)) {
             $resolved = (Resolve-Path -LiteralPath $musicRoot).ProviderPath.TrimEnd('\', '/')
             Assert-True ($resolved -ceq $musicRoot -and (Split-Path -Parent $resolved) -ieq $musicParent) 'Music cleanup must stay inside the exact configured parent and reserved run.'
-            Assert-True $report.default_smoke.root_exclusively_reserved 'Music cleanup requires successful exclusive directory reservation.'
-            Get-ExactMusicInventory | Out-Null
+            Assert-True ($report.default_smoke.root_exclusively_reserved -and $report.default_smoke.trusted_child_execution -and
+                $report.default_smoke.runtime_ownership_verified -and $report.default_smoke.marker_create_new) 'Music cleanup requires successful controlled exclusive reservation and both owner markers.'
+            Assert-RuntimeOwnership
+            Assert-NoReparse $musicOwnerFile
             Assert-True ([IO.File]::ReadAllText($musicOwnerFile) -ceq $ownerToken) 'Music cleanup requires the exact create-new marker token.'
-            Remove-Item -LiteralPath $resolved -Recurse -Force
+            Get-ExactMusicInventory | Out-Null
+            [IO.Directory]::Delete($resolved, $true)
             $report.default_smoke.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
         }
     }
@@ -380,13 +447,15 @@ finally {
         Write-Warning $report.music_cleanup_error
     }
     try {
-        if (Test-Path -LiteralPath $testRoot) {
+        if ($tempRootReserved -and (Test-Path -LiteralPath $testRoot)) {
             $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\', '/')
             Assert-True ($resolved -ceq $testRoot -and (Split-Path -Parent $resolved) -ieq $tempParent -and
                 (Split-Path -Leaf $resolved) -ceq $testName) 'TEMP cleanup must stay inside its exact owned root.'
-            Get-SafeTree $resolved | Out-Null
+            Assert-True ($tempRootReserved -and $tempMarkerCreated) 'TEMP cleanup requires successful exclusive reservation and create-new owner marker.'
+            Assert-NoReparse $ownerFile
             Assert-True ([IO.File]::ReadAllText($ownerFile) -ceq $ownerToken) 'TEMP cleanup requires the exact marker token.'
-            Remove-Item -LiteralPath $resolved -Recurse -Force
+            Get-SafeTree $resolved | Out-Null
+            [IO.Directory]::Delete($resolved, $true)
             $report.temp_cleanup_verified = -not (Test-Path -LiteralPath $resolved)
         }
     }
@@ -398,9 +467,8 @@ finally {
     if ($DefaultSmoke -and $report.default_smoke.cleanup_verified -ne $true) { $report.status = 'fail'; $exitCode = 1 }
     if (-not $report.temp_cleanup_verified) { $report.status = 'fail'; $exitCode = 1 }
     $report['finished_utc'] = [DateTime]::UtcNow.ToString('o')
-    Assert-NoReparse $evidenceParent
-    if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
-    $report | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
+    try { Write-EvidenceCheckpoint }
+    finally { $evidenceStream.Dispose() }
 }
 Write-Host "$evidenceTask $($report.mode): $($report.status); TEMP cleanup=$($report.temp_cleanup_verified); Music cleanup=$($report.default_smoke.cleanup_verified)"
 exit $exitCode
