@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "mode": "actual_pure_planner_hosted_layout_audit",
+  "status": "pass",
+  "tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+  "prior_code": "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+  "changed_source": "tests/Test-BaselineCharacterization.ps1",
+  "changed_source_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+  "production_helper_sha256": "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4",
+  "production_unchanged": true,
+  "scope": "Read-only lexical planner replay of actual reported hosted paths; synthetic timestamps do not affect working template lengths. No media/native child/write to virtual paths. Original failed reports unchanged.",
+  "cases": [
+    {
+      "shell": "ps51",
+      "failed_report": "T17-baseline-ps51-run38139092611_1.json",
+      "failed_report_sha256": "237bbe1fde31ebc756e86c98d545ecbf596626836d4b0a1f2a1584aa3502066c",
+      "original_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\Run-0879f6da6be9446eb5981ca2ee7a8f5a",
+      "original_refusal": "File path is 260 UTF-16 units; the supported limit is 259: 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\Run-0879f6da6be9446eb5981ca2ee7a8f5a\\AudioForPhone_64kbps_20261011_142410\\Characterization input\\Nested folder\\More audio\\.AudioFileForPhone-00000000000000000000000000000000.partial'. Choose a shallower input folder or shorter OutputParent.",
+      "short_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\R-1",
+      "planned_files": 4,
+      "maximum_working_utf16": 227,
+      "status": "pass"
+    },
+    {
+      "shell": "ps7",
+      "failed_report": "T17-baseline-ps7-run38139092611_1.json",
+      "failed_report_sha256": "1ec39cabf8cc3f587241f362ef334ee8d4b3a4957ec4515accfeb16b14f3fb7b",
+      "original_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\Run-410e1c99ec994c56814d4b6ab7687527",
+      "original_refusal": "File path is 260 UTF-16 units; the supported limit is 259: 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\Run-410e1c99ec994c56814d4b6ab7687527\\AudioForPhone_64kbps_20261011_142410\\Characterization input\\Nested folder\\More audio\\.AudioFileForPhone-00000000000000000000000000000000.partial'. Choose a shallower input folder or shorter OutputParent.",
+      "short_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\R-1",
+      "planned_files": 4,
+      "maximum_working_utf16": 227,
+      "status": "pass"
+    }
+  ],
+  "utc": "2026-10-11T12:29:55.1896247Z"
+}

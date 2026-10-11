@@ -551,3 +551,46 @@ audited and removed; recovery is not acceptance. Cleanup attempt1 lacked recorde
 marker SHA and its snapshot was reconstructed to the original digest; both limits
 are explicit. Edge snapshots were saved before their repairs. T01 external bundle
 and T11 physical checks stay historical; no fresh manual/phone/CI/release claim.
+
+## T17 routine Windows CI
+
+`.github/workflows/windows-ci.yml` runs branch pushes and ordinary PR merge
+commits on `windows-2025`, separately under `powershell` and `pwsh`. It downloads
+fixed, SHA-256 verified FFmpeg 9.0.2 and PSScriptAnalyzer 1.25.0 packages only into
+fresh marked TEMP children. Complete extracted inventories are rechecked before
+analyzer import or tests. Production entry points never download tools.
+
+`Invoke-CiChecks.ps1` parses all repository PowerShell sources under the selected
+shell, gates every default analyzer Error and ten selected security/correctness
+rules, then runs four suites sequentially: 31 actual pure runtime/CI contracts
+(including 20 unsafe policy mutations), 22 dependency ZIP/download guards, seven
+required isolated baseline checks plus three separately recorded observations,
+and 35 retained native-process groups. Total: 95 required groups per shell.
+The original real-media suite and full T16 milestone families remain retained.
+
+The current static audit retains 98 default diagnostics with zero Errors and zero
+selected-rule diagnostics. Legacy style/console/null-comparison/BOM warnings are
+outside this explicit gate; production bytes were preserved. This is targeted
+analysis, not a claim of a globally warning-free repository.
+
+Local reproduction on the active Windows machine uses the exact PS5.1/PS7
+executables recorded in evidence/T17.md. In each shell choose a fresh label and
+run setup followed by checks:
+
+```powershell
+$edition = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'ps51' } else { 'ps7' }
+$label = 'final2' # choose an unused positive attemptN/finalN label
+$root = Join-Path ([IO.Path]::GetTempPath()) ('AFP-CI-' + [guid]::NewGuid().ToString('N'))
+$evidence = Join-Path $PWD ('docs/codex-v1/evidence/T17-dependencies-' + $edition + '-' + $label + '.json')
+& '.github/scripts/Initialize-CiDependencies.ps1' -DestinationPath $root -EvidencePath $evidence
+& '.github/scripts/Invoke-CiChecks.ps1' -DependenciesPath $evidence -RunLabel $label
+```
+
+Run from the repository root. Setup evidence remains available at its exact owned
+TEMP root; no global module, PATH or machine policy change occurs. Do not reuse or
+replace an existing report. CI labels use trusted `run<ID>_<attempt>` values and
+only current-run JSON is uploaded. Hosted reports record actual runner image,
+OS, shell and checked-out event SHA; a PR integration SHA differs from the source
+feature SHA. Hosted Windows Server results supplement local Windows 11 evidence.
+Neither source hashes nor a green workflow invent phone, physical Ctrl+C, release
+ZIP or publication evidence. See CI_SECURITY.md and evidence/T17.md.

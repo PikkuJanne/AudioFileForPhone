@@ -1,0 +1,1494 @@
+{
+    "schema_version":  1,
+    "task":  "T17",
+    "mode":  "native_process_and_probe",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\Test-NativeProcess.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-native-ps51-final1.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+    "started_utc":  "2026-10-11T12:22:43.3611835Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NativeProcess.ps1",
+                              "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preflight.ps1",
+                              "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                          },
+                          {
+                              "relative_path":  "tests/Test-OutputParent.ps1",
+                              "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NativeProcess.ps1",
+                             "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preflight.ps1",
+                             "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                         },
+                         {
+                             "relative_path":  "tests/Test-OutputParent.ps1",
+                             "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Input [literal] O\u0027Brien \u0026 Unicode\\2024-01-02 - Synthetic [literal] O\u0027Brien \u0026 äö雪Ω.mp3",
+                                 "sha256":  "da1047ca3075fed5eeb5d6c2023d78919d952dcacd1ebfd1a9357361db21a427"
+                             },
+                             {
+                                 "relative_path":  "Real multiple audio streams.m4a",
+                                 "sha256":  "d4bae05c73fc78ea659bd681a8af6512f3b5a9576e4527c6b2d4ef59acb440a4"
+                             },
+                             {
+                                 "relative_path":  "Cover [literal] O\u0027Brien \u0026 äö雪Ω.png",
+                                 "sha256":  "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Input [literal] O\u0027Brien \u0026 Unicode\\2024-01-02 - Synthetic [literal] O\u0027Brien \u0026 äö雪Ω.mp3",
+                                "sha256":  "da1047ca3075fed5eeb5d6c2023d78919d952dcacd1ebfd1a9357361db21a427"
+                            },
+                            {
+                                "relative_path":  "Real multiple audio streams.m4a",
+                                "sha256":  "d4bae05c73fc78ea659bd681a8af6512f3b5a9576e4527c6b2d4ef59acb440a4"
+                            },
+                            {
+                                "relative_path":  "Cover [literal] O\u0027Brien \u0026 äö雪Ω.png",
+                                "sha256":  "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "cases":  [
+                  {
+                      "name":  "exact-argv-special-empty-backslash-unicode",
+                      "status":  "pass",
+                      "captured_argv":  {
+                                            "value":  [
+                                                          "capture",
+                                                          "",
+                                                          " ",
+                                                          "two words",
+                                                          "[literal]",
+                                                          "O\u0027Brien",
+                                                          "x \u0026 y",
+                                                          "say \"quoted\"",
+                                                          "äö雪Ω",
+                                                          "C:\\space path\\",
+                                                          "C:\\ends\\\\",
+                                                          "\\\"",
+                                                          "\\\\\"",
+                                                          "a\\\\\\\"b",
+                                                          "$(should not execute)",
+                                                          "; not evaluated",
+                                                          "tab\tbetween",
+                                                          "line\nbreak"
+                                                      ],
+                                            "Count":  18
+                                        },
+                      "duration_ms":  182
+                  },
+                  {
+                      "name":  "ffmpeg-nostdin-argv",
+                      "status":  "pass",
+                      "captured_argv":  {
+                                            "value":  [
+                                                          "-nostdin",
+                                                          "capture",
+                                                          "artist=quote \" and \u0026 äö雪Ω"
+                                                      ],
+                                            "Count":  3
+                                        }
+                  },
+                  {
+                      "name":  "immediate-exit-status-and-both-streams",
+                      "status":  "pass",
+                      "exit_code":  7
+                  },
+                  {
+                      "name":  "ordinary-stderr-is-success-and-caller-exit-unchanged",
+                      "status":  "pass",
+                      "caller_exit":  29,
+                      "stderr":  "ordinary native diagnostic"
+                  },
+                  {
+                      "name":  "bounded-dual-stream-flood-alternating",
+                      "status":  "pass",
+                      "exit_code":  7,
+                      "stdout_retained":  1048576,
+                      "stderr_retained":  65536,
+                      "stdout_total":  2457600,
+                      "stderr_total":  2457600,
+                      "duration_ms":  135
+                  },
+                  {
+                      "name":  "bounded-dual-stream-flood-concurrent",
+                      "status":  "pass",
+                      "exit_code":  7,
+                      "stdout_retained":  1048576,
+                      "stderr_retained":  65536,
+                      "stdout_total":  2457600,
+                      "stderr_total":  2457600,
+                      "duration_ms":  75
+                  },
+                  {
+                      "name":  "custom-zero-and-small-retention-caps",
+                      "status":  "pass",
+                      "stdout_retained":  0,
+                      "stderr_retained":  4
+                  },
+                  {
+                      "name":  "embedded-nul-argument-is-rejected",
+                      "status":  "pass",
+                      "actual_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "process-resource-handles-released",
+                      "status":  "pass",
+                      "calls_after_warmup":  40,
+                      "handle_count_before":  672,
+                      "handle_count_immediate":  672,
+                      "handle_count_after":  672,
+                      "worker_settle_ms":  500,
+                      "allowed_handle_growth":  16,
+                      "child_executable_rename_after_exit":  true
+                  },
+                  {
+                      "name":  "missing-executable",
+                      "status":  "pass",
+                      "expected_status":  "MissingExecutable",
+                      "actual_status":  "MissingExecutable"
+                  },
+                  {
+                      "name":  "directory-executable",
+                      "status":  "pass",
+                      "expected_status":  "InvalidExecutablePath",
+                      "actual_status":  "InvalidExecutablePath"
+                  },
+                  {
+                      "name":  "relative-executable",
+                      "status":  "pass",
+                      "expected_status":  "InvalidExecutablePath",
+                      "actual_status":  "InvalidExecutablePath"
+                  },
+                  {
+                      "name":  "non-executable-file",
+                      "status":  "pass",
+                      "expected_status":  "StartFailed",
+                      "actual_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "probe-nonzero",
+                      "status":  "pass",
+                      "expected_status":  "ProbeFailed",
+                      "actual_status":  "ProbeFailed",
+                      "native_exit":  9
+                  },
+                  {
+                      "name":  "probe-invalid-json",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-empty-output",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-whitespace-output",
+                      "status":  "pass",
+                      "expected_status":  "InvalidJson",
+                      "actual_status":  "InvalidJson",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-truncated",
+                      "status":  "pass",
+                      "expected_status":  "OutputTruncated",
+                      "actual_status":  "OutputTruncated",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-wrong-shape",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-singleton-array",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-bad-tags",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-no-audio",
+                      "status":  "pass",
+                      "expected_status":  "NoAudio",
+                      "actual_status":  "NoAudio",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-multi",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-video",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-bad-index",
+                      "status":  "pass",
+                      "expected_status":  "InvalidProbeData",
+                      "actual_status":  "InvalidProbeData",
+                      "native_exit":  0
+                  },
+                  {
+                      "name":  "probe-title-no-title",
+                      "status":  "pass",
+                      "title_status":  "Absent",
+                      "title":  null,
+                      "stream_index":  4,
+                      "metadata_source":  "0"
+                  },
+                  {
+                      "name":  "probe-title-present-container",
+                      "status":  "pass",
+                      "title_status":  "Present",
+                      "title":  "container title",
+                      "stream_index":  4,
+                      "metadata_source":  "0"
+                  },
+                  {
+                      "name":  "probe-title-present-stream",
+                      "status":  "pass",
+                      "title_status":  "Present",
+                      "title":  "stream title",
+                      "stream_index":  4,
+                      "metadata_source":  "0:s:a:0"
+                  },
+                  {
+                      "name":  "probe-native-startup-failure-distinct",
+                      "status":  "pass",
+                      "missing_status":  "MissingExecutable",
+                      "invalid_status":  "StartFailed"
+                  },
+                  {
+                      "name":  "dependency-unsupported",
+                      "status":  "pass",
+                      "diagnostic":  "Invalid ffmpeg executable \u0027\u003cOWNED_TEMP\u003e\\unsupported\\ffmpeg.exe\u0027: Expected a successful tool version response."
+                  },
+                  {
+                      "name":  "dependency-version-failure",
+                      "status":  "pass",
+                      "diagnostic":  "Invalid ffmpeg executable \u0027\u003cOWNED_TEMP\u003e\\version-failure\\ffmpeg.exe\u0027: Expected a successful tool version response."
+                  },
+                  {
+                      "name":  "dependency-no-lame",
+                      "status":  "pass",
+                      "diagnostic":  "ffmpeg does not provide the required libmp3lame encoder: \u003cOWNED_TEMP\u003e\\no-lame\\ffmpeg.exe"
+                  },
+                  {
+                      "name":  "real-metadata-probe-and-selected-audio",
+                      "status":  "pass",
+                      "title":  "Title \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "artist":  "Artist \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "album":  "Album \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "selected_stream_index_after_video":  1
+                  },
+                  {
+                      "name":  "real-cover-and-caller-state",
+                      "status":  "pass",
+                      "caller_exit":  31,
+                      "cover_decoded":  true
+                  },
+                  {
+                      "name":  "real-entry-quoted-unicode-metadata-full-decode-tool-log",
+                      "status":  "pass",
+                      "native_exit":  0,
+                      "output_sha256":  "0bd315ded30f4dba24f3585d8b71000255ddcf4c8bc0a067ef3ebbcbcb2738f2",
+                      "full_audio_decode":  true,
+                      "tool_paths_versions_logged":  true,
+                      "title":  "Title \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "artist":  "Artist \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω",
+                      "album":  "Album \"quoted\" [brackets] O\u0027Brien \u0026 äö雪Ω"
+                  }
+              ],
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "ffmpeg":  {
+                   "path":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                   "version":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                   "sha256":  "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec"
+               },
+    "ffprobe":  {
+                    "path":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                    "version":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                    "sha256":  "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52"
+                },
+    "child_compiler":  {
+                           "path":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                           "sha256":  "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+                           "generated_binary_committed":  false
+                       },
+    "native_runs":  [
+                        {
+                            "sequence":  1,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  2,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  3,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  4,
+                            "executable":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  5,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  6,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\ffmpeg-capture\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  7,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  8,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  9,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  10,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  11,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  12,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "StartFailed",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  13,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  14,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  15,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  16,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  17,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  18,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  19,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  20,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  21,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  22,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  23,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  24,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  25,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  26,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  27,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  28,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  29,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  30,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  31,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  32,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  33,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  34,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  35,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  36,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  37,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  38,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  39,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  40,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  41,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  42,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  43,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  44,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  45,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  46,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  47,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  48,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  49,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  50,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  51,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  52,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  53,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  54,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  55,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  56,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  57,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  58,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  59,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  60,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\NativeChild.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  61,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\Missing.exe",
+                            "returned":  true,
+                            "status":  "MissingExecutable",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  true,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  62,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\Input [literal] O\u0027Brien \u0026 Unicode",
+                            "returned":  true,
+                            "status":  "InvalidExecutablePath",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  true,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  63,
+                            "executable":  "NativeChild.exe",
+                            "returned":  true,
+                            "status":  "InvalidExecutablePath",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  true,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  64,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\Non-executable.exe",
+                            "returned":  true,
+                            "status":  "StartFailed",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  65,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  9,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  66,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  67,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  68,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  69,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  70,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  71,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  72,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  73,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  74,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  75,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  76,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  77,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  78,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  79,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  80,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\AbsentProbe.exe",
+                            "returned":  true,
+                            "status":  "MissingExecutable",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  true,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  81,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\Non-executable.exe",
+                            "returned":  true,
+                            "status":  "StartFailed",
+                            "exit_code":  null,
+                            "native_exit_observed":  false,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  82,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\unsupported\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  83,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\version-failure\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  13,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  84,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\no-lame\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  85,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\mock-tools\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  86,
+                            "executable":  "\u003cOWNED_TEMP\u003e\\no-lame\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  87,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  88,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  89,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  90,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  91,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  92,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  93,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  94,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  95,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  96,
+                            "executable":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  97,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        },
+                        {
+                            "sequence":  98,
+                            "executable":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-cd487e9eacc24defb25c02af86ff261f\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                            "returned":  true,
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "native_exit_observed":  true,
+                            "pre_start_refused":  false,
+                            "process_released":  true,
+                            "threw":  false
+                        }
+                    ],
+    "descendant_release_proved":  true,
+    "finished_utc":  "2026-10-11T12:22:56.2470891Z"
+}

@@ -1,0 +1,547 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "status": "pass",
+  "tested_code": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+  "integration_commit": "f8f9d71eff213af172eba14a33123845f4fcf139",
+  "base_commit": "dc88a1da04929e9c985469a2833f23407d0b0e15",
+  "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/17",
+  "selected_push_run": 38139564959,
+  "selected_pr_run": 38139568879,
+  "run_attempt": 1,
+  "scope": "Fresh gh run view metadata; source API headSha differs from PR merge integration SHA, which is independently recorded by uploaded reports and fresh PR API/ref. Initial failures remain original failures. Final docs-only checkpoint/new runs will be verified in PR and response without a self-containing hash.",
+  "runs": [
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T12:23:47Z",
+      "databaseId": 38139092208,
+      "event": "push",
+      "headBranch": "codex/v1-t17-windows-ci",
+      "headSha": "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T12:24:29Z",
+          "conclusion": "failure",
+          "databaseId": 114469032878,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T12:23:49Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:23:51Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:23:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:23:57Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:23:51Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:25Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:23:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:26Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:24:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:27Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:24:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:27Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:24:27Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092208/job/114469032878"
+        },
+        {
+          "completedAt": "2026-10-11T12:24:35Z",
+          "conclusion": "failure",
+          "databaseId": 114469033027,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T12:23:49Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:23:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:23:49Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:23:57Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:23:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:31Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:23:57Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:31Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:24:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:33Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:24:31Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:33Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:24:33Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092208/job/114469033027"
+        }
+      ],
+      "startedAt": "2026-10-11T12:23:47Z",
+      "status": "completed",
+      "updatedAt": "2026-10-11T12:24:35Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092208",
+      "workflowName": "Windows CI"
+    },
+    {
+      "conclusion": "failure",
+      "createdAt": "2026-10-11T12:23:47Z",
+      "databaseId": 38139092611,
+      "event": "pull_request",
+      "headBranch": "codex/v1-t17-windows-ci",
+      "headSha": "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T12:24:38Z",
+          "conclusion": "failure",
+          "databaseId": 114469034132,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T12:23:49Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:23:51Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:23:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:23:59Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:23:51Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:33Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:23:59Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:34Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:24:33Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:36Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:24:34Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:36Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:24:36Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092611/job/114469034132"
+        },
+        {
+          "completedAt": "2026-10-11T12:24:31Z",
+          "conclusion": "failure",
+          "databaseId": 114469034232,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T12:23:49Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:23:50Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:23:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:23:58Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:23:50Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:27Z",
+              "conclusion": "failure",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:23:58Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:27Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:24:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:29Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:24:27Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:24:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:24:29Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092611/job/114469034232"
+        }
+      ],
+      "startedAt": "2026-10-11T12:23:47Z",
+      "status": "completed",
+      "updatedAt": "2026-10-11T12:24:38Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139092611",
+      "workflowName": "Windows CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-11T12:31:08Z",
+      "databaseId": 38139564959,
+      "event": "push",
+      "headBranch": "codex/v1-t17-windows-ci",
+      "headSha": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T12:32:12Z",
+          "conclusion": "success",
+          "databaseId": 114470427329,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T12:31:10Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:31:12Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:31:11Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:31:19Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:31:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:08Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:31:19Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:09Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:32:08Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:10Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:32:09Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:10Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:32:10Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139564959/job/114470427329"
+        },
+        {
+          "completedAt": "2026-10-11T12:32:30Z",
+          "conclusion": "success",
+          "databaseId": 114470427538,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T12:31:11Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:31:14Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:31:12Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:31:22Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:31:14Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:25Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:31:22Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:26Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:32:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:28Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:32:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:29Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:32:28Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139564959/job/114470427538"
+        }
+      ],
+      "startedAt": "2026-10-11T12:31:08Z",
+      "status": "completed",
+      "updatedAt": "2026-10-11T12:32:31Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139564959",
+      "workflowName": "Windows CI"
+    },
+    {
+      "conclusion": "success",
+      "createdAt": "2026-10-11T12:31:12Z",
+      "databaseId": 38139568879,
+      "event": "pull_request",
+      "headBranch": "codex/v1-t17-windows-ci",
+      "headSha": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+      "jobs": [
+        {
+          "completedAt": "2026-10-11T12:32:20Z",
+          "conclusion": "success",
+          "databaseId": 114470438899,
+          "name": "windows (pwsh, ps7)",
+          "startedAt": "2026-10-11T12:31:14Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:31:16Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:31:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:31:23Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:31:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:16Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:31:23Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:17Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:32:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:19Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:32:17Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:32:19Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:32:19Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139568879/job/114470438899"
+        },
+        {
+          "completedAt": "2026-10-11T12:33:30Z",
+          "conclusion": "success",
+          "databaseId": 114470439074,
+          "name": "windows (powershell, ps51)",
+          "startedAt": "2026-10-11T12:31:14Z",
+          "status": "completed",
+          "steps": [
+            {
+              "completedAt": "2026-10-11T12:31:16Z",
+              "conclusion": "success",
+              "name": "Set up job",
+              "number": 1,
+              "startedAt": "2026-10-11T12:31:15Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:31:44Z",
+              "conclusion": "success",
+              "name": "Check out the integration commit",
+              "number": 2,
+              "startedAt": "2026-10-11T12:31:16Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:33:25Z",
+              "conclusion": "success",
+              "name": "Verify tools and run Windows checks",
+              "number": 3,
+              "startedAt": "2026-10-11T12:31:44Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:33:26Z",
+              "conclusion": "success",
+              "name": "Upload check evidence",
+              "number": 4,
+              "startedAt": "2026-10-11T12:33:25Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:33:28Z",
+              "conclusion": "success",
+              "name": "Post Check out the integration commit",
+              "number": 8,
+              "startedAt": "2026-10-11T12:33:26Z",
+              "status": "completed"
+            },
+            {
+              "completedAt": "2026-10-11T12:33:28Z",
+              "conclusion": "success",
+              "name": "Complete job",
+              "number": 9,
+              "startedAt": "2026-10-11T12:33:28Z",
+              "status": "completed"
+            }
+          ],
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139568879/job/114470439074"
+        }
+      ],
+      "startedAt": "2026-10-11T12:31:12Z",
+      "status": "completed",
+      "updatedAt": "2026-10-11T12:33:30Z",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38139568879",
+      "workflowName": "Windows CI"
+    }
+  ]
+}

@@ -1,94 +1,79 @@
 # Current project status
 
-State: **T16 complete; A41/A42 passed; full local regression matrix passed.**
-Last completed task: T16. Exactly next implementation task: T17 after owner
-integration of T16. Required improvements 1-15; optional O01 deferred.
-Project/release remain incomplete.
+State: **T17 complete; A43/A44 pass; local and real GitHub checks are green.**
+Last completed task: T17. Exactly next task: T18 after owner integration.
+Required improvements 1-15; optional O01 deferred. Project/release remain incomplete.
 
 ## Checkpoint and environment
 
-- Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t16-regression.
+- Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t17-windows-ci.
   Origin fetch/push https://github.com/PikkuJanne/AudioFileForPhone.git.
-- Owner PikkuJanne merged T15 PR #15 at 11:30:53 UTC on 11 October 2026 into
-  main 42d80236521fbcbaf77d511abaca6d55456879c5; final T15 feature
-  8a55492ed7efb0590877eaa8f0160eee83410ce0. Normal fetch and independently
-  advertised refs matched; clean local main was fast-forwarded before branching.
-  T01-T15 are integrated.
-- Reviewed/tested code 3f3c21d2ca65025202ea4a364a157f671031a2a8 was normally
-  pushed and independently matched the fresh advertised feature ref.
-  Evidence/handoff follows in a docs-only checkpoint; final HEAD/live-clean proof
-  belongs in the PR/response, without a self-referential stored containing SHA.
-- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/16.
-  **Feature synchronized; T16 main integration owner-gated.**
-  Live GitHub is public/default main, with zero workflows, tags and releases.
-  No CI pass is claimed; secure Windows CI is T17.
-- Windows 11 Pro 26300.9457; PS5.1.26100.9444/Desktop and bundled PS7.6.5/Core.
-  Existing C:\ffmpeg\bin pair, build
-  2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev.
-  No download or machine settings/policy change.
+- Owner PikkuJanne merged T16 PR #16 at 12:08:33 UTC on 11 October 2026 into
+  main dc88a1da04929e9c985469a2833f23407d0b0e15; final T16 feature
+  d17743b39b6e30b32d567a5f5f1628b59c303959. Normal fetch and independent live
+  refs matched; clean local main was fast-forwarded before branching.
+  T01-T16 are integrated.
+- Reviewed final code 8cb3c07c40bf60bd3fa543f29431496029362d74 was pushed and
+  independently live-ref matched. Initial code 57c3c2f remains historical.
+  Evidence/handoff follows in a docs-only checkpoint; final HEAD/ref and new CI
+  checks belong in the PR/response without a self-referential containing SHA.
+- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/17.
+  **Feature synchronized; T17 main integration owner-gated.**
+- Green code push 38139564959 and PR integration run 38139568879. PR source head
+  8cb3c07 differs from tested merge f8f9d71eff213af172eba14a33123845f4fcf139;
+  fresh PR API/ref and uploaded reports agree, and complete Git trees match.
+- Active Windows 11 Pro 26300.9457; PS5.1.26100.9444/Desktop and bundled
+  PS7.6.5/Core. Actual hosted Windows Server 2025 image win25-vs2026
+  20260925.250.1; PS5.1.26100.33438/Desktop and PS7.6.6/Core.
+  Fixed Gyan FFmpeg/ffprobe 9.0.2 essentials and official analyzer 1.25.0.
+  No global installation, PATH/module-path setting or machine policy change.
 
-## Verified behavior and evidence
+## T17 behavior and evidence
 
-Production PS/BAT files are unchanged. Retain all real FFmpeg integration
-families. Baseline/preflight now refuse existing evidence and use CreateNew;
-cleanup errors remain reportable. Native tests record scalar release evidence
-for direct and nested calls, and refuse recursive deletion on uncertainty.
+One Windows workflow checks all branch pushes and ordinary PR integration commits
+under both shells. It uses full reviewed official action SHAs, only contents: read,
+no secret-bearing trigger/release job/tag trigger, no persisted checkout token
+and bounded current-run JSON uploads. CI-only dependency setup verifies fixed
+publisher archive SHA-256/size before safe extraction, then whole inventories and
+entry-point fingerprints are rechecked before import or tests. See CI_SECURITY.md
+and evidence/T17.md. The exact-commit/exact-assets operator release gate remains.
 
-Thirty-six selected final reports pass: **974 required groups/checks and six
-separate baseline observations** across both shells. Thirty retained reports
-keep their actual base 42d80236 and matching frozen tested bytes; six focused
-cleanup/edges/native finals directly test code 3f3c21d2. All available source,
-synthetic, release/disposal and exact owned cleanup gates pass.
+Selected local final2 and uploaded PR reports pass **95 required groups plus three
+baseline observations per shell**, 380 required groups plus twelve observations
+across four executions. Syntax passes all selected PowerShell sources; every default
+analyzer Error plus ten selected rules reports zero diagnostics. Four suites run
+sequentially: 31 pure contracts, 22 ZIP/download guards, seven required retained
+baseline checks and 35 native groups. Original legacy real-media tests, unchanged
+source/fixture bytes, positive descendant release and exact media/guard cleanup pass.
+Ordinary Music is unused. The complete T16 milestone suites remain retained.
 
-Cleanup runs 181 cases per shell against 16 actual retained TEMP cleanup ASTs
-and two actual exclusive writers: 163 refusal/preservation negatives, 16 valid
-owned deletes and two unique JSON writes/exclusive reopens. Actual junctions and
-file reparse entries, wrong/missing markers, outside/unreserved paths, unknown
-release and unrestored ACL gates are exercised. Only a delete-entry observer is
-inserted; parent finalizer statements are outside this extracted-body coverage.
-False-release negatives apply to ten existing descendant guards, and unrestored
-ACL negatives to three guards. Six legacy bodies have no descendant condition;
-the new aggregate release ledger hardens Test-NativeProcess.ps1 specifically.
+The static audit retains 98 default diagnostics with zero Errors/selected-rule
+diagnostics. Legacy style/console/null-comparison/BOM warnings are outside this
+explicit gate. Production PS/helper/BAT and original retained integration bytes
+remain unchanged. The selected payload binds actual report/source bytes to reviewed
+Git blobs, permitting only strict UTF-8 LF/CRLF conversion and preserving BOM bytes.
 
-Edges runs six real groups and ten independently probed/full-decoded outputs per
-shell. Actual source and encoder working paths of 259 UTF-16 units succeed.
-Combined literal special/Unicode input/output parents preserve recursive mapping.
-An actual source path of 260 also succeeds on this machine/build; this observation
-is not a general Windows long-path guarantee. Future destination working path 260
-fails before prompts, native calls or reservation, with positive audited no-call
-proof. Two actual entry hosts share a parent: one live encoder is held while the
-other finishes; actual duration rejection in the first preserves the sibling's
-outputs, log, manifest and marker byte-for-byte and permits later conversion.
+First hosted push/PR jobs failed at 57c3c2f: runneradmin TEMP made a characterization
+nested working path exactly 260 units, correctly rejected before reservation.
+Only test-private sequential run parents under the exclusive wrapper GUID were
+shortened; actual planner replay now reaches 227. All fresh-parent, source, boundary,
+cleanup and production limits remain intact. Failed JSONs, earlier local finals,
+preliminary harness failures/snapshots and audit records remain separate and unchanged.
 
-Native passes 35 groups and 98 positive scalar release records per shell.
-Quiet sequential resource checks remain 665->665 / 576->576, allowance 16.
-Retained transaction has 61 decoded matrix outputs; metadata 18 decoded outputs;
-progress actually converts 3,605 seconds and fully decodes 3605.047982 seconds.
-Two configured-Music smokes verify/remove only each successful returned synthetic
-root, token, CreateNew test marker, inventory and final manifest. Ordinary Music
-is never enumerated. Exact commands, counts, mappings and fingerprints:
-evidence/T16.md, evidence/T16-tested-payload.json and TEST_STRATEGY.md.
-The payload independently binds 22 files/184 report-source relationships to the
-code checkpoint: four literal matches and eighteen strict UTF-8 CRLF-to-LF only.
-Legacy absent fields remain absent; raw test bases are never relabeled.
+## Preserved limits and next action
 
-Nine preliminary reports remain separate: five failed harness attempts and four
-passing retries. Four exact historical harness snapshots preserve changed bytes;
-four proof/recovery records separately document three exact synthetic TEMP scopes
-removed after independent identity, inventory and stopped-child checks. Original
-failed status/false gates stay unchanged. Cleanup attempt1 omitted original marker
-SHA; recovery honestly records current observation rather than retroactive proof.
-Recovered failures never count as acceptance.
+CI dependency roots remain outside Git for checks. A separate research TEMP folder
+contains only two pinned archives and an ownership marker. Automatic approval review
+rejected cleanup before execution with "blocked by policy"; proof/outcome preserve
+its retained-root/false-cleanup state. No equivalent retries or fabricated success.
+This is separate from passing media/guard fixture cleanup.
 
-## Preserved limitations and next action
+T01 importer and T11 owner-confirmed physical Ctrl+C evidence remain historical.
+Hosted Windows Server checks supplement active Windows 11; no phone/Explorer/NAS/UNC,
+frozen ZIP or publication acceptance is inferred. T16.md/tested-payload retain 974
+regression groups/six observations, source relationships, preliminaries/recoveries
+and their limits. Preserve metadata/cover/chapter scope, T07 possible residue,
+T09 post-guard interval, T11 forced-host and T14 persistence limits. Loudness deferred.
 
-T01's original external importer/bundle matrix and T11's owner-confirmed physical
-Ctrl+C tests remain historical. Current cancellation is automated. No fresh phone,
-Explorer/keypress, NAS/UNC, CI or release acceptance is inferred. T15 chapter probes
-and cover/metadata fixture limits remain; phone navigation/resume are untested.
-T07 possible unknown residue, T09 brief post-guard path interval, T11 forced-host
-limits and T14 last-good snapshot/crash-durability limits remain explicit.
-
-Owner review/integration of draft PR #16 remains pending under AUTHORITY.md.
-Then independently reconcile main and begin exactly T17, secure Windows CI and
-a release gate. Keep production downloads/updates absent and public release gated.
+Owner review/integration of draft PR #17 remains required. Independently reconcile
+main before exactly T18: help, docs, version and support boundaries. No release yet.

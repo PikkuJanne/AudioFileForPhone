@@ -660,8 +660,17 @@
       "required": true,
       "method": "green workflow on reviewed commit",
       "expected": "Windows jobs run syntax, analysis, focused tests and real-FFmpeg integration in powershell and pwsh; dependency availability is verified, not assumed.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T17.md",
+        "evidence/T17-tested-payload.json",
+        "evidence/T17-ci-runs.json",
+        "evidence/T17-ci-ps51-final2.json",
+        "evidence/T17-ci-ps7-final2.json",
+        "evidence/T17-ci-ps51-run38139568879_1.json",
+        "evidence/T17-ci-ps7-run38139568879_1.json",
+        "evidence/T17-hosted-path-audit.json"
+      ]
     },
     {
       "id": "A44",
@@ -670,8 +679,18 @@
       "required": true,
       "method": "workflow audit",
       "expected": "Reviewed full action SHAs, minimal read permissions for tests, pinned verified dependency source/digest and no secret-bearing untrusted PR execution.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T17.md",
+        "CI_SECURITY.md",
+        "evidence/T17-workflow-audit.json",
+        "evidence/T17-workflow-fix-audit.json",
+        "evidence/T17-tested-payload.json",
+        "evidence/T17-unit-ps51-final2.json",
+        "evidence/T17-unit-ps7-final2.json",
+        "evidence/T17-ci-dependencyguards-ps51-final2.json",
+        "evidence/T17-ci-dependencyguards-ps7-final2.json"
+      ]
     },
     {
       "id": "A45",

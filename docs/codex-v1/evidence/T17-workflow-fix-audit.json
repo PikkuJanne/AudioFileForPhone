@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "status": "pass",
+  "reviewed_utc": "2026-10-11T12:31:35.9071518Z",
+  "tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+  "prior_commit": "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+  "sole_changed_source": "tests/Test-BaselineCharacterization.ps1",
+  "changed_source_raw_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+  "changed_source_git_blob": "d4455b32d03b42c65ab6573f51c03afd90c98b2a",
+  "changed_source_blob_proof": "strict UTF8 byte roundtrip and CRLF-to-LF only; independent Git blob SHA-1",
+  "original_audit": "T17-workflow-audit.json",
+  "original_audit_sha256": "a7cf9bda19731319982e97cd2ca032540c6371cdc7928ae99290d8cc3cdb132d",
+  "original_critical_source_files_unchanged": 14,
+  "production_unchanged": true,
+  "hosted_layout_proof": "T17-hosted-path-audit.json",
+  "hosted_layout_proof_sha256": "50bf28960603f4ef1bd5f6af3590ba4c0ce7a0fb8eead81c971df854215d61a6",
+  "cases": [
+    {
+      "shell": "ps51",
+      "failed_report": "T17-baseline-ps51-run38139092611_1.json",
+      "failed_report_sha256": "237bbe1fde31ebc756e86c98d545ecbf596626836d4b0a1f2a1584aa3502066c",
+      "original_status": "fail",
+      "original_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\Run-0879f6da6be9446eb5981ca2ee7a8f5a",
+      "original_planner_refusal": "File path is 260 UTF-16 units; the supported limit is 259: 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\Run-0879f6da6be9446eb5981ca2ee7a8f5a\\AudioForPhone_64kbps_20261011_142410\\Characterization input\\Nested folder\\More audio\\.AudioFileForPhone-00000000000000000000000000000000.partial'. Choose a shallower input folder or shorter OutputParent.",
+      "short_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\R-1",
+      "planned_files": 4,
+      "maximum_working_utf16": 227,
+      "status": "pass"
+    },
+    {
+      "shell": "ps7",
+      "failed_report": "T17-baseline-ps7-run38139092611_1.json",
+      "failed_report_sha256": "1ec39cabf8cc3f587241f362ef334ee8d4b3a4957ec4515accfeb16b14f3fb7b",
+      "original_status": "fail",
+      "original_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\Run-410e1c99ec994c56814d4b6ab7687527",
+      "original_planner_refusal": "File path is 260 UTF-16 units; the supported limit is 259: 'C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\Run-410e1c99ec994c56814d4b6ab7687527\\AudioForPhone_64kbps_20261011_142410\\Characterization input\\Nested folder\\More audio\\.AudioFileForPhone-00000000000000000000000000000000.partial'. Choose a shallower input folder or shorter OutputParent.",
+      "short_parent": "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-61205b1ac9a74c9eb3edae659ae92a22\\O\\R-1",
+      "planned_files": 4,
+      "maximum_working_utf16": 227,
+      "status": "pass"
+    }
+  ],
+  "no_media_or_virtual_path_writes": true,
+  "review_findings": [
+    "Private child names remain under the existing exclusive GUID-owned wrapper; fresh-parent existence refusal is unchanged.",
+    "All wrapper marker/reparse, source/output separation, returned output root containment and cleanup assertions remain unchanged.",
+    "Invoke-Conversion is sequential; the recorded run count supplies its next private ordinal. No production path budget was relaxed."
+  ],
+  "limitations": [
+    "This is pure lexical replay of paths from actual failed hosted reports, not a new conversion or green hosted workflow.",
+    "Original failed reports and original source audit remain unchanged. Targeted baseline and hosted rerun success are evidenced separately.",
+    "No general long-path, phone/manual, release or main-integration claim."
+  ]
+}

@@ -1,0 +1,151 @@
+[CmdletBinding()]
+param([Parameter(Mandatory = $true)][string]$EvidencePath)
+
+Set-StrictMode -Version 2.0
+$ErrorActionPreference = 'Stop'
+$repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
+$setupPath = Join-Path $repositoryRoot '.github\scripts\Initialize-CiDependencies.ps1'
+$lockPath = Join-Path $repositoryRoot '.github\dependencies.json'
+$evidence = [IO.Path]::GetFullPath($EvidencePath)
+$shellLabel = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'ps51' } else { 'ps7' }
+$approvedEvidence = Join-Path $repositoryRoot 'docs\codex-v1\evidence'
+if (-not [IO.Path]::GetDirectoryName($evidence).Equals($approvedEvidence, [StringComparison]::OrdinalIgnoreCase) -or
+    [IO.Path]::GetFileName($evidence) -notmatch ('^T17-ci-dependencyguards-' + $shellLabel + '-(?:attempt[1-9][0-9]*|final[1-9][0-9]*|run[1-9][0-9]*_[1-9][0-9]*)\.json$')) {
+    throw 'Dependency guard evidence must use the approved fresh shell/run JSON path.'
+}
+$tokens = $null; $parseErrors = $null
+$ast = [Management.Automation.Language.Parser]::ParseFile($setupPath, [ref]$tokens, [ref]$parseErrors)
+if ($parseErrors.Count -ne 0) { throw 'Setup source must parse before guard tests.' }
+foreach ($functionName in @('Assert-CiNoReparse', 'Get-CiSha256', 'Get-CiZipPlan', 'Expand-CiVerifiedZip', 'Get-CiDependencyInventory', 'Get-CiInventoryDigest', 'Invoke-CiVerifiedDownload')) {
+    $functionAst = $ast.Find({ param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -eq $functionName }, $true)
+    if ($null -eq $functionAst) { throw "Missing actual setup function: $functionName" }
+    . ([scriptblock]::Create($functionAst.Extent.Text))
+}
+Assert-CiNoReparse -Path $evidence
+$evidenceStream = [IO.File]::Open($evidence, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+$tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\')
+$root = Join-Path $tempParent ('AFP-CiDependencyGuards-' + [guid]::NewGuid().ToString('N'))
+$owner = [guid]::NewGuid().ToString('N')
+$rootCreated = $false
+$marker = Join-Path $root '.owner'
+$cases = New-Object 'Collections.Generic.List[object]'
+$record = [ordered]@{
+    task = 'T17'; schema_version = 1; status = 'fail'; shell = [string]$PSVersionTable.PSVersion; root = $root
+    source_before = @(); source_after = @(); source_unchanged = $false; cleanup_verified = $false
+    no_network_or_native_execution = $true; cases = @(); error = $null
+    started_utc = [DateTime]::UtcNow.ToString('o'); ended_utc = $null
+}
+
+function Assert-Guard {
+    param([bool]$Condition, [string]$Message)
+    if (-not $Condition) { throw $Message }
+}
+
+function New-TestZip {
+    param([string[]]$Names, [int[]]$Attributes = @())
+    $memory = New-Object IO.MemoryStream
+    $archive = New-Object IO.Compression.ZipArchive($memory, [IO.Compression.ZipArchiveMode]::Create, $true)
+    try {
+        for ($index = 0; $index -lt $Names.Count; $index++) {
+            $entry = $archive.CreateEntry($Names[$index])
+            if ($Attributes.Count -gt $index) { $entry.ExternalAttributes = $Attributes[$index] }
+            if (-not $Names[$index].EndsWith('/')) {
+                $stream = $entry.Open()
+                try { $bytes = [Text.Encoding]::UTF8.GetBytes('synthetic'); $stream.Write($bytes, 0, $bytes.Length) } finally { $stream.Dispose() }
+            }
+        }
+    } finally { $archive.Dispose() }
+    $memory.Position = 0
+    return [pscustomobject]@{ stream = $memory; archive = (New-Object IO.Compression.ZipArchive($memory, [IO.Compression.ZipArchiveMode]::Read, $true)) }
+}
+
+try {
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    Add-Type -AssemblyName System.Net.Http
+    $record.source_before = @(foreach ($path in @($setupPath, $lockPath, $PSCommandPath)) { [pscustomobject]@{ path = $path; sha256 = (Get-CiSha256 -Path $path) } })
+    Assert-CiNoReparse -Path $root
+    if (Test-Path -LiteralPath $root) { throw 'Guard root must be fresh.' }
+    [void](New-Item -Path $root -ItemType Directory -ErrorAction Stop)
+    $rootCreated = $true
+    $markerStream = [IO.File]::Open($marker, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try { $markerBytes = [Text.Encoding]::UTF8.GetBytes($owner); $markerStream.Write($markerBytes, 0, $markerBytes.Length) } finally { $markerStream.Dispose() }
+    $badPaths = @('/absolute.txt', '../outside.txt', 'folder/../outside.txt', 'C:/absolute.txt', 'folder\backslash.txt', 'folder//empty.txt', './dot.txt', 'NUL.txt', 'trailing./file.txt', 'space /file.txt', 'wild*.txt', "control$([char]1).txt")
+    foreach ($name in $badPaths) {
+        $zip = New-TestZip -Names @($name)
+        try {
+            $rejected = $false
+            try { [void](Get-CiZipPlan -Archive $zip.archive -Root (Join-Path $root 'not-created')) } catch { $rejected = $true }
+            Assert-Guard $rejected "Unsafe member accepted: $name"
+            Assert-Guard (-not (Test-Path -LiteralPath (Join-Path $root 'not-created'))) 'Planning created an extraction directory.'
+            $cases.Add([pscustomobject]@{ case = 'unsafe member ' + $name; status = 'pass' })
+        } finally { $zip.archive.Dispose(); $zip.stream.Dispose() }
+    }
+    foreach ($sample in @(
+        @{ names = @('same.txt', 'SAME.txt'); attributes = @(); label = 'case collision' },
+        @{ names = @('ancestor', 'ancestor/child.txt'); attributes = @(); label = 'file ancestor' },
+        @{ names = @('link.txt'); attributes = @(1024); label = 'Windows reparse attribute' },
+        @{ names = @('link.txt'); attributes = @(-1610612736); label = 'Unix symlink type' }
+    )) {
+        $zip = New-TestZip -Names $sample.names -Attributes $sample.attributes
+        try {
+            $rejected = $false
+            try { [void](Get-CiZipPlan -Archive $zip.archive -Root (Join-Path $root 'not-created')) } catch { $rejected = $true }
+            Assert-Guard $rejected ("Unsafe ZIP accepted: " + $sample.label)
+            $cases.Add([pscustomobject]@{ case = $sample.label; status = 'pass' })
+        } finally { $zip.archive.Dispose(); $zip.stream.Dispose() }
+    }
+    $zip = New-TestZip -Names @('folder/', 'folder/safe.txt')
+    $archivePath = Join-Path $root 'synthetic.zip'
+    try {
+        $plan = @(Get-CiZipPlan -Archive $zip.archive -Root (Join-Path $root 'valid'))
+        Assert-Guard ($plan.Count -eq 2) 'Valid ZIP planning failed.'
+        [IO.File]::WriteAllBytes($archivePath, $zip.stream.ToArray())
+    } finally { $zip.archive.Dispose(); $zip.stream.Dispose() }
+    $bytes = [Text.Encoding]::UTF8.GetBytes('synthetic')
+    $hasher = [Security.Cryptography.SHA256]::Create()
+    try { $fileHash = [BitConverter]::ToString($hasher.ComputeHash($bytes)).Replace('-', '').ToLowerInvariant() } finally { $hasher.Dispose() }
+    $expected = @([pscustomobject]@{ name = 'folder/safe.txt'; bytes = $bytes.Length; sha256 = $fileHash })
+    $pin = [pscustomobject]@{ archive_file_count = 1; inventory_sha256 = (Get-CiInventoryDigest -Inventory $expected) }
+    $validRoot = Join-Path $root 'valid'
+    $extracted = Expand-CiVerifiedZip -ArchivePath $archivePath -Root $validRoot -Dependency $pin
+    Assert-Guard ($extracted.file_count -eq 1 -and $extracted.inventory_sha256 -eq $pin.inventory_sha256) 'Valid extraction inventory mismatch.'
+    $cases.Add([pscustomobject]@{ case = 'actual safe ZIP extraction and inventory'; status = 'pass' })
+    $rejected = $false
+    try { [void](Expand-CiVerifiedZip -ArchivePath $archivePath -Root $validRoot -Dependency $pin) } catch { $rejected = $true }
+    Assert-Guard ($rejected -and (Get-CiSha256 -Path (Join-Path $validRoot 'folder\safe.txt')) -eq $fileHash) 'Preexisting extraction root changed.'
+    $cases.Add([pscustomobject]@{ case = 'preexisting extraction root preserved'; status = 'pass' })
+    foreach ($badDependency in @(
+        [pscustomobject]@{ archive_url = 'http://github.com/GyanD/codexffmpeg/releases/download/9.0.2/a.zip'; archive_sha256 = ('0' * 64); archive_bytes = 1 },
+        [pscustomobject]@{ archive_url = 'https://example.invalid/a.zip'; archive_sha256 = ('0' * 64); archive_bytes = 1 },
+        [pscustomobject]@{ archive_url = 'https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/a.zip'; archive_sha256 = 'not-a-hash'; archive_bytes = 1 },
+        [pscustomobject]@{ archive_url = 'https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/a.zip'; archive_sha256 = ('0' * 64); archive_bytes = 134217729 }
+    )) {
+        $downloadTarget = Join-Path $root 'not-downloaded.zip'
+        $rejected = $false
+        try { Invoke-CiVerifiedDownload -Dependency $badDependency -Path $downloadTarget } catch { $rejected = $true }
+        Assert-Guard ($rejected -and -not (Test-Path -LiteralPath $downloadTarget)) 'Invalid download pin did not fail before network/file creation.'
+        $cases.Add([pscustomobject]@{ case = 'invalid URL/digest/size before download'; status = 'pass' })
+    }
+    $record.status = 'pass'
+} catch { $record.error = $_.Exception.Message } finally {
+    $record.cases = $cases.ToArray()
+    try {
+        $record.source_after = @(foreach ($path in @($setupPath, $lockPath, $PSCommandPath)) { [pscustomobject]@{ path = $path; sha256 = (Get-CiSha256 -Path $path) } })
+        $record.source_unchanged = (($record.source_before | ConvertTo-Json -Compress) -ceq ($record.source_after | ConvertTo-Json -Compress))
+        Assert-Guard $record.source_unchanged 'Guard source changed during run.'
+        if ($rootCreated) {
+            Assert-Guard ([IO.Path]::GetDirectoryName([IO.Path]::GetFullPath($root)).Equals($tempParent, [StringComparison]::OrdinalIgnoreCase)) 'Guard cleanup root escaped TEMP.'
+            Assert-CiNoReparse -Path $root
+            Assert-Guard ([IO.File]::ReadAllText($marker) -ceq $owner) 'Guard ownership marker changed.'
+            [void](Get-CiDependencyInventory -Root $root)
+            Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction Stop
+            $record.cleanup_verified = -not (Test-Path -LiteralPath $root)
+        }
+        Assert-Guard $record.cleanup_verified 'Guard root cleanup failed.'
+    } catch { $record.status = 'fail'; $record.error = $_.Exception.Message }
+    $record.ended_utc = [DateTime]::UtcNow.ToString('o')
+    $writer = New-Object IO.StreamWriter($evidenceStream, (New-Object Text.UTF8Encoding($false)))
+    try { $writer.Write(($record | ConvertTo-Json -Depth 8)); $writer.Flush() } finally { $writer.Dispose(); $evidenceStream.Dispose() }
+}
+Write-Host ('T17 CI dependency guards: ' + $record.status + ' (' + $cases.Count + ' cases)')
+if ($record.status -ne 'pass') { throw $record.error }
