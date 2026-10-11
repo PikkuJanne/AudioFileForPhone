@@ -125,10 +125,19 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 
 **Batch wrapper (included)**  
 - AudioFileForPhone.bat (drag-and-drop launcher):
-  - Drag a folder onto the .bat to start a run.  
+  - Drag exactly one folder onto the .bat to start a run. Zero or multiple arguments are rejected before launch.  
   - The .bat passes the folder path as -InputFolder to AudioFileForPhone.ps1.  
   - The provided wrapper launches PowerShell in STA mode so the cover picker works reliably.
+  - It reports the child's result and returns the same exit code after the pause. Delayed expansion is disabled to preserve literal exclamation marks in paths.
   - If you want to extend it later (e.g. to pass custom bitrate or other flags), you can edit the wrapper to add parameters.
+
+**Results and exit codes**  
+- `0` / `Completed`: every supported file in the input snapshot converted successfully.
+- `2` / `CompletedWithFailures`: the batch finished with one or more file failures. Independent valid files continue; sources and completed outputs are preserved.
+- `1` / `FailedBeforeConversion` or `Failed`: preflight, no supported files, run setup or a fatal error stopped the run. A log failure is fatal and reports the actual file outcome, including an output already published.
+- The final summary includes total supported files, processed files, converted files, failures, files not processed, scan exclusions, unsupported files, elapsed seconds and actual output/log locations. Scan exclusions count skipped entries, including entire excluded directories; unsupported files are counted only in visited directories. Neither is a conversion failure.
+- Progress display errors produce a warning and conversion continues. Parameter-binding failures and forced process termination may return host-specific nonzero codes. Controlled cancellation is deferred; `130` is reserved for it and understood by the wrapper.
+- When invoking the BAT from an existing command shell, quote paths and account for that caller's expansion rules. The wrapper cannot recover `%NAME%` or `!NAME!` already expanded by the caller, or characters changed by an extra `CALL` expansion pass.
 
 **Technical details**  
 - Tool discovery:

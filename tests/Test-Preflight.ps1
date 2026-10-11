@@ -32,8 +32,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T04|T05|T06|T07|T08|T09)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T04/T05/T06/T07/T08/T09-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T04|T05|T06|T07|T08|T09|T10)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T04/T05/T06/T07/T08/T09/T10-<label>.json directly in docs/codex-v1/evidence.'
 }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -192,7 +192,7 @@ function Invoke-NegativeCase {
         # emptiness below proves that this diagnostic did not create that run.
         Assert-True ($result.text -notmatch 'Optional metadata step|Processing file|\[INFO\] Output root') "$Name must stop before optional metadata prompts and run output."
         if ($RootSpelling) {
-            $rootDiagnostic = @($diagnostic -split '\[FATAL\] Preflight failed: ', 2)
+            $rootDiagnostic = @($diagnostic -split '\[FATAL\] (?:The run stopped: )?Preflight failed: ', 2)
             Assert-True ($rootDiagnostic.Count -eq 2 -and
                 $rootDiagnostic[1].Contains("'" + $RootSpelling + "'")) "$Name must preserve the full quoted root spelling in the rejection diagnostic."
             $entry['root_spelling_preserved'] = $true

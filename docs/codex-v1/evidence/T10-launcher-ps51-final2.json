@@ -1,0 +1,1471 @@
+{
+    "schema_version":  1,
+    "task":  "T10",
+    "mode":  "bat_result_argument_contract",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests\\Test-LauncherResults.ps1 -EvidencePath docs\\codex-v1\\evidence\\T10-launcher-ps51-final2.json",
+    "started_utc":  "2026-10-11T07:07:21.5682841Z",
+    "tested_commit":  "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-LauncherResults.ps1",
+                              "sha256":  "a824dc76a651389499fb4fc7570a17b0ceaf500b33aeca7f365c92bada570854"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-LauncherResults.ps1",
+                             "sha256":  "a824dc76a651389499fb4fc7570a17b0ceaf500b33aeca7f365c92bada570854"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "fixtures_before":  [
+                            {
+                                "relative_path":  "normal\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "normal\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "space location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "space location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "bang! location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "bang! location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "ampersand \u0026 location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "ampersand \u0026 location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "caret ^ location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "caret ^ location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            },
+                            {
+                                "relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.bat",
+                                "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                            },
+                            {
+                                "relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.ps1",
+                                "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                            }
+                        ],
+    "fixtures_after":  [
+                           {
+                               "relative_path":  "normal\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "normal\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "space location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "space location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "bang! location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "bang! location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "ampersand \u0026 location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "ampersand \u0026 location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "caret ^ location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "caret ^ location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           },
+                           {
+                               "relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.bat",
+                               "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                           },
+                           {
+                               "relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.ps1",
+                               "sha256":  "f92816b82335b933ffb0935d9bdbe274a463847572d8e138887fdf7362c938dc"
+                           }
+                       ],
+    "fixtures_unchanged":  true,
+    "copied_bats_byte_identical":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "owned_temp_root_name":  "T10-launcher-8819a7cee941457ebe18c4fee76ed733",
+    "music_resolver_or_media_access":  false,
+    "exercised_shells":  [
+                             "Core 7.6.5",
+                             "Desktop 5.1.26100.9444"
+                         ],
+    "cases":  [
+                  {
+                      "name":  "pwsh-no-argument",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  0,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-empty-only",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-multiple-folders",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-empty-first-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-empty-second-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-empty-second-third-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  3,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-exit-0",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-exit-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  1,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  1,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  1
+                                  },
+                      "stdout":  "Failed. Review the error and any output or log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-exit-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  2,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  2,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  2
+                                  },
+                      "stdout":  "Completed with failures. Review the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-exit-130",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  130,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  130,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  130
+                                  },
+                      "stdout":  "Cancelled. Completed outputs are preserved; review the paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-exit-37",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  37,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  37,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  37
+                                  },
+                      "stdout":  "Failed with exit code 37. Review the error printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-0",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "bang! folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\bang! folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-3",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "ampersand \u0026 folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\ampersand \u0026 folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-4",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "caret ^ folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\caret ^ folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-5",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "apostrophe\u0027s folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\apostrophe\u0027s folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-input-form-6",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "space location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "bang! location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-3",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-4",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "ampersand \u0026 location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-5",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "caret ^ location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-6",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-script-location-form-7",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "pwsh-caller-percent-expansion-characterized",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "pwsh",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "direct-literal-caller-expansion",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "percent CALLER_EXPANDED folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\percent CALLER_EXPANDED folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "7.6.5",
+                                      "shell_edition":  "Core",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-no-argument",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  0,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-empty-only",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-multiple-folders",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-empty-first-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-empty-second-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  2,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-empty-second-third-extra",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  3,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  null,
+                      "bat_exit":  1,
+                      "capture":  null,
+                      "stdout":  "Drag exactly one folder onto this .bat to convert audio for phone.\r\nZero, empty or multiple folder arguments are not accepted.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-exit-0",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-exit-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  1,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  1,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  1
+                                  },
+                      "stdout":  "Failed. Review the error and any output or log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-exit-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  2,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  2,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  2
+                                  },
+                      "stdout":  "Completed with failures. Review the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-exit-130",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  130,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  130,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  130
+                                  },
+                      "stdout":  "Cancelled. Completed outputs are preserved; review the paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-exit-37",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  37,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  37,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  37
+                                  },
+                      "stdout":  "Failed with exit code 37. Review the error printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-0",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "folder with spaces",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\folder with spaces",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "bang! folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\bang! folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-3",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "ampersand \u0026 folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\ampersand \u0026 folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-4",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "caret ^ folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\caret ^ folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-5",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "apostrophe\u0027s folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\apostrophe\u0027s folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-input-form-6",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-1",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "space location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-2",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "bang! location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-3",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-4",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "ampersand \u0026 location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-5",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "caret ^ location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-6",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "apostrophe\u0027s location\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-script-location-form-7",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "environment",
+                      "bat_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% \u0026 ^ apostrophe\u0027s space",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  },
+                  {
+                      "name":  "ps51-fallback-caller-percent-expansion-characterized",
+                      "acceptance_case":  "A28",
+                      "status":  "pass",
+                      "shell_branch":  "ps51-fallback",
+                      "supplied_argument_count":  1,
+                      "requested_child_exit":  0,
+                      "transport":  "direct-literal-caller-expansion",
+                      "bat_relative_path":  "normal\\AudioFileForPhone.bat",
+                      "expected_input_relative_path":  "percent CALLER_EXPANDED folder",
+                      "bat_exit":  0,
+                      "capture":  {
+                                      "input_folder":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T10-launcher-8819a7cee941457ebe18c4fee76ed733\\percent CALLER_EXPANDED folder",
+                                      "interactive":  true,
+                                      "extra_arguments":  [
+
+                                                          ],
+                                      "shell_version":  "5.1.26100.9444",
+                                      "shell_edition":  "Desktop",
+                                      "apartment_state":  "STA",
+                                      "requested_exit":  0
+                                  },
+                      "stdout":  "Completed. Check the output and log paths printed above.\r\nPress any key to continue . . .",
+                      "stderr":  "",
+                      "pause_seen":  true,
+                      "process_disposed":  true
+                  }
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "caller_path_transport":  "cmd /d /v:off /s /c; percent-bearing arguments and launcher paths use one environment substitution, with a defined percent sentinel proving no recursive BAT expansion",
+    "limitations":  [
+                        "Cannot recover a path expanded or altered by a previous caller. Direct literal percent-variable input is explicitly characterized as caller expansion.",
+                        "No Explorer drag/drop, interactive keypress, phone, audio, forced termination or controlled application cancellation acceptance is claimed. Code 130 is an inert child exit forwarding test."
+                    ],
+    "status":  "pass",
+    "error":  null,
+    "finished_utc":  "2026-10-11T07:08:04.6091736Z"
+}

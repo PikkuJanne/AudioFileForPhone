@@ -1030,6 +1030,7 @@ function Get-AudioInputSnapshot {
     $pending = New-Object 'System.Collections.Generic.Stack[string]'
     $found = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
     $skipped = New-Object 'System.Collections.Generic.List[object]'
+    $unsupported = 0
     $pending.Push($inputPath)
     while ($pending.Count -gt 0) {
         $directory = $pending.Pop()
@@ -1057,6 +1058,7 @@ function Get-AudioInputSnapshot {
                 elseif (@('.mp3', '.m4a', '.ogg') -contains $item.Extension.ToLowerInvariant()) {
                     $found.Add($path, $item)
                 }
+                else { $unsupported++ }
             }
         }
         catch { throw "Audio scan failed at '$directory'; no conversion started: $($_.Exception.Message)" }
@@ -1065,7 +1067,7 @@ function Get-AudioInputSnapshot {
     $paths = [string[]]@($found.Keys)
     [Array]::Sort($paths, (Get-AudioSourceComparer))
     $files = @($paths | ForEach-Object { $found[$_] })
-    return [pscustomobject]@{ Files = $files; Skipped = $skipped.ToArray() }
+    return [pscustomobject]@{ Files = $files; Skipped = $skipped.ToArray(); UnsupportedCount = $unsupported }
 }
 
 function Get-AudioFiles {

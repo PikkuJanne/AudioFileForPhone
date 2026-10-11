@@ -1,0 +1,180 @@
+{
+    "schema_version":  1,
+    "task":  "T10",
+    "mode":  "script_child_result_contract_real_and_faults",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-ScriptResults.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T10-script-ps51-attempt1.json",
+    "started_utc":  "2026-10-11T07:05:39.0789533Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-ScriptResults.ps1",
+                              "sha256":  "2d08f063a40c4b27e03e9e4d1f9b601da9bdb00af6c90c83f6a392a5b6bce9dd"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-ScriptResults.ps1",
+                             "sha256":  "2d08f063a40c4b27e03e9e4d1f9b601da9bdb00af6c90c83f6a392a5b6bce9dd"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "S\\good.mp3",
+                                 "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                             },
+                             {
+                                 "relative_path":  "S\\good.m4a",
+                                 "sha256":  "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+                             },
+                             {
+                                 "relative_path":  "S\\good.ogg",
+                                 "sha256":  "0c221352594e5a41cb314e37308d92431f3f36a709981926459c7b1c4094f61e"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                 "sha256":  "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+                             },
+                             {
+                                 "relative_path":  "I-success\\2024-01-01 First.mp3",
+                                 "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                             },
+                             {
+                                 "relative_path":  "I-success\\2024-01-02 Second.m4a",
+                                 "sha256":  "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+                             },
+                             {
+                                 "relative_path":  "I-success\\Sub\\2024-01-03 Third.ogg",
+                                 "sha256":  "0c221352594e5a41cb314e37308d92431f3f36a709981926459c7b1c4094f61e"
+                             },
+                             {
+                                 "relative_path":  "I-success\\notes.txt",
+                                 "sha256":  "77e1d3693dfea5e052823e0e82df74a1153e31b368038a62be6e8491936d84d2"
+                             },
+                             {
+                                 "relative_path":  "I-success\\Prior\\.AudioFileForPhone-output.json",
+                                 "sha256":  "3e34e103d9e5e326d1c7015cd3cd91eeb0bcf2aa172a07b3f5fbe6b2101145f3"
+                             },
+                             {
+                                 "relative_path":  "I-success\\Prior\\excluded.mp3",
+                                 "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                             },
+                             {
+                                 "relative_path":  "success-driver.ps1",
+                                 "sha256":  "a278fca0e1ea3ee7f51a5f9a5c7d9079e71c81ac3b6d4d833e71dc492640d5e7"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "S\\good.mp3",
+                                "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                            },
+                            {
+                                "relative_path":  "S\\good.m4a",
+                                "sha256":  "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+                            },
+                            {
+                                "relative_path":  "S\\good.ogg",
+                                "sha256":  "0c221352594e5a41cb314e37308d92431f3f36a709981926459c7b1c4094f61e"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                "sha256":  "bf1b9616b0954cd16b0ef2bf927396f4df5842567293e251fe8db8ae28c97d95"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "83e357d48367287877a71be3a4fc6f302ad028f7dc11f1873d2d2ba8c70d2a00"
+                            },
+                            {
+                                "relative_path":  "I-success\\2024-01-01 First.mp3",
+                                "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                            },
+                            {
+                                "relative_path":  "I-success\\2024-01-02 Second.m4a",
+                                "sha256":  "0a22d2d70eb4e5cddf2e0c7ec00feaf8c551499400f1e4538be902a1d5d433dd"
+                            },
+                            {
+                                "relative_path":  "I-success\\Sub\\2024-01-03 Third.ogg",
+                                "sha256":  "0c221352594e5a41cb314e37308d92431f3f36a709981926459c7b1c4094f61e"
+                            },
+                            {
+                                "relative_path":  "I-success\\notes.txt",
+                                "sha256":  "77e1d3693dfea5e052823e0e82df74a1153e31b368038a62be6e8491936d84d2"
+                            },
+                            {
+                                "relative_path":  "I-success\\Prior\\.AudioFileForPhone-output.json",
+                                "sha256":  "3e34e103d9e5e326d1c7015cd3cd91eeb0bcf2aa172a07b3f5fbe6b2101145f3"
+                            },
+                            {
+                                "relative_path":  "I-success\\Prior\\excluded.mp3",
+                                "sha256":  "58388129de9e20e2df3a54e505020ac3ff709202bf2455758be8041225423ac9"
+                            },
+                            {
+                                "relative_path":  "success-driver.ps1",
+                                "sha256":  "a278fca0e1ea3ee7f51a5f9a5c7d9079e71c81ac3b6d4d833e71dc492640d5e7"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  true,
+    "owned_temp_root_name":  "T10R-43fd406d",
+    "temp_parent_selection":  "shorter user/machine TEMP, read-only lookup",
+    "cases":  [
+                  {
+                      "name":  "real all-success with accurate unsupported/excluded counts and recursive mapping",
+                      "acceptance_case":  "A27",
+                      "status":  "fail"
+                  }
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Expected child exit 0, got 1. \n\u003cOWNED_TEMP\u003e\\A-plain\\AudioFileForPhone.ps1 : Cannot bind argument to parameter \u0027InputFolder\u0027 because i\r\nt is an empty string.\r\nAt \u003cOWNED_TEMP\u003e\\success-driver.ps1:6 char:78\r\n+ ... \\T10R-43fd406d\\A-plain\\AudioFileForPhone.ps1\u0027 -InputFolder \u0027\u0027 -Output ...\r\n+                                                                ~~\r\n    + CategoryInfo          : InvalidData: (:) [AudioFileForPhone.ps1], ParentContainsErrorRecordException\r\n    + FullyQualifiedErrorId : ParameterArgumentValidationErrorEmptyStringNotAllowed,AudioFileForPhone.ps1\r\n \r\n",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-ScriptResults.ps1: line 49\r\nat Assert-Outcome, C:\\projects\\AudioFileForPhone-main\\tests\\Test-ScriptResults.ps1: line 151\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-ScriptResults.ps1: line 224\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-ScriptResults.ps1: line 53\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-ScriptResults.ps1: line 221",
+    "finished_utc":  "2026-10-11T07:05:42.5920476Z"
+}
