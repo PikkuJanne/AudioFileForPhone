@@ -85,8 +85,7 @@ Convert using an explicit cover and batch tags, with no interactive prompts.
 Preview names without writes, tool calls or prompts. Interactive is ignored.
 
 .EXAMPLE
-. .\AudioFileForPhone.Helpers.ps1
-Get-AudioAppVersion
+. .\AudioFileForPhone.Helpers.ps1; Get-AudioAppVersion
 
 Read the authoritative app version used by the banner and local run manifest.
 Dot-sourcing this functions-only helper does not start a conversion.

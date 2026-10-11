@@ -68,8 +68,7 @@ Preview the mapping without writes, tool calls or prompts, even with
 Read the authoritative runtime version without starting conversion:
 
 ```powershell
-. .\AudioFileForPhone.Helpers.ps1
-Get-AudioAppVersion
+. .\AudioFileForPhone.Helpers.ps1; Get-AudioAppVersion
 ```
 
 Full parameter help and runnable examples are available locally:
