@@ -219,12 +219,14 @@ no automatic uploads.
 - Metadata:
   - Uses ffprobe to inspect the input file’s format and audio-stream tags.
   - A failed probe, invalid JSON or missing audio stream is logged as a file failure. A successful probe without a title uses the filename fallback.
-  - If a title tag already exists, it is preserved.  
-  - If no title tag is found, the script sets the title to the sanitized base name.
-  - Artist/Album tags can be set for all outputs when provided.
-  - A cover image can be embedded into every output MP3 when CoverPath is provided.
+  - MP3/M4A use container tags; OGG uses the first audio stream's comments. That source supplies title, artist, album, track, disc and other tags supported by the MP3 muxer. Conflicting tags on other streams do not take precedence.
+  - A nonempty source title is preserved, including whitespace. A missing or empty title falls back to the complete sanitized output base name, including its date and collision suffix.
+  - Nonblank `-Artist` and `-Album` values override copied tags for every output. Quoted and Unicode values are passed literally; omitted or whitespace-only values retain the source tags.
+  - Source artwork is dropped by default. A supplied JPEG/PNG replaces it with exactly one attached JPEG cover in every output MP3.
+  - Explicit covers get one image inspection and one dedicated FFmpeg decode check before conversion, with handles disposed. Each encoder then reads the cover for embedding. Missing, corrupt, wrong-format or undecodable covers stop preflight. Dimensions are preserved; no automatic resizing is applied.
   - Warns (and logs) when the selected cover is unusually large (size and/or dimensions).
-  - Metadata is copied from the container for MP3/M4A and from the first audio stream for OGG, preserving Vorbis/Opus comments such as title, artist, and album. ID3v2.3 is enforced for compatibility.
+  - ID3v2.3 is enforced for compatibility. Metadata copying does not guarantee that every source-specific tag has an MP3 equivalent.
+  - Chapters retain FFmpeg's default mapping from the first input containing chapters. See [FFmpeg chapter mapping](https://ffmpeg.org/ffmpeg.html#Advanced-options). Copied chapter fields do not establish phone chapter navigation or resume behavior; check both in your chosen player. Conversion does not split chapters into separate files. M4B scanning remains unsupported.
 - Native execution:
   - Uses a shared process helper on PowerShell 5.1 and 7, with literal executable paths and Windows argument quoting.
   - Drains stdout and stderr concurrently and retains bounded diagnostic text. FFmpeg uses `-nostdin`; ordinary stderr output does not itself indicate failure.
