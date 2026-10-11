@@ -498,3 +498,56 @@ command/edition/child-ledger fields; resolver/music has actual entry/helper
 before-after fields but only one recorded harness digest. Missing fields are not
 invented. Preserve two preliminary metadata passes; no T15 failed attempt/recovery.
 Prior physical T11 evidence stays historical. No new manual/phone/CI/release claim.
+
+## T16 complete local regression and cleanup matrix
+
+Exact current commands, counts and limits are in evidence/T16.md and the
+independently checked T16-tested-payload.json. Preserve all retained real FFmpeg
+families. Thirty-six selected final reports pass on PS5.1/PS7: 974 required
+groups/checks plus six baseline observations. Thirty retained reports keep their
+actual base 42d80236 and matching frozen bytes; six focused cleanup/edges/native
+finals directly test code 3f3c21d2. Production PS/BAT files are unchanged.
+
+Test-CleanupSafety.ps1 uses fresh T16-cleanup-ps51/ps7-attempt/finalN.json labels.
+It parses actual cleanup IfStatements and inert dependencies from sixteen retained
+harnesses. Only a delete-entry observer is inserted, with exact removal-roundtrip
+proof; parent finalizers are not executed. Each shell passes 181 cases: sixteen
+positive exact owned deletes, two actual unique JSON writer/reopen checks and
+163 refusal/preservation negatives. Actual root/ancestor/child junctions and file
+reparse entries, missing/wrong markers, unreserved/outside/prefix identity,
+ten existing descendant gates and three ACL gates preserve whole case inventory.
+Six legacy bodies have no descendant condition; do not imply they gained a new
+ledger. Baseline/preflight actual writers now refuse overwrite via CreateNew.
+Native's scalar direct/nested ledger requires explicit ProcessReleased and blocks
+its recursive fixture cleanup while any return remains uncertain.
+
+Test-RegressionEdges.ps1 uses fresh T16-edges-ps51/ps7-attempt/finalN.json labels.
+Each shell passes six groups and ten independently probed/full-decoded outputs.
+Actual source and encoder working paths of 259 UTF-16 units succeed; literal
+combined special and Unicode input/output parents preserve recursive mapping.
+Actual source 260 success is a machine/build observation, not general Windows
+support. Future destination working 260 rejects before prompts/native/reservation;
+only that explicit branch accepts positive zero-call proof from installed wrapper
+accounting, exact fatal/result output and joined/disposed host. Other unknown
+descendants remain false. The disposable helper-copy fault changes only one real
+encoder to encode 30 of 40 seconds. A retained live encoder handle and newly owned
+events prove overlap while the sibling actual run finishes; actual duration
+validation rejects A, later conversion continues and B's complete committed tree
+remains byte-identical. No timing sleeps or fake native success.
+
+Quiet sequential Native passes 35 groups/98 scalar release records per shell;
+handles 665->665 and 576->576 retain allowance 16. Retained progress converts an
+actual 3,605-second source and fully decodes 3605.047982 seconds. Default Music
+smokes inspect/remove only each successful returned owned synthetic root/token,
+CreateNew test marker, exact inventory and final manifest; ordinary Music unused.
+
+The payload binds 22 files/184 actual report-source relationships to code 3f3c21d2:
+four literal and eighteen strict UTF-8 CRLF-to-LF only. Four legacy single harness
+digests have no invented after field. Preserve 45 raw runs (40 pass/5 fail), including
+nine nonselected preliminaries (4 pass/5 fail), four exact historical harness
+snapshots and four separate proof/recovery records. Original failed status/false
+gates remain untouched. Three exact synthetic failed scopes were independently
+audited and removed; recovery is not acceptance. Cleanup attempt1 lacked recorded
+marker SHA and its snapshot was reconstructed to the original digest; both limits
+are explicit. Edge snapshots were saved before their repairs. T01 external bundle
+and T11 physical checks stay historical; no fresh manual/phone/CI/release claim.
