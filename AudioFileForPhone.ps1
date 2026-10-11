@@ -242,6 +242,9 @@ $runWatch = [Diagnostics.Stopwatch]::StartNew()
 $run = $null; $logPath = $null; $outputBase = $null
 $total = 0; $ok = 0; $failed = 0; $scanExcluded = 0; $unsupported = 0
 $batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $null
+$cancelCleanupNote = $null
+$consoleCaptureNotice = ''
+$script:AudioCancellationContext = $null
 
 function Write-AudioProgress {
     param([string]$Status, [int]$PercentComplete, [switch]$Completed)
@@ -406,6 +409,13 @@ if ($Interactive) {
     Write-Host ""
 }
 
+# Console input belongs to this invocation only after interactive prompts finish.
+# Native calls share this context; redirected/unsupported hosts retain their own
+# interruption behavior and cannot promise a controlled exit code.
+$script:AudioCancellationContext = New-AudioCancellationContext -CaptureConsole
+$consoleCaptureNotice = $script:AudioCancellationContext.ConsoleCaptureError
+Assert-AudioNotCancelled
+
 # --- Output root + log setup ---
 try {
     $run = New-AudioRunReservation -OutputParent $outputParentPath -InputFolder $InputFolder -Files $files -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength -Timestamp $timestamp -StartCounter $provisionalRun.Counter
@@ -442,6 +452,13 @@ function Write-Log {
     $line = "[{0}] {1}" -f $Level, $Message
     Write-Host $line
     Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
+}
+
+if ($script:AudioCancellationContext.ConsoleCaptureEnabled) {
+    Write-Log 'Press Ctrl+C during conversion to cancel this run safely.'
+}
+else {
+    Write-Log ("Controlled console Ctrl+C is unavailable in this host: {0}" -f $script:AudioCancellationContext.ConsoleCaptureError) 'WARN'
 }
 
 foreach ($skip in $snapshot.Skipped) { Write-Log ("{0}: {1}" -f $skip.Reason, $skip.Path) 'WARN' }
@@ -486,6 +503,7 @@ $failed = 0
 $total  = $files.Count
 
 foreach ($plan in $plans) {
+    Assert-AudioNotCancelled
     $currentOutcome = $null
     $file = $plan.SourceFile
     $index++
@@ -513,6 +531,7 @@ foreach ($plan in $plans) {
     try {
     Write-Host "       [DEBUG] Running ffprobe..."
     $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
+    if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
     if ($media.Status -ne 'Success') {
         throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
@@ -585,7 +604,15 @@ foreach ($plan in $plans) {
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
+        if ($fileStatus -eq 'Cancelled') {
+            if ($transaction.CleanupError) {
+                $cancelCleanupNote = "Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
+                Write-Warning $cancelCleanupNote -ErrorAction Continue
+            }
+            Assert-AudioNotCancelled
+        }
     }
+    catch [OperationCanceledException] { throw }
     catch { $fileReason = $_.Exception.Message }
 
     # Commit the actual file outcome before optional diagnostics. A published
@@ -615,12 +642,31 @@ foreach ($plan in $plans) {
     Write-Host ""
 }
 
+Assert-AudioNotCancelled
 $currentOutcome = $null
 $runStatus = if ($failed -gt 0) { 'CompletedWithFailures' } else { 'Completed' }
 Write-Log ("Summary: total={0}, converted={1}, failed={2}" -f $total, $ok, $failed)
 Write-Log ("Log file saved to: {0}" -f $logPath)
 Write-Log (Get-AudioResultSummary) 'RESULT'
 $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
+}
+catch [OperationCanceledException] {
+    $runStatus = 'Cancelled'; $batchExitCode = 130
+    Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
+    $cancelProcessNote = $null
+    if ($null -ne $script:AudioCancellationContext -and $script:AudioCancellationContext.ActiveProcessId -ne 0) {
+        $cancelProcessNote = "Owned native child exit was not established (process id $($script:AudioCancellationContext.ActiveProcessId)); no further termination or cleanup was attempted."
+        Write-Warning $cancelProcessNote -ErrorAction Continue
+    }
+    if ($logPath) {
+        try {
+            Write-Log 'Controlled cancellation requested; completed outputs preserved.' 'CANCELLED'
+            if ($cancelCleanupNote) { Write-Log $cancelCleanupNote 'WARN' }
+            if ($cancelProcessNote) { Write-Log $cancelProcessNote 'WARN' }
+            Write-Log (Get-AudioResultSummary) 'RESULT'
+        }
+        catch { Write-Warning "Cancellation diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+    }
 }
 catch {
     $rootCause = $_.Exception.Message
@@ -637,6 +683,18 @@ catch {
     }
 }
 finally {
+    if ($null -ne $script:AudioCancellationContext) {
+        $script:AudioCancellationContext.Dispose()
+        $consoleError = $script:AudioCancellationContext.ConsoleCaptureError
+        if ($consoleError -and $consoleError -cne $consoleCaptureNotice) {
+            Write-Warning $consoleError -ErrorAction Continue
+            if ($logPath) {
+                try { Write-Log $consoleError 'WARN' }
+                catch { Write-Warning "Console diagnostic could not be logged: $($_.Exception.Message)" -ErrorAction Continue }
+            }
+        }
+        $script:AudioCancellationContext = $null
+    }
     Write-AudioProgress -Status 'Finished' -PercentComplete 100 -Completed
     $runWatch.Stop()
     Write-Host "============================================================"

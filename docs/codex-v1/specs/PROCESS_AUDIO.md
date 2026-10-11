@@ -33,6 +33,17 @@ elapsed time without depending on or changing PowerShell LASTEXITCODE. No timeou
 is imposed on ordinary conversion. Process handles and redirected streams belong
 to that invocation and are disposed when it returns.
 
+T11 shares an internal per-invocation cancellation context through native/probe/
+validation/transaction helpers. Native wait and pipe-drain completion poll every
+100 ms without imposing an ordinary runtime limit. Cancellation returns Cancelled
+only after the owned capture's bounded disposal attempt, retaining explicit
+ProcessReleased proof. Cleanup is suspended before every native call until that
+proof returns. No process-name search or stored-PID termination is used by runtime.
+After optional prompts, a supported console treats Ctrl+C as input and polls its
+own input scope; disposal restores the prior mode. Request and no-overwrite final
+publication share a per-context lock so a requested cancellation cannot publish.
+These mechanisms cannot intercept forced host termination or every host interrupt.
+
 The focused probe selects `a:0`, validates exactly one audio stream and its
 absolute stream index, and inspects only stream/container tags plus stream
 identity and selected audio duration (container fallback only when stream duration

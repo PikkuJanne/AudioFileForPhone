@@ -302,3 +302,39 @@ release is unproved. Production entry copies retain bytes; fault substitutions a
 only appended helpers or driver cmdlet overrides inside exact owned TEMP. No
 Music enumeration, new native-resource measurement or configured-Music smoke is
 claimed for T10. T11 closes M2 and must run the full applicable suite at that gate.
+
+## T11 cancellation and M2 matrix
+
+Exact commands and results are in evidence/T11.md. Test-Cancellation.ps1 runs nine
+automated groups on each shell: pre-request/native/source cancellation, actual
+real-native cancel with unrelated FFmpeg alive, cancellation at successful
+validation probe/decode return boundaries and before publication, unknown-release retention, isolated console Ctrl+C
+input records, actual forced host kill and next-run/orphan preservation. Controller
+ownership uses retained parent/creation/PID/image proof before termination. Separate
+descendant release guards block fixture cleanup on uncertainty. Helpers are only
+append-instrumented inside owned TEMP; entry/next-run bytes retain originals.
+
+Physical -Manual mode is separate: real local ConsoleHost/Windows Terminal, wait
+READY after first publication and during second encoder, then actual Ctrl+C. Verify
+130/Cancelled/counts, preserved first output hash/full decode, unrelated FFmpeg,
+console mode, sources and exact cleanup. Owner-confirmed PS5.1 manual1 passes;
+Store PS7 manual1 failed test-helper compilation before cases, with cleanup/hashes
+pass and physical=false. Explicit Framework compiler references repair only the
+harness. Store PS7 manual2 passes at actual test base 18fd7a6 with owner
+confirmation. It proves all physical gates with current runtime/repaired harness
+bytes. The original PS5.1 manual1 harness variant stays preserved. Synthetic
+console input never establishes physical acceptance. Fresh manualN labels are
+CreateNew; existing reports are never overwritten.
+
+Full applicable M2 suites pass both shells in 26 selected reports: script and
+cancellation final2, other matrix families final1, plus Store PS7 cancellation
+final3 and final4 after compiler repair (repository and Store-directory starts). Quiet sequential native handles 673->673 and
+580->580 retain allowance16. Configured-Music smoke uses only exact successful
+returned root/token/CreateNew test marker/nonreparse synthetic inventory; ordinary
+Music never enumerated. Manifest proves 16 runtime/test files against code with
+only CRLF/LF normalization. Preserve 33 raw automated reports/four failures; DLL
+recovery limitation and old optimistic cleanup expectation are in evidence/T11.md.
+A29/A30 and T11 pass; required physical Ctrl+C and full M2 local acceptance are
+complete. This acceptance closure changes only docs/evidence; no runtime/test
+change justifies repeating the existing passing suites. Main integration remains
+owner-gated.

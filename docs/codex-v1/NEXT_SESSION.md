@@ -1,99 +1,81 @@
-# Next session — T11
+# Next session — T12 after owner integration
 
-Suggested owner request: **T11 next please**.
-One coherent task: handle cancellation and crash leftovers safely.
+T11 is complete and M2 local acceptance passes: A29/A30, 26 selected automated
+reports and owner-confirmed physical Ctrl+C on both shell families. Main
+integration remains owner-gated. Exactly next implementation task: T12, no-write
+preview, after the T11 owner merge is independently verified.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS guidance. Inspect git status/branch, all fetch/push URLs, pushurl/overrides
-and live GitHub. Normal fetch and independently advertised main/feature refs are
-required; stored done flags or tracking refs alone are not sync proof.
+AGENTS guidance. Inspect dirty/untracked state, branch, all fetch/push URLs,
+overrides, normal fetch, independently advertised refs and live GitHub. Preserve
+all work; no reset/clean/force. Main contains owner-merged T10 PR #10 at 07:18:35 UTC
+on 11 October 2026: 82f0fd3c9da765f169c2724edc73f779cdce6525.
 
-T10 code checkpoint: 478c0a0c6a2935eb7271c9d28771a63455307599, branch
-codex/v1-t10-results, draft PR:
-https://github.com/PikkuJanne/AudioFileForPhone/pull/10.
-Actual test base: d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6, owner-performed T09
-PR #9 merge at 07:01:10 UTC on 11 October 2026. Evidence/handoff follows code;
-inspect live HEAD and STATUS.md for the final feature synchronization outcome.
+T11 branch codex/v1-t11-cancellation; reviewed runtime
+71eee22c87b57cea60079419f063149703c7df5a; draft PR:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/11.
+Compiler-only harness followup ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5 and
+evidence checkpoint 18fd7a6cef6208db415c7fea17de07d7d4b50628 pushed/live-matched.
+PS7 manual2 actually tested 18fd7a6. Physical acceptance closure is docs-only.
+Inspect fresh HEAD/live state for the final checkpoint. Main remains owner-gated.
 
-T10 main integration remains owner-gated. Preserve all local/remote work; no reset,
-clean or force. If PR #10 is owner-merged, fast-forward clean local main to its
-independently advertised merge and start T11 there. Do not infer merge authority
-or start before the T10 dependency is verified complete.
+## Completed manual acceptance
 
-Read only tasks/T11.md and relevant specs/SAFETY.md and specs/PROCESS_AUDIO.md next,
-then current native runner, transaction cleanup and result handling plus affected
-tests. Use evidence/T10.md for exact current commands/equivalence and limitations.
+Read evidence/T11.md and the manifest for provenance. Owner-confirmed PS5.1
+manual1 passes at runtime code 71eee22 with the original harness fingerprint.
+Store PS7 7.6.6 manual2 passes at actual test base 18fd7a6 with the repaired
+harness; the owner confirmed "Done PASSED". Both prove 130/Cancelled/counts,
+preserved first output hash/full decode, removed current partial, cancellation
+log, unrelated FFmpeg, console mode, unchanged sources and exact owned cleanup.
+A29/A30 and T11 are complete; M2 local acceptance passed.
 
-## Behavior to preserve
+Store manual1 compiler failure and the separate no-fixture path-guard rejection
+remain documented; no failed evidence is relabelled. Original and repaired
+harness bytes/test bases stay distinct. Automated key records remain automated.
+No repeat physical test or full-suite rerun is needed for this docs-only closure.
 
-T10 explicit outcomes: Completed=0, CompletedWithFailures=2,
-FailedBeforeConversion/Failed=1. Independent files continue after ordinary probe
-or conversion failure. Processed=converted+failed; not_processed=total-processed.
-Commit each actual outcome before diagnostic writes; published outputs remain
-successful even if fatal log error stops the run with 1. Preserve the original
-file cause plus secondary diagnostic reason. Progress display faults warn/continue.
+## Preserve behavior/evidence
 
-Final summary includes counts, scan exclusions/unsupported files, elapsed seconds,
-available output/log paths and explicit exit. Exclusions count entries/subtrees;
-unsupported counts cover visited ordinary files only. Reserved setup can leave
-marker-only residue before returning a run object; primary error names exact scope
-and token while availability fallback does not falsely imply nothing exists.
-Structured persistent manifests and detailed native progress remain later tasks.
+Scoped Ctrl+C after prompts restores console mode. Native wait/drain polls 100 ms
+without ordinary runtime limit; keep 5000 ms exit/1000 ms drain teardown. Only held
+owned child is stopped. Suspend cleanup before native/validation until explicit
+exit proof. Keep T09 CreateNew sibling .partial/no-delete guard/file identity,
+bitrate/stream shape, finite positive source/header/full-decode durations within
+fixed 0.35 s, and no-overwrite publication. Winning request prevents publication;
+completed output stays success. Exact residue/unproved-child reasons remain
+visible. No runtime process-name/PID kill or next-run reclamation.
 
-BAT validates exactly one nonempty argument, keeps STA and DisableDelayedExpansion,
-captures child code immediately outside launch blocks, reports truthful outcomes
-and returns it after pause. 130 is reserved and inert forwarding verified only;
-T11 must establish real controlled cancellation. Prior caller expansion or extra
-CALL passes cannot be undone; literal percent tests use single caller substitution.
+Cancelled=130; interrupted file remains not_processed. Other outcomes 0/2/1;
+processed=converted+failed. Count once after publication/boundary before diagnostics.
+Preserve actual outcomes on fatal log failure, warning-only progress and truthful
+setup residue. BAT one-folder/STA/DisableDelayedExpansion/child code/pause unchanged.
 
-T09 encodes only to CreateNew-owned .AudioFileForPhone-<32 hex>.partial siblings,
-with explicit MP3 muxer and retained no-delete guard/volume-file-index identity.
-Require finite positive source duration, nonempty MP3 with selected audio bitrate
-and exact optional JPEG, and source/header/full-decode duration within fixed 0.35 s.
-Only validated output reaches no-overwrite File.Move. Cleanup requires exact current
-identity and proved native exit; changed/reparse paths or unknown exit retain
-visible incomplete residue with a reason. No global process termination/reclamation.
-Keep original source/completed outputs and default DSP/rate/sample/layout behavior.
+26 selected final automated reports pass: focused nine groups each on PS5.1,
+bundled PS7 and Store PS7; full M2 baseline/seven companions, transaction 27/61+3
+rejects, script 13/14 decoded outputs, launcher 52 each/both shells, preflight 35/
+eight helpers, discovery 8, naming 11, reservation 13, resolver 10, narrow configured
+Music smoke and native 35. Quiet native handles 673->673/580->580 allowance 16.
+Manifest proves 16 current files with only CRLF/LF normalization and historical
+manual harness provenance. Selected source/fixture/child/ACL/link/TEMP/Music gates
+pass. Ordinary Music is never enumerated; default smoke needs exact returned
+root/token/CreateNew test marker/nonreparse synthetic inventory before cleanup.
 
-T08 exclusive root/CreateNew marker/log, exact token/scope, occupied-only suffix
-retries and complete replanning remain. T07 literal boundaries, reparse exclusions,
-NFC/scalar/ordinal/date/name/path budgets remain. Do not broaden T11 into a handle-
-based filesystem rewrite or alter the fixed native teardown/resource thresholds
-without actual evidence. Controlled cancellation and forced host close are distinct.
+36 raw reports retained: 33 automated (29 pass/four fail) and three physical-mode
+reports (two passes/one compiler failure). Attempt1 DLL cleanup failed; later exact sole-file
+recovery removed its known root, but marker/token were gone and original cleanup
+flag stays false. Prior assertion/CS0165 failures remain. T07 unknown possible TEMP
+residue and T09 path interval remain. Actual forced host kill left an owned live
+encoder on both shells; this is not physical window-close/power-loss evidence.
+No phone/full-disk/long-file/source-replacement/CI/release claim. Zero GitHub
+workflows/checks.
 
-## Tests and handoff
+## Start T12 after dependencies pass
 
-Active Windows 11 machine; PS5.1/PS7; installed C:\ffmpeg\bin; short synthetic owned
-TEMP. Final focused reports: T10-script-ps51-final3.json and
-T10-script-ps7-final2.json (13 groups/14 independent decoded publications each),
-T10-launcher-ps51-final2.json and T10-launcher-ps7-final2.json (52 cmd cases each,
-both real shell branches). Eight final regression reports across baseline,
-transaction/preflight/discovery are in evidence/T10.md; all 12 final payloads pass.
-
-T10-tested-payload.json verifies 11 runtime/test fingerprints against code with
-only proven CRLF/LF normalization. 32 raw reports remain (26 pass/six fail), all
-source preservation/exact cleanup verified. Earlier passing harnesses/runtime
-preceded timeout guards, mapping refinements or reserved-setup reporting; only
-manifest-selected reports establish final equivalence. Use fresh T11 labels and
-extend only affected label guards. Preserve every failure and exact thresholds.
-
-T11 closes M2; run its focused checks and the full applicable suite at that boundary.
-Native resource checks run quietly/sequentially with existing allowance 16. T09's
-prior handle results were 668->668 and 576->576; T10 claims no new measurement.
-Ordinary tests never touch ordinary Music. Configured-Music smoke must keep its
-single successful returned root/token/CreateNew test marker/nonreparse exact
-synthetic-inventory cleanup proof; no parent traversal/settings/ACL changes.
-
-No real cancellation, forced-close, phone/manual, source-replacement, full-disk,
-long-file/performance, CI or release acceptance is claimed. T09's brief post-guard
-path interval remains. T07 possible unknown TEMP residue remains unverified; no
-exact leaf is known and no broad cleanup/recovery is authorized.
-
-Create evidence/T11.md; update A29–A30, TASKS, STATUS, this handoff and decisions
-with actual tested payload/results. Review diff/source safety, commit intended
-paths, push feature and independently compare HEAD to a fresh advertised ref.
-Report main integration, CI and approval separately. Leave exactly T12 next.
-No tag/release/main merge authority is granted here; final publication/public
-download/main closure remain gated by the release runbook.
+If PR #11 is owner-merged, fast-forward clean local main to its independently
+advertised merge and create a relevant T12 codex branch. Read only tasks/T12.md and
+relevant preview/discovery/planning specs next. Share planning, guarantee no
+writes/prompts/encoder, mark root provisional and writability unverified. No main
+merge/tag/release authority is inferred; exact ZIP/draft/public-download/final-main
+gates remain later work.

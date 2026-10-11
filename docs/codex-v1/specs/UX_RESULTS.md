@@ -16,8 +16,8 @@ The wrapper remains STA-capable and preserves its child exit result across pause
 
 Selected bounded codes: 0=all supported snapshot files succeeded; 1=preflight/no
 supported files/fatal problem; 2=completed batch with one or more per-file failures.
-130 is reserved for controlled user cancellation in T11 and handled by the BAT;
-T10 does not claim cancellation capture. PowerShell parameter-binding failures and
+130 / Cancelled is selected for controlled user cancellation in T11 and handled
+by the BAT. PowerShell parameter-binding failures and
 forced OS termination may have host-defined codes; the minimum invariant is no
 failure being presented as success. Report forced-close limitations honestly.
 
@@ -33,6 +33,17 @@ probe/transaction boundary finishes; success requires T09 publication. Commit
 the count before diagnostics so a log failure cannot reclassify or double-count
 the file. A diagnostic write failure stops the run with code 1 and console root
 cause/mapping. Progress display failure warns and continues.
+
+T11 captures Ctrl+C as console input only after interactive prompts, restoring
+the previous console mode in finally. Poll native wait/drain and file/publication
+boundaries; cancellation and publication have a per-context ordering point.
+The interrupted file is not a completed success/failure and remains not_processed.
+Persist CANCELLED and RESULT records when the log is writable; diagnostic failure
+does not mask cancellation code 130. Preserve exact retained-path/unproved-child
+and console polling/restoration diagnostics. Redirected input/unsupported hosts,
+preflight/prompts, Ctrl+Break and forced host/window shutdown have host-specific
+limits; forced termination may bypass finally and leave a running child/partial.
+No next-run reclamation is authorized by a parsed marker or recognizable filename.
 
 Scan exclusions count skipped entries, including excluded directory subtrees;
 unsupported files count only ordinary files in visited directories. These counts

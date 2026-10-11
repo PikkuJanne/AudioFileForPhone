@@ -1,107 +1,101 @@
 # Current project status
 
-State: **T10 complete — script and BAT result contracts verified.**
-Last completed task: T10. Exact next task: T11.
-Required improvements: 1–15. Optional O01: deferred.
+State: **T11 complete; M2 local acceptance passed; main integration pending.**
+Last completed task: T11. Exactly next implementation task: T12 after owner
+integration of T11. Required improvements 1-15; optional O01 deferred.
+Project/release are incomplete.
 
-## Next suggested step
+## Checkpoint and environment
 
-**Start T11: handle cancellation and crash leftovers safely.** Use NEXT_SESSION.md.
-A27–A28 pass on PS5.1/PS7. Controlled cancellation remains a separate gate.
-
-## Environment and checkpoints
-
-- Windows 11 Pro 26300.9457; PS5.1 5.1.26100.9444; PS7 7.6.5.
-- Checkout C:\projects\AudioFileForPhone-main, branch codex/v1-t10-results.
+- Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t11-cancellation.
   Origin fetch/push https://github.com/PikkuJanne/AudioFileForPhone.git.
-- Owner merged T09 PR #9 at 07:01:10 UTC on 11 October 2026 into main
-  d31f2deb76f2d0aa88e13fb5ca2e123c4f3d1cc6. Normal fetch and independently
-  advertised refs matched it and T09 feature 84270ac61ab39614a4346cf5ff429e49b77ca779.
-  Clean local main was fast-forwarded before creating the T10 branch.
-- Actual test base is that merge. Reviewed equivalent code checkpoint:
-  478c0a0c6a2935eb7271c9d28771a63455307599. Raw reports retain base/working hashes;
-  evidence/T10-tested-payload.json independently proves 11 runtime/test fingerprints
-  against committed blobs with only documented Git CRLF/LF normalization.
-  Code push matches the fresh advertised feature ref. Evidence/handoff follows
-  in a docs-only checkpoint; final HEAD/live comparison is in the PR/response.
-- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/10.
-  **T10 feature synchronized; main integration pending owner review.**
-  T01–T09 are integrated. GitHub lists zero Actions workflows; no CI pass claimed.
-- Existing C:\ffmpeg\bin pair, build
-  2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev.
-  Tool hashes/versions are retained in reports; no download or settings change.
+- Owner merged T10 PR #10 at 07:18:35 UTC on 11 October 2026 into main
+  82f0fd3c9da765f169c2724edc73f779cdce6525. Normal fetch and independently
+  advertised refs matched. Clean local main was fast-forwarded before this branch.
+- Original full-matrix test base 82f0fd3; reviewed runtime checkpoint
+  71eee22c87b57cea60079419f063149703c7df5a pushed/live-matched.
+  Compiler-only test followup ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5 and
+  evidence checkpoint 18fd7a6cef6208db415c7fea17de07d7d4b50628 also
+  pushed/live-matched. PS7 physical manual2 actually tested 18fd7a6.
+  Manual acceptance closure follows in a docs-only checkpoint; final HEAD/live
+  comparison belongs in the PR/response.
+- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/11.
+  **Feature synchronized; A29/A30 pass; main integration pending.**
+  T01-T10 integrated. GitHub lists zero workflows/checks; no CI pass claimed.
+- Windows 11 Pro 26300.9457; PS5.1 5.1.26100.9444; bundled PS7 7.6.5 plus
+  Store PS7 7.6.6 focused and physical checks. Existing C:\ffmpeg\bin pair,
+  build 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev. No download
+  or persistent settings change.
 
 ## Verified behavior and evidence
 
-Script exits 0 / Completed when every supported snapshot file succeeds; 2 /
-CompletedWithFailures for a completed batch with file failures; 1 /
-FailedBeforeConversion or Failed for preflight, empty scan, setup or fatal errors.
-Native probe/transaction exceptions fail one file and independent valid files
-continue. Results count once after the file boundary, with success only after
-T09 publication. Log failure is fatal and preserves the original file outcome,
-completed output and count. Progress display failure warns and continues.
+Scoped supported-console Ctrl+C begins after prompts, restores prior console mode
+and propagates Cancelled/130 through native/probe/validation/transaction boundaries.
+Native wait/drain polls every 100 ms without ordinary runtime timeout. Existing
+5000 ms exit/1000 ms drain teardown remains. Stop only the held owned child; suspend
+cleanup before native/validation until explicit returned exit proof. Matching
+identity/nonreparse exact current partial cleanup follows released handles. Request
+and publication have one ordering point; completed outputs retain success.
+Cancelled current file stays not_processed; processed=converted+failed. Persist
+counts/cancellation where logging permits without masking130. Preserve exact
+retained-path/unproved-child/late console diagnostics and T10 normal 0/2/1 outcomes.
 
-Final summary reports total, processed, converted, failed, not_processed,
-scan_excluded, unsupported, elapsed seconds and available output/log locations.
-Exclusions count skipped entries/subtrees; unsupported files count only visited
-ordinary files. A setup exception can retain a marker-only scope before the
-reservation object returns; error reports exact scope/token and final fallback
-messages do not imply that nothing was created. Production does not remove it.
+A29 and A30 pass. Owner-confirmed physical Ctrl+C reports pass on PS5.1 manual1
+and Store PS7 7.6.6 manual2. Both prove 130/Cancelled, total=3/processed=1/
+converted=1/failed=0/not_processed=2, preserved first output hash/full decode,
+removed current partial, cancellation log, restored console mode, unrelated
+FFmpeg survival, unchanged source/fixture hashes and exact owned cleanup.
+PS7 manual2 tested 18fd7a6 with current runtime/repaired harness fingerprints;
+PS5.1 manual1 retains the original 71eee22 harness provenance. Automated input
+records remain distinct. Full M2 local acceptance is complete.
 
-BAT rejects zero/empty/multiple arguments, including empty second with a third;
-keeps STA and DisableDelayedExpansion; captures child errorlevel immediately;
-prints code-specific results and returns the same code after pause. Codes
-0/1/2/130/37 and legal quoted input/script locations containing spaces, !, %, &,
-^ and apostrophes are verified. Literal percent tests use one caller environment
-substitution; direct caller percent expansion is separately observed. Prior caller
-expansion, extra CALL passes and Explorer/manual forms are not guaranteed.
+26 selected final automated reports pass: full matrix on both shells plus focused
+nine-group runs on PS5.1, bundled PS7 and Store PS7 from repository/Store directories.
+Groups cover native cancellation/unrelated FFmpeg, cancellation at successful
+validation return boundaries and before publication, unknown-exit residue,
+preserved first output/mode restoration and actual forced host kill. Its encoder
+remained alive on both shells; the harness stopped/waited an independently
+parent/creation/image-verified retained handle before cleanup. Next unmodified run
+preserves every prior-run/orphan hash.
 
-Twelve final reports pass on the final payload: script 13 groups and 14 independent
-64 kbps probe/full-decode publications per shell; launcher 52 cmd cases per driver,
-each exercising both actual shell branches; retained FFmpeg/seven companions;
-transaction 27 groups/61 decoded conversions/three requested-rate rejects;
-preflight 35/eight helpers; discovery eight. Source/fixture/sentinel hashes,
-byte-identical copies, child disposal, applicable ACL/link restoration and exact
-owned TEMP cleanup pass. Independent final runtime/harness review has no blocker.
-No ordinary Music access or new native-resource/configured-Music claim.
-
-T09 transactional invariants remain: CreateNew-owned nonfinal sibling partial;
-retained no-delete handle/file identity through native use; nonempty expected MP3
-streams/selected audio bitrate; finite positive source/probe/full-decode durations
-within fixed 0.35 seconds; no-overwrite publication and exact current-owned cleanup.
-Unknown child exit or changed identity retains visible incomplete residue and
-reason. Source and completed output preservation, default 64 kbps CBR, supported
-MP3/M4A/OGG, script/BAT, Music destination, layout, dates and metadata remain.
+Full M2 matrix: retained FFmpeg/seven companions; transaction 27 groups/61 decoded
+conversions/3 rate rejects; script 13 groups/14 decoded publications; launcher 52
+cases each/both shells; preflight 35/eight helpers; discovery 8; naming 11;
+reservation 13; resolver 10; exact returned-root/token/inventory configured-Music
+smokes; native 35. Quiet sequential native handles 673->673 (PS5.1), 580->580
+(PS7), allowance16. Selected source/synthetic/child/ACL/link/TEMP/Music gates pass.
+Ordinary Music never enumerated. Manifest proves 16 current files: 3 literal/
+13 only CRLF-to-LF, with distinct historical manual harness provenance.
 
 ## Preserved limitations
 
-32 T10 raw reports are retained: 26 pass/six fail; only the 12 manifest reports
-establish final equivalence. Empty-argument caller transport, automatic $Input,
-filename separator, multiline mapping matcher and exact preflight-prefix harness
-failures are documented in evidence/T10.md. All attempts verify source preservation
-and exact cleanup. Earlier passing payloads preceded reviewed timeout safeguards
-or the reserved-setup reporting refinement; final selected reruns prove the final
-bytes. No failed evidence, limits or assertions were waived.
+36 raw reports retained: 33 automated (29 pass/four fail) and three physical-mode
+reports (two actual passes/one compiler setup failure with no physical claim).
+Old optimistic native-throw cleanup assertion, inherited-console/DLL-lock and
+CS0165 failures remain. Attempt1 original cleanup=false survives later exact sole
+DLL hash/nonreparse/child-exit recovery; marker/token had already gone, so later
+root absence does not retroactively prove the original cleanup contract.
+Store manual1 failed compiler setup; explicit Framework references repair only
+the harness. A separate immediate evidence-path guard rejection created no
+fixtures/report; its cause remains unobserved. Store-directory automatic final4
+and subsequent direct physical manual2 pass. No failed evidence was relabelled.
 
-T09's 27 attempts/18 final reports and privacy-only attempt4 redaction remain.
-T07's initial naming cleanup still leaves unknown possible synthetic machine-TEMP
-residue: exact leaf unrecorded, parent enumeration denied. No broad recovery/ACL
-change was attempted; later exact cleanup does not prove that old attempt cleaned.
+T07 possible unknown synthetic machine-TEMP residue remains unverified; no known
+leaf or broad recovery authority. T09 brief post-guard path interval remains.
+Forced host/window close/power loss, redirected/unsupported hosts, preflight/
+prompts and Ctrl+Break can bypass controlled cleanup/code130 and leave a running
+child/recognizable partial. Next runs never auto-reclaim leftovers. No phone/
+manual-window-close, source-replacement, full-disk, long-file/performance, CI or
+release acceptance is claimed.
 
-No cancellation, forced-close, phone/manual, source-replacement, full-disk,
-long-file/performance, CI or release acceptance is claimed. Host parameter-binding
-and forced termination can use host-specific nonzero codes. Code 130 is reserved
-and only inert BAT forwarding is tested. T09's brief post-guard path-check interval
-and T06 file-symlink privilege limitation remain. Full M2 suites are the T11 boundary
-work; project/release remain incomplete and the release runbook still applies.
+## Commands and next action
 
-## Commands and authority
+Exact commands/labels/results: evidence/T11.md and TEST_STRATEGY.md. T11 has no
+remaining local acceptance action. Owner review/integration of draft PR #11 is
+pending under AUTHORITY.md. Exactly next implementation task is T12 after that
+integration is independently verified.
 
-Exact commands/report labels/results: evidence/T10.md and TEST_STRATEGY.md.
-Use fresh labels and short synthetic fixtures in exclusively owned TEMP; preserve
-all historical reports. Tests ran on this active Windows machine under both shells.
-
-Owner review remains required for main. Feature push is not merge, visibility,
-protection/history or release authority. No tag/release was created. Publication
-requires exact reviewed commit/assets under AUTHORITY.md and RELEASE_RUNBOOK.md,
-independent public download and final main closure.
+Normal feature edits/tests/commits/push/draft PR remain authorized. Main requires
+owner review. No tag/release created. Exact reviewed commit/assets, validated ZIP,
+verified draft/public download and final main closure remain gated by AUTHORITY.md
+and RELEASE_RUNBOOK.md.

@@ -1,0 +1,1468 @@
+{
+  "schema_version": 1,
+  "task": "T11",
+  "mode": "real_ffmpeg_baseline",
+  "started_utc": "2026-10-11T07:25:31.8008569Z",
+  "shell": "7.6.5",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "82f0fd3c9da765f169c2724edc73f779cdce6525",
+  "harness_sha256": "7701d57f043d8c9b316e8e9dc949ba9d7a191332802f8c585b08fb2db5ab550f",
+  "isolation": {
+    "replacements_per_copy": 0,
+    "copied_bytes_unchanged": true,
+    "output_parameter": "OutputParent",
+    "verified": true,
+    "companion_syntax_valid": true
+  },
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "7366041b30a764d024edc7614449895110ecbe5cdb7e4f2447cef6abb23212af"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "7701d57f043d8c9b316e8e9dc949ba9d7a191332802f8c585b08fb2db5ab550f"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "7366041b30a764d024edc7614449895110ecbe5cdb7e4f2447cef6abb23212af"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "7701d57f043d8c9b316e8e9dc949ba9d7a191332802f8c585b08fb2db5ab550f"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+    }
+  ],
+  "source_unchanged": true,
+  "legacy": {
+    "status": "pass",
+    "exit_code": 0
+  },
+  "characterization": {
+    "schema_version": 1,
+    "suite": "Isolated replay of T02 baseline characterization",
+    "started_utc": "2026-10-11T07:25:46.19793Z",
+    "completed_utc": "2026-10-11T07:26:08.0058319Z",
+    "status": "pass",
+    "fatal_error": null,
+    "environment": {
+      "os": "Microsoft Windows NT 10.0.26300.0",
+      "shell": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "powershell_version": "7.6.5",
+      "powershell_edition": "Core",
+      "execution_policy": [
+        {
+          "scope": "MachinePolicy",
+          "policy": "Undefined"
+        },
+        {
+          "scope": "UserPolicy",
+          "policy": "Undefined"
+        },
+        {
+          "scope": "Process",
+          "policy": "RemoteSigned"
+        },
+        {
+          "scope": "CurrentUser",
+          "policy": "Undefined"
+        },
+        {
+          "scope": "LocalMachine",
+          "policy": "RemoteSigned"
+        }
+      ],
+      "ffmpeg_version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "ffprobe_version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "application_sha256": "7366041B30A764D024EDC7614449895110ECBE5CDB7E4F2447CEF6ABB23212AF",
+      "runtime_helpers_sha256": "8B86C509F2C702132EF3ACF7253BDE11171A0716482BB439C344FE7B6672C34B",
+      "characterization_sha256": "8AAFBAA635D7E4F1A7B74F59A4EB2036E68852613D657637C2D5ECC6A25F8BC2"
+    },
+    "isolation": {
+      "application_copy": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+      "runtime_helpers_copy": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.Helpers.ps1",
+      "fixture_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures",
+      "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O",
+      "cleanup_owner": "Invoke-IsolatedBaseline.ps1"
+    },
+    "fixtures": [
+      {
+        "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+        "codec": "mp3",
+        "rate": 48000,
+        "channels": 1,
+        "title": "Original Ää 東京",
+        "output": "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+        "source_artwork": true,
+        "source_duration_seconds": 0.75
+      },
+      {
+        "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+        "codec": "aac",
+        "rate": 44100,
+        "channels": 2,
+        "title": "2023-02-03 - Stereo fallback",
+        "output": "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+        "source_artwork": false,
+        "source_duration_seconds": 0.75
+      },
+      {
+        "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG",
+        "codec": "vorbis",
+        "rate": 48000,
+        "channels": 1,
+        "title": "Original Vorbis title",
+        "output": "2024-04-06 - Vorbis.mp3",
+        "source_artwork": false,
+        "source_duration_seconds": 0.752667
+      },
+      {
+        "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+        "codec": "opus",
+        "rate": 48000,
+        "channels": 2,
+        "title": "Original Ää 東京",
+        "output": "Nested folder\\More audio\\2024-04-07 - Opus.mp3",
+        "source_artwork": false,
+        "source_duration_seconds": 0.7565
+      }
+    ],
+    "checks": [
+      {
+        "id": "fixture_codecs_and_source_artwork",
+        "acceptance": "A04",
+        "required": true,
+        "status": "pass",
+        "expected": "Four intended source codecs, channel/rate matrix and MP3 attached picture exist.",
+        "observed": [
+          {
+            "codec": "mp3",
+            "sample_rate": "48000",
+            "channels": 1,
+            "video_streams": 1,
+            "duration_seconds": 0.75
+          },
+          {
+            "codec": "aac",
+            "sample_rate": "44100",
+            "channels": 2,
+            "video_streams": 0,
+            "duration_seconds": 0.75
+          },
+          {
+            "codec": "vorbis",
+            "sample_rate": "48000",
+            "channels": 1,
+            "video_streams": 0,
+            "duration_seconds": 0.752667
+          },
+          {
+            "codec": "opus",
+            "sample_rate": "48000",
+            "channels": 2,
+            "video_streams": 0,
+            "duration_seconds": 0.7565
+          }
+        ]
+      },
+      {
+        "id": "supported_and_unsupported_extensions",
+        "acceptance": "A04",
+        "required": true,
+        "status": "pass",
+        "expected": "Uppercase MP3/M4A/OGG and Ogg Opus produce four MP3s; WAV/FLAC/OPUS/M4B are ignored.",
+        "observed": {
+          "name": "Default format, naming and exclusion matrix",
+          "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input",
+          "options": [],
+          "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674",
+          "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548",
+          "exit_code": 0,
+          "summary": {
+            "total": 4,
+            "converted": 4,
+            "failed": 0
+          },
+          "output_files": [
+            "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+            "2024-04-06 - Vorbis.mp3",
+            "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+            "Nested folder\\More audio\\2024-04-07 - Opus.mp3"
+          ]
+        }
+      },
+      {
+        "id": "default_audio_cbr_id3_and_full_decode",
+        "acceptance": "A05",
+        "required": true,
+        "status": "pass",
+        "expected": "64 kbps MP3, raw ID3v2.3, constant frame bitrate, unchanged channels/rate, no video, complete decode.",
+        "observed": [
+          {
+            "output": "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+            "bit_rate": "64000",
+            "sample_rate": "48000",
+            "channels": 1,
+            "frames": {
+              "id3_major": 3,
+              "frames": 34,
+              "unique_frame_kbps": [
+                64
+              ]
+            },
+            "decode_exit": 0,
+            "video_streams": 0,
+            "source_duration_seconds": 0.75,
+            "output_duration_seconds": 0.75,
+            "duration_delta_seconds": 0.0,
+            "duration_tolerance_acceptance": "not asserted in T02; measured baseline for T09"
+          },
+          {
+            "output": "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+            "bit_rate": "64000",
+            "sample_rate": "44100",
+            "channels": 2,
+            "frames": {
+              "id3_major": 3,
+              "frames": 31,
+              "unique_frame_kbps": [
+                64
+              ]
+            },
+            "decode_exit": 0,
+            "video_streams": 0,
+            "source_duration_seconds": 0.75,
+            "output_duration_seconds": 0.75,
+            "duration_delta_seconds": 0.0,
+            "duration_tolerance_acceptance": "not asserted in T02; measured baseline for T09"
+          },
+          {
+            "output": "2024-04-06 - Vorbis.mp3",
+            "bit_rate": "64000",
+            "sample_rate": "48000",
+            "channels": 1,
+            "frames": {
+              "id3_major": 3,
+              "frames": 34,
+              "unique_frame_kbps": [
+                64
+              ]
+            },
+            "decode_exit": 0,
+            "video_streams": 0,
+            "source_duration_seconds": 0.752667,
+            "output_duration_seconds": 0.747333,
+            "duration_delta_seconds": -0.00533399999999995,
+            "duration_tolerance_acceptance": "not asserted in T02; measured baseline for T09"
+          },
+          {
+            "output": "Nested folder\\More audio\\2024-04-07 - Opus.mp3",
+            "bit_rate": "64000",
+            "sample_rate": "48000",
+            "channels": 2,
+            "frames": {
+              "id3_major": 3,
+              "frames": 34,
+              "unique_frame_kbps": [
+                64
+              ]
+            },
+            "decode_exit": 0,
+            "video_streams": 0,
+            "source_duration_seconds": 0.7565,
+            "output_duration_seconds": 0.75,
+            "duration_delta_seconds": -0.00649999999999995,
+            "duration_tolerance_acceptance": "not asserted in T02; measured baseline for T09"
+          }
+        ]
+      },
+      {
+        "id": "default_naming_recursion_and_metadata",
+        "acceptance": "A05",
+        "required": true,
+        "status": "pass",
+        "expected": "Default base maximum 60, date-first naming, LastWriteTime fallback, nested folders and Unicode/plain titles/tags.",
+        "observed": [
+          {
+            "output": "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+            "basename_length": 60,
+            "tags": {
+              "title": "Original Ää 東京",
+              "artist": "Artist é Ω",
+              "album": "Album ö 東",
+              "comment": "Synthetic source comment",
+              "track": "4",
+              "encoder": "Lavf63.8.100"
+            }
+          },
+          {
+            "output": "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+            "basename_length": 28,
+            "tags": {
+              "track": "4",
+              "comment": "Synthetic source comment",
+              "title": "2023-02-03 - Stereo fallback",
+              "artist": "Source artist",
+              "album": "Source album",
+              "encoder": "Lavf63.8.100"
+            }
+          },
+          {
+            "output": "2024-04-06 - Vorbis.mp3",
+            "basename_length": 19,
+            "tags": {
+              "track": "4",
+              "title": "Original Vorbis title",
+              "artist": "Source artist",
+              "album": "Source album",
+              "comment": "Synthetic source comment",
+              "encoder": "Lavf63.8.100"
+            }
+          },
+          {
+            "output": "Nested folder\\More audio\\2024-04-07 - Opus.mp3",
+            "basename_length": 17,
+            "tags": {
+              "track": "4",
+              "title": "Original Ää 東京",
+              "artist": "Artist é Ω",
+              "album": "Album ö 東",
+              "comment": "Synthetic source comment",
+              "encoder": "Lavf63.8.100"
+            }
+          }
+        ]
+      },
+      {
+        "id": "Plain metadata overrides",
+        "acceptance": "A05",
+        "required": true,
+        "status": "pass",
+        "expected": "Artist/Album overrides win while source Ogg title/comment/track survive.",
+        "observed": {
+          "album": "Override album",
+          "title": "Original Vorbis title",
+          "track": "4",
+          "artist": "Override artist",
+          "comment": "Synthetic source comment",
+          "encoder": "Lavf63.8.100"
+        }
+      },
+      {
+        "id": "Unicode metadata overrides",
+        "acceptance": "A05",
+        "required": true,
+        "status": "pass",
+        "expected": "Artist/Album overrides win while source Ogg title/comment/track survive.",
+        "observed": {
+          "album": "Album ö 東",
+          "title": "Original Vorbis title",
+          "track": "4",
+          "artist": "Artist é Ω",
+          "comment": "Synthetic source comment",
+          "encoder": "Lavf63.8.100"
+        }
+      },
+      {
+        "id": "impossible_leading_date",
+        "acceptance": "future A18",
+        "required": false,
+        "status": "observed_behavior",
+        "expected": "Record baseline behavior; v1 date validation is a later task.",
+        "observed": {
+          "invalid_date_preserved": false,
+          "run": {
+            "name": "Impossible leading date observation",
+            "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Impossible date input",
+            "options": [],
+            "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-6d605409d7094ef099137bed9041f56b",
+            "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-6d605409d7094ef099137bed9041f56b\\AudioForPhone_64kbps_20261011_092559",
+            "exit_code": 0,
+            "summary": {
+              "total": 1,
+              "converted": 1,
+              "failed": 0
+            },
+            "output_files": [
+              "2026-10-11 - 2024-02-30 - Impossible.mp3"
+            ]
+          }
+        }
+      },
+      {
+        "id": "Corrupt only exit observation",
+        "acceptance": "future A27",
+        "required": false,
+        "status": "observed_behavior",
+        "expected": "Record actual batch exit versus reported failures; no claim that failure aggregation is fixed.",
+        "observed": {
+          "failed_files_reported": true,
+          "run": {
+            "name": "Corrupt only exit observation",
+            "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Corrupt only input",
+            "options": [],
+            "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14",
+            "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14\\AudioForPhone_64kbps_20261011_092602",
+            "exit_code": 2,
+            "summary": {
+              "total": 1,
+              "converted": 0,
+              "failed": 1
+            },
+            "output_files": []
+          }
+        }
+      },
+      {
+        "id": "Mixed valid and corrupt exit observation",
+        "acceptance": "future A27",
+        "required": false,
+        "status": "observed_behavior",
+        "expected": "Record actual batch exit versus reported failures; no claim that failure aggregation is fixed.",
+        "observed": {
+          "failed_files_reported": true,
+          "run": {
+            "name": "Mixed valid and corrupt exit observation",
+            "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Mixed corrupt input",
+            "options": [],
+            "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca",
+            "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca\\AudioForPhone_64kbps_20261011_092605",
+            "exit_code": 2,
+            "summary": {
+              "total": 2,
+              "converted": 1,
+              "failed": 1
+            },
+            "output_files": [
+              "2024-04-09 - Valid.mp3"
+            ]
+          }
+        }
+      },
+      {
+        "id": "source_bytes_and_relative_names_unchanged",
+        "acceptance": "A06",
+        "required": true,
+        "status": "pass",
+        "expected": "All generated source/fixture relative names, lengths and SHA-256 hashes are unchanged.",
+        "observed": {
+          "files_compared": 14,
+          "directories_compared": 8,
+          "identical": true
+        }
+      }
+    ],
+    "runs": [
+      {
+        "name": "Default format, naming and exclusion matrix",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input",
+        "options": [],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548",
+        "exit_code": 0,
+        "summary": {
+          "total": 4,
+          "converted": 4,
+          "failed": 0
+        },
+        "output_files": [
+          "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+          "2024-04-06 - Vorbis.mp3",
+          "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+          "Nested folder\\More audio\\2024-04-07 - Opus.mp3"
+        ]
+      },
+      {
+        "name": "Plain metadata overrides",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Override input",
+        "options": [
+          "-Artist",
+          "Override artist",
+          "-Album",
+          "Override album"
+        ],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-3047c248e0f64625a24c5bc6fdfc57a0",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-3047c248e0f64625a24c5bc6fdfc57a0\\AudioForPhone_64kbps_20261011_092553",
+        "exit_code": 0,
+        "summary": {
+          "total": 1,
+          "converted": 1,
+          "failed": 0
+        },
+        "output_files": [
+          "2024-04-06 - Vorbis.mp3"
+        ]
+      },
+      {
+        "name": "Unicode metadata overrides",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Override input",
+        "options": [
+          "-Artist",
+          "Artist é Ω",
+          "-Album",
+          "Album ö 東"
+        ],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-72c6c2d5798641c680aacf83ecf41bb4",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-72c6c2d5798641c680aacf83ecf41bb4\\AudioForPhone_64kbps_20261011_092556",
+        "exit_code": 0,
+        "summary": {
+          "total": 1,
+          "converted": 1,
+          "failed": 0
+        },
+        "output_files": [
+          "2024-04-06 - Vorbis.mp3"
+        ]
+      },
+      {
+        "name": "Impossible leading date observation",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Impossible date input",
+        "options": [],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-6d605409d7094ef099137bed9041f56b",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-6d605409d7094ef099137bed9041f56b\\AudioForPhone_64kbps_20261011_092559",
+        "exit_code": 0,
+        "summary": {
+          "total": 1,
+          "converted": 1,
+          "failed": 0
+        },
+        "output_files": [
+          "2026-10-11 - 2024-02-30 - Impossible.mp3"
+        ]
+      },
+      {
+        "name": "Corrupt only exit observation",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Corrupt only input",
+        "options": [],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14\\AudioForPhone_64kbps_20261011_092602",
+        "exit_code": 2,
+        "summary": {
+          "total": 1,
+          "converted": 0,
+          "failed": 1
+        },
+        "output_files": []
+      },
+      {
+        "name": "Mixed valid and corrupt exit observation",
+        "input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Mixed corrupt input",
+        "options": [],
+        "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca",
+        "output_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca\\AudioForPhone_64kbps_20261011_092605",
+        "exit_code": 2,
+        "summary": {
+          "total": 2,
+          "converted": 1,
+          "failed": 1
+        },
+        "output_files": [
+          "2024-04-09 - Valid.mp3"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "purpose": "FFmpeg version",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-version"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 32,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe version",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-version"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 24,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic source artwork",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "color=c=blue:s=32x32:d=0.4",
+          "-frames:v",
+          "1",
+          "-update",
+          "1",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Fixture assets\\Synthetic cover.jpg"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 37,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=0.75",
+          "-i",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Fixture assets\\Synthetic cover.jpg",
+          "-map",
+          "0:a:0",
+          "-map",
+          "1:v:0",
+          "-c:v",
+          "copy",
+          "-disposition:v",
+          "attached_pic",
+          "-c:a",
+          "libmp3lame",
+          "-ac",
+          "1",
+          "-metadata",
+          "title=Original Ää 東京",
+          "-metadata",
+          "artist=Artist é Ω",
+          "-metadata",
+          "album=Album ö 東",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 36,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=44100:duration=0.75",
+          "-c:a",
+          "aac",
+          "-ac",
+          "2",
+          "-metadata",
+          "artist=Source artist",
+          "-metadata",
+          "album=Source album",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 46,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=0.75",
+          "-c:a",
+          "libvorbis",
+          "-ac",
+          "1",
+          "-metadata",
+          "title=Original Vorbis title",
+          "-metadata",
+          "artist=Source artist",
+          "-metadata",
+          "album=Source album",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 47,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=0.75",
+          "-c:a",
+          "libopus",
+          "-ac",
+          "2",
+          "-metadata",
+          "title=Original Ää 東京",
+          "-metadata",
+          "artist=Artist é Ω",
+          "-metadata",
+          "album=Album ö 東",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 40,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=0.75",
+          "-c:a",
+          "pcm_s16le",
+          "-ac",
+          "1",
+          "-metadata",
+          "artist=",
+          "-metadata",
+          "album=",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Ignored.wav"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 30,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "generate synthetic audio fixture",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-y",
+          "-f",
+          "lavfi",
+          "-i",
+          "sine=frequency=440:sample_rate=48000:duration=0.75",
+          "-c:a",
+          "flac",
+          "-ac",
+          "1",
+          "-metadata",
+          "artist=",
+          "-metadata",
+          "album=",
+          "-metadata",
+          "comment=Synthetic source comment",
+          "-metadata",
+          "track=4",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Ignored.FLAC"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 38,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 28,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 29,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 27,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 30,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "application: Default format, naming and exclusion matrix",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Characterization input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 4505,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Lon.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 32,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "full output decode",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-xerror",
+          "-i",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+          "-map",
+          "0:a:0",
+          "-f",
+          "null",
+          "-"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 33,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 28,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "full output decode",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-xerror",
+          "-i",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+          "-map",
+          "0:a:0",
+          "-f",
+          "null",
+          "-"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 33,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-06 - Vorbis.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 28,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "full output decode",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-xerror",
+          "-i",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-06 - Vorbis.mp3",
+          "-map",
+          "0:a:0",
+          "-f",
+          "null",
+          "-"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 35,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 35,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "full output decode",
+        "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "arguments": [
+          "-hide_banner",
+          "-loglevel",
+          "error",
+          "-xerror",
+          "-i",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.mp3",
+          "-map",
+          "0:a:0",
+          "-f",
+          "null",
+          "-"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 33,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Lon.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 24,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 25,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\2024-04-06 - Vorbis.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 24,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-be3012c33cb349c4980e99bc91287674\\AudioForPhone_64kbps_20261011_092548\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 24,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "application: Plain metadata overrides",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Override input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-3047c248e0f64625a24c5bc6fdfc57a0",
+          "-Artist",
+          "Override artist",
+          "-Album",
+          "Override album"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 3034,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-3047c248e0f64625a24c5bc6fdfc57a0\\AudioForPhone_64kbps_20261011_092553\\Override input\\2024-04-06 - Vorbis.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 28,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "application: Unicode metadata overrides",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Override input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-72c6c2d5798641c680aacf83ecf41bb4",
+          "-Artist",
+          "Artist é Ω",
+          "-Album",
+          "Album ö 東"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 3054,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "ffprobe media inspection",
+        "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+        "arguments": [
+          "-v",
+          "error",
+          "-show_format",
+          "-show_streams",
+          "-of",
+          "json",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-72c6c2d5798641c680aacf83ecf41bb4\\AudioForPhone_64kbps_20261011_092556\\Override input\\2024-04-06 - Vorbis.mp3"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 28,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "application: Impossible leading date observation",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Impossible date input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-6d605409d7094ef099137bed9041f56b"
+        ],
+        "exit_code": 0,
+        "elapsed_ms": 3065,
+        "diagnostic_tail": []
+      },
+      {
+        "purpose": "application: Corrupt only exit observation",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Corrupt only input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14"
+        ],
+        "exit_code": 2,
+        "elapsed_ms": 2870,
+        "diagnostic_tail": [
+          "============================================================",
+          "==== Summary ====",
+          "[RESULT] status=CompletedWithFailures; total=1; processed=1; converted=0; failed=1; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=1.790",
+          "  Input folder : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Corrupt only input",
+          "  Output root  : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14\\AudioForPhone_64kbps_20261011_092602",
+          "  Output base  : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14\\AudioForPhone_64kbps_20261011_092602\\Corrupt only input",
+          "  Total files  : 1",
+          "  Converted    : 0",
+          "  Failed       : 1",
+          "  Log file     : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-bda862e7f07042f39fb8b9d0ec245e14\\AudioForPhone_64kbps_20261011_092602\\AudioFileForPhone_log.txt",
+          "  Exit code    : 2",
+          "============================================================"
+        ]
+      },
+      {
+        "purpose": "application: Mixed valid and corrupt exit observation",
+        "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Characterization app\\AudioFileForPhone.ps1",
+          "-InputFolder",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Mixed corrupt input",
+          "-OutputParent",
+          "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca"
+        ],
+        "exit_code": 2,
+        "elapsed_ms": 3623,
+        "diagnostic_tail": [
+          "============================================================",
+          "==== Summary ====",
+          "[RESULT] status=CompletedWithFailures; total=2; processed=2; converted=1; failed=1; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=2.524",
+          "  Input folder : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\Fixtures\\Mixed corrupt input",
+          "  Output root  : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca\\AudioForPhone_64kbps_20261011_092605",
+          "  Output base  : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca\\AudioForPhone_64kbps_20261011_092605\\Mixed corrupt input",
+          "  Total files  : 2",
+          "  Converted    : 1",
+          "  Failed       : 1",
+          "  Log file     : C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-495edbfdbb7049dba39f1eb8b7b183ee\\O\\Run-cb7ba9cd2b10484ab713db0493453aca\\AudioForPhone_64kbps_20261011_092605\\AudioFileForPhone_log.txt",
+          "  Exit code    : 2",
+          "============================================================"
+        ]
+      }
+    ],
+    "source_inventory_before": [
+      {
+        "relative_path": "Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+        "length": 6959,
+        "sha256": "1C52086DF2C96D14941656A55030C905E21B08A2E3D149C9D5C435A65B9C218B"
+      },
+      {
+        "relative_path": "Characterization input\\2024-04-06 - Vorbis.OGG",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.FLAC",
+        "length": 21136,
+        "sha256": "E7E09F601D5666C2E6B198DA7E9EE5757C8B236F69024092E76A5DD9DEADC080"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.m4b",
+        "length": 10896,
+        "sha256": "6C6467D7AD69E873FE890FA2982C795AA8806D96E90DDC527ABD468AB2C18EDD"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.OPUS",
+        "length": 11885,
+        "sha256": "0C78821BC3F3C5A1EBF7ABDE948ABC49BB4ACA211C8830C28C5B4FC837CAE8A0"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.wav",
+        "length": 72122,
+        "sha256": "C0452B18DB7132B9EDD28D6277FC6E5805967A34C648FC92477014EF5E7F1ED1"
+      },
+      {
+        "relative_path": "Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+        "length": 11885,
+        "sha256": "0C78821BC3F3C5A1EBF7ABDE948ABC49BB4ACA211C8830C28C5B4FC837CAE8A0"
+      },
+      {
+        "relative_path": "Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+        "length": 10896,
+        "sha256": "6C6467D7AD69E873FE890FA2982C795AA8806D96E90DDC527ABD468AB2C18EDD"
+      },
+      {
+        "relative_path": "Corrupt only input\\2024-04-08 - Corrupt.mp3",
+        "length": 58,
+        "sha256": "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+      },
+      {
+        "relative_path": "Fixture assets\\Synthetic cover.jpg",
+        "length": 230,
+        "sha256": "E0ACD2EA8B5D52B54F5F4A6289972937CB92E2BCC515C8664B45BE3CA0F66C4F"
+      },
+      {
+        "relative_path": "Impossible date input\\2024-02-30 - Impossible.ogg",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Mixed corrupt input\\2024-04-08 - Corrupt.mp3",
+        "length": 58,
+        "sha256": "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+      },
+      {
+        "relative_path": "Mixed corrupt input\\2024-04-09 - Valid.ogg",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Override input\\2024-04-06 - Vorbis.OGG",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      }
+    ],
+    "source_inventory_after": [
+      {
+        "relative_path": "Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+        "length": 6959,
+        "sha256": "1C52086DF2C96D14941656A55030C905E21B08A2E3D149C9D5C435A65B9C218B"
+      },
+      {
+        "relative_path": "Characterization input\\2024-04-06 - Vorbis.OGG",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.FLAC",
+        "length": 21136,
+        "sha256": "E7E09F601D5666C2E6B198DA7E9EE5757C8B236F69024092E76A5DD9DEADC080"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.m4b",
+        "length": 10896,
+        "sha256": "6C6467D7AD69E873FE890FA2982C795AA8806D96E90DDC527ABD468AB2C18EDD"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.OPUS",
+        "length": 11885,
+        "sha256": "0C78821BC3F3C5A1EBF7ABDE948ABC49BB4ACA211C8830C28C5B4FC837CAE8A0"
+      },
+      {
+        "relative_path": "Characterization input\\Ignored.wav",
+        "length": 72122,
+        "sha256": "C0452B18DB7132B9EDD28D6277FC6E5805967A34C648FC92477014EF5E7F1ED1"
+      },
+      {
+        "relative_path": "Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+        "length": 11885,
+        "sha256": "0C78821BC3F3C5A1EBF7ABDE948ABC49BB4ACA211C8830C28C5B4FC837CAE8A0"
+      },
+      {
+        "relative_path": "Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+        "length": 10896,
+        "sha256": "6C6467D7AD69E873FE890FA2982C795AA8806D96E90DDC527ABD468AB2C18EDD"
+      },
+      {
+        "relative_path": "Corrupt only input\\2024-04-08 - Corrupt.mp3",
+        "length": 58,
+        "sha256": "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+      },
+      {
+        "relative_path": "Fixture assets\\Synthetic cover.jpg",
+        "length": 230,
+        "sha256": "E0ACD2EA8B5D52B54F5F4A6289972937CB92E2BCC515C8664B45BE3CA0F66C4F"
+      },
+      {
+        "relative_path": "Impossible date input\\2024-02-30 - Impossible.ogg",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Mixed corrupt input\\2024-04-08 - Corrupt.mp3",
+        "length": 58,
+        "sha256": "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+      },
+      {
+        "relative_path": "Mixed corrupt input\\2024-04-09 - Valid.ogg",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      },
+      {
+        "relative_path": "Override input\\2024-04-06 - Vorbis.OGG",
+        "length": 5195,
+        "sha256": "8B4C2C6EFDDE4CBCA31234E2FD38AF7593FAF50FF092A8B1EA6BA46DB0F22341"
+      }
+    ],
+    "source_directories_before": [
+      "Characterization input",
+      "Characterization input\\Nested folder",
+      "Characterization input\\Nested folder\\More audio",
+      "Corrupt only input",
+      "Fixture assets",
+      "Impossible date input",
+      "Mixed corrupt input",
+      "Override input"
+    ],
+    "source_directories_after": [
+      "Characterization input",
+      "Characterization input\\Nested folder",
+      "Characterization input\\Nested folder\\More audio",
+      "Corrupt only input",
+      "Fixture assets",
+      "Impossible date input",
+      "Mixed corrupt input",
+      "Override input"
+    ]
+  },
+  "cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "companion_sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+  "ffmpeg": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+  "ffprobe": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+  "finished_utc": "2026-10-11T07:26:08.2988761Z"
+}

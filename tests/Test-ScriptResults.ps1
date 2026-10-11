@@ -28,13 +28,13 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T10-script-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T10-script-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11)-script-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T10/T11-script-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T10'; mode = 'script_child_result_contract_real_and_faults'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'script_child_result_contract_real_and_faults'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -148,7 +148,7 @@ function Invoke-Entry {
     return [pscustomobject]@{ exit_code = $code; text = $stdout + "`n" + $stderr; output_parent = $parent }
 }
 function Assert-Outcome {
-    param([object]$Result, [object]$Case, [string]$Status, [int]$Code, [int]$Total, [int]$Processed, [int]$Converted, [int]$Failed, [int]$NotProcessed, [int]$Excluded = 0, [int]$Unsupported = 0, [switch]$ReservedSetupFailure)
+    param([object]$Result, [object]$Case, [string]$Status, [int]$Code, [int]$Total, [int]$Processed, [int]$Converted, [int]$Failed, [int]$NotProcessed, [int]$Excluded = 0, [int]$Unsupported = 0, [switch]$ReservedSetupFailure, [switch]$UnprovedNativeExit)
     Assert-True ($Result.exit_code -eq $Code) ('Expected child exit ' + $Code + ', got ' + $Result.exit_code + '. ' + $Result.text.Substring([Math]::Max(0, $Result.text.Length - 1600)))
     $summaryLines = @($Result.text -split '\r?\n' | Where-Object { $_ -match '^\[RESULT\] ' })
     Assert-True ($summaryLines.Count -ge 1) 'Every path must emit a final stable aggregate result.'
@@ -185,7 +185,16 @@ function Assert-Outcome {
     }
     $published = @($tree | Where-Object { -not $_.PSIsContainer -and $_.Extension -ieq '.mp3' })
     Assert-True ($published.Count -eq $Converted) 'Aggregate conversions must equal independently observed published outputs.'
-    Assert-True (@($tree | Where-Object { -not $_.PSIsContainer -and $_.Extension -ieq '.partial' }).Count -eq 0) 'Handled cases must leave no incomplete working file.'
+    $partials = @($tree | Where-Object { -not $_.PSIsContainer -and $_.Extension -ieq '.partial' })
+    if ($UnprovedNativeExit) {
+        Assert-True ($partials.Count -eq 1 -and $partials[0].Name -cmatch '^\.AudioFileForPhone-[0-9a-f]{32}\.partial$') 'An abrupt native exception must retain exactly one recognizable incomplete working file.'
+        $runLog = [IO.File]::ReadAllText((Join-Path $root 'AudioFileForPhone_log.txt'))
+        Assert-True ($Result.text.Contains($partials[0].FullName) -and $runLog.Contains($partials[0].FullName) -and
+            $runLog.Contains('Owned native process exit was not established')) 'The exact retained path and unproved-exit reason must appear on console and in the log.'
+        $Case['retained_partial'] = $partials[0].FullName.Substring($root.Length + 1)
+        $Case['unproved_native_exit_preserved'] = $true
+    }
+    else { Assert-True ($partials.Count -eq 0) 'Handled cases with proved native exit must leave no incomplete working file.' }
     $outputs = @()
     foreach ($file in $published) {
         $probe = (Invoke-RealSuccess $ffprobe @('-v', 'error', '-show_entries', 'stream=codec_type,codec_name,bit_rate', '-of', 'json', '-i', $file.FullName)).Stdout | ConvertFrom-Json
@@ -197,7 +206,7 @@ function Assert-Outcome {
     $log = Join-Path $root 'AudioFileForPhone_log.txt'
     Assert-True ($Result.text.Contains($root) -and $Result.text.Contains($log)) 'Final messages must report the actual output root and local log path.'
     $Case['published_outputs'] = $outputs; $Case['publication_count_verified'] = $true
-    $Case['no_partials'] = $true; $Case['output_and_log_reported'] = $true
+    $Case['no_partials'] = -not $UnprovedNativeExit; $Case['output_and_log_reported'] = $true
     return [pscustomobject]@{ root = $root; log = $log; published = $published }
 }
 function Assert-LoggedMappings {
@@ -298,9 +307,9 @@ function Invoke-AudioNativeProcess {
 '@
     $encodeThrowEntry = New-AppCopy 'encode-throw' $encodeThrowHelper
     $encodeThrowInput = New-Input 'I-encode-throw' @('2024-01-01 encode-throw.mp3', '2024-01-02 Last.ogg')
-    Invoke-Case 'thrown encoder exception removes owned partial and next valid file continues' {
+    Invoke-Case 'thrown encoder exception preserves unproved partial and next valid file continues' {
         param($case); $result = Invoke-Entry 'encoder-throw' $encodeThrowInput $encodeThrowEntry
-        Assert-Outcome $result $case 'CompletedWithFailures' 2 2 2 1 1 0 | Out-Null
+        Assert-Outcome $result $case 'CompletedWithFailures' 2 2 2 1 1 0 -UnprovedNativeExit | Out-Null
         Assert-True ($result.text.Contains('controlled encoder native boundary exception') -and $result.text.Contains('EncodeFailed')) 'Encoder throw must retain transactional root cause/status.'
         $case['test_helper_append_only'] = $true; $case['native_root_cause_preserved'] = $true
     }

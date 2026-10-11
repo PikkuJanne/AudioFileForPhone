@@ -94,6 +94,15 @@ This owner merge does not change main integration or release authority.
 
 ## Release gate
 
+T11 authorization: on 11 October 2026 the owner requested "T11 next please".
+Fresh GitHub inspection found T10 PR #10 merged by PikkuJanne at 07:18:35 UTC
+into main `82f0fd3c9da765f169c2724edc73f779cdce6525`. Normal fetch and independently
+advertised main/feature refs matched that merge and T10 final checkpoint
+`eeb15703cac8d93d9c3147ddf2bf70e47ccda27e`. Clean local main was fast-forwarded;
+T11 uses `codex/v1-t11-cancellation` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+This owner merge does not change main integration or release authority.
+
 The supplied release prompt authorizes annotated v1.0.0 tagging, draft creation,
 asset upload, normal public publication and docs-only closure integration for the
 specified full commit and exact ZIP/manifest hashes. It may be carried across T24–T27.
