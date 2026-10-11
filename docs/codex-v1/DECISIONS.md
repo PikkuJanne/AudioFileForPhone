@@ -503,3 +503,37 @@ with a bare “approved” assertion without a traceable reference.
   T12 main integration remains owner-gated; zero workflows/checks, no CI or release
   claim. Existing T07/T09/T11 limitations remain. Exactly next task is T13 after
   independently verified owner integration of T12.
+
+## T13 — honest progress (11 October 2026)
+
+- Owner requested "T13 next please". Fresh fetch/advertised refs and GitHub verify
+  owner T12 PR #12 merge at 09:05:48 UTC into main
+  ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c, final feature fac5f09c. Clean local
+  main was fast-forwarded before codex/v1-t13-progress. Existing feature scope
+  continues; main and release gates are unchanged.
+- Consume bounded latest-complete machine records from encoder stdout; retain
+  separate stderr diagnostics. Caller-thread callbacks every 500 ms within a
+  phase, immediate validation/promotion, no ETA. Unknown timing is indeterminate;
+  encoding stays below 100 percent. Count actual published success/file failure
+  before progress; batch uses converted plus failed and visibly retains failures.
+  Disable optional observer/display after error while continuing pipe drainage.
+- Fourteen selected final reports pass on PS5.1/7. Focused 17 groups per shell
+  directly test code 8607569a7147aba836c2e7c4c36f4f0219369d58. Actual 3,605-second
+  synthetic sources produce multiple positive live machine samples before
+  publication and independently probe/full decode at 3605.047982 seconds,
+  64 kbps MP3. Native 35, transaction 27/61 decoded, script 13, preview 8,
+  cancellation 9 automated and retained baseline pass each shell. Quiet native
+  handles stay 667->667 and 576->576; source/fixture/child/exact TEMP gates pass.
+  Ordinary Music unused; preview rejects progress display/parser compilation.
+- Preserve all 18 raw tests: 14 selected finals, two preliminary passes and two
+  failures caused by new harness PowerShell variable collisions. Original false
+  cleanup flags remain; separate exact-root recovery/historical code proofs bind
+  later cleanup. Independent review confirms both known roots absent. No unknown
+  T07 residue cleanup or retrospective successful original cleanup is inferred.
+- Code checkpoint committed, pushed and freshly advertised-ref matched. Manifest
+  proves 14 tested files literally or CRLF-to-LF only. Runtime/harness/recovery
+  independent review has no blocker. Draft PR #13:
+  https://github.com/PikkuJanne/AudioFileForPhone/pull/13. Evidence/handoff follows
+  code in a docs-only checkpoint. Main owner-gated; zero workflows/no CI pass,
+  no phone/manual/release claim. Existing T07/T09/T11 limitations remain.
+  Exactly next task T14 after independently verified owner integration of T13.

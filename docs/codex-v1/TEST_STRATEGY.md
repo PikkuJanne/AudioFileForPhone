@@ -371,3 +371,40 @@ bytes (script 13 groups/14 decoded publications per shell). Manifest independent
 matches eight tested files to committed blobs, three literal/five CRLF-to-LF only.
 This is targeted T12 acceptance; the prior M2 suite and physical evidence remain
 valid, with the next full applicable suite at a milestone boundary.
+
+## T13 progress and affected regressions
+
+Exact selected commands and raw results are in evidence/T13.md. Test-Progress.ps1
+uses fresh T13-progress-ps51/ps7-attempt/finalN.json reports. Final1 tests reviewed
+code 8607569 directly on both shells: 17 groups cover record chunks/bounds/time
+fallback/unknown duration, caller-thread throttling, sparse live callbacks,
+stderr separation/floods, worker/callback faults, requested cancellation, nonzero
+end records, validation rejection, promotion collision and truthful batch outcomes.
+The actual 3,605-second synthetic source runs without real-time pacing, has
+multiple positive machine samples before publication, and independently probes/
+fully decodes at 3605.047982 seconds as 64 kbps MP3. It is automated synthetic
+evidence, not phone/manual playback or console appearance evidence.
+
+Reserve one exclusive CreateDirectoryW/CreateNew token-marked TEMP tree. Retain
+owned hosts before Start, suspend descendant-release proof before each native
+call and preserve prior uncertainty. An append-only helper audit inside TEMP
+records native return/release and caller-thread machine samples; entry bytes stay
+identical. Preserve callbacks, duration, capture limits, parser and shared callback
+state in wrappers. Keep release evidence separate from successful host status.
+Unknown descendants block recursive deletion. Exact canonical root, marker/token,
+nonreparse inventory, source/synthetic hashes, child disposal and absence are gates.
+
+Twelve affected regression finals pass: native 35, transaction 27 groups/61 decoded
+outputs, script 13, preview 8, automated cancellation 9 and retained baseline per
+shell. Native quiet sequential handles 667->667/576->576 keep allowance 16.
+Cancellation's full-decode fault selector requires null output, so encoder
+-progress cannot masquerade as a decode boundary. Preview guards reject parser
+compilation/display, retaining strict refreshed whole-tree inventory equality.
+Manifest matches 14 tested files to the reviewed commit literally or CRLF-to-LF.
+
+Retain 18 raw tests, including two failed new-harness variable-collision attempts
+and two preliminary passes. Failed cleanup/children flags remain false; separate
+known-root recovery records and in-memory historical-harness reconstruction prove
+later exact removal. No recovery record counts toward A33/A34. These are targeted
+affected checks; prior physical T11 evidence remains historical, with the next
+full applicable suite at a milestone boundary.

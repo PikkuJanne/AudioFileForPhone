@@ -1,0 +1,600 @@
+{
+    "schema_version":  1,
+    "task":  "T13",
+    "mode":  "bounded_machine_progress_and_hour_plus_real_smoke",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-Progress.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T13-progress-ps51-attempt2.json",
+    "started_utc":  "2026-10-11T09:19:49.6503819Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "5877200e5c906c04d529a1c85d8d1f4b3a612be51eee64f94e045d2d32ba1946"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Progress.ps1",
+                              "sha256":  "f431396a311b4df13a443810d60f65072e60d518f80b73f3369deef166b65202"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "5877200e5c906c04d529a1c85d8d1f4b3a612be51eee64f94e045d2d32ba1946"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Progress.ps1",
+                             "sha256":  "f431396a311b4df13a443810d60f65072e60d518f80b73f3369deef166b65202"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Child.cs",
+                                 "sha256":  "e053e1e35fa62906376ef96902e3fdfb2c340a4f07a6b41a29eba7af884497b6"
+                             },
+                             {
+                                 "relative_path":  "Child.exe",
+                                 "sha256":  "5b1afd7b9674dca0eea2618d4af097c962ea3c1844bbd3bb1e803ab4d011a389"
+                             },
+                             {
+                                 "relative_path":  "live-progress.txt",
+                                 "sha256":  "eebbf6457e46a7f63acdf9b97390f790ba443d60cfa44b607da7e5c40aa1cc1d"
+                             },
+                             {
+                                 "relative_path":  "short.mp3",
+                                 "sha256":  "5c4c330478c8e983b992f81adcb75b88dc7b60489779093ea10386ca9c6cab81"
+                             },
+                             {
+                                 "relative_path":  "Collision\\result.mp3",
+                                 "sha256":  "7e69c799eb74a526ca552aadda22ae3a9479f7ac8bc8b5b391b5a0f723226229"
+                             },
+                             {
+                                 "relative_path":  "App\\AudioFileForPhone.ps1",
+                                 "sha256":  "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31"
+                             },
+                             {
+                                 "relative_path":  "App\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "2d8a8b38551c9d58dc9cfd816a7de922d753a1377a9c6ad01ffad1a573dc9690"
+                             },
+                             {
+                                 "relative_path":  "Mixed\\2024-01-01 Good.mp3",
+                                 "sha256":  "5c4c330478c8e983b992f81adcb75b88dc7b60489779093ea10386ca9c6cab81"
+                             },
+                             {
+                                 "relative_path":  "Mixed\\2024-01-02 Bad.ogg",
+                                 "sha256":  "aa9c2d306541dd9f0ad066635a72db7c6ce4918750c426b42ef61e2b3ae011f1"
+                             },
+                             {
+                                 "relative_path":  "mixed-driver.ps1",
+                                 "sha256":  "afd0bcd058861b0d1c231b7e7c5a7d3125b02d7f45a4e6ab91307929348b208e"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Child.cs",
+                                "sha256":  "e053e1e35fa62906376ef96902e3fdfb2c340a4f07a6b41a29eba7af884497b6"
+                            },
+                            {
+                                "relative_path":  "Child.exe",
+                                "sha256":  "5b1afd7b9674dca0eea2618d4af097c962ea3c1844bbd3bb1e803ab4d011a389"
+                            },
+                            {
+                                "relative_path":  "live-progress.txt",
+                                "sha256":  "eebbf6457e46a7f63acdf9b97390f790ba443d60cfa44b607da7e5c40aa1cc1d"
+                            },
+                            {
+                                "relative_path":  "short.mp3",
+                                "sha256":  "5c4c330478c8e983b992f81adcb75b88dc7b60489779093ea10386ca9c6cab81"
+                            },
+                            {
+                                "relative_path":  "Collision\\result.mp3",
+                                "sha256":  "7e69c799eb74a526ca552aadda22ae3a9479f7ac8bc8b5b391b5a0f723226229"
+                            },
+                            {
+                                "relative_path":  "App\\AudioFileForPhone.ps1",
+                                "sha256":  "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31"
+                            },
+                            {
+                                "relative_path":  "App\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "2d8a8b38551c9d58dc9cfd816a7de922d753a1377a9c6ad01ffad1a573dc9690"
+                            },
+                            {
+                                "relative_path":  "Mixed\\2024-01-01 Good.mp3",
+                                "sha256":  "5c4c330478c8e983b992f81adcb75b88dc7b60489779093ea10386ca9c6cab81"
+                            },
+                            {
+                                "relative_path":  "Mixed\\2024-01-02 Bad.ogg",
+                                "sha256":  "aa9c2d306541dd9f0ad066635a72db7c6ce4918750c426b42ef61e2b3ae011f1"
+                            },
+                            {
+                                "relative_path":  "mixed-driver.ps1",
+                                "sha256":  "afd0bcd058861b0d1c231b7e7c5a7d3125b02d7f45a4e6ab91307929348b208e"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T13P-f559f224",
+    "owner_marker_sha256":  "3acf0e42872e148d2684faf063f9c5e34f2a4576a68dfc55f5b725b71f0d911e",
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  true,
+    "ordinary_music_access":  false,
+    "physical_manual_evidence":  false,
+    "native_runs":  [
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-version"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  289
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                            "arguments":  [
+                                              "-version"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  50
+                        },
+                        {
+                            "executable":  "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+                            "arguments":  [
+                                              "/nologo",
+                                              "/noconfig",
+                                              "/nostdlib+",
+                                              "/target:exe",
+                                              "/main:T13Support.Child",
+                                              "/out:\u003cOWNED_TEMP\u003e\\Child.exe",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorlib.dll",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.dll",
+                                              "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.Core.dll",
+                                              "\u003cOWNED_TEMP\u003e\\Child.cs"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  108
+                        },
+                        {
+                            "executable":  "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+                            "arguments":  [
+                                              "chunked",
+                                              "\u003cOWNED_TEMP\u003e\\live-progress.txt"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  2198
+                        },
+                        {
+                            "executable":  "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+                            "arguments":  [
+                                              "huge"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  90
+                        },
+                        {
+                            "executable":  "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+                            "arguments":  [
+                                              "chunked"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  2082
+                        },
+                        {
+                            "executable":  "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+                            "arguments":  [
+                                              "end-fail"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  7,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  50
+                        },
+                        {
+                            "executable":  "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+                            "arguments":  [
+                                              "chunked"
+                                          ],
+                            "status":  "Cancelled",
+                            "exit_code":  null,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  598
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-f",
+                                              "lavfi",
+                                              "-i",
+                                              "sine=frequency=733:sample_rate=22050",
+                                              "-t",
+                                              "0.25",
+                                              "-c:a",
+                                              "libmp3lame",
+                                              "-b:a",
+                                              "64k",
+                                              "\u003cOWNED_TEMP\u003e\\short.mp3"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  75
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                            "arguments":  [
+                                              "-v",
+                                              "error",
+                                              "-show_entries",
+                                              "stream=duration",
+                                              "-of",
+                                              "json",
+                                              "\u003cOWNED_TEMP\u003e\\short.mp3"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  43
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                            "arguments":  [
+                                              "-v",
+                                              "error",
+                                              "-show_entries",
+                                              "stream=codec_type,codec_name,bit_rate,duration",
+                                              "-of",
+                                              "json",
+                                              "\u003cOWNED_TEMP\u003e\\Transaction\\result.mp3"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  48
+                        },
+                        {
+                            "executable":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                            "arguments":  [
+                                              "-nostdin",
+                                              "-v",
+                                              "error",
+                                              "-xerror",
+                                              "-i",
+                                              "\u003cOWNED_TEMP\u003e\\Transaction\\result.mp3",
+                                              "-map",
+                                              "0:a:0",
+                                              "-progress",
+                                              "pipe:1",
+                                              "-stats_period",
+                                              "86400",
+                                              "-f",
+                                              "null",
+                                              "NUL"
+                                          ],
+                            "status":  "Completed",
+                            "exit_code":  0,
+                            "process_released":  true,
+                            "deadline_requested":  false,
+                            "duration_ms":  44
+                        }
+                    ],
+    "cases":  [
+                  {
+                      "name":  "chunk boundaries and LF/CRLF produce only complete latest records",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "sequence":  2,
+                      "hour_plus_seconds":  8145.125,
+                      "bounded_buffer_chars":  24
+                  },
+                  {
+                      "name":  "preferred microseconds, legacy microseconds and unbounded hour digits",
+                      "acceptance_case":  "A34",
+                      "status":  "pass",
+                      "records":  [
+                                      {
+                                          "expected_seconds":  1,
+                                          "actual_seconds":  1
+                                      },
+                                      {
+                                          "expected_seconds":  3605,
+                                          "actual_seconds":  3605
+                                      },
+                                      {
+                                          "expected_seconds":  6480123.5,
+                                          "actual_seconds":  6480123.5
+                                      },
+                                      {
+                                          "expected_seconds":  1,
+                                          "actual_seconds":  1
+                                      },
+                                      {
+                                          "expected_seconds":  90001.5,
+                                          "actual_seconds":  90001.5
+                                      }
+                                  ]
+                  },
+                  {
+                      "name":  "malformed overflow records remain bounded and recover at a later record",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "maximum_buffer_chars":  1024,
+                      "dropped_records":  2,
+                      "recovered_seconds":  2.5
+                  },
+                  {
+                      "name":  "unknown or invalid duration is indeterminate and encoding end never final success",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "duration_matrix":  [
+                                              {
+                                                  "duration_label":  "",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "N/A",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "0",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "-1",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "NaN",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "Infinity",
+                                                  "percent":  -1
+                                              },
+                                              {
+                                                  "duration_label":  "1e309",
+                                                  "percent":  -1
+                                              }
+                                          ],
+                      "encoding_end_clamped_to":  99,
+                      "no_eta_invented":  true
+                  },
+                  {
+                      "name":  "same-phase UI samples throttle while mandatory phase transitions remain visible",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "phases":  [
+                                     "Encoding",
+                                     "Validating",
+                                     "Promoting"
+                                 ],
+                      "same_phase_update_suppressed":  true,
+                      "phase_change_throttle_exceptions":  2
+                  },
+                  {
+                      "name":  "native stdout machine stream is distinct from stderr and callbacks bounded",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "callbacks":  [
+                                        {
+                                            "Phase":  "Encoding",
+                                            "PercentComplete":  0,
+                                            "MediaSeconds":  1,
+                                            "ProgressState":  "continue",
+                                            "marker_running":  true
+                                        },
+                                        {
+                                            "Phase":  "Encoding",
+                                            "PercentComplete":  0,
+                                            "MediaSeconds":  2,
+                                            "ProgressState":  "continue",
+                                            "marker_running":  true
+                                        }
+                                    ],
+                      "native_ms":  2198,
+                      "stderr_separate":  true,
+                      "final_media_seconds":  7205.125
+                  },
+                  {
+                      "name":  "huge concurrent diagnostics drain with small retained stdout/stderr and parser recovery",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "retained_stdout_chars":  64,
+                      "retained_stderr_chars":  128,
+                      "parser_maximum_buffer_chars":  1024,
+                      "recovered_seconds":  2.5
+                  },
+                  {
+                      "name":  "native progress callback exception is isolated from process outcome",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "callback_calls_before_disabled":  1,
+                      "native_outcome_unchanged":  true
+                  },
+                  {
+                      "name":  "throwing worker consumer is disabled and both flood pipes continue draining",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "consumer_calls":  1,
+                      "stdout_total_chars":  2097204,
+                      "stderr_total_chars":  131111,
+                      "consumer_error":  "Exception: controlled T13 stream consumer failure",
+                      "owned_capture_released":  true
+                  },
+                  {
+                      "name":  "progress end cannot turn a nonzero encoder exit into success",
+                      "acceptance_case":  "A33,A34",
+                      "status":  "pass",
+                      "actual_exit_code":  7,
+                      "end_did_not_claim_success":  true
+                  },
+                  {
+                      "name":  "live progress-requested cancellation releases only its native child",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "cancelled_process_released":  true,
+                      "independent_live_child_survived":  true
+                  },
+                  {
+                      "name":  "real transaction validates and promotes before any published-success display",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "phase_events":  [
+                                           {
+                                               "phase":  "Encoding",
+                                               "percent":  -1,
+                                               "final_exists":  false
+                                           },
+                                           {
+                                               "phase":  "Validating",
+                                               "percent":  -1,
+                                               "final_exists":  false
+                                           },
+                                           {
+                                               "phase":  "Promoting",
+                                               "percent":  -1,
+                                               "final_exists":  false
+                                           }
+                                       ],
+                      "decoded_output":  {
+                                             "duration_seconds":  0.298005,
+                                             "decoded_seconds":  0.298005,
+                                             "sha256":  "8c259d47e7fc72794b0c0679cb40e1ea64a275c5a79cccb0add18cf96665e2a4",
+                                             "fully_decoded":  true
+                                         },
+                      "publication_after_validation_and_promotion":  true
+                  },
+                  {
+                      "name":  "encoder end followed by validation rejection never displays success or leaves a final",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "phases":  [
+                                     "Encoding",
+                                     "Validating"
+                                 ],
+                      "actual_status":  "ValidationFailed",
+                      "no_false_success_or_final":  true
+                  },
+                  {
+                      "name":  "encoder end and successful validation followed by promotion collision never display success",
+                      "acceptance_case":  "A33",
+                      "status":  "pass",
+                      "phases":  [
+                                     "Encoding",
+                                     "Validating",
+                                     "Promoting"
+                                 ],
+                      "actual_status":  "PromotionFailed",
+                      "existing_final_preserved":  true
+                  },
+                  {
+                      "name":  "100 percent processed retains file failure and never precedes final-file completion",
+                      "acceptance_case":  "A33",
+                      "status":  "fail",
+                      "diagnostics":  "==== AudioFileForPhone ====\r\n[INFO] Script path : \u003cOWNED_TEMP\u003e\\App\\AudioFileForPhone.ps1\r\n[INFO] Script dir  : \u003cOWNED_TEMP\u003e\\App\r\n[INFO] Raw input   : \u0027\u003cOWNED_TEMP\u003e\\Mixed\u0027\r\n[INFO] Bitrate     : 64kbps\r\n[INFO] Max name    : 40 chars\r\n[INFO] Interactive : False\r\n\r\n[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: \u003cOWNED_TEMP\u003e\\Mixed\r\n[FATAL] The run stopped: Preflight failed: Invalid ffmpeg executable \u0027C:\\ffmpeg\\bin\\ffmpeg.exe\u0027: Cannot convert value \"ExecutablePath\" to type \"System.Int32\". Error: \"Input string was not in a correct format.\"\r\n============================================================\r\n==== Summary ====\r\n[RESULT] status=FailedBeforeConversion; total=2; processed=0; converted=0; failed=0; not_processed=2; scan_excluded=0; unsupported=0; elapsed_seconds=0.459\r\n  Input folder : \u003cOWNED_TEMP\u003e\\Mixed\r\n  Output root  : (not available; see error for any reserved scope)\r\n  Output base  : \r\n  Total files  : 2\r\n  Converted    : 0\r\n  Failed       : 0\r\n  Log file     : (not available)\r\n  Exit code    : 1\r\n============================================================\r\n[DISPLAY] {\"id\":1,\"parent_id\":0,\"activity\":\"Current file\",\"status\":\"FailedBeforeConversion\",\"operation\":\"\",\"percent\":-1,\"seconds_remaining\":-1,\"completed\":true,\"published_outputs\":0,\"machine_sequence\":0,\"machine_seconds\":null}\r\n[DISPLAY] {\"id\":0,\"parent_id\":-1,\"activity\":\"Converting audio to 64kbps MP3\",\"status\":\"0 / 2 processed; 0 converted; 0 failed; FailedBeforeConversion\",\"operation\":\"\",\"percent\":0,\"seconds_remaining\":-1,\"completed\":true,\"published_outputs\":0,\"machine_sequence\":0,\"machine_seconds\":null}\r\n[NATIVEPROOF] {\"process_released\":false,\"status\":\"not returned\"}\r\n\n",
+                      "display_rows":  [
+                                           {
+                                               "id":  1,
+                                               "parent_id":  0,
+                                               "activity":  "Current file",
+                                               "status":  "FailedBeforeConversion",
+                                               "operation":  "",
+                                               "percent":  -1,
+                                               "seconds_remaining":  -1,
+                                               "completed":  true,
+                                               "published_outputs":  0,
+                                               "machine_sequence":  0,
+                                               "machine_seconds":  null
+                                           },
+                                           {
+                                               "id":  0,
+                                               "parent_id":  -1,
+                                               "activity":  "Converting audio to 64kbps MP3",
+                                               "status":  "0 / 2 processed; 0 converted; 0 failed; FailedBeforeConversion",
+                                               "operation":  "",
+                                               "percent":  0,
+                                               "seconds_remaining":  -1,
+                                               "completed":  true,
+                                               "published_outputs":  0,
+                                               "machine_sequence":  0,
+                                               "machine_seconds":  null
+                                           }
+                                       ]
+                  }
+              ],
+    "children_disposed":  false,
+    "cleanup_verified":  false,
+    "status":  "fail",
+    "error":  "FAIL: Completed-with-failures counts must remain separate from percent processed.",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Progress.ps1: line 49\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Progress.ps1: line 383\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Progress.ps1: line 53\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Progress.ps1: line 379",
+    "descendant_release_proved":  false,
+    "owned_host_objects":  [
+                               {
+                                   "started":  true,
+                                   "disposed":  true,
+                                   "timed_out":  false
+                               },
+                               {
+                                   "started":  true,
+                                   "disposed":  true,
+                                   "timed_out":  false
+                               }
+                           ],
+    "cleanup_error":  "FAIL: Exact owned TEMP cleanup must be verified.",
+    "finished_utc":  "2026-10-11T09:19:59.0074707Z"
+}

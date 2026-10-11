@@ -504,8 +504,13 @@
       "required": true,
       "method": "record-stream unit tests and long-file smoke",
       "expected": "Batch/file progress uses machine-readable records; final success is not shown before output validation/promotion; failures remain visible at 100 percent processed.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T13.md",
+        "evidence/T13-tested-payload.json",
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json"
+      ]
     },
     {
       "id": "A34",
@@ -514,8 +519,13 @@
       "required": true,
       "method": "parser tests",
       "expected": "Unknown duration gives indeterminate status; HH beyond one hour parses correctly; malformed progress does not crash conversion or invent ETA.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T13.md",
+        "evidence/T13-tested-payload.json",
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json"
+      ]
     },
     {
       "id": "A35",

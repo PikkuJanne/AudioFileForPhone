@@ -1,50 +1,60 @@
-# Next session — T13 after owner integration
+# Next session — T14 after owner integration
 
-T12 is complete: A31/A32 pass on Windows PowerShell 5.1 and PowerShell 7.
-Exactly next implementation task: T13, honest per-file and batch progress, after
-owner integration of T12. Project/release remain incomplete.
+T13 is complete: A33/A34 pass on Windows PowerShell 5.1 and PowerShell 7.
+Exactly next implementation task: T14, persistent diagnostics and a usable run
+manifest, after owner integration of T13. Project/release remain incomplete.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS guidance. Inspect dirty/untracked state, active branch, all fetch/push URLs,
+AGENTS guidance. Inspect dirty/untracked state, active branch, fetch/push URLs,
 overrides, normal fetch, independently advertised refs and live GitHub. Preserve
-all work; no reset/clean/force. T11 PR #11 was owner-merged at 08:06:36 UTC on
-11 October 2026 into main cb4ffc44d5ad78b575656ba44461db8b64ae7580. T01-T11 integrated.
+all work; no reset/clean/force. T12 PR #12 was owner-merged at 09:05:48 UTC on
+11 October 2026 into main ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c. T01-T12 integrated.
 
-T12 branch codex/v1-t12-preview, reviewed/tested code
-b0c20f66e0d2c6af4f99232dc633c4eb201c6a57, pushed/live-matched.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/12.
+T13 branch codex/v1-t13-progress, reviewed/tested code
+8607569a7147aba836c2e7c4c36f4f0219369d58, pushed/live-matched.
+Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/13.
 Evidence/handoff follows in a docs-only checkpoint; inspect fresh final HEAD/ref.
 Main integration remains owner-gated.
 
-## Preserve T12 and earlier contracts
+## Preserve progress and earlier contracts
 
-DryRun is the single preview interface: shared discovery and complete naming
-allocation, console-only plan JSON, no writes/tools/cover preparation/prompts/
-cancellation capture/progress. Previewed/0 converts nothing. Label root provisional,
-durations unknown, writability/tools/media/cover unverified. Caught preflight/scan/
-naming errors remain FailedBeforeConversion/1 and create no output/log/partial plan.
+Encoder progress uses bounded stdout records independently of stderr. Keep only
+the latest complete record, 1,024-character lines, 8,192-character records and
+sampling every 500 ms within a phase, immediate changes and drainage after observer
+fault. Prefer out_time_us, legacy out_time_ms also microseconds, then arbitrary-hour
+timestamp. Unknown timing/duration is indeterminate; no ETA. progress=end is only
+an encoding boundary. File success at 100 percent follows validation/publication/
+count; failure clear stays indeterminate. Batch uses ok+failed and visibly retains
+failures at 100 percent.
 
-Read evidence/T12.md and its manifest: six selected reports pass, preview eight
-groups/eleven exact logged real mappings plus independent 64 kbps MP3 probes/full
-decode per shell; baseline and script 13 groups/14 decoded publications pass.
-Whole-owned-tree timestamps/attributes/hashes/directories match, sources preserved,
-children disposed and exact TEMP roots absent. Default preview uses only a synthetic
-Music resolver. Manifest matches eight files literally or only CRLF-to-LF.
-Preserve all eleven raw records including four failed harness attempts; no repeat
-suite is needed solely for docs-only closure.
+Read evidence/T13.md and manifest: fourteen selected final passes; 17 focused
+progress groups per shell at the reviewed commit, actual 3,605-second synthetic
+conversions and independent full decode at 3605.047982 seconds, with live positive
+machine samples before publication. Native 35, transaction 27/61 decoded, script
+13, preview 8, cancellation 9 and retained baseline pass both shells.
+Native handle counts stay 667->667 and 576->576;
+source/synthetic/child/exact TEMP gates pass; ordinary Music unused. Manifest
+independently matches 14 files to code, literally or only CRLF-to-LF.
 
-Keep T09 transactional publication/no-overwrite/owned partial rules and T10 counts/
-0/2/1. Keep T11 scoped Ctrl+C/130, explicit child-release/identity cleanup guards,
-mode restoration and forced-shutdown caveats. T07 possible unknown TEMP residue
-and T09 path interval remain. No phone/CI/release acceptance is inferred.
+Retain all 18 raw test reports, including two preliminary passes and two failed
+harness variable-collision attempts. Separate recovery records plus historical
+harness reconstruction prove later removal of two exact known owned roots;
+original failed cleanup flags remain false. No blanket cleanup is authorized.
+
+Preserve DryRun's no tools/writes/cover/prompts/cancellation/progress/parser and
+Previewed/0 contract. Keep T09 publication/ownership, T10 truthful counts/0/2/1,
+T11 Ctrl+C/130/release/context restoration and forced-close limits. T07 possible
+unknown residue and T09 path interval remain. Physical T11 evidence remains
+historical; no new phone/manual/CI/release acceptance is inferred.
 
 ## Start the next coherent task
 
-If PR #12 is owner-merged, independently verify the advertised main merge,
-fast-forward clean local main and create a relevant T13 codex branch. Read only
-tasks/T13.md and relevant specs next. Implement progress without changing truthful
-results or preview's no-write/no-progress path. Main/release gates are unchanged.
+If PR #13 is owner-merged, independently verify the advertised main merge,
+fast-forward clean local main and create a relevant T14 codex branch. Read only
+tasks/T14.md and relevant specs next. Add local persistent diagnostics/structured
+run manifest without changing preview, progress, outcomes or source safety.
+Main/release gates are unchanged; next full applicable suite is at a milestone.
 
-Copy-ready prompt: T13 next please
+Copy-ready prompt: T14 next please
