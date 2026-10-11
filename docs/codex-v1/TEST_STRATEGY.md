@@ -320,8 +320,11 @@ READY after first publication and during second encoder, then actual Ctrl+C. Ver
 console mode, sources and exact cleanup. Owner-confirmed PS5.1 manual1 passes;
 Store PS7 manual1 failed test-helper compilation before cases, with cleanup/hashes
 pass and physical=false. Explicit Framework compiler references repair only the
-harness. Store PS7 manual2 remains pending. Synthetic console input never
-establishes physical acceptance. Fresh manualN labels are CreateNew.
+harness. Store PS7 manual2 passes at actual test base 18fd7a6 with owner
+confirmation. It proves all physical gates with current runtime/repaired harness
+bytes. The original PS5.1 manual1 harness variant stays preserved. Synthetic
+console input never establishes physical acceptance. Fresh manualN labels are
+CreateNew; existing reports are never overwritten.
 
 Full applicable M2 suites pass both shells in 26 selected reports: script and
 cancellation final2, other matrix families final1, plus Store PS7 cancellation
@@ -331,4 +334,7 @@ returned root/token/CreateNew test marker/nonreparse synthetic inventory; ordina
 Music never enumerated. Manifest proves 16 runtime/test files against code with
 only CRLF/LF normalization. Preserve 33 raw automated reports/four failures; DLL
 recovery limitation and old optimistic cleanup expectation are in evidence/T11.md.
-T11/M2 completion remains gated by required physical Ctrl+C evidence.
+A29/A30 and T11 pass; required physical Ctrl+C and full M2 local acceptance are
+complete. This acceptance closure changes only docs/evidence; no runtime/test
+change justifies repeating the existing passing suites. Main integration remains
+owner-gated.

@@ -440,7 +440,7 @@
       "milestone": "M2",
       "title": "Handle cancellation and crash leftovers safely",
       "required": true,
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "T10"
       ],
@@ -462,6 +462,7 @@
         "evidence/T11-cancellation-ps7-final4.json",
         "evidence/T11-cancellation-ps51-manual1.json",
         "evidence/T11-cancellation-ps7-manual1.json",
+        "evidence/T11-cancellation-ps7-manual2.json",
         "evidence/T11-script-ps51-final2.json",
         "evidence/T11-script-ps7-final2.json",
         "evidence/T11-baseline-ps51-final1.json",
@@ -488,13 +489,18 @@
       "tested_commit": "82f0fd3c9da765f169c2724edc73f779cdce6525",
       "checkpoint_commit": "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5",
       "remote_checkpoint_verified": true,
-      "notes": "Implementation and 26 selected automated reports verified; A30 pass, A29 controlled component and owner-confirmed PS5.1 physical manual1 pass. Store PS7 physical manual2 pending: manual1 failed Framework fixture compiler before cases (cleanup/hashes pass, physical=false); compiler-only ac9cded fix uses exact Framework references and passes nine-group reruns on PS5.1, bundled PS7 7.6.5 and Store PS7 7.6.6 from repository/Store directories. Immediate owner path-guard rejection created no fixtures/report; cause unobserved, shorter direct invocation requested. Scoped per-instance Ctrl+C after prompts, Cancelled=130, explicit exit proof before exact partial cleanup, publication ordering, completed outputs preserved, interrupted file not_processed. Full M2 matrix pass; quiet native handles 673->673/580->580 allowance16. Manifest proves 16 current runtime/test files and original manual harness separately, CRLF/LF only; preserves actual test bases. 33 raw automatic reports (29 pass/4 fail), two manual reports (1 pass/1 compiler fail) retained. Attempt1 original DLL cleanup=false and narrow recovery limitation documented. Draft PR11 feature synchronized; main owner-gated, zero workflows/CI claim. T11/M2 await PS7 physical result before T12. No phone/window-close/full-disk/long-file/source-replacement/release claim; prior T07 residue/T09 path interval remain.",
+      "notes": "A29/A30 pass; T11 complete and M2 local acceptance passed. Owner-confirmed physical Ctrl+C passes on PS5.1 manual1 at 71eee22 with the original harness and Store PS7 7.6.6 manual2 at actual test base 18fd7a6 with current runtime/repaired harness. Both verify exit 130/Cancelled, total=3/processed=1/converted=1/failed=0/not_processed=2, preserved decoded first output/hash, removed partial, cancellation log, mode restoration, unrelated FFmpeg, unchanged source/fixture hashes, child disposal and exact owned cleanup. 26 selected automated reports pass: full M2 matrix on both shells and nine-group cancellation/crash checks on PS5.1, bundled PS7 and Store PS7 from repository/Store directories. Quiet native handles 673->673/580->580, allowance 16. Compiler-only ac9cded fix pins Framework references; runtime unchanged. Manifest proves 16 current files and original manual harness separately, CRLF/LF only; actual test bases retained. All 36 raw reports retained: 33 automated (29 pass/4 fail), three physical-mode (two passes/one compiler setup failure). Immediate guard rejection created no fixtures/report; cause unobserved, successful direct invocation recorded. Attempt1 original DLL cleanup=false/narrow recovery limitation remains. Code/test/evidence checkpoints pushed and independently live-matched. Final manual closure is docs-only; main integration owner-gated via draft PR #11, zero workflows/CI claim. Exactly next implementation T12 after owner integration. No phone/window-close/full-disk/long-file/source-replacement/release claim; prior T07 residue/T09 path interval remain.",
       "runtime_checkpoint_commit": "71eee22c87b57cea60079419f063149703c7df5a",
       "automated_test_bases": [
         "82f0fd3c9da765f169c2724edc73f779cdce6525",
         "71eee22c87b57cea60079419f063149703c7df5a",
         "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5"
-      ]
+      ],
+      "manual_test_bases": [
+        "71eee22c87b57cea60079419f063149703c7df5a",
+        "18fd7a6cef6208db415c7fea17de07d7d4b50628"
+      ],
+      "verified_evidence_checkpoint": "18fd7a6cef6208db415c7fea17de07d7d4b50628"
     },
     {
       "id": "T12",

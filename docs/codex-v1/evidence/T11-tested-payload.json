@@ -5,7 +5,7 @@
   "code_checkpoint_commit": "71eee22c87b57cea60079419f063149703c7df5a",
   "prior_verified_feature_checkpoint": "eeb15703cac8d93d9c3147ddf2bf70e47ccda27e",
   "code_checkpoint_advertised_ref_verified": true,
-  "manual_ctrl_c_evidence": "PS5.1 manual1 accepted against original runtime/harness. Store PowerShell 7 manual2 remains pending valid physical evidence and owner confirmation; successful automated Store-cwd rerun does not establish manual completion.",
+  "manual_ctrl_c_evidence": "Owner-confirmed physical ConsoleHost Ctrl+C passes on Windows PowerShell 5.1 manual1 and Microsoft Store PowerShell 7.6.6 manual2. Both retain the first completed decoded output, remove the current owned partial, log cancellation, restore console mode, preserve unrelated FFmpeg, and return 130.",
   "files": [
     {
       "path": "AudioFileForPhone.bat",
@@ -40,7 +40,8 @@
         "evidence/T11-cancellation-ps7-final3.json",
         "evidence/T11-cancellation-ps51-manual1.json",
         "evidence/T11-cancellation-ps7-manual1.json",
-        "evidence/T11-cancellation-ps7-final4.json"
+        "evidence/T11-cancellation-ps7-final4.json",
+        "evidence/T11-cancellation-ps7-manual2.json"
       ],
       "committed_checkpoint": "71eee22c87b57cea60079419f063149703c7df5a"
     },
@@ -79,7 +80,8 @@
         "evidence/T11-cancellation-ps7-final3.json",
         "evidence/T11-cancellation-ps51-manual1.json",
         "evidence/T11-cancellation-ps7-manual1.json",
-        "evidence/T11-cancellation-ps7-final4.json"
+        "evidence/T11-cancellation-ps7-final4.json",
+        "evidence/T11-cancellation-ps7-manual2.json"
       ],
       "committed_checkpoint": "71eee22c87b57cea60079419f063149703c7df5a"
     },
@@ -118,7 +120,8 @@
         "evidence/T11-cancellation-ps7-final3.json",
         "evidence/T11-cancellation-ps51-manual1.json",
         "evidence/T11-cancellation-ps7-manual1.json",
-        "evidence/T11-cancellation-ps7-final4.json"
+        "evidence/T11-cancellation-ps7-final4.json",
+        "evidence/T11-cancellation-ps7-manual2.json"
       ],
       "committed_checkpoint": "71eee22c87b57cea60079419f063149703c7df5a"
     },
@@ -187,7 +190,8 @@
         "evidence/T11-cancellation-ps51-final2.json",
         "evidence/T11-cancellation-ps7-final2.json",
         "evidence/T11-cancellation-ps7-final3.json",
-        "evidence/T11-cancellation-ps7-final4.json"
+        "evidence/T11-cancellation-ps7-final4.json",
+        "evidence/T11-cancellation-ps7-manual2.json"
       ]
     },
     {
@@ -679,7 +683,7 @@
       "manual_requested": false
     }
   ],
-  "verification": "Original24-report matrix retains actual test base82f0fd3 and runtime checkpoint71eee22. Selected final matrix preserves22 original reports plus four repaired-harness automatic cancellation reruns: PS5.1, bundledPS7, StorePS7 from repository cwd and StorePS7 from PSHOME (26 automated reports). The compiler-only test checkpointac9cded changes only Test-Cancellation.ps1; runtime artifacts remain identical. Raw fingerprints match explicit original/current checkpoints with independent blob framing and only proved CRLF/LF normalization. PS5.1 physical manual evidence remains accepted against its historical harness; Store manual1 compile failure is provenance and the latest immediate evidence-path error has no report or observed cause. Store manual2 remains pending; automatic input does not count as physical manual evidence.",
+  "verification": "The original full matrix of 24 reports retains actual test base 82f0fd3 and runtime checkpoint 71eee22. The selected matrix preserves 22 original reports plus four repaired-harness automatic cancellation runs (26 automated reports). Compiler-only checkpoint ac9cded changes only Test-Cancellation.ps1; runtime artifacts remain identical. Raw fingerprints map to explicit original/current checkpoints with independent blob framing and only proved CRLF/LF normalization. PS5.1 physical manual1 is accepted against its historical literal harness; Store PowerShell 7 physical manual2 is accepted against the repaired harness with actual docs-only test base 18fd7a6 and owner confirmation. Store manual1 compiler failure remains provenance; the earlier immediate evidence-path error has no report or observed cause. Both physical manual reports fulfill the manual gate; all 36 raw reports remain preserved.",
   "test_followup_checkpoint_commit": "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5",
   "test_followup_advertised_ref_verified": true,
   "test_followup_changed_paths": [
@@ -711,7 +715,7 @@
       "committed_bytes_identical": true
     }
   ],
-  "checkpoint_verification": "71eee22 matched the advertised feature ref at the original checkpoint; the fresh feature ref now equals compiler-only test followup ac9cded.",
+  "checkpoint_verification": "Runtime checkpoint 71eee22 and compiler-only test checkpoint ac9cded each matched the advertised feature ref when created. The freshly read feature ref matches docs-only manual test base 18fd7a6; all runtime/test payload blobs remain unchanged.",
   "original_automated_matrix": {
     "test_base_commit": "82f0fd3c9da765f169c2724edc73f779cdce6525",
     "payload_checkpoint": "71eee22c87b57cea60079419f063149703c7df5a",
@@ -817,6 +821,37 @@
       "accepted_physical_manual_evidence": true,
       "exit_code": 130,
       "owner_confirmed_first_manual_pass": true
+    },
+    {
+      "path": "evidence/T11-cancellation-ps7-manual2.json",
+      "sha256": "3e0605658b4093687f39cf2703f07b3b9155364b8f7cc208ee8d151e7b2ec674",
+      "status": "pass",
+      "test_base_commit": "18fd7a6cef6208db415c7fea17de07d7d4b50628",
+      "shell": "7.6.6",
+      "shell_edition": "Core",
+      "host_distribution": "Microsoft Store PowerShell 7",
+      "runtime_payload_checkpoint": "71eee22c87b57cea60079419f063149703c7df5a",
+      "test_payload_checkpoint": "ac9cdedbb926d8ecfd6e21f1d26a713d27c09fd5",
+      "source_fingerprints_match": true,
+      "before_after_fingerprints_match": true,
+      "fingerprint_method": "current raw before/after fingerprints; explicit runtime/test blob identities also unchanged at actual docs-only manual test base",
+      "cleanup_verified": true,
+      "children_disposed": true,
+      "synthetic_unchanged": true,
+      "case_count": 1,
+      "physical_manual_ctrl_c": true,
+      "manual_requested": true,
+      "accepted_physical_manual_evidence": true,
+      "exit_code": 130,
+      "summary": "[RESULT] status=Cancelled; total=3; processed=1; converted=1; failed=0; not_processed=2; scan_excluded=0; unsupported=1; elapsed_seconds=3.042",
+      "completed_output_sha256": "f5e7a86feeea24b7b4e5df08bb61f67e01a4bef61990a1552d92324f709cbfa0",
+      "preserved_completed_output_and_full_decode": true,
+      "current_partial_removed": true,
+      "cancelled_log_record": true,
+      "console_mode_restored": true,
+      "unrelated_real_ffmpeg_survived": true,
+      "owner_confirmed_store_manual_pass": true,
+      "owner_confirmation": "Done PASSED"
     }
   ],
   "failure_provenance_reports": [
@@ -843,25 +878,34 @@
       "reason": "Framework compiler found incompatible Core forwarding facades; no physical cancellation case ran."
     }
   ],
-  "pending_manual_report": "evidence/T11-cancellation-ps7-manual2.json",
+  "pending_manual_report": null,
   "manual_retry_observations": [
     {
       "report": "evidence/T11-cancellation-ps7-manual2.json",
-      "report_present": false,
+      "report_present": true,
       "owner_reported": "Immediate evidence-path validation error at line35 before fixtures/report creation",
       "cause": "unobserved",
-      "accepted_physical_manual_evidence": false,
-      "next_action": "Owner retry in an already open Store PowerShell prompt with constructed absolute EvidencePath"
+      "next_action": "completed by owner direct Store PowerShell invocation",
+      "report_present_at_observation": false,
+      "next_action_at_observation": "Owner retry in an already open Store PowerShell prompt with constructed absolute EvidencePath",
+      "resolution": "Valid Store manual2 report plus owner confirmation; prior immediate validation-error cause remains unobserved.",
+      "accepted_physical_evidence_at_observation": false
     }
   ],
   "raw_evidence_counts": {
+    "total_raw_reports": 36,
     "automated_reports": 33,
     "automated_pass": 29,
     "automated_fail": 4,
-    "manual_reports": 2,
-    "manual_pass": 1,
+    "manual_reports": 3,
+    "manual_pass": 2,
     "manual_fail": 1,
     "selected_automated_reports": 26,
-    "accepted_physical_manual_reports": 1
-  }
+    "accepted_physical_manual_reports": 2
+  },
+  "manual_evidence_status": "fulfilled",
+  "pending_manual_reports": [],
+  "manual_acceptance_test_base_commit": "18fd7a6cef6208db415c7fea17de07d7d4b50628",
+  "manual_acceptance_test_base_runtime_blobs_unchanged": true,
+  "manual_acceptance_base_advertised_ref_verified": true
 }

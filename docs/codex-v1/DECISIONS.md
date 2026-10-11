@@ -439,8 +439,13 @@ with a bare “approved” assertion without a traceable reference.
 - A30 pass; A29 controlled component and owner-confirmed PS5.1 physical manual1
   pass. Store PS7 manual1 failed in test-helper compiler setup before cases; its
   cleanup/hashes pass and physical=false. Explicit Framework references repair
-  only the harness. PS7 manual2 retry remains pending; T11/M2 remain incomplete.
-  Automated key records are labelled automated; no phone result is invented.
+  only the harness. Store PS7 7.6.6 manual2 now passes at actual test base
+  18fd7a6cef6208db415c7fea17de07d7d4b50628; the owner confirmed "Done PASSED".
+  Report exit130/counts, preserved decoded output, partial removal, log/mode,
+  unrelated FFmpeg, source/fixture hashes and exact cleanup all pass. A29/A30 and
+  T11 complete; M2 local acceptance passed. Three physical-mode reports retain
+  two passes/one setup failure. Automated key records stay labelled automated;
+  no phone result is invented.
 - All 26 selected automated invocations pass: focused nine groups on PS5.1,
   bundled PS7 and Store PS7;
   full M2 retained/transaction/script/launcher/preflight/discovery/naming/reservation/
@@ -463,5 +468,7 @@ with a bare “approved” assertion without a traceable reference.
 - Code checkpoint committed/pushed and freshly advertised-ref matched; draft PR
   https://github.com/PikkuJanne/AudioFileForPhone/pull/11. Evidence/handoff follows
   code. Zero GitHub workflows/checks; no CI/main merge/tag/release claim. Prior T07
-  residue and T09 path interval remain. Next implementation T12 requires manual
-  acceptance and owner integration of T11 first.
+  residue and T09 path interval remain. Evidence checkpoint 18fd7a6 was also
+  pushed/live-matched. This manual acceptance closure changes only docs/evidence,
+  so existing automated results remain valid. Exactly next implementation T12
+  requires owner integration of T11 first.

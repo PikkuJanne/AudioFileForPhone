@@ -437,7 +437,7 @@
       "required": true,
       "method": "manual Ctrl+C plus controlled process test",
       "expected": "Cancel stops only this owned process, waits for its exit, marks run cancelled, retains completed outputs and removes current partial; unrelated FFmpeg survives.",
-      "status": "blocked",
+      "status": "pass",
       "evidence": [
         "evidence/T11.md",
         "evidence/T11-tested-payload.json",
@@ -446,7 +446,8 @@
         "evidence/T11-cancellation-ps7-final3.json",
         "evidence/T11-cancellation-ps7-final4.json",
         "evidence/T11-cancellation-ps51-manual1.json",
-        "evidence/T11-cancellation-ps7-manual1.json"
+        "evidence/T11-cancellation-ps7-manual1.json",
+        "evidence/T11-cancellation-ps7-manual2.json"
       ]
     },
     {
