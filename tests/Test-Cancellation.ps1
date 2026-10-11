@@ -31,8 +31,8 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T11|T13|T14|T15)-cancellation-(ps51|ps7)-(attempt|final|manual)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T11/T13/T14/T15-cancellation-ps51/ps7-attempt/final/manualN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T11|T13|T14|T15|T16)-cancellation-(ps51|ps7)-(attempt|final|manual)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T11/T13/T14/T15/T16-cancellation-ps51/ps7-attempt/final/manualN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'

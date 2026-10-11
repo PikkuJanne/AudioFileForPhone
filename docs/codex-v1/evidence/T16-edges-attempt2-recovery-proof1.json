@@ -1,0 +1,1642 @@
+{
+  "schema_version": 1,
+  "task": "T16",
+  "record_kind": "separate_failed_edges_cleanup_recovery_proof",
+  "created_utc": "2026-10-11T11:56:10.3311356Z",
+  "shell": "7.6.5",
+  "status": "pass",
+  "authorization": "Root explicitly assigned only this exact retained synthetic scope and separate CreateNew proof/recovery records; no broader cleanup.",
+  "original_report_relative_path": "docs/codex-v1/evidence/T16-edges-ps51-attempt2.json",
+  "original_report_sha256": "0487dac8c797a121090a1850bdb77ffaf67b453b233faf1cadbb6bdbae97b4ae",
+  "historical_harness_relative_path": "docs/codex-v1/evidence/T16-edges-attempt2-harness.txt",
+  "historical_harness_sha256": "b022f8324017dd056ec66c5f87a15526259e42742f08261dd7e0e5f8bd62172e",
+  "historical_provenance": "Preserved exact attempt2 harness snapshot independently matches source_before/source_after SHA256. Current production entry/helper/BAT also match both recorded inventories.",
+  "original_flags_preserved": {
+    "status": "fail",
+    "source_unchanged": true,
+    "synthetic_unchanged": true,
+    "children_disposed": false,
+    "descendant_release_proved": false,
+    "cleanup_verified": false
+  },
+  "original_failure": "All six groups passed; final conservative cleanup refused because working260 preflight correctly returned before any native call and the original completion guard required proofCount>0.",
+  "zero_native_historical_proof": {
+    "label": "working260",
+    "exit_code": 1,
+    "host_wait_exit_pipe_join_dispose": true,
+    "native_proof_count": 0,
+    "copied_entry_sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+    "copied_helper_sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+    "driver_sha256": "b01d73f3d81629a3e9ac86b4581c5089ac2e57ab51fe165e31236185685a36aa",
+    "actual_final_status": "FailedBeforeConversion",
+    "total": 1,
+    "processed": 0,
+    "converted": 0,
+    "failed": 0,
+    "exact_fatal": "File path is 260 UTF-16 units; the supported limit is 259",
+    "run_directories_created": 0,
+    "entry_end_present": true,
+    "new_wrapper_sentinel_retrospectively_claimed": false,
+    "basis": "Historical helper appends a false native ledger row before every original call. Saved driver initializes that ledger, invokes exact copied entry, prints every row then ENTRYAUDIT/ENTRYEND. Exact entry planner precedes tools/native prerequisite calls; actual fatal output proves planner budget failure. Newly introduced sentinel is not historical evidence."
+  },
+  "native_release_proof": {
+    "direct_calls": 27,
+    "direct_calls_completed_exit0_released_no_deadline": true,
+    "entry_calls": 61,
+    "entry_calls_completed_exit0_released": true,
+    "hosts": 7,
+    "all_host_exit_pipe_join_dispose_proved": true,
+    "all_host_timeouts_false": true,
+    "ordinary_nonzero_native_release_or_throw_not_inferred": true,
+    "copied_helper_full_reconstruction_count": 7,
+    "copied_helper_full_reconstruction_sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+    "reconstruction": "Original production helper raw bytes followed by Windows newline and exact historical New-AppCopy audit here-string UTF8 bytes."
+  },
+  "exact_root": "C:\\Windows\\TEMP\\T16E-64e3efc9",
+  "exact_parent": "C:\\Windows\\TEMP",
+  "expected_leaf": "T16E-64e3efc9",
+  "root_attributes": 16,
+  "root_creation_utc": "2026-10-11T11:47:21.4226309Z",
+  "root_creation_utc_ticks": 639273160414226309,
+  "root_last_write_utc": "2026-10-11T11:47:44.8021104Z",
+  "root_last_write_utc_ticks": 639273160648021104,
+  "exclusive_root_and_create_new_marker_recorded": true,
+  "historical_marker_sha256_binding_available": true,
+  "recorded_owner_marker_sha256": "94fd18c249aeab90663c90de5336ec5e15b257c2f18734ef80ca6dfa7c6194a5",
+  "current_marker_sha256": "94fd18c249aeab90663c90de5336ec5e15b257c2f18734ef80ca6dfa7c6194a5",
+  "current_observed_marker_text": "1e72a52209ce42e88346d5a4a2f8ae8e",
+  "marker_binding_note": "Current bytes hash to the SHA256 persisted in the original report. Original plaintext token was not separately persisted.",
+  "no_reparse_chain_or_entries": true,
+  "entry_count": 113,
+  "file_count": 73,
+  "directory_count": 40,
+  "known_file_derivation": "43 before/after-hashed fixtures + recorded owner +readyJSON +18 run marker/log/manifest files +10 independent decode/hash-bound publications. Forty directories are exactly parents derived from these73 filenames; no unknown/empty directories.",
+  "source_checks": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "historical_snapshot": false
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4",
+      "historical_snapshot": false
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "historical_snapshot": false
+    },
+    {
+      "relative_path": "tests/Test-RegressionEdges.ps1",
+      "sha256": "b022f8324017dd056ec66c5f87a15526259e42742f08261dd7e0e5f8bd62172e",
+      "historical_snapshot": true
+    }
+  ],
+  "fixture_checks": [
+    {
+      "relative_path": "seed.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "seed.m4a",
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "seed.ogg",
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 sssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "O259source\\Sibling [literal] ' %!&() sentinel.mp3",
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-source259\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-source259\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "source259-driver.ps1",
+      "sha256": "1bd62c240e9d8de91cee3203e6277ef4edd99b1e416e2bba106d9ae6fc9454f4",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "I\\2024-01-01 Clip.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\sibling.txt",
+      "sha256": "391073804a9da6de705dacfbc33fabbb4f47c9bebd9ffb860e1f4bb8e8b93fdc",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-working259\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-working259\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "working259-driver.ps1",
+      "sha256": "7421f11b3e5235d3afebd8cf535450814021e6a234e75194cafca115b2eae602",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-01 [x] é中Ω🚀.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-02 O'Brien %!&().m4a",
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-03 ^= ;,$.ogg",
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sibling [literal] ' %!&() sentinel.mp3",
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-special\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-special\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "special-driver.ps1",
+      "sha256": "591a0a98408741ccfd3c1fe7d6424b0d5389592e8855acfa8fe89ef2bb787937",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 ssssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "O260source\\Sibling [literal] ' %!&() sentinel.mp3",
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-source260\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-source260\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "source260-driver.ps1",
+      "sha256": "1800d0bebd00e77142e38302bf05436c774f56ce092db583e9bdeb06e4b26417",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "J\\2024-01-01 Clip.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "O260work\\pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\sibling.txt",
+      "sha256": "fa4940480d23188383a24cf62dedc4e6fb9bde22420d0112c66080a8fd74d702",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-working260\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-working260\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "working260-driver.ps1",
+      "sha256": "b01d73f3d81629a3e9ac86b4581c5089ac2e57ab51fe165e31236185685a36aa",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "forty-seconds.mp3",
+      "sha256": "c03cd361ea49dcdc383b4f6bdd093e16e050cedaccd1a081d012db5baa3303e8",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-01 Completed.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-02 Duration failure.mp3",
+      "sha256": "c03cd361ea49dcdc383b4f6bdd093e16e050cedaccd1a081d012db5baa3303e8",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-03 Continued.ogg",
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Concurrent B\\2024-01-01 Normal.mp3",
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Concurrent B\\2024-01-02 Normal.m4a",
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\Sibling [literal] ' %!&() sentinel.mp3",
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-concurrent-A\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-concurrent-A\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "concurrent-A-driver.ps1",
+      "sha256": "b97f7c9db50875cb87744cdd7b55103a08ba7d9edbd373dfc7faf1c0142afe5c",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-concurrent-B\\AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "A-concurrent-B\\AudioFileForPhone.Helpers.ps1",
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90",
+      "matches_recorded_before": true
+    },
+    {
+      "relative_path": "concurrent-B-driver.ps1",
+      "sha256": "25e9ccc07e2e19bf8f68aebc6bc3f251dea6e20d035b2af7ac035fc68ec1beca",
+      "matches_recorded_before": true
+    }
+  ],
+  "publication_checks": [
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\S\\2024-01-01 - sssssssssssssssssssssssssss.mp3",
+      "sha256": "a0b47a02f5b3a6892654ad87e3e3368963d1d7dd5eec9caa756ac44841a3fd5b",
+      "length": 4274,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\I\\2024-01-01 - Clip.mp3",
+      "sha256": "181b7200e3117716db80fa5f89ceee67d784fc5c323dd75bcd7bc86979fabf05",
+      "length": 4251,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-01 - x é中Ω.mp3",
+      "sha256": "6ec837e050fb2b1aff0ddf4f7e392f1c1aba32d994b6c8fc9e2ac3ccb50f01a1",
+      "length": 4273,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-02 - OBrien.mp3",
+      "sha256": "da4315312943c661154117bb63c0dffa1da5afc9f8bfe52ac6bec5d9fb4fd21b",
+      "length": 4044,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-03 - Episode.mp3",
+      "sha256": "fa0d0aff2af1b662f57461a9c3f8d9d0b85af71fad4ca9afd68080d2d6703a8a",
+      "length": 4045,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\S\\2024-01-01 - sssssssssssssssssssssssssss.mp3",
+      "sha256": "a0b47a02f5b3a6892654ad87e3e3368963d1d7dd5eec9caa756ac44841a3fd5b",
+      "length": 4274,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\Concurrent A\\2024-01-01 - Completed.mp3",
+      "sha256": "a1378888bd607e3e4f7cbcd6604044d252f7f6502074bf4731b467da720bc756",
+      "length": 4256,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\Concurrent A\\2024-01-03 - Continued.mp3",
+      "sha256": "cb97e2b913458b754c967469f9fd3974cd52bf73d21071037ebf74ce8055ae98",
+      "length": 4047,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\Concurrent B\\2024-01-01 - Normal.mp3",
+      "sha256": "86412c9cf66eceb69dd5a4796a7b2f3c81c2a0f4061ad05379d621a8bb01b402",
+      "length": 4253,
+      "recorded_independent_full_decode": true
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\Concurrent B\\2024-01-02 - Normal.mp3",
+      "sha256": "7fd3589786faf2bc73927148d6a9afd8b29c002097899da980191a0be347e346",
+      "length": 4044,
+      "recorded_independent_full_decode": true
+    }
+  ],
+  "entries": [
+    {
+      "relative_path": ".t16-owner",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:21.4316252Z",
+      "creation_utc_ticks": 639273160414316252,
+      "last_write_utc": "2026-10-11T11:47:21.4406254Z",
+      "last_write_utc_ticks": 639273160414406254,
+      "length": 32,
+      "sha256": "94fd18c249aeab90663c90de5336ec5e15b257c2f18734ef80ca6dfa7c6194a5"
+    },
+    {
+      "relative_path": "A-concurrent-A",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:40.6265356Z",
+      "creation_utc_ticks": 639273160606265356,
+      "last_write_utc": "2026-10-11T11:47:40.6631207Z",
+      "last_write_utc_ticks": 639273160606631207,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-concurrent-A\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6631207Z",
+      "creation_utc_ticks": 639273160606631207,
+      "last_write_utc": "2026-10-11T11:47:40.6904863Z",
+      "last_write_utc_ticks": 639273160606904863,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-concurrent-A\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6265356Z",
+      "creation_utc_ticks": 639273160606265356,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-concurrent-B",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:44.7028370Z",
+      "creation_utc_ticks": 639273160647028370,
+      "last_write_utc": "2026-10-11T11:47:44.7361223Z",
+      "last_write_utc_ticks": 639273160647361223,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-concurrent-B\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:44.7361223Z",
+      "creation_utc_ticks": 639273160647361223,
+      "last_write_utc": "2026-10-11T11:47:44.7689120Z",
+      "last_write_utc_ticks": 639273160647689120,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-concurrent-B\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:44.7028370Z",
+      "creation_utc_ticks": 639273160647028370,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-source259",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:22.7768462Z",
+      "creation_utc_ticks": 639273160427768462,
+      "last_write_utc": "2026-10-11T11:47:22.8204868Z",
+      "last_write_utc_ticks": 639273160428204868,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-source259\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.8204868Z",
+      "creation_utc_ticks": 639273160428204868,
+      "last_write_utc": "2026-10-11T11:47:22.8630980Z",
+      "last_write_utc_ticks": 639273160428630980,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-source259\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.7768462Z",
+      "creation_utc_ticks": 639273160427768462,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-source260",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:35.8046714Z",
+      "creation_utc_ticks": 639273160558046714,
+      "last_write_utc": "2026-10-11T11:47:35.8381306Z",
+      "last_write_utc_ticks": 639273160558381306,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-source260\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:35.8381306Z",
+      "creation_utc_ticks": 639273160558381306,
+      "last_write_utc": "2026-10-11T11:47:35.8697702Z",
+      "last_write_utc_ticks": 639273160558697702,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-source260\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:35.8056454Z",
+      "creation_utc_ticks": 639273160558056454,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-special",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:30.5200401Z",
+      "creation_utc_ticks": 639273160505200401,
+      "last_write_utc": "2026-10-11T11:47:30.5578911Z",
+      "last_write_utc_ticks": 639273160505578911,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-special\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.5578911Z",
+      "creation_utc_ticks": 639273160505578911,
+      "last_write_utc": "2026-10-11T11:47:30.6038942Z",
+      "last_write_utc_ticks": 639273160506038942,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-special\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.5200401Z",
+      "creation_utc_ticks": 639273160505200401,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-working259",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:26.6723596Z",
+      "creation_utc_ticks": 639273160466723596,
+      "last_write_utc": "2026-10-11T11:47:26.7073919Z",
+      "last_write_utc_ticks": 639273160467073919,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-working259\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:26.7073919Z",
+      "creation_utc_ticks": 639273160467073919,
+      "last_write_utc": "2026-10-11T11:47:26.7549134Z",
+      "last_write_utc_ticks": 639273160467549134,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-working259\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:26.6723596Z",
+      "creation_utc_ticks": 639273160466723596,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "A-working260",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:39.4836206Z",
+      "creation_utc_ticks": 639273160594836206,
+      "last_write_utc": "2026-10-11T11:47:39.5200280Z",
+      "last_write_utc_ticks": 639273160595200280,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "A-working260\\AudioFileForPhone.Helpers.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:39.5200280Z",
+      "creation_utc_ticks": 639273160595200280,
+      "last_write_utc": "2026-10-11T11:47:39.5533467Z",
+      "last_write_utc_ticks": 639273160595533467,
+      "length": 118374,
+      "sha256": "6f72351d4d66a819a9446d338ff6d6145a600b37976c5fb789d3fe56d997db90"
+    },
+    {
+      "relative_path": "A-working260\\AudioFileForPhone.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:39.4858390Z",
+      "creation_utc_ticks": 639273160594858390,
+      "last_write_utc": "2026-10-11T11:31:45.4749929Z",
+      "last_write_utc_ticks": 639273151054749929,
+      "length": 45442,
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "Concurrent A",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:40.6014286Z",
+      "creation_utc_ticks": 639273160606014286,
+      "last_write_utc": "2026-10-11T11:47:40.6186023Z",
+      "last_write_utc_ticks": 639273160606186023,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-01 Completed.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6024051Z",
+      "creation_utc_ticks": 639273160606024051,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-02 Duration failure.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6024051Z",
+      "creation_utc_ticks": 639273160606024051,
+      "last_write_utc": "2026-10-11T11:47:40.5914201Z",
+      "last_write_utc_ticks": 639273160605914201,
+      "length": 320826,
+      "sha256": "c03cd361ea49dcdc383b4f6bdd093e16e050cedaccd1a081d012db5baa3303e8"
+    },
+    {
+      "relative_path": "Concurrent A\\2024-01-03 Continued.ogg",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6143252Z",
+      "creation_utc_ticks": 639273160606143252,
+      "last_write_utc": "2026-10-11T11:47:22.6600331Z",
+      "last_write_utc_ticks": 639273160426600331,
+      "length": 4570,
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b"
+    },
+    {
+      "relative_path": "Concurrent B",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:40.6217046Z",
+      "creation_utc_ticks": 639273160606217046,
+      "last_write_utc": "2026-10-11T11:47:40.6226177Z",
+      "last_write_utc_ticks": 639273160606226177,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Concurrent B\\2024-01-01 Normal.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6226177Z",
+      "creation_utc_ticks": 639273160606226177,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "Concurrent B\\2024-01-02 Normal.m4a",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6226177Z",
+      "creation_utc_ticks": 639273160606226177,
+      "last_write_utc": "2026-10-11T11:47:22.6034088Z",
+      "last_write_utc_ticks": 639273160426034088,
+      "length": 3626,
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c"
+    },
+    {
+      "relative_path": "concurrent-A-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.7311383Z",
+      "creation_utc_ticks": 639273160607311383,
+      "last_write_utc": "2026-10-11T11:47:40.7311383Z",
+      "last_write_utc_ticks": 639273160607311383,
+      "length": 1738,
+      "sha256": "b97f7c9db50875cb87744cdd7b55103a08ba7d9edbd373dfc7faf1c0142afe5c"
+    },
+    {
+      "relative_path": "concurrent-B-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:44.8021104Z",
+      "creation_utc_ticks": 639273160648021104,
+      "last_write_utc": "2026-10-11T11:47:44.8021104Z",
+      "last_write_utc_ticks": 639273160648021104,
+      "length": 1485,
+      "sha256": "25e9ccc07e2e19bf8f68aebc6bc3f251dea6e20d035b2af7ac035fc68ec1beca"
+    },
+    {
+      "relative_path": "forty-seconds.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.5025463Z",
+      "creation_utc_ticks": 639273160605025463,
+      "last_write_utc": "2026-10-11T11:47:40.5914201Z",
+      "last_write_utc_ticks": 639273160605914201,
+      "length": 320826,
+      "sha256": "c03cd361ea49dcdc383b4f6bdd093e16e050cedaccd1a081d012db5baa3303e8"
+    },
+    {
+      "relative_path": "I",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:26.6032516Z",
+      "creation_utc_ticks": 639273160466032516,
+      "last_write_utc": "2026-10-11T11:47:26.6183354Z",
+      "last_write_utc_ticks": 639273160466183354,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "I\\2024-01-01 Clip.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:26.6183354Z",
+      "creation_utc_ticks": 639273160466183354,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:30.4900854Z",
+      "creation_utc_ticks": 639273160504900854,
+      "last_write_utc": "2026-10-11T11:47:30.4910991Z",
+      "last_write_utc_ticks": 639273160504910991,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:30.4910991Z",
+      "creation_utc_ticks": 639273160504910991,
+      "last_write_utc": "2026-10-11T11:47:30.5064414Z",
+      "last_write_utc_ticks": 639273160505064414,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-01 [x] é中Ω🚀.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.4910991Z",
+      "creation_utc_ticks": 639273160504910991,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-02 O'Brien %!&().m4a",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.5031180Z",
+      "creation_utc_ticks": 639273160505031180,
+      "last_write_utc": "2026-10-11T11:47:22.6034088Z",
+      "last_write_utc_ticks": 639273160426034088,
+      "length": 3626,
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c"
+    },
+    {
+      "relative_path": "In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-03 ^= ;,$.ogg",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.5064414Z",
+      "creation_utc_ticks": 639273160505064414,
+      "last_write_utc": "2026-10-11T11:47:22.6600331Z",
+      "last_write_utc_ticks": 639273160426600331,
+      "length": 4570,
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b"
+    },
+    {
+      "relative_path": "J",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:39.4672056Z",
+      "creation_utc_ticks": 639273160594672056,
+      "last_write_utc": "2026-10-11T11:47:39.4680786Z",
+      "last_write_utc_ticks": 639273160594680786,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "J\\2024-01-01 Clip.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:39.4680786Z",
+      "creation_utc_ticks": 639273160594680786,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "live-ready.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:44.6929837Z",
+      "creation_utc_ticks": 639273160646929837,
+      "last_write_utc": "2026-10-11T11:47:44.6929837Z",
+      "last_write_utc_ticks": 639273160646929837,
+      "length": 392,
+      "sha256": "7f335371f9d8e76858cddf5fc03771fd88bb24e7653eada49cdadd7a123f1e1f"
+    },
+    {
+      "relative_path": "O259source",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:22.7683992Z",
+      "creation_utc_ticks": 639273160427683992,
+      "last_write_utc": "2026-10-11T11:47:24.5033929Z",
+      "last_write_utc_ticks": 639273160445033929,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:24.5033929Z",
+      "creation_utc_ticks": 639273160445033929,
+      "last_write_utc": "2026-10-11T11:47:26.2604331Z",
+      "last_write_utc_ticks": 639273160462604331,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:24.5380298Z",
+      "creation_utc_ticks": 639273160445380298,
+      "last_write_utc": "2026-10-11T11:47:24.5535315Z",
+      "last_write_utc_ticks": 639273160445535315,
+      "length": 307,
+      "sha256": "fe85b7c760204e525f6cc3a5a42f87b57ca723cf364bd48c427d43a004add26b"
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:24.5535315Z",
+      "creation_utc_ticks": 639273160445535315,
+      "last_write_utc": "2026-10-11T11:47:26.2374347Z",
+      "last_write_utc_ticks": 639273160462374347,
+      "length": 7889,
+      "sha256": "e32ffc291550338cc65fea18b4d6da52e009a24542d7699b040342fc5bc917fa"
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:24.6812384Z",
+      "creation_utc_ticks": 639273160446812384,
+      "last_write_utc": "2026-10-11T11:47:26.2444373Z",
+      "last_write_utc_ticks": 639273160462444373,
+      "length": 2465,
+      "sha256": "11ceb7f9ff847feab269a59420360d6e25ff4d5b10182ae6f09120dccf369d18"
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\S",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:25.2699184Z",
+      "creation_utc_ticks": 639273160452699184,
+      "last_write_utc": "2026-10-11T11:47:25.9473863Z",
+      "last_write_utc_ticks": 639273160459473863,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259source\\AudioForPhone_64kbps_20261011_134723\\S\\2024-01-01 - sssssssssssssssssssssssssss.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:25.5204370Z",
+      "creation_utc_ticks": 639273160455204370,
+      "last_write_utc": "2026-10-11T11:47:25.7700555Z",
+      "last_write_utc_ticks": 639273160457700555,
+      "length": 4274,
+      "sha256": "a0b47a02f5b3a6892654ad87e3e3368963d1d7dd5eec9caa756ac44841a3fd5b"
+    },
+    {
+      "relative_path": "O259source\\Sibling [literal] ' %!&() sentinel.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.7692398Z",
+      "creation_utc_ticks": 639273160427692398,
+      "last_write_utc": "2026-10-11T11:47:22.7692398Z",
+      "last_write_utc_ticks": 639273160427692398,
+      "length": 50,
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260"
+    },
+    {
+      "relative_path": "O259work",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:26.6679070Z",
+      "creation_utc_ticks": 639273160466679070,
+      "last_write_utc": "2026-10-11T11:47:26.6690054Z",
+      "last_write_utc_ticks": 639273160466690054,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:26.6690054Z",
+      "creation_utc_ticks": 639273160466690054,
+      "last_write_utc": "2026-10-11T11:47:28.4537139Z",
+      "last_write_utc_ticks": 639273160484537139,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:28.4537139Z",
+      "creation_utc_ticks": 639273160484537139,
+      "last_write_utc": "2026-10-11T11:47:30.3104594Z",
+      "last_write_utc_ticks": 639273160503104594,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:28.4892533Z",
+      "creation_utc_ticks": 639273160484892533,
+      "last_write_utc": "2026-10-11T11:47:28.4952532Z",
+      "last_write_utc_ticks": 639273160484952532,
+      "length": 549,
+      "sha256": "b6db6dc575239d7b32268ba4143125e0830b9bba5ed3b9f07221ccc5bb6265a5"
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:28.4972491Z",
+      "creation_utc_ticks": 639273160484972491,
+      "last_write_utc": "2026-10-11T11:47:30.2735013Z",
+      "last_write_utc_ticks": 639273160502735013,
+      "length": 7436,
+      "sha256": "fb6d2a4172e4e65455ce7e3c1f194571eb8857e62f1e7b7a949ae3442cd7ce1b"
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:28.6038686Z",
+      "creation_utc_ticks": 639273160486038686,
+      "last_write_utc": "2026-10-11T11:47:30.2897884Z",
+      "last_write_utc_ticks": 639273160502897884,
+      "length": 2349,
+      "sha256": "17c5a48b8465f48b5dddbd0832ac85ee64059bd25b179bc1c50b40318449c8cb"
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\I",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:29.2760191Z",
+      "creation_utc_ticks": 639273160492760191,
+      "last_write_utc": "2026-10-11T11:47:29.9647792Z",
+      "last_write_utc_ticks": 639273160499647792,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\AudioForPhone_64kbps_20261011_134727\\I\\2024-01-01 - Clip.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:29.5040005Z",
+      "creation_utc_ticks": 639273160495040005,
+      "last_write_utc": "2026-10-11T11:47:29.7598633Z",
+      "last_write_utc_ticks": 639273160497598633,
+      "length": 4251,
+      "sha256": "181b7200e3117716db80fa5f89ceee67d784fc5c323dd75bcd7bc86979fabf05"
+    },
+    {
+      "relative_path": "O259work\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\sibling.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:26.6696050Z",
+      "creation_utc_ticks": 639273160466696050,
+      "last_write_utc": "2026-10-11T11:47:26.6703023Z",
+      "last_write_utc_ticks": 639273160466703023,
+      "length": 29,
+      "sha256": "391073804a9da6de705dacfbc33fabbb4f47c9bebd9ffb860e1f4bb8e8b93fdc"
+    },
+    {
+      "relative_path": "O260source",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:35.8016391Z",
+      "creation_utc_ticks": 639273160558016391,
+      "last_write_utc": "2026-10-11T11:47:37.5306655Z",
+      "last_write_utc_ticks": 639273160575306655,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:37.5306655Z",
+      "creation_utc_ticks": 639273160575306655,
+      "last_write_utc": "2026-10-11T11:47:39.3214894Z",
+      "last_write_utc_ticks": 639273160593214894,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:37.5686215Z",
+      "creation_utc_ticks": 639273160575686215,
+      "last_write_utc": "2026-10-11T11:47:37.5694146Z",
+      "last_write_utc_ticks": 639273160575694146,
+      "length": 307,
+      "sha256": "0f46f5bc94e938188ee0fc5aec83ae83372d0acc3324f714dca198aa10a0d63e"
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:37.5694146Z",
+      "creation_utc_ticks": 639273160575694146,
+      "last_write_utc": "2026-10-11T11:47:39.2929735Z",
+      "last_write_utc_ticks": 639273160592929735,
+      "length": 7894,
+      "sha256": "e95e6f6d961c56325bea551c83f344ac06431ed8ba72690c12436337cf27adb4"
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:37.6954499Z",
+      "creation_utc_ticks": 639273160576954499,
+      "last_write_utc": "2026-10-11T11:47:39.2988946Z",
+      "last_write_utc_ticks": 639273160592988946,
+      "length": 2466,
+      "sha256": "37a699943e84b1a3359445a3ec41437123809b1d22e13fa101f2552a4d596d33"
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\S",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:38.3095387Z",
+      "creation_utc_ticks": 639273160583095387,
+      "last_write_utc": "2026-10-11T11:47:39.0176915Z",
+      "last_write_utc_ticks": 639273160590176915,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O260source\\AudioForPhone_64kbps_20261011_134736\\S\\2024-01-01 - sssssssssssssssssssssssssss.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:38.5696155Z",
+      "creation_utc_ticks": 639273160585696155,
+      "last_write_utc": "2026-10-11T11:47:38.8054976Z",
+      "last_write_utc_ticks": 639273160588054976,
+      "length": 4274,
+      "sha256": "a0b47a02f5b3a6892654ad87e3e3368963d1d7dd5eec9caa756ac44841a3fd5b"
+    },
+    {
+      "relative_path": "O260source\\Sibling [literal] ' %!&() sentinel.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:35.8026463Z",
+      "creation_utc_ticks": 639273160558026463,
+      "last_write_utc": "2026-10-11T11:47:35.8026463Z",
+      "last_write_utc_ticks": 639273160558026463,
+      "length": 50,
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260"
+    },
+    {
+      "relative_path": "O260work",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:39.4693757Z",
+      "creation_utc_ticks": 639273160594693757,
+      "last_write_utc": "2026-10-11T11:47:39.4693757Z",
+      "last_write_utc_ticks": 639273160594693757,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O260work\\pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:39.4693757Z",
+      "creation_utc_ticks": 639273160594693757,
+      "last_write_utc": "2026-10-11T11:47:39.4693757Z",
+      "last_write_utc_ticks": 639273160594693757,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "O260work\\pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\sibling.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:39.4693757Z",
+      "creation_utc_ticks": 639273160594693757,
+      "last_write_utc": "2026-10-11T11:47:39.4693757Z",
+      "last_write_utc_ticks": 639273160594693757,
+      "length": 36,
+      "sha256": "fa4940480d23188383a24cf62dedc4e6fb9bde22420d0112c66080a8fd74d702"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:30.5200401Z",
+      "creation_utc_ticks": 639273160505200401,
+      "last_write_utc": "2026-10-11T11:47:32.5233684Z",
+      "last_write_utc_ticks": 639273160525233684,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:32.5233684Z",
+      "creation_utc_ticks": 639273160525233684,
+      "last_write_utc": "2026-10-11T11:47:35.3891221Z",
+      "last_write_utc_ticks": 639273160553891221,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:32.5646212Z",
+      "creation_utc_ticks": 639273160525646212,
+      "last_write_utc": "2026-10-11T11:47:32.5696607Z",
+      "last_write_utc_ticks": 639273160525696607,
+      "length": 383,
+      "sha256": "b9f056431695d43e73b4c05a30a38674f855fa71d629acb103699f32065eba1c"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:32.5696607Z",
+      "creation_utc_ticks": 639273160525696607,
+      "last_write_utc": "2026-10-11T11:47:35.3633821Z",
+      "last_write_utc_ticks": 639273160553633821,
+      "length": 17392,
+      "sha256": "8e9ee02e87c0752534cb3a4a82803dc990019bfd04ce2c10aa9de3bc692bc0eb"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:32.6983798Z",
+      "creation_utc_ticks": 639273160526983798,
+      "last_write_utc": "2026-10-11T11:47:35.3701271Z",
+      "last_write_utc_ticks": 639273160553701271,
+      "length": 3508,
+      "sha256": "92c26cd195b7443e00e96694381229d2a81841e0d8d44a8a83e2ce33d52d2e80"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:33.2906789Z",
+      "creation_utc_ticks": 639273160532906789,
+      "last_write_utc": "2026-10-11T11:47:33.6053840Z",
+      "last_write_utc_ticks": 639273160536053840,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:33.6053840Z",
+      "creation_utc_ticks": 639273160536053840,
+      "last_write_utc": "2026-10-11T11:47:35.1280811Z",
+      "last_write_utc_ticks": 639273160551280811,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-01 - x é中Ω.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:33.6053840Z",
+      "creation_utc_ticks": 639273160536053840,
+      "last_write_utc": "2026-10-11T11:47:33.8628280Z",
+      "last_write_utc_ticks": 639273160538628280,
+      "length": 4273,
+      "sha256": "6ec837e050fb2b1aff0ddf4f7e392f1c1aba32d994b6c8fc9e2ac3ccb50f01a1"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-02 - OBrien.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:34.4034388Z",
+      "creation_utc_ticks": 639273160544034388,
+      "last_write_utc": "2026-10-11T11:47:34.4541942Z",
+      "last_write_utc_ticks": 639273160544541942,
+      "length": 4044,
+      "sha256": "da4315312943c661154117bb63c0dffa1da5afc9f8bfe52ac6bec5d9fb4fd21b"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\AudioForPhone_64kbps_20261011_134731\\In [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sub [x] O'Brien %!&()^= ;,$é中Ω🚀\\2024-01-03 - Episode.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:34.9395463Z",
+      "creation_utc_ticks": 639273160549395463,
+      "last_write_utc": "2026-10-11T11:47:34.9865062Z",
+      "last_write_utc_ticks": 639273160549865062,
+      "length": 4045,
+      "sha256": "fa0d0aff2af1b662f57461a9c3f8d9d0b85af71fad4ca9afd68080d2d6703a8a"
+    },
+    {
+      "relative_path": "Out [x] O'Brien %!&()^= ;,$é中Ω🚀\\Sibling [literal] ' %!&() sentinel.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.5200401Z",
+      "creation_utc_ticks": 639273160505200401,
+      "last_write_utc": "2026-10-11T11:47:30.5200401Z",
+      "last_write_utc_ticks": 639273160505200401,
+      "length": 50,
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260"
+    },
+    {
+      "relative_path": "S259",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:22.6764590Z",
+      "creation_utc_ticks": 639273160426764590,
+      "last_write_utc": "2026-10-11T11:47:22.6873381Z",
+      "last_write_utc_ticks": 639273160426873381,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:22.6873381Z",
+      "creation_utc_ticks": 639273160426873381,
+      "last_write_utc": "2026-10-11T11:47:22.6893407Z",
+      "last_write_utc_ticks": 639273160426893407,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:22.6893407Z",
+      "creation_utc_ticks": 639273160426893407,
+      "last_write_utc": "2026-10-11T11:47:22.7043858Z",
+      "last_write_utc_ticks": 639273160427043858,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 sssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.7043858Z",
+      "creation_utc_ticks": 639273160427043858,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "S260",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:35.7941255Z",
+      "creation_utc_ticks": 639273160557941255,
+      "last_write_utc": "2026-10-11T11:47:35.7951329Z",
+      "last_write_utc_ticks": 639273160557951329,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:35.7951329Z",
+      "creation_utc_ticks": 639273160557951329,
+      "last_write_utc": "2026-10-11T11:47:35.7961330Z",
+      "last_write_utc_ticks": 639273160557961330,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:35.7961330Z",
+      "creation_utc_ticks": 639273160557961330,
+      "last_write_utc": "2026-10-11T11:47:35.7981318Z",
+      "last_write_utc_ticks": 639273160557981318,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 ssssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:35.7981318Z",
+      "creation_utc_ticks": 639273160557981318,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "seed.m4a",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.5944896Z",
+      "creation_utc_ticks": 639273160425944896,
+      "last_write_utc": "2026-10-11T11:47:22.6034088Z",
+      "last_write_utc_ticks": 639273160426034088,
+      "length": 3626,
+      "sha256": "e3752fa35be8574e9a418334685fe83d3e7780cee21053dab247dfa444d7865c"
+    },
+    {
+      "relative_path": "seed.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.5265095Z",
+      "creation_utc_ticks": 639273160425265095,
+      "last_write_utc": "2026-10-11T11:47:22.5305092Z",
+      "last_write_utc_ticks": 639273160425305092,
+      "length": 4013,
+      "sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd"
+    },
+    {
+      "relative_path": "seed.ogg",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.6410384Z",
+      "creation_utc_ticks": 639273160426410384,
+      "last_write_utc": "2026-10-11T11:47:22.6600331Z",
+      "last_write_utc_ticks": 639273160426600331,
+      "length": 4570,
+      "sha256": "c6d17d7607e84deecc3ed30177689c1d40bdbf8716302676857b7e69a3d77a2b"
+    },
+    {
+      "relative_path": "Shared [x] %!&()",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:40.6265356Z",
+      "creation_utc_ticks": 639273160606265356,
+      "last_write_utc": "2026-10-11T11:47:46.4648109Z",
+      "last_write_utc_ticks": 639273160664648109,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:42.3025583Z",
+      "creation_utc_ticks": 639273160623025583,
+      "last_write_utc": "2026-10-11T11:48:14.4654177Z",
+      "last_write_utc_ticks": 639273160944654177,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:42.3452070Z",
+      "creation_utc_ticks": 639273160623452070,
+      "last_write_utc": "2026-10-11T11:47:42.3502121Z",
+      "last_write_utc_ticks": 639273160623502121,
+      "length": 329,
+      "sha256": "c45be188355aa769963300ade4a891784843db1c22311a36a9d217acaba68796"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:42.3542166Z",
+      "creation_utc_ticks": 639273160623542166,
+      "last_write_utc": "2026-10-11T11:48:14.4333761Z",
+      "last_write_utc_ticks": 639273160944333761,
+      "length": 14895,
+      "sha256": "07b0e2762c1c677bf7c5090b46377f52d5bccb3103fc3f2bcfc4473c3d0989a2"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:42.4691739Z",
+      "creation_utc_ticks": 639273160624691739,
+      "last_write_utc": "2026-10-11T11:48:14.4405357Z",
+      "last_write_utc_ticks": 639273160944405357,
+      "length": 3181,
+      "sha256": "8d9d2f5adef01f56a81dc85f1f65fd38794b61e8071a01001991e6cb905b14c5"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\Concurrent A",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:43.0333469Z",
+      "creation_utc_ticks": 639273160630333469,
+      "last_write_utc": "2026-10-11T11:48:14.2008270Z",
+      "last_write_utc_ticks": 639273160942008270,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\Concurrent A\\2024-01-01 - Completed.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:43.2944259Z",
+      "creation_utc_ticks": 639273160632944259,
+      "last_write_utc": "2026-10-11T11:47:43.5358920Z",
+      "last_write_utc_ticks": 639273160635358920,
+      "length": 4256,
+      "sha256": "a1378888bd607e3e4f7cbcd6604044d252f7f6502074bf4731b467da720bc756"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134741\\Concurrent A\\2024-01-03 - Continued.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:48:14.0403757Z",
+      "creation_utc_ticks": 639273160940403757,
+      "last_write_utc": "2026-10-11T11:48:14.0847628Z",
+      "last_write_utc_ticks": 639273160940847628,
+      "length": 4047,
+      "sha256": "cb97e2b913458b754c967469f9fd3974cd52bf73d21071037ebf74ce8055ae98"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:46.4648109Z",
+      "creation_utc_ticks": 639273160664648109,
+      "last_write_utc": "2026-10-11T11:47:48.6980640Z",
+      "last_write_utc_ticks": 639273160686980640,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\.AudioFileForPhone-output.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:46.5023443Z",
+      "creation_utc_ticks": 639273160665023443,
+      "last_write_utc": "2026-10-11T11:47:46.5023443Z",
+      "last_write_utc_ticks": 639273160665023443,
+      "length": 329,
+      "sha256": "00f9e866eaf64eb22a6b3eb92e5005a2ba9f3df846cfdb87708f66b02c727f1f"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\AudioFileForPhone_log.txt",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:46.5169876Z",
+      "creation_utc_ticks": 639273160665169876,
+      "last_write_utc": "2026-10-11T11:47:48.6653908Z",
+      "last_write_utc_ticks": 639273160686653908,
+      "length": 10976,
+      "sha256": "8aba53a688f8d9ddce623e66197025fa2379846ab770b2ab2f29217d4b749b85"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\AudioFileForPhone_manifest.json",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:46.6424569Z",
+      "creation_utc_ticks": 639273160666424569,
+      "last_write_utc": "2026-10-11T11:47:48.6687501Z",
+      "last_write_utc_ticks": 639273160686687501,
+      "length": 2637,
+      "sha256": "e4ed3dd5e7a4bbb0f06b22bd7810b76bfda5170373b976f80a9c69b247b725e8"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\Concurrent B",
+      "directory": true,
+      "attributes": 16,
+      "creation_utc": "2026-10-11T11:47:47.2360877Z",
+      "creation_utc_ticks": 639273160672360877,
+      "last_write_utc": "2026-10-11T11:47:48.3890476Z",
+      "last_write_utc_ticks": 639273160683890476,
+      "length": null,
+      "sha256": null
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\Concurrent B\\2024-01-01 - Normal.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:47.4854987Z",
+      "creation_utc_ticks": 639273160674854987,
+      "last_write_utc": "2026-10-11T11:47:47.7356781Z",
+      "last_write_utc_ticks": 639273160677356781,
+      "length": 4253,
+      "sha256": "86412c9cf66eceb69dd5a4796a7b2f3c81c2a0f4061ad05379d621a8bb01b402"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\AudioForPhone_64kbps_20261011_134745\\Concurrent B\\2024-01-02 - Normal.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:48.2356935Z",
+      "creation_utc_ticks": 639273160682356935,
+      "last_write_utc": "2026-10-11T11:47:48.2689053Z",
+      "last_write_utc_ticks": 639273160682689053,
+      "length": 4044,
+      "sha256": "7fd3589786faf2bc73927148d6a9afd8b29c002097899da980191a0be347e346"
+    },
+    {
+      "relative_path": "Shared [x] %!&()\\Sibling [literal] ' %!&() sentinel.mp3",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:40.6265356Z",
+      "creation_utc_ticks": 639273160606265356,
+      "last_write_utc": "2026-10-11T11:47:40.6265356Z",
+      "last_write_utc_ticks": 639273160606265356,
+      "length": 50,
+      "sha256": "52c6fd9731dae95f642d0f3f020fe5a68a7e17b27f5170e1b42a6a14f2061260"
+    },
+    {
+      "relative_path": "source259-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:22.9039587Z",
+      "creation_utc_ticks": 639273160429039587,
+      "last_write_utc": "2026-10-11T11:47:22.9039587Z",
+      "last_write_utc_ticks": 639273160429039587,
+      "length": 1634,
+      "sha256": "1bd62c240e9d8de91cee3203e6277ef4edd99b1e416e2bba106d9ae6fc9454f4"
+    },
+    {
+      "relative_path": "source260-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:35.9268582Z",
+      "creation_utc_ticks": 639273160559268582,
+      "last_write_utc": "2026-10-11T11:47:35.9278312Z",
+      "last_write_utc_ticks": 639273160559278312,
+      "length": 1634,
+      "sha256": "1800d0bebd00e77142e38302bf05436c774f56ce092db583e9bdeb06e4b26417"
+    },
+    {
+      "relative_path": "special-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:30.6591374Z",
+      "creation_utc_ticks": 639273160506591374,
+      "last_write_utc": "2026-10-11T11:47:30.6601421Z",
+      "last_write_utc_ticks": 639273160506601421,
+      "length": 1529,
+      "sha256": "591a0a98408741ccfd3c1fe7d6424b0d5389592e8855acfa8fe89ef2bb787937"
+    },
+    {
+      "relative_path": "working259-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:26.8107531Z",
+      "creation_utc_ticks": 639273160468107531,
+      "last_write_utc": "2026-10-11T11:47:26.8114647Z",
+      "last_write_utc_ticks": 639273160468114647,
+      "length": 1586,
+      "sha256": "7421f11b3e5235d3afebd8cf535450814021e6a234e75194cafca115b2eae602"
+    },
+    {
+      "relative_path": "working260-driver.ps1",
+      "directory": false,
+      "attributes": 32,
+      "creation_utc": "2026-10-11T11:47:39.5867971Z",
+      "creation_utc_ticks": 639273160595867971,
+      "last_write_utc": "2026-10-11T11:47:39.6019450Z",
+      "last_write_utc_ticks": 639273160596019450,
+      "length": 1587,
+      "sha256": "b01d73f3d81629a3e9ac86b4581c5089ac2e57ab51fe165e31236185685a36aa"
+    }
+  ],
+  "registered_native_files": [
+    {
+      "absolute_path": "C:\\Windows\\TEMP\\T16E-64e3efc9\\S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 sssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 sssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "length_units": 259,
+      "recorded_sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "byte_length": 4013,
+      "parent_relative_path": "S259\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S",
+      "provenance": "Exact source filename in historical case source259/source260; original Native-CopyFile adds this exact target to nativeFiles before Add-Fixture."
+    },
+    {
+      "absolute_path": "C:\\Windows\\TEMP\\T16E-64e3efc9\\S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 ssssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S\\2024-01-01 ssssssssssssssssssssssssssssssssssssssssssss.mp3",
+      "length_units": 260,
+      "recorded_sha256": "619f7305682563d4427f7c4d5e086d93f65cb1ffc00b2cde4c6de894197da4bd",
+      "byte_length": 4013,
+      "parent_relative_path": "S260\\ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp\\S",
+      "provenance": "Exact source filename in historical case source259/source260; original Native-CopyFile adds this exact target to nativeFiles before Add-Fixture."
+    }
+  ],
+  "deletion_performed": false,
+  "acceptance_not_retroactively_changed": true
+}

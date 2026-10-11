@@ -1,0 +1,87 @@
+{
+    "schema_version":  1,
+    "task":  "T16",
+    "mode":  "resolver_only",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\Test-OutputParent.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T16-resolver-ps51-final1.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe",
+    "started_utc":  "2026-10-11T11:40:55.2728735Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "42d80236521fbcbaf77d511abaca6d55456879c5",
+    "harness_sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+    "application_sha256_before":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+    "application_sha256_after":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+    "application_unchanged":  true,
+    "helpers_sha256_before":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4",
+    "helpers_sha256_after":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4",
+    "helpers_unchanged":  true,
+    "resolver_cases":  [
+                           {
+                               "name":  "injected configured Music, independent of user profile",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "empty configured Music is rejected",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "absolute missing parent and literal brackets, override bypasses resolver",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "filesystem provider-qualified override",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "existing filesystem parent, override bypasses resolver",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "relative missing parent uses PowerShell location",
+                               "status":  "pass"
+                           },
+                           {
+                               "name":  "reject non-filesystem Env",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "reject non-filesystem Registry",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "reject non-filesystem Variable",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           },
+                           {
+                               "name":  "existing file is rejected as output parent",
+                               "status":  "pass",
+                               "rejection_verified":  true
+                           }
+                       ],
+    "default_smoke":  {
+                          "status":  "not_run",
+                          "byte_identical_copies":  false,
+                          "output_override_passed":  false,
+                          "root_exclusively_reserved":  false,
+                          "marker_create_new":  false,
+                          "trusted_child_execution":  false,
+                          "runtime_ownership_verified":  false,
+                          "configured_music_verified":  false,
+                          "exact_inventory_verified":  false,
+                          "source_sha256_before":  null,
+                          "source_sha256_after":  null,
+                          "source_unchanged":  null,
+                          "cleanup_verified":  null
+                      },
+    "temp_cleanup_verified":  true,
+    "temp_root":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-37588f58b7004508b19911fa5dbc6c51",
+    "status":  "pass",
+    "error":  null,
+    "resolver_sha256":  "62fbddf0ea1763988a462a0e5481d29e85449b29037047f34a55de1c013c5043",
+    "finished_utc":  "2026-10-11T11:40:55.9431294Z"
+}

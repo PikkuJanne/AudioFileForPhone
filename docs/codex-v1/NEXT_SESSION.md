@@ -1,77 +1,73 @@
-# Next session — T16 after owner integration
+# Next session — T17 after owner integration
 
-T15 is complete: A38/A39/A40 and the full M3 local matrix pass on PS5.1 and PS7.
-Exactly next implementation task: T16, complete the regression and fault-injection
-matrix, after owner integration of T15. Project/release remain incomplete.
+T16 is complete: A41/A42 and the full local regression/failure matrix pass on
+PS5.1 and PS7. Exactly next implementation task: T17, secure Windows CI and a
+release gate, after owner integration of T16. Project/release remain incomplete.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS guidance. Inspect dirty/untracked state, active branch, fetch/push URLs,
-overrides, normal fetch, independently advertised refs and live GitHub.
-Preserve all work; no reset/clean/force. T14 PR #14 was owner-merged at
-10:53:03 UTC on 11 October 2026 into main
-1ab43fcb4e00fae6268cd799b89d8b606b6a6bb2. T01-T14 are integrated.
+AGENTS guidance. Inspect actual dirty/untracked state, active branch, fetch/push
+URLs, overrides, normal fetch, independently advertised refs and live GitHub.
+Preserve all work; no reset/clean/force. Owner merged T15 PR #15 at 11:30:53 UTC
+on 11 October 2026 into main 42d80236521fbcbaf77d511abaca6d55456879c5.
+T01-T15 are integrated. Prior T15 feature 8a55492ed7efb0590877eaa8f0160eee83410ce0.
 
-T15 branch codex/v1-t15-metadata; reviewed/tested code
-5044cd80a1380ba69022446eca1b62d295b4b819 was pushed/live-matched.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/15.
-Evidence/handoff follows in a docs-only checkpoint; inspect fresh final HEAD/ref.
-Main integration remains owner-gated. Live Actions workflow count is zero;
-local results are not CI acceptance.
+T16 branch codex/v1-t16-regression; reviewed/tested code
+3f3c21d2ca65025202ea4a364a157f671031a2a8 was pushed/live-matched.
+Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/16.
+Evidence/handoff follows in a docs-only checkpoint; independently inspect its
+fresh final HEAD/ref. T16 main integration remains owner-gated. Live workflow
+count is zero; local tests are not CI acceptance. No tags/releases exist.
 
-## Preserve metadata and earlier contracts
+## Preserve the tested matrix and safety contracts
 
-Keep MP3/M4A container tags and Ogg a:0 stream comments, missing/empty-title
-planned-name fallback, nonempty whitespace title and last nonblank Artist/Album
-overrides. Preserve quoted Unicode, track/disc/comment and ID3v2.3 behavior.
-Default source artwork stays dropped. Validate supplied JPEG/PNG once during
-preflight, dispose image/picker resources, require native release proof and reuse
-cached diagnostics. Each encoder reads the image to embed one JPEG at original
-dimensions. Large-cover warnings stay advisory; no automatic resizing.
+Read evidence/T16.md and T16-tested-payload.json. Thirty-six selected finals pass:
+974 required checks/groups plus six baseline observations. Thirty retained
+reports keep actual base 42d80236 and matching frozen bytes; six focused finals
+directly test code 3f3c21d2. No production PS/BAT changes were needed.
+The manifest binds 22 files/184 relationships to committed blobs, four literally
+and eighteen by strict UTF-8 CRLF-to-LF only; legacy missing fields stay absent.
 
-Chapter mapping remains FFmpeg's existing default. The short real M4A fixture
-keeps two quoted/Unicode chapter titles, with 0.150023 becoming 0.150000 seconds
-in MP3's millisecond time base. Probe success does not establish phone navigation
-or resume. M4B and other unsupported scan extensions remain excluded.
+Cleanup has 181 cases per shell: 16 actual retained TEMP guards and two exclusive
+writers, with 163 preservation negatives and 18 positive operations. Scope is
+actual extracted cleanup IfStatements plus inert dependencies and one observer;
+parent finalizer coverage is not fabricated. Ten existing descendant conditions
+and three ACL conditions are
+negatively probed; six legacy bodies have no descendant condition. The new ledger
+hardens Test-NativeProcess.ps1 specifically. Keep CreateNew evidence and positive
+native-release gating. Unknown descendants or reparse/scope uncertainty retain
+fixtures. Never broaden cleanup to ordinary Music or all TEMP.
 
-Read evidence/T15.md and T15-tested-payload.json. Thirty-two final reports pass:
-600 required groups/checks plus six baseline observations. Two Metadata finals
-directly test code 5044cd80; 15 groups/18 decoded publications/81 direct natives/
-14 retained hosts/118 entry release proofs per shell. The thirty regression
-reports retain their actual base 1ab43fcb and matching tested bytes.
-Twenty files/134 report-source relationships bind literally or strict UTF-8
-CRLF-to-LF only. Older schema fields are not fabricated. Two preliminary metadata
-passes remain provenance; no T15 failed attempt/recovery.
+Edges has six groups and ten independent output probes/full decodes per shell.
+Real source/encoder paths 259 and combined special/Unicode parents pass. Source 260
+success is limited to the actual machine/build; destination working 260 refuses
+before native calls/reservation with explicit audited no-call proof. Live encoder
+validation failure leaves the concurrently completed sibling byte-identical.
+Native has 35 groups, 98 positive release records and quiet handles 665->665/576->576
+with allowance 16. Full suites retain actual 3,605-second progress and scoped returned-root
+Music smokes. Production source/synthetic preservation and owned cleanup pass.
 
-Full M3 covers all existing families, including quiet handles 674->674/578->578
-with allowance 16, actual 3,605-second progress/full decode at 3605.047982 seconds,
-and exact returned-root configured-Music smokes. Those smokes verify only owned
-synthetic roots, tokens, inventory, manifest and cleanup; ordinary Music is not
-enumerated.
+Preserve all nine preliminary reports (five failed/four passing), four historical
+snapshots and four separate proof/recovery records. Original failed flags remain
+false. Cleanup attempt1's original marker digest was absent; current recovery
+observation never fills it in. No recovered failed run counts as acceptance.
 
-Keep coverage limits explicit: padded overrides are pure-plan only; actual
-quoted Unicode override tags are real probes. Empty-title assignment omits an
-MP3 tag. Actual M4A differing stream handler_name and Ogg stream-only comments
-are not physical conflicting title dictionaries; native stubs cover that branch.
-The actual FFmpeg undecodable-cover branch uses controlled post-GDI corruption
-of an owned synthetic image and restores bytes only after release. Other invalid
-initial images are separate real negatives.
-
-Preserve staged/no-overwrite publication and ownership, truthful counts/0/2/1,
-scoped Ctrl+C/130/release/restoration, zero-operation preview, bounded progress
-below 100 until publication, and T14 required local log/JSON behavior.
-T07 possible unknown residue, T09 brief path interval, T11 forced-host limits and
-T14 last-good snapshot/crash-durability limits remain. Physical T11 evidence is
-historical; no new phone/manual/CI/release acceptance is inferred.
+T01 external importer and T11 physical Ctrl+C evidence stay historical; no fresh
+manual/phone/CI/release claim. Metadata/cover/chapter fixture limitations, T07
+possible unknown residue, T09 path interval, T11 forced-host and T14 persistence
+limits remain. Keep existing conversion, naming, publication, exit, preview,
+progress, metadata and local diagnostics contracts. Loudness remains deferred.
 
 ## Start the next coherent task
 
-If PR #15 is owner-merged, independently verify the advertised main merge,
-fast-forward clean local main and create a relevant T16 codex branch.
-Read only tasks/T16.md and its relevant specs next. Keep real FFmpeg and all
-existing source-safety/cleanup gates; tests run on the active Windows machine.
-Use fresh T16 report labels and honest failure/provenance records.
-Main/release authority is unchanged.
+If PR #16 is owner-merged, verify its advertised main merge, fast-forward clean
+local main and create a relevant T17 codex branch. Read tasks/T17.md and only its
+relevant specs next: TEST_STRATEGY.md, specs/RELEASE_PACKAGE.md and SOURCES.md.
+Add secure Windows checks on both supported shells with reviewed full action
+SHAs, minimum permissions and pinned/verified CI-only FFmpeg dependencies.
+Do not grant untrusted PR code release-write credentials or add a production
+downloader. Obtain real green workflow evidence on the exact reviewed head.
+Main/release authority is unchanged; no intermediate public release.
 
-Copy-ready prompt: T16 next please
+Copy-ready prompt: T17 next please

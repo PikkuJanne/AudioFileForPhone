@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "task": "T16",
+  "record_kind": "separate_exact_scope_cleanup_recovery",
+  "started_utc": "2026-10-11T11:50:40.6557027Z",
+  "status": "pass",
+  "error": null,
+  "proof_relative_path": "docs/codex-v1/evidence/T16-cleanup-attempt1-recovery-proof1.json",
+  "proof_sha256": "3083d0337f83198f7ee62d8366de6da38ecd44c276eddb0cf966abea8d2ad8b3",
+  "authorization": "Root explicitly authorized deletion of only the two exact named failed scopes after fresh canonical/nonreparse/full inventory/tick verification.",
+  "historical_marker_binding_available": false,
+  "marker_limitation": "Only current post-failure observed marker binding is checked. Original reports omitted token/digest; original marker identity is not retroactively proved.",
+  "original_report_bytes_and_failed_flags_preserved": true,
+  "all_scopes_checked_before_any_deletion": true,
+  "roots": [
+    {
+      "exact_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-868b73cc366f43b09a7d18e8173c20f2",
+      "original_report": "docs/codex-v1/evidence/T16-cleanup-ps51-attempt1.json",
+      "original_report_sha256": "90d60a47c131ca3fee7669c57538573861f073a6849bd9914c3bfdbd75658300",
+      "pre_delete_recheck": {
+        "exact_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-868b73cc366f43b09a7d18e8173c20f2",
+        "entry_count": 9,
+        "exact_paths_types_attributes_lengths_sha256_creation_write_ticks": true,
+        "no_reparse_chain_or_entries": true,
+        "current_marker_sha256": "e012b1fad9d83ca57778727e7168d189aa069ce726edbfd386d27c61cfcc5b45"
+      },
+      "deletion_started": true,
+      "removed": true,
+      "verified_absent_utc": "2026-10-11T11:50:40.8830810Z"
+    },
+    {
+      "exact_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-38520583f62f46b9aeeccbfa56614fdb",
+      "original_report": "docs/codex-v1/evidence/T16-cleanup-ps7-attempt1.json",
+      "original_report_sha256": "9c07530437028bcd287505c665a48af87ced595438305256e476c36ffddfe687",
+      "pre_delete_recheck": {
+        "exact_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-38520583f62f46b9aeeccbfa56614fdb",
+        "entry_count": 9,
+        "exact_paths_types_attributes_lengths_sha256_creation_write_ticks": true,
+        "no_reparse_chain_or_entries": true,
+        "current_marker_sha256": "86d5b2cef3f1c318027c02737d0106dc9329301517ba2ea0993300e404d90a06"
+      },
+      "deletion_started": true,
+      "removed": true,
+      "verified_absent_utc": "2026-10-11T11:50:40.9167772Z"
+    }
+  ],
+  "finished_utc": "2026-10-11T11:50:40.9196353Z",
+  "limitations": "Exact owned synthetic recovery, not acceptance of failed tests. No media or controlled native child was launched in these historical scopes. No broad TEMP/Music search or process termination."
+}

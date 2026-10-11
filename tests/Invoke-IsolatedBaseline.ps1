@@ -24,9 +24,10 @@ $originalPath = $env:PATH
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07|T08|T09|T10|T11|T12|T13|T14|T15)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03/T04/T05/T06/T07/T08/T09/T10/T11/T12/T13/T14/T15-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07|T08|T09|T10|T11|T12|T13|T14|T15|T16)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03/T04/T05/T06/T07/T08/T09/T10/T11/T12/T13/T14/T15/T16-<label>.json directly in docs/codex-v1/evidence; T02 evidence is historical.'
 }
+if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label to preserve prior evidence.' }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $report = [ordered]@{
     schema_version = 1
@@ -93,6 +94,19 @@ function Assert-NoReparseTree {
             if ($child.PSIsContainer) { $pending.Push($child.FullName) }
         }
     }
+}
+
+function Write-NewEvidence {
+    param([string]$Path, [object]$Document, [int]$Depth)
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    if ((Split-Path -Parent $fullPath) -ine $evidenceParent) { throw 'Evidence must stay directly in its approved parent.' }
+    Assert-NoReparse $evidenceParent
+    $stream = [IO.File]::Open($fullPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::None)
+    try {
+        $writer = New-Object IO.StreamWriter($stream, [Text.Encoding]::UTF8)
+        try { $writer.WriteLine(($Document | ConvertTo-Json -Depth $Depth)); $writer.Flush() }
+        finally { $writer.Dispose() }
+    } finally { $stream.Dispose() }
 }
 
 function Find-LocalTool {
@@ -223,26 +237,30 @@ finally {
     $report.source_after = Get-SourceInventory
     $report.source_unchanged = (($report.source_before | ConvertTo-Json -Compress) -ceq ($report.source_after | ConvertTo-Json -Compress))
     if (-not $report.source_unchanged) { $report.status = 'fail'; $exitCode = 1 }
-    if ($ownedRootCreated -and (Test-Path -LiteralPath $testRoot)) {
-        # Verify the absolute target, its exclusive marker and the whole tree
-        # immediately before deletion. Never clean by wildcard or output name.
-        $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\', '/')
-        if ($resolved -cne $testRoot -or (Split-Path -Parent $resolved) -ine $tempParent -or
-            (Split-Path -Leaf $resolved) -cne $testName -or
-            [IO.File]::ReadAllText($ownerFile) -cne $ownerToken) {
-            throw "Refusing cleanup without exact owned TEMP boundary: $resolved"
+    try {
+        if ($ownedRootCreated -and (Test-Path -LiteralPath $testRoot)) {
+            # Verify the absolute target, its exclusive marker and the whole tree
+            # immediately before deletion. Never clean by wildcard or output name.
+            $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\', '/')
+            if ($resolved -cne $testRoot -or (Split-Path -Parent $resolved) -ine $tempParent -or
+                (Split-Path -Leaf $resolved) -cne $testName -or
+                [IO.File]::ReadAllText($ownerFile) -cne $ownerToken) {
+                throw "Refusing cleanup without exact owned TEMP boundary: $resolved"
+            }
+            Assert-NoReparseTree $resolved
+            Remove-Item -LiteralPath $resolved -Recurse -Force
+            $report.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
         }
-        Assert-NoReparseTree $resolved
-        Remove-Item -LiteralPath $resolved -Recurse -Force
-        $report.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
+        if (-not $report.cleanup_verified) { throw 'Owned TEMP cleanup must be verified.' }
+    } catch {
+        $report.status = 'fail'; $exitCode = 1
+        $report['cleanup_error'] = $_.Exception.Message.Replace($testRoot, '<OWNED_TEMP>')
     }
     $report['finished_utc'] = [DateTime]::UtcNow.ToString('o')
     if (-not (Test-Path -LiteralPath (Split-Path -Parent $evidenceFullPath) -PathType Container)) {
         throw 'Evidence parent must already exist.'
     }
-    Assert-NoReparse $evidenceParent
-    if (Test-Path -LiteralPath $evidenceFullPath) { Assert-NoReparse $evidenceFullPath }
-    $report | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath $evidenceFullPath -Encoding UTF8
+    Write-NewEvidence -Path $evidenceFullPath -Document $report -Depth 20
 }
 Write-Host "$evidenceTask $($report.mode): $($report.status); owned cleanup=$($report.cleanup_verified); sources unchanged=$($report.source_unchanged)"
 exit $exitCode

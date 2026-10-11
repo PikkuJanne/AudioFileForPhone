@@ -1,26 +1,27 @@
 # Current project status
 
-State: **T15 complete; A38/A39/A40 passed; full M3 local matrix passed.**
-Last completed task: T15. Exactly next implementation task: T16 after owner
-integration of T15. Required improvements 1-15; optional O01 deferred.
+State: **T16 complete; A41/A42 passed; full local regression matrix passed.**
+Last completed task: T16. Exactly next implementation task: T17 after owner
+integration of T16. Required improvements 1-15; optional O01 deferred.
 Project/release remain incomplete.
 
 ## Checkpoint and environment
 
-- Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t15-metadata.
+- Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t16-regression.
   Origin fetch/push https://github.com/PikkuJanne/AudioFileForPhone.git.
-- Owner merged T14 PR #14 at 10:53:03 UTC on 11 October 2026 into main
-  1ab43fcb4e00fae6268cd799b89d8b606b6a6bb2; final T14 feature
-  628d8247a07a1b0866f90452883b2b4ceeea1c38. Normal fetch and independently
+- Owner PikkuJanne merged T15 PR #15 at 11:30:53 UTC on 11 October 2026 into
+  main 42d80236521fbcbaf77d511abaca6d55456879c5; final T15 feature
+  8a55492ed7efb0590877eaa8f0160eee83410ce0. Normal fetch and independently
   advertised refs matched; clean local main was fast-forwarded before branching.
-  T01-T14 are integrated.
-- Reviewed/tested code checkpoint 5044cd80a1380ba69022446eca1b62d295b4b819
-  was normally pushed and independently matched its fresh advertised feature ref.
-  Evidence/handoff follows in a docs-only checkpoint; final HEAD/live proof belongs
-  in the PR/response, without a self-referential stored hash.
-- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/15.
-  **Feature synchronized; T15 main integration owner-gated.**
-  Live GitHub has zero Actions workflows; no CI pass is claimed.
+  T01-T15 are integrated.
+- Reviewed/tested code 3f3c21d2ca65025202ea4a364a157f671031a2a8 was normally
+  pushed and independently matched the fresh advertised feature ref.
+  Evidence/handoff follows in a docs-only checkpoint; final HEAD/live-clean proof
+  belongs in the PR/response, without a self-referential stored containing SHA.
+- Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/16.
+  **Feature synchronized; T16 main integration owner-gated.**
+  Live GitHub is public/default main, with zero workflows, tags and releases.
+  No CI pass is claimed; secure Windows CI is T17.
 - Windows 11 Pro 26300.9457; PS5.1.26100.9444/Desktop and bundled PS7.6.5/Core.
   Existing C:\ffmpeg\bin pair, build
   2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev.
@@ -28,67 +29,66 @@ Project/release remain incomplete.
 
 ## Verified behavior and evidence
 
-Metadata keeps MP3/M4A container tags or Ogg first-audio-stream comments.
-Missing/empty title uses the complete sanitized planned basename; nonempty
-whitespace title survives. Nonblank Artist/Album overrides apply last, literally.
-Track/disc/comment and quoted Unicode tags pass real output probes on both shells.
+Production PS/BAT files are unchanged. Retain all real FFmpeg integration
+families. Baseline/preflight now refuse existing evidence and use CreateNew;
+cleanup errors remain reportable. Native tests record scalar release evidence
+for direct and nested calls, and refuse recursive deletion on uncertainty.
 
-Explicit JPEG/PNG receives one image inspection and one dedicated FFmpeg decode
-check before conversion. Image/picker handles are disposed; native release proof
-is required. Cached diagnostics serve prompts/logs. Each encoder then reads the
-cover for embedding. Source artwork is dropped by default; an explicit cover
-replaces it with one attached JPEG at unchanged dimensions. Large-cover warnings
-remain advisory. Invalid supplied images fail preflight before prompts/reservation.
+Thirty-six selected final reports pass: **974 required groups/checks and six
+separate baseline observations** across both shells. Thirty retained reports
+keep their actual base 42d80236 and matching frozen tested bytes; six focused
+cleanup/edges/native finals directly test code 3f3c21d2. All available source,
+synthetic, release/disposal and exact owned cleanup gates pass.
 
-Chapter mapping remains FFmpeg's existing default. Actual short M4A chapters retain
-both quoted/Unicode titles in MP3; a 0.150023-second boundary rounds to 0.150000
-in its millisecond time base. This proves probed fields for the fixture/build.
-Phone navigation and resume remain untested and are not guaranteed.
+Cleanup runs 181 cases per shell against 16 actual retained TEMP cleanup ASTs
+and two actual exclusive writers: 163 refusal/preservation negatives, 16 valid
+owned deletes and two unique JSON writes/exclusive reopens. Actual junctions and
+file reparse entries, wrong/missing markers, outside/unreserved paths, unknown
+release and unrestored ACL gates are exercised. Only a delete-entry observer is
+inserted; parent finalizer statements are outside this extracted-body coverage.
+False-release negatives apply to ten existing descendant guards, and unrestored
+ACL negatives to three guards. Six legacy bodies have no descendant condition;
+the new aggregate release ledger hardens Test-NativeProcess.ps1 specifically.
 
-Thirty-two selected final reports pass: **600 required groups/checks and six
-baseline observations** across both shells. Metadata directly tests code 5044cd80:
-15 groups and 18 independently probed/full-decoded publications per shell,
-81 direct native commands, 14 retained hosts and 118 entry native release proofs.
-All source/synthetic, release/disposal and exact owned cleanup gates pass.
-Two earlier metadata attempt1 passes remain as provenance; no T15 failures/recovery.
+Edges runs six real groups and ten independently probed/full-decoded outputs per
+shell. Actual source and encoder working paths of 259 UTF-16 units succeed.
+Combined literal special/Unicode input/output parents preserve recursive mapping.
+An actual source path of 260 also succeeds on this machine/build; this observation
+is not a general Windows long-path guarantee. Future destination working path 260
+fails before prompts, native calls or reservation, with positive audited no-call
+proof. Two actual entry hosts share a parent: one live encoder is held while the
+other finishes; actual duration rejection in the first preserves the sibling's
+outputs, log, manifest and marker byte-for-byte and permits later conversion.
 
-Full M3 also passes retained baseline, preflight, discovery, naming, reservation,
-resolver, launcher, transaction, script outcomes, preview, diagnostics, progress,
-automated cancellation and native execution. Quiet sequential native handles stay
-674->674 / 578->578, allowance 16. Progress converts the actual 3,605-second
-synthetic source and fully decodes at 3605.047982 seconds with live samples.
-Two configured-Music smokes inspect/remove only each successful returned root,
-with runtime scope/token, CreateNew test marker, exact synthetic inventory and
-final manifest assertions. Ordinary Music is never enumerated.
+Native passes 35 groups and 98 positive scalar release records per shell.
+Quiet sequential resource checks remain 665->665 / 576->576, allowance 16.
+Retained transaction has 61 decoded matrix outputs; metadata 18 decoded outputs;
+progress actually converts 3,605 seconds and fully decodes 3605.047982 seconds.
+Two configured-Music smokes verify/remove only each successful returned synthetic
+root, token, CreateNew test marker, inventory and final manifest. Ordinary Music
+is never enumerated. Exact commands, counts, mappings and fingerprints:
+evidence/T16.md, evidence/T16-tested-payload.json and TEST_STRATEGY.md.
+The payload independently binds 22 files/184 report-source relationships to the
+code checkpoint: four literal matches and eighteen strict UTF-8 CRLF-to-LF only.
+Legacy absent fields remain absent; raw test bases are never relabeled.
 
-The tested-payload manifest binds 20 source files/134 report-source relationships
-to code 5044cd80: two literal and eighteen strict UTF-8 CRLF-to-LF matches.
-Older baseline lacks command/edition/child-ledger fields; resolver/music records
-one harness digest, with actual entry/helper before/after hashes. Missing fields
-are not invented. Exact commands/results/limits: evidence/T15.md,
-evidence/T15-tested-payload.json and TEST_STRATEGY.md.
+Nine preliminary reports remain separate: five failed harness attempts and four
+passing retries. Four exact historical harness snapshots preserve changed bytes;
+four proof/recovery records separately document three exact synthetic TEMP scopes
+removed after independent identity, inventory and stopped-child checks. Original
+failed status/false gates stay unchanged. Cleanup attempt1 omitted original marker
+SHA; recovery honestly records current observation rather than retroactive proof.
+Recovered failures never count as acceptance.
 
 ## Preserved limitations and next action
 
-Padded nonblank override exactness is a pure argument-plan check; actual quoted
-Unicode override tags are separately probed. FFmpeg's empty MP3 title assignment
-omits the tag. The real M4A stream fixture has a differing handler_name; Ogg has
-stream comments and no format tags. Conflicting title dictionaries are additionally
-covered by native probe stubs, rather than claimed as physical container conflicts.
+T01's original external importer/bundle matrix and T11's owner-confirmed physical
+Ctrl+C tests remain historical. Current cancellation is automated. No fresh phone,
+Explorer/keypress, NAS/UNC, CI or release acceptance is inferred. T15 chapter probes
+and cover/metadata fixture limits remain; phone navigation/resume are untested.
+T07 possible unknown residue, T09 brief post-guard path interval, T11 forced-host
+limits and T14 last-good snapshot/crash-durability limits remain explicit.
 
-The undecodable-cover branch corrupts only an owned synthetic image after GDI
-validation/disposal, then restores exact bytes after positive native release.
-Initial missing/corrupt/GIF/BMP fixtures are separate actual preflight negatives.
-No permanent GDI-readable/FFmpeg-undecodable initial image is claimed.
-
-Preserve local T14 diagnostics/manifest semantics, T09 publication/ownership,
-T10 counts/exit codes, T11 cancellation/host limits and historical physical checks,
-T12 preview zero operations, and T13 progress below 100 until publication.
-T07 possible unknown TEMP residue, T09 brief post-guard path interval and T14
-last-good snapshot/crash-durability limits remain. No new manual/phone acceptance.
-
-Owner review/integration of draft PR #15 remains pending under AUTHORITY.md.
-Exactly next implementation task: T16, complete the regression and fault-injection
-matrix, after that merge is independently verified. No tag/release created;
-exact commit/assets, ZIP, draft/public download and final main closure remain
-governed by AUTHORITY.md and RELEASE_RUNBOOK.md.
+Owner review/integration of draft PR #16 remains pending under AUTHORITY.md.
+Then independently reconcile main and begin exactly T17, secure Windows CI and
+a release gate. Keep production downloads/updates absent and public release gated.

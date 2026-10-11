@@ -626,8 +626,15 @@
       "required": true,
       "method": "complete automated suites",
       "expected": "Existing integration coverage preserved or explicitly mapped to replacement assertions; failure/edge/concurrency cases pass on both Windows shells.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T16.md",
+        "evidence/T16-tested-payload.json",
+        "evidence/T16-edges-ps51-final1.json",
+        "evidence/T16-edges-ps7-final1.json",
+        "evidence/T16-native-ps51-final1.json",
+        "evidence/T16-native-ps7-final1.json"
+      ]
     },
     {
       "id": "A42",
@@ -636,8 +643,15 @@
       "required": true,
       "method": "cleanup negative tests and hash inventory",
       "expected": "Fixtures/results live in owned temporary trees; cleanup refuses reparse/outside/pre-existing paths; production sources and unrelated files remain unchanged.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T16.md",
+        "evidence/T16-tested-payload.json",
+        "evidence/T16-cleanup-ps51-final1.json",
+        "evidence/T16-cleanup-ps7-final1.json",
+        "evidence/T16-edges-ps51-final1.json",
+        "evidence/T16-edges-ps7-final1.json"
+      ]
     },
     {
       "id": "A43",

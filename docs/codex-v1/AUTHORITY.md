@@ -127,6 +127,15 @@ T15 uses `codex/v1-t15-metadata` from that verified merge. Normal task edits,
 isolated tests, commits, feature push and a relevant draft PR remain authorized.
 Main integration and release authority are unchanged.
 
+T16 authorization: on 11 October 2026 the owner requested "T16 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T15 PR #15 merge at 11:30:53 UTC into main
+`42d80236521fbcbaf77d511abaca6d55456879c5`, with final feature
+`8a55492ed7efb0590877eaa8f0160eee83410ce0`. Clean local main was fast-forwarded;
+T16 uses `codex/v1-t16-regression` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Main integration and release authority are unchanged.
+
 ## Release gate
 
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".
