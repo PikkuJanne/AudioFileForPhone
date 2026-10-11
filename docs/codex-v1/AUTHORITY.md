@@ -60,6 +60,13 @@ within the normal scope above. Fresh GitHub inspection found PR #6 merged by
 that independently advertised commit; T07 uses `codex/v1-t07-naming-planner`.
 This owner merge does not change the main-integration or release gates.
 
+T08 authorization: on 11 October 2026 the owner requested "T08 next please".
+Fresh GitHub inspection found PR #7 merged by PikkuJanne at 01:04:14 UTC into
+main `e1ea2a95a5a9b7461d69101b6a111f26b51abbf6`. Local main was fast-forwarded
+to that independently advertised ref; T08 uses `codex/v1-t08-exclusive-runs`.
+Normal task commits, feature push and draft PR are authorized. This owner merge
+does not change the main-integration or release gates.
+
 Default: owner approval for a reviewed PR or milestone integration. Optional
 bounded policy the owner may approve once: integrate in-scope reviewed PRs only
 when required local tests and GitHub checks pass, no conflicts or unrelated changes

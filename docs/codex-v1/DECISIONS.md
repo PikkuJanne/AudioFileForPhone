@@ -273,3 +273,53 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
 ID/date; reason; previous/new policy; owner authorization when required; affected
 tasks/cases; regression checks; source commit; outcome. Do not replace this ledger
 with a bare “approved” assertion without a traceable reference.
+
+## T08 — exclusive roots/logs and M1 verification (11 October 2026)
+
+- Owner requested "T08 next please". Fresh GitHub showed owner-merged T07 PR #7
+  at 01:04:14 UTC into main e1ea2a95a5a9b7461d69101b6a111f26b51abbf6; local
+  main fast-forwarded to the advertised ref before codex/v1-t08-exclusive-runs.
+  Normal task writes, feature push and draft PR apply; no agent merge authority.
+- Retained readable invariant timestamps and chose short numeric _N collision
+  suffixes to preserve complete T07 path budgets. CreateDirectoryW, not a name
+  suggestion or existence check, establishes ownership. Retry only occupied
+  errors 80/183, bounded to 1000 default attempts; validate every actual suffix plan
+  before creation and recheck new-root ancestry before marker/log writes.
+- Provisional selection is read-only and picks a nonexistent candidate before
+  snapshotting, so occupied unmarked audio beneath input remains discoverable.
+  Root marker/log use CreateNew; ownership_token and exact cleanup_scope record
+  the invocation. BOM and append preserve UTF-8 logs. Failed setup reports exact
+  new scope/token and leaves it visible; no production recursive reclaim.
+- Raw component validation now precedes output-provider normalization, preserving
+  relative navigation and FileSystem PSDrive/provider resolution. Review caught
+  the provisional absolute-only guard's compatibility/diagnostic regression;
+  real malformed-parent and successful relative/PSDrive entry tests verify the fix.
+- A22/A23 pass under both shells: 13 focused groups, four same-timestamp barrier
+  processes obtaining counters 3/4/5/6 and separate real-entry relative/PSDrive
+  conversions. Existing directory/file/log/marker/sentinel hashes are unchanged.
+  Attempts/counter exhaustion, suffix overflow, CreateNew collisions and owned
+  ACL/setup failures verify exact failure scope without reusing another root.
+- Configured-Music smoke now executes unmodified runtime copies with synthetic
+  TEMP input and no OutputParent or timestamp rewrite. Only a successful trusted
+  child's exact returned direct Music root, matching runtime token/scope, fresh
+  test token, nonreparse ancestry and complete expected inventory authorize its
+  cleanup. No ordinary Music enumeration, settings/ACL change or broad cleanup.
+- Full M1 matrix: 16 final current reports, retained FFmpeg/seven companions,
+  preflight 35/eight helpers, discovery 8, naming 11/19 decoded outputs, native 35,
+  resolver 10 and default Music. Source/fixture hashes, ACL restore, child disposal
+  and exact cleanup pass. Native handle check finally ran sequentially with
+  unchanged threshold 16: PS5.1 667->667 and PS7 575->575. One parallel handle
+  growth observation remains failed; no root cause or threshold relaxation claimed.
+- Preserve all 60 attempts (52 pass, 8 fail) with recorded payloads. Initial STA,
+  child exit-code and prefix-check harness errors, old native fixture path 261 and
+  provisional provider-guard failures are documented. Shortened only the owned
+  native TEMP prefix; no path limit waiver. Failed OS user/computer diagnostic
+  fields alone were redacted. Every T08 attempt verifies owned cleanup; T07's
+  unknown possible TEMP residue remains unverified and must not be inferred clean.
+- Independent review has no remaining blocking issue. Code checkpoint
+  3b6c4164c6e4dd4b58f0be074c17f6fb854b41be was pushed and matched fresh advertised
+  feature ref; evidence manifest verifies 12 runtime/test fingerprints, allowing
+  only recorded Git CRLF/LF normalization. Draft PR #8 follows normal authority.
+  Final docs-only checkpoint requires its own fresh ref check in response/PR.
+  Main integration remains owner-gated; no CI/manual/phone/tag/release claimed.
+  Exactly next task is T09 staged validation and no-overwrite output promotion.

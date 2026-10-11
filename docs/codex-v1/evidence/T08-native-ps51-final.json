@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "task": "T08",
+  "mode": "native_process_and_probe",
+  "command": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-NativeProcess.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T08-native-ps51-final.json",
+  "started_utc": "2026-10-11T01:13:32.7180785Z",
+  "shell": "5.1.26100.9444",
+  "shell_edition": "Desktop",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "e1ea2a95a5a9b7461d69101b6a111f26b51abbf6",
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "fe895d5e26503f86eb6c99edbda26e1e5230068807f99395ab52044840b1c9a1"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "6ec83d522f702ef4805096778df237d0f00a0ddb9ab1eeb70675637e4f10950d"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+    },
+    {
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "9b40e15e71e18c7a3067bffa7680741ae739eaf76c5f5e8581333d424e345b51"
+    },
+    {
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "fc3031eaa67e179b01d5614a0d1663b83b78230838a72dc4099045115ae0a393"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "a8230582a134a91eeba13c5faf466b8c3816bb16d5f846b8ad087a279260a34f"
+    },
+    {
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "549320fa40e3b31ad59deaac1b99759ff30eff3986507e1f5dee457b00d0f7ff"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "fe895d5e26503f86eb6c99edbda26e1e5230068807f99395ab52044840b1c9a1"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "6ec83d522f702ef4805096778df237d0f00a0ddb9ab1eeb70675637e4f10950d"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "247ace8866b5672907cf1e91c7fa03f06f78a099fe3278aea109f9581a8aac25"
+    },
+    {
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "sha256": "9b40e15e71e18c7a3067bffa7680741ae739eaf76c5f5e8581333d424e345b51"
+    },
+    {
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "fc3031eaa67e179b01d5614a0d1663b83b78230838a72dc4099045115ae0a393"
+    },
+    {
+      "relative_path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "relative_path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "a8230582a134a91eeba13c5faf466b8c3816bb16d5f846b8ad087a279260a34f"
+    },
+    {
+      "relative_path": "tests/Test-OutputParent.ps1",
+      "sha256": "549320fa40e3b31ad59deaac1b99759ff30eff3986507e1f5dee457b00d0f7ff"
+    }
+  ],
+  "source_unchanged": true,
+  "synthetic_before": [
+    {
+      "relative_path": "Input [literal] O'Brien & Unicode\\2024-01-02 - Synthetic [literal] O'Brien & äö雪Ω.mp3",
+      "sha256": "2c2a86db8d80b1c458fd2f4f1fede41f0e04940878e20277f500c6628fa14384"
+    },
+    {
+      "relative_path": "Real multiple audio streams.m4a",
+      "sha256": "93223f5fe83630ebf5512728b13befcc3d2cd0d7818fdc8833204ab973f6cf95"
+    },
+    {
+      "relative_path": "Cover [literal] O'Brien & äö雪Ω.png",
+      "sha256": "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+    }
+  ],
+  "synthetic_after": [
+    {
+      "relative_path": "Input [literal] O'Brien & Unicode\\2024-01-02 - Synthetic [literal] O'Brien & äö雪Ω.mp3",
+      "sha256": "2c2a86db8d80b1c458fd2f4f1fede41f0e04940878e20277f500c6628fa14384"
+    },
+    {
+      "relative_path": "Real multiple audio streams.m4a",
+      "sha256": "93223f5fe83630ebf5512728b13befcc3d2cd0d7818fdc8833204ab973f6cf95"
+    },
+    {
+      "relative_path": "Cover [literal] O'Brien & äö雪Ω.png",
+      "sha256": "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+    }
+  ],
+  "synthetic_unchanged": true,
+  "temp_exclusively_reserved": true,
+  "marker_create_new": true,
+  "copied_bytes_unchanged": true,
+  "cases": [
+    {
+      "name": "exact-argv-special-empty-backslash-unicode",
+      "status": "pass",
+      "captured_argv": {
+        "value": [
+          "capture",
+          "",
+          " ",
+          "two words",
+          "[literal]",
+          "O'Brien",
+          "x & y",
+          "say \"quoted\"",
+          "äö雪Ω",
+          "C:\\space path\\",
+          "C:\\ends\\\\",
+          "\\\"",
+          "\\\\\"",
+          "a\\\\\\\"b",
+          "$(should not execute)",
+          "; not evaluated",
+          "tab\tbetween",
+          "line\nbreak"
+        ],
+        "Count": 18
+      },
+      "duration_ms": 231
+    },
+    {
+      "name": "ffmpeg-nostdin-argv",
+      "status": "pass",
+      "captured_argv": {
+        "value": [
+          "-nostdin",
+          "capture",
+          "artist=quote \" and & äö雪Ω"
+        ],
+        "Count": 3
+      }
+    },
+    {
+      "name": "immediate-exit-status-and-both-streams",
+      "status": "pass",
+      "exit_code": 7
+    },
+    {
+      "name": "ordinary-stderr-is-success-and-caller-exit-unchanged",
+      "status": "pass",
+      "caller_exit": 29,
+      "stderr": "ordinary native diagnostic"
+    },
+    {
+      "name": "bounded-dual-stream-flood-alternating",
+      "status": "pass",
+      "exit_code": 7,
+      "stdout_retained": 1048576,
+      "stderr_retained": 65536,
+      "stdout_total": 2457600,
+      "stderr_total": 2457600,
+      "duration_ms": 141
+    },
+    {
+      "name": "bounded-dual-stream-flood-concurrent",
+      "status": "pass",
+      "exit_code": 7,
+      "stdout_retained": 1048576,
+      "stderr_retained": 65536,
+      "stdout_total": 2457600,
+      "stderr_total": 2457600,
+      "duration_ms": 106
+    },
+    {
+      "name": "custom-zero-and-small-retention-caps",
+      "status": "pass",
+      "stdout_retained": 0,
+      "stderr_retained": 4
+    },
+    {
+      "name": "embedded-nul-argument-is-rejected",
+      "status": "pass",
+      "actual_status": "StartFailed"
+    },
+    {
+      "name": "process-resource-handles-released",
+      "status": "pass",
+      "calls_after_warmup": 40,
+      "handle_count_before": 666,
+      "handle_count_immediate": 666,
+      "handle_count_after": 666,
+      "worker_settle_ms": 500,
+      "allowed_handle_growth": 16,
+      "child_executable_rename_after_exit": true
+    },
+    {
+      "name": "missing-executable",
+      "status": "pass",
+      "expected_status": "MissingExecutable",
+      "actual_status": "MissingExecutable"
+    },
+    {
+      "name": "directory-executable",
+      "status": "pass",
+      "expected_status": "InvalidExecutablePath",
+      "actual_status": "InvalidExecutablePath"
+    },
+    {
+      "name": "relative-executable",
+      "status": "pass",
+      "expected_status": "InvalidExecutablePath",
+      "actual_status": "InvalidExecutablePath"
+    },
+    {
+      "name": "non-executable-file",
+      "status": "pass",
+      "expected_status": "StartFailed",
+      "actual_status": "StartFailed"
+    },
+    {
+      "name": "probe-nonzero",
+      "status": "pass",
+      "expected_status": "ProbeFailed",
+      "actual_status": "ProbeFailed",
+      "native_exit": 9
+    },
+    {
+      "name": "probe-invalid-json",
+      "status": "pass",
+      "expected_status": "InvalidJson",
+      "actual_status": "InvalidJson",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-empty-output",
+      "status": "pass",
+      "expected_status": "InvalidJson",
+      "actual_status": "InvalidJson",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-whitespace-output",
+      "status": "pass",
+      "expected_status": "InvalidJson",
+      "actual_status": "InvalidJson",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-truncated",
+      "status": "pass",
+      "expected_status": "OutputTruncated",
+      "actual_status": "OutputTruncated",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-wrong-shape",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-singleton-array",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-bad-tags",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-no-audio",
+      "status": "pass",
+      "expected_status": "NoAudio",
+      "actual_status": "NoAudio",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-multi",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-video",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-bad-index",
+      "status": "pass",
+      "expected_status": "InvalidProbeData",
+      "actual_status": "InvalidProbeData",
+      "native_exit": 0
+    },
+    {
+      "name": "probe-title-no-title",
+      "status": "pass",
+      "title_status": "Absent",
+      "title": null,
+      "stream_index": 4,
+      "metadata_source": "0"
+    },
+    {
+      "name": "probe-title-present-container",
+      "status": "pass",
+      "title_status": "Present",
+      "title": "container title",
+      "stream_index": 4,
+      "metadata_source": "0"
+    },
+    {
+      "name": "probe-title-present-stream",
+      "status": "pass",
+      "title_status": "Present",
+      "title": "stream title",
+      "stream_index": 4,
+      "metadata_source": "0:s:a:0"
+    },
+    {
+      "name": "probe-native-startup-failure-distinct",
+      "status": "pass",
+      "missing_status": "MissingExecutable",
+      "invalid_status": "StartFailed"
+    },
+    {
+      "name": "dependency-unsupported",
+      "status": "pass",
+      "diagnostic": "Invalid ffmpeg executable '<OWNED_TEMP>\\unsupported\\ffmpeg.exe': Expected a successful tool version response."
+    },
+    {
+      "name": "dependency-version-failure",
+      "status": "pass",
+      "diagnostic": "Invalid ffmpeg executable '<OWNED_TEMP>\\version-failure\\ffmpeg.exe': Expected a successful tool version response."
+    },
+    {
+      "name": "dependency-no-lame",
+      "status": "pass",
+      "diagnostic": "ffmpeg does not provide the required libmp3lame encoder: <OWNED_TEMP>\\no-lame\\ffmpeg.exe"
+    },
+    {
+      "name": "real-metadata-probe-and-selected-audio",
+      "status": "pass",
+      "title": "Title \"quoted\" [brackets] O'Brien & äö雪Ω",
+      "artist": "Artist \"quoted\" [brackets] O'Brien & äö雪Ω",
+      "album": "Album \"quoted\" [brackets] O'Brien & äö雪Ω",
+      "selected_stream_index_after_video": 1
+    },
+    {
+      "name": "real-cover-and-caller-state",
+      "status": "pass",
+      "caller_exit": 31,
+      "cover_decoded": true
+    },
+    {
+      "name": "real-entry-quoted-unicode-metadata-full-decode-tool-log",
+      "status": "fail"
+    }
+  ],
+  "cleanup_verified": true,
+  "status": "fail",
+  "error": "FAIL: Entry conversion must complete successfully: Completed/1 #< CLIXML\r\n<Objs Version=\"1.1.0.1\" xmlns=\"http://schemas.microsoft.com/powershell/2004/04\"><Obj S=\"progress\" RefId=\"0\"><TN RefId=\"0\"><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N=\"SourceId\">1</I64><PR N=\"Record\"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S=\"progress\" RefId=\"1\"><TNRef RefId=\"0\" /><MS><I64 N=\"SourceId\">1</I64><PR N=\"Record\"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj><Obj S=\"information\" RefId=\"2\"><TN RefId=\"1\"><T>System.Management.Automation.InformationRecord</T><T>System.Object</T></TN><ToString>==== AudioFileForPhone ====</ToString><Props><Obj N=\"MessageData\" RefId=\"3\"><TN RefId=\"2\"><T>System.Management.Automation.HostInformationMessage</T><T>System.Object</T></TN><ToString>==== AudioFileForPhone ====</ToString><Props><S N=\"Message\">==== AudioFileForPhone ====</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.7369938+02:00</DT><Obj N=\"Tags\" RefId=\"4\"><TN RefId=\"3\"><T>System.Collections.Generic.List`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</T><T>System.Object</T></TN><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"5\"><TNRef RefId=\"1\" /><ToString>[INFO] Script path : <OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</ToString><Props><Obj N=\"MessageData\" RefId=\"6\"><TNRef RefId=\"2\" /><ToString>[INFO] Script path : <OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</ToString><Props><S N=\"Message\">[INFO] Script path : <OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.7670244+02:00</DT><Obj N=\"Tags\" RefId=\"7\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"8\"><TNRef RefId=\"1\" /><ToString>[INFO] Script dir  : <OWNED_TEMP>\\App [literal]</ToString><Props><Obj N=\"MessageData\" RefId=\"9\"><TNRef RefId=\"2\" /><ToString>[INFO] Script dir  : <OWNED_TEMP>\\App [literal]</ToString><Props><S N=\"Message\">[INFO] Script dir  : <OWNED_TEMP>\\App [literal]</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.7710466+02:00</DT><Obj N=\"Tags\" RefId=\"10\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"11\"><TNRef RefId=\"1\" /><ToString>[INFO] Raw input   : '<OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode'</ToString><Props><Obj N=\"MessageData\" RefId=\"12\"><TNRef RefId=\"2\" /><ToString>[INFO] Raw input   : '<OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode'</ToString><Props><S N=\"Message\">[INFO] Raw input   : '<OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode'</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.7745163+02:00</DT><Obj N=\"Tags\" RefId=\"13\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"14\"><TNRef RefId=\"1\" /><ToString>[INFO] Bitrate     : 64kbps</ToString><Props><Obj N=\"MessageData\" RefId=\"15\"><TNRef RefId=\"2\" /><ToString>[INFO] Bitrate     : 64kbps</ToString><Props><S N=\"Message\">[INFO] Bitrate     : 64kbps</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.7835135+02:00</DT><Obj N=\"Tags\" RefId=\"16\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"17\"><TNRef RefId=\"1\" /><ToString>[INFO] Max name    : 60 chars</ToString><Props><Obj N=\"MessageData\" RefId=\"18\"><TNRef RefId=\"2\" /><ToString>[INFO] Max name    : 60 chars</ToString><Props><S N=\"Message\">[INFO] Max name    : 60 chars</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.8067659+02:00</DT><Obj N=\"Tags\" RefId=\"19\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"20\"><TNRef RefId=\"1\" /><ToString>[INFO] Interactive : False</ToString><Props><Obj N=\"MessageData\" RefId=\"21\"><TNRef RefId=\"2\" /><ToString>[INFO] Interactive : False</ToString><Props><S N=\"Message\">[INFO] Interactive : False</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.8157667+02:00</DT><Obj N=\"Tags\" RefId=\"22\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"23\"><TNRef RefId=\"1\" /><ToString /><Props><Obj N=\"MessageData\" RefId=\"24\"><TNRef RefId=\"2\" /><ToString /><Props><S N=\"Message\"></S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:46.8208915+02:00</DT><Obj N=\"Tags\" RefId=\"25\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><Obj S=\"information\" RefId=\"26\"><TNRef RefId=\"1\" /><ToString>[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: <OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode</ToString><Props><Obj N=\"MessageData\" RefId=\"27\"><TNRef RefId=\"2\" /><ToString>[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: <OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode</ToString><Props><S N=\"Message\">[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: <OWNED_TEMP>\\Input [literal] O'Brien &amp; Unicode</S><B N=\"NoNewLine\">false</B><S N=\"ForegroundColor\">DarkYellow</S><S N=\"BackgroundColor\">DarkMagenta</S></Props></Obj><S N=\"Source\"><OWNED_TEMP>\\App [literal]\\AudioFileForPhone.ps1</S><DT N=\"TimeGenerated\">2026-10-11T03:13:47.2879465+02:00</DT><Obj N=\"Tags\" RefId=\"28\"><TNRef RefId=\"3\" /><LST><S>PSHOST</S></LST></Obj><S N=\"User\"><TEST_COMPUTER>\\<TEST_USER></S><S N=\"Computer\"><TEST_COMPUTER></S><U32 N=\"ProcessId\">3544</U32><U32 N=\"NativeThreadId\">20168</U32><U32 N=\"ManagedThreadId\">14</U32></Props></Obj><S S=\"Error\"><OWNED_TEMP>\\App [literal]\\AudioFile_x000D__x000A_</S><S S=\"Error\">ForPhone.ps1 : [FATAL] Preflight failed: File path is 261 UTF-16 units; the supported limit is 259: 'C:\\Users\\<TEST_USER>\\App_x000D__x000A_</S><S S=\"Error\">Data\\Local\\Temp\\AudioFileForPhone-T05-native-444cf38322b14da9b32efc0c9fa45e1a\\Output [literal] O'Brien &amp; Unicode\\AudioF_x000D__x000A_</S><S S=\"Error\">orPhone_64kbps_20261011_031347\\Input [literal] O'Brien &amp; Unicode\\.AudioFileForPhone-00000000000000000000000000000000.pa_x000D__x000A_</S><S S=\"Error\">rtial'. Choose a shallower input folder or shorter OutputParent._x000D__x000A_</S><S S=\"Error\">At line:1 char:34_x000D__x000A_</S><S S=\"Error\">+ ... e = 'Stop'; &amp; 'C:\\Users\\<TEST_USER>\\AppData\\Local\\Temp\\AudioFileForPhone-T0 ..._x000D__x000A_</S><S S=\"Error\">+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~_x000D__x000A_</S><S S=\"Error\">    + CategoryInfo          : NotSpecified: (:) [Write-Error], WriteErrorException_x000D__x000A_</S><S S=\"Error\">    + FullyQualifiedErrorId : Microsoft.PowerShell.Commands.WriteErrorException,AudioFileForPhone.ps1_x000D__x000A_</S><S S=\"Error\"> _x000D__x000A_</S></Objs>",
+  "ffmpeg": {
+    "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+    "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+  },
+  "ffprobe": {
+    "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+    "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+  },
+  "child_compiler": {
+    "path": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+    "sha256": "46809206887326d2d24db1eff1f3064de972c3451abe766b49111450a5e08e00",
+    "generated_binary_committed": false
+  },
+  "finished_utc": "2026-10-11T01:13:48.5822569Z",
+  "privacy_redaction": "Only OS-generated user/computer names in failed synthetic-child diagnostics were replaced; path-budget failure and outcomes retained."
+}

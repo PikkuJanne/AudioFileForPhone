@@ -308,14 +308,14 @@
       "tested_commit": "8599dfd9706d99119d4a38fb511968529e914246",
       "checkpoint_commit": "e99f81ca3eb2c24102882e5723c52c236105450c",
       "remote_checkpoint_verified": true,
-      "notes": "A18-A21 pass on PS5.1/PS7: 11 naming groups; invariant valid/invalid Gregorian dates, whole-basename fallback, NFC before/after filtering, permitted supplementary scalars and scalar-safe UTF16 budgets/counter exhaustion; stable OrdinalIgnoreCase/Ordinal order and Windows collisions across 3 shuffled 12-source inventories; canonical duplicate rejection and zero partial plans; raw preserved-component validation, actual dir247/248 and file259/260 and working-path limits; problematic folders abort pre-prompts/run. 19 real MP3 outputs per shell decode at 64 kbps with tags/literal layout, suffix12 and actual180 basename/path253. Final retained FFmpeg/seven required companions, discovery8, preflight35/eight helpers, resolver10 pass; final hashes/ACL restoration/owned cleanup pass. Test fixture paths shortened without relaxing production limits. Reports preserve actual base and working hashes equivalent to reviewed/pushed checkpoint. Initial failed PS51 naming TEMP cleanup unverified, possible unknown synthetic residue documented; later exact cleanup verified. Owner merged T06 PR6; T07 draft PR7 synchronized, main owner-gated. No ordinary Music/settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. Next T08, including deferred configured-Music smoke ownership adaptation."
+      "notes": "A18-A21 pass on PS5.1/PS7: 11 naming groups; invariant valid/invalid Gregorian dates, whole-basename fallback, NFC before/after filtering, permitted supplementary scalars and scalar-safe UTF16 budgets/counter exhaustion; stable OrdinalIgnoreCase/Ordinal order and Windows collisions across 3 shuffled 12-source inventories; canonical duplicate rejection and zero partial plans; raw preserved-component validation, actual dir247/248 and file259/260 and working-path limits; problematic folders abort pre-prompts/run. 19 real MP3 outputs per shell decode at 64 kbps with tags/literal layout, suffix12 and actual180 basename/path253. Final retained FFmpeg/seven required companions, discovery 8, preflight 35/eight helpers, resolver 10 pass; final hashes/ACL restoration/owned cleanup pass. Test fixture paths shortened without relaxing production limits. Reports preserve actual base and working hashes equivalent to reviewed/pushed checkpoint. Initial failed PS51 naming TEMP cleanup unverified, possible unknown synthetic residue documented; later exact cleanup verified. Owner merged T06 PR6; T07 PR7 was owner-merged at 01:04:14 UTC on 11 October 2026 into main e1ea2a95a5a9b7461d69101b6a111f26b51abbf6. No ordinary Music/settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. Historical next task T08 completed the deferred configured-Music smoke ownership adaptation."
     },
     {
       "id": "T08",
       "milestone": "M1",
       "title": "Reserve unique run roots and logs exclusively",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T07"
       ],
@@ -327,11 +327,30 @@
         "A22",
         "A23"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T08.md",
+        "evidence/T08-tested-payload.json",
+        "evidence/T08-reservation-ps51-final3.json",
+        "evidence/T08-reservation-ps7-final3.json",
+        "evidence/T08-baseline-ps51-verified3.json",
+        "evidence/T08-baseline-ps7-verified3.json",
+        "evidence/T08-preflight-ps51-verified3.json",
+        "evidence/T08-preflight-ps7-verified3.json",
+        "evidence/T08-discovery-ps51-verified3.json",
+        "evidence/T08-discovery-ps7-verified3.json",
+        "evidence/T08-naming-ps51-verified3.json",
+        "evidence/T08-naming-ps7-verified3.json",
+        "evidence/T08-native-ps51-verified3.json",
+        "evidence/T08-native-ps7-verified3.json",
+        "evidence/T08-resolver-ps51-verified3.json",
+        "evidence/T08-resolver-ps7-verified3.json",
+        "evidence/T08-music-ps51-verified3.json",
+        "evidence/T08-music-ps7-verified3.json"
+      ],
+      "tested_commit": "e1ea2a95a5a9b7461d69101b6a111f26b51abbf6",
+      "checkpoint_commit": "3b6c4164c6e4dd4b58f0be074c17f6fb854b41be",
+      "remote_checkpoint_verified": true,
+      "notes": "A22/A23 pass on PS5.1/PS7: 13 focused groups, four fixed-timestamp barrier children reserve exact counters 3/4/5/6 with isolated roots/tokens/logs, two real-entry children exercise relative and FileSystem PSDrive destinations and decode at 64 kbps. Occupied dirs/files/logs/markers/sentinels retain SHA256; CreateNew collisions, exhaustion, raw component rejection, exact suffix budgets and owned ACL/setup failures verified. Full M1 matrix 16 current reports: baseline/seven companions, preflight 35/eight helpers, discovery 8, naming 11/19 decoded outputs, native 35, resolver 10 and configured-Music synthetic default smoke. Source/fixture hashes, original ACL restoration, child disposal and exact owned cleanup pass. Sequential native handle counts 667->667 and 575->575 retain threshold 16; earlier failed handle/path/guard/harness observations preserved. Test base/current byte hashes verified equivalent to reviewed pushed code checkpoint. Owner merged T07 PR7; T08 draft PR8 feature synchronized, main integration owner-gated. T07 unknown possible TEMP residue remains unverified; no broad cleanup. No ordinary Music enumeration, personal media, settings/downloads/phone/manual/CI/release evidence. Exactly next T09."
     },
     {
       "id": "T09",

@@ -332,8 +332,13 @@
       "required": true,
       "method": "barrier-based process concurrency test",
       "expected": "Two synchronized launches obtain different exclusively owned roots and logs; no timing sleep or check-then-create race is used as correctness proof.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T08.md",
+        "evidence/T08-reservation-ps51-final3.json",
+        "evidence/T08-reservation-ps7-final3.json",
+        "evidence/T08-tested-payload.json"
+      ]
     },
     {
       "id": "A23",
@@ -342,8 +347,13 @@
       "required": true,
       "method": "collision sentinel/hash test",
       "expected": "Pre-existing directories/logs/sentinel files remain byte-identical; ownership marker is exclusive and cleanup knows only this run.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T08.md",
+        "evidence/T08-reservation-ps51-final3.json",
+        "evidence/T08-reservation-ps7-final3.json",
+        "evidence/T08-tested-payload.json"
+      ]
     },
     {
       "id": "A24",
