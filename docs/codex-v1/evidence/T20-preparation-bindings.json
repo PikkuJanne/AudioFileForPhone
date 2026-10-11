@@ -1,0 +1,119 @@
+{
+  "task": "T20",
+  "scope": "Owned short synthetic manual fixture preparation; no application or manual acceptance",
+  "working_preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+  "invocations": [
+    {
+      "original_report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-5763e31b9e234a7a8c8822276b682df0\\preparation.json",
+      "retained_report": "T20-preparation-attempt1.json",
+      "report_sha256": "66e8b735bd1cf1b6d90103ba67d32e1df2d1a4e65487bc16b4868612c4a7c3f9",
+      "byte_equal_to_original": true,
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Prepare-T20Manual.ps1"
+      ],
+      "working_directory": "C:\\projects\\AudioFileForPhone-main",
+      "child_environment": "Inherited without changes; complete values not captured.",
+      "exit_code": 1,
+      "source_commit": null,
+      "preparer_sha256": "03f5325fb87d2f8474ab92c38da2fd6c288f91930d02498402fc9f7b5ae0bc01",
+      "status": "failed",
+      "manual_acceptance": "not_run",
+      "retained_root_name": "AudioFileForPhone-T20-Manual-5763e31b9e234a7a8c8822276b682df0",
+      "cleanup_claim": false,
+      "current_successful_inputs_verified": false
+    },
+    {
+      "original_report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\preparation.json",
+      "retained_report": "T20-preparation-ps7.json",
+      "report_sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+      "byte_equal_to_original": true,
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Prepare-T20Manual.ps1"
+      ],
+      "working_directory": "C:\\projects\\AudioFileForPhone-main",
+      "child_environment": "Inherited without changes; complete values not captured.",
+      "exit_code": 0,
+      "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+      "status": "prepared",
+      "manual_acceptance": "not_run",
+      "retained_root_name": "AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+      "cleanup_claim": false,
+      "current_successful_inputs_verified": true
+    },
+    {
+      "original_report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-9f03f0ee4b8a4d0499513b8efafad09f\\preparation.json",
+      "retained_report": "T20-preparation-ps51.json",
+      "report_sha256": "acc71fa7bb3dedc36ef72b0737b947e12793386179b8b0d8ff402c87064fbce5",
+      "byte_equal_to_original": true,
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "docs/codex-v1/tools/Prepare-T20Manual.ps1"
+      ],
+      "working_directory": "C:\\projects\\AudioFileForPhone-main",
+      "child_environment": "Inherited except PSModulePath removed in owned launch environment; complete values not captured.",
+      "exit_code": 0,
+      "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+      "status": "prepared",
+      "manual_acceptance": "not_run",
+      "retained_root_name": "AudioFileForPhone-T20-Manual-9f03f0ee4b8a4d0499513b8efafad09f",
+      "cleanup_claim": false,
+      "current_successful_inputs_verified": true
+    }
+  ],
+  "parser_validation": [
+    {
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "shell": "5.1.26100.9444",
+      "edition": "Desktop",
+      "errors": 0,
+      "exit_code": 0,
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$taskTokens=$null;$taskErrors=$null;[void][Management.Automation.Language.Parser]::ParseFile(\"C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Prepare-T20Manual.ps1\",[ref]$taskTokens,[ref]$taskErrors);[ordered]@{shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition;parse_errors=$taskErrors.Count}|ConvertTo-Json -Compress;if($taskErrors.Count){exit 1}"
+      ],
+      "child_environment": "Inherited except PSModulePath removed in owned launch environment; complete values not captured."
+    },
+    {
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "shell": "7.6.5",
+      "edition": "Core",
+      "errors": 0,
+      "exit_code": 0,
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$taskTokens=$null;$taskErrors=$null;[void][Management.Automation.Language.Parser]::ParseFile(\"C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\tools\\Prepare-T20Manual.ps1\",[ref]$taskTokens,[ref]$taskErrors);[ordered]@{shell=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition;parse_errors=$taskErrors.Count}|ConvertTo-Json -Compress;if($taskErrors.Count){exit 1}"
+      ],
+      "child_environment": "Inherited except PSModulePath removed in owned launch environment; complete values not captured."
+    }
+  ],
+  "historical_failure": "Two discovered Git executables produced one combined MissingExecutable path before copies/fixtures. Original failed report/hash remain; no original script snapshot, aggregate release pass or cleanup inferred.",
+  "source_identity": "Application hashes bound to T20 start/supplemental tested main. New preparer tested uncommitted by separate working-byte hash, not falsely attributed to main."
+}

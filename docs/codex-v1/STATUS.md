@@ -1,12 +1,59 @@
 # Current project status
 
-State: **T19 implementation, selected local/hosted acceptance, exploratory
-builds and independent source review pass.**
-Last completed task: T19. Exactly next task:
-T20 after owner integration. Required improvements 1-15; optional O01 deferred.
+State: **T20 automated support passes; required named Windows/manual long-file
+acceptance is pending owner observations and a selected representative input.**
+Last completed task: T19, now owner-integrated. Exactly next task:
+continue T20. Required improvements 1-15; optional O01 deferred.
 Project/release remain incomplete.
 
+## T20 active checkpoint
+
+- Owner PikkuJanne merged T19 PR #19 at 15:19:08 UTC on 11 October 2026 into
+  main `da2a6273ff9aceb86af75ad4aa2d2942ec745d66`; final T19 feature was
+  `4aa3dd3bbeb02982ef788521e2751fdc5bcb05df`. Normal fetch, independently
+  advertised refs and live GitHub matched. Clean local main was fast-forwarded;
+  active branch is `codex/v1-t20-windows-acceptance`. T01-T19 are integrated.
+  See `evidence/T20-start.json`. Main push CI run 38150774320 passes.
+- Near-final tested source is that integrated main commit. Runtime/helper/BAT
+  and all existing tests remain unchanged. Automated tester: Codex, ordinary
+  non-elevated account, Windows 11 Pro 26300.9457/x64, PS5.1.26100.9444/Desktop
+  and bundled PS7.6.5/Core. Existing owner-provided C:\ffmpeg\bin pair reports
+  Gyan build 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev; exact tool
+  hashes/versions are in the original reports. No download or global setting
+  change occurred. Read-only execution-policy observations are retained in
+  `evidence/T20-environment.json`; both managed scopes are Undefined. Each
+  actual test command requests process-scoped RemoteSigned.
+- Eight selected targeted runs pass **182 supplemental checks**: per shell,
+  metadata 15, application outcomes 13, launcher contracts 52, resolver/default
+  Music 11. Original create-new `T16-*-final20.json` reports keep their original
+  task/case IDs and actual tested commit. `evidence/T20-supplemental.json` binds
+  their byte hashes, exact invocations, timestamps and 26 source relationships
+  to T20. All recorded source/fixture preservation, child release and owned
+  cleanup gates pass. Configured-Music runs inspect/remove only their returned
+  exact owned run and leave unrelated Music entries unenumerated.
+- A49/A50 remain **blocked pending named manual evidence**. No physical BAT
+  drag/drop, STA picker, fresh physical Ctrl+C, representative long source,
+  manual default-path or playback observation is claimed. Prior T11 physical
+  evidence and T19 automated long/default checks remain historical, without
+  substitution for this task. Native app UI control is unavailable in this
+  session. The owner has been asked for tester identity, an explicitly selected
+  legally held over-hour local source and availability for physical checks.
+- `T20_MANUAL_STEPS.md` gives the continuation procedure. Preparation/commands
+  are not successful observations. T21 remains dependent on T20; no source
+  freeze, exact release-ZIP acceptance, tag or publication is authorized.
+- `tools/Prepare-T20Manual.ps1` parses in both shells; actual PS5.1/PS7
+  preparations each produce eight short controlled fixtures with thirteen
+  completed/released bounded native calls, unchanged source/copies and empty
+  output parents. Both roots are retained for physical testing. The first PS7
+  attempt failed before copies/fixtures because two discovered Git executable
+  paths were combined; selecting the first resolves it. Original failure and
+  marker/report-only retained scope remain unchanged. Exact original reports,
+  copies and commands are bound by `evidence/T20-preparation-bindings.json`.
+
 ## Checkpoint and environment
+
+The following T19 sections preserve the historical checkpoint/evidence scopes.
+Its previously pending integration is superseded by the verified T20 start above.
 
 - Checkout C:\projects\AudioFileForPhone-main; branch codex/v1-t19-package.
   Origin fetch/push https://github.com/PikkuJanne/AudioFileForPhone.git.

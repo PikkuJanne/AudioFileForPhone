@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "purpose": "synthetic_manual_fixture_preparation_only",
+  "started_utc": "2026-10-11T15:25:59.2926738Z",
+  "finished_utc": "2026-10-11T15:26:00.1897547Z",
+  "status": "failed",
+  "manual_acceptance": "not_run",
+  "source_commit": null,
+  "preparer_sha256": "03f5325fb87d2f8474ab92c38da2fd6c288f91930d02498402fc9f7b5ae0bc01",
+  "runtime": {
+    "version": "7.6.5",
+    "edition": "Core",
+    "executable_path": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "windows_build": "26300.9457"
+  },
+  "ownership": {
+    "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-5763e31b9e234a7a8c8822276b682df0",
+    "temp_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp",
+    "marker_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-5763e31b9e234a7a8c8822276b682df0\\.t20-manual-owner",
+    "marker_sha256": "02c22a11c04d4f35028f1d2abe5919cb90e7cb982d00d8d089b6accad65b4bdd",
+    "exclusive_directory": true,
+    "reparse_ancestors_refused": true,
+    "retained_for_owner": true
+  },
+  "paths": {},
+  "tools": {},
+  "sources": [],
+  "inputs": [],
+  "native_commands": [
+    {
+      "executable_path": "C:\\Program Files\\Git\\cmd\\git.exe C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe",
+      "arguments": [
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "MissingExecutable",
+      "exit_code": null,
+      "process_released": true,
+      "elapsed_ms": 18,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": "The executable file does not exist or is not readable."
+    }
+  ],
+  "native_processes_released": false,
+  "source_bytes_unchanged": false,
+  "empty_output_parent": false,
+  "error": "Fixture native command did not complete within its bound with released process: C:\\Program Files\\Git\\cmd\\git.exe C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\cmd\\git.exe (MissingExecutable, )."
+}

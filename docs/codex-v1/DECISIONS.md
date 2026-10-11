@@ -693,3 +693,27 @@ with a bare “approved” assertion without a traceable reference.
   belong in draft PR #19 and the response without a self-referential containing SHA.
   Main remains owner-gated; exactly next T20 after owner integration. Project/release
   and existing manual/device/security limits remain incomplete; loudness deferred.
+
+## T20 start and manual acceptance checkpoint — 11 October 2026
+
+- Owner requested "T20 next please". Live PR #19 is owner-merged at 15:19:08Z,
+  feature 4aa3dd3 and main da2a627 independently advertised/API-matched. Clean main
+  was safely fast-forwarded and codex/v1-t20-windows-acceptance created. Normal
+  T20 edits/tests/feature push/draft PR are authorized; main/release gates stay.
+- Ordinary-user Windows 11 26300.9457 PS5.1.26100.9444/PS7.6.5 focused support
+  passes 182 checks in eight executions, with original T16 raw fields/bytes,
+  eight report hashes, 26 source relationships and exact owned cleanup retained.
+  Runtime, existing tests, CI/build/defaults remain unchanged; no broad personal
+  media/Music access or global settings change. Main CI 38150774320 passes.
+- Added only a guided manual procedure and retained owned synthetic preparer.
+  Actual both-shell parse/preparation passes; each success has 13 completed/released
+  bounded native calls, eight short fixtures, exact app copies and empty output.
+  First PS7 duplicate-Git path failure remains preserved with its own retained
+  marker/report-only scope; no cleanup/current-source success is retroactively
+  assigned. Successful fixture trees remain intentionally retained for the owner.
+- A49/A50/T20 stay blocked: named physical Windows actions and an explicitly chosen
+  representative legally held over-hour input/time/resource/playback observations
+  have not arrived. Native app UI is unavailable in this session; old physical or
+  automated input/long/default evidence cannot invent current named observations.
+  Asked owner for tester identity/local selected path and availability; no personal
+  media search. Exactly next continue T20, not T21; project/release incomplete.
