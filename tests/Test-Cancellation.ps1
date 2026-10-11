@@ -317,7 +317,13 @@ try {
     $support = Join-Path $testRoot 'Support.cs'; Write-NewText $support $supportSource; Add-Fixture $support
     $library = $support; $controller = Join-Path $testRoot 'Controller.exe'
     $compiler = Join-Path ([Environment]::GetFolderPath('Windows')) 'Microsoft.NET/Framework64/v4.0.30319/csc.exe'
-    Invoke-RealSuccess $compiler @('/nologo', '/target:exe', '/main:T11Controller.Controller', ('/out:' + $controller), $support) | Out-Null
+    # Framework csc's default response file uses bare assembly names. A Core
+    # host's current directory can supply incompatible forwarding facades.
+    # Bind this fixture executable to the installed compiler's exact libraries.
+    $compilerDirectory = Split-Path -Parent $compiler
+    $compilerReferences = @('mscorlib.dll', 'System.dll', 'System.Core.dll') |
+        ForEach-Object { '/reference:' + (Join-Path $compilerDirectory $_) }
+    Invoke-RealSuccess $compiler (@('/nologo', '/noconfig', '/nostdlib+', '/target:exe', '/main:T11Controller.Controller', ('/out:' + $controller)) + $compilerReferences + @($support)) | Out-Null
     Add-Fixture $controller; Add-Type -TypeDefinition $supportSource
     $unrelated = Start-OwnedChild $ffmpeg @('-nostdin', '-v', 'error', '-re', '-f', 'lavfi', '-i', 'sine=frequency=222:sample_rate=44100', '-t', '180', '-f', 'null', 'NUL')
     Assert-True (-not $unrelated.process.WaitForExit(200)) 'Unrelated real FFmpeg fixture must be live.'
