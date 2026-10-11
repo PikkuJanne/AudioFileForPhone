@@ -818,3 +818,20 @@ with a bare “approved” assertion without a traceable reference.
   document limit in binder; no rewrite/rerun is necessary for this successful
   no-timeout execution. Main CI38156733341 later passes. Phone question now gives
   the exact folder and one short session; device/player/transfer/results pending.
+
+## T21 actual owner phone report — 11 October 2026
+
+- Janne reports "All worked. Samsung A56, Android One UI 8.5, AIMP, usb cable"
+  in response to the three-file phone procedure. Preserve that exact quote and
+  derive only the unconditional prompted results: playback/seeks/duration/resume,
+  tags/blue cover/order. These are named owner observations, not Codex measurements.
+- Keep OS wording exactly supplied. AIMP's version remains missing; conditional
+  "chapters if available" does not establish chapter availability/navigation.
+  Ask one brief record clarification without another test. Scope every claim to
+  this phone/player/assets; infer no base Android release, USB/MTP mode or phone hash.
+- Recheck only exact known Windows assets and frozen runtime/report identities.
+  Keep historical preparation-only and T20 evidence unchanged. No app/test/CI/build
+  changes, personal source/Music scan, media in Git or repeated conversion.
+- Existing e2b9a22 feature sync and both push/PR Windows matrices pass. PR21 remains
+  draft/unmerged, main3e unchanged. A51/A52/T21 remain blocked only pending version
+  and chapter detail; next continue T21. Main/release authority stays unchanged.

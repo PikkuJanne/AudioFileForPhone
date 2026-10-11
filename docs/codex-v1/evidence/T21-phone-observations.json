@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "cases": [
+    "A51",
+    "A52"
+  ],
+  "recorded_utc": "2026-10-11T17:12:20.902120Z",
+  "recorded_utc_is_test_timestamp": false,
+  "tester": "Janne Vuorela",
+  "evidence_type": "named_owner_report_in_this_chat",
+  "physical_phone_evidence": true,
+  "verbatim_owner_reports": [
+    {
+      "text": "All worked. Samsung A56, Android One UI 8.5, AIMP, usb cable",
+      "context": "Reply to the exact three-file phone procedure below; tester identity was supplied earlier in this same chat."
+    }
+  ],
+  "prompted_procedure": [
+    "Copy the three MP3s from TEMP T21P-06b84fc67184/Phone to the phone.",
+    "Long-audio: listen at the start, seek to 40:00 and 79:00. Check duration is about 1:19:35.",
+    "Pause near 40 minutes, close/reopen the player, and check whether it resumes.",
+    "T21 Phone Test album: check titles, artist/album, blue cover, First/Second track order, and chapters if available."
+  ],
+  "phone": {
+    "model_as_reported": "Samsung A56",
+    "os_as_reported": "Android One UI 8.5",
+    "base_android_version": null,
+    "player_name": "AIMP",
+    "player_version": null,
+    "transfer_method_as_reported": "usb cable",
+    "usb_transfer_protocol": null
+  },
+  "asset_identity_basis": "The owner replied to the procedure for these exact three intended Windows-side transfer aliases. No phone-side digest was captured.",
+  "assets": [
+    {
+      "private_id": "T21-short-02",
+      "filename": "A-second.mp3",
+      "length": 160928,
+      "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      }
+    },
+    {
+      "private_id": "T21-short-01",
+      "filename": "Z-first.mp3",
+      "length": 161056,
+      "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      }
+    },
+    {
+      "private_id": "T20-long-01",
+      "filename": "Long-audio.mp3",
+      "length": 38201262,
+      "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 1,
+        "audio_bitrate": 64000,
+        "duration_seconds": 4775.055646
+      }
+    }
+  ],
+  "short_generation_application_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "long_original_generation_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "phone_report_checkpoint": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+  "source_relationship": "Runtime/helper/BAT blobs are unchanged across the original long generation, integrated main and phone-preparation checkpoint; original generation provenance is retained.",
+  "observations": {
+    "basis": "Derived only from the aggregate owner confirmation All worked in response to the quoted procedure; no separate measurements, screen capture or instrumented phone run.",
+    "start_playback": "reported_working",
+    "middle_40m_playback_and_seek": "reported_working",
+    "near_end_79m_playback_and_seek": "reported_working",
+    "displayed_duration": "reported_expected_approximately_1h19m35s; exact display not separately quoted",
+    "close_reopen_resume_near_40m": "reported_working",
+    "short_titles_artist_album": "reported_working: First track / Second track, Artist and Album T21 Phone Test",
+    "supplied_blue_cover": "reported_working",
+    "short_track_order": "reported_working: First then Second",
+    "sort_mode": null,
+    "disc_order": "not_separately_prompted_or_reported",
+    "chapter_availability": "clarification_pending; the prompt was conditional if available",
+    "chapter_navigation": "not_established"
+  },
+  "status": "reported_success_pending_version_and_chapter_details",
+  "acceptance": {
+    "A51": "blocked_missing_AIMP_version",
+    "A52": "blocked_chapter_behavior_clarification",
+    "T21": "blocked"
+  },
+  "remaining_details": [
+    "AIMP installed version",
+    "Actual chapter availability/navigation or unavailable player feature"
+  ],
+  "clarification_requested": "For the record only—no retest: what AIMP version is shown under About, and did First track show selectable First half/Second half chapters, or were chapters unavailable?",
+  "limits": [
+    "Named report for this phone/player and these three assets only; no universal Android, USB/MTP, chapter or resume guarantee.",
+    "Base Android release, USB protocol, sorting mode, test timestamp and phone-side hashes are not reported.",
+    "No screenshot, fresh playback, phone access or AIMP-version inference is claimed by Codex.",
+    "No repeated phone test is required for the requested record clarification.",
+    "Preparation reports remain preparation-only/not_run and are retained byte-for-byte."
+  ],
+  "preparation_report": {
+    "relative_path": "evidence/T21-preparation-ps7-final1.json",
+    "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619"
+  },
+  "windows_asset_preservation_evidence": "evidence/T21-phone-asset-check.json",
+  "main_integration": "pending_owner",
+  "release_authorization_added": false
+}

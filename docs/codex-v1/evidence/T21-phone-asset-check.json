@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "purpose": "read_only_windows_transfer_asset_identity_after_owner_phone_reply",
+  "status": "pass",
+  "checked_started_utc": "2026-10-11T17:11:31.3642483Z",
+  "checked_utc": "2026-10-11T17:11:32.1539163Z",
+  "automated_operator": "Codex independent asset verifier",
+  "observed_head_commit": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+  "read_algorithm": [
+    "Get-Item -LiteralPath checks exact directories from Phone through drive ancestry; reject reparse points and non-directories.",
+    "Get-Item -LiteralPath and Get-FileHash -LiteralPath -Algorithm SHA256 read each exact known file before and after; reject directories/reparse files.",
+    "Get-ChildItem -LiteralPath <T21-owned-root>\\Phone -Force performs one nonrecursive inventory; require exactly three expected MP3 aliases.",
+    "IO.File.ReadAllText plus ConvertFrom-Json reads the frozen sanitized preparation report and binder to select known expected lengths/hashes and runtime relationships.",
+    "git -C <PROJECT> rev-parse HEAD; git -C <PROJECT> rev-parse <baseline-commit>:<runtime-file>; git -C <PROJECT> rev-parse :<runtime-file>; compare the three known runtime blobs at original T20, selected preparation, observed HEAD and index.",
+    "git -C <PROJECT> status --porcelain=v1 -- AudioFileForPhone.ps1 AudioFileForPhone.Helpers.ps1 AudioFileForPhone.bat; require empty output.",
+    "Write exactly this new sanitized evidence JSON exclusively after all checks pass; do not modify any verified file."
+  ],
+  "exact_owned_windows_root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T21P-06b84fc67184",
+  "exact_windows_phone_folder": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T21P-06b84fc67184\\Phone",
+  "directory_ancestry_checked_no_reparse": true,
+  "phone_inventory_count": 3,
+  "phone_inventory_only_expected_aliases": true,
+  "owner_marker": {
+    "relative_path": ".t21-phone-owner",
+    "expected_sha256": "a8256c9b58aca093f12aa8779cc4e53c4d126c4fcb9426ad18ed3d585fed93ab",
+    "before": {
+      "length": 32,
+      "sha256": "a8256c9b58aca093f12aa8779cc4e53c4d126c4fcb9426ad18ed3d585fed93ab"
+    },
+    "post": {
+      "length": 32,
+      "sha256": "a8256c9b58aca093f12aa8779cc4e53c4d126c4fcb9426ad18ed3d585fed93ab"
+    },
+    "unchanged": true
+  },
+  "windows_assets": [
+    {
+      "private_id": "T21-short-02",
+      "phone_filename_alias": "A-second.mp3",
+      "exact_windows_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T21P-06b84fc67184\\Phone\\A-second.mp3",
+      "expected_length": 160928,
+      "expected_sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "before": {
+        "length": 160928,
+        "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd"
+      },
+      "post": {
+        "length": 160928,
+        "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd"
+      },
+      "unchanged": true
+    },
+    {
+      "private_id": "T21-short-01",
+      "phone_filename_alias": "Z-first.mp3",
+      "exact_windows_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T21P-06b84fc67184\\Phone\\Z-first.mp3",
+      "expected_length": 161056,
+      "expected_sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "before": {
+        "length": 161056,
+        "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7"
+      },
+      "post": {
+        "length": 161056,
+        "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7"
+      },
+      "unchanged": true
+    },
+    {
+      "private_id": "T20-long-01",
+      "phone_filename_alias": "Long-audio.mp3",
+      "exact_windows_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T21P-06b84fc67184\\Phone\\Long-audio.mp3",
+      "expected_length": 38201262,
+      "expected_sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "before": {
+        "length": 38201262,
+        "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e"
+      },
+      "post": {
+        "length": 38201262,
+        "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e"
+      },
+      "unchanged": true
+    }
+  ],
+  "frozen_preparation_artifacts": [
+    {
+      "relative_path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+      "expected_length": 31772,
+      "expected_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+      "before": {
+        "length": 31772,
+        "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839"
+      },
+      "post": {
+        "length": 31772,
+        "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839"
+      },
+      "unchanged": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+      "expected_length": 21136,
+      "expected_sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+      "before": {
+        "length": 21136,
+        "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619"
+      },
+      "post": {
+        "length": 21136,
+        "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619"
+      },
+      "unchanged": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+      "expected_length": 10168,
+      "expected_sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+      "before": {
+        "length": 10168,
+        "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393"
+      },
+      "post": {
+        "length": 10168,
+        "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393"
+      },
+      "unchanged": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-review.json",
+      "expected_length": 19141,
+      "expected_sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f",
+      "before": {
+        "length": 19141,
+        "sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f"
+      },
+      "post": {
+        "length": 19141,
+        "sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f"
+      },
+      "unchanged": true
+    }
+  ],
+  "runtime_source_relationships": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "original_t20_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "original_t20_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "preparation_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+      "preparation_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "observed_head_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "index_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "expected_working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "before": {
+        "length": 40032,
+        "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+      },
+      "post": {
+        "length": 40032,
+        "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+      },
+      "unchanged": true
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "original_t20_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "original_t20_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "preparation_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+      "preparation_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "observed_head_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "index_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "expected_working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "before": {
+        "length": 114373,
+        "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+      },
+      "post": {
+        "length": 114373,
+        "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+      },
+      "unchanged": true
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "original_t20_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "original_t20_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "preparation_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+      "preparation_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "observed_head_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "index_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "expected_working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "before": {
+        "length": 1800,
+        "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+      },
+      "post": {
+        "length": 1800,
+        "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+      },
+      "unchanged": true
+    }
+  ],
+  "runtime_working_and_index_status_empty": true,
+  "original_long_report": {
+    "relative_path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+    "original_tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+    "expected_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+    "before": {
+      "length": 16185,
+      "sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0"
+    },
+    "post": {
+      "length": 16185,
+      "sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0"
+    },
+    "unchanged": true,
+    "relationship": "Existing unchanged long preparation report binds the original T20 output to the identical Long-audio.mp3 SHA-256. This check hashes only the ready-to-transfer Windows alias and public original report; no original personal source or private tags are accessed."
+  },
+  "all_before_post_equal": true,
+  "all_expected_digests_and_lengths_match": true,
+  "media_decoding_or_conversion_executed": false,
+  "ffmpeg_or_ffprobe_executed": false,
+  "phone_access_performed": false,
+  "phone_side_bytes_observed": false,
+  "phone_side_sha256": null,
+  "phone_evidence_boundary": "The owner reply is assessed separately by the parent record. This artifact establishes the current Windows-side transfer payload identity only. USB transfer, playback and phone-side byte identity are not directly observed by this verifier; no phone-side hash is inferred.",
+  "private_media_or_tags_included": false,
+  "personal_source_access": false,
+  "ordinary_music_access": false,
+  "personal_media_search": false,
+  "cleanup_attempted": false
+}

@@ -238,3 +238,10 @@ work. Do not bypass corporate policy when an unsigned script is blocked.
 Missing test environment, phone evidence, authentication, checks or approval means
 blocked—not complete. Continue independent authorized work where possible, then
 leave one precise owner action with evidence. Do not silently waive required tests.
+
+T21 phone continuation: Janne reports all prompted unconditional checks worked
+on Samsung A56, OS exactly "Android One UI 8.5", AIMP, transferred by USB cable.
+This authorizes recording/reviewing the actual named result and completing the
+same feature checkpoint within normal task scope. Installed AIMP version and
+conditional chapter behavior remain pending clarification; no extra playback test
+is required. It grants no main merge, release write or inferred phone observation.

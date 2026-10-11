@@ -1,7 +1,11 @@
-# T21 — one brief phone check, not yet run
+# T21 — phone procedure used; record details pending
 
-Tester: Janne Vuorela. Use your normal phone/player and transfer method. No new
-app, screenshots, command editing or full-length listening is required.
+Tester: Janne Vuorela. He reports "All worked" on Samsung A56, "Android One UI
+8.5", AIMP, USB cable. No repeat phone test is requested. Only AIMP's installed
+version and actual chapter availability/navigation remain to be clarified.
+
+The procedure below is retained as the exact context for his report. No new app,
+screenshots, command editing or full-length listening is required.
 
 Ready folder: `C:\Users\jtvuo\AppData\Local\Temp\T21P-06b84fc67184\Phone`.
 Copy only its three MP3s; the script has already prepared and verified them.
@@ -27,4 +31,4 @@ scope, without a claim about all phones.
 The prepared folder contains media only; raw logs/probe records and ownership
 records stay on Windows. The long MP3 retains its original tags. Exact asset
 paths, hashes and preparation results are recorded separately. Local decode is not phone
-acceptance. A51/A52 remain blocked until actual observations are reviewed.
+acceptance. A51/A52 remain blocked only on the missing AIMP version and chapter detail.
