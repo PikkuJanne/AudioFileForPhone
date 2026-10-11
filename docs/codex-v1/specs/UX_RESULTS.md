@@ -4,7 +4,8 @@
 
 Keep InputFolder, BitrateKbps=64, MaxBaseLength=60, Interactive, CoverPath, Artist and
 Album. Add optional OutputParent with the configured Music folder still default.
-Add one clearly documented no-write preview interface; use shared planning logic.
+The T12 no-write preview interface is the single DryRun switch, using shared
+discovery and planning logic. It does not enable SupportsShouldProcess/WhatIf.
 Do not add a GUI, command hierarchy or mandatory interactive wizard.
 
 Outside Interactive, no Read-Host/file picker should run. Preflight errors should
@@ -14,7 +15,7 @@ The wrapper remains STA-capable and preserves its child exit result across pause
 
 ## Outcome contract selected in T10
 
-Selected bounded codes: 0=all supported snapshot files succeeded; 1=preflight/no
+For conversion, selected bounded codes: 0=all supported snapshot files succeeded; 1=preflight/no
 supported files/fatal problem; 2=completed batch with one or more per-file failures.
 130 / Cancelled is selected for controlled user cancellation in T11 and handled
 by the BAT. PowerShell parameter-binding failures and
@@ -67,6 +68,20 @@ No output root, log, marker, manifest, image preparation, encoder or interactive
 prompt. Read-only probing is allowed only if needed and clearly described. Do not
 write a test sentinel to prove permissions in preview; say not checked. An actual
 run reserves its root, so a preview root is provisional, not a promised timestamp.
+
+DryRun performs no native probing: duration is unknown, and destination
+writability, tools, media and cover validation remain unverified. Interactive is
+ignored explicitly. Report naming warnings and skipped paths/reasons, plus the
+unsupported count for visited directories and the supported extension policy.
+Each console [PLAN] line contains compact JSON with source_relative_path,
+output_relative_path, provisional_output_path and duration="unknown". No
+persistent manifest is created. Previewed returns 0, with processed/converted/
+failed zero and not_processed equal to the supported snapshot total. Caught
+preflight, input, scan and naming failures retain FailedBeforeConversion/1 and no
+writes. Parameter binding remains outside the script's result handler, as above.
+The final summary labels the root provisional and states that no log was created.
+Unchanged source names/timestamps and naming options produce the same relative
+mapping; a real reservation race may choose another root and path-budget outcome.
 
 ## Progress and logs
 

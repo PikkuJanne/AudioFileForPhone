@@ -1,0 +1,286 @@
+{
+    "schema_version":  1,
+    "task":  "T12",
+    "mode":  "preview_inventory_equality_and_real_plan_equivalence",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-Preview.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T12-preview-ps51-attempt1.json",
+    "started_utc":  "2026-10-11T08:15:44.6762485Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preview.ps1",
+                              "sha256":  "627610e02646448a4d7bf3c01909b80b60cc304fc6000ca2cf767635d0a00fb0"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preview.ps1",
+                             "sha256":  "627610e02646448a4d7bf3c01909b80b60cc304fc6000ca2cf767635d0a00fb0"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Seed\\good.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Seed\\good.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Seed\\good.ogg",
+                                 "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                 "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                 "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                 "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                 "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                 "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                 "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                 "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                 "sha256":  "21b7aeb049d9a7bc7a976c60458b54f9d9e46dea2711018eaf62319731cb090f"
+                             },
+                             {
+                                 "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "Existing\\existing.mp3",
+                                 "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                             },
+                             {
+                                 "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                 "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                             },
+                             {
+                                 "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                 "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                             },
+                             {
+                                 "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                             },
+                             {
+                                 "relative_path":  "guarded-driver.ps1",
+                                 "sha256":  "b60f18d78cc49f4a14fbe598d1963e04620c1a9a290b8205dcee2e381669f164"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Seed\\good.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Seed\\good.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Seed\\good.ogg",
+                                "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-02-29 - Episode.ogg",
+                                "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - A\u0026B.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - AB.ogg",
+                                "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2024-01-02 - café.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\2023-02-29 - Impossible.ogg",
+                                "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\No date !% ^ O\u0027Brien \u0026 [brackets].mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Sub [x] !% ^ O\u0027Brien \u0026\\2024-03-01 - Ünicode 漢字.ogg",
+                                "sha256":  "6a5afbc811755520665eceb5ecf3e1d7126ccf52d671c80a25a8040614232f9a"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\AudioForPhone_64kbps_20240101_000000\\2024-03-02 - Prefix is ordinary.m4a",
+                                "sha256":  "5f0a36bd58b5da3a118955b85814a5510f2c1932eae03b7ee84dded28dd0e70d"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\notes.txt",
+                                "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\.AudioFileForPhone-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.partial",
+                                "sha256":  "8717ee04d8f858d3abed7d40af34ba63a944df12b1efd8b43c4c8553308b3db1"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\.AudioFileForPhone-output.json",
+                                "sha256":  "21b7aeb049d9a7bc7a976c60458b54f9d9e46dea2711018eaf62319731cb090f"
+                            },
+                            {
+                                "relative_path":  "Input [x] O\u0027Brien \u0026 !%^\\Prior\\excluded.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "Existing\\existing.mp3",
+                                "sha256":  "4edb299e644c59275965928651ad548b54c27cf2d58c514f0d4a589bbb1d2db2"
+                            },
+                            {
+                                "relative_path":  "A-guarded\\AudioFileForPhone.ps1",
+                                "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                            },
+                            {
+                                "relative_path":  "A-guarded\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "a8b6c6eed2e4478284291b08f808d0525900f9029b6e6748f50ee6cb9da57c69"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.ps1",
+                                "sha256":  "2efa284a092fc818f8b6305ee4997aa7080a4ff8591dd33b06aeeaed06d87137"
+                            },
+                            {
+                                "relative_path":  "A-plain\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "8b86c509f2c702132ef3acf7253bde11171a0716482bb439c344fe7b6672c34b"
+                            },
+                            {
+                                "relative_path":  "guarded-driver.ps1",
+                                "sha256":  "b60f18d78cc49f4a14fbe598d1963e04620c1a9a290b8205dcee2e381669f164"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  true,
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T12P-a3bad2ca",
+    "owner_marker_sha256":  "13eec45b6503f3173dfa8779bc4a1047d155c8d61e777a1889bdcfb1fe9307bc",
+    "inventory_fields":  [
+                             "relative_path",
+                             "kind",
+                             "length",
+                             "sha256",
+                             "last_write_utc",
+                             "attributes"
+                         ],
+    "access_time_excluded":  true,
+    "ordinary_music_access":  false,
+    "cases":  [
+                  {
+                      "name":  "guarded preview ignores Interactive/invalid cover and preserves every directory/file property",
+                      "acceptance_case":  "A31",
+                      "status":  "fail"
+                  }
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "FAIL: Preview must preserve complete owned-tree inventory including directories, hashes, modification times and attributes.",
+    "tools":  [
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffmpeg.exe",
+                      "sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                      "version":  "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\ffmpeg\\bin\\ffprobe.exe",
+                      "sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                      "version":  "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "error_location":  "at Assert-True, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 51\r\nat Assert-NoWritePreview, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 190\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 240\r\nat Invoke-Case, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 55\r\nat \u003cScriptBlock\u003e, C:\\projects\\AudioFileForPhone-main\\tests\\Test-Preview.ps1: line 238",
+    "finished_utc":  "2026-10-11T08:15:47.3350085Z"
+}

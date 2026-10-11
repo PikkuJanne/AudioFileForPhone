@@ -338,3 +338,36 @@ A29/A30 and T11 pass; required physical Ctrl+C and full M2 local acceptance are
 complete. This acceptance closure changes only docs/evidence; no runtime/test
 change justifies repeating the existing passing suites. Main integration remains
 owner-gated.
+
+## T12 preview checks
+
+Exact selected commands/results are in evidence/T12.md. Run Test-Preview.ps1 on
+PS5.1 and PS7 with fresh T12-preview-<edition>-attempt/finalN.json labels. Final1
+reports directly test b0c20f66; eight groups and eleven independently probed
+64 kbps MP3/full-decoded publications per shell pass. Compare each preview source
+and relative destination with its exact real success log mapping, including
+collisions; matching only the published filename set is insufficient.
+
+Reserve one exclusive marked TEMP tree. Assert whole-tree equality around every
+preview: directories, file paths/lengths/SHA256, modification times and attributes.
+Call FileSystemInfo.Refresh before reading both inventories to avoid cached
+enumeration metadata; retain strict timestamp equality. Exclude access times only.
+App copies preserve entry bytes; append forbidden native/write/cover/prompt/context
+guards only in TEMP. Cover Interactive/invalid explicit cover, missing parent and
+ancestor, owned default-Music resolver, corrupt supported media, empty/invalid and
+late path-budget errors, marked exclusions/unmarked prefixes/unsupported files.
+Occupy a provisional candidate and prove its preservation while real reservation
+selects another root. Keep root timestamp/suffix promises out of assertions.
+
+Suspend native child-release proof before each invocation; restore only explicit
+release while preserving prior uncertainty. Bound owned child/pipe waits and refuse
+recursive cleanup on unknown descendants. Verify exact root/token/nonreparse scope,
+source/synthetic hashes, child disposal and final absence. Ordinary Music is unused.
+
+Retain all eleven raw records: six selected final passes, attempt5 intermediate
+pass and attempts1-4 failed harness metadata/transport/warning/path assertions.
+Four selected baseline/script regression reports also pass on the same production
+bytes (script 13 groups/14 decoded publications per shell). Manifest independently
+matches eight tested files to committed blobs, three literal/five CRLF-to-LF only.
+This is targeted T12 acceptance; the prior M2 suite and physical evidence remain
+valid, with the next full applicable suite at a milestone boundary.

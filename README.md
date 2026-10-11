@@ -26,7 +26,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
 **Requirements**  
 - Windows 11  
 - PowerShell (Windows PowerShell or PowerShell 7 is fine)  
-- ffmpeg.exe and ffprobe.exe 
+- ffmpeg.exe and ffprobe.exe for conversion (preview does not require them)
   - Either next to the script or available in PATH.  
 - Optional: .bat wrapper for drag-and-drop usage
 
@@ -84,6 +84,30 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
             -Artist     "Some Artist"
             -Album      "Some Album"
 
+**Preview without writing**
+
+Run the same command with `-DryRun` to inspect filenames and destinations first:
+
+```powershell
+.\AudioFileForPhone.ps1 -InputFolder "C:\MyPodcasts" -OutputParent "D:\Phone audio" -DryRun
+```
+
+Preview uses the same discovery and naming/collision planner as conversion. It
+shows one `[PLAN]` JSON line per source, scan exclusions, unsupported-file counts
+and naming warnings. It creates no destination directory, marker, cover cache,
+log, manifest or audio, and skips all tool calls and interactive prompts, including
+when `-Interactive` is supplied. Remove `-DryRun` to convert with the same options.
+
+The run root's timestamp and reservation suffix are provisional; the real run
+reserves its own root. Relative mappings stay the same for unchanged inputs,
+timestamps and naming options, subject to the real root's path budget. Durations
+are unknown. Destination writability, FFmpeg availability, media and cover validity
+are unverified until conversion. Supplied metadata options apply to the real run;
+preview does not select or inspect a cover. A valid preview returns `0` /
+`Previewed` with zero processed/converted files; caught preflight, scan and naming
+errors still return `1`. PowerShell parameter-binding failures follow the host's
+usual behavior before the script can report a result.
+
 **Output layout**  
 - Default root per run:
   - `<MusicFolder>\AudioForPhone_<Bitrate>kbps_YYYYMMDD_HHmmss\`
@@ -132,6 +156,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - If you want to extend it later (e.g. to pass custom bitrate or other flags), you can edit the wrapper to add parameters.
 
 **Results and exit codes**  
+- `0` / `Previewed`: `-DryRun` planned the supported files without converting them.
 - `0` / `Completed`: every supported file in the input snapshot converted successfully.
 - `2` / `CompletedWithFailures`: the batch finished with one or more file failures. Independent valid files continue; sources and completed outputs are preserved.
 - `1` / `FailedBeforeConversion` or `Failed`: preflight, no supported files, run setup or a fatal error stopped the run. A log failure is fatal and reports the actual file outcome, including an output already published.

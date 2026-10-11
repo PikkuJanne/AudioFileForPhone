@@ -474,8 +474,13 @@
       "required": true,
       "method": "before/after filesystem inventory",
       "expected": "Preview creates no directories, marker, cover cache, log, manifest or audio and launches no encoder; interactive choices do not appear; omitted writability checks are explicit.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T12.md",
+        "evidence/T12-tested-payload.json",
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json"
+      ]
     },
     {
       "id": "A32",
@@ -484,8 +489,13 @@
       "required": true,
       "method": "plan-versus-execution comparison",
       "expected": "For unchanged inputs/options, preview and real run share the same naming/collision planner; provisional run-root timestamp/reservation and unknown durations are labelled.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T12.md",
+        "evidence/T12-tested-payload.json",
+        "evidence/T12-preview-ps51-final1.json",
+        "evidence/T12-preview-ps7-final1.json"
+      ]
     },
     {
       "id": "A33",
