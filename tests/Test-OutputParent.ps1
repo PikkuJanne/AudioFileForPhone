@@ -39,8 +39,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07|T08|T09|T11)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T03/T04/T05/T06/T07/T08/T09/T11-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T03|T04|T05|T06|T07|T08|T09|T11|T15)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T03/T04/T05/T06/T07/T08/T09/T11/T15-<label>.json directly in docs/codex-v1/evidence.'
 }
 $evidenceTask = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -385,15 +385,36 @@ try {
         New-OwnerMarker $musicOwnerFile
         $report.default_smoke.marker_create_new = $true
         $expectedMusicDirectories = @('T08 generated default smoke')
-        $expectedMusicFiles = @('.t08-owner', '.AudioFileForPhone-output.json', 'AudioFileForPhone_log.txt',
+        $expectedMusicFiles = @('.t08-owner', '.AudioFileForPhone-output.json', 'AudioFileForPhone_log.txt', 'AudioFileForPhone_manifest.json',
             'T08 generated default smoke\2024-01-02 - Default smoke.mp3') | Sort-Object
         Write-EvidenceCheckpoint
         $inventory = Get-ExactMusicInventory
-        Assert-True (($inventory.files -join "`n") -ceq ($expectedMusicFiles -join "`n")) 'Default smoke must produce only the marker, log and one synthetic MP3.'
+        Assert-True (($inventory.files -join "`n") -ceq ($expectedMusicFiles -join "`n")) 'Default smoke must produce only the owner markers, log, manifest and one synthetic MP3.'
         Assert-True (($inventory.directories -join "`n") -ceq ($expectedMusicDirectories -join "`n")) 'Default smoke must preserve the exact synthetic input folder.'
         $report.default_smoke['inventory'] = $inventory
         $report.default_smoke.exact_inventory_verified = $true
         $outputAudio = Join-Path $musicRoot 'T08 generated default smoke\2024-01-02 - Default smoke.mp3'
+        $manifestPath = Join-Path $musicRoot 'AudioFileForPhone_manifest.json'
+        $manifestHash = (Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
+        $manifest = [IO.File]::ReadAllText($manifestPath) | ConvertFrom-Json
+        $records = @($manifest.records)
+        Assert-True ($manifest.schema_version -eq 1 -and $manifest.kind -ceq 'AudioFileForPhone.RunManifest' -and
+            $manifest.checkpoint -ceq 'Final' -and $manifest.run.status -ceq 'Completed' -and $manifest.run.exit_code -eq 0 -and
+            $manifest.run.input_root -ceq (Split-Path -Parent $sourceAudio) -and $manifest.run.output_root -ceq $musicRoot) 'Manifest must describe this exact successful controlled run and final result.'
+        Assert-True ($records.Count -eq 1 -and $records[0].status -ceq 'Converted' -and $records[0].code -ceq 'Success' -and
+            $records[0].source_relative_path -ceq (Split-Path -Leaf $sourceAudio) -and
+            $records[0].output_relative_path -ceq 'T08 generated default smoke\2024-01-02 - Default smoke.mp3' -and
+            $records[0].input_bytes -eq (Get-Item -LiteralPath $sourceAudio -Force).Length -and
+            $records[0].output_bytes -eq (Get-Item -LiteralPath $outputAudio -Force).Length) 'Manifest must map the single source to the exact published output and actual byte lengths.'
+        Assert-True ($manifest.totals.supported -eq 1 -and $manifest.totals.processed -eq 1 -and $manifest.totals.converted -eq 1 -and
+            $manifest.totals.failed -eq 0 -and $manifest.totals.cancelled -eq 0 -and $manifest.totals.not_processed -eq 0 -and
+            $manifest.totals.not_completed -eq 0 -and $manifest.totals.input_bytes -eq $records[0].input_bytes -and
+            $manifest.totals.output_bytes -eq $records[0].output_bytes -and
+            $manifest.build.entry_sha256 -ceq $report.application_sha256_before -and
+            $manifest.build.helper_sha256 -ceq $report.helpers_sha256_before) 'Manifest counts, byte totals and actual executed build hashes must reconcile.'
+        $report.default_smoke['manifest_verified'] = $true
+        $report.default_smoke['manifest_sha256'] = $manifestHash
+        $report.default_smoke['manifest_record'] = $records[0]
         $media = (Invoke-Native $ffprobe @('-v', 'error', '-show_streams', '-show_format', '-of', 'json', $outputAudio)) -join "`n" | ConvertFrom-Json
         $audio = @($media.streams | Where-Object { $_.codec_type -eq 'audio' })
         Assert-True ($audio.Count -eq 1 -and $audio[0].codec_name -eq 'mp3' -and [int]$audio[0].bit_rate -eq 64000) 'Default smoke output must contain 64 kbps MP3 audio.'
@@ -402,6 +423,7 @@ try {
         $report.default_smoke['output_sha256'] = (Get-FileHash -LiteralPath $outputAudio -Algorithm SHA256).Hash.ToLowerInvariant()
         $report.default_smoke['audio_bitrate'] = [int]$audio[0].bit_rate
         $report.default_smoke['full_decode_passed'] = $true
+        Assert-True ((Get-FileHash -LiteralPath $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant() -ceq $manifestHash) 'Independent probe/decode must preserve the final manifest bytes.'
         $report.default_smoke.status = 'pass'
     }
     $report.status = 'pass'

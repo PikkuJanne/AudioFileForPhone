@@ -579,8 +579,15 @@
       "required": true,
       "method": "real fixtures/probe assertions",
       "expected": "Existing/fallback title, Ogg stream metadata, track/disc, quoted/non-ASCII artist/album and explicit overrides have deterministic precedence on both shells.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T15.md",
+        "evidence/T15-tested-payload.json",
+        "evidence/T15-metadata-ps51-final1.json",
+        "evidence/T15-metadata-ps7-final1.json",
+        "evidence/T15-native-ps51-final1.json",
+        "evidence/T15-native-ps7-final1.json"
+      ]
     },
     {
       "id": "A39",
@@ -589,8 +596,13 @@
       "required": true,
       "method": "embedded-picture and corrupt-image fixtures",
       "expected": "Source artwork absent by preserved default; supplied valid cover embedded exactly once; a missing/corrupt/undecodable explicit cover fails preflight, not silent success.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T15.md",
+        "evidence/T15-tested-payload.json",
+        "evidence/T15-metadata-ps51-final1.json",
+        "evidence/T15-metadata-ps7-final1.json"
+      ]
     },
     {
       "id": "A40",
@@ -599,8 +611,13 @@
       "required": true,
       "method": "resource test and chapter fixture/manual documentation",
       "expected": "Validate supplied cover once per run and dispose handles; avoid unexpected resizing; document/test actual chapter behavior without promising phone chapter navigation.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T15.md",
+        "evidence/T15-tested-payload.json",
+        "evidence/T15-metadata-ps51-final1.json",
+        "evidence/T15-metadata-ps7-final1.json"
+      ]
     },
     {
       "id": "A41",

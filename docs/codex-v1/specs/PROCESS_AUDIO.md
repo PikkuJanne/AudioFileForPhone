@@ -96,13 +96,42 @@ Artist/Album batch overrides. Decide precedence explicitly when container and st
 tags conflict. Test track/disc, comment, Unicode and quotation marks. Avoid a
 single generic metadata-map change that loses Ogg title/artist fields.
 
+T15 keeps the selected map explicit: MP3/M4A container (`0`) or Ogg first
+audio-stream comments (`0:s:a:0`). Other streams do not override that source.
+Copy first, then add the sanitized complete output basename as title only when
+the selected title is missing/empty; preserve nonempty whitespace titles.
+Finally apply nonblank batch Artist/Album overrides literally, without trimming
+parameter values. Whitespace-only overrides keep copied tags. Track/disc/comment
+follow that same selected metadata source and the MP3 muxer's supported mappings.
+ID3v2.3 is retained; copying cannot guarantee every source-specific tag survives.
+
 Default source artwork remains dropped. Explicit CoverPath supplies one batch
 cover; validate readable/decodeable JPEG/PNG once before conversion. An explicit
 invalid cover fails clearly instead of being ignored. No resizing is required for
 v1; retain large-cover diagnostics. Optional resizing must preserve aspect ratio,
 be opt-in, use an owned cache once per run and clean up its handles/files.
 
+T15 validates the actual JPEG/PNG format, records size/dimensions during that
+single disposed image inspection, then decodes through the native runner.
+Completed/exit zero also requires explicit process-release proof. The entry
+reuses these diagnostics for prompts and logs; no image is reopened for them.
+Each output receives one attached JPEG from the explicit cover, at its original
+dimensions. Source attached pictures and other video remain excluded by default.
+
 Chapter information and player navigation are separate from ordinary title/track
 tags. Test actual chapter output and document limitations, especially M4A-to-MP3.
 Do not promise source chapter navigation in phone players simply because metadata
 copying is enabled. M4B, .opus, .wav and .flac scanning stay outside current scope.
+
+T15 preserves the existing chapter mapping: no `-map_chapters` override, so
+FFmpeg uses the first input containing chapters. This is documented by
+[FFmpeg's chapter mapping options](https://ffmpeg.org/ffmpeg.html#Advanced-options).
+There is no chapter splitting or player-navigation guarantee. Real fixture probe
+results belong in T15 evidence; phone navigation/resume requires later real
+phone acceptance.
+
+On the T15 installed build, the short M4A fixture retained both quoted/Unicode
+chapter titles in MP3. The M4A boundary at 0.150023 seconds became 0.150000
+seconds in the MP3's millisecond chapter time base; start 0 and end 0.400000
+seconds remained. This is a probe observation for those fixtures, not a promise
+about all source chapter structures or any phone player.

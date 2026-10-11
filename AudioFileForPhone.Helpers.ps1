@@ -756,6 +756,9 @@ function Get-AudioMediaInfo {
             $audio.index -lt 0 -or $audio.index -gt [int]::MaxValue) {
             throw 'The selected stream must be audio with a nonnegative integer index.'
         }
+        # Preserve the format-specific metadata map: Ogg comments belong to
+        # the selected a:0 stream; MP3/M4A use container tags without merging
+        # conflicting stream tags into them.
         $tags = $null
         if ($result.MetadataSource -eq '0:s:a:0') {
             $tags = $audio.tags
@@ -802,6 +805,33 @@ function Get-AudioMediaInfo {
         $result.Error = $_.Exception.Message
     }
     return [pscustomobject]$result
+}
+
+function Get-AudioMetadataPlan {
+    param([Parameter(Mandatory = $true)][object]$Media,
+          [string]$FallbackTitle, [AllowNull()][string]$Artist, [AllowNull()][string]$Album)
+    # Get-AudioMediaInfo preserves the existing title truthiness: only absent
+    # or empty titles fall back; nonempty whitespace titles remain unchanged.
+    $hasSourceTitle = $Media.TitleStatus -eq 'Present'
+    $title = if ($hasSourceTitle) { [string]$Media.Title } else { $FallbackTitle }
+    $metadataArgs = @('-map_metadata', [string]$Media.MetadataSource, '-id3v2_version', '3')
+    if (-not $hasSourceTitle) { $metadataArgs += @('-metadata', "title=$title") }
+    $artistOverride = $null; $albumOverride = $null
+    # Explicit nonblank batch overrides come last, after the source map and
+    # fallback title, so the original tags cannot replace them.
+    if (-not [string]::IsNullOrWhiteSpace($Artist)) {
+        $artistOverride = $Artist
+        $metadataArgs += @('-metadata', "artist=$Artist")
+    }
+    if (-not [string]::IsNullOrWhiteSpace($Album)) {
+        $albumOverride = $Album
+        $metadataArgs += @('-metadata', "album=$Album")
+    }
+    return [pscustomobject]@{
+        Arguments = [string[]]$metadataArgs; MetadataSource = [string]$Media.MetadataSource
+        HasSourceTitle = $hasSourceTitle; Title = $title
+        ArtistOverride = $artistOverride; AlbumOverride = $albumOverride
+    }
 }
 
 function ConvertTo-AudioPositiveSeconds {
@@ -1130,7 +1160,7 @@ function Assert-ToolPrerequisites {
 }
 
 function Get-ValidatedCoverPath {
-    param([string]$Path, [string]$FfmpegPath)
+    param([string]$Path, [string]$FfmpegPath, [switch]$PassThru)
     if ([string]::IsNullOrWhiteSpace($Path)) { throw 'CoverPath must be a readable JPEG or PNG file.' }
     try {
         $resolved = Resolve-Path -LiteralPath $Path -ErrorAction Stop
@@ -1148,6 +1178,8 @@ function Get-ValidatedCoverPath {
                 $image.RawFormat.Guid -ne [Drawing.Imaging.ImageFormat]::Png.Guid) {
                 throw 'CoverPath content must be JPEG or PNG.'
             }
+            $diagnostics = New-AudioCoverDiagnostics -Path $item.FullName -SizeBytes $item.Length `
+                -Width $image.Width -Height $image.Height
         }
         finally { $image.Dispose() }
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
@@ -1156,6 +1188,12 @@ function Get-ValidatedCoverPath {
         )
         if ($native.Status -ne 'Completed') { throw "FFmpeg could not decode the cover ($($native.Status)): $($native.Error)" }
         if ($native.ExitCode -ne 0) { throw "FFmpeg could not decode the cover (exit $($native.ExitCode)): $($native.Stderr)" }
+        if ($native.ProcessReleased -isnot [bool] -or -not $native.ProcessReleased) {
+            throw 'FFmpeg cover process release was not established; cover validation cannot be accepted.'
+        }
+        if ($PassThru) {
+            return [pscustomobject]@{ Path = $item.FullName; Diagnostics = $diagnostics; NativeResult = $native }
+        }
         return $item.FullName
     }
     catch { throw "Invalid CoverPath '$Path': $($_.Exception.Message)" }
@@ -1911,42 +1949,45 @@ function Get-SanitizedAudioBaseName {
     return (Get-AudioNamePlan -SourceRelativePath ($OriginalBase + '.mp3') -LastWriteTime $LastWriteTime -MaxBaseLength $MaxBaseLength).BaseName
 }
 
+function New-AudioCoverDiagnostics {
+    param([string]$Path, [AllowNull()][object]$SizeBytes,
+          [AllowNull()][object]$Width, [AllowNull()][object]$Height)
+    $diag = [ordered]@{
+        Path = $Path; SizeBytes = $null; SizeMB = $null
+        Width = $Width; Height = $Height; Warnings = @()
+    }
+    if ($null -ne $SizeBytes) {
+        $diag.SizeBytes = [int64]$SizeBytes
+        $diag.SizeMB = [Math]::Round(($SizeBytes / 1MB), 2)
+        if ($diag.SizeMB -gt 2.0) {
+            $diag.Warnings += ("Cover is {0} MB. Consider a smaller JPG to avoid bloating every output MP3." -f $diag.SizeMB)
+        }
+    }
+    if (($null -ne $Width -and $Width -gt 1200) -or ($null -ne $Height -and $Height -gt 1200)) {
+        $diag.Warnings += ("Cover dimensions are {0}x{1}. Consider ~800x800 to keep file sizes sane." -f $Width, $Height)
+    }
+    return [pscustomobject]$diag
+}
+
 function Get-CoverDiagnostics {
     param(
         [Parameter(Mandatory = $true)]
         [string]$Path
     )
 
-    $diag = [ordered]@{
-        Path      = $Path
-        SizeBytes = $null
-        SizeMB    = $null
-        Width     = $null
-        Height    = $null
-        Warnings  = @()
-    }
+    $sizeBytes = $null; $width = $null; $height = $null; $warning = $null
 
     try {
         $fi = Get-Item -LiteralPath $Path -ErrorAction Stop
-        $diag.SizeBytes = [int64]$fi.Length
-        $diag.SizeMB    = [Math]::Round(($fi.Length / 1MB), 2)
-
-        # Size heuristic: warn if > 2MB (can bloat every MP3)
-        if ($diag.SizeMB -gt 2.0) {
-            $diag.Warnings += ("Cover is {0} MB. Consider a smaller JPG to avoid bloating every output MP3." -f $diag.SizeMB)
-        }
+        $sizeBytes = [int64]$fi.Length
 
         # Dimension heuristic: best-effort only (System.Drawing)
         try {
             Add-Type -AssemblyName System.Drawing -ErrorAction Stop | Out-Null
             $img = [System.Drawing.Image]::FromFile($Path)
             try {
-                $diag.Width  = $img.Width
-                $diag.Height = $img.Height
-
-                if (($diag.Width -gt 1200) -or ($diag.Height -gt 1200)) {
-                    $diag.Warnings += ("Cover dimensions are {0}x{1}. Consider ~800x800 to keep file sizes sane." -f $diag.Width, $diag.Height)
-                }
+                $width = $img.Width
+                $height = $img.Height
             }
             finally {
                 $img.Dispose()
@@ -1957,10 +1998,11 @@ function Get-CoverDiagnostics {
         }
     }
     catch {
-        $diag.Warnings += ("Could not read cover file info: {0}" -f $_)
+        $warning = "Could not read cover file info: {0}" -f $_
     }
-
-    return [pscustomobject]$diag
+    $diag = New-AudioCoverDiagnostics -Path $Path -SizeBytes $sizeBytes -Width $width -Height $height
+    if ($warning) { $diag.Warnings += $warning }
+    return $diag
 }
 
 function Get-OutputParent {

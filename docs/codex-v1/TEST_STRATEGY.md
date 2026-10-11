@@ -455,3 +455,46 @@ host boundaries. First recovery refused before deletion on ISO text formatting;
 second compares exact UTC ticks and all other fields without tolerance, then removes
 only the independently reviewed known scope. These records are provenance only.
 No repeat physical/phone/CI/release claim; next full applicable suite at M3 boundary.
+
+## T15 metadata and full M3 matrix
+
+Exact commands and selected results are in evidence/T15.md. Test-Metadata.ps1
+uses fresh T15-metadata-ps51/ps7-attempt/finalN.json reports. Final1 directly tests
+code 5044cd80 on both shells: 15 groups, 18 independently probed/full-decoded
+publications, 81 direct natives, 14 retained hosts and 118 entry release proofs
+per shell. Quoted Unicode title/artist/album/comment and track/disc survive actual
+MP3/M4A/Ogg conversion; blank overrides retain source tags and existing/fallback
+titles use the established precedence. Mixed video/art/two-audio input independently
+decodes as the first 440 Hz audio rather than the second 880 Hz stream.
+
+Default artwork is absent. JPEG/PNG explicit replacements have exactly one JPEG
+attached picture with independently decoded blue/green pixels and original
+dimensions, including 1232x1304. One image inspection and one dedicated preflight
+decode serve each batch; encoders still read the cover for embedding. Exclusive
+image reopening and explicit native release establish disposal. Cached diagnostics
+retain advisory warnings without resizing. Missing/corrupt/GIF/BMP renamed images
+fail before prompts/reservation. Controlled post-GDI corruption exercises real
+FFmpeg decode rejection, restoring only owned synthetic bytes after positive
+release. A no-child Completed/exit0/unreleased stub rejects false release proof.
+
+Real M4A chapters keep two quoted/Unicode titles in MP3, with the 0.150023-second
+source boundary rounded to 0.150000 seconds in MP3's millisecond time base.
+This is short-fixture/probe evidence, not phone chapter navigation or resume.
+Padded nonblank override exactness is pure-plan-only; actual empty MP3 title
+assignment omits its tag. Physical M4A stream handler_name/Ogg stream-only comments
+are distinct from native probe-stub conflicting-title dictionaries.
+
+Full M3 passes 32 selected finals: 600 required groups/checks plus six baseline
+observations. All retained families run both shells, including 52 launcher cases,
+61 transactional decoded outputs, 3,605-second progress/full decode at 3605.047982,
+and two strictly returned-root configured-Music smokes with the required final
+manifest/exact synthetic inventory. Ordinary Music is never enumerated.
+Quiet sequential native handles stay 674->674/578->578, allowance 16 unchanged.
+
+All available source/synthetic/release/disposal/owned cleanup gates pass. The
+manifest independently proves 20 files/134 actual report-source bindings to code
+5044cd80, two literal/eighteen strict UTF-8 CRLF-to-LF only. Older baseline lacks
+command/edition/child-ledger fields; resolver/music has actual entry/helper
+before-after fields but only one recorded harness digest. Missing fields are not
+invented. Preserve two preliminary metadata passes; no T15 failed attempt/recovery.
+Prior physical T11 evidence stays historical. No new manual/phone/CI/release claim.

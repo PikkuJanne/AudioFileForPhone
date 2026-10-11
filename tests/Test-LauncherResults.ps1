@@ -14,8 +14,8 @@ $productionBat = Join-Path $projectRoot 'AudioFileForPhone.bat'
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11)-launcher-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T10/T11-launcher-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11|T15)-launcher-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T10/T11/T15-launcher-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')

@@ -259,6 +259,7 @@ $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
 $manifest = $null; $manifestPath = $null; $activeRecordIndex = -1; $fileWatch = $null
 $media = $null; $transaction = $null; $diagnosticError = ''
+$coverValidation = $null
 $script:AudioCancellationContext = $null
 $script:AudioProgressDisplayEnabled = $true
 
@@ -324,7 +325,8 @@ try {
         $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
         $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
-            $CoverPath = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg
+            $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
+            $CoverPath = $coverValidation.Path
         }
         Test-OutputWritable -Path $outputParentPath
     }
@@ -391,6 +393,7 @@ function Select-CoverFileDialog {
         [string]$Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*"
     )
 
+    $ofd = $null
     try {
         Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
         $ofd = New-Object System.Windows.Forms.OpenFileDialog
@@ -409,6 +412,7 @@ function Select-CoverFileDialog {
         Write-Warning "[WARN] Error: $_"
         return $null
     }
+    finally { if ($null -ne $ofd) { $ofd.Dispose() } }
 }
 
 # --- Optional: interactive metadata step, only if requested ---
@@ -423,13 +427,16 @@ if ($Interactive) {
         if ($doCover) {
             $picked = Select-CoverFileDialog
             if ($picked) {
-                try { $CoverPath = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg }
+                try {
+                    $coverValidation = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg -PassThru
+                    $CoverPath = $coverValidation.Path
+                }
                 catch {
                     throw "Selected cover failed validation: $($_.Exception.Message)"
                 }
                 Write-Host "[INFO] Cover selected: $CoverPath"
 
-                $coverDiag = Get-CoverDiagnostics -Path $CoverPath
+                $coverDiag = $coverValidation.Diagnostics
                 if ($coverDiag.SizeMB -ne $null) {
                     Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
                 }
@@ -562,7 +569,8 @@ foreach ($skip in $snapshot.Skipped) { Write-Log ("{0}: {1}" -f $skip.Reason, $s
 
 # --- Log diagnostics for the cover already validated before run creation ---
 if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
-    $coverDiag = Get-CoverDiagnostics -Path $CoverPath
+    $coverDiag = $coverValidation.Diagnostics
+    foreach ($line in @(Get-AudioNativeDiagnosticLines -Stage 'CoverDecode' -NativeResult $coverValidation.NativeResult)) { Write-Log $line 'DEBUG' }
 
     if ($coverDiag.SizeMB -ne $null) {
         Write-Log ("Cover size: {0} MB" -f $coverDiag.SizeMB) "INFO"
@@ -648,8 +656,8 @@ foreach ($plan in $plans) {
         throw "Source duration $($media.DurationStatus); a finite positive source duration is required before conversion."
     }
     $fileStatus = 'Exception'
-    $hasTitle = $media.TitleStatus -eq 'Present'
-    $metadataSource = $media.MetadataSource
+    $metadataPlan = Get-AudioMetadataPlan -Media $media -FallbackTitle $newBase -Artist $Artist -Album $Album
+    $hasTitle = $metadataPlan.HasSourceTitle
     if ($hasTitle) {
         Write-Host "       [INFO] Existing title tag: $($media.Title)"
     }
@@ -657,21 +665,18 @@ foreach ($plan in $plans) {
         Write-Host "       [INFO] No title tag found; will set from sanitized filename."
     }
 
-    # Build metadata args
-    $metadataArgs = @("-map_metadata",$metadataSource,"-id3v2_version","3")
+    # The shared plan preserves the source map and puts explicit overrides last.
+    $metadataArgs = $metadataPlan.Arguments
 
     if (-not $hasTitle) {
-        $title = $newBase
-        $metadataArgs += @("-metadata","title=$title")
+        $title = $metadataPlan.Title
         Write-Host "       [INFO] Setting title tag: $title"
     }
 
     if (-not [string]::IsNullOrWhiteSpace($Artist)) {
-        $metadataArgs += @("-metadata","artist=$Artist")
         Write-Host "       [INFO] Setting artist tag: $Artist"
     }
     if (-not [string]::IsNullOrWhiteSpace($Album)) {
-        $metadataArgs += @("-metadata","album=$Album")
         Write-Host "       [INFO] Setting album tag: $Album"
     }
 
