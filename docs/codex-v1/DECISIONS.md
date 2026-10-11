@@ -21,7 +21,7 @@ record any owner-approved changes with rationale and impacted tests.
 | D14 | Skip directory reparse points/junctions with a recorded warning; do not follow unknown targets. | Safe initial contract |
 | D15 | Scan access failures abort before conversions, rather than silently miss subtrees. | Safe initial contract |
 | D16 | Empty/no-supported inputs return a documented nonzero outcome with no finished output. | Preserve intent |
-| D17 | Fixed-rate whitelist and name limit 24–180 finalized in T02; requested ranges enforced in T04. Produced-rate validation and duration tolerance remain T09. | Ranges implemented; later validation pending |
+| D17 | Fixed-rate whitelist and name limit 24–180 finalized in T02; requested ranges enforced in T04. Produced-rate/duration/full-decode validation implemented in T09. | Ranges and T09 validation implemented |
 | D18 | Main-merge authority and exact release approval are not recorded yet. | Owner gate |
 | D19 | Any post-freeze commit may change only docs/codex-v1 progress/evidence, never shipped or tested payload. | Freeze policy |
 
@@ -323,3 +323,52 @@ with a bare “approved” assertion without a traceable reference.
   Final docs-only checkpoint requires its own fresh ref check in response/PR.
   Main integration remains owner-gated; no CI/manual/phone/tag/release claimed.
   Exactly next task is T09 staged validation and no-overwrite output promotion.
+
+## T09 — staged validation and publication (11 October 2026)
+
+- Owner requested "T09 next please". PR #8 was owner-merged at 05:17:22 UTC into
+  main 347b8656068b5e26b45410b830025de51000659f. Fetch, URLs/overrides, clean state
+  and fresh advertised refs were reconciled before branching
+  codex/v1-t09-transactional-output. Ordinary commits, feature push and draft PR
+  remain authorized; no main merge/release authority was inferred.
+- Encode only CreateNew-owned fixed sibling partials with explicit MP3 muxer;
+  retain no-delete file sharing through encoder/probe/full decode. Recheck
+  volume/file-index identity before no-overwrite File.Move or current partial
+  cleanup. Concurrent finals and changed working identity preserve their bytes.
+  Unproved child exit retains visible incomplete residue; ordinary conversion
+  remains unlimited, abnormal owned-child teardown waits at most five seconds.
+- Require finite positive source audio duration (container fallback only for absent/
+  N/A selected stream). Fail missing/invalid duration before staging. Validate
+  nonempty MP3, one selected-rate audio stream and exact optional JPEG cover.
+  Container bitrate is insufficient. Default CBR/metadata/input/layout/naming and
+  sample-rate processing remain; no forced resampling or loudness change.
+- Fixed 0.35-second source/header/decoded tolerance is deliberately absolute.
+  Mandatory error-fatal output decode measures emitted PCM sample time using
+  validation-only asetpts. This catches stale-header physical truncation and
+  corruption; it adds a read/decode pass and long-file performance is unmeasured.
+  61 tiny/normal format/sample/rate fixtures per shell max at 0.066125-second delta.
+  Three requested 8 kbps/48 kHz combinations produce 32 kbps and are separately
+  rejected rather than changing processing or waiving the requested audio rate.
+- Result is counted once after transaction. Any subsequent log/diagnostic error
+  explicitly reports actual published mapping or file failure and stops with
+  exit 1. Actual entry fault child verifies preserved decoded output/mapping.
+  General script/BAT batch exit/result policy remains T10.
+- A24–A26 pass on both shells: 27 focused groups each, 61 decoded successes plus
+  three rate rejects; 18 final reports also retain real FFmpeg/seven companions
+  and affected preflight/discovery/naming/reservation/native/resolver/Music checks.
+  Source/fixture/sentinel SHA256, byte-identical runtime copies, owned child
+  disposal, applicable ACL restoration and exact owned cleanup pass. Sequential
+  native handles 668 to 668 and 576 to 576 keep allowance 16.
+- 27 raw attempts remain (21 pass/six fail). Initial baseline source-change
+  failures, incompatible positive-rate fixture and diagnostic-wrapping/driver
+  forwarding failures are documented. Attempt4's 60 OS-generated CLIXML identity
+  values alone are redacted with metadata. No test outcome or fingerprint changed.
+  T07 possible unknown synthetic TEMP residue remains unverified; no broad cleanup.
+- Independent runtime/harness review has no blocker. Reviewed code checkpoint
+  fcce28736081d799b29f4594b56bebafbad1a9f7 matches advertised feature ref.
+  T09-tested-payload.json independently matches 13 runtime/test fingerprints to
+  committed blobs with exact CRLF/LF-only normalization. Draft PR #9:
+  https://github.com/PikkuJanne/AudioFileForPhone/pull/9.
+  Evidence/handoff checkpoint follows; its final HEAD/live comparison is external.
+  T09 main integration remains owner-gated; no CI/phone/manual/long-file/
+  cancellation/source-replacement/release acceptance. Exactly next is T10.

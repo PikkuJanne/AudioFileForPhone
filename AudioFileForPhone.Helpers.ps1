@@ -124,6 +124,7 @@ function Invoke-AudioNativeProcess {
         Status = 'StartFailed'; ExecutablePath = $ExecutablePath; Arguments = [string[]]$Arguments.Clone()
         ExitCode = $null; Stdout = ''; Stderr = ''; StdoutTruncated = $false; StderrTruncated = $false
         StdoutTotalChars = [long]0; StderrTotalChars = [long]0; DurationMilliseconds = [long]0; Error = ''
+        ProcessReleased = $true
     }
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
@@ -170,6 +171,8 @@ namespace AudioFileForPhone {
         private Task<DrainResult> stdoutTask;
         private Task<DrainResult> stderrTask;
         private bool completed;
+        private bool started;
+        public bool Released { get; private set; }
         public int ExitCode { get; private set; }
         public string Stdout { get; private set; }
         public string Stderr { get; private set; }
@@ -233,6 +236,7 @@ namespace AudioFileForPhone {
                 process = new Process();
                 process.StartInfo = start;
                 if (!process.Start()) throw new IOException("The native process did not start.");
+                started = true;
                 StreamReader stdoutReader = process.StandardOutput;
                 StreamReader stderrReader = process.StandardError;
                 // Reuse pool workers rather than allocate two CLR threads and
@@ -243,8 +247,9 @@ namespace AudioFileForPhone {
                 stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 process.StandardInput.Close();
-            } catch {
+            } catch (Exception error) {
                 Dispose();
+                error.Data["AudioFileForPhone.ProcessReleased"] = Released;
                 throw;
             }
         }
@@ -261,11 +266,20 @@ namespace AudioFileForPhone {
             completed = true;
         }
         public void Dispose() {
-            if (process == null) return;
+            if (process == null) { Released = true; return; }
             // Only this helper's process is owned. Abnormal unwind never searches
             // process names, terminates unrelated children or changes global state.
-            if (!completed) {
-                try { if (!process.HasExited) process.Kill(); } catch { }
+            bool exited = !started;
+            if (started) {
+                if (!completed) {
+                    try { if (!process.HasExited) process.Kill(); } catch { }
+                }
+                // Kill requests termination; wait for the owned child before
+                // returning authority to remove its working file. If termination
+                // fails, retain an explicit non-released result so the caller
+                // preserves the incomplete working path. This bounded teardown
+                // wait is separate from the unlimited normal conversion wait.
+                try { exited = process.WaitForExit(5000); } catch { }
             }
             // Process.Dispose closes its process handle; explicitly own each pipe
             // reader/writer on successful completion and on abnormal unwind.
@@ -283,6 +297,7 @@ namespace AudioFileForPhone {
             if (stderrTask != null && stderrTask.IsCompleted) stderrTask.Dispose();
             process.Dispose();
             process = null;
+            Released = exited;
         }
     }
 }
@@ -302,9 +317,18 @@ namespace AudioFileForPhone {
         $result.StdoutTotalChars = $capture.StdoutTotalChars
         $result.StderrTotalChars = $capture.StderrTotalChars
     }
-    catch { $result.Error = $_.Exception.Message }
+    catch {
+        $result.Error = $_.Exception.Message
+        $nativeError = $_.Exception.GetBaseException()
+        if ($nativeError.Data.Contains('AudioFileForPhone.ProcessReleased')) {
+            $result.ProcessReleased = [bool]$nativeError.Data['AudioFileForPhone.ProcessReleased']
+        }
+    }
     finally {
-        if ($null -ne $capture) { $capture.Dispose() }
+        if ($null -ne $capture) {
+            $capture.Dispose()
+            $result.ProcessReleased = $capture.Released
+        }
         $timer.Stop()
         $result.DurationMilliseconds = $timer.ElapsedMilliseconds
     }
@@ -316,6 +340,7 @@ function Get-AudioMediaInfo {
     $result = [ordered]@{
         Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
         StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
+        DurationSeconds = $null; DurationStatus = 'Missing'; DurationOrigin = $null
     }
     try {
         $provider = $null
@@ -330,7 +355,7 @@ function Get-AudioMediaInfo {
         $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
-            'stream=index,codec_type:stream_tags:format_tags', '-of', 'json', '-i', $localPath
+            'stream=index,codec_type,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
         )
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
@@ -392,6 +417,22 @@ function Get-AudioMediaInfo {
             }
         }
         $result.StreamIndex = [int]$audio.index
+        # Keep metadata inspection independent from duration policy. The caller
+        # rejects a missing/invalid duration before it starts a transaction.
+        $durationValue = $audio.duration
+        $result.DurationOrigin = 'Stream'
+        if ($null -eq $durationValue -or $durationValue -ceq 'N/A') {
+            $durationValue = if ($null -ne $meta.PSObject.Properties['format']) { $meta.format.duration } else { $null }
+            $result.DurationOrigin = 'Format'
+        }
+        if ($null -eq $durationValue -or $durationValue -ceq 'N/A') { $result.DurationOrigin = $null }
+        else {
+            try {
+                $result.DurationSeconds = ConvertTo-AudioPositiveSeconds -Value $durationValue
+                $result.DurationStatus = 'Valid'
+            }
+            catch { $result.DurationStatus = 'Invalid' }
+        }
         # Keep baseline truthiness: an empty title falls back to the filename;
         # whitespace and all other nonempty title strings remain intact.
         if ($null -ne $tags -and -not [string]::IsNullOrEmpty($tags.title)) {
@@ -402,6 +443,260 @@ function Get-AudioMediaInfo {
         $result.Status = 'Success'
     }
     catch { $result.Error = $_.Exception.Message }
+    return [pscustomobject]$result
+}
+
+function ConvertTo-AudioPositiveSeconds {
+    param([AllowNull()][object]$Value)
+    if ($null -eq $Value -or $Value -is [bool] -or
+        ($Value -isnot [string] -and $Value -isnot [ValueType])) { throw 'Duration is missing or invalid.' }
+    $seconds = [double]0
+    $text = [Convert]::ToString($Value, [Globalization.CultureInfo]::InvariantCulture)
+    if (-not [double]::TryParse($text, [Globalization.NumberStyles]::Float,
+            [Globalization.CultureInfo]::InvariantCulture, [ref]$seconds) -or
+        [double]::IsNaN($seconds) -or [double]::IsInfinity($seconds) -or $seconds -le 0) {
+        throw 'Duration must be a finite positive number of seconds.'
+    }
+    return $seconds
+}
+
+function Get-AudioWorkingFileIdentity {
+    param([IO.FileStream]$Stream, [string]$Path)
+    if (-not ('AudioFileForPhone.WorkingFileIdentity' -as [type])) {
+        Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Globalization;
+using System.IO;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
+namespace AudioFileForPhone {
+    public static class WorkingFileIdentity {
+        [StructLayout(LayoutKind.Sequential)]
+        private struct Information {
+            public uint Attributes;
+            public System.Runtime.InteropServices.ComTypes.FILETIME Creation;
+            public System.Runtime.InteropServices.ComTypes.FILETIME Access;
+            public System.Runtime.InteropServices.ComTypes.FILETIME Write;
+            public uint Volume, SizeHigh, SizeLow, Links, IndexHigh, IndexLow;
+        }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetFileInformationByHandle(SafeFileHandle file, out Information info);
+        public static string Get(FileStream stream) {
+            Information info;
+            if (!GetFileInformationByHandle(stream.SafeFileHandle, out info))
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            return info.Volume.ToString("X8", CultureInfo.InvariantCulture) + ":" +
+                info.IndexHigh.ToString("X8", CultureInfo.InvariantCulture) +
+                info.IndexLow.ToString("X8", CultureInfo.InvariantCulture);
+        }
+    }
+}
+'@ -ErrorAction Stop
+    }
+    if ($null -ne $Stream) { return [AudioFileForPhone.WorkingFileIdentity]::Get($Stream) }
+    $reader = New-Object IO.FileStream($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::ReadWrite)
+    try { return [AudioFileForPhone.WorkingFileIdentity]::Get($reader) }
+    finally { $reader.Dispose() }
+}
+
+function Get-AudioOutputValidation {
+    param(
+        [Parameter(Mandatory = $true)][string]$Path,
+        [Parameter(Mandatory = $true)][AllowNull()][object]$SourceDurationSeconds,
+        [int]$BitrateKbps = 64, [bool]$HasCover = $false,
+        [Parameter(Mandatory = $true)][string]$FfprobePath,
+        [Parameter(Mandatory = $true)][string]$FfmpegPath
+    )
+    $result = [ordered]@{
+        Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
+        DurationSeconds = $null; DecodedDurationSeconds = $null; DurationToleranceSeconds = 0.35
+        ProcessReleased = $true
+    }
+    try {
+        $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        Assert-AudioNoReparseAncestor -Path $Path
+        $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
+        if ($item.PSIsContainer -or $item.Length -le 0) { throw 'Working output is not a nonempty regular file.' }
+        $probe = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
+            '-v', 'error', '-show_entries',
+            'stream=index,codec_type,codec_name,bit_rate,duration:stream_disposition=attached_pic:format=format_name',
+            '-of', 'json', '-i', $Path
+        )
+        $result.ProbeResult = $probe
+        if ($null -ne $probe.PSObject.Properties['ProcessReleased'] -and -not $probe.ProcessReleased) {
+            $result.ProcessReleased = $false
+        }
+        if ($probe.Status -ne 'Completed' -or $probe.ExitCode -ne 0 -or -not $result.ProcessReleased) {
+            $result.Status = 'ProbeFailed'
+            throw "Output probe failed ($($probe.Status), exit $($probe.ExitCode)): $($probe.Error); $($probe.Stderr)"
+        }
+        $result.Status = 'InvalidProbeData'
+        if ($probe.StdoutTruncated -or [string]::IsNullOrWhiteSpace($probe.Stdout) -or
+            -not $probe.Stdout.TrimStart().StartsWith('{')) { throw 'Output probe JSON is missing, truncated or has an invalid root.' }
+        $meta = ConvertFrom-Json -InputObject $probe.Stdout -ErrorAction Stop
+        if ($meta -isnot [pscustomobject] -or $meta.streams -isnot [array] -or
+            $meta.format -isnot [pscustomobject] -or $meta.format.format_name -cne 'mp3') {
+            throw 'Working output must be an MP3 container with an explicit streams array.'
+        }
+        $audio = $null; $coverCount = 0
+        $indexes = New-Object 'Collections.Generic.HashSet[int]'
+        foreach ($stream in $meta.streams) {
+            if ($stream -isnot [pscustomobject] -or
+                ($stream.index -isnot [int] -and $stream.index -isnot [long]) -or
+                $stream.index -lt 0 -or $stream.index -gt [int]::MaxValue -or
+                -not $indexes.Add([int]$stream.index)) { throw 'Output has an invalid or duplicated stream index.' }
+            if ($stream.codec_type -ceq 'audio') {
+                if ($null -ne $audio -or $stream.codec_name -cne 'mp3') { throw 'Output must contain exactly one MP3 audio stream.' }
+                $audio = $stream
+            }
+            elseif ($stream.codec_type -ceq 'video' -and $HasCover -and
+                $stream.codec_name -ceq 'mjpeg' -and $stream.disposition -is [pscustomobject] -and
+                ($stream.disposition.attached_pic -is [int] -or $stream.disposition.attached_pic -is [long]) -and
+                $stream.disposition.attached_pic -eq 1) { $coverCount++ }
+            else { throw 'Output contains an unexpected stream; only the selected MP3 audio and explicit JPEG cover are allowed.' }
+        }
+        if ($null -eq $audio -or $coverCount -ne [int]$HasCover) { throw 'Output does not have the expected audio/cover stream shape.' }
+        $audioRate = [long]0
+        if (-not [long]::TryParse([string]$audio.bit_rate, [Globalization.NumberStyles]::None,
+                [Globalization.CultureInfo]::InvariantCulture, [ref]$audioRate) -or
+            $audioRate -ne ([long]$BitrateKbps * 1000)) { throw 'Output audio-stream bitrate does not match the selected bitrate.' }
+        $result.DurationSeconds = ConvertTo-AudioPositiveSeconds -Value $audio.duration
+        # A fixed bound avoids permitting minutes of loss in a multi-hour source.
+        # 350ms covers low-sample-rate MP3 encoder padding as well as AAC/Opus
+        # duration rounding; short real fixtures establish the actual margin.
+        if ([math]::Abs($result.DurationSeconds - $sourceSeconds) -gt $result.DurationToleranceSeconds) {
+            throw 'Output audio duration is outside the 0.35-second source tolerance.'
+        }
+        # Headers (including Xing) can retain a plausible duration after payload
+        # truncation. Decode the selected audio without re-encoding or writing a
+        # media file, then compare its actual media time. Progress is emitted only
+        # at start/end for ordinary files; all native capture remains bounded.
+        $result.Status = 'DecodeFailed'
+        $decode = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
+            '-i', $Path, '-map', ('0:{0}' -f $audio.index), '-vn', '-sn', '-dn',
+            '-af', 'asetpts=N/SR/TB',
+            '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
+        )
+        $result.DecodeResult = $decode
+        if ($null -ne $decode.PSObject.Properties['ProcessReleased'] -and -not $decode.ProcessReleased) {
+            $result.ProcessReleased = $false
+        }
+        if ($decode.Status -ne 'Completed' -or $decode.ExitCode -ne 0 -or $decode.StdoutTruncated -or
+            $decode.StderrTruncated -or -not [string]::IsNullOrWhiteSpace($decode.Stderr) -or -not $result.ProcessReleased) {
+            throw "Output audio decode failed ($($decode.Status), exit $($decode.ExitCode)): $($decode.Error); $($decode.Stderr)"
+        }
+        $mediaTime = $null; $endTime = $null
+        foreach ($line in ($decode.Stdout -split '\r?\n')) {
+            if ($line -cmatch '^out_time_us=(\d+)$') { $mediaTime = [long]::Parse($Matches[1], [Globalization.CultureInfo]::InvariantCulture) }
+            elseif ($line -ceq 'progress=end') { $endTime = $mediaTime }
+        }
+        if ($null -eq $endTime) { throw 'Output decode did not report a completed media duration.' }
+        $result.DecodedDurationSeconds = ConvertTo-AudioPositiveSeconds -Value ([double]$endTime / 1000000)
+        if ([math]::Abs($result.DecodedDurationSeconds - $sourceSeconds) -gt $result.DurationToleranceSeconds -or
+            [math]::Abs($result.DecodedDurationSeconds - $result.DurationSeconds) -gt $result.DurationToleranceSeconds) {
+            throw 'Decoded output duration is outside the 0.35-second source/header tolerance.'
+        }
+        $result.Status = 'Success'
+    }
+    catch { $result.Error = $_.Exception.Message }
+    return [pscustomobject]$result
+}
+
+function Publish-AudioWorkingOutput {
+    param([string]$WorkingPath, [string]$OutputPath)
+    # The two-argument API refuses an occupied destination on both supported
+    # runtimes. Do not replace it with overwrite-enabled Move-Item/FFmpeg output.
+    [IO.File]::Move($WorkingPath, $OutputPath)
+}
+
+function Invoke-AudioOutputTransaction {
+    param(
+        [Parameter(Mandatory = $true)][string]$OutputPath,
+        [Parameter(Mandatory = $true)][string]$OutputRoot,
+        [Parameter(Mandatory = $true)][string]$SourcePath,
+        [Parameter(Mandatory = $true)][AllowNull()][object]$SourceDurationSeconds,
+        [int]$BitrateKbps = 64, [bool]$HasCover = $false,
+        [Parameter(Mandatory = $true)][string]$FfmpegPath,
+        [Parameter(Mandatory = $true)][string]$FfprobePath,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments
+    )
+    $result = [ordered]@{
+        Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
+        EncoderResult = $null; ValidationResult = $null; CleanupError = ''
+    }
+    $guard = $null; $ownedIdentity = $null; $canCleanup = $true
+    try {
+        $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        $result.Status = 'StageFailed'
+        $OutputPath = Get-AudioPath -Path $OutputPath
+        $OutputRoot = Get-AudioPath -Path $OutputRoot
+        $SourcePath = Get-AudioPath -Path $SourcePath
+        $result.OutputPath = $OutputPath
+        if (-not (Test-AudioPathWithin -Path $OutputPath -Parent $OutputRoot) -or
+            $OutputPath.Equals($OutputRoot, [StringComparison]::OrdinalIgnoreCase) -or
+            (Test-AudioPathWithin -Path $SourcePath -Parent $OutputRoot)) {
+            throw 'The planned final output must be inside the output run and the source must be outside it.'
+        }
+        if ([IO.Path]::GetExtension($OutputPath) -ine '.mp3') { throw 'The planned final output must have the .mp3 extension.' }
+        Assert-AudioPathBudget -Path $OutputPath -Kind File
+        Assert-AudioNoReparseAncestor -Path $SourcePath
+        Assert-AudioNoReparseAncestor -Path $OutputPath
+        if (-not [IO.Directory]::Exists($OutputRoot)) { throw 'The reserved output run root does not exist.' }
+        if (Test-Path -LiteralPath $OutputPath -ErrorAction Stop) { throw 'The planned final output already exists; refusing to overwrite it.' }
+        if ($EncodeArguments -contains '-y' -or $EncodeArguments -contains '-n') { throw 'Encoder overwrite policy belongs to the working-file transaction.' }
+        $outDir = [IO.Path]::GetDirectoryName($OutputPath)
+        Assert-AudioPathBudget -Path $outDir -Kind Directory
+        [IO.Directory]::CreateDirectory($outDir) | Out-Null
+        Assert-AudioNoReparseAncestor -Path $outDir
+        $working = [IO.Path]::Combine($outDir, '.AudioFileForPhone-' + [guid]::NewGuid().ToString('N') + '.partial')
+        Assert-AudioPathBudget -Path $working -Kind File
+        $guard = New-Object IO.FileStream($working, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::ReadWrite)
+        $result.WorkingPath = $working
+        # Keep the CreateNew handle without Delete sharing until both encoder
+        # and validation processes are disposed; another writer cannot replace
+        # this invocation's exact working pathname in that interval.
+        $ownedIdentity = Get-AudioWorkingFileIdentity -Stream $guard
+        $result.Status = 'EncodeFailed'
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($EncodeArguments + @('-y', '-f', 'mp3', $working))
+        $result.EncoderResult = $native
+        if ($null -ne $native.PSObject.Properties['ProcessReleased'] -and -not $native.ProcessReleased) { $canCleanup = $false }
+        if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $canCleanup) {
+            throw "Encoder failed ($($native.Status), exit $($native.ExitCode)): $($native.Error); $($native.Stderr)"
+        }
+        $result.Status = 'ValidationFailed'
+        $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
+            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath
+        $result.ValidationResult = $validation
+        if (-not $validation.ProcessReleased) { $canCleanup = $false }
+        if ($validation.Status -ne 'Success') { throw "Output validation failed ($($validation.Status)): $($validation.Error)" }
+        $result.Status = 'PromotionFailed'
+        $guard.Dispose(); $guard = $null
+        Assert-AudioNoReparseAncestor -Path $working
+        Assert-AudioNoReparseAncestor -Path $OutputPath
+        if ((Get-AudioWorkingFileIdentity -Path $working) -cne $ownedIdentity) { throw 'Working-file ownership changed before publication; preserving that path.' }
+        Publish-AudioWorkingOutput -WorkingPath $working -OutputPath $OutputPath
+        $result.Status = 'Success'
+    }
+    catch { $result.Error = $_.Exception.Message }
+    finally {
+        if ($null -ne $guard) { $guard.Dispose() }
+        if ($null -ne $result.WorkingPath -and $result.Status -ne 'Success') {
+            try {
+                if (-not $canCleanup) { throw 'Owned native process exit was not established; leaving the incomplete working path.' }
+                Assert-AudioNoReparseAncestor -Path $result.WorkingPath
+                if (Test-Path -LiteralPath $result.WorkingPath -ErrorAction Stop) {
+                    if ($null -eq $ownedIdentity -or (Get-AudioWorkingFileIdentity -Path $result.WorkingPath) -cne $ownedIdentity) {
+                        throw 'Working-file ownership changed; preserving that path.'
+                    }
+                    [IO.File]::Delete($result.WorkingPath)
+                }
+            }
+            catch { $result.CleanupError = $_.Exception.Message }
+        }
+    }
     return [pscustomobject]$result
 }
 

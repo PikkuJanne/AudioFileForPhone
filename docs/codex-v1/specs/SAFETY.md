@@ -105,3 +105,47 @@ not hidden with blanket SilentlyContinue or broad Remove-Item globs.
 
 No resume database, global lock service, background daemon, parallel processing
 system or automatic disk reclamation is needed for v1.0.0.
+
+## T09 selected publication policy
+
+Each conversion creates a sibling `.AudioFileForPhone-<32 lowercase hex>.partial`
+with FileMode.CreateNew after rechecking canonical boundaries, reparse ancestry
+and the complete T07 budgets. A retained ReadWrite handle without Delete sharing
+prevents replacement during encoding, probing and decoding. FFmpeg receives `-y`
+only for this created working file and `-f mp3` explicitly. The process helper
+returns after owned process/pipe disposal; abnormal teardown waits up to five
+seconds for its owned child and reports ProcessReleased=false if exit is unproved.
+This teardown bound does not limit ordinary conversion runtime.
+
+Require a finite positive selected source-audio duration, using container duration
+only when the selected stream duration is absent/N/A; invalid stream duration fails.
+Missing/invalid source duration is a per-file failure before staging/encoding.
+Output must be nonempty MP3, exactly one MP3 audio stream at the requested bitrate,
+and exactly one attached JPEG stream only when an explicit cover was requested.
+Container bitrate is never a substitute for the selected audio stream bitrate.
+
+Probe duration, source duration and decoded duration must agree within a fixed
+0.35 seconds. This absolute allowance covers short low-sample-rate encoder padding;
+it never grows with the length of an audiobook. Every staged output fully decodes
+with error-fatal FFmpeg settings into the null muxer. Validation-only asetpts derives
+media time from PCM sample count, so plausible Xing headers/timestamps cannot stand
+in for emitted audio. Completed progress and finite positive decoded duration are
+required. This adds a read/decode pass per file; long-file performance is unmeasured.
+It does not change the MP3 audio or introduce loudness normalization.
+
+Release the ownership guard only after validation/process use has ended. Recheck
+nonreparse ancestry and the recorded volume/file-index identity, then use the
+non-overwriting two-argument File.Move operation to the planned sibling final name.
+An occupied destination or filesystem error fails that file without choosing a
+new mapping. Record success only after promotion. Any subsequent diagnostic/log
+write failure explicitly reports the actual published path or file failure and
+stops with a fatal logging error; it cannot reclassify a published output as an
+encoder failure or increment the same file twice.
+
+On failure, remove only the exact current working file after matching its identity.
+A changed/reparse path, cleanup error or unproved child exit leaves a visible
+.partial and diagnostic. Existing partials, destinations and completed outputs
+remain untouched. The brief path-check-to-move/delete interval after guard release
+is not a handle-based transaction against a hostile continuously replacing writer;
+source replacement and cancellation acceptance remain later work. No automatic
+cleanup of abandoned run trees is added.

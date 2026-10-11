@@ -473,17 +473,6 @@ foreach ($plan in $plans) {
     $outPath = $plan.OutputPath
     $newBase = $plan.BaseName
     foreach ($warning in $plan.Warnings) { Write-Log ("{0}: {1}" -f $file.FullName, $warning) 'WARN' }
-    if (Test-Path -LiteralPath $outPath -ErrorAction Stop) {
-        $failed++
-        Write-Log ("FAIL : Planned output already exists; refusing to overwrite '$outPath'.") 'FAIL'
-        continue
-    }
-
-    if (-not (Test-Path -LiteralPath $outDir)) {
-        Write-Log ("Creating output folder: {0}" -f $outDir) "DEBUG"
-        [IO.Directory]::CreateDirectory($outDir) | Out-Null
-    }
-
     Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $newBase, $plan.OriginalBase) "DEBUG"
 
     Write-Host "       Source : $($file.FullName)"
@@ -496,6 +485,11 @@ foreach ($plan in $plans) {
     if ($media.Status -ne 'Success') {
         $failed++
         Write-Log ("FAIL : '{0}' (probe {1}: {2})" -f $file.FullName, $media.Status, $media.Error) "FAIL"
+        continue
+    }
+    if ($media.DurationStatus -ne 'Valid') {
+        $failed++
+        Write-Log ("FAIL : '{0}' (source duration {1}; a finite positive source duration is required before conversion.)" -f $file.FullName, $media.DurationStatus) 'FAIL'
         continue
     }
     $hasTitle = $media.TitleStatus -eq 'Present'
@@ -531,7 +525,6 @@ foreach ($plan in $plans) {
 
         $ffArgs = @(
             "-nostdin",
-            "-n",
             "-i", $file.FullName,
             "-i", $CoverPath,
             "-map", ("0:{0}" -f $media.StreamIndex),
@@ -542,39 +535,52 @@ foreach ($plan in $plans) {
             "-disposition:v", "attached_pic",
             "-metadata:s:v", "title=Album cover",
             "-metadata:s:v", "comment=Cover (front)"
-        ) + $metadataArgs + @($outPath)
+        ) + $metadataArgs
     }
     else {
         $ffArgs = @(
             "-nostdin",
-            "-n",
             "-i", $file.FullName,
             "-map", ("0:{0}" -f $media.StreamIndex),
             "-vn",
             "-acodec", "libmp3lame",
             "-b:a", ("{0}k" -f $BitrateKbps)
-        ) + $metadataArgs + @($outPath)
+        ) + $metadataArgs
     }
 
-    Write-Host "       [DEBUG] ffmpeg command line:"
+    Write-Host "       [DEBUG] ffmpeg encoding arguments (working path added by transaction):"
     Write-Host "              $ffmpeg " + ($ffArgs -join " ")
 
+    $transaction = $null
+    $resultCounted = $false
     try {
-        $conversion = Invoke-AudioNativeProcess -ExecutablePath $ffmpeg -Arguments $ffArgs
+        $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
+            -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
+            -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs
+        if ($transaction.Status -eq 'Success') { $ok++ } else { $failed++ }
+        $resultCounted = $true
+        $conversion = $transaction.EncoderResult
         if ($conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
         if ($conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
-        if ($conversion.Status -eq 'Completed' -and $conversion.ExitCode -eq 0 -and (Test-Path -LiteralPath $outPath)) {
-            $ok++
+        if ($transaction.Status -eq 'Success') {
             Write-Host "       [OK]   Converted successfully."
-            Write-Log  ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) "OK"
+            Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
         }
         else {
-            $failed++
-            Write-Warning "       [FAIL] ffmpeg status: $($conversion.Status), exit code: $($conversion.ExitCode) (or output file missing)"
-            Write-Log ("FAIL : '{0}' (ffmpeg {1}, exit {2}: {3}; {4})" -f $file.FullName, $conversion.Status, $conversion.ExitCode, $conversion.Error, $conversion.Stderr) "FAIL"
+            Write-Warning "       [FAIL] $($transaction.Status): $($transaction.Error)"
+            Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $transaction.Status, $transaction.Error) 'FAIL'
+        }
+        if ($transaction.CleanupError) {
+            Write-Warning "       [WARN] Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
+            Write-Log ("Working path retained: '{0}'; {1}" -f $transaction.WorkingPath, $transaction.CleanupError) 'WARN'
         }
     }
     catch {
+        if ($resultCounted) {
+            $outcome = if ($transaction.Status -eq 'Success') { "Validated output was published to '$outPath'" } else { "File '$($file.FullName)' failed ($($transaction.Status): $($transaction.Error))" }
+            Write-Error "[FATAL] $outcome, but its diagnostics could not be recorded in '$logPath'. The run stopped: $($_.Exception.Message)" -ErrorAction Continue
+            exit 1
+        }
         $failed++
         Write-Warning "       [FAIL] Error converting file: $_"
         Write-Log ("FAIL : '{0}' (exception: {1})" -f $file.FullName, $_) "FAIL"

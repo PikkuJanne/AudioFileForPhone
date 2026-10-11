@@ -18,6 +18,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - Can set Artist and Album tags for all output files.  
   - In interactive mode, cover selection uses a file picker.  
   - Warns (and logs) if the chosen cover is unusually large (size and/or dimensions).  
+- Each final MP3 appears after encoding, audio validation and full audio decode. This adds a read/decode pass per file. A failed file preserves sources and earlier completed outputs; check the per-file log for the reason.
 - Writes a per-run log file in the output root:
   - Each root is exclusively created. If a timestamp is occupied, a numeric suffix such as `_2` is added; existing runs are preserved.
   - AudioFileForPhone_log.txt with detailed per-file information.
@@ -98,7 +99,10 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
   - Titles use NFC, then retain letters, decimal digits, whitespace, hyphens and underscores. Other characters and remaining noncomposing combining marks are removed; whitespace becomes single spaces. An empty title becomes Episode.
   - MaxBaseLength accepts 24–180 UTF-16 units (default 60), including the complete date, separator and collision suffix, excluding .mp3. Truncation keeps whole Unicode scalars.
   - Case-insensitive Windows collisions get suffixes (2), (3), etc. Source paths are ordered with OrdinalIgnoreCase, then Ordinal for ties, so the source-to-output mapping is repeatable.
-  - All names and preserved folders are planned before prompts or output creation. Complete file and future working paths must be below 260 UTF-16 units; created directories must be below 248 and components at most 255. Unsupported/deep folder paths fail with guidance to use a shallower input or shorter OutputParent. Folder names are preserved. These limits do not guarantee acceptance by every phone/MTP implementation.
+  - All names and preserved folders are planned before prompts or output creation. Complete file and working paths must be below 260 UTF-16 units; created directories must be below 248 and components at most 255. Unsupported/deep folder paths fail with guidance to use a shallower input or shorter OutputParent. Folder names are preserved. These limits do not guarantee acceptance by every phone/MTP implementation.
+
+- Conversion requires a finite positive source duration. Output must have the selected MP3 audio bitrate, expected cover shape, and durations within 0.35 seconds of the source. A concurrent final destination is preserved and that conversion fails.
+- Interrupted runs can leave clearly incomplete `.AudioFileForPhone-<token>.partial` files. Later runs do not automatically reclaim them.
 
 **Logging**  
 - Each run produces one log file in the AudioForPhone_* root:  
@@ -113,7 +117,7 @@ Minimal, no-frills audio converter I use to shrink and clean up podcast/audioboo
     - Relative path and target directory.  
     - Original base name and chosen sanitized base name.  
     - Final output path.  
-    - ffmpeg success or failure, including exit codes and exceptions.  
+    - Encoding, validation and publication outcomes, including exit codes and exceptions.
   - End-of-run summary:
     - Total files processed.  
     - Converted count.  

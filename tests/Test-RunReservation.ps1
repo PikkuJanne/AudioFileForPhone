@@ -36,8 +36,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T08-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T08-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T08|T09)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T08/T09-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label to preserve previous evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -45,7 +45,7 @@ $ownerHash = [Security.Cryptography.SHA256]::Create()
 try { $ownerSha = ([BitConverter]::ToString($ownerHash.ComputeHash([Text.Encoding]::UTF8.GetBytes($ownerToken)))).Replace('-', '').ToLowerInvariant() }
 finally { $ownerHash.Dispose() }
 $report = [ordered]@{
-    schema_version = 1; task = 'T08'; mode = 'exclusive_reservation_and_barrier_processes'
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = 'exclusive_reservation_and_barrier_processes'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
