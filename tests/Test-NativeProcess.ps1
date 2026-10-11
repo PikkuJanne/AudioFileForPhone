@@ -19,6 +19,9 @@ $testRoot = Join-Path $tempParent $testName
 $ownerFile = Join-Path $testRoot '.t05-owner'
 $ownerToken = [guid]::NewGuid().ToString('N')
 $ownedRootCreated = $false
+$nativeReleaseProved = $true
+$nativeRuns = New-Object 'System.Collections.Generic.List[object]'
+$originalNative = $null
 $originalPath = $env:PATH
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shell = Join-Path $PSHOME $shellName
@@ -30,8 +33,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T05|T08|T09|T11|T13|T14|T15)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T05/T08/T09/T11/T13/T14/T15-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T05|T08|T09|T11|T13|T14|T15|T16)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T05/T08/T09/T11/T13/T14/T15/T16-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a new label to preserve prior evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -118,7 +121,47 @@ function Invoke-Case {
 
 function Assert-NativeSuccess {
     param($Result, [string]$Operation)
-    Assert-True ($Result.Status -ceq 'Completed' -and $Result.ExitCode -eq 0) "$Operation must complete successfully: $($Result.Status)/$($Result.ExitCode) $($Result.Stderr)"
+    Assert-True ($Result.Status -ceq 'Completed' -and $Result.ExitCode -eq 0 -and
+        $Result.ProcessReleased -is [bool] -and $Result.ProcessReleased) "$Operation must complete successfully and release its process: $($Result.Status)/$($Result.ExitCode) $($Result.Stderr)"
+}
+
+function Invoke-OwnedNative {
+    param(
+        [Parameter(Mandatory = $true)][string]$ExecutablePath,
+        [Parameter(Mandatory = $true)][AllowEmptyCollection()][AllowEmptyString()][string[]]$Arguments,
+        [ValidateRange(0, 2147483647)][int]$MaxStdoutChars = 1048576,
+        [ValidateRange(0, 2147483647)][int]$MaxStderrChars = 65536,
+        [AllowNull()][object]$Cancellation,
+        [AllowNull()][scriptblock]$ProgressCallback,
+        [AllowNull()][object]$ProgressDurationSeconds,
+        [AllowNull()][object]$ProgressParser,
+        [AllowNull()][object]$ProgressCallbackState
+    )
+    # Intercept nested prerequisite/probe/cover calls as well as direct fixtures.
+    # Keep only scalar evidence; never retain a live Process or capture handle.
+    $priorReleaseProof = $script:nativeReleaseProved
+    $script:nativeReleaseProved = $false
+    $record = [ordered]@{
+        sequence = $script:nativeRuns.Count + 1
+        executable = $ExecutablePath.Replace($testRoot, '<OWNED_TEMP>')
+        returned = $false; status = 'NotReturned'; exit_code = $null
+        native_exit_observed = $false; pre_start_refused = $false
+        process_released = $false; threw = $false
+    }
+    try {
+        $native = & $script:originalNative @PSBoundParameters
+        $record.returned = $true; $record.status = $native.Status; $record.exit_code = $native.ExitCode
+        $record.native_exit_observed = $null -ne $native.ExitCode
+        # These statuses are explicit pre-start rejections. StartFailed is kept
+        # distinct without claiming whether its internal setup reached Start.
+        $record.pre_start_refused = $native.Status -in @('MissingExecutable', 'InvalidExecutablePath')
+        $record.process_released = $native.ProcessReleased -is [bool] -and $native.ProcessReleased
+        if ($record.process_released) { $script:nativeReleaseProved = $priorReleaseProof }
+        Assert-True $record.process_released 'Native invocation must prove release; preserve the exact owned tree on uncertainty.'
+        return $native
+    }
+    catch { $record.threw = $true; throw }
+    finally { $script:nativeRuns.Add([pscustomobject]$record) }
 }
 
 function ConvertTo-PowerShellLiteral {
@@ -159,6 +202,8 @@ try {
     }
     $report.copied_bytes_unchanged = $true
     . (Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1')
+    $script:originalNative = (Get-Command Invoke-AudioNativeProcess -CommandType Function).ScriptBlock
+    Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value ${function:Invoke-OwnedNative}
     $ffmpeg = (Resolve-Path -LiteralPath $FfmpegPath).ProviderPath
     $ffprobe = (Resolve-Path -LiteralPath $FfprobePath).ProviderPath
     $tools = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
@@ -296,12 +341,18 @@ class NativeChild {
     }
     Invoke-Case 'process-resource-handles-released' {
         param($case)
-        for ($i = 0; $i -lt 8; $i++) { Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('exit7') | Out-Null }
+        for ($i = 0; $i -lt 8; $i++) {
+            $warmup = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('exit7')
+            Assert-True ($warmup.Status -ceq 'Completed' -and $warmup.ExitCode -eq 7 -and $warmup.ProcessReleased) 'Native resource warmup must exit7 with positive release proof.'
+        }
         [GC]::Collect(); [GC]::WaitForPendingFinalizers()
         $self = [Diagnostics.Process]::GetCurrentProcess()
         try {
             $self.Refresh(); $before = $self.HandleCount
-            for ($i = 0; $i -lt 40; $i++) { Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('exit7') | Out-Null }
+            for ($i = 0; $i -lt 40; $i++) {
+                $measured = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('exit7')
+                Assert-True ($measured.Status -ceq 'Completed' -and $measured.ExitCode -eq 7 -and $measured.ProcessReleased) 'Measured native resource call must exit7 with positive release proof.'
+            }
             $self.Refresh(); $immediate = $self.HandleCount
             # NativeCapture has already joined both readers. Allow completed
             # worker threads to retire without invoking finalizers.
@@ -451,6 +502,9 @@ catch {
 }
 finally {
     $env:PATH = $originalPath
+    $report['native_runs'] = @($nativeRuns.ToArray())
+    $report['descendant_release_proved'] = $nativeReleaseProved
+    if (-not $nativeReleaseProved) { $report.status = 'fail'; $exitCode = 1 }
     try {
         $report.source_after = Get-SourceInventory
         $report.source_unchanged = (($report.source_before | ConvertTo-Json -Compress) -ceq ($report.source_after | ConvertTo-Json -Compress))
@@ -462,7 +516,8 @@ finally {
         Assert-True $report.synthetic_unchanged 'Synthetic audio and cover sources must remain unchanged.'
     } catch { $report.status = 'fail'; $exitCode = 1; $report['synthetic_verification_error'] = $_.Exception.Message.Replace($testRoot, '<OWNED_TEMP>') }
     try {
-        if ($ownedRootCreated -and (Test-Path -LiteralPath $testRoot)) {
+        Assert-True $nativeReleaseProved 'Cleanup refused while native release is unproved; preserve the exact owned TEMP tree.'
+        if ($ownedRootCreated -and $nativeReleaseProved -and (Test-Path -LiteralPath $testRoot)) {
             $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\', '/')
             Assert-True ($resolved -ceq $testRoot -and (Split-Path -Parent $resolved) -ieq $tempParent -and (Split-Path -Leaf $resolved) -ceq $testName) 'Cleanup stays inside the exact exclusively owned TEMP root.'
             Assert-True ([IO.File]::ReadAllText($ownerFile) -ceq $ownerToken) 'Cleanup requires exact create-new owner marker token.'

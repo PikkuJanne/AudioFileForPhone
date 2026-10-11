@@ -35,8 +35,8 @@ $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T07|T08|T09|T11|T15)-[A-Za-z0-9_-]+\.json$') {
-    throw 'EvidencePath must name T07/T08/T09/T11/T15-<label>.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T07|T08|T09|T11|T15|T16)-[A-Za-z0-9_-]+\.json$') {
+    throw 'EvidencePath must name T07/T08/T09/T11/T15/T16-<label>.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label to preserve prior evidence.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
