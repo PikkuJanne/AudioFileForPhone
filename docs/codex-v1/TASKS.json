@@ -1009,7 +1009,7 @@
       "milestone": "M5",
       "title": "Perform real Windows acceptance on both shells",
       "required": true,
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "T19"
       ],
@@ -1031,12 +1031,19 @@
         "evidence/T20-review.json",
         "evidence/T20-long-bindings.json",
         "evidence/T20-guided-validation.json",
-        "evidence/T20-revision-review.json"
+        "evidence/T20-revision-review.json",
+        "evidence/T20-owner-observations.json",
+        "evidence/T20-picker-recovery-bindings.json",
+        "evidence/T20-picker-recovery-ps51-final1.json",
+        "evidence/T20-picker-recovery-ps7-final1.json",
+        "evidence/T20-guided-correction-check.json",
+        "evidence/T20-cancellation-bindings-final2.json",
+        "evidence/T20-recovery-review.json"
       ],
-      "tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
-      "checkpoint_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "tested_commit": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+      "checkpoint_commit": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
       "remote_checkpoint_verified": true,
-      "notes": "T19 owner integration da2a627 remains verified; prior partial T20 checkpoint f992a54 was independently advertised and pushed with draft PR #20. Current selected application f992 has unchanged main-equivalent runtime/existing-test/CI/build bytes. Existing eight both-shell Windows11 ordinary-user runs retain 182 supplemental checks including controlled default-Music smoke. Janne Vuorela selected one private local 79m35s podcast and explicitly requested simpler or automated testing. A50 quantitative method is recorded as revised; both fresh final1 real conversions pass zero duration delta, full+near-end decode, 182798 frames all64kbps, identical output hashes, measured host/FFmpeg resources, original/copy/application/runner/marker preservation and observed process release without forced termination. Private names/media/tags/logs remain outside Git; original failed harness flat-layout attempt stays immutable and excluded. A50 passes; A49/T20 blocked pending Janne actual one-command guided BAT mixed-failure drop, STA picker select/Cancel and physical READY Ctrl+C observations. Guide validation is preparation only; no actual manual/phone/playback/fallback/forced-close evidence claimed. Exactly next continue T20, not T21. Final revision sync/checks are in PR/response; main integration/release authority unchanged."
+      "notes": "A49/A50 pass; T20 complete on feature, owner-gated main integration pending. Janne Vuorela repeatedly requested simpler or automated testing, tried both PNGs and explicitly confirmed the actual test-folder BAT drop showed Completed with failures. Actual captured PS5.1 Desktop STA application completed three files with exit0; old guide wrongly rejected a valid tracked poster. Original failed aggregate stays failed/unchanged. Explicit revised A49 mixed method combines these named interactions with 182 existing both-shell Windows checks, 18 fresh unchanged automated cancellation cases and independent retained-output verification in both shells. Each recovery verifier has 16 released bounded natives/41 unchanged bindings; PS7 verification is not PS7 picker evidence. Corrected actual guide functions pass positive and false-Cancel checks in both shells. Current PS7 picker, physical Cancel/hardware Ctrl+C/fallback remain disclosed limits; BAT exact shell/exit/root unknown and its Music output untouched. A50 retains both real selected 79m35s final1 runs at f992, main-equivalent unchanged runtime, quantitative/source/process gates and controlled default-Music smoke. Fresh cancellation runs actually test 1e9; earlier report commit fields remain intact. Runtime/helper/BAT/existing tests/CI/build unchanged; private media/names/tags/logs outside Git. Previous independently advertised/API-matched checkpoint 1e9 push/PR CI pass. Final recovery sync/checks in PR/response; main/release authority unchanged. Exactly next T21 after owner integration."
     },
     {
       "id": "T21",

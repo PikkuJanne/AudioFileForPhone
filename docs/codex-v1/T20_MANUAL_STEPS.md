@@ -1,32 +1,21 @@
-# T20 guided Windows check — NOT RUN
+# T20 Windows checks — completed, no further action
 
-Janne Vuorela: open an ordinary, non-elevated PowerShell console and run this
-single command. It uses the already prepared synthetic fixtures; no personal
-media path or manual document editing is needed.
+Janne Vuorela confirmed the BAT drop showed **Completed with failures**. His
+actual PS5.1 cover selection also succeeded: all three synthetic files converted.
+The guide rejected a valid PNG because it required one specific 64x64 fixture.
+That test is corrected; the original failed report remains preserved.
 
-```powershell
-& (Join-Path $env:USERPROFILE '.cache\codex-runtimes\codex-primary-runtime\dependencies\native\powershell\pwsh.exe') -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -File 'C:\projects\AudioFileForPhone-main\docs\codex-v1\tools\Start-T20Guided.ps1'
-```
+At Janne's repeated request for simpler or automated testing, the A49 method
+now combines those named observations with automated real Windows checks in both
+shells. Retained picker outputs pass independent metadata/artwork/layout/decode/
+source-safety checks; fresh cancellation tests pass all eighteen cases. A50's
+selected real long-file and controlled default-Music checks already pass.
 
-Follow the instructions shown by the guide:
+**Do not rerun the long guide or choose another cover. No further Windows test
+action is needed.** Keep the existing local files for verification. Unknown BAT
+Music output was neither inspected nor removed.
 
-1. Drag the displayed mixed valid/corrupt synthetic folder onto the BAT in the
-   other Explorer window. Press Enter for its three optional prompts. The expected
-   final message is **Completed with failures** because one fixture is corrupt.
-2. In four successive cover dialogs, select the printed PNG or click Cancel,
-   as instructed. The guide supplies synthetic metadata and checks outputs.
-3. In each of two console windows, wait for **READY**, then press Ctrl+C once.
-4. Confirm your actual actions in the guide and report its final result here.
-
-The guide automatically checks tags, artwork, layout, full decode, source hashes
-and cancellation reports. It copies the existing installed external FFmpeg pair
-beside the private app so Explorer does not depend on its inherited PATH. Original
-app/BAT/helper bytes stay unchanged; no download or global setting changes occur.
-
-Raw output and result JSON remain in the displayed owned TEMP root. Keep them for
-verification. The direct BAT observation is your attestation: its selected shell,
-exit code and Music output root are not captured. Its unknown Music output stays
-retained; the guide never scans or cleans Music. Long-file conversion/resource
-checks are handled separately. A49 remains unpassed until actual
-results and your physical confirmation are reviewed. Enforced policy restrictions
-are blockers; do not weaken them.
+Current PS7 native picker, physical Cancel, hardware Ctrl+C and physical fallback
+are explicit coverage limits. Software verification does not claim those human
+actions. Phone/player acceptance remains the separate T21 task after owner
+integration of T20. See evidence/T20.md for exact method, results and limits.

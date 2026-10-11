@@ -38,8 +38,20 @@ duration, full decode, near-end decode, CBR verification, source preservation an
 resource measurement on his explicitly selected representative local file. Bind
 private command/source identities without publishing its path, name, tags or
 content. Controlled automated default-Music evidence may establish A50. Keep
-actual physical Windows actions under A49 and actual phone/player listening,
+the separately recorded A49 interaction method and actual phone/player listening,
 seeking and resume under T21; successful decoding is not a listening observation.
+
+T20 A49 recovery method revision on the same date: after an overly strict guide
+rejected his valid PNG selection, Janne again requested simpler testing. Reuse
+his named BAT mixed-failure observation and captured PS5.1 STA selection, then
+automatically verify the retained real outputs and both-shell Windows software
+contracts. Fresh existing cancellation tests in both shells exercise controlled
+console key records, owned-process release and interrupted-output safety. They
+are automated input, not a claim of hardware Ctrl+C or manual forced close.
+Metadata/artwork, special paths, failures, launcher fallback and controlled Music
+remain covered by their real targeted tests. Current PS7 native picker, physical
+Cancel and physical fallback are explicit coverage limits under this revised
+mixed method. The old seven-stage guide is optional, not a remaining owner gate.
 
 ## Safe baseline and isolation ordering
 

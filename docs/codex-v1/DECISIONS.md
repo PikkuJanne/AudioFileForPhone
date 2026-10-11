@@ -757,3 +757,32 @@ with a bare “approved” assertion without a traceable reference.
   captured evidence are reviewed. Old T20-review.json stays frozen; new revision
   review/feature sync/CI accompany this checkpoint. Main integration remains
   owner-gated, exactly next continue T20, with project/release/phone unfinished.
+
+## T20 recovered selection and simpler completed method — 11 October 2026
+
+- Janne reported the cover mismatch after trying both PNGs and requested simpler
+  testing again. Actual PS5.1 Desktop STA capture already records exit0, Completed,
+  converted3/failed0. The guide wrongly demanded a 64x64 fixture, rejecting the
+  valid selected tracked 2816x1536 poster. Preserve the failed aggregate and reuse
+  independently verified capture/outputs.
+- Correct only the guide verifier: accept actual valid regular JPG/PNG, bind
+  source hash/dimensions, compare embedded artwork and retain captures before
+  verification. Both-shell actual-function checks pass and reject false Cancel;
+  thirteen bounded natives release each. No new UI/application execution.
+- Both recovery verifier shells inspect the actual PS5.1 outputs; each records
+  sixteen released natives, 41 unchanged bindings and metadata/layout/date/64kbps/
+  duration/full audio-art decode success. PS7 verifier is not PS7 UI. Fresh unchanged
+  both-shell cancellation tests add eighteen automated passes, with controlled
+  input, owned process release, interrupted-output safety and unrelated-process
+  survival; no hardware/manual action claim.
+- Explicitly revise A49 at his repeated request to named interactions plus real
+  automated both-shell Windows tests. Janne confirmed actual test-folder BAT drop
+  showed Completed with failures. BAT shell/raw exit/output root remain unknown
+  and its Music output untouched. Current PS7 picker, physical Cancel, hardware
+  Ctrl+C and physical fallback remain disclosed coverage limits.
+- A49/A50 pass; T20 done on feature, no further owner Windows test required. Preserve
+  old reviews/failed reports/private scopes; create a focused recovery review.
+  Runtime/helper/BAT/tests/CI/build/defaults remain unchanged. Last verified feature
+  checkpoint 1e9e5de has both push/PR CI jobs green. Final recovery sync/checks
+  belong in PR/response. Main integration owner-gated; exactly next T21 after
+  integration. Project/release/phone acceptance incomplete.

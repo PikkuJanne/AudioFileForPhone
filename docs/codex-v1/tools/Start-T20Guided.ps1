@@ -137,7 +137,7 @@ try {
     if($record.entry_before -cne $configuration.entry_sha256 -or $record.helper_before -cne $configuration.helper_sha256){throw 'Application copies changed.'}
     if($record.apartment -cne 'STA'){throw 'The picker child is not STA.'}
     Write-Host ('T20 '+$configuration.label+' -- '+$configuration.instructions) -ForegroundColor Cyan
-    if($configuration.action -eq 'Select'){Write-Host ('Select this file: '+$configuration.cover_path)}
+    if($configuration.action -eq 'Select'){Write-Host 'Choose any JPG or PNG. Either PNG in the project folder is suitable.'}
     Write-Host 'Other prompts and verification are automatic. This window closes when the case finishes.'
     $stream=[IO.File]::Open($configuration.raw_path,[IO.FileMode]::CreateNew,[IO.FileAccess]::Write,[IO.FileShare]::Read)
     $writer=New-Object IO.StreamWriter($stream,(New-Object Text.UTF8Encoding($false)))
@@ -285,8 +285,20 @@ function Test-GuidedPickerOutput {
         $manifest.run.exit_code -eq 0 -and $manifest.build.entry_sha256 -ceq $entryHash -and
         $manifest.build.helper_sha256 -ceq $helperHash -and @($manifest.records).Count -eq 3 -and
         $manifest.checkpoint -ceq 'Final' -and $manifest.totals.converted -eq 3 -and $manifest.totals.failed -eq 0) 'Manifest does not match the actual successful candidate/run.'
-    $expectedCover=if($Configuration.action -ceq 'Select'){$Configuration.cover_path}else{$null}
-    Assert-Guided ([string]$manifest.policies.metadata.cover_path -ceq [string]$expectedCover) 'Actual picker result differs from the requested physical action.'
+    $actualCover=[string]$manifest.policies.metadata.cover_path
+    $selectedCover=$null;$selectedCoverHash=$null;$selectedCoverStream=$null
+    if($Configuration.action -ceq 'Select'){
+        Assert-Guided (-not [string]::IsNullOrWhiteSpace($actualCover)) 'No cover was selected.'
+        $selectedCover=Get-GuidedPath $actualCover
+        Assert-Guided (@('.jpg','.jpeg','.png') -contains [IO.Path]::GetExtension($selectedCover).ToLowerInvariant()) 'The selected cover must be a JPG or PNG.'
+        $selectedCoverHash=Get-GuidedHash $selectedCover
+        $coverProbe=(Invoke-GuidedVerificationNative $preparation.tools.ffprobe.path @('-v','error','-show_streams','-of','json',$selectedCover)).Stdout|ConvertFrom-Json
+        $coverStreams=@($coverProbe.streams|Where-Object{$_.codec_type -ceq 'video'})
+        Assert-Guided ($coverStreams.Count -eq 1 -and @('mjpeg','png') -ccontains $coverStreams[0].codec_name -and $coverStreams[0].width -gt 0 -and $coverStreams[0].height -gt 0) 'Independent selected-cover inspection failed.'
+        $selectedCoverStream=$coverStreams[0]
+    }else{
+        Assert-Guided ([string]::IsNullOrWhiteSpace($actualCover)) 'A cover was selected when Cancel was requested.'
+    }
     $rawText=Get-Content -Raw -Encoding UTF8 -LiteralPath $Configuration.raw_path
     Assert-Guided (-not $rawText.Contains('Could not open file picker.') -and -not $rawText.Contains('Selected cover failed validation:')) 'The picker failed or was unavailable; that cannot establish physical Cancel.'
     $files=@(Get-GuidedTreeFiles $outputRoot)
@@ -316,7 +328,7 @@ function Test-GuidedPickerOutput {
         $sourceSeconds=if($sourceAudio.duration){[double]::Parse([string]$sourceAudio.duration,[Globalization.CultureInfo]::InvariantCulture)}else{[double]::Parse([string]$sourceProbe.format.duration,[Globalization.CultureInfo]::InvariantCulture)}
         $outputSeconds=[double]::Parse([string]$audio[0].duration,[Globalization.CultureInfo]::InvariantCulture)
         Assert-Guided ($sourceSeconds -gt 0 -and $outputSeconds -gt 0 -and [math]::Abs($sourceSeconds-$outputSeconds) -le 0.35) 'Independent selected audio duration differs beyond the existing allowance.'
-        if($coverCount){Assert-Guided ($art[0].width -eq 64 -and $art[0].height -eq 64) 'Selected prepared artwork dimensions differ.'}
+        if($coverCount){Assert-Guided ($art[0].width -eq $selectedCoverStream.width -and $art[0].height -eq $selectedCoverStream.height) 'Output artwork dimensions differ from the actual selected cover.'}
         Invoke-GuidedVerificationNative $preparation.tools.ffmpeg.path @('-nostdin','-v','error','-xerror','-i',$outputPath,'-map','0:a:0','-f','null','NUL')|Out-Null
         if($coverCount){Invoke-GuidedVerificationNative $preparation.tools.ffmpeg.path @('-nostdin','-v','error','-xerror','-i',$outputPath,'-map','0:v:0','-frames:v','1','-f','null','NUL')|Out-Null}
         $verified+= [pscustomobject]@{source_relative_path=$row.source_relative_path;output_relative_path=$row.output_relative_path;
@@ -324,7 +336,9 @@ function Test-GuidedPickerOutput {
             source_duration_seconds=$sourceSeconds;duration_seconds=$outputSeconds;artwork_count=$art.Count;title=$probe.format.tags.title;artist=$probe.format.tags.artist;album=$probe.format.tags.album;
             independent_full_decode=$true}
     }
+    if($selectedCover){Assert-Guided ((Get-GuidedHash $selectedCover) -ceq $selectedCoverHash) 'The selected cover changed during independent verification.'}
     return [pscustomobject]@{output_root=$outputRoot;ownership_marker_sha256=(Get-GuidedHash $markerPath);
+        actual_selected_cover=$selectedCover;selected_cover_sha256=$selectedCoverHash;
         manifest_sha256=(Get-GuidedHash $manifestPath);outputs=$verified;status='automatically_verified';physical_confirmation='pending'}
 }
 
@@ -373,7 +387,7 @@ try {
         $caseIndex++;$outputParent=Join-Path $guidedRoot ('O'+$caseIndex)
         Assert-Guided ([AudioFileForPhone.PreflightDirectory]::CreateDirectoryW($outputParent,[IntPtr]::Zero)) 'Could not exclusively create case output parent.'
         $configuration=[ordered]@{label=$case.label;action=$case.action;
-            instructions= $(if($case.action -ceq 'Select'){'Use the dialog to select the printed PNG cover.'}else{'Click Cancel in the cover dialog.'});
+            instructions= $(if($case.action -ceq 'Select'){'Choose any JPG or PNG, then click Open.'}else{'Click Cancel in the cover dialog.'});
             shell_path=$shells[$case.shell];entry=$entry;helper=$helper;entry_sha256=$entryHash;helper_sha256=$helperHash;
             owner_marker=$ownerMarker;owner_marker_sha256=$ownerMarkerHash;input_path=$preparation.paths.special_input;
             output_parent=$outputParent;cover_path=$preparation.paths.valid_png_cover;
@@ -385,10 +399,11 @@ try {
         $childExit=Start-GuidedConsole $shells[$case.shell] $launchArguments
         Assert-Guided ($childExit -eq 0 -and [IO.File]::Exists($configuration.result_path)) 'Picker host failed or its capture is missing. Retain the known scope; no native cleanup is guessed.'
         $capture=Get-Content -Raw -Encoding UTF8 -LiteralPath $configuration.result_path|ConvertFrom-Json
-        $verification=Test-GuidedPickerOutput $capture ([pscustomobject]$configuration)
-        $aggregate.picker_cases+= [pscustomobject]@{label=$case.label;launch_executable=$shells[$case.shell];launch_arguments=$launchArguments;
+        $caseRecord=[pscustomobject]@{label=$case.label;launch_executable=$shells[$case.shell];launch_arguments=$launchArguments;
             host_exit_code=$childExit;capture=$capture;capture_sha256=(Get-GuidedHash $configuration.result_path);
-            raw_sha256=(Get-GuidedHash $configuration.raw_path);verification=$verification}
+            raw_sha256=(Get-GuidedHash $configuration.raw_path);verification=$null}
+        $aggregate.picker_cases+= $caseRecord
+        $caseRecord.verification=Test-GuidedPickerOutput $capture ([pscustomobject]$configuration)
         Confirm-GuidedPreparation
     }
     $evidenceParent=Join-Path $projectRoot 'docs/codex-v1/evidence'

@@ -202,6 +202,16 @@ and a recorded quantitative A50 method revision. It authorizes neither scanning
 personal media directories nor claiming actions he has not performed. Normal
 feature-checkpoint scope continues; main integration/release gates stay unchanged.
 
+T20 recovery continuation: Janne reported the guide's cover failure after trying
+both PNGs and again requested simpler testing. This authorizes correcting the
+overly strict test, reusing his retained actual PS5.1 picker result, and explicitly
+revising A49 to named observations plus automated real Windows checks. He then
+confirmed "Yes, I saw that message" when asked whether he had dragged the test
+folder onto the BAT and seen "Completed with failures". Record that visible
+observation, not an unobserved BAT shell, exit code or output path. No current
+PS7 picker, physical Cancel, fresh hardware Ctrl+C, playback or phone observation
+is inferred. Normal feature-checkpoint scope continues; main/release gates stay.
+
 ## Never authorized implicitly
 
 History rewriting, force push, deletion/reset of unrelated work, existing tags or

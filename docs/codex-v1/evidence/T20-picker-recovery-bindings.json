@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "kind": "T20.SelectedPhysicalPickerRecoveryBindings",
+  "status": "pass",
+  "created_utc": "2026-10-11T16:21:06.5530031Z",
+  "application_repository_head": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+  "scope": "Read-only recovery of only the exact marker-owned session reported by Janne Vuorela. Both verification shells inspect the same actual PS5.1 STA run.",
+  "human_observation": {
+    "tester": "Janne Vuorela",
+    "source": "Direct user message",
+    "observation": "I tried both PNGs, but the same error.",
+    "final_done_confirmation": false
+  },
+  "original_report_preserved_as_failed": true,
+  "original_failed_report_sha256": "69ad3e2335229d564423977d3be41b5896f0f521f161a89f54314f83bf33c52b",
+  "runner": {
+    "relative_path": "docs/codex-v1/tools/Test-T20PickerRecovery.ps1",
+    "sha256": "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+    "utf8_bom": true,
+    "exact_snapshots_verified": true
+  },
+  "actual_cover": {
+    "public_tracked_name": "AudioFileForPhone_poster.png",
+    "sha256": "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+    "bytes": 7011504,
+    "codec": "png",
+    "width": 2816,
+    "height": 1536,
+    "independent_full_decode": true,
+    "requested_fixture_width": 64,
+    "requested_fixture_height": 64,
+    "original_picker_cover_path_matches_requested": false
+  },
+  "output_count": 3,
+  "outputs_identical_between_verification_runs": true,
+  "cases": [
+    {
+      "report": "T20-picker-recovery-ps51-final1.json",
+      "report_sha256": "b764c677df915c7fd73f55052f7bf87702c38de81500638b5a4c2230122366ec",
+      "verification_shell": "5.1.26100.9444",
+      "verification_edition": "Desktop",
+      "started_utc": "2026-10-11T16:20:00.5689384Z",
+      "finished_utc": "2026-10-11T16:20:04.5813505Z",
+      "status": "pass",
+      "observed_application_shell": "5.1.26100.9444",
+      "observed_application_edition": "Desktop",
+      "observed_apartment": "STA",
+      "private_invocation_sha256": "5beb2ddf92de3f6c2d72e4810fd658834c0e6a3e6596283fd76e405ddf88c412",
+      "private_raw_verification_sha256": "48be6ea2c6eb6d70238b6da0da18aaf5bb225d4450f1985b78cba732e1791043",
+      "exact_runner_snapshot_sha256": "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+      "private_proof_root_name": "T20R-28ad84361358",
+      "completed_released_native_checks": 16,
+      "unchanged_bindings": 41,
+      "public_command": "same-shell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PROJECT>\\docs\\codex-v1\\tools\\Test-T20PickerRecovery.ps1 -SessionRoot <EXACT_OWNER_RETAINED_SESSION> -EvidencePath <PROJECT>\\docs\\codex-v1\\evidence\\T20-picker-recovery-ps51-final1.json"
+    },
+    {
+      "report": "T20-picker-recovery-ps7-final1.json",
+      "report_sha256": "b075e36fb8459c2f374468f6774d72fc6e801ed70e5516796dc0f0d59ffc829e",
+      "verification_shell": "7.6.5",
+      "verification_edition": "Core",
+      "started_utc": "2026-10-11T16:20:11.1008814Z",
+      "finished_utc": "2026-10-11T16:20:15.4740095Z",
+      "status": "pass",
+      "observed_application_shell": "5.1.26100.9444",
+      "observed_application_edition": "Desktop",
+      "observed_apartment": "STA",
+      "private_invocation_sha256": "7a6a631bfd7713d1caffcbad263cc36479bd6796cb1c534cd66f2ffd4a9e095c",
+      "private_raw_verification_sha256": "0b59d9d83cd0bd39f080213f7e479bb371ce8f96e0627182e68c3e3196b9927b",
+      "exact_runner_snapshot_sha256": "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+      "private_proof_root_name": "T20R-bed0885bda51",
+      "completed_released_native_checks": 16,
+      "unchanged_bindings": 41,
+      "public_command": "same-shell -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PROJECT>\\docs\\codex-v1\\tools\\Test-T20PickerRecovery.ps1 -SessionRoot <EXACT_OWNER_RETAINED_SESSION> -EvidencePath <PROJECT>\\docs\\codex-v1\\evidence\\T20-picker-recovery-ps7-final1.json"
+    }
+  ],
+  "limitations": [
+    "Only the retained PS5.1 STA Select run is recovered; running this verifier in PS7 does not establish a PS7 picker observation.",
+    "Original guide failure and missing final owner confirmation remain unchanged.",
+    "BAT observation was empty; selected BAT shell/exit/Music root were not captured and no Music was inspected.",
+    "No physical Cancel, Ctrl+C, manual listening or phone observation is established.",
+    "Actual selected cover is hashed before/after recovery, not retrospectively before its original selection."
+  ],
+  "raw_logs_paths_tags_media_retained_privately": true,
+  "gui_automation": false,
+  "music_inspected": false,
+  "source_modified": false,
+  "cleanup_attempted": false
+}

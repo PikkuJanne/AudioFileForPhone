@@ -1,12 +1,47 @@
 # Current project status
 
-State: **T20 selected long-file and default-Music acceptance passes automatically;
-named physical Windows interactions remain pending in a one-command guide.**
-Last completed task: T19, now owner-integrated. Exactly next task:
-continue T20. Required improvements 1-15; optional O01 deferred.
-Project/release remain incomplete.
+State: **T20 A49/A50 pass under the recorded user-requested mixed method.**
+Last completed task: T20 on its feature branch; main integration is owner-gated.
+Exactly next task after T20 integration: T21 phone acceptance. Required
+improvements 1-15; optional O01 deferred. Project/release remain incomplete.
 
-## T20 active checkpoint — simplified continuation
+## T20 completed recovery — no further guide run required
+
+- Janne Vuorela reported the guide's cover mismatch after trying both PNGs and
+  again requested simpler testing. Actual PS5.1 Desktop STA application had
+  already completed all three synthetic inputs with exit0. The guide incorrectly
+  required a prepared 64x64 PNG, rejecting the valid tracked 2816x1536 poster.
+  Its failed aggregate stays unchanged; actual picker capture and outputs are
+  independently verified rather than relabeled as a passing guide.
+- Janne explicitly confirmed dragging the test folder onto the BAT and seeing
+  **Completed with failures**. BAT selected shell/version, raw exit and output
+  root remain unknown. Unknown Music output is retained without inspection/cleanup.
+- A49's method is explicitly revised in task/strategy/acceptance tracking to these
+  named interactions plus automated both-shell Windows checks. Existing support
+  retains 182 passes; fresh unchanged cancellation tests add eighteen passes,
+  with controlled console input, owned-process release, unrelated-process survival
+  and interrupted-output safety. Current PS7 picker, physical Cancel, hardware
+  Ctrl+C and physical fallback are not claimed. T21 phone/listening remains later.
+- `Test-T20PickerRecovery.ps1` independently verifies the same actual PS5.1
+  outputs from both verifier shells: metadata, date/layout, 64kbps, full audio/art
+  decode and actual selected cover dimensions pass. Each records sixteen released
+  bounded natives and 41 unchanged file bindings. PS7 verifier execution is not a
+  PS7 application/picker run. No application or UI was rerun.
+- The corrected guide accepts the actual valid JPG/PNG, checks its dimensions
+  and preservation, and retains captures before validation. Both-shell runs of
+  its actual verification functions pass against retained outputs and reject a
+  false Cancel action, with thirteen released natives each. Exact source/adapter/
+  invocation proof is in `T20-guided-correction-check.json`.
+- See `evidence/T20.md`, recovery/cancellation binders, named observation record
+  and `T20-recovery-review.json`. Prior reviews remain frozen. Runtime/helper/BAT,
+  tests/CI/build/defaults remain unchanged. A50 retains its selected real long-file
+  and controlled-Music passes. No further owner Windows tests are needed.
+- Last verified feature checkpoint before recovery is
+  `1e9e5de182f9cbe710f84ff0e63526698ac086d1`; push/PR CI 38154161336/38154164444
+  pass both Windows jobs each. Final recovery push/live-ref comparison and checks
+  belong in PR #20/response. Main is da2a627, unmerged; no release authority.
+
+## T20 previous checkpoint — historical simplified continuation
 
 - Janne Vuorela supplied his tester identity and exactly one local podcast, asking
   for a much simpler or automated test. Only that selected file was inspected and
