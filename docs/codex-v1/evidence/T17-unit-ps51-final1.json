@@ -1,0 +1,235 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T17",
+    "mode":  "pure_runtime_and_ci_contracts",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\ci\\Test-CiContracts.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-unit-ps51-final1.json",
+    "started_utc":  "2026-10-11T12:21:58.8174634Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "tested_commit":  "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/Invoke-CiChecks.ps1",
+                              "sha256":  "924080567069d6cc18c41757dbdfdf94b235caad129ba349b8cab5ea9af7bd08"
+                          },
+                          {
+                              "relative_path":  "tests/ci/Test-CiContracts.ps1",
+                              "sha256":  "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/Test-CiPolicy.ps1",
+                              "sha256":  "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89"
+                          },
+                          {
+                              "relative_path":  ".github/workflows/windows-ci.yml",
+                              "sha256":  "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c"
+                          },
+                          {
+                              "relative_path":  ".github/dependencies.json",
+                              "sha256":  "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/Invoke-CiChecks.ps1",
+                             "sha256":  "924080567069d6cc18c41757dbdfdf94b235caad129ba349b8cab5ea9af7bd08"
+                         },
+                         {
+                             "relative_path":  "tests/ci/Test-CiContracts.ps1",
+                             "sha256":  "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/Test-CiPolicy.ps1",
+                             "sha256":  "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89"
+                         },
+                         {
+                             "relative_path":  ".github/workflows/windows-ci.yml",
+                             "sha256":  "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c"
+                         },
+                         {
+                             "relative_path":  ".github/dependencies.json",
+                             "sha256":  "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "cases":  [
+                  {
+                      "name":  "actual workflow lock and inventory enforce the reviewed read-only CI boundary",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "release-write token refused",
+                      "status":  "pass",
+                      "refusal":  "Test token requires read-only contents permissions.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "job permission override refused",
+                      "status":  "pass",
+                      "refusal":  "Unexpected mapping shape: windows job",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "privileged PR trigger refused",
+                      "status":  "pass",
+                      "refusal":  "Missing approved key pull_request at events",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "workflow_run trigger refused",
+                      "status":  "pass",
+                      "refusal":  "Missing approved key pull_request at events",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "tag trigger refused",
+                      "status":  "pass",
+                      "refusal":  "Missing approved key branches at push",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "secret-bearing environment refused",
+                      "status":  "pass",
+                      "refusal":  "Secret contexts are forbidden in test CI.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "mutable action version refused",
+                      "status":  "pass",
+                      "refusal":  "Checkout must use its reviewed official full commit SHA.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "fork head checkout refused",
+                      "status":  "pass",
+                      "refusal":  "Unapproved workflow expression.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "persisted checkout credential refused",
+                      "status":  "pass",
+                      "refusal":  "Unsafe checkout input: persist-credentials",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "unsafe checkout opt-out refused",
+                      "status":  "pass",
+                      "refusal":  "Unsafe checkout input: allow-unsafe-pr-checkout",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "self-hosted execution refused",
+                      "status":  "pass",
+                      "refusal":  "Only bounded GitHub-hosted Windows jobs are approved.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "hidden artifact upload refused",
+                      "status":  "pass",
+                      "refusal":  "Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "artifact overwrite capability refused",
+                      "status":  "pass",
+                      "refusal":  "Unexpected mapping shape: artifact inputs",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "release command injection refused",
+                      "status":  "pass",
+                      "refusal":  "Unapproved CI command structure.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "duplicate YAML permission key refused",
+                      "status":  "pass",
+                      "refusal":  "Duplicate YAML key: permissions",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "YAML anchor unsupported and refused",
+                      "status":  "pass",
+                      "refusal":  "Unsupported or ambiguous YAML scalar.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "dependency mutable URL refused",
+                      "status":  "pass",
+                      "refusal":  "Unapproved dependency pin: ffmpeg.archive_url",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "dependency wrong digest refused",
+                      "status":  "pass",
+                      "refusal":  "Unapproved dependency pin: ffmpeg.archive_sha256",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "duplicate JSON digest key refused",
+                      "status":  "pass",
+                      "refusal":  "Duplicate JSON property: archive_bytes",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "additional release workflow refused",
+                      "status":  "pass",
+                      "refusal":  "Only the reviewed Windows test workflow is authorized by this policy.",
+                      "source_mutated":  false
+                  },
+                  {
+                      "name":  "ci labels reject traversal metacharacters and zero before writes",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "numeric defaults and unsupported rates are actual runtime preflight contracts",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "dependency records reject changed pins failed status and invented extraction hashes",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "real calendar dates and fallback remain invariant across cultures",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "Unicode normalization and filtering keep equivalent source titles equivalent",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "collision suffix and supplementary scalars fit the complete UTF16 budget",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "pure batch plans are deterministic and never create their virtual trees",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "path boundaries reject prefix siblings traversal device and reserved components",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "machine progress waits for complete records and recovers after bounded overflow",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "unknown durations stay indeterminate and encoder end stays below publication100",
+                      "status":  "pass"
+                  }
+              ],
+    "status":  "pass",
+    "error":  null,
+    "fixture_tree_created":  false,
+    "media_or_test_processes_started":  false,
+    "progress_parser_compiled":  true,
+    "completed_utc":  "2026-10-11T12:22:00.7477945Z"
+}

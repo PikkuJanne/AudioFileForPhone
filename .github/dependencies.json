@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "scope": "CI only; never imported or downloaded by application entry points",
+  "verified_utc": "2026-10-11",
+  "inventory_format": "UTF-8 without BOM; ordinal-sort relative ZIP member names; each regular file contributes name<TAB>decimal byte length<TAB>lowercase SHA256<LF>",
+  "ffmpeg": {
+    "version": "9.0.2-essentials_build-www.gyan.dev",
+    "publisher": "Gyan Doshi; external Windows build linked by ffmpeg.org",
+    "source_url": "https://ffmpeg.org/download.html",
+    "publisher_url": "https://www.gyan.dev/ffmpeg/builds/",
+    "release_url": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+    "digest_url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip.sha256",
+    "asset_api_url": "https://api.github.com/repos/GyanD/codexffmpeg/releases/tags/9.0.2",
+    "archive_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+    "archive_sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+    "archive_bytes": 114768076,
+    "archive_file_count": 45,
+    "inventory_sha256": "b8f58fcec6dfdff852e65404198bde4b4dcdb31e8865e99bfffe42d87b331bb5",
+    "ffmpeg_member": "ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe",
+    "ffmpeg_sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+    "ffprobe_member": "ffmpeg-9.0.2-essentials_build/bin/ffprobe.exe",
+    "ffprobe_sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+    "required_encoders": ["libmp3lame", "aac", "libvorbis", "libopus"],
+    "required_decoder": "mp3"
+  },
+  "analyzer": {
+    "version": "1.25.0",
+    "publisher": "PowerShell/PSScriptAnalyzer",
+    "release_url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/tag/1.25.0",
+    "source_commit": "f05704df81b2aca17dc027ee39b3fce106d418fc",
+    "digest_url": "https://api.github.com/repos/PowerShell/PSScriptAnalyzer/releases/tags/1.25.0",
+    "archive_url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/download/1.25.0/PSScriptAnalyzer.1.25.0.nupkg",
+    "archive_sha256": "14e634c828eb98efb9f40b2918ba90f139ed5eccdf663a2a747736d996995d60",
+    "archive_bytes": 14658674,
+    "archive_file_count": 53,
+    "inventory_sha256": "09b36e241037a55426a5b19820a8e251cf175b61956927af41c1f35a5910d2cb",
+    "module_member": "PSScriptAnalyzer.psd1",
+    "module_manifest_sha256": "2b219f688bcdd67101040f845e530b22907d39bbf49089b4b5b2afaba7996791",
+    "module_script_sha256": "b69773fc9080cfb958dc13c95e42a625553e9bca5dcbedc27231e5c183a4e869"
+  },
+  "trust_limit": "The digests pin reviewed publisher bytes; they do not independently authenticate the publisher. GitHub publishes both asset digests; the Gyan fixed checksum endpoint independently agrees for FFmpeg."
+}

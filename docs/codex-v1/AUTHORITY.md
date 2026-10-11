@@ -136,6 +136,16 @@ T16 uses `codex/v1-t16-regression` from that verified merge. Normal task edits,
 isolated tests, commits, feature push and a relevant draft PR remain authorized.
 Main integration and release authority are unchanged.
 
+T17 authorization: on 11 October 2026 the owner requested "T17 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T16 PR #16 merge at 12:08:33 UTC into main
+`dc88a1da04929e9c985469a2833f23407d0b0e15`, with final feature
+`d17743b39b6e30b32d567a5f5f1628b59c303959`. Clean local main was fast-forwarded;
+T17 uses `codex/v1-t17-windows-ci` from that verified merge. Normal task edits,
+isolated tests, commits, feature push and a relevant draft PR remain authorized.
+Verified dependency downloads are bounded to CI and its local synthetic tests.
+Main integration, release writes and repository settings authority are unchanged.
+
 ## Release gate
 
 T11 authorization: on 11 October 2026 the owner requested "T11 next please".

@@ -1,0 +1,761 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T17",
+    "mode":  "real_ffmpeg_baseline",
+    "started_utc":  "2026-10-11T12:24:19.2047720Z",
+    "shell":  "5.1.26100.33438",
+    "os":  "10.0.26100.0",
+    "windows_build":  "26100.33438",
+    "tested_commit":  "ba7ced269b43f7f1392bcf7db6b905509a9b6469",
+    "harness_sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+    "isolation":  {
+                      "replacements_per_copy":  0,
+                      "copied_bytes_unchanged":  true,
+                      "output_parameter":  "OutputParent",
+                      "verified":  true,
+                      "companion_syntax_valid":  true
+                  },
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "legacy":  {
+                   "status":  "pass",
+                   "exit_code":  0
+               },
+    "characterization":  {
+                             "schema_version":  1,
+                             "suite":  "Isolated replay of T02 baseline characterization",
+                             "started_utc":  "2026-10-11T12:24:30.5664747Z",
+                             "completed_utc":  "2026-10-11T12:24:32.9367732Z",
+                             "status":  "fail",
+                             "fatal_error":  "Default format, naming and exclusion matrix must report one isolated output root.",
+                             "environment":  {
+                                                 "os":  "Microsoft Windows NT 10.0.26100.0",
+                                                 "shell":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                                                 "powershell_version":  "5.1.26100.33438",
+                                                 "powershell_edition":  "Desktop",
+                                                 "execution_policy":  [
+                                                                          {
+                                                                              "scope":  "MachinePolicy",
+                                                                              "policy":  "Undefined"
+                                                                          },
+                                                                          {
+                                                                              "scope":  "UserPolicy",
+                                                                              "policy":  "Undefined"
+                                                                          },
+                                                                          {
+                                                                              "scope":  "Process",
+                                                                              "policy":  "RemoteSigned"
+                                                                          },
+                                                                          {
+                                                                              "scope":  "CurrentUser",
+                                                                              "policy":  "Undefined"
+                                                                          },
+                                                                          {
+                                                                              "scope":  "LocalMachine",
+                                                                              "policy":  "Unrestricted"
+                                                                          }
+                                                                      ],
+                                                 "ffmpeg_version":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                                                 "ffprobe_version":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                                                 "application_sha256":  "CCA297EC5131BED88BBAA6858446E91E7EF75B9DDE59A0ED48E67E4081C3F7E1",
+                                                 "runtime_helpers_sha256":  "E98430F25651392DA46A45B6CC12F937F2F5DF0FA4C98BCD816C40E0089EA5C4",
+                                                 "characterization_sha256":  "8AAFBAA635D7E4F1A7B74F59A4EB2036E68852613D657637C2D5ECC6A25F8BC2"
+                                             },
+                             "isolation":  {
+                                               "application_copy":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Characterization app\\AudioFileForPhone.ps1",
+                                               "runtime_helpers_copy":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Characterization app\\AudioFileForPhone.Helpers.ps1",
+                                               "fixture_root":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures",
+                                               "output_parent":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O",
+                                               "cleanup_owner":  "Invoke-IsolatedBaseline.ps1"
+                                           },
+                             "fixtures":  [
+                                              {
+                                                  "path":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+                                                  "codec":  "mp3",
+                                                  "rate":  48000,
+                                                  "channels":  1,
+                                                  "title":  "Original Ää 東京",
+                                                  "output":  "2024-04-05 - Long title Long title Long title Long title Lon.mp3",
+                                                  "source_artwork":  true,
+                                                  "source_duration_seconds":  0.75
+                                              },
+                                              {
+                                                  "path":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+                                                  "codec":  "aac",
+                                                  "rate":  44100,
+                                                  "channels":  2,
+                                                  "title":  "2023-02-03 - Stereo fallback",
+                                                  "output":  "Nested folder\\More audio\\2023-02-03 - Stereo fallback.mp3",
+                                                  "source_artwork":  false,
+                                                  "source_duration_seconds":  0.75
+                                              },
+                                              {
+                                                  "path":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG",
+                                                  "codec":  "vorbis",
+                                                  "rate":  48000,
+                                                  "channels":  1,
+                                                  "title":  "Original Vorbis title",
+                                                  "output":  "2024-04-06 - Vorbis.mp3",
+                                                  "source_artwork":  false,
+                                                  "source_duration_seconds":  0.75
+                                              },
+                                              {
+                                                  "path":  "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+                                                  "codec":  "opus",
+                                                  "rate":  48000,
+                                                  "channels":  2,
+                                                  "title":  "Original Ää 東京",
+                                                  "output":  "Nested folder\\More audio\\2024-04-07 - Opus.mp3",
+                                                  "source_artwork":  false,
+                                                  "source_duration_seconds":  0.7565
+                                              }
+                                          ],
+                             "checks":  [
+                                            {
+                                                "id":  "fixture_codecs_and_source_artwork",
+                                                "acceptance":  "A04",
+                                                "required":  true,
+                                                "status":  "pass",
+                                                "expected":  "Four intended source codecs, channel/rate matrix and MP3 attached picture exist.",
+                                                "observed":  [
+                                                                 {
+                                                                     "codec":  "mp3",
+                                                                     "sample_rate":  "48000",
+                                                                     "channels":  1,
+                                                                     "video_streams":  1,
+                                                                     "duration_seconds":  0.75
+                                                                 },
+                                                                 {
+                                                                     "codec":  "aac",
+                                                                     "sample_rate":  "44100",
+                                                                     "channels":  2,
+                                                                     "video_streams":  0,
+                                                                     "duration_seconds":  0.75
+                                                                 },
+                                                                 {
+                                                                     "codec":  "vorbis",
+                                                                     "sample_rate":  "48000",
+                                                                     "channels":  1,
+                                                                     "video_streams":  0,
+                                                                     "duration_seconds":  0.75
+                                                                 },
+                                                                 {
+                                                                     "codec":  "opus",
+                                                                     "sample_rate":  "48000",
+                                                                     "channels":  2,
+                                                                     "video_streams":  0,
+                                                                     "duration_seconds":  0.7565
+                                                                 }
+                                                             ]
+                                            },
+                                            {
+                                                "id":  "characterization_execution",
+                                                "acceptance":  "A04-A06",
+                                                "required":  true,
+                                                "status":  "fail",
+                                                "expected":  "Complete the focused isolated baseline matrix.",
+                                                "observed":  "Default format, naming and exclusion matrix must report one isolated output root."
+                                            },
+                                            {
+                                                "id":  "source_bytes_and_relative_names_unchanged",
+                                                "acceptance":  "A06",
+                                                "required":  true,
+                                                "status":  "pass",
+                                                "expected":  "All generated source/fixture relative names, lengths and SHA-256 hashes are unchanged.",
+                                                "observed":  {
+                                                                 "files_compared":  14,
+                                                                 "directories_compared":  8,
+                                                                 "identical":  true
+                                                             }
+                                            }
+                                        ],
+                             "runs":  [
+
+                                      ],
+                             "commands":  [
+                                              {
+                                                  "purpose":  "FFmpeg version",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-version"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  26,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "ffprobe version",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                                                  "arguments":  [
+                                                                    "-version"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  23,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic source artwork",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "color=c=blue:s=32x32:d=0.4",
+                                                                    "-frames:v",
+                                                                    "1",
+                                                                    "-update",
+                                                                    "1",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Fixture assets\\Synthetic cover.jpg"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  34,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=48000:duration=0.75",
+                                                                    "-i",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Fixture assets\\Synthetic cover.jpg",
+                                                                    "-map",
+                                                                    "0:a:0",
+                                                                    "-map",
+                                                                    "1:v:0",
+                                                                    "-c:v",
+                                                                    "copy",
+                                                                    "-disposition:v",
+                                                                    "attached_pic",
+                                                                    "-c:a",
+                                                                    "libmp3lame",
+                                                                    "-ac",
+                                                                    "1",
+                                                                    "-metadata",
+                                                                    "title=Original Ää 東京",
+                                                                    "-metadata",
+                                                                    "artist=Artist é Ω",
+                                                                    "-metadata",
+                                                                    "album=Album ö 東",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  43,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=44100:duration=0.75",
+                                                                    "-c:a",
+                                                                    "aac",
+                                                                    "-ac",
+                                                                    "2",
+                                                                    "-metadata",
+                                                                    "artist=Source artist",
+                                                                    "-metadata",
+                                                                    "album=Source album",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  64,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=48000:duration=0.75",
+                                                                    "-c:a",
+                                                                    "libvorbis",
+                                                                    "-ac",
+                                                                    "1",
+                                                                    "-metadata",
+                                                                    "title=Original Vorbis title",
+                                                                    "-metadata",
+                                                                    "artist=Source artist",
+                                                                    "-metadata",
+                                                                    "album=Source album",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  54,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=48000:duration=0.75",
+                                                                    "-c:a",
+                                                                    "libopus",
+                                                                    "-ac",
+                                                                    "2",
+                                                                    "-metadata",
+                                                                    "title=Original Ää 東京",
+                                                                    "-metadata",
+                                                                    "artist=Artist é Ω",
+                                                                    "-metadata",
+                                                                    "album=Album ö 東",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  36,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=48000:duration=0.75",
+                                                                    "-c:a",
+                                                                    "pcm_s16le",
+                                                                    "-ac",
+                                                                    "1",
+                                                                    "-metadata",
+                                                                    "artist=",
+                                                                    "-metadata",
+                                                                    "album=",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Ignored.wav"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  30,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "generate synthetic audio fixture",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                  "arguments":  [
+                                                                    "-hide_banner",
+                                                                    "-loglevel",
+                                                                    "error",
+                                                                    "-y",
+                                                                    "-f",
+                                                                    "lavfi",
+                                                                    "-i",
+                                                                    "sine=frequency=440:sample_rate=48000:duration=0.75",
+                                                                    "-c:a",
+                                                                    "flac",
+                                                                    "-ac",
+                                                                    "1",
+                                                                    "-metadata",
+                                                                    "artist=",
+                                                                    "-metadata",
+                                                                    "album=",
+                                                                    "-metadata",
+                                                                    "comment=Synthetic source comment",
+                                                                    "-metadata",
+                                                                    "track=4",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Ignored.FLAC"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  32,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "ffprobe media inspection",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                                                  "arguments":  [
+                                                                    "-v",
+                                                                    "error",
+                                                                    "-show_format",
+                                                                    "-show_streams",
+                                                                    "-of",
+                                                                    "json",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  27,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "ffprobe media inspection",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                                                  "arguments":  [
+                                                                    "-v",
+                                                                    "error",
+                                                                    "-show_format",
+                                                                    "-show_streams",
+                                                                    "-of",
+                                                                    "json",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  28,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "ffprobe media inspection",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                                                  "arguments":  [
+                                                                    "-v",
+                                                                    "error",
+                                                                    "-show_format",
+                                                                    "-show_streams",
+                                                                    "-of",
+                                                                    "json",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\2024-04-06 - Vorbis.OGG"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  28,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "ffprobe media inspection",
+                                                  "executable":  "D:\\a\\_temp\\AFP-CI-d10bdf35b6fb4523a049e93b94b693a7\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                                                  "arguments":  [
+                                                                    "-v",
+                                                                    "error",
+                                                                    "-show_format",
+                                                                    "-show_streams",
+                                                                    "-of",
+                                                                    "json",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg"
+                                                                ],
+                                                  "exit_code":  0,
+                                                  "elapsed_ms":  27,
+                                                  "diagnostic_tail":  [
+
+                                                                      ]
+                                              },
+                                              {
+                                                  "purpose":  "application: Default format, naming and exclusion matrix",
+                                                  "executable":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                                                  "arguments":  [
+                                                                    "-NoLogo",
+                                                                    "-NoProfile",
+                                                                    "-NonInteractive",
+                                                                    "-ExecutionPolicy",
+                                                                    "RemoteSigned",
+                                                                    "-File",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Characterization app\\AudioFileForPhone.ps1",
+                                                                    "-InputFolder",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input",
+                                                                    "-OutputParent",
+                                                                    "C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\O\\Run-0879f6da6be9446eb5981ca2ee7a8f5a"
+                                                                ],
+                                                  "exit_code":  1,
+                                                  "elapsed_ms":  1029,
+                                                  "diagnostic_tail":  [
+                                                                          "==== Summary ====",
+                                                                          "[RESULT] status=FailedBeforeConversion; total=4; processed=0; converted=0; failed=0; not_processed=4; scan_excluded=0; unsupported=4; elapsed_seconds=0.643",
+                                                                          "  Input folder : C:\\Users\\runneradmin\\AppData\\Local\\Temp\\AFP-1fb4e7afed4746b0a18143efd30a6454\\Fixtures\\Characterization input",
+                                                                          "  Output root  : (not available; see error for any reserved scope)",
+                                                                          "  Output base  : ",
+                                                                          "  Total files  : 4",
+                                                                          "  Converted    : 0",
+                                                                          "  Failed       : 0",
+                                                                          "  Log file     : (not available)",
+                                                                          "  Manifest     : (not available)",
+                                                                          "  Exit code    : 1",
+                                                                          "============================================================"
+                                                                      ]
+                                              }
+                                          ],
+                             "source_inventory_before":  [
+                                                             {
+                                                                 "relative_path":  "Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+                                                                 "length":  6962,
+                                                                 "sha256":  "FCCBF8AA3D495996BF21AE0612EDD92167DA7EA80A19D947028CA72555B673CE"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\2024-04-06 - Vorbis.OGG",
+                                                                 "length":  5194,
+                                                                 "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Ignored.FLAC",
+                                                                 "length":  21136,
+                                                                 "sha256":  "C15E0B401A66119FA1C9D5221C451FADC9DBB3E55C7AFA0701C64A3FA40934DD"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Ignored.m4b",
+                                                                 "length":  13360,
+                                                                 "sha256":  "88BF17CA0B2A7402DC6B752BF6163419B8BABF230A58F8494F9F7F6472F3911B"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Ignored.OPUS",
+                                                                 "length":  11884,
+                                                                 "sha256":  "E08C2310FC0C0D012546F714565A4F6AA3A2894E67AFCAD7B57E8C586D0CE669"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Ignored.wav",
+                                                                 "length":  72122,
+                                                                 "sha256":  "E47BEB6DB66960750CD69C068B539DDA800B1C7DA4C611993F65757CD5C80943"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+                                                                 "length":  11884,
+                                                                 "sha256":  "E08C2310FC0C0D012546F714565A4F6AA3A2894E67AFCAD7B57E8C586D0CE669"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+                                                                 "length":  13360,
+                                                                 "sha256":  "88BF17CA0B2A7402DC6B752BF6163419B8BABF230A58F8494F9F7F6472F3911B"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Corrupt only input\\2024-04-08 - Corrupt.mp3",
+                                                                 "length":  58,
+                                                                 "sha256":  "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Fixture assets\\Synthetic cover.jpg",
+                                                                 "length":  229,
+                                                                 "sha256":  "C7EA6BAC7CFD7ED314A30EB822E758DBDB542076DFCB80530E42184C2C8BCE9D"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Impossible date input\\2024-02-30 - Impossible.ogg",
+                                                                 "length":  5194,
+                                                                 "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Mixed corrupt input\\2024-04-08 - Corrupt.mp3",
+                                                                 "length":  58,
+                                                                 "sha256":  "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Mixed corrupt input\\2024-04-09 - Valid.ogg",
+                                                                 "length":  5194,
+                                                                 "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                             },
+                                                             {
+                                                                 "relative_path":  "Override input\\2024-04-06 - Vorbis.OGG",
+                                                                 "length":  5194,
+                                                                 "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                             }
+                                                         ],
+                             "source_inventory_after":  [
+                                                            {
+                                                                "relative_path":  "Characterization input\\2024-04-05 - Long title Long title Long title Long title Long title Long title Long title end.MP3",
+                                                                "length":  6962,
+                                                                "sha256":  "FCCBF8AA3D495996BF21AE0612EDD92167DA7EA80A19D947028CA72555B673CE"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\2024-04-06 - Vorbis.OGG",
+                                                                "length":  5194,
+                                                                "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Ignored.FLAC",
+                                                                "length":  21136,
+                                                                "sha256":  "C15E0B401A66119FA1C9D5221C451FADC9DBB3E55C7AFA0701C64A3FA40934DD"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Ignored.m4b",
+                                                                "length":  13360,
+                                                                "sha256":  "88BF17CA0B2A7402DC6B752BF6163419B8BABF230A58F8494F9F7F6472F3911B"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Ignored.OPUS",
+                                                                "length":  11884,
+                                                                "sha256":  "E08C2310FC0C0D012546F714565A4F6AA3A2894E67AFCAD7B57E8C586D0CE669"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Ignored.wav",
+                                                                "length":  72122,
+                                                                "sha256":  "E47BEB6DB66960750CD69C068B539DDA800B1C7DA4C611993F65757CD5C80943"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Nested folder\\More audio\\2024-04-07 - Opus.ogg",
+                                                                "length":  11884,
+                                                                "sha256":  "E08C2310FC0C0D012546F714565A4F6AA3A2894E67AFCAD7B57E8C586D0CE669"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Characterization input\\Nested folder\\More audio\\Stereo fallback!.M4A",
+                                                                "length":  13360,
+                                                                "sha256":  "88BF17CA0B2A7402DC6B752BF6163419B8BABF230A58F8494F9F7F6472F3911B"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Corrupt only input\\2024-04-08 - Corrupt.mp3",
+                                                                "length":  58,
+                                                                "sha256":  "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Fixture assets\\Synthetic cover.jpg",
+                                                                "length":  229,
+                                                                "sha256":  "C7EA6BAC7CFD7ED314A30EB822E758DBDB542076DFCB80530E42184C2C8BCE9D"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Impossible date input\\2024-02-30 - Impossible.ogg",
+                                                                "length":  5194,
+                                                                "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Mixed corrupt input\\2024-04-08 - Corrupt.mp3",
+                                                                "length":  58,
+                                                                "sha256":  "A71584D95887CFEC806749B774D9371F8822427725C48DF4B894413E53361528"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Mixed corrupt input\\2024-04-09 - Valid.ogg",
+                                                                "length":  5194,
+                                                                "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                            },
+                                                            {
+                                                                "relative_path":  "Override input\\2024-04-06 - Vorbis.OGG",
+                                                                "length":  5194,
+                                                                "sha256":  "5C6ACBF9B9D5B2DAE217FA62493292F7547BFE8857C74FEA785E2A2E05CF54CE"
+                                                            }
+                                                        ],
+                             "source_directories_before":  [
+                                                               "Characterization input",
+                                                               "Characterization input\\Nested folder",
+                                                               "Characterization input\\Nested folder\\More audio",
+                                                               "Corrupt only input",
+                                                               "Fixture assets",
+                                                               "Impossible date input",
+                                                               "Mixed corrupt input",
+                                                               "Override input"
+                                                           ],
+                             "source_directories_after":  [
+                                                              "Characterization input",
+                                                              "Characterization input\\Nested folder",
+                                                              "Characterization input\\Nested folder\\More audio",
+                                                              "Corrupt only input",
+                                                              "Fixture assets",
+                                                              "Impossible date input",
+                                                              "Mixed corrupt input",
+                                                              "Override input"
+                                                          ]
+                         },
+    "cleanup_verified":  true,
+    "status":  "fail",
+    "error":  "Baseline checks failed (legacy=0, characterization=1).",
+    "companion_sha256":  "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+    "ffmpeg":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "finished_utc":  "2026-10-11T12:24:33.1510774Z"
+}

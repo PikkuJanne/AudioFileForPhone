@@ -1,0 +1,804 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "mode": "default_and_selected_static_analysis_audit",
+  "utc": "2026-10-11T12:19:18.3013547Z",
+  "tested_commit": "dc88a1da04929e9c985469a2833f23407d0b0e15",
+  "shell": "7.6.5",
+  "edition": "Core",
+  "analyzer_version": "1.25.0",
+  "analyzer_inventory_sha256": "09b36e241037a55426a5b19820a8e251cf175b61956927af41c1f35a5910d2cb",
+  "analyzer_file_count": 53,
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+    },
+    {
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "3cec588056330a1925fb126c4a9ce424ebcc5e22113c9b6072a30ec330abef31"
+    },
+    {
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "ee5a01b6eaa5f548abae2abcaec0bf081ffe7aba0974d0cd053ff34bb777de86"
+    },
+    {
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "54cb630cd002b8d2c61e8b155d66a9ea283704c4440cc3f38fe7fecaef97628e"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4"
+    },
+    {
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "sha256": "3cec588056330a1925fb126c4a9ce424ebcc5e22113c9b6072a30ec330abef31"
+    },
+    {
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "ee5a01b6eaa5f548abae2abcaec0bf081ffe7aba0974d0cd053ff34bb777de86"
+    },
+    {
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "sha256": "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "sha256": "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "sha256": "54cb630cd002b8d2c61e8b155d66a9ea283704c4440cc3f38fe7fecaef97628e"
+    }
+  ],
+  "source_unchanged": true,
+  "default_diagnostic_count": 98,
+  "default_error_count": 0,
+  "default_rules": [
+    {
+      "Name": "PSAvoidOverwritingBuiltInCmdlets, Warning",
+      "Count": 1
+    },
+    {
+      "Name": "PSAvoidUsingEmptyCatchBlock, Warning",
+      "Count": 3
+    },
+    {
+      "Name": "PSAvoidUsingPositionalParameters, Information",
+      "Count": 1
+    },
+    {
+      "Name": "PSAvoidUsingWriteHost, Warning",
+      "Count": 64
+    },
+    {
+      "Name": "PSPossibleIncorrectComparisonWithNull, Warning",
+      "Count": 6
+    },
+    {
+      "Name": "PSUseBOMForUnicodeEncodedFile, Warning",
+      "Count": 1
+    },
+    {
+      "Name": "PSUseDeclaredVarsMoreThanAssignments, Warning",
+      "Count": 1
+    },
+    {
+      "Name": "PSUseShouldProcessForStateChangingFunctions, Warning",
+      "Count": 11
+    },
+    {
+      "Name": "PSUseSingularNouns, Warning",
+      "Count": 10
+    }
+  ],
+  "default_diagnostics": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 295,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 296,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 297,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 298,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 299,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 300,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 301,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 302,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 314,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 340,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 341,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 342,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 343,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 344,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 345,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 346,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 347,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 349,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 359,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 385,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 420,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 421,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 422,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 437,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 441,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 444,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 451,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 475,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 484,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 534,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 599,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 602,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 620,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 640,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 641,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 648,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 662,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 665,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 673,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 677,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 680,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 685,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 712,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 713,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 751,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 755,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 767,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 783,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 896,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 897,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 898,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 899,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 909,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 910,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 911,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 912,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 913,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 914,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 916,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 917,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 918,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 634,
+      "rule": "PSUseDeclaredVarsMoreThanAssignments",
+      "severity": "Warning",
+      "message": "The variable 'outDir' is assigned but never used."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 440,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 443,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 443,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 575,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 578,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 578,
+      "rule": "PSPossibleIncorrectComparisonWithNull",
+      "severity": "Warning",
+      "message": "$null should be on the left side of equality comparisons."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": null,
+      "rule": "PSUseBOMForUnicodeEncodedFile",
+      "severity": "Warning",
+      "message": "Missing BOM encoding for non-ASCII encoded file 'AudioFileForPhone.ps1'"
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 498,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Write-FileNativeDiagnostics' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 509,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'Set-ActiveAudioRecordCancelled' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 481,
+      "rule": "PSAvoidOverwritingBuiltInCmdlets",
+      "severity": "Warning",
+      "message": "'Write-Log' is a cmdlet that is included with PowerShell (version core-6.1.0-windows) whose definition should not be overridden"
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "line": 713,
+      "rule": "PSAvoidUsingPositionalParameters",
+      "severity": "Information",
+      "message": "Cmdlet 'Write-Host' has positional parameter. Please use named parameters instead of positional parameters when calling a command."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 347,
+      "rule": "PSAvoidUsingEmptyCatchBlock",
+      "severity": "Warning",
+      "message": "Empty catch block is used. Please use Write-Error or throw statements in catch blocks."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1515,
+      "rule": "PSAvoidUsingEmptyCatchBlock",
+      "severity": "Warning",
+      "message": "Empty catch block is used. Please use Write-Error or throw statements in catch blocks."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1996,
+      "rule": "PSAvoidUsingEmptyCatchBlock",
+      "severity": "Warning",
+      "message": "Empty catch block is used. Please use Write-Error or throw statements in catch blocks."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1150,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'AudioFileForPhone.Helpers.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 115,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioCancellationContext' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 238,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioProgressParser' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 367,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioProgressCallbackState' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1401,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioRunLog' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1441,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioRunManifest' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1497,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'Set-AudioManifestRecord' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1537,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'Update-AudioRunManifest' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1633,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioRunReservation' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1952,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-AudioCoverDiagnostics' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 3,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Assert-AudioParameters' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 837,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'ConvertTo-AudioPositiveSeconds' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1137,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Assert-ToolPrerequisites' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1424,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Get-AudioNativeDiagnosticLines' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1733,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Get-AudioFiles' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1765,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Assert-AudioPathComponents' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1952,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'New-AudioCoverDiagnostics' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "line": 1972,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Get-CoverDiagnostics' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "tests/ci/Test-CiContracts.ps1",
+      "line": 208,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'Test-CiContracts.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "tests/ci/Test-CiContracts.ps1",
+      "line": 32,
+      "rule": "PSUseSingularNouns",
+      "severity": "Warning",
+      "message": "The cmdlet 'Assert-CiThrows' uses a plural noun. A singular noun should be used instead."
+    },
+    {
+      "path": "tests/ci/Test-CiDependencies.ps1",
+      "line": 158,
+      "rule": "PSAvoidUsingWriteHost",
+      "severity": "Warning",
+      "message": "File 'Test-CiDependencies.ps1' uses Write-Host. Avoid using Write-Host because it might not work in all hosts, does not work when there is no host, and (prior to PS 5.0) cannot be suppressed, captured, or redirected. Instead, use Write-Output, Write-Verbose, or Write-Information."
+    },
+    {
+      "path": "tests/ci/Test-CiDependencies.ps1",
+      "line": 44,
+      "rule": "PSUseShouldProcessForStateChangingFunctions",
+      "severity": "Warning",
+      "message": "Function 'New-TestZip' has verb that could change system state. Therefore, the function has to support 'ShouldProcess'."
+    }
+  ],
+  "selected_diagnostics": [],
+  "selected_settings_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+  "status": "pass"
+}

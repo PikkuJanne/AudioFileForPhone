@@ -1,0 +1,438 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "acceptance": [
+    "A44"
+  ],
+  "status": "pass",
+  "checked_utc": "2026-10-11T12:22:40.8764972Z",
+  "tested_commit": "57c3c2ff3d99f6e5993599eeb627c55fe1397b63",
+  "base_commit": "dc88a1da04929e9c985469a2833f23407d0b0e15",
+  "audit_scope": "Independent source and supply-chain audit; this document does not itself assert a green hosted workflow.",
+  "source_files": [
+    {
+      "relative_path": ".github/dependencies.json",
+      "raw_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "raw_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "raw_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": ".github/scripts/Invoke-CiChecks.ps1",
+      "raw_sha256": "924080567069d6cc18c41757dbdfdf94b235caad129ba349b8cab5ea9af7bd08",
+      "git_blob": "2c7b4cebe693979b478114d1e96516a05b33615c",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": ".github/scripts/PSScriptAnalyzerSettings.psd1",
+      "raw_sha256": "17eb3c8afcd37b3e70379b0d798c880eeed9cfa97801a676d146b2a10de58cb0",
+      "git_blob": "f65cb731eaeb67652a43bb97ebe2fb5c4030e404",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": ".github/scripts/Test-CiPolicy.ps1",
+      "raw_sha256": "0cfff1a540fc4fbfe9bde2192aadc847b09edc280e3a94ef30361bb192ad9f89",
+      "git_blob": "f39b72f5c776662b41e577bec1078f4d1dd71f52",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiContracts.ps1",
+      "raw_sha256": "5389b63b46f7fc7775b2e23f150afa2e89e301a0e2236cfbbf8227cee25f5db5",
+      "git_blob": "ee39f3b44cf7012f36bb66f34169d8f801b5f8a5",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": "tests/ci/Test-CiDependencies.ps1",
+      "raw_sha256": "c158da7c1ab7dc0bcbc4bcad459509dbaaae69cf3485ca705dc83686a0982abf",
+      "git_blob": "098d931f658e909a38dbbf09cdd102ac34f1320e",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": "tests/Invoke-IsolatedBaseline.ps1",
+      "raw_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "git_blob": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "working_tree_matches_commit": true,
+      "equivalence": "strict UTF8 byte roundtrip and CRLF to LF only"
+    },
+    {
+      "relative_path": "tests/Test-NativeProcess.ps1",
+      "raw_sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "git_blob": "25e6298b6c4202af7b96091d1c90b6c6299587d6",
+      "working_tree_matches_commit": true,
+      "equivalence": "strict UTF8 byte roundtrip and CRLF to LF only"
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "raw_sha256": "cca297ec5131bed88bbaa6858446e91e7ef75b9dde59a0ed48e67e4081c3f7e1",
+      "git_blob": "aa910dcf6896368b8bd3c6869cc9e74677c6a51f",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "raw_sha256": "e98430f25651392da46a45b6cc12f937f2f5df0fa4c98bcd816c40e0089ea5c4",
+      "git_blob": "221c71fa1c6d1648261c9a329fc12420b86a3d91",
+      "working_tree_matches_commit": true,
+      "equivalence": "strict UTF8 byte roundtrip and CRLF to LF only"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "raw_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "working_tree_matches_commit": true,
+      "equivalence": "literal"
+    },
+    {
+      "relative_path": "docs/codex-v1/RELEASE_RUNBOOK.md",
+      "raw_sha256": "a342b14ab9ffe777368b4c067104f5d54866132d1c6a0b07c12763f1a5481bda",
+      "git_blob": "4ae535c2bff90560aec2f798bd0985b2e07e9178",
+      "working_tree_matches_commit": true,
+      "equivalence": "strict UTF8 byte roundtrip and CRLF to LF only"
+    }
+  ],
+  "source_commit_proof": "Independent Git blob SHA-1 calculation over literal working bytes; where needed strict UTF-8 decode/encode byte roundtrip followed only by CRLF-to-LF normalization. All 14 files bind to the reviewed commit.",
+  "production_unchanged": true,
+  "action_provenance": {
+    "checked_utc": "2026-10-11T12:21:07.8082702Z",
+    "actions": [
+      {
+        "repository": "actions/checkout",
+        "tag": "v7.0.1",
+        "commit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "official_ref_api": "https://api.github.com/repos/actions/checkout/git/refs/tags/v7.0.1",
+        "release_url": "https://github.com/actions/checkout/releases/tag/v7.0.1",
+        "release_id": 356804776,
+        "published_at": "2026-07-20T15:10:05Z",
+        "prerelease": false,
+        "immutable_release": false,
+        "commit_url": "https://github.com/actions/checkout/commit/3d3c42e5aac5ba805825da76410c181273ba90b1",
+        "commit_date": "2026-07-17T18:45:11Z",
+        "verified": true,
+        "verification_reason": "valid",
+        "action_manifest_git_blob": "5b0524f730db83f9513c18ab31a6c086c7239076",
+        "action_manifest_sha256": "d59219cb79590abdb877deaa14e3b65a00c05318bf5a6f3b989b9162b5d08c35",
+        "runtime": "node24"
+      },
+      {
+        "repository": "actions/upload-artifact",
+        "tag": "v7.0.2",
+        "commit": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+        "official_ref_api": "https://api.github.com/repos/actions/upload-artifact/git/refs/tags/v7.0.2",
+        "release_url": "https://github.com/actions/upload-artifact/releases/tag/v7.0.2",
+        "release_id": 405627178,
+        "published_at": "2026-10-07T10:08:14Z",
+        "prerelease": false,
+        "immutable_release": false,
+        "commit_url": "https://github.com/actions/upload-artifact/commit/cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+        "commit_date": "2026-10-07T10:00:52Z",
+        "verified": true,
+        "verification_reason": "valid",
+        "action_manifest_git_blob": "7cb4d1e81db55320b41217e1a78a1a46e3d2baef",
+        "action_manifest_sha256": "c5979822866a72362e609844b6ebe77d4b7e759af68cc1c2c425dcf51481fab4",
+        "runtime": "node24"
+      }
+    ]
+  },
+  "dependency_provenance": {
+    "checked_utc": "2026-10-11T12:21:10.1301231Z",
+    "dependencies": [
+      {
+        "repository": "GyanD/codexffmpeg",
+        "tag": "9.0.2",
+        "release_url": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+        "release_id": 391959078,
+        "published_at": "2026-09-20T06:40:33Z",
+        "asset_id": 574302090,
+        "asset_name": "ffmpeg-9.0.2-essentials_build.zip",
+        "asset_bytes": 114768076,
+        "digest": "sha256:60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+        "download_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+        "api_url": "https://api.github.com/repos/GyanD/codexffmpeg/releases/assets/574302090"
+      },
+      {
+        "repository": "PowerShell/PSScriptAnalyzer",
+        "tag": "1.25.0",
+        "release_url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/tag/1.25.0",
+        "release_id": 299568140,
+        "published_at": "2026-03-20T19:39:32Z",
+        "asset_id": 378129172,
+        "asset_name": "PSScriptAnalyzer.1.25.0.nupkg",
+        "asset_bytes": 14658674,
+        "digest": "sha256:14e634c828eb98efb9f40b2918ba90f139ed5eccdf663a2a747736d996995d60",
+        "download_url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/download/1.25.0/PSScriptAnalyzer.1.25.0.nupkg",
+        "api_url": "https://api.github.com/repos/PowerShell/PSScriptAnalyzer/releases/assets/378129172"
+      }
+    ]
+  },
+  "publisher_checksum": {
+    "checked_utc": "2026-10-11T12:21:21.4291304Z",
+    "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip.sha256",
+    "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+    "matched": true
+  },
+  "policy": {
+    "status": "pass",
+    "workflow": ".github/workflows/windows-ci.yml",
+    "permissions": "contents: read",
+    "events": [
+      "branch push",
+      "pull_request merge integration"
+    ],
+    "shells": [
+      "powershell/ps51",
+      "pwsh/ps7"
+    ],
+    "checkout_commit": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+    "artifact_commit": "cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+    "ffmpeg_version": "9.0.2-essentials_build-www.gyan.dev",
+    "analyzer_version": "1.25.0",
+    "release_write_path": false,
+    "secret_contexts": false
+  },
+  "policy_mutations": {
+    "count": 20,
+    "cases": [
+      {
+        "name": "release-write token refused",
+        "status": "pass",
+        "refusal": "Test token requires read-only contents permissions.",
+        "source_mutated": false
+      },
+      {
+        "name": "job permission override refused",
+        "status": "pass",
+        "refusal": "Unexpected mapping shape: windows job",
+        "source_mutated": false
+      },
+      {
+        "name": "privileged PR trigger refused",
+        "status": "pass",
+        "refusal": "Missing approved key pull_request at events",
+        "source_mutated": false
+      },
+      {
+        "name": "workflow_run trigger refused",
+        "status": "pass",
+        "refusal": "Missing approved key pull_request at events",
+        "source_mutated": false
+      },
+      {
+        "name": "tag trigger refused",
+        "status": "pass",
+        "refusal": "Missing approved key branches at push",
+        "source_mutated": false
+      },
+      {
+        "name": "secret-bearing environment refused",
+        "status": "pass",
+        "refusal": "Secret contexts are forbidden in test CI.",
+        "source_mutated": false
+      },
+      {
+        "name": "mutable action version refused",
+        "status": "pass",
+        "refusal": "Checkout must use its reviewed official full commit SHA.",
+        "source_mutated": false
+      },
+      {
+        "name": "fork head checkout refused",
+        "status": "pass",
+        "refusal": "Unapproved workflow expression.",
+        "source_mutated": false
+      },
+      {
+        "name": "persisted checkout credential refused",
+        "status": "pass",
+        "refusal": "Unsafe checkout input: persist-credentials",
+        "source_mutated": false
+      },
+      {
+        "name": "unsafe checkout opt-out refused",
+        "status": "pass",
+        "refusal": "Unsafe checkout input: allow-unsafe-pr-checkout",
+        "source_mutated": false
+      },
+      {
+        "name": "self-hosted execution refused",
+        "status": "pass",
+        "refusal": "Only bounded GitHub-hosted Windows jobs are approved.",
+        "source_mutated": false
+      },
+      {
+        "name": "hidden artifact upload refused",
+        "status": "pass",
+        "refusal": "Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.",
+        "source_mutated": false
+      },
+      {
+        "name": "artifact overwrite capability refused",
+        "status": "pass",
+        "refusal": "Unexpected mapping shape: artifact inputs",
+        "source_mutated": false
+      },
+      {
+        "name": "release command injection refused",
+        "status": "pass",
+        "refusal": "Unapproved CI command structure.",
+        "source_mutated": false
+      },
+      {
+        "name": "duplicate YAML permission key refused",
+        "status": "pass",
+        "refusal": "Duplicate YAML key: permissions",
+        "source_mutated": false
+      },
+      {
+        "name": "YAML anchor unsupported and refused",
+        "status": "pass",
+        "refusal": "Unsupported or ambiguous YAML scalar.",
+        "source_mutated": false
+      },
+      {
+        "name": "dependency mutable URL refused",
+        "status": "pass",
+        "refusal": "Unapproved dependency pin: ffmpeg.archive_url",
+        "source_mutated": false
+      },
+      {
+        "name": "dependency wrong digest refused",
+        "status": "pass",
+        "refusal": "Unapproved dependency pin: ffmpeg.archive_sha256",
+        "source_mutated": false
+      },
+      {
+        "name": "duplicate JSON digest key refused",
+        "status": "pass",
+        "refusal": "Duplicate JSON property: archive_bytes",
+        "source_mutated": false
+      },
+      {
+        "name": "additional release workflow refused",
+        "status": "pass",
+        "refusal": "Only the reviewed Windows test workflow is authorized by this policy.",
+        "source_mutated": false
+      }
+    ]
+  },
+  "findings": [
+    {
+      "name": "Normal PR and branch push events",
+      "result": "pass",
+      "detail": "Branch-only push excludes tags. Ordinary pull_request tests the event merge integration SHA; checkout explicitly uses github.sha, and checks require actual HEAD equality on hosted runs."
+    },
+    {
+      "name": "Token and checkout boundary",
+      "result": "pass",
+      "detail": "Only contents: read; no job permission override, secrets context, release-write job, pull_request_target, workflow_run, self-hosted runner, release/tag trigger or unsafe checkout opt-out. Checkout removes credentials before running tests."
+    },
+    {
+      "name": "Action execution pins",
+      "result": "pass",
+      "detail": "Official action repo refs resolve to the recorded full commits; releases and verified commit metadata agree, action.yml uses node24. The tags/releases are mutable; full commit references determine executed action bytes."
+    },
+    {
+      "name": "Verified CI-only dependencies",
+      "result": "pass",
+      "detail": "Exact versioned HTTPS GitHub release archives, archive size and SHA256 verified before extraction, ZIP paths/types/duplicates/case collisions/file ancestors and expansion/path limits checked before extraction, fresh CreateNew file extraction and complete ordinal member inventory verified. FFmpeg version, libmp3lame/aac/libvorbis/libopus encoders and MP3 decoder queried explicitly."
+    },
+    {
+      "name": "Owned download and evidence scope",
+      "result": "pass",
+      "detail": "Fresh AFP-CI-GUID direct TEMP/RUNNER_TEMP child, recorded exclusive owner marker/token, no reparse ancestors, evidence directly in approved parent with CreateNew. Five-minute cancellation and elapsed guard plus 30-second body read wait, bounded pinned byte count, all network/file streams disposed. No global module installation, persistent PATH/policy change, production downloader or binaries in Git."
+    },
+    {
+      "name": "Dependency execution binding",
+      "result": "pass",
+      "detail": "Checks compare setup/lock fingerprints, owner token/marker, exact selected member paths and actual complete 45-file FFmpeg/53-file analyzer inventories to checked-in lock before executable use or Import-Module; actual module version/base checked after import."
+    },
+    {
+      "name": "Tests and reports",
+      "result": "pass",
+      "detail": "Actual supported-shell parsing, pinned analyzer default Error diagnostics plus selected correctness/security diagnostics, pure runtime/policy contracts, retained real-FFmpeg isolated baseline and sequential last native tests. Child task/shell/commit/source/exit/status/case gates checked; real media requires owned cleanup and native suite requires synthetic/descendant release proof."
+    },
+    {
+      "name": "Artifact boundary",
+      "result": "pass",
+      "detail": "Upload is restricted to current run/shell T17 JSON evidence, no hidden files, default overwrite false, unique shell/run/attempt name, 14-day retention. Failure upload is diagnostic evidence, not release assets or trusted input to a privileged follow-up."
+    },
+    {
+      "name": "Release gate",
+      "result": "pass",
+      "detail": "No automatic publication path exists. RELEASE_RUNBOOK Gate 2 requires explicit owner authorization for exact source C and ZIP/manifest SHA256; later tag/draft operations use reviewed assets and --verify-tag. T17 does not create a release, tag or public asset."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+      "supports": "Full action SHA pins, least privilege and avoiding untrusted secret-bearing execution."
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target",
+      "supports": "Ordinary PR workflow/checkout merge integration consistency; privileged PR trigger risks."
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax",
+      "supports": "Branch-only push filters exclude tag events; Windows powershell and pwsh shell semantics."
+    },
+    {
+      "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#pull_request",
+      "supports": "PR event SHA is merge integration commit, distinct from feature-head metadata."
+    },
+    {
+      "url": "https://github.com/actions/checkout/blob/3d3c42e5aac5ba805825da76410c181273ba90b1/README.md",
+      "supports": "Pinned checkout v7 credential removal and node24 runner minimum 2.327.1."
+    },
+    {
+      "url": "https://github.com/actions/checkout/blob/3d3c42e5aac5ba805825da76410c181273ba90b1/src/git-source-provider.ts",
+      "supports": "Auth removal in finally when persist-credentials is false."
+    },
+    {
+      "url": "https://github.com/actions/upload-artifact/blob/cf430e030ddbb5b0abf93d22962f4752f3646cd9/action.yml",
+      "supports": "Pinned artifact action runtime and default overwrite/hidden-file false."
+    },
+    {
+      "url": "https://ffmpeg.org/download.html",
+      "supports": "FFmpeg publishes source and links external gyan.dev Windows builds."
+    },
+    {
+      "url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/tag/1.25.0",
+      "supports": "Official analyzer release and source commit provenance."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/system.net.http.httpcompletionoption",
+      "supports": "ResponseHeadersRead timeout covers headers; body reads require separate bounds."
+    },
+    {
+      "url": "https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md",
+      "supports": "Hosted windows-2025 is Windows Server; actual image/runtime version must be recorded per run."
+    }
+  ],
+  "limitations": [
+    "This is an audit of the reviewed workflow and scripts, not a claim that a malicious PR cannot alter its own checker. Read-only token permissions and absence of secrets/privileged execution are the security boundary.",
+    "Publisher byte hashes and GitHub verified commits establish the reviewed provenance/pins; they do not independently authenticate vendor binaries or prove every transitive action dependency bug-free.",
+    "The restricted YAML subset is deliberately for this one workflow and fails closed on unsupported syntax. It is not a general YAML implementation.",
+    "Hosted Windows Server CI is supplementary to active-machine Windows 11 acceptance. No hosted green run, manual console/phone playback, frozen ZIP or release verification is asserted by this source audit.",
+    "The complete T16 milestone suite remains retained; routine CI selects focused pure contracts, isolated retained baseline and native process coverage. Dependency ZIP guard tests are also committed and locally checked.",
+    "Local dependency roots intentionally remain available for subsequent checks until independently verified owned cleanup; setup does not delete arbitrary trees.",
+    "No repository visibility/protection/Actions settings, credentials, main merge, tag or release mutation was performed by this audit."
+  ]
+}

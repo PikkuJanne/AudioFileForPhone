@@ -1,0 +1,55 @@
+name: Windows CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    runs-on: windows-2025
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - shell: powershell
+            edition: ps51
+          - shell: pwsh
+            edition: ps7
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+    steps:
+      - name: Check out the integration commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          fetch-depth: 1
+          clean: false
+          submodules: false
+          lfs: false
+          allow-unsafe-pr-checkout: false
+      - name: Verify tools and run Windows checks
+        env:
+          CI_RUN_LABEL: run${{ github.run_id }}_${{ github.run_attempt }}
+          CI_EDITION: ${{ matrix.edition }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $destination = Join-Path $env:RUNNER_TEMP ('AFP-CI-' + [guid]::NewGuid().ToString('N'))
+          $evidence = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-' + $env:CI_EDITION + '-' + $env:CI_RUN_LABEL + '.json')
+          & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Initialize-CiDependencies.ps1') -DestinationPath $destination -EvidencePath $evidence
+          & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Invoke-CiChecks.ps1') -DependenciesPath $evidence -RunLabel $env:CI_RUN_LABEL
+      - name: Upload check evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+          retention-days: 14
+          if-no-files-found: warn
+          include-hidden-files: false

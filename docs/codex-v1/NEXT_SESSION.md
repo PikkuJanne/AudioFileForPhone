@@ -1,73 +1,62 @@
-# Next session — T17 after owner integration
+# Next session - T18 after owner integration
 
-T16 is complete: A41/A42 and the full local regression/failure matrix pass on
-PS5.1 and PS7. Exactly next implementation task: T17, secure Windows CI and a
-release gate, after owner integration of T16. Project/release remain incomplete.
+T17 is complete: A43/A44, both local supported shells and actual push/PR integration
+jobs pass. Exactly next task: T18, help/docs/version/support boundaries, after owner
+integration of PR #17. Project/release remain incomplete; optional loudness deferred.
 
 ## Read first and reconcile
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS guidance. Inspect actual dirty/untracked state, active branch, fetch/push
-URLs, overrides, normal fetch, independently advertised refs and live GitHub.
-Preserve all work; no reset/clean/force. Owner merged T15 PR #15 at 11:30:53 UTC
-on 11 October 2026 into main 42d80236521fbcbaf77d511abaca6d55456879c5.
-T01-T15 are integrated. Prior T15 feature 8a55492ed7efb0590877eaa8f0160eee83410ce0.
+AGENTS. Inspect actual dirty/untracked state, active branch, all fetch/push URLs,
+overrides, normal fetch, independently advertised refs and live GitHub. Preserve
+all work; no reset/clean/force. Owner merged T16 PR #16 at 12:08:33 UTC on 11 October
+2026 into main dc88a1da04929e9c985469a2833f23407d0b0e15. T01-T16 are integrated.
+Prior T16 feature d17743b39b6e30b32d567a5f5f1628b59c303959.
 
-T16 branch codex/v1-t16-regression; reviewed/tested code
-3f3c21d2ca65025202ea4a364a157f671031a2a8 was pushed/live-matched.
-Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/16.
-Evidence/handoff follows in a docs-only checkpoint; independently inspect its
-fresh final HEAD/ref. T16 main integration remains owner-gated. Live workflow
-count is zero; local tests are not CI acceptance. No tags/releases exist.
+T17 branch codex/v1-t17-windows-ci; reviewed final code
+8cb3c07c40bf60bd3fa543f29431496029362d74 was pushed/live-ref matched.
+Draft PR https://github.com/PikkuJanne/AudioFileForPhone/pull/17.
+Final evidence/handoff is a docs-only checkpoint; independently inspect its fresh
+HEAD/ref and latest checks. T17 main integration is owner-gated. No tag/release
+approval or repository settings change was granted.
 
-## Preserve the tested matrix and safety contracts
+## Preserve the verified contracts
 
-Read evidence/T16.md and T16-tested-payload.json. Thirty-six selected finals pass:
-974 required checks/groups plus six baseline observations. Thirty retained
-reports keep actual base 42d80236 and matching frozen bytes; six focused finals
-directly test code 3f3c21d2. No production PS/BAT changes were needed.
-The manifest binds 22 files/184 relationships to committed blobs, four literally
-and eighteen by strict UTF-8 CRLF-to-LF only; legacy missing fields stay absent.
+Read evidence/T17.md, T17-tested-payload.json, T17-ci-runs.json and CI_SECURITY.md.
+Green code push 38139564959 and PR run 38139568879 test source head 8cb3c07 and
+merge f8f9d71eff213af172eba14a33123845f4fcf139 respectively. The API source SHA and
+actual PR merge SHA differ; uploaded reports/fresh ref agree and complete trees match.
+Actual hosted image win25-vs2026 20260925.250.1 uses Server 2025/PS5.1.26100.33438 and
+PS7.6.6; local Windows 11 uses PS5.1.26100.9444/PS7.6.5. Evidence stays distinct.
 
-Cleanup has 181 cases per shell: 16 actual retained TEMP guards and two exclusive
-writers, with 163 preservation negatives and 18 positive operations. Scope is
-actual extracted cleanup IfStatements plus inert dependencies and one observer;
-parent finalizer coverage is not fabricated. Ten existing descendant conditions
-and three ACL conditions are
-negatively probed; six legacy bodies have no descendant condition. The new ledger
-hardens Test-NativeProcess.ps1 specifically. Keep CreateNew evidence and positive
-native-release gating. Unknown descendants or reparse/scope uncertainty retain
-fixtures. Never broaden cleanup to ordinary Music or all TEMP.
+Selected local final2 and PR artifact reports pass 95 required groups plus three
+observations per shell (380 groups/twelve observations total). Complete downloaded
+FFmpeg 9.0.2/analyzer 1.25.0 inventories and entry points are independently verified.
+Static gates cover all default Errors and ten security/correctness rules; legacy
+style warnings remain explicit. Source/fixture/positive release/owned cleanup pass.
+Keep original real-media suite and all T16 milestone tests; routine CI is focused.
 
-Edges has six groups and ten independent output probes/full decodes per shell.
-Real source/encoder paths 259 and combined special/Unicode parents pass. Source 260
-success is limited to the actual machine/build; destination working 260 refuses
-before native calls/reservation with explicit audited no-call proof. Live encoder
-validation failure leaves the concurrently completed sibling byte-identical.
-Native has 35 groups, 98 positive release records and quiet handles 665->665/576->576
-with allowance 16. Full suites retain actual 3,605-second progress and scoped returned-root
-Music smokes. Production source/synthetic preservation and owned cleanup pass.
+Preserve full official action pins, contents: read, no secrets/privileged events,
+no persisted checkout credentials, branch-only push filters, ordinary PR merge
+checkout and current-run JSON-only uploads. CI is not authorized to release.
+First hosted failure reports remain failed: test layout hit 260; only owned private
+scaffolding shortened to 227 without changing production limits. Old final1 and
+preliminary reports/snapshots are provenance, not selected final acceptance.
 
-Preserve all nine preliminary reports (five failed/four passing), four historical
-snapshots and four separate proof/recovery records. Original failed flags remain
-false. Cleanup attempt1's original marker digest was absent; current recovery
-observation never fills it in. No recovered failed run counts as acceptance.
-
-T01 external importer and T11 physical Ctrl+C evidence stay historical; no fresh
-manual/phone/CI/release claim. Metadata/cover/chapter fixture limitations, T07
-possible unknown residue, T09 path interval, T11 forced-host and T14 persistence
-limits remain. Keep existing conversion, naming, publication, exit, preview,
-progress, metadata and local diagnostics contracts. Loudness remains deferred.
+Dependency roots and one blocked-cleanup research root remain outside Git; the
+latter has exact inventory/false cleanup outcome, no native execution and no further
+equivalent deletion retry. Media/guard fixtures did clean up. Preserve historical
+T01/T11 manual evidence, T16 regression/recovery scope and all source/metadata/path/
+cancellation/persistence limits. No fresh phone/ZIP/release acceptance is inferred.
 
 ## Start the next coherent task
 
-If PR #16 is owner-merged, verify its advertised main merge, fast-forward clean
-local main and create a relevant T17 codex branch. Read tasks/T17.md and only its
-relevant specs next: TEST_STRATEGY.md, specs/RELEASE_PACKAGE.md and SOURCES.md.
-Add secure Windows checks on both supported shells with reviewed full action
-SHAs, minimum permissions and pinned/verified CI-only FFmpeg dependencies.
-Do not grant untrusted PR code release-write credentials or add a production
-downloader. Obtain real green workflow evidence on the exact reviewed head.
-Main/release authority is unchanged; no intermediate public release.
+If PR #17 is owner-merged, verify its advertised main integration, fast-forward
+clean local main and create a relevant T18 codex branch. Read tasks/T18.md and only
+its relevant specs next. Finish help, docs, version and support boundaries within
+existing PowerShell/BAT behavior. Keep 64 kbps CBR default, external FFmpeg, supported
+inputs, Music default, recursive mapping, date-first names and metadata behavior.
+No production downloader, telemetry, new UI, hosted service or default loudness.
+Main/release authority remains governed by AUTHORITY.md and RELEASE_RUNBOOK.md.
 
-Copy-ready prompt: T17 next please
+Copy-ready prompt: T18 next please
