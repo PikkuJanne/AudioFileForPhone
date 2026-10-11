@@ -1,0 +1,35 @@
+{
+  "task": "T19",
+  "tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "status": "pass",
+  "acceptance_selection": false,
+  "capture": "Actual report command fields; enclosing sequential command completed exit zero.",
+  "invocations": [
+    {
+      "shell": "ps51",
+      "command": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps51-final19.json -RunLabel final19",
+      "status": "pass",
+      "exit_code": 0,
+      "report": "T17-ci-ps51-final19.json",
+      "report_sha256": "f922a699fce8dda20d220122a041b90e8a1a1f4ad2334247db4bc942d7676cd7",
+      "provenance_original": "T17-dependencies-ps51-final4.json",
+      "provenance_copy": "T17-dependencies-ps51-final19.json",
+      "original_and_copy_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "original_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "provisioning_repeated": false
+    },
+    {
+      "shell": "ps7",
+      "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps7-final19.json -RunLabel final19",
+      "status": "pass",
+      "exit_code": 0,
+      "report": "T17-ci-ps7-final19.json",
+      "report_sha256": "a0e3a57a9730c25f26d85986521f321ccfd24e773a64c33d1ee42c6974110649",
+      "provenance_original": "T17-dependencies-ps7-final4.json",
+      "provenance_copy": "T17-dependencies-ps7-final19.json",
+      "original_and_copy_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "original_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "provisioning_repeated": false
+    }
+  ]
+}

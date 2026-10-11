@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "status": "retained_download_cleanup_limit",
+  "source_feature_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "selected_run_id": 38145173494,
+  "selected_run_attempt": 1,
+  "download_root_name": "T19-hosted-1d4346c3d31946dd8532c4efcf524e01",
+  "ownership_marker_sha256": "a1588cec9e29975cedf3402ea481fc4571110a8eece447d886fb593c2c716a0c",
+  "downloaded_original_report_count": 16,
+  "original_reports_copied_byte_identically": true,
+  "report_and_source_verification": "Passed before the cleanup request; T19-ci-runs.json and T19-hosted-payload.json retain actual metadata and digest relationships.",
+  "cleanup_request": {
+    "action": "Validate the exact owned download root, marker,16 input/copy digests, allowed inventory and reparse boundaries; delete only explicit regular files and now-empty directories within that exact root.",
+    "result": "Automatic approval review rejected before process creation.",
+    "literal_reason": "blocked by policy",
+    "further_reason_available": false,
+    "process_started": false,
+    "mutation_performed": false,
+    "retried": false,
+    "cleanup_verified": false
+  },
+  "retention_scope": "Known fresh local capture root containing downloaded hosted JSON, marker and temporary verification script remains retained. No application source files, vendor binaries or personal media were copied into this capture. Hosted JSON contains harness output and source excerpts. This is separate from older retained package attempt roots; those were untouched.",
+  "acceptance_limit": "No cleanup claim is made for this capture root. The rejection does not change already-copied raw report bytes, successful hosted jobs, or source/report verification."
+}

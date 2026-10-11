@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "mode": "preliminary_failure_and_rejected_separate_cleanup_actions",
+  "recorded_utc": "2026-10-11T13:51:04.1680119Z",
+  "attempt1": {
+    "report": "T19-package-ps7-attempt1.json",
+    "sha256": "6abb54265323594d0c413a43e8785bdd89609a4b8e1d5134a2c781ad8591bc3d",
+    "status": "fail",
+    "original_cleanup_verified": false,
+    "root_name": "T19P-2fb345e1",
+    "parent": "C:\\Windows\\Temp",
+    "original_marker_digest_recorded": false,
+    "independently_observed_marker_sha256": "03655b9174d894349194607b90bfc80b37ef1903302749df8508334423f9ae81",
+    "original_marker_equality_claimed": false,
+    "independent_read_only_audit": "Two original outputs identify the same exact root; clean original synthetic Git HEAD, 10 source/build and 6 asset hash/byte pairs match; 115 descendants and ancestors have no reparse; complete inventory repeats unchanged; all exclusions are inert synthetic markers. No recovery occurred."
+  },
+  "attempt2": {
+    "report": "T19-package-ps7-attempt2.json",
+    "sha256": "81ddabd9571565e9e0a9312ed029ae2db05591519e68a3efe896f86c14c826b7",
+    "status": "fail",
+    "cases_passed": 49,
+    "original_cleanup_verified": false,
+    "ownership_marker_sha256": "acedb26d037c006f88eb416f79b14f2a0d9b4ad32d7a606a05e9e21ea6241e0b",
+    "root_name": null,
+    "limit": "Name was redacted and not retained separately; cannot safely identify the remaining scope. No broad parent enumeration/deletion or recovery was attempted."
+  },
+  "rejected_actions": [
+    {
+      "action": "Separate owned synthetic Git cleanup probe",
+      "actor": "package_tests",
+      "result": "blocked by policy",
+      "process_created": false,
+      "specific_reason_available": false
+    },
+    {
+      "action": "Independent exact audited attempt1 TEMP fixture cleanup",
+      "actor": "root",
+      "result": "blocked by policy",
+      "process_created": false,
+      "specific_reason_available": false
+    }
+  ],
+  "equivalent_retries": false,
+  "old_report_bytes_changed": false,
+  "private_media": false,
+  "acceptance_evidence": false
+}

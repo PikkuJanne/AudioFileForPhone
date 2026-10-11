@@ -1,0 +1,50 @@
+{
+  "task": "T19",
+  "actual_base_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "status": "pass",
+  "scope": "Precommit corrected working bytes; raw before/after source digests retained. Not counted again in committed-source routine acceptance.",
+  "invocations": [
+    {
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T19-package-ps51-final1.json",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T19-package-ps51-final1.json"
+    },
+    {
+      "shell": "ps7",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T19-package-ps7-final1.json",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T19-package-ps7-final1.json"
+    }
+  ]
+}

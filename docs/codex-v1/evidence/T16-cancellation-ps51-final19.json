@@ -1,0 +1,316 @@
+{
+    "schema_version":  1,
+    "task":  "T16",
+    "mode":  "controlled_native_console_input_and_forced_host",
+    "command":  "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-Cancellation.ps1 -EvidencePath docs/codex-v1/evidence/T16-cancellation-ps51-final19.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+    "started_utc":  "2026-10-11T13:55:36.4865788Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "d69732aa91bde6ccf966cb584544251b463004e4",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Cancellation.ps1",
+                              "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Cancellation.ps1",
+                             "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Support.cs",
+                                 "sha256":  "40e31d81b547f4d6bb60950883039013bec56b1ed9d66b3d2992fe084b48110d"
+                             },
+                             {
+                                 "relative_path":  "Controller.exe",
+                                 "sha256":  "069c59cc1e80ba6676827c14ec7bda70950dbd38591077dfa867d14cc06b7759"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-01 First.mp3",
+                                 "sha256":  "e58d8d0ca0f0ea8421d114f4fd291c16c1ecba9b82ba58eb278af4e09d992f89"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-02 Second.m4a",
+                                 "sha256":  "aedec3f05e77460e59f310538117421f42fb5ebbc804f3a9ac88164958273c59"
+                             },
+                             {
+                                 "relative_path":  "I\\2024-01-03 Third.ogg",
+                                 "sha256":  "6f9ffea9a00361c65e2a35fc399782d6d8370b33b4d53558e2b921c5efd5aa33"
+                             },
+                             {
+                                 "relative_path":  "I\\.AudioFileForPhone-c0fcf99b17e54dc28b488b356ceb33cb.partial",
+                                 "sha256":  "c6d4f5fd90d807520fb9b50c752bb19543868e501e1fab7a55b8d2fba62b66c4"
+                             },
+                             {
+                                 "relative_path":  "A-console\\AudioFileForPhone.ps1",
+                                 "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                             },
+                             {
+                                 "relative_path":  "A-console\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "87a39dcce521577a4e849208eb3e9b943ecddcb02b45fe961c52214aa984f60c"
+                             },
+                             {
+                                 "relative_path":  "console-driver.ps1",
+                                 "sha256":  "fb9f9339045fdc228200f7ace25f596a95f2c5ab802bea233f8211e07e4f983c"
+                             },
+                             {
+                                 "relative_path":  "A-crash\\AudioFileForPhone.ps1",
+                                 "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                             },
+                             {
+                                 "relative_path":  "A-crash\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "da3b6ac10d6ff79c15b4b5733fd7ea55d099a982d2f68486ebe22d5da4c83d31"
+                             },
+                             {
+                                 "relative_path":  "crash-driver.ps1",
+                                 "sha256":  "48268fca7b3ef7f0cbe505c8a5b60aaac7ed039d50418e614fa0ef48b194b2e1"
+                             },
+                             {
+                                 "relative_path":  "A-next\\AudioFileForPhone.ps1",
+                                 "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                             },
+                             {
+                                 "relative_path":  "A-next\\AudioFileForPhone.Helpers.ps1",
+                                 "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                             },
+                             {
+                                 "relative_path":  "next-driver.ps1",
+                                 "sha256":  "008c26e54d323615d52ef7638ebb6aef4dbbb018814347d12f63d73e51f755b5"
+                             },
+                             {
+                                 "relative_path":  "next-normal.ps1",
+                                 "sha256":  "90904a3ca73d5a08b787b60c7d23108dce8726e2ddcce4550652f934e501b030"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Support.cs",
+                                "sha256":  "40e31d81b547f4d6bb60950883039013bec56b1ed9d66b3d2992fe084b48110d"
+                            },
+                            {
+                                "relative_path":  "Controller.exe",
+                                "sha256":  "069c59cc1e80ba6676827c14ec7bda70950dbd38591077dfa867d14cc06b7759"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-01 First.mp3",
+                                "sha256":  "e58d8d0ca0f0ea8421d114f4fd291c16c1ecba9b82ba58eb278af4e09d992f89"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-02 Second.m4a",
+                                "sha256":  "aedec3f05e77460e59f310538117421f42fb5ebbc804f3a9ac88164958273c59"
+                            },
+                            {
+                                "relative_path":  "I\\2024-01-03 Third.ogg",
+                                "sha256":  "6f9ffea9a00361c65e2a35fc399782d6d8370b33b4d53558e2b921c5efd5aa33"
+                            },
+                            {
+                                "relative_path":  "I\\.AudioFileForPhone-c0fcf99b17e54dc28b488b356ceb33cb.partial",
+                                "sha256":  "c6d4f5fd90d807520fb9b50c752bb19543868e501e1fab7a55b8d2fba62b66c4"
+                            },
+                            {
+                                "relative_path":  "A-console\\AudioFileForPhone.ps1",
+                                "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                            },
+                            {
+                                "relative_path":  "A-console\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "87a39dcce521577a4e849208eb3e9b943ecddcb02b45fe961c52214aa984f60c"
+                            },
+                            {
+                                "relative_path":  "console-driver.ps1",
+                                "sha256":  "fb9f9339045fdc228200f7ace25f596a95f2c5ab802bea233f8211e07e4f983c"
+                            },
+                            {
+                                "relative_path":  "A-crash\\AudioFileForPhone.ps1",
+                                "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                            },
+                            {
+                                "relative_path":  "A-crash\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "da3b6ac10d6ff79c15b4b5733fd7ea55d099a982d2f68486ebe22d5da4c83d31"
+                            },
+                            {
+                                "relative_path":  "crash-driver.ps1",
+                                "sha256":  "48268fca7b3ef7f0cbe505c8a5b60aaac7ed039d50418e614fa0ef48b194b2e1"
+                            },
+                            {
+                                "relative_path":  "A-next\\AudioFileForPhone.ps1",
+                                "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                            },
+                            {
+                                "relative_path":  "A-next\\AudioFileForPhone.Helpers.ps1",
+                                "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                            },
+                            {
+                                "relative_path":  "next-driver.ps1",
+                                "sha256":  "008c26e54d323615d52ef7638ebb6aef4dbbb018814347d12f63d73e51f755b5"
+                            },
+                            {
+                                "relative_path":  "next-normal.ps1",
+                                "sha256":  "90904a3ca73d5a08b787b60c7d23108dce8726e2ddcce4550652f934e501b030"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_entry_bytes_unchanged":  true,
+    "owned_temp_root_name":  "T11C-393f9afb",
+    "temp_parent_selection":  "shorter user/machine TEMP, read-only lookup",
+    "owned_temp_root":  "C:\\Windows\\TEMP\\T11C-393f9afb",
+    "owner_marker_sha256":  "ded94e13ad0d7afc16e171401b09e30dc1d712e3d64c06c324f4c7964ad15e23",
+    "cases":  [
+                  {
+                      "name":  "pre-requested context starts no native child",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "native_status":  "Cancelled",
+                      "no_child_launched":  true
+                  },
+                  {
+                      "name":  "programmatic native cancellation releases only owned real FFmpeg",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "native_status":  "Cancelled",
+                      "process_released":  true,
+                      "duration_milliseconds":  570,
+                      "unrelated_real_ffmpeg_survived":  true
+                  },
+                  {
+                      "name":  "pre-requested source inspection reports cancellation before probe/staging",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "source_probe_cancelled_before_launch":  true
+                  },
+                  {
+                      "name":  "transaction cancellation at validation-probe preserves publication/cleanup boundary",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "real_phase_reached":  true,
+                      "current_partial_removed":  true,
+                      "transaction_status":  "Cancelled",
+                      "no_final_publication":  true
+                  },
+                  {
+                      "name":  "transaction cancellation at full-decode preserves publication/cleanup boundary",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "real_phase_reached":  true,
+                      "current_partial_removed":  true,
+                      "transaction_status":  "Cancelled",
+                      "no_final_publication":  true
+                  },
+                  {
+                      "name":  "transaction cancellation at publication preserves publication/cleanup boundary",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "real_phase_reached":  true,
+                      "current_partial_removed":  true,
+                      "transaction_status":  "Cancelled",
+                      "no_final_publication":  true
+                  },
+                  {
+                      "name":  "transaction cancellation at unproved-release preserves publication/cleanup boundary",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "injected_unknown_release_no_actual_child":  true,
+                      "exact_partial_retained":  true,
+                      "cleanup_reason":  "Owned native process exit was not established; leaving the incomplete working path.",
+                      "transaction_status":  "Cancelled",
+                      "no_final_publication":  true
+                  },
+                  {
+                      "name":  "controlled isolated console Ctrl+C key records preserve first output, remove current partial and return130",
+                      "acceptance_case":  "A29",
+                      "status":  "pass",
+                      "controller":  {
+                                         "host_pid":  19252,
+                                         "native_pid":  11696,
+                                         "ready":  true,
+                                         "synthetic_ctrl_c_key_records":  true,
+                                         "forced_host_termination":  false,
+                                         "native_alive_after_host_kill":  false,
+                                         "held_owned_handles_released":  true,
+                                         "host_exit_code":  130,
+                                         "error":  ""
+                                     },
+                      "physical_manual_keypress_claim":  false,
+                      "exit_code":  130,
+                      "summary":  "[RESULT] status=Cancelled; total=3; processed=1; converted=1; failed=0; not_processed=2; scan_excluded=0; unsupported=1; elapsed_seconds=3.728",
+                      "completed_output_sha256":  "afd155091360066b2441099d3165f31f992523f35b5d153106313f9f2ef2a58a",
+                      "completed_output_unchanged_and_decoded":  true,
+                      "current_partial_removed":  true,
+                      "cancelled_log_record":  true,
+                      "console_mode_restored":  true,
+                      "unrelated_real_ffmpeg_survived":  true
+                  },
+                  {
+                      "name":  "forced owned host termination leaves recognizable partial and completed output; next run preserves both plus arbitrary orphan",
+                      "acceptance_case":  "A30",
+                      "status":  "pass",
+                      "controller":  {
+                                         "host_pid":  24928,
+                                         "native_pid":  1816,
+                                         "ready":  true,
+                                         "synthetic_ctrl_c_key_records":  false,
+                                         "forced_host_termination":  true,
+                                         "native_alive_after_host_kill":  true,
+                                         "held_owned_handles_released":  true,
+                                         "host_exit_code":  123,
+                                         "error":  ""
+                                     },
+                      "recognizable_partial_name":  ".AudioFileForPhone-10ca4d0eb1fc47a38ba2e6d7283314f5.partial",
+                      "prior_run_all_file_hashes_unchanged":  true,
+                      "no_forced_host_cancelled_claim":  true,
+                      "next_run_supported_count":  3,
+                      "arbitrary_orphan_preserved":  true,
+                      "unrelated_real_ffmpeg_survived":  true
+                  }
+              ],
+    "children_disposed":  true,
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "manual_requested":  false,
+    "physical_manual_ctrl_c":  false,
+    "tools":  [
+                  {
+                      "path":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                      "sha256":  "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+                      "version":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+                  },
+                  {
+                      "path":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+                      "sha256":  "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+                      "version":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+                  }
+              ],
+    "finished_utc":  "2026-10-11T13:55:54.0576342Z"
+}

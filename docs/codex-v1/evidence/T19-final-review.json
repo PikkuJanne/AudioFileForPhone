@@ -1,0 +1,1559 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "mode": "independent_read_only_final_documentation_evidence_and_package_audit",
+  "status": "pass",
+  "reviewed_source_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+  "reviewed_at_utc": "2026-10-11T15:01:39.5361407Z",
+  "scope": "Six final tracked docs and166 existing new evidence files. C2 runtime/builder/harness are frozen. Existing before/after fields and original commit identities remain literal. This audit does not establish manual/device/release acceptance or final docs push checks.",
+  "actual_acceptance": [
+    "A47",
+    "A48"
+  ],
+  "findings": [],
+  "unresolved_blockers": [],
+  "intended_final_checkpoint_file_count": 173,
+  "new_json_parsed_before_this_report": 163,
+  "new_json_including_this_report": 164,
+  "tracked_json_parsed": 2,
+  "verified_audit": {
+    "status": "pass",
+    "reviewed_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+    "tracked_doc_count": 6,
+    "new_file_count": 166,
+    "new_json_parsed": 163,
+    "catalog": [
+      {
+        "path": "docs/codex-v1/ACCEPTANCE.json",
+        "bytes": 39964,
+        "sha256": "87316103a0b06d81f158a7d93ec9e0fdc7f738908ec027fffadb4ec57c52c9d1",
+        "tracked_diff": true,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/DECISIONS.md",
+        "bytes": 52255,
+        "sha256": "ed4faea43766408552bc0823a96923fd381777d3cc3373e3c7eadb27c23a37e1",
+        "tracked_diff": true,
+        "kind": "md"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cancellation-ps51-final19.json",
+        "bytes": 19244,
+        "sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cancellation-ps7-final19.json",
+        "bytes": 12764,
+        "sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cleanup-ps51-final19.json",
+        "bytes": 131937,
+        "sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cleanup-ps7-final19.json",
+        "bytes": 93186,
+        "sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-diagnostics-ps51-final19.json",
+        "bytes": 1343255,
+        "sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-diagnostics-ps7-final19.json",
+        "bytes": 1070880,
+        "sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-discovery-ps51-final19.json",
+        "bytes": 22449,
+        "sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-discovery-ps7-final19.json",
+        "bytes": 15062,
+        "sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-edges-ps51-final19.json",
+        "bytes": 295470,
+        "sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-edges-ps7-final19.json",
+        "bytes": 209699,
+        "sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-launcher-ps51-final19.json",
+        "bytes": 87859,
+        "sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-launcher-ps7-final19.json",
+        "bytes": 56528,
+        "sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-metadata-ps51-final19.json",
+        "bytes": 1059360,
+        "sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-metadata-ps7-final19.json",
+        "bytes": 715344,
+        "sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-music-ps51-final19.json",
+        "bytes": 9215,
+        "sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-music-ps7-final19.json",
+        "bytes": 5880,
+        "sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-naming-ps51-final19.json",
+        "bytes": 27419,
+        "sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-naming-ps7-final19.json",
+        "bytes": 17459,
+        "sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-output-ps51-final19.json",
+        "bytes": 4964,
+        "sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-output-ps7-final19.json",
+        "bytes": 3467,
+        "sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-preflight-ps51-final19.json",
+        "bytes": 94896,
+        "sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-preflight-ps7-final19.json",
+        "bytes": 72150,
+        "sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-preview-ps51-final19.json",
+        "bytes": 526859,
+        "sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-preview-ps7-final19.json",
+        "bytes": 280535,
+        "sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-progress-ps51-final19.json",
+        "bytes": 116030,
+        "sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-progress-ps7-final19.json",
+        "bytes": 80223,
+        "sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-reservation-ps51-final19.json",
+        "bytes": 15597,
+        "sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-reservation-ps7-final19.json",
+        "bytes": 10497,
+        "sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-script-ps51-final19.json",
+        "bytes": 48419,
+        "sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-script-ps7-final19.json",
+        "bytes": 28646,
+        "sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-transaction-ps51-final19.json",
+        "bytes": 118639,
+        "sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-transaction-ps7-final19.json",
+        "bytes": 70188,
+        "sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-final19.json",
+        "bytes": 136994,
+        "sha256": "2286c56e6eb33cd8b460474e6eb87a9bcf84a1ff9107a1e92e11485b24bdea7a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-final20.json",
+        "bytes": 136994,
+        "sha256": "1e7eaeb5e8721b611427995b566fe6f2e229a1b1c83f9ffc1782eb9924fd7cc8",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-final21.json",
+        "bytes": 136994,
+        "sha256": "5b97e9af5ed4a01d891507a9b282275f6ccd7f110816e2d39b7df7d8738ef9e4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-run38145173494_1.json",
+        "bytes": 136850,
+        "sha256": "f8cca5ef541b9be673a4511a2bfcecd8c1ccd0f6aaf9cfa35a00694ab51a0e1a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-run38146781829_1.json",
+        "bytes": 136850,
+        "sha256": "b8230839e1e040cdcefe17cd1727872645059f8aca056c4c8791a4a1ac68b1cf",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps51-run38147797740_1.json",
+        "bytes": 136850,
+        "sha256": "bcc2b8be637b266e6ad4654d9b4dde09296f402f775082035f4b4d87c8282564",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-final19.json",
+        "bytes": 59537,
+        "sha256": "7ce4a2997268b93839915d79f9b0bdf0e639ef9891ef75a7014ebcdf81e34705",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-final20.json",
+        "bytes": 59537,
+        "sha256": "d6a35568c131d0080dd9c7541043fc8d1a2afc269fd0ede5682aa2a154f5e601",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-final21.json",
+        "bytes": 59538,
+        "sha256": "32cc57f64d0d01e470f7fd79660632fed49abecbbf35254e1867b1e8eb847bf9",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-run38145173494_1.json",
+        "bytes": 58933,
+        "sha256": "7e7cbf4f7be57f7c8241a6c8fa80e8eb96d71aee9c2df8a84d40dd7c57d21f73",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-run38146781829_1.json",
+        "bytes": 58934,
+        "sha256": "a6758de67eb80512f2c6020ae214217288c8f0828ad8d7fee077fef3abd1b4f8",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-baseline-ps7-run38147797740_1.json",
+        "bytes": 58934,
+        "sha256": "345f3deb122b2ad4ce8f7122325656005978543d69ed2b10e0a9495f9153e24c",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final19.json",
+        "bytes": 5771,
+        "sha256": "e1eb58835060cf524a451cc93fa23be3fac8ff6c4e44d5a5e271059afe2b74f1",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final20.json",
+        "bytes": 5771,
+        "sha256": "bdd9993a3649822f7a45c70296bd74f194f7af6600306f1396b5e954e02a1e87",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final21.json",
+        "bytes": 5771,
+        "sha256": "c44a1606d7e5c9a19ce56037daf496807ee2de8266216c8b4d37baccad33551a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-run38145173494_1.json",
+        "bytes": 5820,
+        "sha256": "3e545f40186ac1413176f8b940217353648ef6a116b6a033fed9f5d03adecf3d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-run38146781829_1.json",
+        "bytes": 5820,
+        "sha256": "b7d39a00b7dc0f4ca63625bbdb97152f5a6f4074924b370db710712052d50ab0",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-run38147797740_1.json",
+        "bytes": 5820,
+        "sha256": "bf9927b89780e4dabadfccf55eb1b172cf3737fb4af2f8a54ee1323ec9a14028",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final19.json",
+        "bytes": 3741,
+        "sha256": "3d20a2e25e05bf517935b14a6b5898464b94623045548a02b4b4289638f2fd3e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final20.json",
+        "bytes": 3741,
+        "sha256": "f19cf37207b900b622a648782882d782151d1561c121c77b772c44c730759116",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final21.json",
+        "bytes": 3741,
+        "sha256": "b18ad2fdeffe30c2d8bdbee818ab0512196eee26130521d1d92c96324402a3ef",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-run38145173494_1.json",
+        "bytes": 3789,
+        "sha256": "075f90de30e39231387960bde9f7ed0b7efcc961d9a315bf8ce2637f34fdc6d1",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-run38146781829_1.json",
+        "bytes": 3789,
+        "sha256": "9cbe25ccea349633fb7df8f25408364e6f3cb8b2ad99da730b995e21c077c548",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-run38147797740_1.json",
+        "bytes": 3789,
+        "sha256": "60826af5632d111e5ad432266ace5e97efaa040a841d9882f9c1321ae97d6ecb",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final19.json",
+        "bytes": 38155,
+        "sha256": "f922a699fce8dda20d220122a041b90e8a1a1f4ad2334247db4bc942d7676cd7",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final20.json",
+        "bytes": 38155,
+        "sha256": "1cbb625f1eb590fd0bdc2b5aed80a0e31cff80567f3580c63fd287ad386648c3",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final21.json",
+        "bytes": 38155,
+        "sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-run38145173494_1.json",
+        "bytes": 38117,
+        "sha256": "9c6cbb1f92f0800f1c0f06e0bb6f262ac1d625336624e83dfa8e02f310deb3c4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-run38146781829_1.json",
+        "bytes": 38117,
+        "sha256": "e23dffe19c627ee60f382b53ce6f9b3ac7608d5d3b3c480d52c5ed4e97975b3e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-run38147797740_1.json",
+        "bytes": 38117,
+        "sha256": "550a272c1080a479f294acb07dc563fb4193429c6099f7aad9236628d9c6e1b6",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final19.json",
+        "bytes": 22771,
+        "sha256": "a0e3a57a9730c25f26d85986521f321ccfd24e773a64c33d1ee42c6974110649",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final20.json",
+        "bytes": 22771,
+        "sha256": "2a483d3e26d1bdd83516ce3dad19008af9aaf39270b9a3eedec63118882694da",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final21.json",
+        "bytes": 22771,
+        "sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-run38145173494_1.json",
+        "bytes": 22662,
+        "sha256": "7d2dba6f9e712974173453f51858118c90965a8b67f848eac31c63f8cc921d0e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-run38146781829_1.json",
+        "bytes": 22662,
+        "sha256": "c0cdfc9d8a6c296133254b93501d621ad6c480258e5d1408a7c24fb09462f906",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-run38147797740_1.json",
+        "bytes": 22662,
+        "sha256": "28b9d6cca001022e16027625a714aae854da63503e7e35b838e134aafd7fef17",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final19.json",
+        "bytes": 47871,
+        "sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final20.json",
+        "bytes": 47871,
+        "sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final21.json",
+        "bytes": 47871,
+        "sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-run38145173494_1.json",
+        "bytes": 47787,
+        "sha256": "01a1ec18d5d2e02afff67691843fcbde28659f1181f2897df8d8046f426f928f",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-run38146781829_1.json",
+        "bytes": 47787,
+        "sha256": "9b105429737e945ead0acc2775bad2174f8193ea6e99e75a4b1d00d819da24ef",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps51-run38147797740_1.json",
+        "bytes": 47787,
+        "sha256": "ff89f3594d8930796f0f2af6c6ec2e422324a3c3ff9f2eb8210b122295e52b04",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final19.json",
+        "bytes": 23939,
+        "sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final20.json",
+        "bytes": 23939,
+        "sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final21.json",
+        "bytes": 23939,
+        "sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-run38145173494_1.json",
+        "bytes": 23854,
+        "sha256": "141be8bb1ad7915ef97fde60a8287571b1ab28e0821c4a37e056a08745c62de9",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-run38146781829_1.json",
+        "bytes": 23854,
+        "sha256": "a85a80c753165e11ee184fc4975b2c03773df17b962f7d39b331c8134a846e1d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-dependencies-ps7-run38147797740_1.json",
+        "bytes": 23854,
+        "sha256": "a14382c08dfdf42261394ba09ef00034390e1b7c7fdde5bbadd51385651d31a6",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-final19.json",
+        "bytes": 535847,
+        "sha256": "aea798d4d9ce6ff0a1ec296d7dc2f3ae5e98bf669cc7e354b5d2006e156359d1",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-final20.json",
+        "bytes": 535848,
+        "sha256": "42e3fb6e880c57c43224d3c734193dc4868c21e138045cfad9cacd274850291a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-final21.json",
+        "bytes": 535847,
+        "sha256": "5e323774024d7baeeac51c7c429e62813280f8e6c7892577d15dfb3d596c3a0c",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-run38145173494_1.json",
+        "bytes": 534545,
+        "sha256": "fd7dbe7c602616825e8ead3860742f3be82095238aa08bacdb805be08a190b1b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-run38146781829_1.json",
+        "bytes": 534545,
+        "sha256": "751adc5f1fe631ec600fa6d5fa1a452a06ed2e5bd981796bd708343fcfc6a84c",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-run38147797740_1.json",
+        "bytes": 534545,
+        "sha256": "961183035c25bd545b78ba9f0e7837299aaf300d1edb62a84c667db1167f8c25",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-final19.json",
+        "bytes": 327552,
+        "sha256": "384d4dc189316deecd2435b34a2d3ced1de4b1be8920104b859bfaebf0845f4d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-final20.json",
+        "bytes": 327552,
+        "sha256": "2d463c9dbaa8e5437ec7e26d6e59f4e5c3a1dff747e708fc2c0363f6c2909a55",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-final21.json",
+        "bytes": 327552,
+        "sha256": "1210681d95709ca1265ef356aed8cc8c1e6592da8f266c6ce30812aad9a5c80a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-run38145173494_1.json",
+        "bytes": 329683,
+        "sha256": "557cbeeb89641729aabdf433182ed8adcebbb6ce9a32fa0203c02d062dcacc5e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-run38146781829_1.json",
+        "bytes": 329683,
+        "sha256": "0452045a1e94e8ff207fae71f251b39d924899040dd619dba329d0dec5295b2b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-run38147797740_1.json",
+        "bytes": 329682,
+        "sha256": "05caf40a5825d881ec231432b88162185c78fce4410ba1b4372cd7da64f7ec08",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-final19.json",
+        "bytes": 78007,
+        "sha256": "d1dc3758c17bb9bc384adf4268fd4c918122f9207de9ed3609aca003f3aef355",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-final20.json",
+        "bytes": 78006,
+        "sha256": "ad234013649b58b48db2e05ff3d8951680dbd8ab509d7c38abc3fc616dc70aa5",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-final21.json",
+        "bytes": 78007,
+        "sha256": "a7420b396037b5d0a83fb559c16d592686211c895645c2e3390f5f477e4e2c88",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-run38145173494_1.json",
+        "bytes": 77563,
+        "sha256": "1c8dece11f7d3067fcaf37e03dda49af43d0c2f71dc63f9e76ab4eab997aafb2",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-run38146781829_1.json",
+        "bytes": 77562,
+        "sha256": "72ba1b0bd81b333a761bc62edac7536a87758c3970a66b11231ba14f9fab522b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps51-run38147797740_1.json",
+        "bytes": 77563,
+        "sha256": "0c1ee8a5e214060eb5bbb65398c7217eb35d6a198d0cce6ea2ab04a8c4c2294b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-final19.json",
+        "bytes": 44801,
+        "sha256": "b2d04cacb48397ec2379c7d21d98b35c18307aaead5428fdbf1e4b124d5ce695",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-final20.json",
+        "bytes": 44801,
+        "sha256": "c2ac060863f8b931c697ca406fc334e6c1044ed31155de188f7cd8bd410545f4",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-final21.json",
+        "bytes": 44801,
+        "sha256": "ab04433ff8156033e3724c8822f2b3215d38d0d498be95f3250c7624c65e4609",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-run38145173494_1.json",
+        "bytes": 44232,
+        "sha256": "9707dc108b51b2339bc6bea02d51d5fee6528444310f798713812e0cf677964c",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-run38146781829_1.json",
+        "bytes": 44232,
+        "sha256": "eb62074a5db4f0764c836fb7332987d9c3712e973df592198f1b7b51e7235d7c",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-native-ps7-run38147797740_1.json",
+        "bytes": 44231,
+        "sha256": "19a6d728224d73f48db94f3b066640d1bf4a392a6cf9ca151dfdb9b3bd924679",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-final19.json",
+        "bytes": 287054,
+        "sha256": "1ce1e813f7fa4537724a9315e22137a244d2225de4fb8fc90af0af6b30d5eb75",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-final20.json",
+        "bytes": 306634,
+        "sha256": "6f7a8f7c3a67fc2021f04cdff3fa13be39444d5c1081f71ee14368216b155dc3",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-final21.json",
+        "bytes": 309148,
+        "sha256": "d3973f56a32bfab8b9511abb0914e406b95ee71efa6b93d9bb6cdbce3d51c9e0",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-run38145173494_1.json",
+        "bytes": 286981,
+        "sha256": "08c2436881a8dbd95c5ce9fdaf02230851443a8222db0e2f81e6504df70bb682",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-run38146781829_1.json",
+        "bytes": 306272,
+        "sha256": "fff886a7c1054428bb1c0f56dbccf7d70c2668b9eccf85aede5fdd18543fe2a6",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-run38147797740_1.json",
+        "bytes": 308812,
+        "sha256": "d0540225cec07838f8721410effae1b94772c77ac78fb1b13df306a40442a928",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-final19.json",
+        "bytes": 147842,
+        "sha256": "a5e0426f6355938770a5d41fd6dffa8308d96b1ee2f5ceebad3d9a4efee8ff95",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-final20.json",
+        "bytes": 156678,
+        "sha256": "3a1db0fef3939c552bc3edb2a62ecab5d46e749528caf679b08cb78469da615b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-final21.json",
+        "bytes": 157715,
+        "sha256": "062c6d93cc2714a9e11f16b2a84cacee1ab9a44ede6f3080061d0eabadd2d392",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-run38145173494_1.json",
+        "bytes": 168519,
+        "sha256": "6e2271a11ec0ab810d75fea7f99decbe3058723edf660f3195b2a1d2e2210499",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-run38146781829_1.json",
+        "bytes": 177227,
+        "sha256": "98c1039abfb99f154ccb54474994e2bef9873d2a0c9d9f793131609b02a00e2f",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-run38147797740_1.json",
+        "bytes": 178264,
+        "sha256": "ea613056b819d8db5ef7ab78faa98d194ef3c83db21c7a6d1df49de76bf7d02a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-final19.json",
+        "bytes": 11856,
+        "sha256": "a7b0c7c63c964508507688a8d4ea8259773814db140c4ad1f7a1f78cad8aa5ca",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-final20.json",
+        "bytes": 11856,
+        "sha256": "297f7801ab7fd4babc397e8ba95eb805c6d6bdddb88c8518fe01f8db6a87e17e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-final21.json",
+        "bytes": 11856,
+        "sha256": "9f8d78225e924905ab0fad7975ab0071f835d7885e550107bdf8db3d0eb273d5",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-run38145173494_1.json",
+        "bytes": 11880,
+        "sha256": "48cf80d455959ca11fe696a13a65beee76b5dce3f6344ab89b492589b5b17a98",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-run38146781829_1.json",
+        "bytes": 11880,
+        "sha256": "82a1a0118cf100932828628cfc3c876346693ffe0d9365ee6c4e10f284c74b41",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-run38147797740_1.json",
+        "bytes": 11880,
+        "sha256": "2778f29b7c4ceab546f33a4e823f70861e76f31b444a1784fd8835bc3e1cc73d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-final19.json",
+        "bytes": 8073,
+        "sha256": "d783ab74723f9b28013d9cde04a3c012149282450bf01944d428a10ae872fabc",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-final20.json",
+        "bytes": 8073,
+        "sha256": "27c5ed6880587611f893340beda11ac60bab4751f3d48d370b13e2ab65ac52b1",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-final21.json",
+        "bytes": 8073,
+        "sha256": "e7bcb99d9ea485b85ed5c0bbc9d3ddfcd75422d110781be9c2f61f286ca9e7a9",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-run38145173494_1.json",
+        "bytes": 8035,
+        "sha256": "a3142b6ca09a68e935fa0209ecb8b660e95e2559d67ff33a5de06d85768e72cd",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-run38146781829_1.json",
+        "bytes": 8035,
+        "sha256": "b143d55f38ec6bd3a1b37d1fc6f90e124b14c331f59d56bd1c0c64a8de8fd833",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-run38147797740_1.json",
+        "bytes": 8035,
+        "sha256": "c4b31cbe0d7555f3e86c4b3de123dd3dbc05fe97c3b90841dea12c887a7693cb",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-ci-runs-final2.json",
+        "bytes": 13059,
+        "sha256": "cb659ba9b3855778a5cf6a2d0d592fc489dc54da76ab0741baa940733a96e93f",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-ci-runs-final3.json",
+        "bytes": 13059,
+        "sha256": "c3acdcde9284f7e82fb6055893a8af05f6ab37e287c435bdab613bdede8da877",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-ci-runs.json",
+        "bytes": 13059,
+        "sha256": "468209ab523a5a54e61519d9cf09cd2cd61a50626cb0c7fa0075a520f1e2675a",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-correction-checkpoint-final2.json",
+        "bytes": 1259,
+        "sha256": "fd7439c41fd83b1080ed2ad744687cbf4d11d513a58f8c70f834203c3b5ac808",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-correction-checkpoint.json",
+        "bytes": 722,
+        "sha256": "672f291b1d556af6524fc030b3045963d38d083d2bc98f338d990e5ca9f2da88",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-default-music-commands.json",
+        "bytes": 1963,
+        "sha256": "e3a78ec779ef3cbdcd18d2ffcc8e04c51bc210bd7e1a15017e05e41477257969",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-dependency-sources.json",
+        "bytes": 4965,
+        "sha256": "1a2feac0f954a23026a9995a4a67dbe19896a60b22f910f85ccf425480b5607f",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-builds-attempt1.json",
+        "bytes": 40295,
+        "sha256": "a8b95aa02d0309613cfb18ce40ebcfc9cea2538b3854ea1e26890a330fad3415",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-builds-attempt2.json",
+        "bytes": 1499,
+        "sha256": "39b52a750a78a84b12e71cc3ef052d659f4eca8ce32bcf5411b7467a5f164329",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-builds.json",
+        "bytes": 20446,
+        "sha256": "440dacaa6d33f9b07b7bc5f2bd2bcbf71456202cd908a244fe848d3daa02993e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-command-bindings.json",
+        "bytes": 20617,
+        "sha256": "306b234c350be68b928c9a403ea9d7c07559118422b2aef82959fe90d48538d6",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-manifest-ps51.json",
+        "bytes": 5988,
+        "sha256": "0a4dd8f331fb34f4a996d38e1c6a19cb24fa162d9146fe9d52a47a41209d6c73",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-manifest-ps7.json",
+        "bytes": 4160,
+        "sha256": "32497bf3f569e686cea64520b2c43aee12bb13f0251c96b5505e99534bac2f2e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-capture-limit.json",
+        "bytes": 1743,
+        "sha256": "c36a0e61540644d0e58791a0a4c4e8c69c87c0b5737c4616155263a3305535a7",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-payload-final2.json",
+        "bytes": 145439,
+        "sha256": "e2dd530b8fa0208d23f0e8f1a391df2c7cf80e43ea773ce2778240efe95fd74d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-payload-final3.json",
+        "bytes": 150206,
+        "sha256": "118a3012465919f6dd0806e2429c1851a44d704be8f67d2a6fe877e3efb44c27",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-payload.json",
+        "bytes": 143391,
+        "sha256": "64c68e775a10c35edd0e75625769e362046c9fb17380800c67bc50d50a072bac",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-milestone-commands.json",
+        "bytes": 25605,
+        "sha256": "7b12fa3c8f42529474244a40e3a5cc51208b22a752936f2ec0bfcb52e1e90c62",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-attempt1.ps1.txt",
+        "bytes": 35222,
+        "sha256": "2682299a691ccba3fb4514065a72c0159cf1c4b74d7f80457693a8c7b48ecc5f",
+        "tracked_diff": false,
+        "kind": "txt"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-attempt2.ps1.txt",
+        "bytes": 39876,
+        "sha256": "2c6643d9c39312ac7ca0fe492f2bb36922b8e8d45034ec96fc6df3953130fbfb",
+        "tracked_diff": false,
+        "kind": "txt"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-fix-analysis.json",
+        "bytes": 1116,
+        "sha256": "88d6a7801c750a71cc6219a55c4b258edc22288a13fe3cbf9f4f312e97def50d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-fix-commands.json",
+        "bytes": 2060,
+        "sha256": "881220ee3bc536919434516f7b8958db97f7e03bad94106de147f25d6d234d71",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-fix2-commands.json",
+        "bytes": 4346,
+        "sha256": "7cbfe1933f56446d31cda946a0b9c91be73ed110bd16c49e70cda26ef061eb46",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps51-final1.json",
+        "bytes": 306571,
+        "sha256": "a5d84a24a7f1d373d271d39983970494ae89112ecb5e3656e20a8744f3657915",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps51-final2.json",
+        "bytes": 309083,
+        "sha256": "6737fd43397d8198b96ec726ded924f9ed0b368bacf02d100852fff445e39f56",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps7-attempt1.json",
+        "bytes": 46410,
+        "sha256": "6abb54265323594d0c413a43e8785bdd89609a4b8e1d5134a2c781ad8591bc3d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps7-attempt2.json",
+        "bytes": 142689,
+        "sha256": "81ddabd9571565e9e0a9312ed029ae2db05591519e68a3efe896f86c14c826b7",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps7-attempt3.json",
+        "bytes": 147814,
+        "sha256": "97d5576f0fecd85f0e67f5ddcc04be1a31fc4c19c9f89746a7e6d52aad57af05",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps7-final1.json",
+        "bytes": 156643,
+        "sha256": "0991de9f3c63e16da1f5bc5e82a6f48559060a0eb8585ef73bfa7f4da5e4cd2e",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-package-ps7-final2.json",
+        "bytes": 157681,
+        "sha256": "ded3ffee16afd9034553f6ac528aa2f87418b11bd3ee24acde4a312b60a8e9dc",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-preliminary-cleanup-limit.json",
+        "bytes": 2142,
+        "sha256": "78df5dcd77e1b389dedf3c0be7af2db1c7c492ff949851636a2b88380f75f771",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-routine-commands-attempt1.json",
+        "bytes": 2106,
+        "sha256": "ca72c56b13c807014453b5886b3171df246bc7beb2804ffc14ffdb4eb210982d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-routine-commands.json",
+        "bytes": 2509,
+        "sha256": "4487c501ab0d087b0dd862eb2be8e0220ffae5c37f5b680877431d4e2a5c9393",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-source-review-final2.json",
+        "bytes": 26050,
+        "sha256": "ea461df88e8e1ab46785cc9541d07a59beda4d9064d64730525744429281061d",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-source-review-final3.json",
+        "bytes": 44603,
+        "sha256": "039d2258b2bc198468d223311402cd427900fd0470735a3dfc09e83940c847da",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-source-review.json",
+        "bytes": 21989,
+        "sha256": "b973886d1035c25b49a20e9acf0e8b272ca9822a96bfe1f5bca5b9088640fb5b",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-tested-payload.json",
+        "bytes": 769596,
+        "sha256": "51ba3a4d9808a9f0df98eb4c7dfc9bf5f5ea5f5bed5ee9b23e46425170770ceb",
+        "tracked_diff": false,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19.md",
+        "bytes": 22048,
+        "sha256": "725b6f162b9665b3927f35b528bc757e1dab9728fe24c9b23eaeba7a2fe37dca",
+        "tracked_diff": false,
+        "kind": "md"
+      },
+      {
+        "path": "docs/codex-v1/NEXT_SESSION.md",
+        "bytes": 18327,
+        "sha256": "f0772a72027caa16429de7dfc397027f8b8f0dc21c3938f9cf1c1b026548fc6b",
+        "tracked_diff": true,
+        "kind": "md"
+      },
+      {
+        "path": "docs/codex-v1/STATUS.md",
+        "bytes": 25071,
+        "sha256": "e98923d11661d0a3f60074b480d234d1ba6bc4d5af331152aa75353e49d60974",
+        "tracked_diff": true,
+        "kind": "md"
+      },
+      {
+        "path": "docs/codex-v1/TASKS.json",
+        "bytes": 70465,
+        "sha256": "958f9c35a5241ea7755800e2e7430ace4045713e829adb0fc49ab1808609099e",
+        "tracked_diff": true,
+        "kind": "json"
+      },
+      {
+        "path": "docs/codex-v1/TEST_STRATEGY.md",
+        "bytes": 43573,
+        "sha256": "efe8542bc134ab72e954c953deda2f7a5524a77b71f9b84c731005d384a4194f",
+        "tracked_diff": true,
+        "kind": "md"
+      }
+    ],
+    "local_raw_report_digest_checks": 48,
+    "local_source_git_byte_checks": 45,
+    "local_source_relationships": 644,
+    "local_actual_before_after_relationships": 628,
+    "local_actual_single_fingerprint_relationships": 16,
+    "prior_source_commit_relationships": 25,
+    "exact_resolver_function_relationships": 4,
+    "local_aggregate_report_count": 34,
+    "local_required_checks": 1196,
+    "local_observations": 6,
+    "local_milestone_checks": 890,
+    "local_routine_checks": 306,
+    "local_report_counts": [
+      {
+        "path": "evidence/T16-output-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 10,
+        "observations": 0,
+        "sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b"
+      },
+      {
+        "path": "evidence/T16-preflight-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 45,
+        "observations": 0,
+        "sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282"
+      },
+      {
+        "path": "evidence/T16-discovery-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 8,
+        "observations": 0,
+        "sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4"
+      },
+      {
+        "path": "evidence/T16-naming-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 11,
+        "observations": 0,
+        "sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874"
+      },
+      {
+        "path": "evidence/T16-reservation-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 13,
+        "observations": 0,
+        "sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b"
+      },
+      {
+        "path": "evidence/T16-transaction-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 27,
+        "observations": 0,
+        "sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a"
+      },
+      {
+        "path": "evidence/T16-script-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 13,
+        "observations": 0,
+        "sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216"
+      },
+      {
+        "path": "evidence/T16-launcher-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 52,
+        "observations": 0,
+        "sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2"
+      },
+      {
+        "path": "evidence/T16-cancellation-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 9,
+        "observations": 0,
+        "sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5"
+      },
+      {
+        "path": "evidence/T16-preview-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 8,
+        "observations": 0,
+        "sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999"
+      },
+      {
+        "path": "evidence/T16-progress-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 17,
+        "observations": 0,
+        "sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183"
+      },
+      {
+        "path": "evidence/T16-diagnostics-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 19,
+        "observations": 0,
+        "sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58"
+      },
+      {
+        "path": "evidence/T16-metadata-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 15,
+        "observations": 0,
+        "sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc"
+      },
+      {
+        "path": "evidence/T16-cleanup-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 181,
+        "observations": 0,
+        "sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9"
+      },
+      {
+        "path": "evidence/T16-edges-ps51-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 6,
+        "observations": 0,
+        "sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb"
+      },
+      {
+        "path": "evidence/T16-music-ps51-final19.json",
+        "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+        "required_checks": 11,
+        "observations": 0,
+        "sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a"
+      },
+      {
+        "path": "evidence/T17-ci-ps51-final21.json",
+        "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+        "required_checks": 153,
+        "observations": 3,
+        "sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a"
+      },
+      {
+        "path": "evidence/T16-output-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 10,
+        "observations": 0,
+        "sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743"
+      },
+      {
+        "path": "evidence/T16-preflight-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 45,
+        "observations": 0,
+        "sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6"
+      },
+      {
+        "path": "evidence/T16-discovery-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 8,
+        "observations": 0,
+        "sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a"
+      },
+      {
+        "path": "evidence/T16-naming-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 11,
+        "observations": 0,
+        "sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b"
+      },
+      {
+        "path": "evidence/T16-reservation-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 13,
+        "observations": 0,
+        "sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4"
+      },
+      {
+        "path": "evidence/T16-transaction-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 27,
+        "observations": 0,
+        "sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7"
+      },
+      {
+        "path": "evidence/T16-script-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 13,
+        "observations": 0,
+        "sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f"
+      },
+      {
+        "path": "evidence/T16-launcher-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 52,
+        "observations": 0,
+        "sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1"
+      },
+      {
+        "path": "evidence/T16-cancellation-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 9,
+        "observations": 0,
+        "sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff"
+      },
+      {
+        "path": "evidence/T16-preview-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 8,
+        "observations": 0,
+        "sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8"
+      },
+      {
+        "path": "evidence/T16-progress-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 17,
+        "observations": 0,
+        "sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982"
+      },
+      {
+        "path": "evidence/T16-diagnostics-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 19,
+        "observations": 0,
+        "sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4"
+      },
+      {
+        "path": "evidence/T16-metadata-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 15,
+        "observations": 0,
+        "sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e"
+      },
+      {
+        "path": "evidence/T16-cleanup-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 181,
+        "observations": 0,
+        "sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733"
+      },
+      {
+        "path": "evidence/T16-edges-ps7-final19.json",
+        "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+        "required_checks": 6,
+        "observations": 0,
+        "sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981"
+      },
+      {
+        "path": "evidence/T16-music-ps7-final19.json",
+        "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+        "required_checks": 11,
+        "observations": 0,
+        "sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858"
+      },
+      {
+        "path": "evidence/T17-ci-ps7-final21.json",
+        "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+        "required_checks": 153,
+        "observations": 3,
+        "sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3"
+      }
+    ],
+    "hosted_raw_digest_checks": 16,
+    "hosted_required_checks": 306,
+    "hosted_observations": 6,
+    "external_command_record_checks": 5,
+    "actual_exploratory_zip_audits": [
+      {
+        "shell": "ps51",
+        "exact_git_blob_member_count": 8,
+        "zip_sha256": "75f587a60bb52fc2a94c10fd2b62435e5978d5a457cb2dc5266576f9c0279577",
+        "zip_bytes": 53272,
+        "manifest_sha256": "0a4dd8f331fb34f4a996d38e1c6a19cb24fa162d9146fe9d52a47a41209d6c73",
+        "checksum_sha256": "8446c0a0fe71f2f94726c53facb6f906c792af2d81e0164f9f582a506c1e7050",
+        "original_manifest_copy_byte_identical": true,
+        "checksum_entries": 2
+      },
+      {
+        "shell": "ps7",
+        "exact_git_blob_member_count": 8,
+        "zip_sha256": "6270cef9e5025cb70bad78ebb62cafb4f22bde07b479b2d1e4e4f3be2eaa3a4b",
+        "zip_bytes": 53289,
+        "manifest_sha256": "32497bf3f569e686cea64520b2c43aee12bb13f0251c96b5505e99534bac2f2e",
+        "checksum_sha256": "e1cf05faa93b25fbb4e059611652fb1a87ffd8c77224f4fe9f3a46fb5c5cb87f",
+        "original_manifest_copy_byte_identical": true,
+        "checksum_entries": 2
+      }
+    ],
+    "acceptance_task_evidence_references": 28,
+    "markdown_link_checks": 34,
+    "immutable_historical_references": 15,
+    "policy_rejected_cleanup_actions": 3,
+    "runtime_or_ffmpeg_executed": false,
+    "cleanup_attempted": false,
+    "findings": []
+  },
+  "additional_verified_audit": {
+    "status": "pass",
+    "unchanged_other_task_records": 26,
+    "unchanged_other_acceptance_cases": 65,
+    "historical_T18_notes_prefix_preserved": true,
+    "historical_decisions_prefix_preserved": true,
+    "recursive_evidence_reference_sha_checks": 332,
+    "retained_exploratory_source_head": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+    "retained_exploratory_source_detached_clean": true,
+    "retained_tracked_source_files": 659,
+    "retained_tracked_source_inventory_sha256": "99739ea47c1269b4e46bea42d9f2b8e0586786f507b6e4e5c0198bd98f8f8549",
+    "actual_zip_ordinal_epoch_zero_attribute_checks": 2,
+    "runtime_or_ffmpeg_executed": false,
+    "cleanup_attempted": false
+  },
+  "verification_methods": {
+    "source_binding": "All48 selected original raw SHA/status/actual commits;45 binary Git blobs including independently framed Git SHA1 and SHA256;644 original source fields,628 actual before/after and16 single fingerprints;25 prior-commit source pairs and4 actual resolver function extents.",
+    "counting": "Only34 aggregate parent reports count:890 milestone+306 routine=1196 required executions and6 separate baseline observations. CI children, focused runs and historical failures are preserved but not added again. Absent observation/after fields are not written into original reports.",
+    "hosted": "16 final3 raw SHA/actual temporary merge rechecked. Source metadata/tree/live refs and mandatory README LF proof previously independently verified in immutable final3 source/hosted records. Actual merge20f9a65b00fc884a96f46f918eec65584c6fe391 tree4cd70be37d41ee9debda25cfc53f6894dad6417d equals C2.306+6 hosted checks supplement local Windows11.",
+    "exploratory": "Reopened both actual ZIPs;all8 members each are byte-identical to binary C2 Git blobs;member order/1980-01-01T00:00:00 timestamps/zero external attributes checked;three asset digests/lengths,original manifest copies and2 non-self-referential checksum lines verified.659 retained tracked checkout file hashes reproduce original before/after inventory;source remains detached clean exactC2.",
+    "external_command_records": "All5 pre-start command records retain actual expanded argv. Their result records retain masked argv;exact concrete expansion is verified. All actual result/stream digests,lengths,exit codes and drained-process fields checked:one failed inspector exit1 plus4 successful inspector/build exits0.",
+    "tracking": "A47/A48 pass and T19 done at previously pushed/live-advertised C2.28 task/acceptance evidence references and34 Markdown links validated;the planned final-review link is satisfied by creating this record.26 other task records and65 other acceptance cases unchanged;T18 notes and decisions historical prefixes preserved.",
+    "new_files": "All166 existing new evidence files are regular strict UTF8 without NUL,under docs/codex-v1/evidence,with JSON/MD/TXT suffixes.163 new JSON files plus2 tracked JSON files parse. Evidence JSON/harness snapshots retain -text. No credential-shaped/binary/vendor/media/private audio-log artifact found.",
+    "review_execution": "No application/builder/FFmpeg/dependency probe/test suite executed by this reviewer. Only read-only Git,parsing/hash/library ZIP operations and creation of this evidence/temp review files."
+  },
+  "snapshot_lineage": {
+    "immutable_c2_source_review": "evidence/T19-source-review-final3.json",
+    "test_strategy": "That immutable source review captured the earlier5-line draft. The verified final-doc inventory binds the current5-line 'It verifies the actual copy bytes' wording separately from frozenC2. No prior review hash/source identity is rewritten.",
+    "historical_failures": "Original package attempts1/2 remain failed/falsecleanup with original snapshots. InitialC0 archive failure/signing inspector capture gaps,C1 empty hosted LF/P2 finding,capturedC2 module-autoload inspector failure,and unsupported external analyzer -LiteralPath wrapper failure remain original and qualified.",
+    "cleanup_rejections": 3,
+    "cleanup_scope": "Two separate package cleanup actions and first hosted JSON-capture cleanup were rejected before process creation with only 'blocked by policy',no detail. No cleanup/new equivalent retry or relabelled cleanup success.",
+    "owned_capture_root_name": "T19-hosted-9684bcb5c77b4a91b48f6f4f129e0c2f",
+    "ownership_marker_sha256": "2998967e55f2468ffc4b9f08fc454ec4a2d1cf30c822d200eaea4c6e73513cce",
+    "retained_capture_scope": "Known hosted JSON/marker/temp verifier root now also retains temporary documentation verifier and its parsed successful audit result;no source/vendor/media files or cleanup claim."
+  },
+  "observed_cross_shell_relation": "ZIP,manifest,andchecksum bytes DIFFER;all member contents equal C2. Same-shell repeated-asset equality belongs to original package harness evidence. No cross-runtime reproducibility claim.",
+  "limitations": [
+    "Final docs containing SHA/live advertised feature ref/new hosted checks must be verified after commit/push and reported in PR/response;they are not invented here.",
+    "Main integration remains owner-gated. Exactly nextT20 after owner PR19 integration/fresh main reconciliation. T20-T27 manual/device/frozen exact ZIP/tag/public release/public download/closure remain subsequent work;project/release incomplete and loudness deferred.",
+    "Scoped machine/executable/synthetic paths retained in evidence are provenance,without personal media/credentials/raw private audio logs. SHA256 identifies bytes and does not authenticate publishers."
+  ],
+  "creation_boundary": "One new immutable final-review JSON via FileMode.CreateNew after rechecking all172 pre-existing reviewed file hashes. No source/docs/raw evidence overwrite and no containing/self SHA in this report."
+}

@@ -29,6 +29,12 @@ FFmpeg stays external: the app does not download, install or update tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
 
+For manual download sources, tested build identities, license differences and
+checks of the exact resolved executables, read
+[dependency and package security](SECURITY.md). Obtain both tools from the same
+trusted build and retain the publisher's notices. Startup capability/version
+responses do not authenticate a vendor binary.
+
 The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
 before running downloaded files. The included BAT requests process-scoped
 `-ExecutionPolicy Bypass`; use direct PowerShell invocation when you need to keep
@@ -189,3 +195,36 @@ template. Maintainers should use the recorded isolated commands in the
 and task evidence; do not run retained suites blindly against ordinary Music.
 
 Licensed under the [MIT License](LICENSE). FFmpeg is a separate dependency.
+
+## Building a package (developers)
+
+The repository command `tools/Build-Package.ps1` packages a supplied clean
+detached Git worktree at a full source commit. `tools/package-files.json` is the
+explicit distributable allowlist; the ZIP keeps the entry script, helper and BAT
+adjacent at its root. It includes the selected public docs/license and excludes
+FFmpeg/ffprobe, media, logs, caches, tests and repository evidence.
+
+Use a reviewed source commit containing the final package files and builder.
+Supply external JSON dependency provenance and test-evidence inputs for that
+commit, following the caller schemas in the repository's
+[package contract](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/specs/RELEASE_PACKAGE.md).
+Before supplying test references, verify the original retained reports' bytes,
+SHA-256, tested commit and passing status. The builder carries caller-supplied
+report attestations; it does not open those references or run the acceptance tests.
+The output directory must be a new absolute path outside the source
+checkout, with an existing ordinary parent. Replace the placeholders below with
+reviewed identities and exact paths; this example does not select a release
+commit or authorize publication:
+
+```powershell
+& 'C:\reviewed-source\tools\Build-Package.ps1' -SourcePath 'C:\reviewed-source' -SourceCommit '<full reviewed commit SHA>' -TargetTag '<matching version tag>' -OutputDirectory 'C:\package-output\new-build' -DependencyProvenancePath 'C:\package-evidence\dependencies.json' -TestEvidencePath 'C:\package-evidence\tests.json'
+```
+
+The command emits the helper-versioned ZIP, external `release-manifest.json` and
+`SHA256SUMS.txt`. The manifest records member hashes, source/provenance and actual
+signing observations; checksums establish bytes against a trusted reference, not
+publisher authenticity. Required-file omissions, dirty/mismatched source and
+unsafe paths fail instead of producing a complete-looking package. A generated
+package is not release acceptance: exact extraction, Windows/launcher/phone
+checks and recorded approval remain gated by the repository's
+[release runbook](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/RELEASE_RUNBOOK.md).

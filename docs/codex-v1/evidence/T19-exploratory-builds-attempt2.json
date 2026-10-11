@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "status": "fail",
+  "source_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+  "mode": "corrected_source_exploratory_driver_attempt2",
+  "failure": "Signing/version inspector failed; raw streams retained.",
+  "owned_commands": [
+    {
+      "label": "inspect-ps51",
+      "command_arguments": [
+        "<SHELL_ps51>",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<PREPARER>\\Inspect-PayloadScripts.ps1",
+        "-EntryPath",
+        "<EXPLORATORY_ROOT>\\canonical-script-audit\\AudioFileForPhone.ps1",
+        "-HelperPath",
+        "<EXPLORATORY_ROOT>\\canonical-script-audit\\AudioFileForPhone.Helpers.ps1"
+      ],
+      "native_exit_code": 1,
+      "started_utc": "2026-10-11T14:42:50.399023Z",
+      "finished_utc": "2026-10-11T14:42:50.804263Z",
+      "stdout_bytes": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_bytes": 553,
+      "stderr_sha256": "d6ac6ad6125d7c31b2305907e6eebed69dcf8c7a7bfbc6560f44cfdece2645f0",
+      "host_exited_and_pipes_drained": true,
+      "exact_private_argv_and_raw_streams_retained_externally": true
+    }
+  ],
+  "raw_stdout_stderr_retained_externally": true,
+  "release_acceptance_claimed": false,
+  "cleanup_retry_performed": false,
+  "retained_directory_policy": "All source, inputs, command logs and any outputs retained; no agent deletion."
+}

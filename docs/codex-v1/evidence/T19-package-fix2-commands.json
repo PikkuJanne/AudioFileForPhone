@@ -1,0 +1,110 @@
+{
+  "task": "T19",
+  "actual_base_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+  "status": "pass",
+  "scope": "Focused precommit C2 working bytes, retaining actual C1 base/source hashes; no duplicate required-case acceptance.",
+  "invocations": [
+    {
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T19-package-ps51-final2.json",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T19-package-ps51-final2.json",
+      "report_sha256": "6737fd43397d8198b96ec726ded924f9ed0b368bacf02d100852fff445e39f56"
+    },
+    {
+      "shell": "ps7",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T19-package-ps7-final2.json",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "exit_code": 0,
+      "report": "docs/codex-v1/evidence/T19-package-ps7-final2.json",
+      "report_sha256": "ded3ffee16afd9034553f6ac528aa2f87418b11bd3ee24acde4a312b60a8e9dc"
+    }
+  ],
+  "wrapper_failure": {
+    "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "arguments": [
+      "-NoLogo",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "RemoteSigned",
+      "-File",
+      "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T19-focused-lf-20261011.ps1"
+    ],
+    "script_sha256": "4dd1091fb8e1fc548e863f88e5efca46708d5e8ec03e0c47efeec5bec02cfbb4",
+    "exit_code": 1,
+    "stage": "After both package tests exited 0; before analyzer gate",
+    "observed_combined_tool_error": "A parameter cannot be found that matches parameter name 'LiteralPath'.",
+    "cause": "External wrapper supplied unsupported Invoke-ScriptAnalyzer parameter; package source/tests did not fail.",
+    "resolution": "Independent analyzer gate below uses supported -Path for exact known source paths."
+  },
+  "independent_analyzer": {
+    "status": "pass",
+    "shell": "7.6.5",
+    "module_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\PSScriptAnalyzer\\PSScriptAnalyzer.psd1",
+    "module_version": "1.25.0",
+    "invocations": [
+      {
+        "path": "tools/Build-Package.ps1",
+        "default_error_arguments": [
+          "-Path",
+          "tools/Build-Package.ps1",
+          "-Severity",
+          "Error"
+        ],
+        "ten_rule_arguments": [
+          "-Path",
+          "tools/Build-Package.ps1",
+          "-Settings",
+          ".github/scripts/PSScriptAnalyzerSettings.psd1"
+        ]
+      },
+      {
+        "path": "tests/Test-Package.ps1",
+        "default_error_arguments": [
+          "-Path",
+          "tests/Test-Package.ps1",
+          "-Severity",
+          "Error"
+        ],
+        "ten_rule_arguments": [
+          "-Path",
+          "tests/Test-Package.ps1",
+          "-Settings",
+          ".github/scripts/PSScriptAnalyzerSettings.psd1"
+        ]
+      }
+    ],
+    "diagnostics": 0
+  },
+  "working_source_sha256": "44fb50dd3ba875d800ad79c793df3bbfcc7c983150bb29cc4b65d16fb604459f"
+}

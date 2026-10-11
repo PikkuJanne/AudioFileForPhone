@@ -1,0 +1,517 @@
+{
+  "schema_version": 1,
+  "task": "T19",
+  "mode": "independent_read_only_C1_source_diff_and_evidence_review",
+  "status": "pass",
+  "reviewed_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+  "prior_source_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+  "reviewed_at_utc": "2026-10-11T14:23:30.1983611Z",
+  "scope": "Read-only static review of C1 corrective source and unchanged prior implementation/security baseline; actual source working bytes bind to committed blobs. This review does not mark task, milestone or release acceptance.",
+  "implementation_test_suites_executed_by_reviewer": false,
+  "build_executed_by_reviewer": false,
+  "filesystem_mutation_during_historical_root_audit": false,
+  "changed_paths": [
+    "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+    "tests/Test-Package.ps1",
+    "tools/Build-Package.ps1"
+  ],
+  "source_inventory": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "reviewed_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "reviewed_git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "reviewed_git_blob_bytes": 40032,
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_bytes": 40032,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "reviewed_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "reviewed_git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "reviewed_git_blob_bytes": 112323,
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "working_bytes": 114373,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "reviewed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "reviewed_git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "reviewed_git_blob_bytes": 1800,
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_bytes": 1800,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "README.md",
+      "reviewed_git_blob": "775b7d2111d2df6625740f5c41dbe6704a8e193c",
+      "reviewed_git_blob_sha256": "1e21747ceaa2604bca2b30f3d0f052239e28465b6b0083f6b4ecc4e5f3958536",
+      "reviewed_git_blob_bytes": 12293,
+      "working_sha256": "979c4d1c23164b4e9fd0a9520c8441e92fd05d149b8b1b37d6de8555a9d7faef",
+      "working_bytes": 12523,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "SUPPORT.md",
+      "reviewed_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "reviewed_git_blob_sha256": "db988f25f90372b3e0be46eb7a6b438db3c223daea3754d721d35f2a6a6699a0",
+      "reviewed_git_blob_bytes": 12788,
+      "working_sha256": "7d962b9bbb9d940ba392cc349bd70f63fde6439265c86f8d97e48b0d90f342d4",
+      "working_bytes": 12940,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "SECURITY.md",
+      "reviewed_git_blob": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "reviewed_git_blob_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "reviewed_git_blob_bytes": 6589,
+      "working_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "working_bytes": 6589,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "reviewed_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "reviewed_git_blob_sha256": "de592ab7b34842b6653f699be234dbe83a4f79993a12c4840cb1e6b8ac896ee0",
+      "reviewed_git_blob_bytes": 1481,
+      "working_sha256": "0119ea3032992b4d05396a7dbdd8bab0ad285809df0cef832a7ab969b6af1efa",
+      "working_bytes": 1507,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "LICENSE",
+      "reviewed_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "reviewed_git_blob_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "reviewed_git_blob_bytes": 1070,
+      "working_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "working_bytes": 1070,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tools/Build-Package.ps1",
+      "reviewed_git_blob": "4172d467c09011b7d1c31771f421620a3eea452c",
+      "reviewed_git_blob_sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+      "reviewed_git_blob_bytes": 25277,
+      "working_sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+      "working_bytes": 25277,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tools/package-files.json",
+      "reviewed_git_blob": "d0810372063cac978c0a7a49471f4cf865d6c4af",
+      "reviewed_git_blob_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "reviewed_git_blob_bytes": 227,
+      "working_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "working_bytes": 227,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": "tests/Test-Package.ps1",
+      "reviewed_git_blob": "97d04b8524cd36eea4be189256be8ea4d06454c1",
+      "reviewed_git_blob_sha256": "94acbaa748fb7cad3283fd455d6f29dde82a76f56eb52cc8dc1b6ab8879bcd07",
+      "reviewed_git_blob_bytes": 45510,
+      "working_sha256": "94acbaa748fb7cad3283fd455d6f29dde82a76f56eb52cc8dc1b6ab8879bcd07",
+      "working_bytes": 45510,
+      "working_to_reviewed_relationship": "exact_bytes"
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "reviewed_git_blob": "5af79a0c44b83f9ac2ecd8facee6ec2d42fe3bc6",
+      "reviewed_git_blob_sha256": "de2de0a6e92f4ac64f5f6350873ab0780a599d8b4fa0b2e7d3e06a86399800e9",
+      "reviewed_git_blob_bytes": 19160,
+      "working_sha256": "936863590bb8063761a2a7bdc8c48c11fd81d3270555183831f60c49aa2f0a53",
+      "working_bytes": 19412,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/workflows/windows-ci.yml",
+      "reviewed_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "reviewed_git_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "reviewed_git_blob_bytes": 2016,
+      "working_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "working_bytes": 2071,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/dependencies.json",
+      "reviewed_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "reviewed_git_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "reviewed_git_blob_bytes": 2798,
+      "working_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "working_bytes": 2840,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "reviewed_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "reviewed_git_blob_sha256": "c5ec5116620177187962df8f74c4eb9ef5709a7395446fa7ccab4d3cd900cb42",
+      "reviewed_git_blob_bytes": 19344,
+      "working_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+      "working_bytes": 19639,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/CI_SECURITY.md",
+      "reviewed_git_blob": "83d1d45d340d8cd4e04341229da5ef6c5a575e03",
+      "reviewed_git_blob_sha256": "e4ad765cde51d985f0a834d0544720764b007469a445fb8c4e658239b1c2fcea",
+      "reviewed_git_blob_bytes": 5982,
+      "working_sha256": "3b8f0b949ef77fc8cd7723d0c4328ea7e803d8e1903a9be2c589734d5c4b6280",
+      "working_bytes": 6076,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/TEST_STRATEGY.md",
+      "reviewed_git_blob": "b587bc338680a5820633dbf74d516bccf0171520",
+      "reviewed_git_blob_sha256": "febb84c939c721185474e47c251278a36e416c0c568ba69a27785941f01bc935",
+      "reviewed_git_blob_bytes": 42524,
+      "working_sha256": "ba64e2eac97c1de5665a488bbf507095890652c0a5e2944c610ecd42fd045058",
+      "working_bytes": 43167,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "reviewed_git_blob": "67dcde277f347f6fc1944c3c7c2353a81a20132a",
+      "reviewed_git_blob_sha256": "c0a4ddfabcd82a9874cab38629e491add3167c33f6fdfd2e8a874dd3a909ebdb",
+      "reviewed_git_blob_bytes": 7501,
+      "working_sha256": "fea9b1da0aed21284d142d1c80aca8f033ecbbb5cc41d02352efb8bd9c5a70a2",
+      "working_bytes": 7616,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    },
+    {
+      "path": "docs/codex-v1/templates/release-manifest.example.json",
+      "reviewed_git_blob": "104839690c83b789378fb3e9caa3a3f42e5055d0",
+      "reviewed_git_blob_sha256": "ae1508af0138933312cfef4f3d306f8366c7ae4bf1f58db93d21b5ff30f9f73a",
+      "reviewed_git_blob_bytes": 686,
+      "working_sha256": "5364a57638e526a447fa29cc160039efaf6983d55e9be708b03fe3423be1fe19",
+      "working_bytes": 718,
+      "working_to_reviewed_relationship": "strict_utf8_crlf_lf_only_preserving_bom"
+    }
+  ],
+  "prior_to_current_blob_relationships": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "prior_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "current_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "blob_unchanged": true
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "prior_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "current_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "blob_unchanged": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "prior_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "current_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "blob_unchanged": true
+    },
+    {
+      "path": "README.md",
+      "prior_git_blob": "775b7d2111d2df6625740f5c41dbe6704a8e193c",
+      "current_git_blob": "775b7d2111d2df6625740f5c41dbe6704a8e193c",
+      "blob_unchanged": true
+    },
+    {
+      "path": "SUPPORT.md",
+      "prior_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "current_git_blob": "0da64ba02d00abce7429f9ccd4c19f1d7b4770e0",
+      "blob_unchanged": true
+    },
+    {
+      "path": "SECURITY.md",
+      "prior_git_blob": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "current_git_blob": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "blob_unchanged": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "prior_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "current_git_blob": "22900a4689ee978eef0b2c88f2f6b6f0cdfcc21d",
+      "blob_unchanged": true
+    },
+    {
+      "path": "LICENSE",
+      "prior_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "current_git_blob": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "blob_unchanged": true
+    },
+    {
+      "path": "tools/Build-Package.ps1",
+      "prior_git_blob": "41e3040480515074221d62cd9ebae7e9238755b4",
+      "current_git_blob": "4172d467c09011b7d1c31771f421620a3eea452c",
+      "blob_unchanged": false
+    },
+    {
+      "path": "tools/package-files.json",
+      "prior_git_blob": "d0810372063cac978c0a7a49471f4cf865d6c4af",
+      "current_git_blob": "d0810372063cac978c0a7a49471f4cf865d6c4af",
+      "blob_unchanged": true
+    },
+    {
+      "path": "tests/Test-Package.ps1",
+      "prior_git_blob": "d0598381ac7bcfdc4d19bdb6cfef497490da697a",
+      "current_git_blob": "97d04b8524cd36eea4be189256be8ea4d06454c1",
+      "blob_unchanged": false
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "prior_git_blob": "5af79a0c44b83f9ac2ecd8facee6ec2d42fe3bc6",
+      "current_git_blob": "5af79a0c44b83f9ac2ecd8facee6ec2d42fe3bc6",
+      "blob_unchanged": true
+    },
+    {
+      "path": ".github/workflows/windows-ci.yml",
+      "prior_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "current_git_blob": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "blob_unchanged": true
+    },
+    {
+      "path": ".github/dependencies.json",
+      "prior_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "current_git_blob": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "blob_unchanged": true
+    },
+    {
+      "path": ".github/scripts/Initialize-CiDependencies.ps1",
+      "prior_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "current_git_blob": "d6e08cf29eddadea82a4bf8a1065a1d03e3f3078",
+      "blob_unchanged": true
+    },
+    {
+      "path": "docs/codex-v1/CI_SECURITY.md",
+      "prior_git_blob": "83d1d45d340d8cd4e04341229da5ef6c5a575e03",
+      "current_git_blob": "83d1d45d340d8cd4e04341229da5ef6c5a575e03",
+      "blob_unchanged": true
+    },
+    {
+      "path": "docs/codex-v1/TEST_STRATEGY.md",
+      "prior_git_blob": "b587bc338680a5820633dbf74d516bccf0171520",
+      "current_git_blob": "b587bc338680a5820633dbf74d516bccf0171520",
+      "blob_unchanged": true
+    },
+    {
+      "path": "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "prior_git_blob": "5d5b888ae5c6613ddbb2141b43e5ba0505596122",
+      "current_git_blob": "67dcde277f347f6fc1944c3c7c2353a81a20132a",
+      "blob_unchanged": false
+    },
+    {
+      "path": "docs/codex-v1/templates/release-manifest.example.json",
+      "prior_git_blob": "104839690c83b789378fb3e9caa3a3f42e5055d0",
+      "current_git_blob": "104839690c83b789378fb3e9caa3a3f42e5055d0",
+      "blob_unchanged": true
+    }
+  ],
+  "static_checks": {
+    "git_diff_check": "pass",
+    "public_credential_private_profile_scan_hits": 0,
+    "unchanged_runtime_bat_workflow_lock_initializer_legacy_paths": [
+      "AudioFileForPhone.ps1",
+      "AudioFileForPhone.Helpers.ps1",
+      "AudioFileForPhone.bat",
+      ".github/workflows/windows-ci.yml",
+      ".github/dependencies.json",
+      ".github/scripts/Initialize-CiDependencies.ps1",
+      "tests/Test-AudioFileForPhone.ps1"
+    ],
+    "new_global_Git_configuration_change": false,
+    "new_production_download_upload_telemetry_or_execution_policy_change": false,
+    "new_vendor_binary_personal_media_or_private_log": false,
+    "runtime_signatures": [
+      {
+        "path": "AudioFileForPhone.ps1",
+        "status": "NotSigned"
+      },
+      {
+        "path": "AudioFileForPhone.Helpers.ps1",
+        "status": "NotSigned"
+      }
+    ]
+  },
+  "syntax_only": {
+    "powershell_versions": [
+      "5.1.26100.9444",
+      "7.6.5"
+    ],
+    "sources": [
+      "tools/Build-Package.ps1",
+      "tests/Test-Package.ps1"
+    ],
+    "source_parse_errors": 0,
+    "document_source_blobs_unchanged_from_prior_review": [
+      "README.md",
+      "SECURITY.md"
+    ],
+    "doc_commands_executed": false
+  },
+  "corrective_finding": {
+    "problem": "Initial clean exact-C exploratory builds refused transformed staging bytes under ambient Git CRLF settings; neither produced package assets.",
+    "observed_failed_build_evidence": "evidence/T19-exploratory-builds-attempt1.json",
+    "raw_failure_capture_limit": "Original separate stdout/stderr/full formatted output bytes were not retained; the exploratory summary states that explicitly and is not reconstructed raw-stream evidence.",
+    "resolution": "Archive process receives core.autocrlf=false and core.eol=lf via -c before the archive subcommand. These settings apply only to that Git invocation; persistent repository/user Git settings are not edited. Exact postarchive blob checks remain.",
+    "regression": "51st owned-fixture case records actual true/crlf configuration, LF inventory, exact ZIP-root inventory/hash/bytes, unchanged settings/source and restoration to false/lf. Local focused executions contain 4 LF members. Both C1 hosted executions have an empty LF list; code does not enforce nonempty and the review records that actionable coverage gap."
+  },
+  "focused_precommit_evidence": [
+    {
+      "path": "evidence/T19-package-ps51-final1.json",
+      "sha256": "a5d84a24a7f1d373d271d39983970494ae89112ecb5e3656e20a8744f3657915",
+      "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+      "source_commit_claim": "Precommit report truthfully records the then-HEAD d697; every original before/after source digest equals the independently reviewed C1 working bytes, whose committed relationship is recorded above.",
+      "case_count": 51,
+      "lf_fixture_members": [
+        "LICENSE",
+        "SECURITY.md",
+        "tools/Build-Package.ps1",
+        "tools/package-files.json"
+      ],
+      "build_config": {
+        "core_autocrlf": "true",
+        "core_eol": "crlf"
+      },
+      "configuration_unchanged": true,
+      "configuration_restored": true,
+      "fixture_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true
+    },
+    {
+      "path": "evidence/T19-package-ps7-final1.json",
+      "sha256": "0991de9f3c63e16da1f5bc5e82a6f48559060a0eb8585ef73bfa7f4da5e4cd2e",
+      "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4",
+      "source_commit_claim": "Precommit report truthfully records the then-HEAD d697; every original before/after source digest equals the independently reviewed C1 working bytes, whose committed relationship is recorded above.",
+      "case_count": 51,
+      "lf_fixture_members": [
+        "LICENSE",
+        "SECURITY.md",
+        "tools/Build-Package.ps1",
+        "tools/package-files.json"
+      ],
+      "build_config": {
+        "core_autocrlf": "true",
+        "core_eol": "crlf"
+      },
+      "configuration_unchanged": true,
+      "configuration_restored": true,
+      "fixture_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true
+    }
+  ],
+  "prior_review_contracts_retained": [
+    "Eight explicit required ZIP-root members preserve app/helper/BAT relative layout and exclude vendor binaries, fake exclusion fixtures, logs, caches, poster and evidence.",
+    "Clean detached full lowercase exact-HEAD source is required; dirty, untracked, ignored source and reparse paths are refused.",
+    "Commit Git blob bytes are staged through an explicit archive; postarchive hash-object comparison rejects attributes that omit or substitute member bytes.",
+    "Staged exact-commit functions-only helper supplies the app version and target tag must match; fixed ordinal ordering and ZIP epoch are recorded without assuming cross-shell reproducibility.",
+    "External tool JSON is validated, installed executable hashes/version/libmp3lame queries are checked with native release proof, and public manifest strips executable paths.",
+    "Test references are caller attestations with exact supplied commit/digest/pass shape; builder does not read referenced reports, execute acceptance, or authenticate publishers.",
+    "ZIP inventory/size/member digest is reopened and checked before one directory move publishes three assets; existing output is not overwritten.",
+    "External manifest carries ZIP digest and member/signing/source/provenance identities; checksum file hashes ZIP and manifest but never itself.",
+    "Staging cleanup targets explicit owned files/directories with nonrecursive removal. Package harness recursive cleanup first validates its own exact root, marker, safe tree and child release; only read-only synthetic .git regular files may have attributes cleared.",
+    "CI changes add builder/allowlist/test syntax/analyzer coverage and sequential package-policy harness; workflow permissions/action pins/dependency provisioning and JSON-only upload boundary are unchanged.",
+    "SECURITY and README distinguish official FFmpeg source signatures from third-party Windows builds, build-specific licenses, observed unsigned state, checksums from authenticity and real acceptance from package mechanics."
+  ],
+  "historical_evidence_bindings": [
+    {
+      "path": "evidence/T19-source-review.json",
+      "sha256": "b973886d1035c25b49a20e9acf0e8b272ca9822a96bfe1f5bca5b9088640fb5b"
+    },
+    {
+      "path": "evidence/T19-ci-runs.json",
+      "sha256": "468209ab523a5a54e61519d9cf09cd2cd61a50626cb0c7fa0075a520f1e2675a"
+    },
+    {
+      "path": "evidence/T19-hosted-payload.json",
+      "sha256": "64c68e775a10c35edd0e75625769e362046c9fb17380800c67bc50d50a072bac"
+    },
+    {
+      "path": "evidence/T19-exploratory-builds-attempt1.json",
+      "sha256": "a8b95aa02d0309613cfb18ce40ebcfc9cea2538b3854ea1e26890a330fad3415"
+    },
+    {
+      "path": "evidence/T19-preliminary-cleanup-limit.json",
+      "sha256": "78df5dcd77e1b389dedf3c0be7af2db1c7c492ff949851636a2b88380f75f771"
+    },
+    {
+      "path": "evidence/T19-hosted-capture-limit.json",
+      "sha256": "c36a0e61540644d0e58791a0a4c4e8c69c87c0b5737c4616155263a3305535a7"
+    },
+    {
+      "path": "evidence/T19-dependency-sources.json",
+      "sha256": "1a2feac0f954a23026a9995a4a67dbe19896a60b22f910f85ccf425480b5607f"
+    }
+  ],
+  "historical_retained_scope": {
+    "initial_source_and_hosted_records": "Preserved unchanged and remain scoped to d697 and its temporary merge; they do not attest C1 execution.",
+    "attempt1_root": "Prior independent read-only audit is preserved in initial source-review; no fresh root audit or cleanup occurred in this C1 review.",
+    "attempt1_original_marker_equality_claimed": false,
+    "attempt2_root": "Not independently located; no broad enumeration or cleanup claim.",
+    "first_hosted_capture_root": "Known owned root remains retained after direct cleanup rejection; original16 reports and summaries remain unchanged.",
+    "current_capture_policy": "No further capture/temp cleanup requests or equivalent retries are made; new hosted captures remain bounded known retained JSON scope."
+  },
+  "policy_rejected_cleanup_actions": [
+    {
+      "action": "Separate owned synthetic Git cleanup probe",
+      "actor": "package_tests",
+      "literal_reason": "blocked by policy",
+      "process_created": false,
+      "further_reason_available": false,
+      "reporting_scope": "Parent/package agent retained evidence; this reviewer did not execute or retry these actions."
+    },
+    {
+      "action": "Independent exact audited attempt1 TEMP fixture cleanup",
+      "actor": "root",
+      "literal_reason": "blocked by policy",
+      "process_created": false,
+      "further_reason_available": false,
+      "reporting_scope": "Parent/package agent retained evidence; this reviewer did not execute or retry these actions."
+    },
+    {
+      "action": "Explicit file and empty directory cleanup of first hosted JSON capture",
+      "actor": "security_docs",
+      "literal_reason": "blocked by policy",
+      "process_created": false,
+      "further_reason_available": false,
+      "reporting_scope": "Directly observed tool rejection by this reviewer before process creation; no mutation or retry."
+    }
+  ],
+  "policy_rejected_cleanup_action_count": 3,
+  "primary_dependency_documentation": "Primary-source facts/read date and explicit inference boundaries recorded in T19-dependency-sources.json; frozen README/SECURITY content is unchanged.",
+  "unresolved_source_security_blockers": [],
+  "limitations": [
+    "Final C1 local/hosted report digests and exploratory exact-C1 build assets are separate parent/hosted payload evidence; this source review does not execute them.",
+    "Physical Windows/phone/Explorer/NAS acceptance, default Music evidence, final release ZIP runtime smoke, release signing, tag/public release, and main merge are not established here.",
+    "Historical failed reports retain false cleanup and their capture limits; policy rejections have only the literal reason blocked by policy with no additional detail.",
+    "Checksums identify bytes; caller test attestations and tool provenance do not independently authenticate the publisher or execute referenced reports."
+  ],
+  "review_findings": [
+    {
+      "priority": "P2",
+      "file": "tests/Test-Package.ps1",
+      "line": 291,
+      "title": "Require actual LF bytes in the archive regression",
+      "problem": "The 51st case records LF member names without requiring a nonempty list. Both C1 hosted reports pass this case with lf_fixture_members empty, so those executions exercise true/crlf settings but do not challenge LF-to-CRLF archive conversion.",
+      "local_scope": "The two focused precommit reports contain 4 LF members and do exercise the original transform boundary; their source digests bind to C1.",
+      "recommended_change": "Construct a bounded owned LF fixture or probe independent of checkout EOL, require nonempty LF members, and compare emitted bytes to original committed blobs.",
+      "source_modified_by_reviewer": false
+    }
+  ],
+  "hosted_regression_observation": {
+    "run_id": 38146781829,
+    "actual_tested_commit": "71dbc82d8b8b3d87adcb0ea18a4e7d873be5c559",
+    "shells": [
+      {
+        "shell_label": "ps51",
+        "lf_fixture_members": [],
+        "case_status": "pass"
+      },
+      {
+        "shell_label": "ps7",
+        "lf_fixture_members": [],
+        "case_status": "pass"
+      }
+    ],
+    "hosted_LF_transform_coverage_claimed": false
+  }
+}
