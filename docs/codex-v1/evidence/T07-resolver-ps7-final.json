@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "task": "T07",
+  "mode": "resolver_only",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoProfile -ExecutionPolicy RemoteSigned -File .\\tests\\Test-OutputParent.ps1 -EvidencePath .\\docs\\codex-v1\\evidence\\T07-resolver-ps7-final.json",
+  "started_utc": "2026-10-11T00:33:56.8673316Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "8599dfd9706d99119d4a38fb511968529e914246",
+  "harness_sha256": "3fc45cc565629382446b7368b768836c53fbe6a00a234839b9ea9c39c67be915",
+  "application_sha256_before": "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0",
+  "application_sha256_after": "41425b2491e4c14f4c170ae4f11052ab210540d90fabf6f662291b75919ee0f0",
+  "application_unchanged": true,
+  "helpers_sha256_before": "f91edb45d4c31e896ec016d2e8c83e45741809c8fb8143617e007a3876ebc741",
+  "helpers_sha256_after": "f91edb45d4c31e896ec016d2e8c83e45741809c8fb8143617e007a3876ebc741",
+  "helpers_unchanged": true,
+  "resolver_cases": [
+    {
+      "name": "injected configured Music, independent of user profile",
+      "status": "pass"
+    },
+    {
+      "name": "empty configured Music is rejected",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "absolute missing parent and literal brackets, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "filesystem provider-qualified override",
+      "status": "pass"
+    },
+    {
+      "name": "existing filesystem parent, override bypasses resolver",
+      "status": "pass"
+    },
+    {
+      "name": "relative missing parent uses PowerShell location",
+      "status": "pass"
+    },
+    {
+      "name": "reject non-filesystem Env",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Registry",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "reject non-filesystem Variable",
+      "status": "pass",
+      "rejection_verified": true
+    },
+    {
+      "name": "existing file is rejected as output parent",
+      "status": "pass",
+      "rejection_verified": true
+    }
+  ],
+  "default_smoke": {
+    "status": "not_run",
+    "timestamp_only_copy": false,
+    "output_override_passed": false,
+    "root_exclusively_reserved": false,
+    "marker_create_new": false,
+    "configured_music_verified": false,
+    "exact_inventory_verified": false,
+    "source_sha256_before": null,
+    "source_sha256_after": null,
+    "source_unchanged": null,
+    "cleanup_verified": null
+  },
+  "temp_cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "resolver_sha256": "62fbddf0ea1763988a462a0e5481d29e85449b29037047f34a55de1c013c5043",
+  "finished_utc": "2026-10-11T00:33:57.7862859Z"
+}

@@ -270,14 +270,14 @@
       "tested_commit": "f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f",
       "checkpoint_commit": "65bca07ab85bec00dd3f578d9ab38880e36e43e8",
       "remote_checkpoint_verified": true,
-      "notes": "A15-A17 pass on PS5.1/PS7: eight focused groups, deterministic 17-input/8-skip snapshots, planned/marked/conservative legacy output exclusion and prefix/malformed user-content retention, separator/case/overlap boundaries, real loop/outside junctions, actual inert custom file reparse, selected ancestry and ACL-denied descendant abort before prompts/run/conversion. Two repeated short real 64kbps runs preserve tags/layout/full decode. Final retained FFmpeg suite/seven companions, 35 preflight negatives/eight helpers and ten resolver cases pass per shell; hashes, exact ACL restoration and owned cleanup pass. File-symlink privilege unavailable Win32 1314, distinctly reported from actual file-reparse coverage. Earlier failed/intermediate reports retained. Reports preserve actual test base and working hashes equivalent to reviewed/pushed checkpoint. Owner merged T05 PR #5; T06 draft PR #6 synchronized, main integration pending owner review. Optional configured-Music smoke deferred before setup to T08 ownership adaptation; normal resolver remains TEMP-only. No ordinary Music, settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. Next suggested step: T07 in a new thread."
+      "notes": "A15-A17 pass on PS5.1/PS7: eight focused groups, deterministic 17-input/8-skip snapshots, planned/marked/conservative legacy output exclusion and prefix/malformed user-content retention, separator/case/overlap boundaries, real loop/outside junctions, actual inert custom file reparse, selected ancestry and ACL-denied descendant abort before prompts/run/conversion. Two repeated short real 64kbps runs preserve tags/layout/full decode. Final retained FFmpeg suite/seven companions, 35 preflight negatives/eight helpers and ten resolver cases pass per shell; hashes, exact ACL restoration and owned cleanup pass. File-symlink privilege unavailable Win32 1314, distinctly reported from actual file-reparse coverage. Earlier failed/intermediate reports retained. Reports preserve actual test base and working hashes equivalent to reviewed/pushed checkpoint. Owner merged T05 PR #5; T06 PR #6 owner-merged at 00:25:18 UTC on 11 October 2026 into independently advertised main 8599dfd9706d99119d4a38fb511968529e914246; startup fast-forwarded local main. Optional configured-Music smoke deferred before setup to T08 ownership adaptation; normal resolver remains TEMP-only. No ordinary Music, settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. T07 started from that owner merge."
     },
     {
       "id": "T07",
       "milestone": "M1",
       "title": "Make date and filename allocation deterministic",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T06"
       ],
@@ -291,11 +291,24 @@
         "A20",
         "A21"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T07.md",
+        "evidence/T07-naming-ps51-final2.json",
+        "evidence/T07-naming-ps7-final2.json",
+        "evidence/T07-baseline-ps51-final.json",
+        "evidence/T07-baseline-ps7-final.json",
+        "evidence/T07-discovery-ps51-final.json",
+        "evidence/T07-discovery-ps7-final.json",
+        "evidence/T07-preflight-ps51-verified.json",
+        "evidence/T07-preflight-ps7-verified.json",
+        "evidence/T07-resolver-ps51-verified.json",
+        "evidence/T07-resolver-ps7-verified.json",
+        "evidence/T07-tested-payload.json"
+      ],
+      "tested_commit": "8599dfd9706d99119d4a38fb511968529e914246",
+      "checkpoint_commit": "e99f81ca3eb2c24102882e5723c52c236105450c",
+      "remote_checkpoint_verified": true,
+      "notes": "A18-A21 pass on PS5.1/PS7: 11 naming groups; invariant valid/invalid Gregorian dates, whole-basename fallback, NFC before/after filtering, permitted supplementary scalars and scalar-safe UTF16 budgets/counter exhaustion; stable OrdinalIgnoreCase/Ordinal order and Windows collisions across 3 shuffled 12-source inventories; canonical duplicate rejection and zero partial plans; raw preserved-component validation, actual dir247/248 and file259/260 and working-path limits; problematic folders abort pre-prompts/run. 19 real MP3 outputs per shell decode at 64 kbps with tags/literal layout, suffix12 and actual180 basename/path253. Final retained FFmpeg/seven required companions, discovery8, preflight35/eight helpers, resolver10 pass; final hashes/ACL restoration/owned cleanup pass. Test fixture paths shortened without relaxing production limits. Reports preserve actual base and working hashes equivalent to reviewed/pushed checkpoint. Initial failed PS51 naming TEMP cleanup unverified, possible unknown synthetic residue documented; later exact cleanup verified. Owner merged T06 PR6; T07 draft PR7 synchronized, main owner-gated. No ordinary Music/settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. Next T08, including deferred configured-Music smoke ownership adaptation."
     },
     {
       "id": "T08",

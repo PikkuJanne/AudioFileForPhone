@@ -55,7 +55,7 @@ selected installed pair. Cleanup verifies exact canonical ownership and rejects
 reparse points before recursively removing only its own tree.
 
 Recorded T04 integration/evidence commands (historical labels; do not overwrite):
-Use STATUS.md or evidence/T06.md for current passing commands with fresh labels.
+Use STATUS.md or evidence/T07.md for current passing commands with fresh labels.
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T04-baseline-ps51.json
@@ -84,7 +84,7 @@ current T06 mode is deferred before setup until T08 ownership adaptation below.
 No registry or persistent PATH/policy change is
 needed. Neither recorded mode is phone/manual playback evidence.
 
-The wrapper writes only explicitly named `T03-<label>.json`, `T04-<label>.json`, `T05-<label>.json` or `T06-<label>.json`
+The wrapper writes only explicitly named `T03-<label>.json`, `T04-<label>.json`, `T05-<label>.json`, `T06-<label>.json` or `T07-<label>.json`
 reports directly in `docs/codex-v1/evidence`, preserving historical reports. `-ValidateOnly`
 checks copies, syntax and owned cleanup without generating media and cannot
 establish codec behavior. No helper downloads tools.
@@ -151,6 +151,41 @@ Historical T03 configured-Music smoke evidence remains valid for its original
 payload. Current `Test-OutputParent.ps1 -DefaultSmoke` stops before any setup because
 its pre-reserved run conflicts with production's no-reuse check; T08 must adapt
 that ownership scheme. Ordinary resolver mode remains TEMP-only and current.
+
+## T07 naming checks
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-NamingPlan.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T07-naming-ps51-final2.json
+pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\tests\Test-NamingPlan.ps1 -FfmpegPath C:\ffmpeg\bin\ffmpeg.exe -FfprobePath C:\ffmpeg\bin\ffprobe.exe -EvidencePath .\docs\codex-v1\evidence\T07-naming-ps7-final2.json
+```
+
+Current regression commands and all ten passing report labels are in
+`evidence/T07.md`. Baseline/preflight/resolver accept T07 filenames; discovery
+accepts T06/T07. Preserve earlier reports and use fresh labels for reruns.
+Owned fixture-root/output names were shortened to fit the newly enforced path
+policy; the companion checks the same shortened ownership prefix. Application
+copies retain exact bytes. No production path limit or source-safety check is waived.
+
+Focused checks cover invariant real dates and whole-basename fallback, locales,
+NFC before/after filtering, permitted supplementary scalars, noncomposing marks,
+malformed surrogates, complete UTF-16 suffix budgets, shuffled case/extension/NFC
+collisions, canonical duplicates and zero partial plan rows. Native owned fixtures
+prove actual file 259/260 and directory 247/248 boundaries, including preserved
+trailing-dot/space and overlong folder aborts before prompts/output. Short real
+FFmpeg conversion checks 19 outputs per shell, suffix 12, exact planned layout,
+allocated/preserved title tags, 64 kbps, full decode and an actual 180-unit basename.
+The future fixed-length working path is budgeted but not written until T09.
+
+The focused harness selects the shorter existing machine/user TEMP without
+settings changes, creates an exclusive root and owner marker, records recoverable
+root identity, individually removes registered native fixtures nonrecursively,
+then checks exact path/token/nonreparse boundaries before .NET owned-tree deletion.
+Final hashes/cleanup pass. Initial failed PS5.1 report has unverified cleanup and
+an unknown possible synthetic residue because its leaf was not recorded and
+machine TEMP parent enumeration is denied; evidence/T07.md preserves that limit.
+No broad cleanup or ACL change was attempted. Current configured-Music smoke
+remains deferred before setup to T08 ownership adaptation; ordinary resolver
+mode stays TEMP-only. No phone/manual/release evidence.
 
 ## Cadence and status vocabulary
 
