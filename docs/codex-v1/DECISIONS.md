@@ -693,3 +693,96 @@ with a bare “approved” assertion without a traceable reference.
   belong in draft PR #19 and the response without a self-referential containing SHA.
   Main remains owner-gated; exactly next T20 after owner integration. Project/release
   and existing manual/device/security limits remain incomplete; loudness deferred.
+
+## T20 start and manual acceptance checkpoint — 11 October 2026
+
+- Owner requested "T20 next please". Live PR #19 is owner-merged at 15:19:08Z,
+  feature 4aa3dd3 and main da2a627 independently advertised/API-matched. Clean main
+  was safely fast-forwarded and codex/v1-t20-windows-acceptance created. Normal
+  T20 edits/tests/feature push/draft PR are authorized; main/release gates stay.
+- Ordinary-user Windows 11 26300.9457 PS5.1.26100.9444/PS7.6.5 focused support
+  passes 182 checks in eight executions, with original T16 raw fields/bytes,
+  eight report hashes, 26 source relationships and exact owned cleanup retained.
+  Runtime, existing tests, CI/build/defaults remain unchanged; no broad personal
+  media/Music access or global settings change. Main CI 38150774320 passes.
+- Added only a guided manual procedure and retained owned synthetic preparer.
+  Actual both-shell parse/preparation passes; each success has 13 completed/released
+  bounded native calls, eight short fixtures, exact app copies and empty output.
+  First PS7 duplicate-Git path failure remains preserved with its own retained
+  marker/report-only scope; no cleanup/current-source success is retroactively
+  assigned. Successful fixture trees remain intentionally retained for the owner.
+- A49/A50/T20 stay blocked: named physical Windows actions and an explicitly chosen
+  representative legally held over-hour input/time/resource/playback observations
+  have not arrived. Native app UI is unavailable in this session; old physical or
+  automated input/long/default evidence cannot invent current named observations.
+  Asked owner for tester identity/local selected path and availability; no personal
+  media search. Exactly next continue T20, not T21; project/release incomplete.
+
+## T20 simpler owner check and automated representative file — 11 October 2026
+
+- Janne Vuorela supplied his identity and exactly one local legally held podcast,
+  requesting: "The test needs to be much simpler for me, or automated, please
+  revise". This steers the same T20 task. The file is 79m35.055646s mono MP3;
+  only that selected regular file was read/copied, without personal-folder search.
+  Its public identity is T20-long-01; paths/names/tags/media/raw logs stay private.
+- Revise A50's quantitative method explicitly in task/strategy/acceptance tracking
+  to automated owner-selected real-media checks plus controlled default-Music
+  smoke, preserving duration/resources/default-path/policy expected outcomes.
+  A49 physical actions and T21 actual player/phone listening/seeking remain.
+  No automated decoder result is a named playback observation.
+- Fresh PS5.1/PS7 final1 runs actually test f992a54, whose runtime blobs equal
+  integrated main da2a627. App host elapsed34.633/37.353s; actual host/FFmpeg
+  CPU/memory/sample scopes are recorded. Both Completed/exit0 outputs are
+  38,201,262bytes with identical hashes, zero duration delta, 182,798frames all
+  64kbps, independent full+near-end decode and preservation gates passed.
+  Observed retained processes exit/dispose naturally without controller kill;
+  eight bounded native verifications per shell finish/release. These are two
+  real acceptance runs, not added to the earlier 182 supplemental-case count.
+- Preserve failed PS5.1 attempt1: runner assumed flat output rather than the
+  unchanged app's recursive wrapper. It does not have completed independent
+  verification or an original runner snapshot; no pass is inferred. Fresh finals
+  use owned literal recursion, PID-reuse acquisition guard, forced-kill fail gate
+  and exact runner before/snapshot/after hashes. Three owned roots remain retained
+  outside Git; no cleanup attempted and no old retained-scope record changed.
+- Replace the 129-line manual procedure with one guided command. Owner only does
+  one mixed-corrupt folder-on-unchanged-BAT drop, actual STA select/Cancel in both
+  shells and physical READY Ctrl+C in both; windows, preset synthetic metadata,
+  verification and local capture are automated. Hash-bound copies of installed
+  FFmpeg may be placed beside the private app for existing Explorer discovery;
+  no download/global setting/runtime/Git/package binary change. BAT shell/exit/
+  output are explicit uncaptured limits, and unknown Music output remains untouched.
+  Original newly created cancellation reports keep their task/A29/commit IDs and
+  bytes when relocated from exact fresh paths to local owned guided-results root.
+- A50 passes; A49/T20 remain blocked until Janne's actual actions/confirmation and
+  captured evidence are reviewed. Old T20-review.json stays frozen; new revision
+  review/feature sync/CI accompany this checkpoint. Main integration remains
+  owner-gated, exactly next continue T20, with project/release/phone unfinished.
+
+## T20 recovered selection and simpler completed method — 11 October 2026
+
+- Janne reported the cover mismatch after trying both PNGs and requested simpler
+  testing again. Actual PS5.1 Desktop STA capture already records exit0, Completed,
+  converted3/failed0. The guide wrongly demanded a 64x64 fixture, rejecting the
+  valid selected tracked 2816x1536 poster. Preserve the failed aggregate and reuse
+  independently verified capture/outputs.
+- Correct only the guide verifier: accept actual valid regular JPG/PNG, bind
+  source hash/dimensions, compare embedded artwork and retain captures before
+  verification. Both-shell actual-function checks pass and reject false Cancel;
+  thirteen bounded natives release each. No new UI/application execution.
+- Both recovery verifier shells inspect the actual PS5.1 outputs; each records
+  sixteen released natives, 41 unchanged bindings and metadata/layout/date/64kbps/
+  duration/full audio-art decode success. PS7 verifier is not PS7 UI. Fresh unchanged
+  both-shell cancellation tests add eighteen automated passes, with controlled
+  input, owned process release, interrupted-output safety and unrelated-process
+  survival; no hardware/manual action claim.
+- Explicitly revise A49 at his repeated request to named interactions plus real
+  automated both-shell Windows tests. Janne confirmed actual test-folder BAT drop
+  showed Completed with failures. BAT shell/raw exit/output root remain unknown
+  and its Music output untouched. Current PS7 picker, physical Cancel, hardware
+  Ctrl+C and physical fallback remain disclosed coverage limits.
+- A49/A50 pass; T20 done on feature, no further owner Windows test required. Preserve
+  old reviews/failed reports/private scopes; create a focused recovery review.
+  Runtime/helper/BAT/tests/CI/build/defaults remain unchanged. Last verified feature
+  checkpoint 1e9e5de has both push/PR CI jobs green. Final recovery sync/checks
+  belong in PR/response. Main integration owner-gated; exactly next T21 after
+  integration. Project/release/phone acceptance incomplete.

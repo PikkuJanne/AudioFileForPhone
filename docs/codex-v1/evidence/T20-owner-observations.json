@@ -1,0 +1,50 @@
+{
+  "task": "T20",
+  "observation_date": "2026-10-11",
+  "tester": "Janne Vuorela",
+  "provenance": "Direct human messages in active T20 chat; no inferred final guide confirmation",
+  "method_revision": {
+    "requested_by_tester": true,
+    "requests": [
+      "The test needs to be much simpler for me, or automated, please revise",
+      "I tried both PNGs, but the same error. More simple testing please"
+    ],
+    "A49": "Named actual BAT mixed-failure observation and captured PS5.1 STA selection, plus automated both-shell real Windows checks",
+    "physical_coverage_limits": [
+      "Current PS7 native picker not observed",
+      "Physical Cancel not observed",
+      "Fresh hardware Ctrl+C not observed",
+      "Physical launcher fallback not observed"
+    ]
+  },
+  "cover_selection": {
+    "human_statement": "I tried both PNGs, but the same error. More simple testing please",
+    "captured_application_shell": "Windows PowerShell 5.1.26100.9444 Desktop",
+    "captured_application_apartment": "STA",
+    "captured_application_start_utc": "2026-10-11T16:13:18.6470880Z",
+    "captured_application_finish_utc": "2026-10-11T16:13:28.8491060Z",
+    "captured_application_exit_code": 0,
+    "captured_application_result": "Completed",
+    "captured_converted": 3,
+    "captured_failed": 0,
+    "verification": "T20-picker-recovery-bindings.json; both verifier shells inspect same actual PS5.1 application outputs",
+    "original_guided_aggregate_status": "failed",
+    "original_guided_aggregate_sha256": "69ad3e2335229d564423977d3be41b5896f0f521f161a89f54314f83bf33c52b",
+    "aggregate_is_preserved_not_rewritten": true
+  },
+  "bat_drop": {
+    "question": "Before the cover step, did you drag the test folder onto the BAT and see 'Completed with failures'? I can reuse that observation so you won't have to repeat it.",
+    "answer": "Yes, I saw that message",
+    "result": "Named confirmation of actual folder-on-BAT interaction and visible Completed with failures message",
+    "selected_shell_version": "unknown",
+    "raw_exit_code": null,
+    "output_root": "unknown",
+    "music_output_inspected": false,
+    "music_output_removed": false
+  },
+  "not_established": [
+    "Complete seven-stage guide success or final DONE",
+    "Phone playback, listening, seeking or resume",
+    "Main integration or release acceptance"
+  ]
+}

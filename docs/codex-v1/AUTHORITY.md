@@ -182,6 +182,36 @@ specified full commit and exact ZIP/manifest hashes. It may be carried across T2
 A changed commit, payload, hash or newly failed acceptance invalidates that approval.
 No intermediate public releases or prereleases. A draft is allowed after this gate.
 
+T20 authorization: on 11 October 2026 the owner requested "T20 next please".
+Fresh fetch, independently advertised refs and live GitHub verify the owner's
+T19 PR #19 merge at 15:19:08 UTC into main
+`da2a6273ff9aceb86af75ad4aa2d2942ec745d66`, final feature
+`4aa3dd3bbeb02982ef788521e2751fdc5bcb05df`. Clean local main was fast-forwarded;
+T20 uses `codex/v1-t20-windows-acceptance` from that verified merge. Normal
+task preparation, controlled local checks, documentation, commits, feature push
+and a relevant draft PR are authorized. Named manual observations and a selected
+representative local long file remain required; no such evidence is inferred
+from this task request. Main integration, release writes and repository settings
+gates remain unchanged.
+
+T20 continuation: Janne Vuorela supplied his tester identity and one exact local
+podcast path, requesting that the test be much simpler or automated. This
+authorizes read/copy/conversion checks on that selected file in an owned TEMP
+scope, private retention of media/raw captures, a simpler guided physical check
+and a recorded quantitative A50 method revision. It authorizes neither scanning
+personal media directories nor claiming actions he has not performed. Normal
+feature-checkpoint scope continues; main integration/release gates stay unchanged.
+
+T20 recovery continuation: Janne reported the guide's cover failure after trying
+both PNGs and again requested simpler testing. This authorizes correcting the
+overly strict test, reusing his retained actual PS5.1 picker result, and explicitly
+revising A49 to named observations plus automated real Windows checks. He then
+confirmed "Yes, I saw that message" when asked whether he had dragged the test
+folder onto the BAT and seen "Completed with failures". Record that visible
+observation, not an unobserved BAT shell, exit code or output path. No current
+PS7 picker, physical Cancel, fresh hardware Ctrl+C, playback or phone observation
+is inferred. Normal feature-checkpoint scope continues; main/release gates stay.
+
 ## Never authorized implicitly
 
 History rewriting, force push, deletion/reset of unrelated work, existing tags or

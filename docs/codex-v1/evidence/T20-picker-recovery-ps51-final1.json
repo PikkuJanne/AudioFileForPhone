@@ -1,0 +1,540 @@
+{
+    "schema_version":  1,
+    "task":  "T20",
+    "mode":  "read_only_existing_physical_picker_recovery",
+    "status":  "pass",
+    "automated_operator":  "Codex",
+    "physical_tester":  "Janne Vuorela",
+    "human_observation_source":  "Direct user message: tried both PNGs and received the same guide error.",
+    "human_confirmation":  "Specific PNG selection reported; final DONE confirmation was not given.",
+    "started_utc":  "2026-10-11T16:20:00.5689384Z",
+    "finished_utc":  "2026-10-11T16:20:04.5813505Z",
+    "tested_commit":  "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+    "verification_shell":  "5.1.26100.9444",
+    "verification_edition":  "Desktop",
+    "observed_application_shell":  "5.1.26100.9444",
+    "observed_application_edition":  "Desktop",
+    "observed_apartment":  "STA",
+    "application_started_utc":  "2026-10-11T16:13:18.6470880Z",
+    "application_finished_utc":  "2026-10-11T16:13:28.8491060Z",
+    "application_exit_code":  0,
+    "application_status":  "Completed",
+    "application_launched_by_this_verifier":  false,
+    "ui_launched":  false,
+    "music_access":  false,
+    "personal_directory_enumeration":  false,
+    "old_guide_status":  "failed",
+    "old_guide_result_unchanged":  true,
+    "requested_cover_matches_actual":  false,
+    "actual_cover":  {
+                         "public_tracked_name":  "AudioFileForPhone_poster.png",
+                         "sha256":  "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+                         "bytes":  7011504,
+                         "codec":  "png",
+                         "width":  2816,
+                         "height":  1536,
+                         "independent_full_decode":  true,
+                         "requested_fixture_width":  64,
+                         "requested_fixture_height":  64,
+                         "original_picker_cover_path_matches_requested":  false
+                     },
+    "outputs":  [
+                    {
+                        "id":  "output_1",
+                        "source_extension":  ".mp3",
+                        "source_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                        "output_sha256":  "f19e9f279aa64bb5631c2c8869c43609bae76472bbb91b646b849e978a6b3d20",
+                        "bytes":  382661,
+                        "codec":  "mp3",
+                        "bitrate_bps":  64000,
+                        "sample_rate":  44100,
+                        "channels":  2,
+                        "source_duration_seconds":  1,
+                        "output_duration_seconds":  1,
+                        "original_title_preserved":  true,
+                        "artist_matches_configured":  true,
+                        "album_matches_configured":  true,
+                        "recursive_layout_preserved":  true,
+                        "date_first_name":  true,
+                        "attached_art_count":  1,
+                        "attached_art_codec":  "mjpeg",
+                        "attached_art_width":  2816,
+                        "attached_art_height":  1536,
+                        "full_audio_decode":  true,
+                        "full_art_decode":  true
+                    },
+                    {
+                        "id":  "output_2",
+                        "source_extension":  ".ogg",
+                        "source_sha256":  "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+                        "output_sha256":  "c577a9c385571011d659a80fcf8e54529a2a2fa70a5f3f21dea7175ccaa750f8",
+                        "bytes":  382661,
+                        "codec":  "mp3",
+                        "bitrate_bps":  64000,
+                        "sample_rate":  44100,
+                        "channels":  2,
+                        "source_duration_seconds":  1.002902,
+                        "output_duration_seconds":  0.997098,
+                        "original_title_preserved":  true,
+                        "artist_matches_configured":  true,
+                        "album_matches_configured":  true,
+                        "recursive_layout_preserved":  true,
+                        "date_first_name":  true,
+                        "attached_art_count":  1,
+                        "attached_art_codec":  "mjpeg",
+                        "attached_art_width":  2816,
+                        "attached_art_height":  1536,
+                        "full_audio_decode":  true,
+                        "full_art_decode":  true
+                    },
+                    {
+                        "id":  "output_3",
+                        "source_extension":  ".m4a",
+                        "source_sha256":  "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+                        "output_sha256":  "fcc1836b2238fdf5b726fbd759ae0360288fe346ed4e2968940eb795bfd53d12",
+                        "bytes":  382661,
+                        "codec":  "mp3",
+                        "bitrate_bps":  64000,
+                        "sample_rate":  44100,
+                        "channels":  2,
+                        "source_duration_seconds":  1,
+                        "output_duration_seconds":  1,
+                        "original_title_preserved":  true,
+                        "artist_matches_configured":  true,
+                        "album_matches_configured":  true,
+                        "recursive_layout_preserved":  true,
+                        "date_first_name":  true,
+                        "attached_art_count":  1,
+                        "attached_art_codec":  "mjpeg",
+                        "attached_art_width":  2816,
+                        "attached_art_height":  1536,
+                        "full_audio_decode":  true,
+                        "full_art_decode":  true
+                    }
+                ],
+    "native_verification":  [
+                                {
+                                    "label":  "current_application_repository_head",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  264,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "actual_cover_is_tracked",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  66,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "actual_cover_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  119,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "actual_cover_full_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  180,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_1_source_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  43,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_1_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  51,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_1_full_audio_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  61,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_1_full_art_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  73,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_2_source_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  48,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_2_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  57,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_2_full_audio_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  62,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_2_full_art_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  71,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_3_source_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  44,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_3_probe",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  55,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_3_full_audio_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  61,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                },
+                                {
+                                    "label":  "output_3_full_art_decode",
+                                    "deadline_ms":  30000,
+                                    "status":  "Completed",
+                                    "exit_code":  0,
+                                    "process_released":  true,
+                                    "elapsed_ms":  80,
+                                    "stdout_truncated":  false,
+                                    "stderr_truncated":  false
+                                }
+                            ],
+    "bindings":  [
+                     {
+                         "label":  "original_failed_guide",
+                         "before_sha256":  "69ad3e2335229d564423977d3be41b5896f0f521f161a89f54314f83bf33c52b",
+                         "after_sha256":  "69ad3e2335229d564423977d3be41b5896f0f521f161a89f54314f83bf33c52b",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "session_owner_marker",
+                         "before_sha256":  "3c402925567a1c19d318b9eaa49f4bc3c022621def213d0790d3e778cbb4b0ce",
+                         "after_sha256":  "3c402925567a1c19d318b9eaa49f4bc3c022621def213d0790d3e778cbb4b0ce",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_session_start",
+                         "before_sha256":  "ca1703c5f6a6e5999dbb2607d7cc851ca7744856575b65fdab39e290f8f3f41f",
+                         "after_sha256":  "ca1703c5f6a6e5999dbb2607d7cc851ca7744856575b65fdab39e290f8f3f41f",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "preparation_report",
+                         "before_sha256":  "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+                         "after_sha256":  "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "preparation_owner_marker",
+                         "before_sha256":  "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+                         "after_sha256":  "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_preparation_copy",
+                         "before_sha256":  "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+                         "after_sha256":  "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "picker_configuration",
+                         "before_sha256":  "d32b8974547eac3d1a6b0e6a6cc8245b3cb15c9d986215b88ca3d788269d5342",
+                         "after_sha256":  "d32b8974547eac3d1a6b0e6a6cc8245b3cb15c9d986215b88ca3d788269d5342",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_picker_capture",
+                         "before_sha256":  "9202faa2f66c1df1369a7f9cf4a4039cb70bd1a9585b3092ef5912b79f583cd5",
+                         "after_sha256":  "9202faa2f66c1df1369a7f9cf4a4039cb70bd1a9585b3092ef5912b79f583cd5",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_picker_driver",
+                         "before_sha256":  "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+                         "after_sha256":  "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_picker_raw_log",
+                         "before_sha256":  "3d1bd3375db852ab8e236d6179e1220cde7906c9e6c1e14c4f1b9cc82745bca8",
+                         "after_sha256":  "3d1bd3375db852ab8e236d6179e1220cde7906c9e6c1e14c4f1b9cc82745bca8",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "source_AudioFileForPhone.ps1",
+                         "before_sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+                         "after_sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "copy_AudioFileForPhone.ps1",
+                         "before_sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+                         "after_sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "source_AudioFileForPhone.Helpers.ps1",
+                         "before_sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+                         "after_sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "copy_AudioFileForPhone.Helpers.ps1",
+                         "before_sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+                         "after_sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "source_AudioFileForPhone.bat",
+                         "before_sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+                         "after_sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "copy_AudioFileForPhone.bat",
+                         "before_sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+                         "after_sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_audio_0",
+                         "before_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "after_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_audio_1",
+                         "before_sha256":  "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+                         "after_sha256":  "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_audio_2",
+                         "before_sha256":  "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+                         "after_sha256":  "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_audio_copy_3",
+                         "before_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "after_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_deliberately_corrupt_synthetic_audio_4",
+                         "before_sha256":  "62cf56f6253e70b0f35065de95492037dfd7fc2b21b3dce4f1625926d2b68d3d",
+                         "after_sha256":  "62cf56f6253e70b0f35065de95492037dfd7fc2b21b3dce4f1625926d2b68d3d",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_cover_5",
+                         "before_sha256":  "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+                         "after_sha256":  "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_valid_synthetic_cover_6",
+                         "before_sha256":  "ff5f9946ba45ef5f6e711c72fbcb2c65f291da18f050ac525de268da311f168d",
+                         "after_sha256":  "ff5f9946ba45ef5f6e711c72fbcb2c65f291da18f050ac525de268da311f168d",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "prepared_deliberately_invalid_synthetic_cover_7",
+                         "before_sha256":  "e55945a29fa5b73d83528b0ab7ada325a632048d8805e4fc362c59cb62e077e7",
+                         "after_sha256":  "e55945a29fa5b73d83528b0ab7ada325a632048d8805e4fc362c59cb62e077e7",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "installed_ffmpeg",
+                         "before_sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                         "after_sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "adjacent_ffmpeg",
+                         "before_sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                         "after_sha256":  "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "installed_ffprobe",
+                         "before_sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                         "after_sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "adjacent_ffprobe",
+                         "before_sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                         "after_sha256":  "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_owner_marker",
+                         "before_sha256":  "00c9e415e4333c8b1f3d5ac01341d623fbe95d7288d249426914fd00ea4ec3b0",
+                         "after_sha256":  "00c9e415e4333c8b1f3d5ac01341d623fbe95d7288d249426914fd00ea4ec3b0",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "original_application_manifest",
+                         "before_sha256":  "c40af65f1b5b74654c902b27288761f9e095c6beef35d32ba0405c5cf70c4dc1",
+                         "after_sha256":  "c40af65f1b5b74654c902b27288761f9e095c6beef35d32ba0405c5cf70c4dc1",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "actual_selected_repository_cover",
+                         "before_sha256":  "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+                         "after_sha256":  "8ef1ed263e7bb6e4d6fa63ed4401f2e42fe6e76b5ac431a73ec69e5fd15e8442",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "recovery_owner_marker",
+                         "before_sha256":  "bbbec640f7d1f8bd3a85eeff0be40322b4b6358918e135be5f70d6e911383435",
+                         "after_sha256":  "bbbec640f7d1f8bd3a85eeff0be40322b4b6358918e135be5f70d6e911383435",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "working_recovery_runner",
+                         "before_sha256":  "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+                         "after_sha256":  "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "exact_runner_snapshot",
+                         "before_sha256":  "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+                         "after_sha256":  "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "private_actual_invocation",
+                         "before_sha256":  "5beb2ddf92de3f6c2d72e4810fd658834c0e6a3e6596283fd76e405ddf88c412",
+                         "after_sha256":  "5beb2ddf92de3f6c2d72e4810fd658834c0e6a3e6596283fd76e405ddf88c412",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_1_source",
+                         "before_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "after_sha256":  "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_1",
+                         "before_sha256":  "f19e9f279aa64bb5631c2c8869c43609bae76472bbb91b646b849e978a6b3d20",
+                         "after_sha256":  "f19e9f279aa64bb5631c2c8869c43609bae76472bbb91b646b849e978a6b3d20",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_2_source",
+                         "before_sha256":  "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+                         "after_sha256":  "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_2",
+                         "before_sha256":  "c577a9c385571011d659a80fcf8e54529a2a2fa70a5f3f21dea7175ccaa750f8",
+                         "after_sha256":  "c577a9c385571011d659a80fcf8e54529a2a2fa70a5f3f21dea7175ccaa750f8",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_3_source",
+                         "before_sha256":  "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+                         "after_sha256":  "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+                         "unchanged":  true
+                     },
+                     {
+                         "label":  "output_3",
+                         "before_sha256":  "fcc1836b2238fdf5b726fbd759ae0360288fe346ed4e2968940eb795bfd53d12",
+                         "after_sha256":  "fcc1836b2238fdf5b726fbd759ae0360288fe346ed4e2968940eb795bfd53d12",
+                         "unchanged":  true
+                     }
+                 ],
+    "all_bound_bytes_unchanged":  true,
+    "runner_snapshot_sha256":  "7e2ecbd31621b5968b8a8bd35ccefe66b9b4e45feef947286d336963c30049c2",
+    "private_proof_root_name":  "T20R-28ad84361358",
+    "private_invocation_sha256":  "5beb2ddf92de3f6c2d72e4810fd658834c0e6a3e6596283fd76e405ddf88c412",
+    "private_raw_verification_sha256":  "48be6ea2c6eb6d70238b6da0da18aaf5bb225d4450f1985b78cba732e1791043",
+    "retained_private_files":  true,
+    "cleanup_attempted":  false,
+    "failure_stage":  null,
+    "limitations":  [
+                        "Only the retained PS5.1 STA Select run is recovered; running this verifier in PS7 does not establish a PS7 picker observation.",
+                        "Original guide failure and missing final owner confirmation remain unchanged.",
+                        "BAT observation was empty; selected BAT shell/exit/Music root were not captured and no Music was inspected.",
+                        "No physical Cancel, Ctrl+C, manual listening or phone observation is established.",
+                        "Actual selected cover is hashed before/after recovery, not retrospectively before its original selection."
+                    ]
+}

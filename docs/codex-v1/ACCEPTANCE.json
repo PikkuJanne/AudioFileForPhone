@@ -800,20 +800,41 @@
       "task": "T20",
       "title": "Windows 11 acceptance",
       "required": true,
-      "method": "named manual tester evidence",
+      "method": "named actual BAT/PS5.1 STA observations plus automated both-shell real Windows checks; explicitly revised at Janne Vuorela repeated request on 2026-10-11; current PS7 picker, physical Cancel/hardware Ctrl+C/fallback not observed",
       "expected": "Real Windows 11 runs with PS5.1 and PS7 cover BAT drag/drop, metadata interaction, spaces/special characters, cancellation and failure result; record exact environment.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T20.md",
+        "evidence/T20-supplemental.json",
+        "T20_MANUAL_STEPS.md",
+        "evidence/T20-guided-validation.json",
+        "evidence/T20-revision-review.json",
+        "evidence/T20-owner-observations.json",
+        "evidence/T20-picker-recovery-bindings.json",
+        "evidence/T20-picker-recovery-ps51-final1.json",
+        "evidence/T20-picker-recovery-ps7-final1.json",
+        "evidence/T20-guided-correction-check.json",
+        "evidence/T20-cancellation-bindings-final2.json",
+        "evidence/T20-recovery-review.json"
+      ]
     },
     {
       "id": "A50",
       "task": "T20",
       "title": "Windows long-file and default-path smoke",
       "required": true,
-      "method": "manual release-candidate smoke",
+      "method": "owner-selected representative media with automated quantitative checks and controlled default-Music smoke; revised at Janne Vuorela request on 2026-10-11",
       "expected": "Representative long audio completes with correct duration and resource behavior; controlled default Music destination works; managed-policy restrictions are not bypassed.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T20.md",
+        "evidence/T20-supplemental.json",
+        "T20_MANUAL_STEPS.md",
+        "evidence/T20-long-bindings.json",
+        "evidence/T20-long-ps51-final1.json",
+        "evidence/T20-long-ps7-final1.json",
+        "evidence/T20-revision-review.json"
+      ]
     },
     {
       "id": "A51",

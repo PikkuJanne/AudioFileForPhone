@@ -1,0 +1,553 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "purpose": "synthetic_manual_fixture_preparation_only",
+  "started_utc": "2026-10-11T15:26:24.8240332Z",
+  "finished_utc": "2026-10-11T15:26:27.1640156Z",
+  "status": "prepared",
+  "manual_acceptance": "not_run",
+  "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+  "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+  "runtime": {
+    "version": "7.6.5",
+    "edition": "Core",
+    "executable_path": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "windows_build": "26300.9457"
+  },
+  "ownership": {
+    "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+    "temp_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp",
+    "marker_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\.t20-manual-owner",
+    "marker_sha256": "6c39b3ddba318ae787039c836c4567715ec362e39f4add20c169d4de5672253e",
+    "exclusive_directory": true,
+    "reparse_ancestors_refused": true,
+    "retained_for_owner": true
+  },
+  "paths": {
+    "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2",
+    "application_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\app",
+    "special_input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand",
+    "mixed_input": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Mixed valid & corrupt [batch]",
+    "covers": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images",
+    "output_parent": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Output [owned] & empty",
+    "report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\preparation.json",
+    "valid_jpg_cover": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue [valid] & cover.jpg",
+    "valid_png_cover": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue ä [valid] & cover.png",
+    "invalid_cover": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Invalid [cover] & image.jpg"
+  },
+  "tools": {
+    "ffmpeg": {
+      "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  },
+  "sources": [
+    {
+      "name": "AudioFileForPhone.ps1",
+      "source_path": "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.ps1",
+      "copy_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\app\\AudioFileForPhone.ps1",
+      "source_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "copy_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "source_after_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "name": "AudioFileForPhone.Helpers.ps1",
+      "source_path": "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.Helpers.ps1",
+      "copy_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\app\\AudioFileForPhone.Helpers.ps1",
+      "source_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "copy_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "source_after_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "name": "AudioFileForPhone.bat",
+      "source_path": "C:\\projects\\AudioFileForPhone-main\\AudioFileForPhone.bat",
+      "copy_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\app\\AudioFileForPhone.bat",
+      "source_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "copy_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "source_after_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "inputs": [
+    {
+      "kind": "valid_synthetic_audio",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3",
+      "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3",
+      "length": 8679,
+      "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027",
+      "probe": {
+        "streams": [
+          {
+            "codec_name": "mp3",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "1.000000"
+        }
+      }
+    },
+    {
+      "kind": "valid_synthetic_audio",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a",
+      "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a",
+      "length": 14584,
+      "sha256": "9f8ec59155d5fffc9d26c0a6bb000c219723e14c21de813f61285a29abbacfbf",
+      "probe": {
+        "streams": [
+          {
+            "codec_name": "aac",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "1.000000"
+        }
+      }
+    },
+    {
+      "kind": "valid_synthetic_audio",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg",
+      "relative_path": "Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg",
+      "length": 6852,
+      "sha256": "304d917270c900f50cd5525947857a44ae79e0295d84d91508fbc21e6459492e",
+      "probe": {
+        "streams": [
+          {
+            "codec_name": "vorbis",
+            "sample_rate": "44100",
+            "channels": 2
+          }
+        ],
+        "format": {
+          "duration": "1.002902"
+        }
+      }
+    },
+    {
+      "kind": "valid_synthetic_audio_copy",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Mixed valid & corrupt [batch]\\Valid [MP3] & example.mp3",
+      "relative_path": "Mixed valid & corrupt [batch]\\Valid [MP3] & example.mp3",
+      "length": 8679,
+      "sha256": "d0729a1bab8f8287397085115fb520a92081ecd7d03e2d7364f6ed1656f73027"
+    },
+    {
+      "kind": "deliberately_corrupt_synthetic_audio",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Mixed valid & corrupt [batch]\\Corrupt [MP3] & example.mp3",
+      "relative_path": "Mixed valid & corrupt [batch]\\Corrupt [MP3] & example.mp3",
+      "length": 48,
+      "sha256": "62cf56f6253e70b0f35065de95492037dfd7fc2b21b3dce4f1625926d2b68d3d"
+    },
+    {
+      "kind": "valid_synthetic_cover",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue [valid] & cover.jpg",
+      "relative_path": "Covers [picker] & images\\Blue [valid] & cover.jpg",
+      "length": 248,
+      "sha256": "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+      "probe": {
+        "streams": [
+          {
+            "codec_name": "mjpeg",
+            "width": 64,
+            "height": 64
+          }
+        ]
+      }
+    },
+    {
+      "kind": "valid_synthetic_cover",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue ä [valid] & cover.png",
+      "relative_path": "Covers [picker] & images\\Blue ä [valid] & cover.png",
+      "length": 203,
+      "sha256": "ff5f9946ba45ef5f6e711c72fbcb2c65f291da18f050ac525de268da311f168d",
+      "probe": {
+        "streams": [
+          {
+            "codec_name": "png",
+            "width": 64,
+            "height": 64
+          }
+        ]
+      }
+    },
+    {
+      "kind": "deliberately_invalid_synthetic_cover",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Invalid [cover] & image.jpg",
+      "relative_path": "Covers [picker] & images\\Invalid [cover] & image.jpg",
+      "length": 53,
+      "sha256": "e55945a29fa5b73d83528b0ab7ada325a632048d8805e4fc362c59cb62e077e7"
+    }
+  ],
+  "native_commands": [
+    {
+      "executable_path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "arguments": [
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 181,
+      "stdout": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-version"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 46,
+      "stdout": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev4, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61. 13.100 / 61. 13.100\r\nlibavcodec     63. 18.100 / 63. 18.100\r\nlibavformat    63.  8.100 / 63.  8.100\r\nlibavdevice    63.  2.100 / 63.  2.100\r\nlibavfilter    12.  5.100 / 12.  5.100\r\nlibswscale     10.  2.100 / 10.  2.100\r\nlibswresample   7.  3.101 /  7.  3.101\r\n\r\nExiting with exit code 0\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-version"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 41,
+      "stdout": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev4, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61. 13.100 / 61. 13.100\r\nlibavcodec     63. 18.100 / 63. 18.100\r\nlibavformat    63.  8.100 / 63.  8.100\r\nlibavdevice    63.  2.100 / 63.  2.100\r\nlibavfilter    12.  5.100 / 12.  5.100\r\nlibswscale     10.  2.100 / 10.  2.100\r\nlibswresample   7.  3.101 /  7.  3.101\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=440:sample_rate=44100:duration=1",
+        "-ac",
+        "2",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "64k",
+        "-id3v2_version",
+        "3",
+        "-metadata",
+        "title=T20 synthetic MP3 title",
+        "-metadata",
+        "artist=T20 synthetic fixture",
+        "-f",
+        "mp3",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 66,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-select_streams",
+        "a:0",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels:format=duration",
+        "-of",
+        "json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Example ä [MP3] & title.mp3.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 43,
+      "stdout": "{\r\n    \"streams\": [\r\n        {\r\n            \"codec_name\": \"mp3\",\r\n            \"sample_rate\": \"44100\",\r\n            \"channels\": 2\r\n        }\r\n    ],\r\n    \"format\": {\r\n        \"duration\": \"1.000000\"\r\n    }\r\n}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=440:sample_rate=44100:duration=1",
+        "-ac",
+        "2",
+        "-c:a",
+        "aac",
+        "-metadata",
+        "title=T20 synthetic M4A title",
+        "-metadata",
+        "artist=T20 synthetic fixture",
+        "-f",
+        "mp4",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 72,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-select_streams",
+        "a:0",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels:format=duration",
+        "-of",
+        "json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example Ω [M4A] & title.m4a.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 42,
+      "stdout": "{\r\n    \"streams\": [\r\n        {\r\n            \"codec_name\": \"aac\",\r\n            \"sample_rate\": \"44100\",\r\n            \"channels\": 2\r\n        }\r\n    ],\r\n    \"format\": {\r\n        \"duration\": \"1.000000\"\r\n    }\r\n}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=440:sample_rate=44100:duration=1",
+        "-ac",
+        "2",
+        "-c:a",
+        "libvorbis",
+        "-metadata",
+        "title=T20 synthetic OGG title",
+        "-metadata",
+        "artist=T20 synthetic fixture",
+        "-f",
+        "ogg",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 75,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-select_streams",
+        "a:0",
+        "-show_entries",
+        "stream=codec_name,sample_rate,channels:format=duration",
+        "-of",
+        "json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Input spaces ä Ω [brackets] & ampersand\\Nested Ω [album] & folder\\Example ä [OGG] & title.ogg.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 45,
+      "stdout": "{\r\n    \"streams\": [\r\n        {\r\n            \"codec_name\": \"vorbis\",\r\n            \"sample_rate\": \"44100\",\r\n            \"channels\": 2\r\n        }\r\n    ],\r\n    \"format\": {\r\n        \"duration\": \"1.002902\"\r\n    }\r\n}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "color=c=blue:s=64x64",
+        "-frames:v",
+        "1",
+        "-c:v",
+        "mjpeg",
+        "-f",
+        "image2",
+        "-update",
+        "1",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue [valid] & cover.jpg.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 46,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=codec_name,width,height",
+        "-of",
+        "json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue [valid] & cover.jpg.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 42,
+      "stdout": "{\r\n    \"streams\": [\r\n        {\r\n            \"codec_name\": \"mjpeg\",\r\n            \"width\": 64,\r\n            \"height\": 64\r\n        }\r\n    ]\r\n}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "color=c=blue:s=64x64",
+        "-frames:v",
+        "1",
+        "-c:v",
+        "png",
+        "-f",
+        "image2",
+        "-update",
+        "1",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue ä [valid] & cover.png.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 47,
+      "stdout": "",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    },
+    {
+      "executable_path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "stream=codec_name,width,height",
+        "-of",
+        "json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T20-Manual-a7d6868fa01e43d39c95f5d6ebd7eba2\\Covers [picker] & images\\Blue ä [valid] & cover.png.work"
+      ],
+      "timeout_ms": 30000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "elapsed_ms": 44,
+      "stdout": "{\r\n    \"streams\": [\r\n        {\r\n            \"codec_name\": \"png\",\r\n            \"width\": 64,\r\n            \"height\": 64\r\n        }\r\n    ]\r\n}\r\n",
+      "stderr": "",
+      "stdout_truncated": false,
+      "stderr_truncated": false,
+      "error": ""
+    }
+  ],
+  "native_processes_released": true,
+  "source_bytes_unchanged": true,
+  "empty_output_parent": true,
+  "error": null
+}

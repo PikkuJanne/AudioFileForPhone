@@ -1,0 +1,423 @@
+{
+  "schema_version": 1,
+  "kind": "T20.CancellationBindings",
+  "task": "T20",
+  "scope": "Fresh automated cancellation/crash verification supporting the owner-requested simpler T20 method. These are controlled native console inputs and retained-handle forced-host cases, never physical keyboard or named manual Ctrl+C observations. Original T16 report/task/case/commit fields and bytes remain unchanged.",
+  "created_utc": "2026-10-11T16:20:30.097173+00:00",
+  "automated_operator": "Codex",
+  "tested_application_commit": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+  "working_head_observed": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+  "equivalent_integrated_main_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+  "equivalent_prior_t20_application_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "status": "pass",
+  "report_count": 2,
+  "case_count": 18,
+  "passed_case_count": 18,
+  "physical_manual_evidence": false,
+  "parent_launch_environment": {
+    "observed_utc": "2026-10-11T16:19:09.9428185Z",
+    "is_elevated": false,
+    "context": "Same ordinary Windows account; observed during the PS7 run and immediately after the PS5.1 run. Elevation is a launch-context observation, not a new field in either original harness report.",
+    "module_path_handling": "The isolated launch wrapper cleared PSModulePath only while spawning the selected child shell and restored its prior value in finally. No global/module installation or PATH/policy/registry change.",
+    "policy": "Both actual argv request process-scoped RemoteSigned; no -Manual switch or global execution-policy change. Existing T20 environment observations remain separate."
+  },
+  "invocations": [
+    {
+      "original_report": "T16-cancellation-ps51-final22.json",
+      "original_report_sha256": "60e615d7db340d2c642dcdc0631df4c263b76ca07a59fbd7feaf092ea8783ce9",
+      "original_task": "T16",
+      "original_tested_commit": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+      "original_mode": "controlled_native_console_input_and_forced_host",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1",
+        "-EvidencePath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T16-cancellation-ps51-final22.json",
+        "-FfmpegPath",
+        "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\ffmpeg\\bin\\ffprobe.exe"
+      ],
+      "recorded_command": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T16-cancellation-ps51-final22.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe",
+      "launch_started_utc": "2026-10-11T16:18:45.5156725Z",
+      "launch_finished_utc": "2026-10-11T16:19:06.3302517Z",
+      "report_started_utc": "2026-10-11T16:18:46.0070098Z",
+      "report_finished_utc": "2026-10-11T16:19:06.2902655Z",
+      "observed_host_exit_code": 0,
+      "shell_version": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "os": "10.0.26300.0",
+      "windows_build": "26300.9457",
+      "tools": [
+        {
+          "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "case_count": 9,
+      "passed_case_count": 9,
+      "original_acceptance_case_counts": {
+        "A29": 8,
+        "A30": 1
+      },
+      "manual_requested": false,
+      "physical_manual_ctrl_c": false,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "children_disposed": true,
+      "cleanup_verified": true,
+      "owned_temp_root_name": "T11C-2b958d63",
+      "owner_marker_sha256": "0b1cfadc16df8df50aafe424a76cd1fc06e4a0c66869c27c05824b0c5d928d0c",
+      "source_relationships": [
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "before_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "after_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "tested_commit_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "integrated_main_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "prior_t20_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "before_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "after_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "tested_commit_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "integrated_main_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "prior_t20_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "before_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "after_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "tested_commit_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "integrated_main_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "prior_t20_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "tests/Test-Cancellation.ps1",
+          "before_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "after_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "working_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "tested_commit_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "integrated_main_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "prior_t20_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        }
+      ],
+      "cases": [
+        {
+          "name": "pre-requested context starts no native child",
+          "acceptance_case": "A29",
+          "status": "pass"
+        },
+        {
+          "name": "programmatic native cancellation releases only owned real FFmpeg",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "unrelated_real_ffmpeg_survived": true
+        },
+        {
+          "name": "pre-requested source inspection reports cancellation before probe/staging",
+          "acceptance_case": "A29",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at validation-probe preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at full-decode preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at publication preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at unproved-release preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "injected_unknown_release_no_actual_child": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "controlled isolated console Ctrl+C key records preserve first output, remove current partial and return130",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "physical_manual_keypress_claim": false,
+          "current_partial_removed": true,
+          "controller": {
+            "host_pid": 10324,
+            "native_pid": 27416,
+            "ready": true,
+            "synthetic_ctrl_c_key_records": true,
+            "forced_host_termination": false,
+            "native_alive_after_host_kill": false,
+            "held_owned_handles_released": true,
+            "host_exit_code": 130,
+            "error": ""
+          },
+          "unrelated_real_ffmpeg_survived": true
+        },
+        {
+          "name": "forced owned host termination leaves recognizable partial and completed output; next run preserves both plus arbitrary orphan",
+          "acceptance_case": "A30",
+          "status": "pass",
+          "controller": {
+            "host_pid": 17428,
+            "native_pid": 11600,
+            "ready": true,
+            "synthetic_ctrl_c_key_records": false,
+            "forced_host_termination": true,
+            "native_alive_after_host_kill": true,
+            "held_owned_handles_released": true,
+            "host_exit_code": 123,
+            "error": ""
+          },
+          "unrelated_real_ffmpeg_survived": true,
+          "recognizable_partial_name": ".AudioFileForPhone-0a93ca09d1554677953a4c1c5df3f5de.partial",
+          "prior_run_all_file_hashes_unchanged": true,
+          "next_run_supported_count": 3,
+          "arbitrary_orphan_preserved": true,
+          "no_forced_host_cancelled_claim": true
+        }
+      ]
+    },
+    {
+      "original_report": "T16-cancellation-ps7-final22.json",
+      "original_report_sha256": "ed02b9b40fef81129716ade679eba40b48854b545613a3b96a3ea284256bc0a2",
+      "original_task": "T16",
+      "original_tested_commit": "1e9e5de182f9cbe710f84ff0e63526698ac086d1",
+      "original_mode": "controlled_native_console_input_and_forced_host",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1",
+        "-EvidencePath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T16-cancellation-ps7-final22.json",
+        "-FfmpegPath",
+        "C:\\ffmpeg\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\ffmpeg\\bin\\ffprobe.exe"
+      ],
+      "recorded_command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File C:\\projects\\AudioFileForPhone-main\\tests\\Test-Cancellation.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T16-cancellation-ps7-final22.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe",
+      "launch_started_utc": "2026-10-11T16:18:46.2186938Z",
+      "launch_finished_utc": "2026-10-11T16:19:10.0818627Z",
+      "report_started_utc": "2026-10-11T16:18:47.4223758Z",
+      "report_finished_utc": "2026-10-11T16:19:10.0275275Z",
+      "observed_host_exit_code": 0,
+      "shell_version": "7.6.5",
+      "shell_edition": "Core",
+      "os": "10.0.26300.0",
+      "windows_build": "26300.9457",
+      "tools": [
+        {
+          "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "case_count": 9,
+      "passed_case_count": 9,
+      "original_acceptance_case_counts": {
+        "A29": 8,
+        "A30": 1
+      },
+      "manual_requested": false,
+      "physical_manual_ctrl_c": false,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "children_disposed": true,
+      "cleanup_verified": true,
+      "owned_temp_root_name": "T11C-b6aaf406",
+      "owner_marker_sha256": "a94f3f9869418018d171aba642828289707f6a2ebf07e3e9793fa14ac81723c8",
+      "source_relationships": [
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "before_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "after_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "tested_commit_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "integrated_main_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "prior_t20_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "before_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "after_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "tested_commit_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "integrated_main_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "prior_t20_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "before_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "after_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "tested_commit_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "integrated_main_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "prior_t20_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        },
+        {
+          "relative_path": "tests/Test-Cancellation.ps1",
+          "before_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "after_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "working_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+          "tested_commit_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "integrated_main_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "prior_t20_blob": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+          "same_working_bytes": true,
+          "same_git_blob": true
+        }
+      ],
+      "cases": [
+        {
+          "name": "pre-requested context starts no native child",
+          "acceptance_case": "A29",
+          "status": "pass"
+        },
+        {
+          "name": "programmatic native cancellation releases only owned real FFmpeg",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "unrelated_real_ffmpeg_survived": true
+        },
+        {
+          "name": "pre-requested source inspection reports cancellation before probe/staging",
+          "acceptance_case": "A29",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at validation-probe preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at full-decode preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at publication preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "real_phase_reached": true,
+          "current_partial_removed": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "transaction cancellation at unproved-release preserves publication/cleanup boundary",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "injected_unknown_release_no_actual_child": true,
+          "no_final_publication": true
+        },
+        {
+          "name": "controlled isolated console Ctrl+C key records preserve first output, remove current partial and return130",
+          "acceptance_case": "A29",
+          "status": "pass",
+          "physical_manual_keypress_claim": false,
+          "current_partial_removed": true,
+          "controller": {
+            "host_pid": 18880,
+            "native_pid": 14768,
+            "ready": true,
+            "synthetic_ctrl_c_key_records": true,
+            "forced_host_termination": false,
+            "native_alive_after_host_kill": false,
+            "held_owned_handles_released": true,
+            "host_exit_code": 130,
+            "error": ""
+          },
+          "unrelated_real_ffmpeg_survived": true
+        },
+        {
+          "name": "forced owned host termination leaves recognizable partial and completed output; next run preserves both plus arbitrary orphan",
+          "acceptance_case": "A30",
+          "status": "pass",
+          "controller": {
+            "host_pid": 26404,
+            "native_pid": 14908,
+            "ready": true,
+            "synthetic_ctrl_c_key_records": false,
+            "forced_host_termination": true,
+            "native_alive_after_host_kill": true,
+            "held_owned_handles_released": true,
+            "host_exit_code": 123,
+            "error": ""
+          },
+          "unrelated_real_ffmpeg_survived": true,
+          "recognizable_partial_name": ".AudioFileForPhone-a398479406034c82b9149253380510e7.partial",
+          "prior_run_all_file_hashes_unchanged": true,
+          "next_run_supported_count": 3,
+          "arbitrary_orphan_preserved": true,
+          "no_forced_host_cancelled_claim": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Console Ctrl+C is supplied by controlled native input records to an isolated console. No physical hardware keypress claim.",
+    "The byte-identical production entry uses an append-only test helper copy to pace the second real encoder; controlled injected phase boundaries are explicit original cases.",
+    "The unproved-release case is simulated without an actual child. Forced-host cases deliberately terminate only retained owned handles and preserve recognizable partials before exact owned cleanup.",
+    "No physical BAT drop, cover Cancel, current PS7 picker, listening/phone or release-ZIP observation is supplied by these runs.",
+    "The original reports retain their original A29/A30 acceptance IDs; this binder supplies equivalence and T20 support without renaming them."
+  ]
+}

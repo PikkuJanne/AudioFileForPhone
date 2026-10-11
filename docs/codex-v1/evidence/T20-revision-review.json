@@ -1,0 +1,591 @@
+{
+  "schema_version": 1,
+  "task": "T20",
+  "reviewed_utc": "2026-10-11T16:07:04.6755701Z",
+  "reviewer": "Codex independent t20_review agent",
+  "status": "pass",
+  "unresolved_findings": [],
+  "scope": "Independent static diff, original byte/hash/source relationship, private retained technical proof and truthful acceptance-state review. No tests or physical actions executed by reviewer; only this new review file written.",
+  "tested_application_candidate": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "integrated_main": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+  "runtime_source_relationships": [
+    {
+      "name": "AudioFileForPhone.ps1",
+      "candidate_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "integrated_main_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "committed_runtime_equal": true,
+      "working_diff_empty": true
+    },
+    {
+      "name": "AudioFileForPhone.Helpers.ps1",
+      "candidate_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "integrated_main_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "committed_runtime_equal": true,
+      "working_diff_empty": true
+    },
+    {
+      "name": "AudioFileForPhone.bat",
+      "candidate_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "integrated_main_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "committed_runtime_equal": true,
+      "working_diff_empty": true
+    }
+  ],
+  "application_existing_tests_ci_build_rules_unchanged": true,
+  "changed_paths_confined_to_docs_codex_v1": true,
+  "historical_review": {
+    "relative_path": "docs/codex-v1/evidence/T20-review.json",
+    "sha256": "5e93409185ea978eef08dacb53bf5170173ed73c4fb6cc009749dbe06ec97d8f",
+    "immutable": true,
+    "historical_scope_not_relabelled": true
+  },
+  "supplemental_report_count": 8,
+  "actual_required_supplemental_checks": 182,
+  "source_relationship_count": 26,
+  "source_before_after_relationships": 24,
+  "source_single_fingerprints_without_after": 2,
+  "supplemental_reports": [
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-metadata-ps51-final20.json",
+      "length": 1037342,
+      "sha256": "043412b0697e1889751851f0c4359c4273791b7b22eafda7209a5320169c2092",
+      "actual_checks": 15,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-metadata-ps7-final20.json",
+      "length": 695182,
+      "sha256": "743e3d980f8336560cd0346185b7275c7b4e1603bd9e2c364cc9c211b32f8557",
+      "actual_checks": 15,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-script-ps51-final20.json",
+      "length": 48068,
+      "sha256": "3dd76e6e587d75b3517f468dda2dd55ed85025a0c9b294bb69f2989c8974f025",
+      "actual_checks": 13,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-script-ps7-final20.json",
+      "length": 28295,
+      "sha256": "215531c97e617c669b9df38140932562a62e51d7cbdeef7c0b3b64dfab1d24b8",
+      "actual_checks": 13,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-launcher-ps51-final20.json",
+      "length": 87900,
+      "sha256": "8c8053e6c637b109c612130193a4e0e7687635e3626810011ee1659ba55d0b20",
+      "actual_checks": 52,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-launcher-ps7-final20.json",
+      "length": 56569,
+      "sha256": "b6bae56d352748a3b9f6625acb7f436b15a77da405e05b51797688a57c3d806f",
+      "actual_checks": 52,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-music-ps51-final20.json",
+      "length": 9079,
+      "sha256": "5da9d3db616a512b04f6dfec1ffc3f8d85007d06a4d3adfc543769c8221980b9",
+      "actual_checks": 11,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T16-music-ps7-final20.json",
+      "length": 5746,
+      "sha256": "7a3c76610e0d73ef61fe5976c21bf84f40f03a6f038f00e7f166ba0149eacc0c",
+      "actual_checks": 11,
+      "tested_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "pass",
+      "original_command_and_times_match": true
+    }
+  ],
+  "historical_supplemental_reports_preparations_and_binders_current_byte_hashes_match": true,
+  "missing_after_fields_not_invented": true,
+  "prior_fixture_process_and_exact_owned_cleanup_gates_remain_recorded_not_rerun": true,
+  "preparation_report_count": 3,
+  "successful_preparation_report_count": 2,
+  "preserved_failed_preparation_report_count": 1,
+  "preparation_reports": [
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-attempt1.json",
+      "length": 2310,
+      "sha256": "66e8b735bd1cf1b6d90103ba67d32e1df2d1a4e65487bc16b4868612c4a7c3f9",
+      "exact_byte_copy_of_retained_local_original": true,
+      "preparer_sha256": "03f5325fb87d2f8474ab92c38da2fd6c288f91930d02498402fc9f7b5ae0bc01",
+      "source_commit": null,
+      "status": "failed",
+      "manual_acceptance": "not_run",
+      "native_command_count": 1,
+      "successful_current_inputs_copies_marker_and_empty_output_verified": false,
+      "cleanup_claim": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-ps7.json",
+      "length": 24469,
+      "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+      "exact_byte_copy_of_retained_local_original": true,
+      "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+      "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "prepared",
+      "manual_acceptance": "not_run",
+      "native_command_count": 13,
+      "successful_current_inputs_copies_marker_and_empty_output_verified": true,
+      "cleanup_claim": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-ps51.json",
+      "length": 41038,
+      "sha256": "acc71fa7bb3dedc36ef72b0737b947e12793386179b8b0d8ff402c87064fbce5",
+      "exact_byte_copy_of_retained_local_original": true,
+      "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+      "source_commit": "da2a6273ff9aceb86af75ad4aa2d2942ec745d66",
+      "status": "prepared",
+      "manual_acceptance": "not_run",
+      "native_command_count": 13,
+      "successful_current_inputs_copies_marker_and_empty_output_verified": true,
+      "cleanup_claim": false
+    }
+  ],
+  "historical_binder_hashes": [
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-bindings.json",
+      "length": 6375,
+      "sha256": "f9bc318babec94efd24584172a9441a4bdf18d7b4862bb5338b3ad784c19a45f",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-supplemental.json",
+      "length": 28128,
+      "sha256": "67488ea8bd8d777cc6d81105adee97c4abe8935a75f687a270924e36a35f59e2",
+      "utf8_bom": false
+    }
+  ],
+  "preparer_sha256": "8a52320f3b9eb32e15373cc8b32f3334705e1d71a2fb40c90269924f4d496604",
+  "revised_long_runner": {
+    "relative_path": "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+    "length": 31589,
+    "sha256": "5ac40076ce82f451a25ff59c3f98144f19ee29b6e38edc1a844ff0ff60fe1761",
+    "utf8_bom": false
+  },
+  "actual_both_shell_parses_recorded_pass": true,
+  "long_binding": {
+    "relative_path": "docs/codex-v1/evidence/T20-long-bindings.json",
+    "length": 7538,
+    "sha256": "b70dddff11670c8c7232333a0cc2761eee49cbbca5899a46083b69dafd1cb39c",
+    "utf8_bom": false
+  },
+  "selected_long_report_count": 2,
+  "selected_long_reports": [
+    {
+      "report": {
+        "relative_path": "docs/codex-v1/evidence/T20-long-ps51-final1.json",
+        "length": 35954,
+        "sha256": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191",
+        "utf8_bom": false
+      },
+      "tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "shell": "5.1.26100.9444",
+      "edition": "Desktop",
+      "started_utc": "2026-10-11T15:53:00.6403165Z",
+      "finished_utc": "2026-10-11T15:53:41.4305764Z",
+      "private_invocation_sha256": "08835a731965d29582e6202cd369c823f77e13944998f442fbaef013e01aafc9",
+      "private_raw_capture_sha256": "9e9fb810aa156b99b68461f330e9700f6cbfaa50dfda48a55d597db57a7177c8",
+      "private_proof_hashes_currently_match": true,
+      "source_original_and_copy_current_hashes_match": true,
+      "native_calls": 8,
+      "all_native_exit_release_timeout_capture_and_forced_termination_gates_pass": true,
+      "runner_before_snapshot_after_equal": true,
+      "source_sha256": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+      "source_length": 38249841,
+      "output_length": 38201262,
+      "output_sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "output_duration_seconds": 4775.055646,
+      "duration_difference_seconds": 0,
+      "mp3_cbr_frames": 182798,
+      "unique_bitrates_kbps": [
+        64
+      ],
+      "full_decode": true,
+      "near_end_decode": true,
+      "application_host": {
+        "Role": "application_host",
+        "Pid": 26172,
+        "StartedUtc": "2026-10-11T15:53:02.3228624Z",
+        "ElapsedMilliseconds": 34633.3695,
+        "CpuMilliseconds": 2687.5,
+        "SampledWorkingSetPeakBytes": 144560128,
+        "ProcessLifetimeWorkingSetPeakBytes": 150867968,
+        "Samples": 415,
+        "FirstSampleMilliseconds": 29.396500000000003,
+        "LastSampleMilliseconds": 34619.5996,
+        "Exited": true,
+        "Disposed": true,
+        "ExitCode": 0,
+        "ControllerKillAttempted": false
+      },
+      "primary_encoding_ffmpeg": {
+        "Role": "ffmpeg",
+        "Pid": 14980,
+        "StartedUtc": "2026-10-11T15:53:05.0498071Z",
+        "ElapsedMilliseconds": 28693.4654,
+        "CpuMilliseconds": 34921.875,
+        "SampledWorkingSetPeakBytes": 21315584,
+        "ProcessLifetimeWorkingSetPeakBytes": 21491712,
+        "Samples": 342,
+        "FirstSampleMilliseconds": 2779.4109000000003,
+        "LastSampleMilliseconds": 31406.023100000002,
+        "Exited": true,
+        "Disposed": true,
+        "ExitCode": 0,
+        "ControllerKillAttempted": false
+      },
+      "all_observed_processes_exited_and_disposed": true,
+      "retained_root_name": "T20L-99834e4ffaa3",
+      "cleanup_attempted": false,
+      "physical_manual_evidence": false,
+      "manual_playback": "not_run"
+    },
+    {
+      "report": {
+        "relative_path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+        "length": 16185,
+        "sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+        "utf8_bom": false
+      },
+      "tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "shell": "7.6.5",
+      "edition": "Core",
+      "started_utc": "2026-10-11T15:53:51.1786088Z",
+      "finished_utc": "2026-10-11T15:54:34.1162832Z",
+      "private_invocation_sha256": "33c321b54f41ccb0914cd4484d02bb10d89fa7fe76ba24a9da0133baa5a6086d",
+      "private_raw_capture_sha256": "902dd55ab95a7d8e83ce04a7ad43eca2c158113f73f274182df5053b34ec4b96",
+      "private_proof_hashes_currently_match": true,
+      "source_original_and_copy_current_hashes_match": true,
+      "native_calls": 8,
+      "all_native_exit_release_timeout_capture_and_forced_termination_gates_pass": true,
+      "runner_before_snapshot_after_equal": true,
+      "source_sha256": "46d17900a22fb11d463a041f79f5e8c25c16044a6949203ccfeb94c0034585b9",
+      "source_length": 38249841,
+      "output_length": 38201262,
+      "output_sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "output_duration_seconds": 4775.055646,
+      "duration_difference_seconds": 0.0,
+      "mp3_cbr_frames": 182798,
+      "unique_bitrates_kbps": [
+        64
+      ],
+      "full_decode": true,
+      "near_end_decode": true,
+      "application_host": {
+        "Role": "application_host",
+        "Pid": 13696,
+        "StartedUtc": "2026-10-11T15:53:53.1834508Z",
+        "ElapsedMilliseconds": 37352.8408,
+        "CpuMilliseconds": 8218.75,
+        "SampledWorkingSetPeakBytes": 224968704,
+        "ProcessLifetimeWorkingSetPeakBytes": 224968704,
+        "Samples": 431,
+        "FirstSampleMilliseconds": 607.7601,
+        "LastSampleMilliseconds": 37336.9024,
+        "Exited": true,
+        "Disposed": true,
+        "ExitCode": 0,
+        "ControllerKillAttempted": false
+      },
+      "primary_encoding_ffmpeg": {
+        "Role": "ffmpeg",
+        "Pid": 21264,
+        "StartedUtc": "2026-10-11T15:53:57.0065783Z",
+        "ElapsedMilliseconds": 30163.1651,
+        "CpuMilliseconds": 36625.0,
+        "SampledWorkingSetPeakBytes": 20262912,
+        "ProcessLifetimeWorkingSetPeakBytes": 21311488,
+        "Samples": 353,
+        "FirstSampleMilliseconds": 3880.1328,
+        "LastSampleMilliseconds": 33977.5482,
+        "Exited": true,
+        "Disposed": true,
+        "ExitCode": 0,
+        "ControllerKillAttempted": false
+      },
+      "all_observed_processes_exited_and_disposed": true,
+      "retained_root_name": "T20L-8a2614f96c2a",
+      "cleanup_attempted": false,
+      "physical_manual_evidence": false,
+      "manual_playback": "not_run"
+    }
+  ],
+  "preserved_preliminary_long_attempt": [
+    {
+      "report": "evidence/T20-long-ps51-attempt1.json",
+      "report_sha256": "493c47edf581579d6a0d49dadc8c8c49911d2306f771db9e1466780d1c99e248",
+      "status": "fail",
+      "failure_stage": "application_outcomes",
+      "retained_root_name": "T20L-0b5ef910a4a1",
+      "recorded_runner_sha256": "dc9f804d19140a17a1e6afc1e047327c7b6b10591b3941e8250d0c0010e1ceeb",
+      "discarded_for_acceptance": true,
+      "reason": "Harness incorrectly required a flat output run; existing application preserves its input-root wrapper. The actual app completed conversion, but independent final output validation had not yet run. Fixed owned recursive inventory and controller guards are exercised only by fresh final reports.",
+      "original_failed_runner_snapshot_available": false,
+      "limitation": "Original runner bytes were modified during this attempt to apply independent process-review fixes, before snapshot retention was added. No hash-matched original-runner snapshot, forced-termination flag or final output-validation pass is claimed for this attempt."
+    }
+  ],
+  "long_static_review": {
+    "literal_absolute_selected_file_only": true,
+    "no_personal_folder_enumeration": true,
+    "no_source_modification": true,
+    "public_allowlisted_technical_fields": true,
+    "selected_private_path_filename_and_stem_absent_from_all_17_intended_files": true,
+    "raw_media_tags_captures_remain_outside_git": true,
+    "exclusive_marker_owned_nonreparse_scopes": true,
+    "owned_live_parent_handle_and_start_snapshot_pid_reuse_guards": true,
+    "owned_process_termination_only": true,
+    "forced_termination_fails_selected_run": true,
+    "source_runner_snapshot_after_hash_gates": true,
+    "owned_recursive_inventory_preserves_application_wrapper": true,
+    "nominal_50ms_sampling_overhead_and_observation_limits_declared": true,
+    "metrics_scope": "Observed individual retained processes, not total machine or proof of every transient child.",
+    "ps51_static_compatibility_review_pass": true,
+    "all_three_temp_roots_intentionally_retained": true,
+    "cleanup_attempted": false,
+    "failure_snapshot_and_termination_proof_limits_preserved": true
+  },
+  "guided_source": {
+    "relative_path": "docs/codex-v1/tools/Start-T20Guided.ps1",
+    "length": 34768,
+    "sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "utf8_bom": false
+  },
+  "guided_short_guide": {
+    "relative_path": "docs/codex-v1/T20_MANUAL_STEPS.md",
+    "length": 1943,
+    "sha256": "53ef2ae971ffe05b97d01d8465b4f6afa39c8c505dcb44a7e3687896986775d9",
+    "utf8_bom": false
+  },
+  "guided_validation": {
+    "relative_path": "docs/codex-v1/evidence/T20-guided-validation.json",
+    "length": 38057,
+    "sha256": "e56bf6188c56095d5a23f409191dee8791c22a13537bdabd6cab88a2b40411ce",
+    "utf8_bom": false
+  },
+  "guided_readonly_invocations": [
+    {
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "started_utc": "2026-10-11T16:01:28.9208005Z",
+      "finished_utc": "2026-10-11T16:01:30.0279993Z",
+      "exit_code": 0,
+      "shell": "5.1.26100.9444",
+      "edition": "Desktop",
+      "guided_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+      "guided_parser_errors": 0,
+      "generated_driver_parser_errors": 0,
+      "validate_only_status": "validated",
+      "ui_launched": false,
+      "application_run": false,
+      "files_created": false
+    },
+    {
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "started_utc": "2026-10-11T16:01:30.0315282Z",
+      "finished_utc": "2026-10-11T16:01:31.7691223Z",
+      "exit_code": 0,
+      "shell": "7.6.5",
+      "edition": "Core",
+      "guided_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+      "guided_parser_errors": 0,
+      "generated_driver_parser_errors": 0,
+      "validate_only_status": "validated",
+      "ui_launched": false,
+      "application_run": false,
+      "files_created": false
+    }
+  ],
+  "generated_driver_utf8_sha256": "04324a0563e3a4b90f7f9e7a8400a96a08c9d0857661568877120ac415506e07",
+  "generated_driver_utf8_bom_sha256": "63a1c6c883aa430f596287b661ce03e4bc7a276cf8c663b8b320024f56f1d653",
+  "generated_driver_fingerprints_match_both_shells": true,
+  "validated_source_snapshot": {
+    "outer_controller_created_snapshot": true,
+    "validator_created_snapshot": false,
+    "recorded_utc": "2026-10-11T16:02:44.9934539Z",
+    "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2",
+    "root_exclusively_reserved": true,
+    "marker_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\.t20-validation-owner",
+    "marker_sha256": "fe59508e92b5192147152f36f0d8882e3be2eb9da3854c058ee14ec4a0912190",
+    "snapshot_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\Start-T20Guided.validated.ps1",
+    "snapshot_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "snapshot_bytes": 34768,
+    "current_source_before_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "current_source_after_sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+    "all_equal": true,
+    "bom_present": false,
+    "crlf_count": 0,
+    "lone_lf_count": 439,
+    "lone_cr_count": 0,
+    "original_validation_record_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\T20V-a240e6e2\\T20-guided-validation.before-snapshot-provenance.json",
+    "original_validation_record_sha256": "b9db6f4db44f60f6b2427a0cbda06595f8be8f679e2e46e1528aa11d0b2d2b56",
+    "original_validation_record_bytes_preserved": true,
+    "retained_for_checkout_line_ending_equivalence": true
+  },
+  "snapshot_original_record_current_hashes_and_captures_match": true,
+  "guided_static_review": {
+    "explicit_utf8_json_reads_and_utf8_bom_generated_driver": true,
+    "validate_only_returns_before_ui_app_or_tool_copies": true,
+    "installed_external_tools_copy_to_unique_work_hash_then_no_overwrite_publish": true,
+    "tool_copy_and_all_raw_capture_scopes_private": true,
+    "prompt_metadata_automation_declared": true,
+    "actual_human_select_cancel_ready_ctrlc_and_bat_drop_required": true,
+    "one_bat_drop_with_failure_attestation_and_uncaptured_shell_exit_root_declared": true,
+    "unknown_music_output_retained_without_enumeration_or_cleanup": true,
+    "fresh_exact_cancellation_report_bytes_and_original_task_ids_preserved_on_private_relocation": true,
+    "no_global_kill_or_recursive_delete": true,
+    "no_physical_fallback_or_forced_close_success_claim": true,
+    "ps51_static_compatibility_review_pass": true,
+    "no_physical_guided_session_executed": true
+  },
+  "acceptance_state": {
+    "owner_selected_one_exact_real_file": true,
+    "owner_requested_simpler_or_automated_test": true,
+    "a50_method_revision_recorded": true,
+    "A50": "pass",
+    "a50_basis": "Two selected real long-file quantitative runs plus existing both-shell controlled default-Music checks; policy restrictions preserved.",
+    "A49": "blocked",
+    "T20": "blocked",
+    "remaining": "Janne Vuorela actual guided Explorer drop, both-shell STA select/Cancel and physical READY Ctrl+C confirmation and review of fresh original technical reports.",
+    "physical_manual_evidence": false,
+    "manual_playback": "not_run",
+    "phone_evidence": false,
+    "release_zip_acceptance": false,
+    "project_complete": false,
+    "release_complete": false,
+    "exactly_next": "Continue T20 guided physical acceptance",
+    "main_integration": "owner-gated",
+    "release_authority_added": false
+  },
+  "reviewed_intended_working_inventory_count": 17,
+  "reviewed_intended_working_inventory": [
+    {
+      "relative_path": "docs/codex-v1/ACCEPTANCE.json",
+      "length": 40581,
+      "sha256": "0cede8e6f0dc048328d5bf23621f4567855848f66f20c87ac962b44b4f67d1a5",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/AUTHORITY.md",
+      "length": 13653,
+      "sha256": "9ec41d93d6a4410fbb0614fdff7a0340e2132ca0fb026521f8ffc6e366d8177d",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/DECISIONS.md",
+      "length": 57074,
+      "sha256": "d12538ca5ecafa1f67d18ee1ba3580ee80645de1a08dbd835d67ed08b837f1e1",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-guided-validation.json",
+      "length": 38057,
+      "sha256": "e56bf6188c56095d5a23f409191dee8791c22a13537bdabd6cab88a2b40411ce",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-bindings.json",
+      "length": 7538,
+      "sha256": "b70dddff11670c8c7232333a0cc2761eee49cbbca5899a46083b69dafd1cb39c",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps51-attempt1.json",
+      "length": 29081,
+      "sha256": "493c47edf581579d6a0d49dadc8c8c49911d2306f771db9e1466780d1c99e248",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps51-final1.json",
+      "length": 35954,
+      "sha256": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+      "length": 16185,
+      "sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20.md",
+      "length": 17327,
+      "sha256": "5d8c1b2f33a37534323ce926dba05266979122922198148c705386c597d85fe9",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/NEXT_SESSION.md",
+      "length": 4761,
+      "sha256": "0e5e1bfa3b55c9685ea1829431b70f0702576647f84175e0ecd8652b82e0451e",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/STATUS.md",
+      "length": 32181,
+      "sha256": "466ca9ff48d438263adc47cdca75e37190dda6cab2f560d8b0d3b536a770af06",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/T20_MANUAL_STEPS.md",
+      "length": 1943,
+      "sha256": "53ef2ae971ffe05b97d01d8465b4f6afa39c8c505dcb44a7e3687896986775d9",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/TASKS.json",
+      "length": 72587,
+      "sha256": "2ef43fea800c9de74dd9309844de051a193c36e2f244d15ff43f4a3b0fde5cee",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/tasks/T20.md",
+      "length": 2389,
+      "sha256": "388fb8d993f11640f20eb6c8283f3fc198257424636d10e52187dccede80bfb3",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/TEST_STRATEGY.md",
+      "length": 44133,
+      "sha256": "af5242e74af3bf23befd04871dd4ac24a5009743dbfacf6f2d48ea4a3fdc1f74",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Start-T20Guided.ps1",
+      "length": 34768,
+      "sha256": "ca886f2b08f615de0a0b81fae6bcb1b894d201838317fc04b727fa1929bbf57d",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+      "length": 31589,
+      "sha256": "5ac40076ce82f451a25ff59c3f98144f19ee29b6e38edc1a844ff0ff60fe1761",
+      "utf8_bom": false
+    }
+  ],
+  "inventory_scope": "Current intended modified/untracked workspace bytes before staging, excluding this review file. No self-containing commit SHA. Staged newline equivalence and feature sync/checks remain separate checkpoint operations."
+}
