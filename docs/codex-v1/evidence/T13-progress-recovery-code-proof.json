@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "task": "T13",
+  "mode": "in_memory_historical_harness_fingerprint_reconstruction_for_recovery",
+  "created_utc": "2026-10-11T09:23:40.4029861Z",
+  "shell": "7.6.5",
+  "current_harness_sha256": "f67d56047de2e68cbe897cc9e18ed8b40948de69dfa6d09a5ea5661c3890d0a4",
+  "reconstruction_edits": [
+    "attempt2: reverse $nativeParameters and @nativeParameters to $arguments and @arguments",
+    "attempt1: also reverse $InputPath to $Input and $fixtureInput to $input, and remove the two descendant_release_proved/owned_host_objects report lines"
+  ],
+  "historical_code_written_or_executed": false,
+  "records": [
+    {
+      "attempt": 1,
+      "original_report": "T13-progress-ps51-attempt1.json",
+      "original_report_sha256": "3cd297da5e3bcb6db186d3dec8c0b4169513bb6224007f8691cf6ddffbc1bbe0",
+      "recorded_original_harness_sha256": "6e1ef5d90a55ad26de4accc4381056cdf6fd13033b6112ef05ae5cb35355a187",
+      "reconstructed_harness_sha256": "6e1ef5d90a55ad26de4accc4381056cdf6fd13033b6112ef05ae5cb35355a187",
+      "exact_bytes_match": true,
+      "parser_pass": true,
+      "host_lifecycle": "exact historical Invoke-Entry waits for host and pipes, captures result, then disposes retained Process before returning to case assertion",
+      "recovery_report": "T13-progress-ps51-attempt1-recovery.json",
+      "recovery_report_sha256": "a6cef254c4f9fd2b728f2857f7ffaf868c496813b7e86566633da7b0b4a3ac66",
+      "root_absent": true,
+      "original_failed_cleanup_stays_false": true
+    },
+    {
+      "attempt": 2,
+      "original_report": "T13-progress-ps51-attempt2.json",
+      "original_report_sha256": "816a02bfd648c73abc68758fae68c4689d1de466aaddb6bf135db003bc6fc395",
+      "recorded_original_harness_sha256": "f431396a311b4df13a443810d60f65072e60d518f80b73f3369deef166b65202",
+      "reconstructed_harness_sha256": "f431396a311b4df13a443810d60f65072e60d518f80b73f3369deef166b65202",
+      "exact_bytes_match": true,
+      "parser_pass": true,
+      "host_lifecycle": "exact historical Invoke-Entry waits for host and pipes, captures result, then disposes retained Process before returning to case assertion",
+      "recovery_report": "T13-progress-ps51-attempt2-recovery.json",
+      "recovery_report_sha256": "32fab79c89cd904ab79161b8bf9aace6f2f0c3aac4cb07ea64b8f9d9884910d4",
+      "root_absent": true,
+      "original_failed_cleanup_stays_false": true
+    }
+  ],
+  "status": "pass"
+}

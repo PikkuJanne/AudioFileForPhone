@@ -52,7 +52,7 @@ are separate from supported files and conversion failures. The final console
 summary includes elapsed seconds, counts, actual reserved output/log locations
 and exit code even after a caught fatal error. Normal logs retain the legacy
 Summary totals plus the explicit RESULT status/counts line. Structured persistent
-manifests and persistent native diagnostics remain T14 work; richer progress is T13.
+manifests and persistent native diagnostics remain T14 work.
 
 BAT disables delayed expansion, accepts exactly one nonempty argument, keeps STA,
 captures child errorlevel on the immediately following line outside a parenthesized
@@ -90,6 +90,14 @@ Unknown duration is indeterminate. 100 percent processed does not imply every fi
 succeeded. Native diagnostics should persist locally while console verbosity can
 remain modest. Keep enough stderr for the real failure without storing unbounded
 progress noise or personal metadata in public GitHub artifacts.
+
+T13 keeps batch and file progress separate. Batch percent uses converted plus
+failed, after the actual file outcome is committed, and includes both counts.
+Encoding uses complete FFmpeg stdout records, stays at most 99 percent even at
+progress=end, and never estimates ETA. Missing/invalid duration or timing gives
+an indeterminate bar. Validation and promotion remain indeterminate; a file reaches
+100 percent only after successful publication. Failure, cancellation and fatal
+status remain truthful when progress is cleared. Display errors warn and continue.
 
 Manifest fields: source relative path (optionally full local path), output relative
 path, status, error code/reason, input/output duration, byte lengths and elapsed

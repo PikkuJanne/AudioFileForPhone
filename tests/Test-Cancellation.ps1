@@ -31,13 +31,13 @@ $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
-    (Split-Path -Leaf $evidenceFullPath) -notmatch '^T11-cancellation-(ps51|ps7)-(attempt|final|manual)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T11-cancellation-ps51/ps7-attempt/final/manualN.json directly in docs/codex-v1/evidence.'
+    (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T11|T13)-cancellation-(ps51|ps7)-(attempt|final|manual)[0-9]+\.json$') {
+    throw 'EvidencePath must name fresh T11/T13-cancellation-ps51/ps7-attempt/final/manualN.json directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; task = 'T11'; mode = $(if ($Manual) { 'physical_manual_console_ctrl_c' } else { 'controlled_native_console_input_and_forced_host' })
+    schema_version = 1; task = (Split-Path -Leaf $evidenceFullPath).Substring(0, 3); mode = $(if ($Manual) { 'physical_manual_console_ctrl_c' } else { 'controlled_native_console_input_and_forced_host' })
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -132,7 +132,8 @@ Add-Type -TypeDefinition ([IO.File]::ReadAllText(__LIBRARY__))
 $script:T11OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536,
-          [object]$Cancellation = (Get-AudioCancellationContext))
+          [object]$Cancellation = (Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds,
+          [object]$ProgressParser, [object]$ProgressCallbackState)
     $watcher = $null
     if ([IO.Path]::GetFileName($ExecutablePath) -ieq 'ffmpeg.exe' -and
         @($Arguments | Where-Object { $_ -match '2024-01-02 Second\.m4a$' }).Count -eq 1 -and
@@ -147,7 +148,7 @@ function Invoke-AudioNativeProcess {
         $watcher = New-Object T11Controller.Readiness($Cancellation, $Arguments[$Arguments.Length-1], __READY__, __PID__)
     }
     try {
-        $nativeResult = & $script:T11OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation
+        $nativeResult = & $script:T11OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState
         if ($null -ne $watcher) { [IO.File]::WriteAllText(__READY__+'.released', ([ordered]@{status=$nativeResult.Status;process_released=$nativeResult.ProcessReleased} | ConvertTo-Json)) }
         return $nativeResult
     }
@@ -362,14 +363,14 @@ try {
         $script:T11TestOriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
         $script:T11TestOriginalPublish=(Get-Item -LiteralPath Function:Publish-AudioWorkingOutput).ScriptBlock
         $phaseNative={
-            param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,[object]$Cancellation=(Get-AudioCancellationContext))
+            param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,[object]$Cancellation=(Get-AudioCancellationContext),[scriptblock]$ProgressCallback,[object]$ProgressDurationSeconds,[object]$ProgressParser,[object]$ProgressCallbackState)
             $working=@($Arguments|Where-Object{[IO.Path]::GetExtension($_) -ceq '.partial'})
             if($script:T11Phase -ceq 'unproved-release' -and $working.Count -gt 0 -and $Arguments -contains '-y') {
                 $Cancellation.Request()
                 return [pscustomobject]@{Status='Cancelled';ExitCode=$null;ProcessReleased=$false;Error='controlled unproved-release cancellation result; no child launched by this fault';Stdout='';Stderr='';StdoutTruncated=$false;StderrTruncated=$false}
             }
-            $result=& $script:T11TestOriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation
-            if($working.Count -gt 0 -and (($script:T11Phase -ceq 'validation-probe' -and $Arguments -contains '-show_entries') -or ($script:T11Phase -ceq 'full-decode' -and $Arguments -contains '-progress'))) {
+            $result=& $script:T11TestOriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState
+            if($working.Count -gt 0 -and (($script:T11Phase -ceq 'validation-probe' -and $Arguments -contains '-show_entries') -or ($script:T11Phase -ceq 'full-decode' -and $Arguments -contains '-progress' -and $Arguments -contains 'null'))) {
                 Assert-True ($result.Status -ceq 'Completed' -and $result.ProcessReleased) 'Phase cancellation requests follow a real successful native release.'
                 $Cancellation.Request();$script:T11PhaseReached=$true
             }

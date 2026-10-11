@@ -539,7 +539,7 @@
       "tested_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
       "checkpoint_commit": "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57",
       "remote_checkpoint_verified": true,
-      "notes": "A31/A32 pass. One documented -DryRun interface shares existing discovery and complete naming/collision allocation; no tools, writes, cover preparation, prompts, cancellation registration or conversion progress. Previewed/0 counts zero processed/converted/failed; root timestamp/reservation provisional, durations unknown and writability/tools/media/cover unverified. Final preview checks directly test b0c20f66 on PS5.1/7: eight groups and eleven exact logged source-to-output mappings, independently 64 kbps MP3 probed/full decoded, per shell. Strict refreshed owned-tree directories/files/hash/modification-time/attribute inventories equal; source/synthetic/child/exact cleanup gates pass. Four baseline/script final regressions also pass, script 13 groups/14 decoded outputs each. Manifest matches eight tested files to committed Git blobs: three literal/five CRLF-to-LF only. Eleven raw reports retained: six selected final passes, intermediate attempt5 pass and four harness development failures with historical fingerprints. Independent runtime/harness/evidence review passes. Code checkpoint pushed/live-matched; docs-only evidence/handoff checkpoint follows. Draft PR #12; main integration owner-gated, zero workflows/checks and no CI/release/phone claim. T11 owner integration verified at cb4ffc44. Exactly next implementation T13 after owner integration of T12.",
+      "notes": "A31/A32 pass. One documented -DryRun interface shares existing discovery and complete naming/collision allocation; no tools, writes, cover preparation, prompts, cancellation registration or conversion progress. Previewed/0 counts zero processed/converted/failed; root timestamp/reservation provisional, durations unknown and writability/tools/media/cover unverified. Final preview checks directly test b0c20f66 on PS5.1/7: eight groups and eleven exact logged source-to-output mappings, independently 64 kbps MP3 probed/full decoded, per shell. Strict refreshed owned-tree directories/files/hash/modification-time/attribute inventories equal; source/synthetic/child/exact cleanup gates pass. Four baseline/script final regressions also pass, script 13 groups/14 decoded outputs each. Manifest matches eight tested files to committed Git blobs: three literal/five CRLF-to-LF only. Eleven raw reports retained: six selected final passes, intermediate attempt5 pass and four harness development failures with historical fingerprints. Independent runtime/harness/evidence review passes. Code checkpoint pushed/live-matched; docs-only evidence/handoff checkpoint follows. PR #12 owner-merged at 2026-10-11T09:05:48Z into main ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c, independently reconciled in T13; zero workflows/checks and no CI/release/phone claim. T11 owner integration verified at cb4ffc44. T12 integration is complete; T13 started from that verified merge.",
       "automated_test_bases": [
         "cb4ffc44d5ad78b575656ba44461db8b64ae7580",
         "b0c20f66e0d2c6af4f99232dc633c4eb201c6a57"
@@ -550,7 +550,7 @@
       "milestone": "M3",
       "title": "Show per-file and batch progress honestly",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T12"
       ],
@@ -562,11 +562,39 @@
         "A33",
         "A34"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T13.md",
+        "evidence/T13-tested-payload.json",
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json",
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-transaction-ps51-final1.json",
+        "evidence/T13-transaction-ps7-final1.json",
+        "evidence/T13-script-ps51-final1.json",
+        "evidence/T13-script-ps7-final1.json",
+        "evidence/T13-preview-ps51-final1.json",
+        "evidence/T13-preview-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json",
+        "evidence/T13-cancellation-ps51-final1.json",
+        "evidence/T13-cancellation-ps7-final1.json",
+        "evidence/T13-progress-ps51-attempt1.json",
+        "evidence/T13-progress-ps51-attempt2.json",
+        "evidence/T13-progress-ps51-attempt3.json",
+        "evidence/T13-progress-ps7-attempt1.json",
+        "evidence/T13-progress-ps51-attempt1-recovery.json",
+        "evidence/T13-progress-ps51-attempt2-recovery.json",
+        "evidence/T13-progress-recovery-code-proof.json"
+      ],
+      "tested_commit": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+      "checkpoint_commit": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+      "remote_checkpoint_verified": true,
+      "notes": "A33/A34 pass on PS5.1 and PS7. Bounded latest-complete FFmpeg stdout records, separate stderr, caller-thread callbacks every 500 ms within a phase, immediate validation/promotion stages; missing timing/duration indeterminate, encoding at most 99 percent and no ETA. Success at 100 percent only after validation/publication/count; batch uses converted+failed and retains failure counts at 100 percent processed. Observer/UI faults disable progress without changing conversion outcome or stopping drainage. Seventeen focused groups per shell directly at 8607569, actual 3605-second synthetic source/live prepublication samples/independent 64 kbps MP3 probe+full decode 3605.047982 seconds. Twelve affected native/transaction/script/preview/baseline/cancellation final reports pass: native 35 with handles 667->667/576->576, transaction 27 groups/61 decoded rows, script 13, preview 8 and automated cancellation 9 each. Selected source/synthetic/child/exact TEMP/isolation/zero-preview-operation gates pass; ordinary Music unused. Manifest proves 14 tested files against code literally or only CRLF-to-LF. Eighteen raw tests retained, sixteen pass/two harness variable-collision failures; original cleanup/children flags remain false. Three distinct recovery/provenance records establish later exact known-root cleanup and reconstructed historical harnesses; independent review confirms absence. Runtime/harness/recovery review has no blocker. Code pushed/fresh live matched; docs-only handoff follows. Draft PR #13, main owner-gated; zero workflows and no CI/phone/manual/release claim. T12 owner merge independently verified at ace0b7cf. Exactly next implementation T14 after owner integration.",
+      "automated_test_bases": [
+        "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+        "8607569a7147aba836c2e7c4c36f4f0219369d58"
+      ]
     },
     {
       "id": "T14",

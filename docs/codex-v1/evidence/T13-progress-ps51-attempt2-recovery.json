@@ -1,0 +1,228 @@
+{
+  "schema_version": 1,
+  "task": "T13",
+  "mode": "exact_known_failed_harness_scope_recovery",
+  "original_report": "T13-progress-ps51-attempt2.json",
+  "original_report_sha256": "816a02bfd648c73abc68758fae68c4689d1de466aaddb6bf135db003bc6fc395",
+  "original_status": "fail",
+  "original_cleanup_verified": false,
+  "original_children_disposed": false,
+  "root": "C:\\Windows\\TEMP\\T13P-f559f224",
+  "owner_marker_sha256": "3acf0e42872e148d2684faf063f9c5e34f2a4576a68dfc55f5b725b71f0d911e",
+  "started_utc": "2026-10-11T09:22:43.1188685Z",
+  "checks": [
+    "exclusive canonical root, nonreparse ancestry/tree and exact original marker digest/token shape",
+    "all ten fixture hashes plus originally decoded transaction output match; no unknown files or directories",
+    "frozen runtime fingerprints and copied entry/original helper prefix verified; audited helper/driver hashes already matched original fixture proof",
+    "twelve explicit native-release proofs, direct consumer capture release, callback cancellation release, completed exact sentinel teardown and three successful native transaction boundaries verified",
+    "both retained owned host/sentinel objects disposed without timeout; exact typed-Arguments map failure occurred before original native invocation, and no subsequent conversion began",
+    "only exact originally exclusive root deleted after positive proof; original failed report bytes unchanged"
+  ],
+  "cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "validated_fixture_count": 10,
+  "validated_retained_files": 12,
+  "original_source_fingerprints": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "5877200e5c906c04d529a1c85d8d1f4b3a612be51eee64f94e045d2d32ba1946"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-Progress.ps1",
+      "sha256": "f431396a311b4df13a443810d60f65072e60d518f80b73f3369deef166b65202"
+    }
+  ],
+  "pre_main_native_release_proofs": [
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 289
+    },
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 50
+    },
+    {
+      "executable": "C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\csc.exe",
+      "arguments": [
+        "/nologo",
+        "/noconfig",
+        "/nostdlib+",
+        "/target:exe",
+        "/main:T13Support.Child",
+        "/out:<OWNED_TEMP>\\Child.exe",
+        "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\mscorlib.dll",
+        "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.dll",
+        "/reference:C:\\Windows\\Microsoft.NET\\Framework64\\v4.0.30319\\System.Core.dll",
+        "<OWNED_TEMP>\\Child.cs"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 108
+    },
+    {
+      "executable": "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+      "arguments": [
+        "chunked",
+        "<OWNED_TEMP>\\live-progress.txt"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2198
+    },
+    {
+      "executable": "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+      "arguments": [
+        "huge"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 90
+    },
+    {
+      "executable": "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+      "arguments": [
+        "chunked"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2082
+    },
+    {
+      "executable": "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+      "arguments": [
+        "end-fail"
+      ],
+      "status": "Completed",
+      "exit_code": 7,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 50
+    },
+    {
+      "executable": "C:\\Windows\\TEMP\\T13P-f559f224\\Child.exe",
+      "arguments": [
+        "chunked"
+      ],
+      "status": "Cancelled",
+      "exit_code": null,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 598
+    },
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-v",
+        "error",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=733:sample_rate=22050",
+        "-t",
+        "0.25",
+        "-c:a",
+        "libmp3lame",
+        "-b:a",
+        "64k",
+        "<OWNED_TEMP>\\short.mp3"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 75
+    },
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=duration",
+        "-of",
+        "json",
+        "<OWNED_TEMP>\\short.mp3"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 43
+    },
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=codec_type,codec_name,bit_rate,duration",
+        "-of",
+        "json",
+        "<OWNED_TEMP>\\Transaction\\result.mp3"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 48
+    },
+    {
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-v",
+        "error",
+        "-xerror",
+        "-i",
+        "<OWNED_TEMP>\\Transaction\\result.mp3",
+        "-map",
+        "0:a:0",
+        "-progress",
+        "pipe:1",
+        "-stats_period",
+        "86400",
+        "-f",
+        "null",
+        "NUL"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 44
+    }
+  ],
+  "finished_utc": "2026-10-11T09:22:43.1874372Z"
+}

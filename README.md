@@ -156,6 +156,8 @@ usual behavior before the script can report a result.
   - If you want to extend it later (e.g. to pass custom bitrate or other flags), you can edit the wrapper to add parameters.
 
 **Results and exit codes**  
+- Batch progress counts files with a recorded outcome and shows converted and failed counts. Starting the last file does not mean the batch is complete. 100 percent processed can include failures.
+- File progress uses FFmpeg's machine-readable encoding records and a validated source duration. Unknown duration or unavailable timing is indeterminate. Encoding stays below 100 percent; validation and publication have separate status messages. File success appears only after the validated MP3 is published. No ETA is estimated.
 - `0` / `Previewed`: `-DryRun` planned the supported files without converting them.
 - `0` / `Completed`: every supported file in the input snapshot converted successfully.
 - `2` / `CompletedWithFailures`: the batch finished with one or more file failures. Independent valid files continue; sources and completed outputs are preserved.

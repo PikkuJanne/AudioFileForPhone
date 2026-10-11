@@ -44,6 +44,24 @@ own input scope; disposal restores the prior mode. Request and no-overwrite fina
 publication share a per-context lock so a requested cancellation cannot publish.
 These mechanisms cannot intercept forced host termination or every host interrupt.
 
+T13 feeds encoder stdout chunks into a bounded machine-record parser while stderr
+continues through the independent diagnostic drain. It retains only the latest
+complete record, with 1,024-character lines and an 8,192-character record limit;
+oversized/malformed records are discarded. Encoding retains at most 8,192 stdout
+characters, while other native calls keep their existing capture limits. UI
+callbacks run on the PowerShell polling thread, at most every 500 ms within a
+phase; phase changes are immediate. Worker tasks never invoke PowerShell.
+An observer exception disables that observer while pipe drainage continues;
+its diagnostic is bounded to 1,024 characters and warned on the caller thread.
+
+Use out_time_us, then historical out_time_ms (also microseconds), then an
+HH:MM:SS fractional timestamp with arbitrary hours. Invalid timing or duration is
+indeterminate. FFmpeg progress=end ends encoding reporting, including error
+paths; it never proves successful validation or publication. Parser/callback
+state is invocation-local and preview never compiles or creates a parser.
+Protocol references: [FFmpeg progress options](https://ffmpeg.org/ffmpeg.html#toc-Advanced-options)
+and [FFmpeg's progress writer](https://github.com/FFmpeg/FFmpeg/blob/master/fftools/ffmpeg.c).
+
 The focused probe selects `a:0`, validates exactly one audio stream and its
 absolute stream index, and inspects only stream/container tags plus stream
 identity and selected audio duration (container fallback only when stream duration

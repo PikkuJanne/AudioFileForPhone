@@ -1,0 +1,637 @@
+{
+  "schema_version": 1,
+  "task": "T13",
+  "code_checkpoint_commit": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+  "code_checkpoint_advertised_ref_verified": true,
+  "advertised_ref_verification_source": "Root independently compared the freshly advertised feature ref to the code checkpoint.",
+  "prior_verified_main_checkpoint": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+  "regression_test_base_commit": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+  "progress_test_base_commit": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+  "equivalence_policy": "Selected raw SHA256 fingerprints match before/after report inventories and current working bytes. Git blob SHA1 is independently computed from ASCII blob-length-NUL headers and source bytes, and matches the code checkpoint literally or after strictly decoded/re-encoded UTF-8 CRLF-to-LF only. No other normalization is accepted.",
+  "selected_report_count": 14,
+  "covered_file_count": 14,
+  "selected_reports": [
+    {
+      "path": "evidence/T13-progress-ps51-final1.json",
+      "sha256": "d3842c7bf86c19efdf65198d060ca5b33f5c1d07e7cad207d5e60940a7fc92be",
+      "status": "pass",
+      "actual_test_base": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 17,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "descendant_release_proved": true,
+        "ordinary_music_access": false,
+        "physical_manual_evidence": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true,
+        "native_runs_release_proved_no_deadline": true,
+        "owned_hosts_started_disposed_without_timeout": true
+      }
+    },
+    {
+      "path": "evidence/T13-progress-ps7-final1.json",
+      "sha256": "63713e57db2a1e6776c4864eebeecb5d8967577290de36e4f79db162908fd2bd",
+      "status": "pass",
+      "actual_test_base": "8607569a7147aba836c2e7c4c36f4f0219369d58",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 17,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "descendant_release_proved": true,
+        "ordinary_music_access": false,
+        "physical_manual_evidence": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true,
+        "native_runs_release_proved_no_deadline": true,
+        "owned_hosts_started_disposed_without_timeout": true
+      }
+    },
+    {
+      "path": "evidence/T13-native-ps51-final1.json",
+      "sha256": "67db6fd24672113a5a0a71f9af693d11a0b424861bf165be91f978e37f6abc43",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 35,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_bytes_unchanged": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-native-ps7-final1.json",
+      "sha256": "26ef8073f2d630d67e00601d4d84f8c69072b8dd12ab7d4b0fb851a9a2dd4f2b",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 35,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_bytes_unchanged": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-transaction-ps51-final1.json",
+      "sha256": "3e92a7429c6a4cf243c3ccb829c72d557771a207b62cdac6b33d4a83c5ff4037",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 27,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_bytes_unchanged": true,
+        "acls_restored": true,
+        "children_disposed": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-transaction-ps7-final1.json",
+      "sha256": "b8dedb21f6d291cdf86e2f3c85379e6b22c464855fea7cd15992b48976f0cd85",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 27,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_bytes_unchanged": true,
+        "acls_restored": true,
+        "children_disposed": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-script-ps51-final1.json",
+      "sha256": "0fc44dc1a4c5710b4e8b95c00943d8d49a304ce91d0a10cb6baae860abdfacaf",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 13,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-script-ps7-final1.json",
+      "sha256": "f1a39a69e44d20a06a2882ab088c6b11f3d400c11c67eb7c09f214905c16274a",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 13,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-preview-ps51-final1.json",
+      "sha256": "80a55fe53ea003b9e413b466774646f197a06a27390df9b132929ef842417eb7",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 8,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "access_time_excluded": true,
+        "ordinary_music_access": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-preview-ps7-final1.json",
+      "sha256": "dfdc0586596b15af7fdf25b9e79d4ce9dc4dc9ec974c292e4af422448aefa7e3",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 8,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "access_time_excluded": true,
+        "ordinary_music_access": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-baseline-ps51-final1.json",
+      "sha256": "f15f9afd0fcda62b6554a91630305ab807db3e24478b17e2c3ad8c0f9ba61008",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": null,
+      "case_or_characterization_check_count": 10,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "source_before_after_fingerprints_equal": true,
+        "isolation_verified": true,
+        "isolation_copied_bytes_unchanged": true,
+        "isolation_companion_syntax_valid": true,
+        "legacy_exit_code": 0,
+        "legacy_status": "pass",
+        "characterization_status": "pass",
+        "characterization_required_checks_all_pass": true,
+        "characterization_required_check_count": 7,
+        "characterization_nonrequired_observed_behavior_count": 3,
+        "characterization_source_inventory_unchanged": true,
+        "characterization_source_directories_unchanged": true
+      }
+    },
+    {
+      "path": "evidence/T13-baseline-ps7-final1.json",
+      "sha256": "2491c317ba9f65a105a553d68208ac13a467e152add3a209c594d603cf7c0314",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": null,
+      "case_or_characterization_check_count": 10,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "source_before_after_fingerprints_equal": true,
+        "isolation_verified": true,
+        "isolation_copied_bytes_unchanged": true,
+        "isolation_companion_syntax_valid": true,
+        "legacy_exit_code": 0,
+        "legacy_status": "pass",
+        "characterization_status": "pass",
+        "characterization_required_checks_all_pass": true,
+        "characterization_required_check_count": 7,
+        "characterization_nonrequired_observed_behavior_count": 3,
+        "characterization_source_inventory_unchanged": true,
+        "characterization_source_directories_unchanged": true
+      }
+    },
+    {
+      "path": "evidence/T13-cancellation-ps51-final1.json",
+      "sha256": "6af70671ddbf471e2fd3e3c2f6983b829ecf6e6f36ccbe5495943d7567a0480a",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "5.1.26100.9444",
+      "shell_edition": "Desktop",
+      "case_or_characterization_check_count": 9,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "manual_requested": false,
+        "physical_manual_ctrl_c": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    },
+    {
+      "path": "evidence/T13-cancellation-ps7-final1.json",
+      "sha256": "807d4871142edcd2220990745ab92b2cf0e740233f2927f30a0a75ef244aee3a",
+      "status": "pass",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c",
+      "shell": "7.6.5",
+      "shell_edition": "Core",
+      "case_or_characterization_check_count": 9,
+      "failed_case_or_check_count": 0,
+      "acceptance_gates": {
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "synthetic_unchanged": true,
+        "temp_exclusively_reserved": true,
+        "marker_create_new": true,
+        "copied_entry_bytes_unchanged": true,
+        "children_disposed": true,
+        "manual_requested": false,
+        "physical_manual_ctrl_c": false,
+        "source_before_after_fingerprints_equal": true,
+        "synthetic_before_after_fingerprints_equal": true
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "committed_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "independently_computed_literal_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "independently_computed_crlf_to_lf_git_blob": "318af6797b099fe47aac13c04e95bf735178b066",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json",
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-transaction-ps51-final1.json",
+        "evidence/T13-transaction-ps7-final1.json",
+        "evidence/T13-script-ps51-final1.json",
+        "evidence/T13-script-ps7-final1.json",
+        "evidence/T13-preview-ps51-final1.json",
+        "evidence/T13-preview-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json",
+        "evidence/T13-cancellation-ps51-final1.json",
+        "evidence/T13-cancellation-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "5877200e5c906c04d529a1c85d8d1f4b3a612be51eee64f94e045d2d32ba1946",
+      "committed_git_blob": "459fd5c962eee488090e94006e1f8821a3c8b858",
+      "independently_computed_literal_git_blob": "c6ff2105187f8761565756a77184e824c25c28c2",
+      "independently_computed_crlf_to_lf_git_blob": "459fd5c962eee488090e94006e1f8821a3c8b858",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json",
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-transaction-ps51-final1.json",
+        "evidence/T13-transaction-ps7-final1.json",
+        "evidence/T13-script-ps51-final1.json",
+        "evidence/T13-script-ps7-final1.json",
+        "evidence/T13-preview-ps51-final1.json",
+        "evidence/T13-preview-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json",
+        "evidence/T13-cancellation-ps51-final1.json",
+        "evidence/T13-cancellation-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "6f560efdf7c0f412ffed2e9b4be55ad6780623d6aca0cb31c768c1eedbf10b31",
+      "committed_git_blob": "441093a47c9196cfe08bfe2d7f0aa9c1eadc7b1a",
+      "independently_computed_literal_git_blob": "441093a47c9196cfe08bfe2d7f0aa9c1eadc7b1a",
+      "independently_computed_crlf_to_lf_git_blob": "2bc9e4a4846e0ace5689b1fa2a4eacf28f96081a",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json",
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-transaction-ps51-final1.json",
+        "evidence/T13-transaction-ps7-final1.json",
+        "evidence/T13-script-ps51-final1.json",
+        "evidence/T13-script-ps7-final1.json",
+        "evidence/T13-preview-ps51-final1.json",
+        "evidence/T13-preview-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json",
+        "evidence/T13-cancellation-ps51-final1.json",
+        "evidence/T13-cancellation-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "sha256": "8855f44e167f17fa742495cdd8f804c7c60e99c0ca2b9fe769b8bb64e087180b",
+      "committed_git_blob": "888da8c5c8a47fa0b14b6f4f81ace136e765263a",
+      "independently_computed_literal_git_blob": "2becf559e78cb1c2f5609b2b93c969ce3934e52a",
+      "independently_computed_crlf_to_lf_git_blob": "888da8c5c8a47fa0b14b6f4f81ace136e765263a",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "committed_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "independently_computed_literal_git_blob": "a8a94f98ea890fd209a466415a33ef2d689c4f25",
+      "independently_computed_crlf_to_lf_git_blob": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "sha256": "8aafbaa635d7e4f1a7b74f59a4eb2036e68852613d657637c2d5ecc6a25f8bc2",
+      "committed_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "independently_computed_literal_git_blob": "cddd54077d7ea164534b079874f8428514fb2c54",
+      "independently_computed_crlf_to_lf_git_blob": "7306a90c51b5ad26fd2d623e42945f75f2157401",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json",
+        "evidence/T13-baseline-ps51-final1.json",
+        "evidence/T13-baseline-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-Cancellation.ps1",
+      "sha256": "6573fbd3dd9c1c0402a3b2354c50b6478c7efae6b5ce43586939de9a0ff2e4eb",
+      "committed_git_blob": "7e3f8db9fc7d69da5d9f81c67cabdff490841cf4",
+      "independently_computed_literal_git_blob": "dd18e8584259cb9d96b8d7797c7417a20d363c4d",
+      "independently_computed_crlf_to_lf_git_blob": "7e3f8db9fc7d69da5d9f81c67cabdff490841cf4",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-cancellation-ps51-final1.json",
+        "evidence/T13-cancellation-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-NativeProcess.ps1",
+      "sha256": "f99f222d23a4c463ac33b579255d7a0184c376e081947f06c5fa3a9f150d98d9",
+      "committed_git_blob": "7e8df099448e6f021658cc281491b0c5c38def39",
+      "independently_computed_literal_git_blob": "2f13b0212eccac0a6111b0e10ae8acb4acb6bcf8",
+      "independently_computed_crlf_to_lf_git_blob": "7e8df099448e6f021658cc281491b0c5c38def39",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-OutputParent.ps1",
+      "sha256": "ad2fcf398ca79c639a573a7c11beb3fb029f57444129f8bd3bfc38787b8eae24",
+      "committed_git_blob": "0853bbeb93facff9755d41b003673ded0bf6bd8e",
+      "independently_computed_literal_git_blob": "e634234be52f8a607ecc3713572f7e39326c265e",
+      "independently_computed_crlf_to_lf_git_blob": "0853bbeb93facff9755d41b003673ded0bf6bd8e",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-Preflight.ps1",
+      "sha256": "352c02d43cfbcbbfc3c80ba151b31f9371bd7f8d6bd545eb773703b725acc8d9",
+      "committed_git_blob": "d16604b0f9ed1c3eaaacdae47b4e0f32d39fc7b5",
+      "independently_computed_literal_git_blob": "2ffbe9616b99289170fc3081a3ca38a1f6ccd4f8",
+      "independently_computed_crlf_to_lf_git_blob": "d16604b0f9ed1c3eaaacdae47b4e0f32d39fc7b5",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-native-ps51-final1.json",
+        "evidence/T13-native-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-Preview.ps1",
+      "sha256": "3ca58a90ddc46a2da9f08411bfda2051c61d6372b70f6923b4270ce52c6f1b67",
+      "committed_git_blob": "0bba993d068c70bbbbd06e348fa7e0642ae67ed0",
+      "independently_computed_literal_git_blob": "cc01758d7de455f6261b86983c53cf4a728d6210",
+      "independently_computed_crlf_to_lf_git_blob": "0bba993d068c70bbbbd06e348fa7e0642ae67ed0",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-preview-ps51-final1.json",
+        "evidence/T13-preview-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-Progress.ps1",
+      "sha256": "f67d56047de2e68cbe897cc9e18ed8b40948de69dfa6d09a5ea5661c3890d0a4",
+      "committed_git_blob": "b9549d1a4d4d20f5a11d0645e0459ebe2c7134cd",
+      "independently_computed_literal_git_blob": "b9549d1a4d4d20f5a11d0645e0459ebe2c7134cd",
+      "independently_computed_crlf_to_lf_git_blob": "b9549d1a4d4d20f5a11d0645e0459ebe2c7134cd",
+      "literal_bytes_equal": true,
+      "normalization": "none",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-progress-ps51-final1.json",
+        "evidence/T13-progress-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-ScriptResults.ps1",
+      "sha256": "6204c9d03d7fed31ada0e61ff2e401784feca83cf4945f19c0f0228b7221c661",
+      "committed_git_blob": "a5a83d519ba5a03590bc145700c6d05c85288b9b",
+      "independently_computed_literal_git_blob": "8b8c3b98b2d2c61c9006a9b359e654e0ae0b4592",
+      "independently_computed_crlf_to_lf_git_blob": "a5a83d519ba5a03590bc145700c6d05c85288b9b",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-script-ps51-final1.json",
+        "evidence/T13-script-ps7-final1.json"
+      ]
+    },
+    {
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "94d1c7e93d859e4c2bfb861762b3d02a5a6e8a8373bbd38a1e8a610c7bb22773",
+      "committed_git_blob": "17d0debf8c3344e9efa86e3c77bc1d50eed15b04",
+      "independently_computed_literal_git_blob": "88b3c048afd14bfbb2cbe212cc2e831ab5df3e52",
+      "independently_computed_crlf_to_lf_git_blob": "17d0debf8c3344e9efa86e3c77bc1d50eed15b04",
+      "literal_bytes_equal": false,
+      "normalization": "Only independently proved UTF-8 CRLF-to-LF conversion",
+      "test_fingerprint_matches": true,
+      "source_reports": [
+        "evidence/T13-transaction-ps51-final1.json",
+        "evidence/T13-transaction-ps7-final1.json"
+      ]
+    }
+  ],
+  "nonselected_provenance_reports": [
+    {
+      "path": "evidence/T13-progress-ps51-attempt1-recovery.json",
+      "sha256": "a6cef254c4f9fd2b728f2857f7ffaf868c496813b7e86566633da7b0b4a3ac66",
+      "status": "pass",
+      "selected_for_acceptance": false,
+      "role": "cleanup/code proof recovery provenance only",
+      "original_report": "T13-progress-ps51-attempt1.json",
+      "original_report_sha256": "3cd297da5e3bcb6db186d3dec8c0b4169513bb6224007f8691cf6ddffbc1bbe0"
+    },
+    {
+      "path": "evidence/T13-progress-ps51-attempt1.json",
+      "sha256": "3cd297da5e3bcb6db186d3dec8c0b4169513bb6224007f8691cf6ddffbc1bbe0",
+      "status": "fail",
+      "selected_for_acceptance": false,
+      "role": "failed test harness attempt; excluded from selected acceptance",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c"
+    },
+    {
+      "path": "evidence/T13-progress-ps51-attempt2-recovery.json",
+      "sha256": "32fab79c89cd904ab79161b8bf9aace6f2f0c3aac4cb07ea64b8f9d9884910d4",
+      "status": "pass",
+      "selected_for_acceptance": false,
+      "role": "cleanup/code proof recovery provenance only",
+      "original_report": "T13-progress-ps51-attempt2.json",
+      "original_report_sha256": "816a02bfd648c73abc68758fae68c4689d1de466aaddb6bf135db003bc6fc395"
+    },
+    {
+      "path": "evidence/T13-progress-ps51-attempt2.json",
+      "sha256": "816a02bfd648c73abc68758fae68c4689d1de466aaddb6bf135db003bc6fc395",
+      "status": "fail",
+      "selected_for_acceptance": false,
+      "role": "failed test harness attempt; excluded from selected acceptance",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c"
+    },
+    {
+      "path": "evidence/T13-progress-ps51-attempt3.json",
+      "sha256": "f7da6764d2df1e6f5dcbfcc62391086165ff31db976ac22c6a69315a2680aee9",
+      "status": "pass",
+      "selected_for_acceptance": false,
+      "role": "pre-checkpoint pass superseded by selected final1 report",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c"
+    },
+    {
+      "path": "evidence/T13-progress-ps7-attempt1.json",
+      "sha256": "b51b04fffdc17f875ebcf1bbe12f9277f03d98e08273f7a46b43d864bea6523d",
+      "status": "pass",
+      "selected_for_acceptance": false,
+      "role": "pre-checkpoint pass superseded by selected final1 report",
+      "actual_test_base": "ace0b7cfa6381ffcffb0e71f70f8346a31e04d6c"
+    },
+    {
+      "path": "evidence/T13-progress-recovery-code-proof.json",
+      "sha256": "37a260e3d46971b49e266b1951cd07d7b7e68e9413398e7ea1c76d5487a90104",
+      "status": "pass",
+      "selected_for_acceptance": false,
+      "role": "cleanup/code proof recovery provenance only"
+    }
+  ],
+  "manual_or_phone_evidence_claimed": false
+}
