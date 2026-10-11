@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "reviewed_utc": "2026-10-11T16:59:00.9673491Z",
+  "reviewer": "Codex independent t20_review agent",
+  "status": "pass",
+  "scope": "Transfer-payload preparation, static safety, retained exact-byte/source provenance and truthful phone-pending handoff review. Reviewer executed no tests, conversion, UI or phone actions and wrote only this review.",
+  "unresolved_findings": [],
+  "tested_application_candidate": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "actual_preparation_shell": "7.6.5",
+  "actual_preparation_edition": "Core",
+  "actual_preparation_started_utc": "2026-10-11T16:51:36.8926374Z",
+  "actual_preparation_finished_utc": "2026-10-11T16:51:46.8770365Z",
+  "actual_windows_build": "26300.9457",
+  "actual_elevated": false,
+  "runtime_source_relationships": [
+    {
+      "name": "AudioFileForPhone.ps1",
+      "original_t20_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "current_candidate_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "source_and_copy_preserved": true
+    },
+    {
+      "name": "AudioFileForPhone.Helpers.ps1",
+      "original_t20_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "current_candidate_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "source_and_copy_preserved": true
+    },
+    {
+      "name": "AudioFileForPhone.bat",
+      "original_t20_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "current_candidate_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "source_and_copy_preserved": true
+    }
+  ],
+  "application_existing_tests_ci_build_rules_and_defaults_unchanged": true,
+  "changed_paths_confined_to_docs_codex_v1": true,
+  "independently_checked_integration": {
+    "pull_request": "https://github.com/PikkuJanne/AudioFileForPhone/pull/20",
+    "live_pr_metadata_merged": true,
+    "merge_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+    "merged_at": "2026-10-11T16:44:42Z",
+    "previous_feature": "67dee7e5f6757984458d63b1ea98353c9747ba04",
+    "advertised_main_and_feature_match_start": true,
+    "both_local_complete_trees": "aef5d545bfdc13681a55708ad6e3a8d8ccf6fb89",
+    "main_ci_run": 38156733341,
+    "main_ci_jobs": [
+      {
+        "status": "completed",
+        "name": "windows (powershell, ps51)",
+        "conclusion": "success",
+        "id": 114521144470
+      },
+      {
+        "status": "completed",
+        "name": "windows (pwsh, ps7)",
+        "conclusion": "success",
+        "id": 114521144644
+      }
+    ],
+    "later_live_job_success_does_not_rewrite_original_start_running_status": true
+  },
+  "preparer": {
+    "relative_path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+    "length": 31772,
+    "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+    "utf8_bom": false
+  },
+  "selected_preparation_report": {
+    "relative_path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+    "length": 21136,
+    "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+    "utf8_bom": false
+  },
+  "preparation_binder": {
+    "relative_path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+    "length": 10168,
+    "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+    "utf8_bom": false
+  },
+  "original_external_report_copy_byte_hash_matches": true,
+  "preparer_before_snapshot_after_current_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+  "preparer_snapshot_currently_matches": true,
+  "actual_ps51_and_ps7_parser_passes_recorded": true,
+  "ps51_application_preparation_executed": false,
+  "retained_private_proof": {
+    "root_name": "T21P-06b84fc67184",
+    "exclusive_marker_owned_nonreparse_root": true,
+    "marker_sha256": "a8256c9b58aca093f12aa8779cc4e53c4d126c4fcb9426ad18ed3d585fed93ab",
+    "private_invocation_sha256": "e02106366c4afe27d7768ed7d1e833a529b79c0b7fa36fb7b57f5d2070fd9194",
+    "private_application_wrapper_sha256": "f694bfa71b930b0fc790be50f84048fda77ef48b25deaba2e94292078bae3bb8",
+    "private_native_capture_sha256": "87e6d6ece69cb531ea660bc0db27928e47055a4f8f75dd5c11539fe7b9ff3c2c",
+    "private_input_probe_sha256": "fd2fabb4becf2dd9a227a46a16637f4301b3dc51468be081b75f1969946e8df1",
+    "private_phone_alias_map_sha256": "d3f557268fcffbbffae0a7606eb5a8481a6d4bd41b78c7b1f1ec72ab1aac2831",
+    "all_current_hashes_match": true,
+    "synthetic_fixture_count": 4,
+    "source_and_copy_file_count": 3,
+    "installed_tool_count": 2,
+    "all_recorded_before_after_preservation_gates_pass_and_current_bytes_match": true,
+    "retained": true,
+    "cleanup_attempted": false
+  },
+  "phone_payload": {
+    "folder_name": "Phone",
+    "asset_count": 3,
+    "only_three_complete_mp3_files": true,
+    "asset_hashes_and_lengths_currently_match": true,
+    "assets": [
+      {
+        "private_id": "T21-short-02",
+        "filename": "A-second.mp3",
+        "length": 160928,
+        "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+        "source_sha256_before": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+        "source_sha256_after": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+        "technical": {
+          "codec": "mp3",
+          "sample_rate": 44100,
+          "channels": 2,
+          "audio_bitrate": 64000,
+          "duration_seconds": 20.0
+        },
+        "expected_tags": {
+          "title": "Second track",
+          "artist": "T21 Phone Test",
+          "album": "T21 Phone Test",
+          "track": "2/2",
+          "disc": "1/1"
+        },
+        "observed_tags": {
+          "album": "T21 Phone Test",
+          "title": "Second track",
+          "disc": "1/1",
+          "artist": "T21 Phone Test",
+          "track": "2/2"
+        },
+        "artwork": {
+          "description": "solid blue square",
+          "width": 64,
+          "height": 64,
+          "codec": "mjpeg",
+          "attached_pic": true
+        },
+        "chapters": [],
+        "independent_full_decode": true
+      },
+      {
+        "private_id": "T21-short-01",
+        "filename": "Z-first.mp3",
+        "length": 161056,
+        "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+        "source_sha256_before": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+        "source_sha256_after": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+        "technical": {
+          "codec": "mp3",
+          "sample_rate": 44100,
+          "channels": 2,
+          "audio_bitrate": 64000,
+          "duration_seconds": 20.0
+        },
+        "expected_tags": {
+          "title": "First track",
+          "artist": "T21 Phone Test",
+          "album": "T21 Phone Test",
+          "track": "1/2",
+          "disc": "1/1"
+        },
+        "observed_tags": {
+          "disc": "1/1",
+          "track": "1/2",
+          "album": "T21 Phone Test",
+          "title": "First track",
+          "artist": "T21 Phone Test"
+        },
+        "artwork": {
+          "description": "solid blue square",
+          "width": 64,
+          "height": 64,
+          "codec": "mjpeg",
+          "attached_pic": true
+        },
+        "chapters": [
+          {
+            "id": 0,
+            "start_time": "0.000000",
+            "end_time": "10.000000",
+            "tags": {
+              "title": "First half"
+            }
+          },
+          {
+            "id": 1,
+            "start_time": "10.000000",
+            "end_time": "20.000000",
+            "tags": {
+              "title": "Second half"
+            }
+          }
+        ],
+        "independent_full_decode": true
+      },
+      {
+        "private_id": "T20-long-01",
+        "filename": "Long-audio.mp3",
+        "length": 38201262,
+        "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+        "source_sha256_before": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+        "source_sha256_after": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+        "technical": {
+          "codec": "mp3",
+          "sample_rate": 44100,
+          "channels": 1,
+          "audio_bitrate": 64000,
+          "duration_seconds": 4775.055646
+        },
+        "tags_omitted": true,
+        "artwork_stream_count": 0,
+        "chapters_count": 0,
+        "earlier_full_decode_and_64kbps_frame_scan": true,
+        "reconversion": false
+      }
+    ],
+    "synthetic_output_to_phone_alias_relationships": [
+      {
+        "private_id": "T21-short-01",
+        "actual_application_output_relative_path": "output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - Z-first.mp3",
+        "phone_filename_alias": "Z-first.mp3",
+        "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+        "byte_identical": true,
+        "tag_changes": false
+      },
+      {
+        "private_id": "T21-short-02",
+        "actual_application_output_relative_path": "output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - A-second.mp3",
+        "phone_filename_alias": "A-second.mp3",
+        "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+        "byte_identical": true,
+        "tag_changes": false
+      }
+    ],
+    "actual_app_manifest_sha256": "336741849aa7e8b645d6a5cd04dceaac8f32ad167735e4630aba8d9bf8c802f6",
+    "actual_app_status": "Completed",
+    "actual_app_exit_code": 0,
+    "actual_app_converted": 2,
+    "actual_app_default_bitrate_kbps": 64,
+    "long_output_relationship": {
+      "private_id": "T20-long-01",
+      "original_tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+      "original_report": "evidence/T20-long-ps7-final1.json",
+      "original_report_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+      "retained_original_root_name": "T20L-8a2614f96c2a",
+      "retained_original_marker_sha256": "da1d1c7e43a239dc22863438383b94b8636f9b1794a84b92d7e7f308c25b21c9",
+      "original_private_native_record_sha256": "902dd55ab95a7d8e83ce04a7ad43eca2c158113f73f274182df5053b34ec4b96",
+      "phone_filename_alias": "Long-audio.mp3",
+      "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "length": 38201262,
+      "duration_seconds": 4775.055646,
+      "reconversion": false,
+      "tag_changes": false,
+      "byte_identical_original_output_and_phone_copy": true,
+      "original_personal_source_accessed": false,
+      "private_tags_omitted": true,
+      "earlier_full_decode_and_64kbps_cbr_frame_scan_bound_to_original_report": true
+    },
+    "long_report_marker_raw_record_original_asset_and_phone_copy_current_hashes_match": true,
+    "original_personal_source_accessed_by_preparation": false,
+    "ordinary_music_access": false
+  },
+  "process_scope": {
+    "direct_native_calls": 16,
+    "all_completed_exit0_released": true,
+    "timeouts": false,
+    "truncated_captures": false,
+    "application_host_elapsed_ms": 5202,
+    "native_release_flag_scoped_to_direct_helper_calls": true,
+    "runtime_success_release_guards_reviewed": true,
+    "manifest_contains_per_native_release_fields": false,
+    "independent_descendant_observation": false,
+    "independent_nested_timeout_containment_proven": false,
+    "limitation": "The helper deadline cancels its directly retained process. For the nested application host, independent descendant containment on timeout is not proven by this preparer. Failed/timeout roots are retained, no cleanup/recovery or descendant-release success is claimed, and follow-up inspection would be required before any such scope could be cleaned.",
+    "finding_resolved": "Documented the direct-helper release scope, unchanged-runtime success semantics and unproven nested timeout containment while preserving successful source/report bytes. No descendant release or timeout cleanup is invented."
+  },
+  "static_review": {
+    "literal_paths_and_selected_exact_retained_long_asset_only": true,
+    "no_personal_folder_or_music_enumeration": true,
+    "no_original_audio_modification_or_long_reconversion": true,
+    "exclusive_private_root_outside_git_and_ancestry_reparse_checks": true,
+    "copy_to_work_hash_then_no_overwrite_phone_publication": true,
+    "production_script_helper_bat_bytes_unchanged": true,
+    "default64kbps_and_date_first_app_output_preserved": true,
+    "phone_aliases_are_test_payload_copies_not_runtime_naming_changes": true,
+    "child_wrapper_environment_changes_scoped_to_its_own_process": true,
+    "no_download_or_persistent_setting_change_in_tool": true,
+    "bounded_direct_native_calls_and_retention_policy": true,
+    "no_global_process_termination_or_recursive_delete": true,
+    "explicit_utf8_or_dotnet_utf8_json_reads": true,
+    "ps51_compatible_api_and_syntax_review_pass": true,
+    "public_technical_allowlist_and_synthetic_tags_only": true,
+    "raw_media_personal_tags_captures_and_alias_record_private": true,
+    "selected_original_private_path_filename_and_source_title_absent_from_14_intended_files": true,
+    "chapter_fields_distinguished_from_player_navigation_and_resume": true,
+    "no_universal_phone_support_or_phone_side_hash_claim": true
+  },
+  "historical_t20": {
+    "tracked_evidence_file_count": 22,
+    "working_diff_empty": true,
+    "old_reviews_immutable": [
+      {
+        "relative_path": "docs/codex-v1/evidence/T20-recovery-review.json",
+        "length": 8887,
+        "sha256": "ed5730004d38350978bed75951aa7344098fe524a0dd1ee2a7b4ddd1d3a70eff",
+        "utf8_bom": false
+      },
+      {
+        "relative_path": "docs/codex-v1/evidence/T20-review.json",
+        "length": 14218,
+        "sha256": "5e93409185ea978eef08dacb53bf5170173ed73c4fb6cc009749dbe06ec97d8f",
+        "utf8_bom": false
+      },
+      {
+        "relative_path": "docs/codex-v1/evidence/T20-revision-review.json",
+        "length": 26273,
+        "sha256": "e28229633b3ea558629ef2508ca3f5f4b960eec38192532a4eb3d81edcc8261c",
+        "utf8_bom": false
+      }
+    ],
+    "selected_original_long_report_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+    "earlier_failed_reports_and_false_or_limited_cleanup_states_not_changed": true
+  },
+  "acceptance_state": {
+    "named_tester": "Janne Vuorela",
+    "phone_model_os_player_versions": null,
+    "transfer_method": null,
+    "phone_observations": "not_run",
+    "phone_side_asset_hash": null,
+    "A51": "blocked",
+    "A52": "blocked",
+    "T21": "blocked",
+    "actual_phone_acceptance_performed": false,
+    "preparation_and_decode_do_not_substitute_for_phone_evidence": true,
+    "remaining": "One brief real-phone session on the three exact prepared assets: device/OS/player versions and transfer method; start/middle/near-end listen/seek/duration; normal close/reopen resume; synthetic tags/cover/order and chapter availability/navigation, including observed player limits.",
+    "exactly_next": "Continue T21 phone acceptance",
+    "T22_ready": false,
+    "project_complete": false,
+    "release_complete": false,
+    "release_zip_acceptance": false,
+    "main_integration_and_release_authority_changed": false
+  },
+  "reviewed_intended_working_inventory_count": 14,
+  "reviewed_intended_working_inventory": [
+    {
+      "relative_path": "docs/codex-v1/ACCEPTANCE.json",
+      "length": 41644,
+      "sha256": "37aa75681faf39fcf69a4a4f7c85b8a27d83588f0e43c8eab1f0b9e759405d5d",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/AUTHORITY.md",
+      "length": 15322,
+      "sha256": "c2c20b1c42c7898df7499e1bc72bd77c660583505fec9c9652be5842d47aaafc",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/DECISIONS.md",
+      "length": 60712,
+      "sha256": "2130b1a927a22d2e8e3b513199e3ac89b719e30f38cdd5caeaa814ce59ac25bd",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/.gitattributes",
+      "length": 233,
+      "sha256": "5f67ebcc08568f0694d065da5552f2e0e459088f83da54e92c41ab2fbeee7b0e",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+      "length": 10168,
+      "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+      "length": 21136,
+      "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-start.json",
+      "length": 2016,
+      "sha256": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21.md",
+      "length": 7805,
+      "sha256": "0a906e254bb969e405e0764f838a15226f5dc59d03f4fea9b9ba2cd6215fe800",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/NEXT_SESSION.md",
+      "length": 3147,
+      "sha256": "2feb867565a5080ec9e4ad58d83906db189a480bcfd87b759f2926376e6f91a9",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/STATUS.md",
+      "length": 37107,
+      "sha256": "ab608a9007c5ee35d559746c201129b12ef9b42a2977a7dc7df410ab99ebfb7d",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/T21_MANUAL_STEPS.md",
+      "length": 1841,
+      "sha256": "fb12a058e154c096b7802098ab8f6e665873da4d66049dd0d7e058c6169e6f57",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/TASKS.json",
+      "length": 75377,
+      "sha256": "777bc7d1a1cfe512ed1fc854369d8a2377dc10bb16695c93074abe2f8ef7d495",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/TEST_STRATEGY.md",
+      "length": 45906,
+      "sha256": "48faef14f9ef24d52b0ffdd13fd05c6ec373214cd1370d7c0420036dbcb8425e",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+      "length": 31772,
+      "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+      "utf8_bom": false
+    }
+  ],
+  "inventory_scope": "Current fourteen intended modified/untracked workspace files before staging, excluding this review. No self-containing commit SHA. TASKS checkpoint names the verified starting main candidate; new feature checkpoint live-ref comparison and CI belong to the subsequent PR/response."
+}

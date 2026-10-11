@@ -53,6 +53,18 @@ remain covered by their real targeted tests. Current PS7 native picker, physical
 Cancel and physical fallback are explicit coverage limits under this revised
 mixed method. The old seven-stage guide is optional, not a remaining owner gate.
 
+T21 keeps real-phone A51/A52 acceptance. To minimize owner work, reuse the exact
+verified T20 representative long output (same bytes/hash and unchanged runtime)
+and prepare two 20-second synthetic outputs with friendly tags, a small blue
+cover and reversed file-name versus track-tag order. A chaptered M4A source
+provides independently inspected MP3 chapter fields. An owned local media-only
+folder separates transfer assets from private logs/probe/ownership records.
+Local preparation, hashing and decode checks establish readiness, never phone
+playback. One named phone session records device/OS/player versions, transfer,
+start/middle/near-end audio and seeking, displayed duration, resume, tags/art/order
+and actual chapter availability. Missing/unsupported player features and failures
+stay explicit; no universal Android, chapter navigation or resume guarantee.
+
 ## Safe baseline and isolation ordering
 
 At the T02 checkpoint, the original suite wrote into Music and timed runs to avoid collisions.

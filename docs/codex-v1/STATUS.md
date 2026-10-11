@@ -1,11 +1,42 @@
 # Current project status
 
-State: **T20 A49/A50 pass under the recorded user-requested mixed method.**
-Last completed task: T20 on its feature branch; main integration is owner-gated.
-Exactly next task after T20 integration: T21 phone acceptance. Required
-improvements 1-15; optional O01 deferred. Project/release remain incomplete.
+State: **T21 phone acceptance started; actual phone observations are pending.**
+Last completed task: T20, now owner-integrated. Exactly next task: continue T21.
+Required improvements 1-15; optional O01 deferred. Project/release incomplete.
 
-## T20 completed recovery — no further guide run required
+## T21 active checkpoint
+
+- Owner PikkuJanne merged T20 PR #20 at 16:44:42Z on 11 October 2026 into main
+  `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`; final T20 feature is
+  `67dee7e5f6757984458d63b1ea98353c9747ba04`. Normal fetch, independently
+  advertised refs and live GitHub match. Feature/merge tree IDs both equal
+  `aef5d545bfdc13681a55708ad6e3a8d8ccf6fb89`. Clean local main was fast-forwarded
+  and `codex/v1-t21-phone-acceptance` created. T01-T20 are integrated.
+  See `evidence/T21-start.json`. Final T20 push38155784019/PR38155787038 passed
+  both Windows jobs each. Main push38156733341 was still running at startup.
+- Janne's simpler-testing preference persists. A media-only local folder is ready
+  with the unchanged verified 79m35 MP3 and two 20-second synthetic outputs for
+  tags, supplied blue cover, track ordering and chapter fields. No new personal
+  media selection, folder search, ordinary Music inspection or long conversion
+  is needed. No runtime/helper/BAT, existing tests, CI/build or default changes.
+- `Prepare-T21Phone.ps1` completed on ordinary-user PS7/Windows11, copying the
+  long asset unchanged and converting two short inputs through current main3e5b6fb.
+  Friendly tags, small explicit blue JPEG, track/disc and two mapped MP3 chapters
+  are independently verified; both short outputs fully decode. Sixteen direct
+  helper calls finish/release without timeout. This proves those direct process
+  handles, not independent nested-child observation or timeout containment.
+  Source/copy/input/tool/runner/marker/long preservation passes. Ready scope:
+  process TEMP `T21P-06b84fc67184/Phone`, exactly three MP3s; all private files
+  retained. Exact reports/commands/snapshot hashes belong to the preparation binder.
+  Main CI38156733341 subsequently completed successfully.
+- `T21_MANUAL_STEPS.md` gives one brief real-phone session: listen/seek at start,
+  40:00 and 79:00, check duration/resume, then short-album tags/art/order/chapters.
+  Phone model/OS/player versions and transfer method are requested. Preparation
+  and local decoding are not phone observations. A51/A52/T21 remain blocked
+  until Janne's actual results are captured and reviewed. Exactly next continue
+  T21, not T22. Main integration/release gates remain owner-controlled.
+
+## T20 completed recovery — historical feature checkpoint, now integrated
 
 - Janne Vuorela reported the guide's cover mismatch after trying both PNGs and
   again requested simpler testing. Actual PS5.1 Desktop STA application had

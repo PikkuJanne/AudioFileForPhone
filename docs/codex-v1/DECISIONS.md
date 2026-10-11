@@ -786,3 +786,35 @@ with a bare “approved” assertion without a traceable reference.
   checkpoint 1e9e5de has both push/PR CI jobs green. Final recovery sync/checks
   belong in PR/response. Main integration owner-gated; exactly next T21 after
   integration. Project/release/phone acceptance incomplete.
+
+## T21 minimal phone acceptance start — 11 October 2026
+
+- Owner requested T21 next. Fresh fetch, advertised refs and live GitHub establish
+  his PR #20 merge at16:44:42Z into main3e5b6fb, final feature67dee7e and identical
+  complete trees. T20 final push/PR jobs all green; main push38156733341 initially
+  running. Clean local main fast-forwarded; codex/v1-t21-phone-acceptance created.
+- Keep simpler-testing preference: reuse the exact verified 79m35 long output,
+  preserving original f992 generation identity and equivalent current runtime;
+  prepare two short friendly-tag/blue-cover/order/chapter fixtures through current
+  unchanged app. All media/logs/probes outside Git, no personal/Music search.
+- A51/A52 still require actual named phone results; readiness/decode is not phone
+  evidence. Asked for device/OS/player versions and transfer method while local
+  preparation proceeds. One brief session covers start/middle/near-end listen/seek,
+  duration/resume, tags/art/order and actual chapter availability. No new app,
+  screenshots, command editing or full-length listening required.
+- T21 remains blocked pending actual observations. Exactly next continue T21,
+  not T22; main integration/release gates and deferred loudness unchanged.
+
+- Actual preparation completes first run at main3e5b6fb in ordinary PS7/Windows11;
+  both-shell parse passes, 16 direct native calls completed/released, all source/
+  copy/input/tool/runner/marker/long preservation passes. Ready local scope
+  T21P-06b84fc67184/Phone holds exactly three verified MP3s. Short tags/blue64x64
+  attachedJPEG/track-disc/two chapter fields and audio decode pass; generic aliases
+  are byte-identical copies of actual date-first app outputs. Long remains exact
+  originalf992 generation bytes; runtime blobs equalmain3e5. Private records bound
+  by hashes, original source unaccessed, no cleanup or phone-success claim.
+- Review scopes release to16 direct helpers; independent nested descendants and
+  timeout containment are not observed. Preserve completed source/report snapshots,
+  document limit in binder; no rewrite/rerun is necessary for this successful
+  no-timeout execution. Main CI38156733341 later passes. Phone question now gives
+  the exact folder and one short session; device/player/transfer/results pending.

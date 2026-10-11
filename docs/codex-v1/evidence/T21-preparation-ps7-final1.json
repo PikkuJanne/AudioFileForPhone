@@ -1,0 +1,643 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "purpose": "ready_to_copy_phone_payload_preparation_only",
+  "started_utc": "2026-10-11T16:51:36.8926374Z",
+  "finished_utc": "2026-10-11T16:51:46.8770365Z",
+  "status": "prepared",
+  "phone_acceptance": "not_run",
+  "physical_phone_evidence": false,
+  "tested_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "expected_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "preparer_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+  "preparer_snapshot_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+  "preparer_after_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "shell_executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "windows_build": "26300.9457",
+  "elevated": false,
+  "execution_policy": [
+    {
+      "scope": "MachinePolicy",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "UserPolicy",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "Process",
+      "policy": "RemoteSigned"
+    },
+    {
+      "scope": "CurrentUser",
+      "policy": "Undefined"
+    },
+    {
+      "scope": "LocalMachine",
+      "policy": "RemoteSigned"
+    }
+  ],
+  "ownership": {
+    "root_name": "T21P-06b84fc67184",
+    "marker_sha256": "a8256c9b58aca093f12aa8779cc4e53c4d126c4fcb9426ad18ed3d585fed93ab",
+    "marker_unchanged": true,
+    "exclusive_directory": true,
+    "retained": true,
+    "cleanup_attempted": false
+  },
+  "tools": {
+    "ffmpeg": {
+      "path": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "sha256_before": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "sha256_after": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    "ffprobe": {
+      "path": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "sha256_before": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "sha256_after": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  },
+  "sources": [
+    {
+      "name": "AudioFileForPhone.ps1",
+      "source_sha256_before": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "copy_sha256_before": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "source_sha256_after": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "copy_sha256_after": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "name": "AudioFileForPhone.Helpers.ps1",
+      "source_sha256_before": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "copy_sha256_before": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "source_sha256_after": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "copy_sha256_after": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "name": "AudioFileForPhone.bat",
+      "source_sha256_before": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "copy_sha256_before": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "source_sha256_after": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "copy_sha256_after": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "synthetic_inputs": [
+    {
+      "filename": "Z-first.m4a",
+      "length": 322958,
+      "sha256_before": "535113060e5cabb73869ba1f04a355e06be867a5ffc15654cacf7cede0342fa9",
+      "sha256_after": "535113060e5cabb73869ba1f04a355e06be867a5ffc15654cacf7cede0342fa9"
+    },
+    {
+      "filename": "A-second.ogg",
+      "length": 59888,
+      "sha256_before": "ca6869ec5c7ea6643d72d8f7ff52f08ef8b876c27756cd25813fc9e72892fa29",
+      "sha256_after": "ca6869ec5c7ea6643d72d8f7ff52f08ef8b876c27756cd25813fc9e72892fa29"
+    },
+    {
+      "filename": "Blue-cover.jpg",
+      "length": 248,
+      "sha256_before": "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84",
+      "sha256_after": "c4417237de30b40e0373de88147abaa680203d5e8502312082352524ff769b84"
+    },
+    {
+      "filename": "first-track.ffmetadata",
+      "length": 219,
+      "sha256_before": "5db24f6435af1a49a303515fe5ea0f93157412c5e874101554ce880206a00e75",
+      "sha256_after": "5db24f6435af1a49a303515fe5ea0f93157412c5e874101554ce880206a00e75"
+    }
+  ],
+  "assets": [
+    {
+      "private_id": "T21-short-02",
+      "filename": "A-second.mp3",
+      "length": 160928,
+      "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "source_sha256_before": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "source_sha256_after": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      },
+      "expected_tags": {
+        "title": "Second track",
+        "artist": "T21 Phone Test",
+        "album": "T21 Phone Test",
+        "track": "2/2",
+        "disc": "1/1"
+      },
+      "observed_tags": {
+        "album": "T21 Phone Test",
+        "title": "Second track",
+        "disc": "1/1",
+        "artist": "T21 Phone Test",
+        "track": "2/2"
+      },
+      "artwork": {
+        "description": "solid blue square",
+        "width": 64,
+        "height": 64,
+        "codec": "mjpeg",
+        "attached_pic": true
+      },
+      "chapters": [],
+      "independent_full_decode": true
+    },
+    {
+      "private_id": "T21-short-01",
+      "filename": "Z-first.mp3",
+      "length": 161056,
+      "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "source_sha256_before": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "source_sha256_after": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      },
+      "expected_tags": {
+        "title": "First track",
+        "artist": "T21 Phone Test",
+        "album": "T21 Phone Test",
+        "track": "1/2",
+        "disc": "1/1"
+      },
+      "observed_tags": {
+        "disc": "1/1",
+        "track": "1/2",
+        "album": "T21 Phone Test",
+        "title": "First track",
+        "artist": "T21 Phone Test"
+      },
+      "artwork": {
+        "description": "solid blue square",
+        "width": 64,
+        "height": 64,
+        "codec": "mjpeg",
+        "attached_pic": true
+      },
+      "chapters": [
+        {
+          "id": 0,
+          "start_time": "0.000000",
+          "end_time": "10.000000",
+          "tags": {
+            "title": "First half"
+          }
+        },
+        {
+          "id": 1,
+          "start_time": "10.000000",
+          "end_time": "20.000000",
+          "tags": {
+            "title": "Second half"
+          }
+        }
+      ],
+      "independent_full_decode": true
+    },
+    {
+      "private_id": "T20-long-01",
+      "filename": "Long-audio.mp3",
+      "length": 38201262,
+      "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "source_sha256_before": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "source_sha256_after": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 1,
+        "audio_bitrate": 64000,
+        "duration_seconds": 4775.055646
+      },
+      "tags_omitted": true,
+      "artwork_stream_count": 0,
+      "chapters_count": 0,
+      "earlier_full_decode_and_64kbps_frame_scan": true,
+      "reconversion": false
+    }
+  ],
+  "native_runs": [
+    {
+      "label": "source_commit",
+      "executable": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "arguments": [
+        "-C",
+        "<PROJECT>",
+        "rev-parse",
+        "HEAD"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 177,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "runtime_worktree_status",
+      "executable": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "arguments": [
+        "-C",
+        "<PROJECT>",
+        "status",
+        "--porcelain=v1",
+        "--",
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 63,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "ffmpeg_version",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-version"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 47,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "ffprobe_version",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-version"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 58,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "generate_first_m4a_with_chapters",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=440:sample_rate=44100:duration=20",
+        "-f",
+        "ffmetadata",
+        "-i",
+        "<OWNED_TEMP>\\first-track.ffmetadata",
+        "-map",
+        "0:a:0",
+        "-map_metadata",
+        "1",
+        "-map_chapters",
+        "1",
+        "-ac",
+        "2",
+        "-c:a",
+        "aac",
+        "-f",
+        "mp4",
+        "<OWNED_TEMP>\\Input\\Z-first.m4a.work"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 343,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "generate_second_ogg",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "sine=frequency=660:sample_rate=44100:duration=20",
+        "-ac",
+        "2",
+        "-c:a",
+        "libvorbis",
+        "-metadata",
+        "title=Second track",
+        "-metadata",
+        "artist=T21 Phone Test",
+        "-metadata",
+        "album=T21 Phone Test",
+        "-metadata",
+        "track=2/2",
+        "-metadata",
+        "disc=1/1",
+        "-f",
+        "ogg",
+        "<OWNED_TEMP>\\Input\\A-second.ogg.work"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 273,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "generate_blue_jpg_cover",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-hide_banner",
+        "-v",
+        "error",
+        "-nostdin",
+        "-n",
+        "-f",
+        "lavfi",
+        "-i",
+        "color=c=blue:s=64x64",
+        "-frames:v",
+        "1",
+        "-c:v",
+        "mjpeg",
+        "-f",
+        "image2",
+        "-update",
+        "1",
+        "<OWNED_TEMP>\\Blue-cover.jpg.work"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 54,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "first_input_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time:format_tags=title,artist,album,track,disc:chapter_tags=title",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\Input\\Z-first.m4a"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 45,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "second_input_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time:format_tags=title,artist,album,track,disc:chapter_tags=title",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\Input\\A-second.ogg"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 47,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "cover_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\Blue-cover.jpg"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 40,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "unchanged_application_default64kbps_with_cover",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\convert-short.ps1"
+      ],
+      "deadline_ms": 120000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 5202,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "T21-short-02_output_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time:format_tags=title,artist,album,track,disc:chapter_tags=title",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - A-second.mp3"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 44,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "T21-short-02_full_decode",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-hide_banner",
+        "-v",
+        "error",
+        "-xerror",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - A-second.mp3",
+        "-map",
+        "0:a:0",
+        "-f",
+        "null",
+        "NUL"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 76,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "T21-short-01_output_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time:format_tags=title,artist,album,track,disc:chapter_tags=title",
+        "-of",
+        "json",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - Z-first.mp3"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 45,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "T21-short-01_full_decode",
+      "executable": "C:\\ffmpeg\\bin\\ffmpeg.exe",
+      "arguments": [
+        "-nostdin",
+        "-hide_banner",
+        "-v",
+        "error",
+        "-xerror",
+        "-i",
+        "<OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_185140\\Input\\2026-10-11 - Z-first.mp3",
+        "-map",
+        "0:a:0",
+        "-f",
+        "null",
+        "NUL"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 78,
+      "process_released": true,
+      "capture_truncated": false
+    },
+    {
+      "label": "unchanged_long_output_technical_probe",
+      "executable": "C:\\ffmpeg\\bin\\ffprobe.exe",
+      "arguments": [
+        "-v",
+        "error",
+        "-show_entries",
+        "stream=index,codec_type,codec_name,sample_rate,channels,bit_rate,width,height:stream_disposition=attached_pic:format=duration,size:chapter=id,start_time,end_time",
+        "-of",
+        "json",
+        "-i",
+        "<T20_OWNED_TEMP>\\output\\AudioForPhone_64kbps_20261011_175354\\input\\2026-02-09 - T20-long-01.mp3"
+      ],
+      "deadline_ms": 60000,
+      "timed_out": false,
+      "status": "Completed",
+      "exit_code": 0,
+      "elapsed_ms": 47,
+      "process_released": true,
+      "capture_truncated": false
+    }
+  ],
+  "long_origin": {
+    "private_id": "T20-long-01",
+    "original_tested_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+    "report": "evidence/T20-long-ps7-final1.json",
+    "report_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+    "retained_root_name": "T20L-8a2614f96c2a",
+    "marker_sha256": "da1d1c7e43a239dc22863438383b94b8636f9b1794a84b92d7e7f308c25b21c9",
+    "private_raw_sha256": "902dd55ab95a7d8e83ce04a7ad43eca2c158113f73f274182df5053b34ec4b96",
+    "output_sha256_before": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+    "output_sha256_after": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+    "output_length": 38201262,
+    "reconversion": false,
+    "private_tags_omitted": true,
+    "earlier_full_decode_and_64kbps_frame_scan": true
+  },
+  "application_manifest": {
+    "sha256": "336741849aa7e8b645d6a5cd04dceaac8f32ad167735e4630aba8d9bf8c802f6",
+    "status": "Completed",
+    "exit_code": 0,
+    "converted": 2,
+    "bitrate_kbps": 64,
+    "entry_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+    "helper_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+  },
+  "private_bindings": {
+    "invocation_sha256": "e02106366c4afe27d7768ed7d1e833a529b79c0b7fa36fb7b57f5d2070fd9194",
+    "application_wrapper_sha256": "f694bfa71b930b0fc790be50f84048fda77ef48b25deaba2e94292078bae3bb8",
+    "native_capture_sha256": "87e6d6ece69cb531ea660bc0db27928e47055a4f8f75dd5c11539fe7b9ff3c2c",
+    "input_probes_sha256": "fd2fabb4becf2dd9a227a46a16637f4301b3dc51468be081b75f1969946e8df1"
+  },
+  "source_bytes_unchanged": true,
+  "source_copy_unchanged": true,
+  "input_bytes_unchanged": true,
+  "long_output_bytes_unchanged": true,
+  "tool_bytes_unchanged": true,
+  "preparer_bytes_unchanged": true,
+  "all_native_processes_released": true,
+  "exactly_three_phone_mp3_files": true,
+  "original_personal_source_accessed": false,
+  "ordinary_music_access": false,
+  "failure_stage": null,
+  "error": null
+}

@@ -1,54 +1,47 @@
-# Next session — T21 after owner integration of T20
+# Next session — continue T21 real phone acceptance
 
-T20 A49/A50 pass under the explicitly revised mixed method requested by Janne
-Vuorela. No further guide run, cover selection, Windows testing or personal-media
-selection is required. Draft PR #20 remains owner-gated for main integration.
-Exactly next coherent task after integration is T21 actual phone/player acceptance.
-Project/release remain incomplete; optional loudness stays deferred.
+T20 is owner-integrated; T21 is active and blocked pending actual named phone
+observations. Exactly next coherent task: continue T21, not T22. Project/release
+remain incomplete; optional loudness stays deferred. The owner's preference for
+simple testing persists. No new media selection or Windows guide run is needed.
 
 ## Reconcile first
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS. Inspect actual worktree, branch, fetch/push URLs, overrides, normal fetch,
-independently advertised refs and live GitHub. Preserve all work; no reset/clean/
-force. Active branch is codex/v1-t20-windows-acceptance, draft PR #20. Last verified
-pre-recovery checkpoint is 1e9e5de182f9cbe710f84ff0e63526698ac086d1. Inspect fresh
-HEAD/ref/checks and owner merge; feature synchronization alone is not integration.
-Main was da2a6273ff9aceb86af75ad4aa2d2942ec745d66, T01-T19 integrated. No release
-authority has been added.
+AGENTS. Inspect worktree/branch, all fetch/push URLs, overrides, normal fetch,
+independently advertised refs and live GitHub. Preserve work; no reset/clean/force.
+Owner PikkuJanne merged PR #20 at16:44:42Z on11October2026 into main
+3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d; final feature
+67dee7e5f6757984458d63b1ea98353c9747ba04 and merge complete trees equal.
+T01-T20 are integrated. Active branch: codex/v1-t21-phone-acceptance. Normal
+feature checkpoints/draft PR authorized; main integration/release gates unchanged.
 
-## Completed T20 evidence and limits
+## Minimal phone work
 
-Read evidence/T20.md and T20-owner-observations.json. Janne confirmed the actual
-BAT drop's visible **Completed with failures** result. Retained PS5.1 STA picker
-capture shows Completed/exit0 for three synthetic files. The guide wrongly demanded
-one 64x64 PNG; the chosen tracked poster was valid. The failed aggregate remains
-failed and byte-identical. Both-shell recovery verifiers pass metadata, artwork/
-dimensions, date/layout, 64kbps, full decoding and source safety with sixteen
-released natives and 41 unchanged bindings each. Fresh cancellation tests add
-eighteen passes; the earlier eight targeted runs retain 182 passes. Corrected
-actual guide verification functions pass positive and false-Cancel checks in both
-shells. Bindings/review record exact tested bytes and commands.
+Read evidence/T21.md and T21_MANUAL_STEPS.md. Local preparation is complete and separate from
+phone acceptance. Read the exact preparation report, binder and T21-review.json.
+Ready folder: process TEMP T21P-06b84fc67184/Phone, exactly three verified MP3s.
+Use these existing files; no owner command or repeat preparation is needed. Reuse the exact T20 79m35 MP3 (SHA2562ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e),
+with original tags/no art and original f992 generation provenance; unchanged
+runtime blobs equal current main3e5b6fb. Actual PS7 preparation and both-shell parsing pass. Sixteen direct helper calls
+complete/release without timeout; no independent descendant or nested-timeout
+containment claim. All roots remain retained. Two short current-app outputs
+provide First track/Second track, Artist/Album T21 Phone Test, blue artwork,
+track1/2 and2/2/disc1/1 and actual chapter-field coverage. File-name order differs
+from track order. Do not regenerate the long file or search personal media/Music.
+Private payload, raw probes/logs and ownership records remain outside Git.
 
-A49 explicitly combines those named interactions with automated real Windows
-tests. PS7 verifier execution is not a PS7 picker observation; current PS7 picker,
-physical Cancel, hardware Ctrl+C and physical fallback are untested limitations.
-The BAT's exact shell/exit/output root is unknown; its Music output was never
-inspected or removed. Do not infer those observations or restart the long guide
-to satisfy its superseded method.
+Obtain phone model/OS/player versions and transfer method, then one brief named
+session: listen/seek at start,40:00,79:00, check duration, pause near40min and
+close/reopen for actual resume; inspect short-album tags/art/order and actual
+chapter availability/navigation. Record actual failures or absent features and
+sorting mode. No screenshots, command editing or full-length listening required.
+Local decode or emulator use is not real phone evidence; never fill placeholders
+as successes or infer a phone-side digest. Check exact intended transferred assets.
 
-A50 retains both-shell owner-selected 79m35s real-file conversion, identical
-output hashes, zero duration delta, all64kbps frame scan, full/near-end decode,
-resource measurements and unchanged source/process release, plus controlled
-default-Music smoke. Private path/name/tags/media/raw logs stay outside Git.
-Retained failed attempts, old reviews and owned private fixture/output roots
-remain historical and unchanged. Runtime/BAT/helper/tests/CI/build are unchanged.
-Any future runtime change requires affected acceptance reruns.
-
-## Next coherent task
-
-After confirming owner integration of reviewed T20, start T21 in a new thread,
-reading only its task and relevant specs. Real phone/player listening, seeking,
-tags/artwork/order/resume evidence is still required; decoder success establishes
-none of it. T22-T27 freeze, exact ZIP, exact-commit release authorization, public
-download and closure gates remain later work. Copy-ready prompt: T21 next please.
+A51/A52 remain blocked until actual evidence is reviewed. After results, update
+truthful tracking/limits, independently review, commit/push this same coherent
+branch and compare HEAD to its fresh live ref. Any runtime change triggers affected
+phone retests. T22 is next only after completed/integrated T21. Freeze/exact ZIP,
+exact-commit release authority, draft/public bytes and closure are later tasks.
+Copy-ready prompt: Resume T21 phone acceptance.

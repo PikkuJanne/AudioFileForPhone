@@ -212,6 +212,19 @@ observation, not an unobserved BAT shell, exit code or output path. No current
 PS7 picker, physical Cancel, fresh hardware Ctrl+C, playback or phone observation
 is inferred. Normal feature-checkpoint scope continues; main/release gates stay.
 
+T21 authorization: on 11 October 2026 the owner requested "T21 next please".
+Fresh live GitHub and advertised refs verify his T20 PR #20 merge at 16:44:42Z
+by PikkuJanne into main `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`, with final
+feature `67dee7e5f6757984458d63b1ea98353c9747ba04`. The complete merge and feature
+trees match. Clean local main was fast-forwarded; T21 uses
+`codex/v1-t21-phone-acceptance`. Normal task preparation, local verification,
+documentation, commits, feature push and draft PR are authorized. Reuse the exact
+previously verified selected long output and prepare two small synthetic test
+outputs privately; do not search personal media or ordinary Music. The owner's
+preference for simpler testing persists. Actual named phone/player observations
+are still required; local decoding or preparation cannot supply them. Main
+integration, release writes and repository settings gates remain unchanged.
+
 ## Never authorized implicitly
 
 History rewriting, force push, deletion/reset of unrelated work, existing tags or
