@@ -21,6 +21,27 @@ contract. Recognize generated output using ownership/structure, with a conservat
 legacy-log fallback. Do not silently exclude arbitrary user folders just because
 they share an AudioForPhone_ prefix. Snapshot discovery before conversion.
 
+T06 implements a literal, explicit directory walk and ordinal case-insensitive
+file ordering. Selected input/output paths with reparse ancestry are rejected;
+descendant file/directory reparse points are skipped visibly. Planned output must
+not equal or contain the selected input; an output run beneath the input is valid
+and excluded. Selecting a recognized run root or any folder inside one is rejected.
+Scan failure or an empty snapshot stops before prompts, destination write probing,
+run-root/log creation and conversion. Existing planned run roots are refused;
+exclusive reservation against concurrent creation remains T08.
+
+New runs write `.AudioFileForPhone-output.json` with CreateNew. Recognition requires
+an integer schema 1, exact kind `AudioFileForPhone.Output`, and a self-matching
+absolute canonical output path. Marker parsing retains at most 8192 characters.
+Legacy fallback requires an exact valid timestamp/rate root name, matching initial
+log header/input/output/rate/name-limit fields, and a nonreparse direct directory
+matching the recorded input leaf. Only the first 65536 characters of a log are read;
+a long batch log remains recognizable. Reparse identity files are not followed.
+Malformed identity is insufficient; access/read errors abort discovery. Identity
+is for exclusion only, never authority to delete or reclaim a run. Moved/copied
+runs retaining an old absolute identity path are conservatively unrecognized.
+The snapshot does not lock sources against subsequent external replacement.
+
 ## Exclusive ownership
 
 A run-root timestamp is for readability, not uniqueness. Reserve a fresh root

@@ -223,8 +223,15 @@
       "required": true,
       "method": "nested-tree synthetic fixture",
       "expected": "Choosing Music or another ancestor does not rescan current or recognized legacy/new output; an unrelated similarly named user folder is not silently discarded.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T06.md",
+        "evidence/T06-discovery-ps51-final.json",
+        "evidence/T06-discovery-ps7-final2.json",
+        "evidence/T06-tested-payload.json",
+        "evidence/T06-baseline-ps51-verified.json",
+        "evidence/T06-baseline-ps7-verified.json"
+      ]
     },
     {
       "id": "A16",
@@ -233,8 +240,15 @@
       "required": true,
       "method": "junction/symlink/permission fixtures",
       "expected": "Directory reparse points are skipped and reported; access failure follows abort-before-convert contract; no loops, out-of-tree traversal or hidden partial scan.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T06.md",
+        "evidence/T06-discovery-ps51-final.json",
+        "evidence/T06-discovery-ps7-final2.json",
+        "evidence/T06-tested-payload.json",
+        "evidence/T06-preflight-ps51-verified.json",
+        "evidence/T06-preflight-ps7-verified.json"
+      ]
     },
     {
       "id": "A17",
@@ -243,8 +257,13 @@
       "required": true,
       "method": "path comparison unit and integration tests",
       "expected": "Canonical, separator-aware containment checks handle casing and similarly prefixed directories; unsafe destinations/overlap are rejected without changing sources.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T06.md",
+        "evidence/T06-discovery-ps51-final.json",
+        "evidence/T06-discovery-ps7-final2.json",
+        "evidence/T06-tested-payload.json"
+      ]
     },
     {
       "id": "A18",

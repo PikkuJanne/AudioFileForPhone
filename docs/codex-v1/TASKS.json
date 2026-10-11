@@ -235,14 +235,14 @@
       "tested_commit": "124f3a96e1a416f6870b832d1ee1cc7543286ab9",
       "checkpoint_commit": "215b57c2d1fd93ab62192e07c9ba30632bf2824e",
       "remote_checkpoint_verified": true,
-      "notes": "A12-A14 pass on PS5.1/PS7: 35 focused cases per shell, exact quoted/special/Unicode argv, bounded concurrent 2,457,600-char dual-pipe floods, explicit native/probe/dependency results, no handle growth across 40 invocations, real metadata/cover/full decode/tool logs. Startup checks and conversions share one lazy .NET runner with -nostdin, immediate exit status and owned cleanup. Final retained FFmpeg suites/seven required companion checks, 35 preflight negatives/eight helper checks and ten resolver cases pass per shell. Source/fixture hashes, ACL restoration and owned cleanup pass; code checkpoint equivalence records CRLF/LF behavior. Initial native argv-harness and worker-handle failures retained and repaired. Owner merged T04 PR #4; T05 draft PR #5 synchronized, main integration pending owner review. No ordinary Music, registry/policy/download, external-reference audit, manual/phone/long-audio/cancellation, CI or release evidence. Next suggested step: T06 in a new thread."
+      "notes": "A12-A14 pass on PS5.1/PS7: 35 focused cases per shell, exact quoted/special/Unicode argv, bounded concurrent 2,457,600-char dual-pipe floods, explicit native/probe/dependency results, no handle growth across 40 invocations, real metadata/cover/full decode/tool logs. Startup checks and conversions share one lazy .NET runner with -nostdin, immediate exit status and owned cleanup. Final retained FFmpeg suites/seven required companion checks, 35 preflight negatives/eight helper checks and ten resolver cases pass per shell. Source/fixture hashes, ACL restoration and owned cleanup pass; code checkpoint equivalence records CRLF/LF behavior. Initial native argv-harness and worker-handle failures retained and repaired. Owner merged T04 PR #4; Owner merged T05 PR #5 at 2026-10-10T23:50:14Z into main f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f (reconciled in T06). No ordinary Music, registry/policy/download, external-reference audit, manual/phone/long-audio/cancellation, CI or release evidence. Next suggested step: T06 in a new thread."
     },
     {
       "id": "T06",
       "milestone": "M1",
       "title": "Bound recursive scanning and exclude prior output",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T05"
       ],
@@ -255,11 +255,22 @@
         "A16",
         "A17"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T06.md",
+        "evidence/T06-discovery-ps51-final.json",
+        "evidence/T06-discovery-ps7-final2.json",
+        "evidence/T06-baseline-ps51-verified.json",
+        "evidence/T06-baseline-ps7-verified.json",
+        "evidence/T06-preflight-ps51-verified.json",
+        "evidence/T06-preflight-ps7-verified.json",
+        "evidence/T06-resolver-ps51-verified.json",
+        "evidence/T06-resolver-ps7-verified.json",
+        "evidence/T06-tested-payload.json"
+      ],
+      "tested_commit": "f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f",
+      "checkpoint_commit": "65bca07ab85bec00dd3f578d9ab38880e36e43e8",
+      "remote_checkpoint_verified": true,
+      "notes": "A15-A17 pass on PS5.1/PS7: eight focused groups, deterministic 17-input/8-skip snapshots, planned/marked/conservative legacy output exclusion and prefix/malformed user-content retention, separator/case/overlap boundaries, real loop/outside junctions, actual inert custom file reparse, selected ancestry and ACL-denied descendant abort before prompts/run/conversion. Two repeated short real 64kbps runs preserve tags/layout/full decode. Final retained FFmpeg suite/seven companions, 35 preflight negatives/eight helpers and ten resolver cases pass per shell; hashes, exact ACL restoration and owned cleanup pass. File-symlink privilege unavailable Win32 1314, distinctly reported from actual file-reparse coverage. Earlier failed/intermediate reports retained. Reports preserve actual test base and working hashes equivalent to reviewed/pushed checkpoint. Owner merged T05 PR #5; T06 draft PR #6 synchronized, main integration pending owner review. Optional configured-Music smoke deferred before setup to T08 ownership adaptation; normal resolver remains TEMP-only. No ordinary Music, settings/downloads/manual/phone/long-audio/cancellation/CI/release evidence. Next suggested step: T07 in a new thread."
     },
     {
       "id": "T07",

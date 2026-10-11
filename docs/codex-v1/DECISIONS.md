@@ -184,6 +184,47 @@ Do not infer merge authority from an unprotected branch or authenticated tools.
 - Draft PR #5 awaits owner integration; feature synchronization was independently
   verified. T01–T04 are integrated. Next coherent task: T06 in a new thread.
 
+## T06 reconciliation and discovery — 11 October 2026
+
+- Owner requested "T06 next please". PR #5 was already owner-merged at
+  23:50:14 UTC on 10 October 2026 into main
+  `f5fad94d3ef31ec53972ad642b71c0a8d9f76e6f`. Local main was fast-forwarded
+  to its independently advertised ref; T06 uses `codex/v1-t06-safe-discovery`.
+  No agent merge or broader main/release authority was inferred.
+- Separator-aware canonical comparisons use OrdinalIgnoreCase. Selected
+  input/output reparse ancestry is rejected; explicit literal recursion skips
+  descendant directory/file reparse points with console/log reasons. Enumeration
+  and generated-identity access errors abort a complete scan before prompts,
+  run/log creation or conversion. Empty input now also creates no run/log.
+  Inputs are returned in ordinal case-insensitive full-path order before any run
+  is created. Nested output parents/Music-as-input are valid; planned output must
+  not equal or contain the input. Selecting recognized generated ancestry fails.
+- New roots carry a bounded self-identifying CreateNew JSON marker. Legacy roots
+  require exact valid timestamp/rate names, matching initial log fields with
+  absolute paths, and a mirrored direct input-leaf directory. Long logs use a
+  bounded prefix. Prefix-only, malformed, drive-relative and mismatched identity
+  folders remain eligible. Markers/logs confer exclusion only, never cleanup
+  ownership; moved/copied roots retaining old absolute identity are unrecognized.
+- Existing planned roots are refused both before prompts and at creation. This
+  closes sequential reuse without claiming exclusive concurrent reservation,
+  which remains T08. The historical optional configured-Music smoke pre-reserves
+  a root and conflicts with that refusal; its current mode stops before any setup
+  until T08 adapts its ownership scheme. Ordinary resolver mode remains current.
+- A15–A17 pass on PS5.1/PS7: eight grouped focused cases per shell, deterministic
+  17-file/8-skip snapshots, real loop/outside junctions, selected reparse ancestry,
+  exact ACL-denied descendant abort/restoration, and repeated short real-FFmpeg
+  runs with layout/title/64 kbps/full-decode/source-hash checks. File symlink
+  creation is unavailable on this host (Win32 1314); an actual inert custom
+  file reparse point exercises the same attribute skip without changing settings.
+  Reports distinguish the unavailable symlink capability from the performed test.
+- Initial harness failures (shell-specific bracketed junction targets/symlink
+  capability) and baseline empty-input expectation failures remain preserved.
+  Final reports explicitly identify the corrected harness and tested source.
+  Sources, fixtures, ACLs and owned cleanup pass. No ordinary Music traversal,
+  machine-setting change, downloads, manual/phone/long-audio/cancellation, CI or
+  release evidence. Source replacement after discovery remains outside this
+  snapshot's guarantees; date/Unicode/path allocation is the next task, T07.
+
 ## Change entry template
 
 ID/date; reason; previous/new policy; owner authorization when required; affected
