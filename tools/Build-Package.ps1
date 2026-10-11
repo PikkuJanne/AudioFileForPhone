@@ -270,7 +270,9 @@ try {
     $stageDirectories.Add($stagedTools)
     $gitZip = Join-Path $stage 'git-source.zip'
     $stageFiles.Add($gitZip)
-    $null = Invoke-PackageGit (@('archive', '--format=zip', ('--output=' + $gitZip), $SourceCommit, '--') + $members + $buildPaths)
+    # Archive must preserve blob bytes regardless of ambient checkout EOL policy.
+    # Overrides apply only to this Git invocation; attributes remain verified below.
+    $null = Invoke-PackageGit (@('-c', 'core.autocrlf=false', '-c', 'core.eol=lf', 'archive', '--format=zip', ('--output=' + $gitZip), $SourceCommit, '--') + $members + $buildPaths)
     Add-Type -AssemblyName System.IO.Compression -ErrorAction Stop
     Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction Stop
     $sourceArchive = [IO.Compression.ZipFile]::OpenRead($gitZip)

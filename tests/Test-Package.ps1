@@ -146,6 +146,12 @@ function Invoke-OwnedNative {
     } finally { $deadline.Dispose(); $context.Dispose() }
 }
 function Invoke-FixtureGit { param([string[]]$GitArguments); return (Invoke-OwnedNative $gitPath (@('-C', $fixtureRoot) + $GitArguments)).Stdout.Trim() }
+function Get-FixtureGitConfig {
+    return [pscustomobject][ordered]@{
+        core_autocrlf = (Invoke-FixtureGit @('config', '--local', '--get', 'core.autocrlf'))
+        core_eol = (Invoke-FixtureGit @('config', '--local', '--get', 'core.eol'))
+    }
+}
 function Commit-Fixture {
     param([string]$Message)
     Invoke-FixtureGit @('add', '--all') | Out-Null
@@ -249,6 +255,7 @@ try {
     [Environment]::SetEnvironmentVariable('GIT_COMMITTER_DATE', '2000-01-01T00:00:00Z', 'Process')
     Invoke-FixtureGit @('init', '--quiet') | Out-Null
     Invoke-FixtureGit @('config', 'core.autocrlf', 'false') | Out-Null
+    Invoke-FixtureGit @('config', 'core.eol', 'lf') | Out-Null
     Invoke-FixtureGit @('config', 'core.symlinks', 'false') | Out-Null
     $excluded = @('ffmpeg.exe', 'ffprobe.exe', 'private.mp3', 'private.m4a', 'private.ogg', 'private.log',
         'AudioFileForPhone_poster.png', 'cache/temp.txt', 'tests/fixture.txt', 'docs/codex-v1/private-evidence.json')
@@ -277,10 +284,52 @@ try {
     }
     Write-NewText $dependencyInput ($dependencies | ConvertTo-Json -Depth 8)
     $first = Join-Path $buildParent 'first'
+    Invoke-Case 'Git CRLF archive policy preserves exact blob package bytes' 'A47,A48' {
+        param($case)
+        $case['original_config'] = Get-FixtureGitConfig
+        Assert-True ($case.original_config.core_autocrlf -ceq 'false' -and $case.original_config.core_eol -ceq 'lf') 'Original fixture Git configuration must be explicit false/lf.'
+        $case['lf_fixture_members'] = @(foreach ($lfCandidate in $required + $buildFiles) {
+            $fixtureBytes = [IO.File]::ReadAllBytes((Join-Path $fixtureRoot $lfCandidate))
+            for ($lfByteIndex = 0; $lfByteIndex -lt $fixtureBytes.Length; $lfByteIndex++) {
+                if ($fixtureBytes[$lfByteIndex] -eq 10 -and ($lfByteIndex -eq 0 -or $fixtureBytes[$lfByteIndex - 1] -ne 13)) {
+                    $lfCandidate
+                    break
+                }
+            }
+        })
+        try {
+            Invoke-FixtureGit @('config', 'core.autocrlf', 'true') | Out-Null
+            Invoke-FixtureGit @('config', 'core.eol', 'crlf') | Out-Null
+            $case['build_config'] = Get-FixtureGitConfig
+            Assert-True ($case.build_config.core_autocrlf -ceq 'true' -and $case.build_config.core_eol -ceq 'crlf') 'Regression must actually build under true/crlf.'
+            $case['clean_source'] = (Invoke-FixtureGit @('status', '--porcelain=v1', '--untracked-files=all', '--ignored=matching')).Length -eq 0
+            Assert-True $case.clean_source 'CRLF configuration must retain clean fixture source.'
+            $native = Invoke-Build $first
+            Assert-True ($native.ExitCode -eq 0) ('CRLF-configured package build failed: ' + (Protect-Text $native.Stderr))
+            $zipName = 'AudioFileForPhone-v' + (Get-AudioAppVersion) + '.zip'
+            $inventory = Read-ZipInventory (Join-Path $first $zipName)
+            Assert-True (($inventory.relative_path -join '|') -ceq ($required -join '|')) 'CRLF build requires the exact independent root inventory.'
+            foreach ($entry in $inventory) {
+                $blob = @($report.fixture_before | Where-Object { $_.relative_path -ceq $entry.relative_path })[0]
+                Assert-True ($entry.sha256 -ceq $blob.sha256 -and $entry.bytes -eq $blob.bytes) 'CRLF Git policy must not transform committed member bytes.'
+            }
+            $case['config_after_build'] = Get-FixtureGitConfig
+            $case['configuration_unchanged'] = (($case.config_after_build | ConvertTo-Json -Compress) -ceq ($case.build_config | ConvertTo-Json -Compress))
+            Assert-True $case.configuration_unchanged 'Builder overrides must not mutate fixture configuration.'
+            $case['fixture_unchanged'] = (((Get-Inventory $fixtureRoot ($required + $buildFiles)) | ConvertTo-Json -Depth 8 -Compress) -ceq ($report.fixture_before | ConvertTo-Json -Depth 8 -Compress))
+            Assert-True $case.fixture_unchanged 'CRLF build must preserve actual source checkout bytes.'
+            $case['source_commit'] = $report.synthetic_source_commit
+            $case['zip_inventory'] = $inventory
+        } finally {
+            Invoke-FixtureGit @('config', 'core.autocrlf', 'false') | Out-Null
+            Invoke-FixtureGit @('config', 'core.eol', 'lf') | Out-Null
+            $case['restored_config'] = Get-FixtureGitConfig
+            $case['configuration_restored'] = (($case.restored_config | ConvertTo-Json -Compress) -ceq ($case.original_config | ConvertTo-Json -Compress))
+            Assert-True $case.configuration_restored 'Owned fixture configuration must be restored.'
+        }
+    }
     Invoke-Case 'explicit eight-file allowlist excludes committed binary/media/log/cache/poster/evidence fixtures' 'A47,A48' {
         param($case)
-        $native = Invoke-Build $first
-        Assert-True ($native.ExitCode -eq 0) ('Positive synthetic package build failed: ' + (Protect-Text $native.Stderr))
         $zipName = 'AudioFileForPhone-v' + (Get-AudioAppVersion) + '.zip'
         $inventory = Read-ZipInventory (Join-Path $first $zipName)
         Assert-True (($inventory.relative_path -join '|') -ceq ($required -join '|')) 'ZIP must have exactly the independent required inventory in ordinal order.'
@@ -332,6 +381,8 @@ try {
     }
     Invoke-Case 'same-shell repeated clean build compares ZIP manifest and checksum bytes' 'A47' {
         param($case)
+        $case['build_config'] = Get-FixtureGitConfig
+        Assert-True ($case.build_config.core_autocrlf -ceq 'false' -and $case.build_config.core_eol -ceq 'lf') 'Comparison build must actually use restored false/lf.'
         $second = Join-Path $buildParent 'second'
         Assert-True ((Invoke-Build $second).ExitCode -eq 0) 'Second clean build must succeed.'
         $repeat = Get-OutputInventory $second

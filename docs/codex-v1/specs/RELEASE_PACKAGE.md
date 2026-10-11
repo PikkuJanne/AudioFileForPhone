@@ -50,8 +50,10 @@ members are the entry script, helper, BAT, README, SUPPORT, SECURITY, CHANGELOG 
 LICENSE. The builder also enforces this bounded policy. Changing the shipped set
 requires reviewing both the allowlist and build policy. Git archive stages only
 these members and the two build files; each staged file must hash to the original
-Git blob, so checkout line-ending conversion cannot change package bytes and
-archive attributes cannot silently omit or substitute bytes. The staged
+Git blob. The archive invocation disables ambient core.autocrlf and uses LF
+through command-scoped Git overrides without changing persistent settings, so
+checkout line-ending conversion cannot change package bytes. Archive attributes
+cannot silently omit or substitute bytes. The staged
 functions-only helper supplies the version. Ordinal member order and a fixed
 1980 UTC ZIP timestamp are recorded. Compression runtimes can still differ;
 compare actual builds before claiming byte reproducibility.
