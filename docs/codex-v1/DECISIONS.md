@@ -786,3 +786,71 @@ with a bare “approved” assertion without a traceable reference.
   checkpoint 1e9e5de has both push/PR CI jobs green. Final recovery sync/checks
   belong in PR/response. Main integration owner-gated; exactly next T21 after
   integration. Project/release/phone acceptance incomplete.
+
+## T21 minimal phone acceptance start — 11 October 2026
+
+- Owner requested T21 next. Fresh fetch, advertised refs and live GitHub establish
+  his PR #20 merge at16:44:42Z into main3e5b6fb, final feature67dee7e and identical
+  complete trees. T20 final push/PR jobs all green; main push38156733341 initially
+  running. Clean local main fast-forwarded; codex/v1-t21-phone-acceptance created.
+- Keep simpler-testing preference: reuse the exact verified 79m35 long output,
+  preserving original f992 generation identity and equivalent current runtime;
+  prepare two short friendly-tag/blue-cover/order/chapter fixtures through current
+  unchanged app. All media/logs/probes outside Git, no personal/Music search.
+- A51/A52 still require actual named phone results; readiness/decode is not phone
+  evidence. Asked for device/OS/player versions and transfer method while local
+  preparation proceeds. One brief session covers start/middle/near-end listen/seek,
+  duration/resume, tags/art/order and actual chapter availability. No new app,
+  screenshots, command editing or full-length listening required.
+- T21 remains blocked pending actual observations. Exactly next continue T21,
+  not T22; main integration/release gates and deferred loudness unchanged.
+
+- Actual preparation completes first run at main3e5b6fb in ordinary PS7/Windows11;
+  both-shell parse passes, 16 direct native calls completed/released, all source/
+  copy/input/tool/runner/marker/long preservation passes. Ready local scope
+  T21P-06b84fc67184/Phone holds exactly three verified MP3s. Short tags/blue64x64
+  attachedJPEG/track-disc/two chapter fields and audio decode pass; generic aliases
+  are byte-identical copies of actual date-first app outputs. Long remains exact
+  originalf992 generation bytes; runtime blobs equalmain3e5. Private records bound
+  by hashes, original source unaccessed, no cleanup or phone-success claim.
+- Review scopes release to16 direct helpers; independent nested descendants and
+  timeout containment are not observed. Preserve completed source/report snapshots,
+  document limit in binder; no rewrite/rerun is necessary for this successful
+  no-timeout execution. Main CI38156733341 later passes. Phone question now gives
+  the exact folder and one short session; device/player/transfer/results pending.
+
+## T21 actual owner phone report — 11 October 2026
+
+- Janne reports "All worked. Samsung A56, Android One UI 8.5, AIMP, usb cable"
+  in response to the three-file phone procedure. Preserve that exact quote and
+  derive only the unconditional prompted results: playback/seeks/duration/resume,
+  tags/blue cover/order. These are named owner observations, not Codex measurements.
+- Keep OS wording exactly supplied. AIMP's version remains missing; conditional
+  "chapters if available" does not establish chapter availability/navigation.
+  Ask one brief record clarification without another test. Scope every claim to
+  this phone/player/assets; infer no base Android release, USB/MTP mode or phone hash.
+- Recheck only exact known Windows assets and frozen runtime/report identities.
+  Keep historical preparation-only and T20 evidence unchanged. No app/test/CI/build
+  changes, personal source/Music scan, media in Git or repeated conversion.
+- Existing e2b9a22 feature sync and both push/PR Windows matrices pass. PR21 remains
+  draft/unmerged, main3e unchanged. A51/A52/T21 remain blocked only pending version
+  and chapter detail; next continue T21. Main/release authority stays unchanged.
+
+## T21 final phone acceptance and owner human-test closure — 12 October 2026
+
+- Janne's final response supplies Samsung S24, One UI 8.5, AIMP v4.31.1747 and
+  USB cable, confirming long audio works, resumes and other checks work. Use
+  this corrected device; preserve earlier A56 report/review bytes as historical,
+  without claiming a second accepted phone or additional observed test run.
+- A51/A52 pass for the same exact three prompted assets. Chapter controls are
+  unavailable and navigation not run. This satisfies A52's documented limitation
+  comparison, without inventing navigation support or changing its method.
+- Honor the explicit owner declaration that human testing is completed. No further
+  human test or clarification is requested. Preserve actual scope and untested
+  limits; automated milestone/ZIP checks and main/release authority remain.
+- New final observation/review artifacts supersede missing details without editing
+  old reports. Update README/SUPPORT only for this narrow accepted phone scope.
+  Runtime/helper/BAT/tests/CI/build/defaults unchanged; no new media work/phone access.
+- Previous35f275a live ref and both CI matrices pass; PR21 draft/unmerged, main3e
+  unchanged. Complete T21 on reviewed/pushed feature, then exactly T22 after owner
+  integration. Final sync/checks in PR/response; no project/release completion.

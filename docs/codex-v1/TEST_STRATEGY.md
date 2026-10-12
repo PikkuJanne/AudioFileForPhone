@@ -53,6 +53,29 @@ remain covered by their real targeted tests. Current PS7 native picker, physical
 Cancel and physical fallback are explicit coverage limits under this revised
 mixed method. The old seven-stage guide is optional, not a remaining owner gate.
 
+T21 keeps real-phone A51/A52 acceptance. To minimize owner work, reuse the exact
+verified T20 representative long output (same bytes/hash and unchanged runtime)
+and prepare two 20-second synthetic outputs with friendly tags, a small blue
+cover and reversed file-name versus track-tag order. A chaptered M4A source
+provides independently inspected MP3 chapter fields. An owned local media-only
+folder separates transfer assets from private logs/probe/ownership records.
+Local preparation, hashing and decode checks establish readiness, never phone
+playback. One named phone session records device/OS/player versions, transfer,
+start/middle/near-end audio and seeking, displayed duration, resume, tags/art/order
+and actual chapter availability. Missing/unsupported player features and failures
+stay explicit; no universal Android, chapter navigation or resume guarantee.
+
+T21 final owner closure on 12 October 2026: Janne accepts the same three assets
+on corrected Samsung S24, One UI 8.5, AIMP v4.31.1747 over USB cable. Playback,
+seeking, duration, resume, tags/art/order pass as named aggregate observations.
+Chapters are unavailable; selection/navigation was not run. A51/A52 pass with
+that documented player limit, without changing methods or claiming navigation.
+He expressly closes human testing. Do not request further human checks for this
+accepted candidate; keep untested limits explicit and carry the actual evidence
+through later tasks. Automated milestone/exact-ZIP checks and main/release gates
+remain required. This explicit owner instruction governs any older handoff text
+that would request another human test for the unchanged candidate.
+
 ## Safe baseline and isolation ordering
 
 At the T02 checkpoint, the original suite wrote into Music and timed runs to avoid collisions.

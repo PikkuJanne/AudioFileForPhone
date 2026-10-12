@@ -1,11 +1,40 @@
 # Current project status
 
-State: **T20 A49/A50 pass under the recorded user-requested mixed method.**
-Last completed task: T20 on its feature branch; main integration is owner-gated.
-Exactly next task after T20 integration: T21 phone acceptance. Required
-improvements 1-15; optional O01 deferred. Project/release remain incomplete.
+State: **T21 phone acceptance complete on the feature branch; main integration pending.**
+Last completed task: T21. Exactly next task: T22 after owner integration of PR #21.
+Required improvements 1-15; optional O01 deferred. Project/release incomplete.
 
-## T20 completed recovery — no further guide run required
+## T21 completed phone acceptance
+
+- Janne Vuorela supplies the corrected device and final report on 12 October 2026:
+  **Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable**. Long audio works,
+  resumes, and the short-album checks work. The latest S24 label supersedes the
+  earlier A56 report; no second device or separate new test run is claimed.
+- A51/A52 pass for the three exact prompted assets: owner-reported long
+  start/40:00/79:00 playback/seeking and expected approximate duration, resume,
+  titles/Artist/Album, blue artwork and First/Second order. These are named
+  aggregate observations, not independent phone measurements or universal support.
+- Chapters are **unavailable** in this configuration. Selection/navigation is
+  **not run**. Local mapped chapter fields do not establish phone navigation;
+  the documented player limitation satisfies A52's chapter comparison.
+- Janne explicitly declares human testing completed. No further human checks are
+  requested or required for this accepted candidate. Preserve untested features
+  as untested; remaining automated milestone/ZIP checks and release gates stay.
+- Preparation, initial observations and all earlier reviews remain frozen.
+  `evidence/T21-phone-final-observations.json` records the correction, installed
+  version, actual chapter limit, exact source/assets and owner instruction.
+  `evidence/T21-phone-final-review.json` independently reviews the final checkpoint.
+  No original personal source, ordinary Music or unrelated media is accessed.
+- Runtime/helper/BAT/tests/CI/build/defaults are unchanged. README/SUPPORT now
+  describe this narrow accepted phone scope. No conversion or human retest ran.
+  Previous checkpoint `35f275ae284919757632ac4658cb81de00b498b5` independently
+  matches its live feature ref; push38159023529 and PR38159025835 pass both Windows
+  jobs. Final push/live-ref/new CI observations belong in PR #21 and the response.
+- Main stays `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`; T01-T20 are integrated.
+  PR #21 remains draft/unmerged and owner-controlled. T21 is done on the feature
+  branch, not integrated main or a completed release. Next T22 after integration.
+
+## T20 completed recovery — historical feature checkpoint, now integrated
 
 - Janne Vuorela reported the guide's cover mismatch after trying both PNGs and
   again requested simpler testing. Actual PS5.1 Desktop STA application had

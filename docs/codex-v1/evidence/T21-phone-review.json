@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "reviewed_utc": "2026-10-11T17:16:48.309895Z",
+  "reviewer": "Codex independent t21_phone_scope agent",
+  "status": "pass",
+  "unresolved_findings": [],
+  "scope": "Truthful phone-report checkpoint, working-byte inventory, exact asset/source identity, immutable historical evidence and blocked handoff. Review pass is not T21 acceptance. No tests, FFmpeg/ffprobe, UI, conversion, playback or phone access; reviewer writes only this review.",
+  "observed_head_commit": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+  "short_generation_application_candidate": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "long_original_generation_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "owner_report_review": {
+    "tester": "Janne Vuorela",
+    "verbatim_quote": "All worked. Samsung A56, Android One UI 8.5, AIMP, usb cable",
+    "quoted_procedure": [
+      "Copy the three MP3s from TEMP T21P-06b84fc67184/Phone to the phone.",
+      "Long-audio: listen at the start, seek to 40:00 and 79:00. Check duration is about 1:19:35.",
+      "Pause near 40 minutes, close/reopen the player, and check whether it resumes.",
+      "T21 Phone Test album: check titles, artist/album, blue cover, First/Second track order, and chapters if available."
+    ],
+    "unconditional_checks_confirmed_by_aggregate_owner_report": [
+      "start/40:00/79:00 playback and seeks",
+      "expected approximately 1:19:35 duration",
+      "close/reopen resume",
+      "short titles Artist/Album",
+      "blue cover",
+      "First then Second order"
+    ],
+    "mapping_is_aggregate_report_not_instrumented_measurements": true,
+    "conditional_chapters": "Actual availability/navigation remains unestablished because prompt said if available.",
+    "player_version": null,
+    "OS_recorded_exactly_as_supplied": "Android One UI 8.5",
+    "base_Android_USB_protocol_sort_mode_disc_order_test_timestamp_phone_hash_not_inferred": true,
+    "one_record_clarification_no_repeat_test": true,
+    "no_failures_reported": true,
+    "device_scope_only": true
+  },
+  "independently_checked_windows_aliases": [
+    {
+      "filename": "A-second.mp3",
+      "length": 160928,
+      "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd"
+    },
+    {
+      "filename": "Z-first.mp3",
+      "length": 161056,
+      "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7"
+    },
+    {
+      "filename": "Long-audio.mp3",
+      "length": 38201262,
+      "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e"
+    }
+  ],
+  "exact_aliases_match_frozen_preparation_and_new_reports": true,
+  "before_post_alias_digests_unchanged": true,
+  "no_personal_source_or_Music_scan": true,
+  "windows_hashes_do_not_establish_phone_side_bytes_or_results": true,
+  "frozen_t21_artifact_inventory": [
+    {
+      "relative_path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+      "length": 31772,
+      "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+      "length": 21136,
+      "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+      "length": 10168,
+      "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-review.json",
+      "length": 19141,
+      "sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-start.json",
+      "length": 2016,
+      "sha256": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e",
+      "utf8_bom": false
+    }
+  ],
+  "all_selected_frozen_t21_digests_match_and_git_diff_empty": true,
+  "original_preparation_phone_not_run_status_and_review_unchanged": true,
+  "historical_t20_evidence_count": 22,
+  "historical_t20_evidence_and_tool_inventory": [
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-cancellation-bindings-final2.json",
+      "length": 20690,
+      "sha256": "0881f5b5ff5af1b442cb4c6618ef01b1258c8d8535d73af7d9cbd149c96957f7",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-environment.json",
+      "length": 1060,
+      "sha256": "584f96c455c071eab63d8b9497020e8a22cefba0fd238b817b136509c7575e8d",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-guided-correction-check.json",
+      "length": 6842,
+      "sha256": "3dd2216f71b543731f3293eeebab4a58d5caaa7883734d2b255e97e7687c15fd",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-guided-validation.json",
+      "length": 38057,
+      "sha256": "e56bf6188c56095d5a23f409191dee8791c22a13537bdabd6cab88a2b40411ce",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-bindings.json",
+      "length": 7538,
+      "sha256": "b70dddff11670c8c7232333a0cc2761eee49cbbca5899a46083b69dafd1cb39c",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps51-attempt1.json",
+      "length": 29081,
+      "sha256": "493c47edf581579d6a0d49dadc8c8c49911d2306f771db9e1466780d1c99e248",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps51-final1.json",
+      "length": 35954,
+      "sha256": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+      "length": 16185,
+      "sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-owner-observations.json",
+      "length": 2346,
+      "sha256": "b3a05c52246064e7c1bcab1b6dc4c4432dcb3b7b34de0dd4c4bff0effb73bca3",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-picker-recovery-bindings.json",
+      "length": 4828,
+      "sha256": "8558c4f7e10a905574f40a5b8bf317d5212475b62ec07a8fccbbf95eb3cb78d4",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-picker-recovery-ps51-final1.json",
+      "length": 31999,
+      "sha256": "b764c677df915c7fd73f55052f7bf87702c38de81500638b5a4c2230122366ec",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-picker-recovery-ps7-final1.json",
+      "length": 20573,
+      "sha256": "b075e36fb8459c2f374468f6774d72fc6e801ed70e5516796dc0f0d59ffc829e",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-attempt1.json",
+      "length": 2310,
+      "sha256": "66e8b735bd1cf1b6d90103ba67d32e1df2d1a4e65487bc16b4868612c4a7c3f9",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-bindings.json",
+      "length": 6375,
+      "sha256": "f9bc318babec94efd24584172a9441a4bdf18d7b4862bb5338b3ad784c19a45f",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-ps51.json",
+      "length": 41038,
+      "sha256": "acc71fa7bb3dedc36ef72b0737b947e12793386179b8b0d8ff402c87064fbce5",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-preparation-ps7.json",
+      "length": 24469,
+      "sha256": "b879b2b76c85450715c1e60f0110c1b675fb38292ee6b91586b042d1313c6692",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-recovery-review.json",
+      "length": 8887,
+      "sha256": "ed5730004d38350978bed75951aa7344098fe524a0dd1ee2a7b4ddd1d3a70eff",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-review.json",
+      "length": 14218,
+      "sha256": "5e93409185ea978eef08dacb53bf5170173ed73c4fb6cc009749dbe06ec97d8f",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-revision-review.json",
+      "length": 26273,
+      "sha256": "e28229633b3ea558629ef2508ca3f5f4b960eec38192532a4eb3d81edcc8261c",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-start.json",
+      "length": 1353,
+      "sha256": "fa1437968e8c20fe6180aa896663fa83d07d1f5c44022a046045186fe1812319",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-supplemental.json",
+      "length": 28128,
+      "sha256": "67488ea8bd8d777cc6d81105adee97c4abe8935a75f687a270924e36a35f59e2",
+      "utf8_bom": false,
+      "baseline_bytes_exact": true,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20.md",
+      "length": 23524,
+      "sha256": "5f054531e1e26dfa4cb44780bb22c23a80415b4e409b69ac63856e744ae295d7",
+      "utf8_bom": false,
+      "baseline_bytes_exact": false,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+      "length": 16694,
+      "sha256": "0bc98e749892637f4dafa332c8159a20c18df65f66839aa579c6a98e0a54da4c",
+      "utf8_bom": true,
+      "baseline_bytes_exact": false,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Start-T20Guided.ps1",
+      "length": 36542,
+      "sha256": "24752807d5c0d4787f2b80d00f94c399e22cac0e9a4aadc3db6445d00d453d5c",
+      "utf8_bom": false,
+      "baseline_bytes_exact": false,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+      "length": 31963,
+      "sha256": "37e4a10eab2b6497592f5313733eca719191fefe04dd4706e8dd633e674c2daa",
+      "utf8_bom": false,
+      "baseline_bytes_exact": false,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    },
+    {
+      "relative_path": "docs/codex-v1/tools/Test-T20PickerRecovery.ps1",
+      "length": 24396,
+      "sha256": "c2d544bc7f0987347a9676aea4e3d79af971c6ae5a32a45d623ac19ec33f6269",
+      "utf8_bom": true,
+      "baseline_bytes_exact": false,
+      "baseline_diff_empty": true,
+      "strict_bom_preserving_utf8_lf_crlf_equal": true
+    }
+  ],
+  "all_T20_dash_reports_byte_exact_against_checkpoint": true,
+  "ordinary_T20_markdown_or_tools_permit_only_strict_BOM_preserving_UTF8_LF_CRLF_normalization": true,
+  "historical_failed_and_limited_reports_not_rewritten": true,
+  "runtime_source_relationships": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "length": 40032,
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "utf8_bom": false,
+      "original_preparation_HEAD_and_index_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "all_equal": true
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "length": 114373,
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "utf8_bom": false,
+      "original_preparation_HEAD_and_index_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "all_equal": true
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "length": 1800,
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "utf8_bom": false,
+      "original_preparation_HEAD_and_index_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "all_equal": true
+    }
+  ],
+  "runtime_helper_BAT_existing_tests_CI_build_defaults_README_SUPPORT_unchanged": true,
+  "changed_paths_confined_to_docs_codex_v1": true,
+  "other_task_and_acceptance_rows_unchanged": true,
+  "acceptance_methods_and_expectations_unchanged": true,
+  "checked_evidence_links": [
+    "docs/codex-v1/T21_MANUAL_STEPS.md",
+    "docs/codex-v1/evidence/T21-phone-asset-check.json",
+    "docs/codex-v1/evidence/T21-phone-observations.json",
+    "docs/codex-v1/evidence/T21-phone-review.json",
+    "docs/codex-v1/evidence/T21-preparation-bindings.json",
+    "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+    "docs/codex-v1/evidence/T21-review.json",
+    "docs/codex-v1/evidence/T21-start.json",
+    "docs/codex-v1/evidence/T21.md"
+  ],
+  "only_own_review_path_pending_before_write": true,
+  "whitespace_check_passed": true,
+  "JSON_parses_and_no_personal_source_filename_in_intended_text": true,
+  "independent_live_state": {
+    "advertised_refs": {
+      "refs/heads/codex/v1-t21-phone-acceptance": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+      "refs/heads/main": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d"
+    },
+    "local_HEAD_equals_live_feature_ref": true,
+    "pull_request": {
+      "baseRefName": "main",
+      "headRefName": "codex/v1-t21-phone-acceptance",
+      "headRefOid": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+      "isDraft": true,
+      "mergeCommit": null,
+      "mergedAt": null,
+      "number": 21,
+      "state": "OPEN",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/pull/21"
+    },
+    "prior_exact_head_CI": [
+      {
+        "conclusion": "success",
+        "databaseId": 38157910582,
+        "event": "push",
+        "headSha": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+        "jobs": [
+          {
+            "databaseId": 114524585091,
+            "name": "windows (powershell, ps51)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "databaseId": 114524585387,
+            "name": "windows (pwsh, ps7)",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38157910582"
+      },
+      {
+        "conclusion": "success",
+        "databaseId": 38157946939,
+        "event": "pull_request",
+        "headSha": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+        "jobs": [
+          {
+            "databaseId": 114524696535,
+            "name": "windows (pwsh, ps7)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "databaseId": 114524696735,
+            "name": "windows (powershell, ps51)",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38157946939"
+      }
+    ],
+    "commands": [
+      "git ls-remote --exit-code origin refs/heads/codex/v1-t21-phone-acceptance refs/heads/main",
+      "gh pr view 21 --repo PikkuJanne/AudioFileForPhone --json number,url,state,isDraft,headRefName,headRefOid,baseRefName,mergedAt,mergeCommit",
+      "gh run view 38157910582 / 38157946939 --repo PikkuJanne/AudioFileForPhone --json databaseId,status,conclusion,event,headSha,jobs,url"
+    ],
+    "main_integration": "pending_owner",
+    "main_and_release_authority_unchanged": true
+  },
+  "acceptance_state": {
+    "A51": "blocked_missing_AIMP_version",
+    "A52": "blocked_conditional_chapter_behavior_clarification",
+    "T21": "blocked",
+    "named_phone_report_received": true,
+    "required_phone_record_complete": false,
+    "review_pass_is_not_acceptance_pass": true,
+    "next": "Continue T21 record clarification; no repeat phone test",
+    "T22_ready": false,
+    "project_complete": false,
+    "release_complete": false,
+    "release_ZIP_acceptance": false
+  },
+  "reviewed_intended_working_inventory_count": 10,
+  "reviewed_intended_working_inventory": [
+    {
+      "relative_path": "docs/codex-v1/ACCEPTANCE.json",
+      "length": 41924,
+      "sha256": "16db549f43810a20609d7bc8eb684071dfd7e37f4a88135951d2f8990a7cbe20",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/AUTHORITY.md",
+      "length": 15811,
+      "sha256": "b46cb7b017d6b7b8c558d8a5faedce511066ba3da78075fb6da382472c6ba688",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/DECISIONS.md",
+      "length": 61907,
+      "sha256": "a85db305186b1155d75e677fe86ff64554c642b3bf9458271856f89376ab6284",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/NEXT_SESSION.md",
+      "length": 2590,
+      "sha256": "f786ed084b058698c2f23e137a97e20932998b2c7e5e77132e1b6efaed3bac16",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/STATUS.md",
+      "length": 36724,
+      "sha256": "dcb982c84822bee48be2f243d74864aea6abb8651e7a77eecd167ff575eecd87",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/T21_MANUAL_STEPS.md",
+      "length": 2095,
+      "sha256": "20836a59cf1b34d72f91c707fd411514a00049d8982d871aa5b62e9135f581c4",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/TASKS.json",
+      "length": 75299,
+      "sha256": "55717b03b06009a0b49c5397534b2be57a00774d556538fe2c330b0f98d594dc",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-asset-check.json",
+      "length": 10868,
+      "sha256": "4e9d72bdf12298ba039c8eb3c4b5da95a7f89b27df5cfe840965da0f17f0fbba",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-observations.json",
+      "length": 5324,
+      "sha256": "f2e932e35fcc43f59b576d00db911ce79cbb2d3fbd8671e402382578b6fb9b6f",
+      "utf8_bom": false
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21.md",
+      "length": 9612,
+      "sha256": "20fc0c0586d06c42bdeae76edca983dbbd53b18b0c60b0631e37a7a43634253f",
+      "utf8_bom": false
+    }
+  ],
+  "inventory_scope": "Exact working bytes for eight modified docs and two new reports before staging; this review excluded. BOM flags preserved. Final post-push HEAD/live ref and fresh CI belong to subsequent PR/response; no self-containing SHA."
+}

@@ -9,8 +9,8 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-The app reports 1.0.0 for the planned first release; packaging, phone acceptance
-and public release verification remain pending. See [CHANGELOG.md](CHANGELOG.md) and the
+The app reports 1.0.0 for the planned first release; exact release-package
+acceptance and public release verification remain pending. See [CHANGELOG.md](CHANGELOG.md) and the
 [tested boundaries in SUPPORT.md](SUPPORT.md#tested-boundaries).
 
 ## Setup
@@ -152,6 +152,12 @@ their dimensions and increase every output's size. Chapters follow FFmpeg's
 default mapping from the first input containing chapters. Conversion does not
 split files, and copied chapter fields do not establish phone navigation or
 resume behavior. Test your own player.
+
+Recorded phone acceptance is limited to Samsung S24, One UI 8.5, AIMP
+v4.31.1747 and USB transfer of the three T21 test files. The owner reports long
+playback/seeking, resume, tags, supplied cover and ordering work. Chapters were
+unavailable in that configuration; chapter navigation was not tested. See the
+[tested boundaries](SUPPORT.md#tested-boundaries) for this scope.
 
 ## Results and interruption
 

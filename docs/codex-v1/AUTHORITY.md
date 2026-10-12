@@ -212,6 +212,19 @@ observation, not an unobserved BAT shell, exit code or output path. No current
 PS7 picker, physical Cancel, fresh hardware Ctrl+C, playback or phone observation
 is inferred. Normal feature-checkpoint scope continues; main/release gates stay.
 
+T21 authorization: on 11 October 2026 the owner requested "T21 next please".
+Fresh live GitHub and advertised refs verify his T20 PR #20 merge at 16:44:42Z
+by PikkuJanne into main `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`, with final
+feature `67dee7e5f6757984458d63b1ea98353c9747ba04`. The complete merge and feature
+trees match. Clean local main was fast-forwarded; T21 uses
+`codex/v1-t21-phone-acceptance`. Normal task preparation, local verification,
+documentation, commits, feature push and draft PR are authorized. Reuse the exact
+previously verified selected long output and prepare two small synthetic test
+outputs privately; do not search personal media or ordinary Music. The owner's
+preference for simpler testing persists. Actual named phone/player observations
+are still required; local decoding or preparation cannot supply them. Main
+integration, release writes and repository settings gates remain unchanged.
+
 ## Never authorized implicitly
 
 History rewriting, force push, deletion/reset of unrelated work, existing tags or
@@ -225,3 +238,20 @@ work. Do not bypass corporate policy when an unsigned script is blocked.
 Missing test environment, phone evidence, authentication, checks or approval means
 blocked—not complete. Continue independent authorized work where possible, then
 leave one precise owner action with evidence. Do not silently waive required tests.
+
+T21 phone continuation: Janne reports all prompted unconditional checks worked
+on Samsung A56, OS exactly "Android One UI 8.5", AIMP, transferred by USB cable.
+This authorizes recording/reviewing the actual named result and completing the
+same feature checkpoint within normal task scope. Installed AIMP version and
+conditional chapter behavior remain pending clarification; no extra playback test
+is required. It grants no main merge, release write or inferred phone observation.
+
+T21 final owner instruction — 12 October 2026: Janne provides Samsung S24,
+One UI 8.5, AIMP v4.31.1747, USB cable and confirms long audio, resume and all
+other prompted checks work. Chapters are unavailable and will not be tested;
+he expressly declares human testing completed. Latest S24 supersedes A56.
+Close the human checklist and record unavailable/navigation-not-run limits;
+do not request further human testing for this accepted candidate or infer any
+untested result. Normal documentation/review/feature commit/push/PR updates
+remain authorized. Required automated checks and existing main/release approval
+gates remain separate; this instruction grants no merge or release write.
