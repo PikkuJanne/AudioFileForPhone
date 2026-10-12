@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "task": "T26",
+  "status": "approved",
+  "repository": "PikkuJanne/AudioFileForPhone",
+  "tag": "v1.0.0",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "accepted_main": "88f28c4056859852c526617d642c7e0ada8cc240",
+  "scope": "Accept existing owner PR25 docs-only main merge; carry original unchanged T24-T27 release authority",
+  "original_authorization_reference": "T24-authorization.json",
+  "asset_sha256": {
+    "AudioFileForPhone-v1.0.0.zip": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+    "release-manifest.json": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+    "SHA256SUMS.txt": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+  },
+  "question_item_id": "[\"request_user_input_async\",\"call_qxbeiYnUuMZ35op8Y5wfUBwe\",0]",
+  "actual_question": "Accept your existing docs-only PR #25 merge at main 88f28c4056859852c526617d642c7e0ada8cc240 as the narrow timing exception, and carry the original unchanged T24–T27 v1.0.0 authority forward? Frozen C 2092a405c1d06eca336e771a0ed5d1881acd015a, all three approved asset hashes and release notes are unchanged; fresh draft-byte checks and both Windows CI jobs pass. This lets the prepared T26 operation publish normal Latest v1.0.0, verify anonymous downloads and smoke the public ZIP, with reviewed docs-only closure still in T27. The recorded T24 approval explicitly fixed the earlier main until T27, which is why this specific exception needs confirmation.",
+  "actual_owner_reply": "Accept existing PR #25 merge and proceed",
+  "approval_reference": "Trusted structured send_user_message_question_reply in this T26 chat",
+  "observed_at_utc": "2026-10-12T16:46:47Z",
+  "timestamp_scope": "UTC time recording receipt of the trusted reply on continuation; no separate user-message timestamp supplied.",
+  "prepared_reconciliation_reference": "T26-main-reconciliation.md",
+  "prepared_preflight_reference": "T26-preflight.json",
+  "prepared_checkpoint": "f99cee28cd017c06570b6a6582e16dcfab445c25",
+  "main_exception_scope": "Accept only the existing owner's docs-only PR25 merge; require this main until reviewed T27 docs-only closure. C, approved asset bytes/hashes, release notes and original T24-T27 operations stay fixed.",
+  "carry_forward": "Original exact T24 operations plus this specific main timing exception across T26-T27; do not ask again for unchanged C/bytes/hashes/scope and valid required gates.",
+  "prohibited_operations": [
+    "Retarget or force existing tag",
+    "Replace public assets or upload --clobber",
+    "Delete existing release",
+    "Change repository visibility/settings/protections",
+    "Publish prerelease",
+    "General or additional early main integration"
+  ],
+  "project_complete": false
+}

@@ -1,5 +1,48 @@
 # Current project status
 
+State: **T26 A60–A62 passed; normal public Latest v1.0.0 and actual public ZIP verified.**
+Last completed task: T26. Exactly next: T27 in a new chat. A63–A65 pending;
+O01 deferred. Release is public; final main closure/project completion is pending.
+
+## T26 public release checkpoint — 12 October 2026
+
+- Owner explicitly accepts existing PR #25 main 88f28c4056859852c526617d642c7e0ada8cc240
+  as the narrow timing exception and carries original unchanged T24–T27 authority.
+  See evidence/T26-authorization.json. C, notes and every approved asset stay fixed.
+  Main tree equals reviewed T25 evidence; C ancestor/full 113-path docs-only diff.
+- Reviewed continuation pins prior verified feature f99cee28cd017c06570b6a6582e16dcfab445c25;
+  its only operator revision updates evidence refs and adds C-to-evidence docs-only
+  ancestry checks. Original preflight/controller bytes remain unchanged. Source C,
+  accepted-main and prior T25/f99 feature push/PR Windows CI matrices pass.
+- Existing release 410779813 was published once at **2026-10-12T16:47:31Z**:
+  [normal public Latest v1.0.0](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0). Actual
+  anonymous repository/release/list/latest/tag-object/peeled-target reads pass.
+  No intermediate public release exists; tag object remains 279945f7d5a4b887b7bd44eae5244b03060f76cc
+  and peeled C remains 2092a405c1d06eca336e771a0ed5d1881acd015a.
+- Fresh no-auth/cookie/netrc/proxy HTTP requests downloaded all three assets into
+  a new empty owned TEMP directory. Approved sizes/hashes/original byte equality,
+  CRC, safe exact eight-root-member allowlist and every binary C blob pass. ZIP
+  SHA256 remains 8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf.
+- Actual public-downloaded ZIP smoke on PS5.1 5.1.26100.9444 and PS7 7.6.5 passes
+  ten groups / 24 probed and fully decoded 64 kbps outputs / 113 naturally exited,
+  closed owned subprocesses. All 942 frozen source files, downloaded/extracted
+  packages, fixtures, dependencies, provenance and ownership gates are preserved.
+  Raw reusable report retains T23 labels; actual T26 wrapper establishes A62 scope.
+- Independent review makes its own fresh anonymous reads/downloads and verifies
+  actual capture/process/output/source bindings. Thirty audit commands/nine HTTP
+  requests pass; the initial reviewer indexing error stays a retained preliminary
+  failed audit with zero counts. Actual release reports/assets remain unchanged.
+- Original approval/request/notes/prior reports and shipped/runtime/tests/build/CI
+  remain unchanged. No rebuild, public-byte replacement, tag move, personal/Music
+  scan, new human test or main integration. Existing S24/AIMP/USB limits persist;
+  chapters unavailable/navigation not run. Raw/media stay external and retained.
+- A60–A62 pass. T27 must integrate reviewed docs-only closure, prove full C..D
+  scope/ancestry, synchronize clean local/live main and rerun public verification.
+  Keep main at accepted 88f28c4056859852c526617d642c7e0ada8cc240 and PR #26 draft/unmerged
+  until T27. Final T26 feature HEAD/live-ref/new CI belong in PR #26/response.
+
+## Historical T26 preparation — superseded by approved public checkpoint above
+
 State: **T26 publication prepared; existing owner PR #25 main timing acceptance pending.**
 Current task: T26. A60–A65 pending; O01 deferred. Draft remains unpublished.
 

@@ -1,69 +1,62 @@
-# Continue T26 — prepared publication awaits narrow main reconciliation
+# Next session — T27 final docs-only closure and synchronized main
 
-Current task is T26. A60–A65 remain pending; O01 deferred. Draft410779813 is
-unpublished and project/release incomplete. Do not advance to T27 yet.
+T26 A60–A62 pass. Exactly next T27 in a new chat. A63–A65 remain pending;
+O01 deferred. Normal public Latest v1.0.0 exists and actual public ZIP works;
+final reviewed main closure/project completion is pending.
 
 Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS first, then tasks/T26.md, RELEASE_RUNBOOK.md, RELEASE_CANDIDATE.json,
-evidence/T24-authorization.json, evidence/T26.md, T26-main-reconciliation.md,
-T26-preflight.json and T26-independent-preflight-review.json. Inspect actual
-Git/remote/dirty/live PR/check/tag/release state and preserve unrelated work.
+AGENTS first, then tasks/T27.md, RELEASE_RUNBOOK.md, RELEASE_CANDIDATE.json,
+evidence/T24-authorization.json, T26-authorization.json, T26.md,
+T26-public-verification.json, T26-zip-smoke.json and T26-independent-public-review.json.
+Inspect actual Git/remote/dirty/live PR/check/tag/release state; preserve unrelated work.
 
-Owner PikkuJanne merged PR #25 at 16:27:13Z on 12 October 2026 into main
-`88f28c4056859852c526617d642c7e0ada8cc240`. Its complete tree equals the reviewed
-T25 evidence head `bf5e21473c506b8f7d34934f7826d9b332ca1b46`. C is its ancestor
-and all 113 C-to-main paths are docs/codex-v1. Normal local main/evidence
-fast-forwards preserve the merge. Do not undo it or retarget/rebuild the release.
+Actual trusted original T24 exact approval plus T26 reply **"Accept existing PR #25
+merge and proceed"** carries unchanged C/assets/T24–T27 scope. The separate T26
+record accepts only existing owner main 88f28c4056859852c526617d642c7e0ada8cc240 as the timing
+exception. Keep this main until reviewed T27 docs-only closure. No repeat approval
+is required for unchanged C/bytes/hashes/scope and valid gates; no extra early/main
+merge, settings/protection/visibility change, tag retarget or public-byte replacement.
+Original T24 authority/request/release-note bytes remain fixed.
 
-The original exact T24 approval expressly fixes earlier main cf03cf7097640fcac287e24f6a90ff003e5fe0be
-until T27. A trusted narrow question asks acceptance of the existing owner PR #25
-main while carrying unchanged C/assets/T24–T27 scope. The question remains pending.
-Do not infer a reply from elapsed time, owner merge, credentials or this task request.
-Record an actual trusted reply separately; preserve original T24/request/notes bytes.
+Frozen C: 2092a405c1d06eca336e771a0ed5d1881acd015a. Annotated tag object 279945f7d5a4b887b7bd44eae5244b03060f76cc
+still peels to C. Existing release 410779813 was published once at 2026-10-12T16:47:31Z:
+[v1.0.0 release](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0). Anonymous repository/release/list/latest/tag reads prove normal
+public Latest and exactly one public release; draft=false/prerelease=false.
 
-Fresh preflight passes actual draft-byte/ZIP-member/notes/tag/current-check gates;
-status is prepared_authority_pending. Source C CI38264447275, current-main
-CI38277500074 and T25 feature CI38276500153/38276506324 pass both Windows jobs.
-Independent operator/preflight/prior-evidence review finds no technical blocker.
+Exact public downloaded assets keep original IDs and hashes:
 
-Frozen C is `2092a405c1d06eca336e771a0ed5d1881acd015a`; immutable annotated tag
-object `279945f7d5a4b887b7bd44eae5244b03060f76cc` peels to C. Draft410779813
-remains draft=true/prerelease=false/published_at=null with approved notes and assets:
+- ZIP 53,958 bytes SHA256 8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf.
+- Manifest 4,162 bytes SHA256 7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146.
+- Checksums 183 bytes SHA256 83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8.
 
-- AudioFileForPhone-v1.0.0.zip: 53,958 bytes,
-  SHA256 8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf.
-- release-manifest.json: 4,162 bytes,
-  SHA256 7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146.
-- SHA256SUMS.txt: 183 bytes,
-  SHA256 83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8.
+Actual fresh no-auth/cookie/netrc/proxy public HTTP downloads match approved original
+bytes, safe exact eight-member inventory, CRC/checksums/manifest and every binary C
+member. Fresh actual public-ZIP smoke passes ten groups/24 fully decoded 64 kbps
+outputs/113 naturally exited closed owned processes on PS5.1 5.1.26100.9444 and
+PS7 7.6.5. All 942 source and package/fixture/dependency/provenance/ownership gates
+pass. Raw reusable report retains T23 labels; T26 wrapper binds actual public bytes
+and invocation to A62. Independent review downloads public bytes again separately.
 
-The concrete reviewed external controller is
-`C:/Users/jtvuo/AppData/Local/Temp/AFP-T26-2092a405/release_t26.py`, SHA256
-b4813e488bb67c04a3c1187d697b267e607458672b4311b54372341f5db791d3.
-Actual preflight report SHA256
-bbbc3b3bd186330716425c354861c5a948e266614f4a4f8ec43f091a9af7dc42 is unchanged.
-Initial import bytecode was safely relocated externally; run subsequent controller
-with Python -B. It expects recorded T26-authorization.json with exact accepted main,
-C, hashes and scope, rechecks live tag/draft/assets/checks before one normal Latest
-publication, then fresh anonymous public metadata/downloads, exact every-member
-verification and fresh both-shell ZIP smoke. Reinspect the interface before reuse.
-The reviewed operator pins the startup local/main and advertised feature refs.
-After this docs-only checkpoint, bind those evidence HEAD/ref expectations to the
-freshly verified current checkpoint in a new external operator revision and audit
-that revision before execution. Keep C, main condition, assets and all strict
-release/smoke checks unchanged; preserve the original operator/preflight bytes.
+Prior verified f99 evidence HEAD f99cee28cd017c06570b6a6582e16dcfab445c25 and its push38278784232/PR38278822897
+CI pass both jobs. Final T26 HEAD/live-ref/new CI are in PR #26/response; inspect
+again and avoid self-containing hashes. PR #26 remains draft/unmerged, changes only
+docs/codex-v1. The complete C..current accepted-main diff has 113 allowed paths;
+full C..D scope/ancestry must be checked again after closure. All shipped/runtime/
+tests/CI/build bytes stay identical to C; do not modify the payload or released tag.
 
-Smoke reuses the original T23 Git LF driver SHA256
-17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd;
-native T23/A55/A56 labels remain unchanged and must be bound by the T26 wrapper
-to its actual fresh public download/invocation. Use new paths after any failed
-attempt; preserve failures. Inherit CP65001, keep module handling child-only,
-and never weaken comparisons or change frozen source/approved public bytes.
+T27 creates traceable closure evidence and marks actual required gates truthfully,
+reviews intended docs-only diff, pushes/verifies branch and checks, then integrates
+under recorded closure authority while respecting protections. Normal fetch/main
+fast-forward only; prove clean local main equals independently advertised final D,
+C ancestor and ENTIRE C..D diff docs/codex-v1 only. Run actual supported-shell
+Git-sync checks and the combined public technical verifier after final integration.
+This T26 evidence-branch checkout is not final main. Never infer closure from
+publication, a feature push or pending/self-reported status flags.
 
-Human testing remains closed: Samsung S24 / One UI 8.5 / AIMP v4.31.1747 / USB,
-chapters unavailable/navigation not run. No retest, long regeneration or personal/
-ordinary-Music scan. Raw/media remain external. Publication alone cannot complete
-the project. After actual A60–A62 pass, exactly next T27 reviewed docs-only closure
-and clean local/live main D verification, retaining immutable tag C.
+Human testing stays closed: Samsung S24/One UI 8.5/AIMP v4.31.1747/USB; chapters
+unavailable/navigation not run and prior physical limits persist. No new retest,
+long regeneration, personal media/Music scan. Raw/media remain external. Existing
+source/ZIP full suites retain their scopes; do not recount them as new T27 tests.
+Public bytes/tag must never be replaced to include closure evidence.
 
-Copy-ready continuation: **Continue T26 with the existing PR #25 timing acceptance**.
+Copy-ready prompt: **T27 next please**.

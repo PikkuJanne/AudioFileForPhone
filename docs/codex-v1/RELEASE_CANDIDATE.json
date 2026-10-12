@@ -10,8 +10,8 @@
   "manifest_sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
   "checksums_name": "SHA256SUMS.txt",
   "checksums_sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
-  "release_authorization_reference": "evidence/T24-authorization.json",
-  "authorization_status": "approved_exact_owner_request_T24_through_T27",
+  "release_authorization_reference": "evidence/T26-authorization.json",
+  "authorization_status": "approved_exact_T24_operations_with_T26_existing_PR25_main_exception",
   "automated_evidence": [
     "evidence/T23-validation.json",
     "evidence/T23-build.json",
@@ -39,10 +39,10 @@
     "Retained characterization uses inherited UTF8 console CP 65001; child-only case-insensitive module environment correction is recorded.",
     "One authoritative PS7 ZIP build; no cross-shell compressed-byte reproducibility claim.",
     "Build/test/raw/synthetic staging retained externally. Original preflight failures remain failed and count zero.",
-    "Authenticated actual draft downloads and both-shell smoke pass A59. Public publication/public downloads and final main closure remain pending T26-T27."
+    "Actual anonymous public metadata/downloads and both-shell public ZIP smoke pass A60-A62. Final reviewed docs-only main closure and post-integration public verification remain pending T27."
   ],
   "optional_loudness": "deferred",
-  "state": "publication_prepared_pending_existing_PR25_main_timing_acceptance",
+  "state": "public_exact_bytes_smoke_verified_awaiting_T27_closure",
   "app_version": "1.0.0",
   "signing_status": "unsigned",
   "local_staging_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets",
@@ -54,7 +54,7 @@
   "direct_zip_outputs": 24,
   "direct_zip_observed_released_processes": 113,
   "evidence_branch": "codex/v1-release-evidence",
-  "main_must_remain_at": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+  "main_must_remain_at": "88f28c4056859852c526617d642c7e0ada8cc240",
   "manifest_attestation_scope": "Two exact-C routine parents (306 groups) are pre-build attestations. Full C milestone, post-build ZIP suites and smoke are additionally bound by candidate evidence; no circular claim that a pre-build manifest attests its own later ZIP test.",
   "observed_main": "88f28c4056859852c526617d642c7e0ada8cc240",
   "main_reconciliation": {
@@ -112,7 +112,7 @@
     "evidence/T25-independent-review.json"
   ],
   "uploaded_asset_download_verification": "pass_A59_T25",
-  "publication": "not_run",
+  "publication": "pass_A60_A61_A62_T26",
   "project_complete": false,
   "uploaded_asset_download_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download",
   "downloaded_draft_asset_verification": {
@@ -163,7 +163,62 @@
     "changed_path_count": 113,
     "changed_outside_docs_codex_v1": [],
     "C_is_ancestor": true,
-    "timing_exception_status": "pending_trusted_narrow_acceptance",
-    "preflight_reference": "evidence/T26-preflight.json"
+    "timing_exception_status": "approved_actual_trusted_reply",
+    "preflight_reference": "evidence/T26-preflight.json",
+    "authorization_reference": "evidence/T26-authorization.json"
+  },
+  "original_release_authorization_reference": "evidence/T24-authorization.json",
+  "published_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0",
+  "published_at": "2026-10-12T16:47:31Z",
+  "published_state": {
+    "id": 410779813,
+    "tag_name": "v1.0.0",
+    "target_commitish": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-12T16:47:31Z",
+    "updated_at": "2026-10-12T16:47:31Z",
+    "html_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0"
+  },
+  "public_download_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T26-2092a405\\public-download",
+  "public_verification": {
+    "status": "pass",
+    "report_reference": "evidence/T26-public-verification.json",
+    "report_sha256": "edcae2ddeb6f12b1f957ebb0edf9b000af6a2c5d9e6948117465c81d6a999593",
+    "smoke_reference": "evidence/T26-zip-smoke.json",
+    "smoke_sha256": "798f033694271ed341cb07b22a56204382e6df5c0188217013414aaad0df4648",
+    "independent_review_reference": "evidence/T26-independent-public-review.json",
+    "assets": [
+      {
+        "id": 634242834,
+        "name": "AudioFileForPhone-v1.0.0.zip",
+        "bytes": 53958,
+        "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+        "equal_local_original": true
+      },
+      {
+        "id": 634242836,
+        "name": "release-manifest.json",
+        "bytes": 4162,
+        "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+        "equal_local_original": true
+      },
+      {
+        "id": 634242837,
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
+        "equal_local_original": true
+      }
+    ],
+    "groups": 10,
+    "outputs": 24,
+    "observed_released_direct_processes": 113,
+    "frozen_source_file_count": 942,
+    "publication_controller_sha256": "29db3bade00c2a89db889c43a93783979f9fe741886a725c1f769decc52f4a2f",
+    "smoke_driver_sha256": "17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd",
+    "authentication": "none",
+    "normal_latest_and_only_public_release": true,
+    "final_main_closure": "pending_T27"
   }
 }

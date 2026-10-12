@@ -1,5 +1,30 @@
 # Evidence and efficient testing strategy
 
+## T26 anonymous public bytes and actual released-ZIP smoke
+
+A60 uses fresh unauthenticated repository/release/list/latest/tag-object/C API
+reads. A61 uses three new anonymous HTTPS asset downloads into exclusive owned
+TEMP, with no Authorization/cookies/netrc/proxies, restricted GitHub hosts/redirects
+and bounded reads. Exact approved hashes/sizes/local-original equality, CRC,
+checksum/manifest/safe eight-member inventory and every binary C Git blob pass.
+The actual publication/public wrapper is evidence/T26-public-verification.json.
+
+A62 executes the unchanged T23 Git LF driver on those newly public downloaded
+bytes in new clean per-shell packages. Raw evidence/T26-zip-smoke.json retains
+T23/A55/A56 labels; the T26 wrapper's actual HTTP rows and expanded invocation
+establish this new scope. Actual PS5.1/PS7 smoke passes ten groups/24 fully decoded
+outputs/113 naturally exited closed owned processes. All 942 C files and every
+asset/package/fixture/dependency/provenance/ownership preservation gate passes.
+CP 65001 is inherited and module handling remains child-only. Direct app internal
+handles remain uninstrumented; no new human/phone/Music evidence is claimed.
+
+Initial preparation import cache was relocated to owned external TEMP and no
+binary was staged. Actual continuation uses Python -B; original controller and
+preflight stay frozen. Reviewed continuation binds f99 evidence refs and adds
+docs-only ancestry checks; all frozen source/package/release gates stay strict.
+Full source/exact-ZIP milestone suites remain T23 evidence, not new T26 counts.
+Final main/public technical verification remains required T27.
+
 ## T25 downloaded-asset smoke and reusable-driver routing
 
 T25 A59 uses a fresh authenticated download of all three actual draft assets into

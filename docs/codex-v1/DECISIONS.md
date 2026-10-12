@@ -1,5 +1,26 @@
 # Decisions and policy ledger
 
+## T26 exact public publication and downloaded-ZIP proof — 12 October 2026
+
+- Record the actual trusted narrow PR #25 main timing acceptance separately;
+  preserve original T24 authority/request/notes. Require accepted main 88f28c4056859852c526617d642c7e0ada8cc240
+  until T27 and carry only unchanged C/asset hashes/original operations.
+- Preserve the original preparation operator/preflight; review a separate external
+  continuation bound to the docs-only f99 checkpoint. Only evidence ref guards
+  change and C..evidence docs-only ancestry checks are added; strict C/main/assets/
+  notes/CI/conflict/public-byte/smoke checks remain unchanged.
+- Recheck gates immediately before one explicit normal Latest publication. Bind
+  actual publication command/exit and 2026-10-12T16:47:31Z to unauthenticated public reads,
+  tag object/C proof and fresh actual three-asset downloads with no cached credentials.
+  Verify all hashes/every binary C ZIP member, then smoke the newly public ZIP.
+- Preserve new actual raw reports unchanged: reused driver's T23/A55/A56 labels
+  identify its interface, while the T26 wrapper binds fresh public bytes/command
+  to A62. Record ten groups/24 outputs/113 exited owned processes without recounting
+  historical T23/T25 runs. No app-internal handle instrumentation or new human test.
+- Record public verification separately from final project closure. T27 alone
+  integrates reviewed docs-only evidence and verifies final clean main D plus
+  technical public state. Never move tag C or replace released bytes for closure.
+
 ## T26 concrete preparation and existing main reconciliation — 12 October 2026
 
 - Preserve the owner's existing early PR #25 merge with normal fast-forwards.
