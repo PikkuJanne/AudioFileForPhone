@@ -1,5 +1,24 @@
 # Decisions and policy ledger
 
+## T24 actual approval, immutable tag and draft — 12 October 2026
+
+- Record the trusted exact-request approval and observation timestamp before
+  release writes. The owner explicitly accepts the existing early docs-only PR
+  #24 main merge while retaining C and all exact assets. Apply only that bounded
+  timing exception and carry unchanged T24–T27 authority without re-asking.
+- Revalidate effective origin identity, approval/request/notes/assets, C ancestry,
+  allowed main/evidence diff, live main/checks and conflicts before each mutation.
+  Create the annotated tag at explicit C, push only its ref and independently
+  compare the advertised tag object and peeled target before draft creation.
+- Create draft using --verify-tag --draft --target C and exactly the three literal
+  reviewed asset paths. Independently read actual draft state/IDs/names/sizes and
+  reported server digests. Never turn those metadata checks into downloaded-byte
+  or public-access evidence; T25/T26 retain their separate actual download gates.
+- Keep reviewed release-note/request bytes and original preflight/authority/
+  operation reports unchanged. All progress stays under docs/codex-v1; main stays
+  the approved cf03cf7 until T27, source/tag C stays 2092a405. No public publication,
+  main integration, new media/human test or project completion is claimed in T24.
+
 ## T24 preflight and explicit reconciliation request — 12 October 2026
 
 - Preserve the owner's existing docs-only T23 PR #24 merge by normal fast-forward.

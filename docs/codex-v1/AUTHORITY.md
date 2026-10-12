@@ -1,5 +1,33 @@
 # Authorization and external-change boundaries
 
+## T24 exact release approval and bounded main exception — 12 October 2026
+
+The owner answered **"Approve exact v1.0.0 request"** to the trusted in-chat
+question naming full C, all three asset hashes, T24–T27 operations and the
+existing early docs-only PR #24 merge. The exact question/reply, request and
+release-note byte hashes, observation timestamp and scope are preserved in
+[evidence/T24-authorization.json](evidence/T24-authorization.json).
+
+This approves annotated v1.0.0 tag creation/push at
+`2092a405c1d06eca336e771a0ed5d1881acd015a`, draft creation and exact reviewed
+ZIP/manifest/checksum uploads, later normal public non-prerelease publication
+after actual draft/download gates pass, and reviewed docs-only T27 closure
+integration after publication. Carry this approval through T24–T27 without
+asking again for unchanged C, bytes, hashes and scope. Changed C/assets/scope
+or a new failed required gate invalidates the approval.
+
+The same reply expressly accepts the existing owner PR #24 merge at main
+`cf03cf7097640fcac287e24f6a90ff003e5fe0be` as a narrow exception to the
+main-at-C timing requirement. All 100 changed paths are docs/codex-v1; keep C
+and all assets fixed and require this live main until authorized T27 closure.
+This supersedes only that timing rule in RELEASE_RUNBOOK/SYNC_PROTOCOL; it
+does not authorize another source commit, changed package or general integration.
+
+No force/retarget/clobber, public-byte replacement, release deletion, prerelease,
+repository-setting/protection change or broader main authority is added.
+
+## Historical T24 preparation authority — superseded by the approval above
+
 ## T24 task preparation and pending exact approval — 12 October 2026
 
 The owner requested **"T24 next please"**. Normal T24 preparation, read-only

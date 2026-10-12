@@ -1,5 +1,41 @@
 # Current project status
 
+State: **T24 A57/A58 passed; exact approved annotated tag and draft created.**
+Last completed task: T24. Exactly next: T25 in a new chat. A59–A65 pending;
+O01 deferred. Draft is private/unpublished; release/project incomplete.
+
+## T24 approved tag and draft checkpoint — 12 October 2026
+
+- Owner answered **"Approve exact v1.0.0 request"** to the trusted question
+  naming C, all three hashes, T24–T27 operations and the existing early docs-only
+  main merge. Actual question/reply, request/notes hashes and bounded carry-forward
+  scope are recorded in evidence/T24-authorization.json. No repeat approval is
+  needed unless C, bytes, hashes, scope or a required gate changes/fails.
+- The same approval accepts existing PR #24 main
+  `cf03cf7097640fcac287e24f6a90ff003e5fe0be` as the narrow timing exception.
+  Keep this main until authorized T27 closure; C and all asset bytes stay fixed.
+  No T24 evidence integration into main or broader merge/settings authority occurs.
+- Annotated v1.0.0 tag object `279945f7d5a4b887b7bd44eae5244b03060f76cc`
+  independently advertises peeled C `2092a405c1d06eca336e771a0ed5d1881acd015a`.
+  Only that explicit tag was pushed; no force, retarget or implicit latest-main tag.
+- Draft release ID **410779813** targets verified existing tag/C, with
+  draft=true, prerelease=false and published_at=null. Exactly three uploaded
+  assets have expected names, sizes and server-reported SHA-256 digests: ZIP
+  634242834 / 53,958 bytes; manifest 634242836 / 4,162; checksums 634242837 / 183.
+  Reviewed notes match. Actual operator/report/live-read evidence is in
+  T24-tag-draft.json; independent review is linked from T24.md.
+- Origin, live main, source/main CI, exact approval/assets and tag/release conflicts
+  were rechecked before each mutation. Preparation push 38272786200 and PR
+  38272911927 pass both Windows jobs at c7c6c91. Final feature HEAD/live-ref/new CI
+  belong in PR #25/response; keep that progress PR draft/unmerged until T27.
+- A57/A58 pass. T25 must freshly download and smoke the actual draft assets;
+  server digests are not substituted for that gate. No publication/public download,
+  new audio suite/human/Music check or candidate rebuild occurs during T24.
+  The unchanged authority carries into later normal publication and reviewed
+  docs-only closure after their checks. Exactly next prompt: **T25 next please**.
+
+## Historical T24 preparation — superseded by the approved checkpoint above
+
 State: **T24 exact-byte preflight passed; exact approval and main-timing exception pending.**
 Last completed task: T23. Exactly next: continue T24. A57 blocked; A58–A65
 pending. O01 deferred. Tag/release/project incomplete.

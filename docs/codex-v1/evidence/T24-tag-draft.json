@@ -1,0 +1,641 @@
+{
+  "schema_version": 1,
+  "task": "T24",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "authorization_reference": "evidence/T24-authorization.json",
+  "started_utc": "2026-10-12T15:54:55.601932+00:00",
+  "driver_sha256": "6a3c6fe48045c3032b018311695cd8bc8c48adc5db28c1aaf773548631b25246",
+  "status": "pass",
+  "tag_object_sha": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+  "tag_remote_verification": {
+    "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+    "refs/tags/v1.0.0": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+    "refs/tags/v1.0.0^{}": "2092a405c1d06eca336e771a0ed5d1881acd015a"
+  },
+  "release_id": 410779813,
+  "created_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/untagged-cd686fe416ddfbca6302",
+  "release": {
+    "html_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/untagged-cd686fe416ddfbca6302",
+    "tag_name": "v1.0.0",
+    "draft": true,
+    "prerelease": false,
+    "target_commitish": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "created_at": "2026-10-12T15:54:58Z",
+    "published_at": null
+  },
+  "assets": [
+    {
+      "id": 634242834,
+      "name": "AudioFileForPhone-v1.0.0.zip",
+      "size": 53958,
+      "state": "uploaded",
+      "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+      "browser_download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/untagged-cd686fe416ddfbca6302/AudioFileForPhone-v1.0.0.zip"
+    },
+    {
+      "id": 634242836,
+      "name": "release-manifest.json",
+      "size": 4162,
+      "state": "uploaded",
+      "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+      "browser_download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/untagged-cd686fe416ddfbca6302/release-manifest.json"
+    },
+    {
+      "id": 634242837,
+      "name": "SHA256SUMS.txt",
+      "size": 183,
+      "state": "uploaded",
+      "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
+      "browser_download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/untagged-cd686fe416ddfbca6302/SHA256SUMS.txt"
+    }
+  ],
+  "notes_sha256": "911b3729862e00abe63338eee68698ba4f8a6b86ab8690a280787d19b3b39529",
+  "acceptance": {
+    "A57": "pass",
+    "A58": "pass"
+  },
+  "uploaded_bytes_download_verification": "pending_T25",
+  "publication": "not_run",
+  "project_complete": false,
+  "ended_utc": "2026-10-12T15:55:09.980404+00:00",
+  "revalidations": [
+    {
+      "before": "local_annotated_tag_creation",
+      "checked_at_utc": "2026-10-12T15:54:58.650641+00:00",
+      "assets_equal_approval": true,
+      "live_refs": {
+        "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      },
+      "source_and_main_ci": "success",
+      "main_docs_only_exception": "approved",
+      "releases": []
+    },
+    {
+      "before": "tag_push",
+      "checked_at_utc": "2026-10-12T15:55:01.621563+00:00",
+      "assets_equal_approval": true,
+      "live_refs": {
+        "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      },
+      "source_and_main_ci": "success",
+      "main_docs_only_exception": "approved",
+      "releases": []
+    },
+    {
+      "before": "draft_creation_and_three_uploads",
+      "checked_at_utc": "2026-10-12T15:55:07.099088+00:00",
+      "assets_equal_approval": true,
+      "live_refs": {
+        "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+        "refs/tags/v1.0.0": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+        "refs/tags/v1.0.0^{}": "2092a405c1d06eca336e771a0ed5d1881acd015a"
+      },
+      "source_and_main_ci": "success",
+      "main_docs_only_exception": "approved",
+      "releases": []
+    }
+  ],
+  "commands": [
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:55.636976+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--push",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:55.665344+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9cffe4c2e751e7fb8804b84c5a311b37a7ec730717f05ce7bfbbc964cab67b3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:56.280390+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "merge-base",
+        "--is-ancestor",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:56.323680+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "68f00ff6c063ed5da210306c34d4f99d9d02130a1a9a6b66f6c9472008799442",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:56.353962+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "66e6bfe70fe3fbbeda42fe805caa4b3398b7ceca385222382f272fff3214b9a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:56.389899+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38264447275",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "0317ca50dedd52d2e2c937dd0c63a41303936fcb3e2de7699cff26d1c390941d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:57.199906+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38271428429",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "5f5c2a70506b1019aaddc76b4811fe788664f243bd78c7d455477fd537f7dd20",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.146369+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.650531+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "tag",
+        "--list",
+        "v1.0.0"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.688409+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "tag",
+        "-a",
+        "v1.0.0",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "-m",
+        "AudioFileForPhone v1.0.0"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.726885+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "-t",
+        "refs/tags/v1.0.0"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "ccda8f9a2cb0295182b9a99e4c8270badcc89525850e1e737a294fb426363ac9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.763950+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "rev-parse",
+        "refs/tags/v1.0.0"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d848ae63a919e79351bedde5845b18f473a0ba78f479d3a6b9b8f4aca2e36574",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.795837+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "rev-parse",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "155591dd98dda9894f00c786659e2cac9b68d5e5aa59d64d79dc018f9b61a2de",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.824417+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.849080+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--push",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:58.875954+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9cffe4c2e751e7fb8804b84c5a311b37a7ec730717f05ce7bfbbc964cab67b3f",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:59.413382+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "merge-base",
+        "--is-ancestor",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:59.447825+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "68f00ff6c063ed5da210306c34d4f99d9d02130a1a9a6b66f6c9472008799442",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:59.478355+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "66e6bfe70fe3fbbeda42fe805caa4b3398b7ceca385222382f272fff3214b9a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:54:59.507609+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38264447275",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "0317ca50dedd52d2e2c937dd0c63a41303936fcb3e2de7699cff26d1c390941d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:00.363945+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38271428429",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "5f5c2a70506b1019aaddc76b4811fe788664f243bd78c7d455477fd537f7dd20",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:01.157767+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:01.621044+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "push",
+        "origin",
+        "refs/tags/v1.0.0"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "c7d84b0389493f008543bf4da2428b1b07ab0a4674938ce31278c33ffba25196",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:03.814366+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "b29ff32716662731f0f26492f041070b06e065b512890faaf987a71941d42188",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.347742+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.383046+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "remote",
+        "get-url",
+        "--push",
+        "--all",
+        "origin"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.410667+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "b29ff32716662731f0f26492f041070b06e065b512890faaf987a71941d42188",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.907775+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "merge-base",
+        "--is-ancestor",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.943629+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "68f00ff6c063ed5da210306c34d4f99d9d02130a1a9a6b66f6c9472008799442",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:04.976658+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "66e6bfe70fe3fbbeda42fe805caa4b3398b7ceca385222382f272fff3214b9a1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:05.007719+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38264447275",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "0317ca50dedd52d2e2c937dd0c63a41303936fcb3e2de7699cff26d1c390941d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:05.838268+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38271428429",
+        "--json",
+        "status,conclusion,headSha"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "5f5c2a70506b1019aaddc76b4811fe788664f243bd78c7d455477fd537f7dd20",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:06.614439+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:07.098801+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "release",
+        "create",
+        "v1.0.0",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets\\AudioFileForPhone-v1.0.0.zip",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets\\release-manifest.json",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets\\SHA256SUMS.txt",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--verify-tag",
+        "--draft",
+        "--target",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--title",
+        "AudioFileForPhone v1.0.0",
+        "--notes-file",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\RELEASE_NOTES.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "fcc15f8f8602470992a121080f6a2d0f6f4dc31ac6165a90ace48f6ab26368c0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:09.262186+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "939f112e420f1edaf2e04f00c0a2058d29627188b1cba73852beda09379d7fb1",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "completed_at_utc": "2026-10-12T15:55:09.976498+00:00"
+    }
+  ]
+}

@@ -1296,7 +1296,7 @@
       "milestone": "M6",
       "title": "Authorize exact tag and prepare the draft release",
       "required": true,
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "T23"
       ],
@@ -1311,13 +1311,17 @@
       "evidence": [
         "evidence/T24.md",
         "evidence/T24-preflight.json",
+        "evidence/T24-authorization.json",
+        "evidence/T24-tag-draft.json",
+        "evidence/T24-independent-draft-review.json",
+        "RELEASE_CANDIDATE.json",
         "RELEASE_AUTHORIZATION_REQUEST.md",
         "RELEASE_NOTES.md"
       ],
       "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
-      "checkpoint_commit": "fc108114978671de1948d5243e3a4bd835ff5640",
+      "checkpoint_commit": "c7c6c91dfb064464c35b611bd92fe90f349e5a26",
       "remote_checkpoint_verified": true,
-      "notes": "Fresh exact assets/C member/live state preflight passes; cf03cf7 main CI passes. Owner merged T23 docs-only PR #24 early; narrow timing exception and exact release authority are requested together and remain pending. A57 blocked; A58 not run. No tag/draft/upload/publication. Final feature HEAD/ref/CI belong in PR/response; continue T24 after approval. Main is existing owner merge, not C; C/assets stay frozen."
+      "notes": "A57/A58 pass after actual trusted exact-request approval, including existing docs-only PR #24 main timing exception. Annotated v1.0.0 object 279945f7d5a4b887b7bd44eae5244b03060f76cc independently peels frozen C 2092a405c1d06eca336e771a0ed5d1881acd015a. Draft ID410779813 targets explicit C/tag, draft=true/prerelease=false/published_at=null, with exact three reviewed asset IDs/names/sizes/server SHA256 values and notes; independent remote audit passes. Actual origin/main/checks/approval/assets/conflicts revalidated before every mutation. No force/clobber/settings change, rebuild, media/human/Music check, downloaded-byte verification or publication. Main stays approved cf03cf7097640fcac287e24f6a90ff003e5fe0be until T27; T24 progress unmerged. Prior verified preparation checkpoint c7c6c91; final feature HEAD/live-ref/new CI belong in PR25/response. Carry unchanged authority across T25-T27; next T25 actual draft downloads/smoke. A59-A65 pending; O01 deferred; release/project incomplete."
     },
     {
       "id": "T25",
