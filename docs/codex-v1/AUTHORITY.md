@@ -245,3 +245,13 @@ This authorizes recording/reviewing the actual named result and completing the
 same feature checkpoint within normal task scope. Installed AIMP version and
 conditional chapter behavior remain pending clarification; no extra playback test
 is required. It grants no main merge, release write or inferred phone observation.
+
+T21 final owner instruction — 12 October 2026: Janne provides Samsung S24,
+One UI 8.5, AIMP v4.31.1747, USB cable and confirms long audio, resume and all
+other prompted checks work. Chapters are unavailable and will not be tested;
+he expressly declares human testing completed. Latest S24 supersedes A56.
+Close the human checklist and record unavailable/navigation-not-run limits;
+do not request further human testing for this accepted candidate or infer any
+untested result. Normal documentation/review/feature commit/push/PR updates
+remain authorized. Required automated checks and existing main/release approval
+gates remain separate; this instruction grants no merge or release write.

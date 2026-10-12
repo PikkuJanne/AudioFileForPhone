@@ -1050,7 +1050,7 @@
       "milestone": "M5",
       "title": "Record phone playback, seeking and metadata acceptance",
       "required": true,
-      "status": "blocked",
+      "status": "done",
       "depends_on": [
         "T20"
       ],
@@ -1071,12 +1071,14 @@
         "evidence/T21-review.json",
         "evidence/T21-phone-observations.json",
         "evidence/T21-phone-asset-check.json",
-        "evidence/T21-phone-review.json"
+        "evidence/T21-phone-review.json",
+        "evidence/T21-phone-final-observations.json",
+        "evidence/T21-phone-final-review.json"
       ],
       "tested_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
-      "checkpoint_commit": "e2b9a222dd08651e449f708e6dac9cc7709be438",
+      "checkpoint_commit": "35f275ae284919757632ac4658cb81de00b498b5",
       "remote_checkpoint_verified": true,
-      "notes": "Janne Vuorela reports All worked on Samsung A56, OS exactly Android One UI 8.5, AIMP, USB cable, in response to the exact three-file procedure. Owner confirms unconditional start/40m/79m playback/seeking, expected duration, close/reopen resume, titles/Artist/Album, blue cover and First/Second order; aggregate reported results, not instrumented measurements. AIMP installed version is missing and chapters if available is ambiguous; one brief record clarification pending, no retest. A51/A52/T21 remain blocked only on those details. Base Android release, USB protocol, sorting mode, actual test timestamp and phone-side hashes not inferred. Exact three intended Windows assets/source relationships rechecked separately; original preparation-only reports/reviews and all T20 evidence remain frozen, media/private logs outside Git. Original long generation f992 and short current-main3e provenance retained; runtime/helper/BAT/tests/CI/build/defaults unchanged. Feature preparation checkpoint e2b9a22 matches live ref, both push38157910582/PR38157946939 Windows matrices pass. Main3e/T01-T20 integrated; PR21 draft open/unmerged. Exactly next continue T21 for version/chapter detail, not T22. Main/release gates unchanged; final continuation feature sync/checks in PR/response."
+      "notes": "Janne Vuorela final report on 12 October 2026 corrects the accepted device to Samsung S24, OS exactly One UI 8.5, AIMP v4.31.1747, USB cable. Earlier A56 wording is superseded, not a second accepted phone. Named long playback/start-middle-near-end seeking/expected duration, resume, titles/Artist/Album, blue cover and First/Second order pass as aggregate prompted owner observations. Chapters unavailable; selection/navigation not run and not claimed passing. A52 passes with documented player limitation; methods/expected outcomes retained. Owner expressly closes human testing; no further human tests or clarification requested for this candidate. Base Android release, USB protocol, sorting mode, test timestamp and phone-side hashes not inferred. Same exact intended assets/source relationships retain long f992 and short main3e provenance; all older T20/T21 JSON reports/reviews/tool bytes remain frozen. README/SUPPORT receive narrow accepted-scope updates; runtime/helper/BAT/tests/CI/build/defaults unchanged, no media conversion or personal/Music scan. Previous feature35f275a independently matches live ref and both push38159023529/PR38159025835 Windows matrices pass. A51/A52 pass and T21 done on reviewed/pushed feature; main3e/T01-T20 integrated, PR21 draft open/unmerged. Next T22 after owner integration; automated milestone/exact-ZIP and main/release gates remain. Final feature sync/new CI in PR/response; project/release incomplete."
     },
     {
       "id": "T22",

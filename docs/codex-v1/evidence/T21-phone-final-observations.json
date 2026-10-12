@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "task": "T21",
+  "cases": [
+    "A51",
+    "A52"
+  ],
+  "status": "pass",
+  "recorded_utc": "2026-10-12T13:27:31.996471Z",
+  "recorded_utc_is_test_timestamp": false,
+  "tester": "Janne Vuorela",
+  "evidence_type": "named_owner_report_in_this_chat",
+  "verbatim_owner_report": "Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable. 1. Long audio works. 2. Resumes. 3. Everything works, chapters not available and won't be tested as human testing is now completed by executive order.",
+  "supersedes": {
+    "evidence": "evidence/T21-phone-observations.json",
+    "fields": [
+      "phone model",
+      "OS label",
+      "installed player version",
+      "chapter availability",
+      "human testing status"
+    ],
+    "phone_model_correction": "Use latest Samsung S24; previous A56 is historical wording, not a second accepted device or another observed run.",
+    "historical_report_and_reviews_unchanged": true
+  },
+  "phone": {
+    "model_as_reported": "Samsung S24",
+    "os_as_reported": "One UI 8.5",
+    "base_android_version": null,
+    "player_name": "AIMP",
+    "player_version_as_reported": "v4.31.1747",
+    "transfer_method_as_reported": "USB cable",
+    "usb_transfer_protocol": null
+  },
+  "assets": [
+    {
+      "private_id": "T21-short-02",
+      "filename": "A-second.mp3",
+      "length": 160928,
+      "sha256": "23dc87e362ad824d8207db939c46cf0ceb8317d630e542791a8ad77c9b9efebd",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      }
+    },
+    {
+      "private_id": "T21-short-01",
+      "filename": "Z-first.mp3",
+      "length": 161056,
+      "sha256": "05f4277f7cae999dde22a8a16ce48d05c96159708865a4a50ea245318b67bac7",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 2,
+        "audio_bitrate": 64000,
+        "duration_seconds": 20.0
+      }
+    },
+    {
+      "private_id": "T20-long-01",
+      "filename": "Long-audio.mp3",
+      "length": 38201262,
+      "sha256": "2ca720b5a04515dfbf5537632a3962f6dcd1dd068fd4679bd0135adb5e09286e",
+      "technical": {
+        "codec": "mp3",
+        "sample_rate": 44100,
+        "channels": 1,
+        "audio_bitrate": 64000,
+        "duration_seconds": 4775.055646
+      }
+    }
+  ],
+  "asset_identity_basis": "Same three intended transfer aliases in the prompted T21 procedure. Earlier exact Windows-side hashes/source relationships remain frozen; no phone-side digest captured.",
+  "short_generation_application_commit": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+  "long_original_generation_commit": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+  "previous_verified_feature_checkpoint": "35f275ae284919757632ac4658cb81de00b498b5",
+  "prompted_procedure": [
+    "Copy the three MP3s from TEMP T21P-06b84fc67184/Phone to the phone.",
+    "Long-audio: listen at the start, seek to 40:00 and 79:00. Check duration is about 1:19:35.",
+    "Pause near 40 minutes, close/reopen the player, and check whether it resumes.",
+    "T21 Phone Test album: check titles, artist/album, blue cover, First/Second track order, and chapters if available."
+  ],
+  "observations": {
+    "basis": "Owner replies to the same three-step procedure and confirms long audio works, resumes and everything else works. Start/middle/near-end seeks, approximate duration and short metadata/art/order map to the aggregate prompted confirmation, not separate instrumented measurements.",
+    "long_start_middle_40m_near_end_79m_playback_and_seeking": "owner_reported_pass",
+    "displayed_duration": "owner_reported_expected_approximately_1h19m35s; exact display not separately quoted",
+    "close_reopen_resume": "owner_reported_pass: Resumes",
+    "short_titles_artist_album": "owner_reported_pass: First track / Second track, Artist and Album T21 Phone Test",
+    "supplied_blue_artwork": "owner_reported_pass",
+    "first_then_second_track_order": "owner_reported_pass",
+    "sort_mode": null,
+    "disc_order": "not_separately_prompted_or_reported",
+    "chapters": "owner_reported_unavailable_in_this_configuration",
+    "chapter_selection_and_navigation": "not_run; unavailable and owner expressly closes further human testing"
+  },
+  "acceptance": {
+    "A51": "pass",
+    "A52": "pass_with_documented_chapter_limitation",
+    "T21": "done_after_reviewed_feature_checkpoint"
+  },
+  "chapter_acceptance_basis": "A52 requires documenting actual chapter limitations, not supported chapter navigation. Existing mapped chapter fields are separate local evidence; unavailable phone chapter controls are a player-specific limit, not a navigation pass.",
+  "owner_directive": {
+    "verbatim": "human testing is now completed by executive order",
+    "human_testing_status": "completed_by_owner_instruction",
+    "further_human_tests_requested": false,
+    "untested_features_claimed_pass": false,
+    "scope": "Carry this closure through the accepted candidate and subsequent handoff. Continue required automated checks and release authorization; do not request further human testing or invent evidence."
+  },
+  "physical_phone_evidence": true,
+  "codex_phone_access": false,
+  "phone_side_hashes": null,
+  "actual_test_timestamp": null,
+  "release_zip_tested": false,
+  "limits": [
+    "Accepted named device/player/version and these three assets only; no all-Android, all-player, USB/MTP protocol or chapter-navigation guarantee.",
+    "Base Android release, USB protocol, sorting mode, disc ordering, exact display/test time and phone-side hashes remain unreported; no clarification is requested.",
+    "The long asset is 79m35s, not a multi-hour or newly regenerated output.",
+    "Preparation-only reports and earlier partial observations/reviews retain their historical statuses and bytes.",
+    "Final source relationship is unchanged runtime/helper/BAT; README/SUPPORT and task evidence are documentation edits only."
+  ],
+  "historical_artifacts_unchanged_at_recording": [
+    {
+      "relative_path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+      "length": 31772,
+      "sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-start.json",
+      "length": 2016,
+      "sha256": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+      "length": 21136,
+      "sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+      "length": 10168,
+      "sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-review.json",
+      "length": 19141,
+      "sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-observations.json",
+      "length": 5324,
+      "sha256": "f2e932e35fcc43f59b576d00db911ce79cbb2d3fbd8671e402382578b6fb9b6f"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-asset-check.json",
+      "length": 10868,
+      "sha256": "4e9d72bdf12298ba039c8eb3c4b5da95a7f89b27df5cfe840965da0f17f0fbba"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-review.json",
+      "length": 20673,
+      "sha256": "e6c8179df945e7f2a563b4de59ca16e7c7895623c0e295635a630fa2e3cdab77"
+    }
+  ],
+  "main_integration": "pending_owner",
+  "new_merge_or_release_authorization": false
+}

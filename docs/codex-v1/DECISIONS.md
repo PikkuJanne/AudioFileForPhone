@@ -835,3 +835,22 @@ with a bare “approved” assertion without a traceable reference.
 - Existing e2b9a22 feature sync and both push/PR Windows matrices pass. PR21 remains
   draft/unmerged, main3e unchanged. A51/A52/T21 remain blocked only pending version
   and chapter detail; next continue T21. Main/release authority stays unchanged.
+
+## T21 final phone acceptance and owner human-test closure — 12 October 2026
+
+- Janne's final response supplies Samsung S24, One UI 8.5, AIMP v4.31.1747 and
+  USB cable, confirming long audio works, resumes and other checks work. Use
+  this corrected device; preserve earlier A56 report/review bytes as historical,
+  without claiming a second accepted phone or additional observed test run.
+- A51/A52 pass for the same exact three prompted assets. Chapter controls are
+  unavailable and navigation not run. This satisfies A52's documented limitation
+  comparison, without inventing navigation support or changing its method.
+- Honor the explicit owner declaration that human testing is completed. No further
+  human test or clarification is requested. Preserve actual scope and untested
+  limits; automated milestone/ZIP checks and main/release authority remain.
+- New final observation/review artifacts supersede missing details without editing
+  old reports. Update README/SUPPORT only for this narrow accepted phone scope.
+  Runtime/helper/BAT/tests/CI/build/defaults unchanged; no new media work/phone access.
+- Previous35f275a live ref and both CI matrices pass; PR21 draft/unmerged, main3e
+  unchanged. Complete T21 on reviewed/pushed feature, then exactly T22 after owner
+  integration. Final sync/checks in PR/response; no project/release completion.

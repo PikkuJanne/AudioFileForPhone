@@ -16,7 +16,8 @@ failure results, cancellation components and local record persistence.
 | Hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. This is separate from Windows 11 acceptance. |
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
 | Music-folder default | Configured-folder resolver and dedicated owned generated-input smoke checks; no real network-redirected Music acceptance. Ordinary personal Music was not used as disposable test data. |
-| Phone/Android/MTP, specific players, chapters/resume, Explorer drag and drop, NAS/UNC and frozen release ZIP | Device/manual/release acceptance still pending; no compatibility guarantee. Automated launcher checks do not establish Explorer or phone behavior. |
+| Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable | Named owner acceptance on the three T21 assets: long playback/seeking/duration, resume, tags, supplied blue cover and ordering work. Chapters unavailable; navigation not tested. [T21 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T21.md). |
+| Other phone/player or USB/MTP configurations, Explorer drag and drop, NAS/UNC and frozen release ZIP | Claims remain limited to recorded evidence, without a universal compatibility guarantee. Automated launcher checks do not establish unobserved Explorer/phone behavior; exact release-ZIP acceptance remains pending. |
 
 Local regression history also uses an existing Gyan FFmpeg build dated
 2026-10-08. These tested builds do not establish compatibility with every FFmpeg
@@ -25,12 +26,12 @@ actual media/cover support is determined during probing, encoding and validation
 Tests do not certify arbitrary corrupt media or every filesystem/host environment.
 
 The support claims below are bounded by repository tests and recorded evidence;
-they do not extend the pending device/manual/release scope.
+they do not extend the recorded device scope or pending release acceptance.
 
 | Behavior | Tests and evidence |
 | --- | --- |
 | Preview and matching relative plans without writes/prompts | [Test-Preview.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-Preview.ps1), [T12](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T12.md). |
-| Metadata, explicit covers and chapter-field limits | [Test-Metadata.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-Metadata.ps1), [T15](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T15.md). Chapter fields are inspected; phone/player behavior is pending. |
+| Metadata, explicit covers and chapter-field limits | [Test-Metadata.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-Metadata.ps1), [T15](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T15.md). Chapter fields are inspected; phone behavior is limited to the S24/AIMP acceptance above, where chapter navigation was unavailable and untested. |
 | Discovery/reparse exclusions and naming/path budgets | [Test-Discovery.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-Discovery.ps1), [Test-NamingPlan.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-NamingPlan.ps1), [T06](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T06.md), [T07](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T07.md). |
 | Validation/publication, results and launcher exit transport | [Test-TransactionalOutput.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-TransactionalOutput.ps1), [Test-ScriptResults.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-ScriptResults.ps1), [Test-LauncherResults.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-LauncherResults.ps1), [T09](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T09.md), [T10](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T10.md). |
 | Controlled cancellation and forced-host cleanup limits | [Test-Cancellation.ps1](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/tests/Test-Cancellation.ps1), [T11](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T11.md); physical Ctrl+C evidence remains historical as stated above. |
@@ -100,7 +101,7 @@ enforced policy.
 | Some files fail | Inspect each Failed manifest row and bounded native error in the log. Unsupported source media, nonpositive/unknown duration or a rate incompatible with the source can fail. Other valid files continue; exit 2 reports batch failures. |
 | Progress reaches 100 percent but files failed | Batch progress means processed, including failed files. Encoding progress precedes validation/publication. Use the final counts and exit code. |
 | Required log/manifest write fails | The run stops with exit 1 while preserving actual published outputs/counts; cancellation stays 130. The last durable manifest may be incomplete. Keep the console result and reported root cause. |
-| Files, tags, cover or chapters behave differently on a phone | Compare the converted count and output files locally first, then test transfer/playback in your player. Phone/MTP/player acceptance is pending. Chapter navigation/resume and every source-specific tag are not guaranteed; M4B is unsupported. |
+| Files, tags, cover or chapters behave differently on a phone | Compare the converted count and output files locally first, then test transfer/playback in your player. Recorded phone acceptance is limited to the S24/AIMP configuration above. Chapter navigation/resume and every source-specific tag are not guaranteed; M4B is unsupported. |
 
 For a direct interactive launch with policy checks, choose the installed shell:
 

@@ -1,34 +1,26 @@
-# T21 — phone procedure used; record details pending
+# T21 — human testing completed
 
-Tester: Janne Vuorela. He reports "All worked" on Samsung A56, "Android One UI
-8.5", AIMP, USB cable. No repeat phone test is requested. Only AIMP's installed
-version and actual chapter availability/navigation remain to be clarified.
+Tester: Janne Vuorela. Final accepted device: **Samsung S24, One UI 8.5,
+AIMP v4.31.1747**, transfer by **USB cable**. The latest S24 report supersedes
+the earlier A56 wording. Long audio works, resumes and the short-album checks work.
+Chapters are unavailable; chapter selection/navigation was not run.
 
-The procedure below is retained as the exact context for his report. No new app,
-screenshots, command editing or full-length listening is required.
+The owner explicitly declares human testing completed. **No further human test
+is requested.** A51/A52 pass for this device/player and the three exact prepared
+assets. See evidence/T21-phone-final-observations.json and evidence/T21.md.
 
-Ready folder: `C:\Users\jtvuo\AppData\Local\Temp\T21P-06b84fc67184\Phone`.
-Copy only its three MP3s; the script has already prepared and verified them.
+The completed procedure is retained below only as context for the reported result:
 
-1. Copy the three prepared MP3 files to the phone and open **Long-audio.mp3** in
-   your player. Check its duration is about **1:19:35**. Listen for a few seconds
-   at the beginning, then seek to **40:00** and **79:00** and listen briefly.
-2. Pause around 40 minutes. Close and reopen the player normally. Report whether
-   it resumes at that position, starts over or does something else.
-3. Open the **T21 Phone Test** album. It should show **First track** and
-   **Second track**, Artist/Album **T21 Phone Test**, and a blue cover. Check the
-   displayed track order (First then Second when sorted by track). File-name
-   order deliberately differs. Check whether First track shows **First half**
-   and **Second half** chapters. Select Second half if available; report
-   unavailable chapters as unavailable.
+1. Copy the three MP3s from TEMP `T21P-06b84fc67184/Phone` to the phone. Open
+   Long-audio.mp3, check approximate duration **1:19:35**, listen briefly at the
+   start and seek/listen at **40:00** and **79:00**.
+2. Pause near 40 minutes, close/reopen normally and observe resume.
+3. Inspect T21 Phone Test's First track/Second track, Artist/Album T21 Phone Test,
+   blue cover and First/Second order. Check chapters if available; the owner now
+   reports them unavailable. No chapter navigation result is claimed.
 
-Reply here with your actual results: **play/seek/duration; resume; tags/cover;
-order; chapters**, plus phone/OS/player versions and transfer method if not
-already supplied. Different behavior or unavailable features should be reported
-as observed, not checked off as passing. The test records this device/player's
-scope, without a claim about all phones.
-
-The prepared folder contains media only; raw logs/probe records and ownership
-records stay on Windows. The long MP3 retains its original tags. Exact asset
-paths, hashes and preparation results are recorded separately. Local decode is not phone
-acceptance. A51/A52 remain blocked only on the missing AIMP version and chapter detail.
+All reported successes are named aggregate observations, not instrumented phone
+measurements. Windows-side asset hashes/source provenance remain in frozen
+preparation records; no phone-side digest or universal compatibility is inferred.
+Private media/logs stay outside Git. Automated milestone/ZIP checks and owner
+main/release gates remain separate; next T22 after PR #21 integration.

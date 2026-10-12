@@ -1,35 +1,38 @@
 # Current project status
 
-State: **T21 owner reports successful phone checks; version/chapter details pending.**
-Last completed task: T20, owner-integrated. Exactly next task: continue T21.
+State: **T21 phone acceptance complete on the feature branch; main integration pending.**
+Last completed task: T21. Exactly next task: T22 after owner integration of PR #21.
 Required improvements 1-15; optional O01 deferred. Project/release incomplete.
 
-## T21 phone report checkpoint
+## T21 completed phone acceptance
 
-- Janne Vuorela reports **"All worked. Samsung A56, Android One UI 8.5, AIMP,
-  usb cable"** in reply to the three-file procedure. This confirms the requested
-  start/40:00/79:00 playback and seeking, expected approximate 1:19:35 duration,
-  close/reopen resume, short titles/Artist/Album, blue cover and First/Second order.
-  These are aggregate owner-reported outcomes, not instrumented measurements.
-- Record the phone and OS exactly as supplied. AIMP's installed version remains
-  unreported. Chapter availability/navigation is ambiguous because the last
-  instruction said "if available". One brief record clarification is pending;
-  no repeat phone test, screenshots, new app or new media is needed. Base Android
-  release, USB protocol, sorting mode and phone-side hashes are not inferred.
-- Exact intended assets remain the 79m35 unchanged T20 MP3 and two 20-second
-  current-application outputs under TEMP `T21P-06b84fc67184/Phone`. Preparation,
-  alias/source/report/runner bindings and original generation provenance remain
-  frozen. The new observation and Windows-side asset check are separate evidence;
-  local hashing or decoding is not a phone observation.
-- T20 PR #20 is integrated at main `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`.
-  T21 preparation checkpoint `e2b9a222dd08651e449f708e6dac9cc7709be438` independently
-  matches its live feature ref; draft PR #21 remains open and unmerged. Exact-head
-  push38157910582 and PR38157946939 each pass both Windows jobs. T01-T20 are
-  integrated; T21 main integration remains owner-controlled.
-- A51/A52/T21 remain blocked only on the missing AIMP version and actual chapter
-  detail. See `evidence/T21-phone-observations.json`, `evidence/T21.md` and the new
-  independent phone-report review. No runtime/helper/BAT/test/CI/build/default
-  change or release authorization. Exactly next continue T21, not T22.
+- Janne Vuorela supplies the corrected device and final report on 12 October 2026:
+  **Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable**. Long audio works,
+  resumes, and the short-album checks work. The latest S24 label supersedes the
+  earlier A56 report; no second device or separate new test run is claimed.
+- A51/A52 pass for the three exact prompted assets: owner-reported long
+  start/40:00/79:00 playback/seeking and expected approximate duration, resume,
+  titles/Artist/Album, blue artwork and First/Second order. These are named
+  aggregate observations, not independent phone measurements or universal support.
+- Chapters are **unavailable** in this configuration. Selection/navigation is
+  **not run**. Local mapped chapter fields do not establish phone navigation;
+  the documented player limitation satisfies A52's chapter comparison.
+- Janne explicitly declares human testing completed. No further human checks are
+  requested or required for this accepted candidate. Preserve untested features
+  as untested; remaining automated milestone/ZIP checks and release gates stay.
+- Preparation, initial observations and all earlier reviews remain frozen.
+  `evidence/T21-phone-final-observations.json` records the correction, installed
+  version, actual chapter limit, exact source/assets and owner instruction.
+  `evidence/T21-phone-final-review.json` independently reviews the final checkpoint.
+  No original personal source, ordinary Music or unrelated media is accessed.
+- Runtime/helper/BAT/tests/CI/build/defaults are unchanged. README/SUPPORT now
+  describe this narrow accepted phone scope. No conversion or human retest ran.
+  Previous checkpoint `35f275ae284919757632ac4658cb81de00b498b5` independently
+  matches its live feature ref; push38159023529 and PR38159025835 pass both Windows
+  jobs. Final push/live-ref/new CI observations belong in PR #21 and the response.
+- Main stays `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`; T01-T20 are integrated.
+  PR #21 remains draft/unmerged and owner-controlled. T21 is done on the feature
+  branch, not integrated main or a completed release. Next T22 after integration.
 
 ## T20 completed recovery — historical feature checkpoint, now integrated
 
