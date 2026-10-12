@@ -1059,7 +1059,10 @@
       "status": "pass",
       "evidence": [
         "evidence/T27.md",
-        "evidence/T27-preclosure-verification.json"
+        "evidence/T27-records-integration.json",
+        "evidence/T27-integrated-verification.json",
+        "evidence/T27-completion-review.json",
+        "RELEASE_CLOSURE.md"
       ]
     },
     {
@@ -1069,8 +1072,14 @@
       "required": true,
       "method": "post-push technical verifier + human checklist",
       "expected": "Required task/case evidence is pushed; local main is clean and equals live main; public verification still passes; final response reports real URL/tag/C/hashes/D.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T27.md",
+        "evidence/T27-records-integration.json",
+        "evidence/T27-integrated-verification.json",
+        "evidence/T27-completion-review.json",
+        "RELEASE_CLOSURE.md"
+      ]
     },
     {
       "id": "A65",
@@ -1082,7 +1091,8 @@
       "status": "pass",
       "evidence": [
         "evidence/T27.md",
-        "evidence/T27-evidence-audit.json"
+        "evidence/T27-evidence-audit.json",
+        "evidence/T27-completion-review.json"
       ]
     },
     {

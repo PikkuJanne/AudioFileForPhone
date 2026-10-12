@@ -1,5 +1,40 @@
 # Current project status
 
+State: **T27 A63–A65 pass on verified integrated main; core v1.0.0 closure evidence complete.**
+All required T01–T27 and A01–A65 have actual passing evidence. O01 remains deferred.
+This completion record receives final docs-only integration and fresh post-record
+D/live/CI/public confirmation in the final closure PR/response; no self-hash loop.
+
+## T27 actual integration and closure checkpoint — 12 October 2026
+
+- Reviewed PR #27 head `37b80271aeacc5c927e8b18f59b221b94b818e72` was normally merged under
+  carried exact T24/T26 docs-only closure authority into main `d756c2933d9e8c0936bab2c1c6802b0993dd4c4c`.
+  Original approval/request/notes/assets stay fixed; no admin/protection/history
+  bypass. Actual integration report is evidence/T27-records-integration.json.
+- Normal local main fast-forward, exact main CI38288057489, actual PS5.1/PS7
+  RequireMain checks and combined public technical verifier pass on that clean
+  integrated main. C ancestor/full 126-path docs/codex-v1-only diff and
+  complete tree equality to the reviewed head prove shipped/runtime/tests/CI/
+  build Git blobs/modes remain exactly C. See T27-integrated-verification.json.
+- Fresh anonymous reads/downloads retain normal public Latest/only release,
+  unchanged tag object/C, exact approved notes and all three asset hashes/sizes.
+  All eight safe ZIP members still equal regular binary C blobs. No new audio
+  test is needed for these documentation-only changes; original T23/T25/T26
+  Windows/source/ZIP/public smoke evidence remains exact and is not recounted.
+- Independent A65 audit accounts for all prior required evidence and explicit
+  human/failed-attempt limits. Completion diff gets an additional independent
+  review. No missing required observation, template or deferred optional feature
+  is turned into success. Samsung S24/AIMP/USB scope and chapters-unavailable/
+  navigation-not-run remain; scripts unsigned; measured loudness O01 deferred.
+- Required cases A63–A65 now have actual integrated-main/source/evidence proof.
+  Integrate this reviewed docs-only completion record, then confirm final clean
+  local/live main D, exact D CI and public bytes again. Final D and its live
+  equality are recorded in response/closing PR, avoiding a containing-commit SHA.
+- No next required task. Future maintenance needs a new owner request. Never
+  retag C or replace public assets to include closure evidence.
+
+## Historical T27 preparation — superseded by actual integration proof above
+
 State: **T27 closure records prepared; current integrated main/public checks pass.**
 Current task: T27. A63 source relationship and A65 evidence audit pass for this
 checkpoint; final A64/integration completion remains pending. O01 deferred.

@@ -1,54 +1,66 @@
-# v1.0.0 closure — records prepared, final integration pending
+# AudioFileForPhone v1.0.0 — completed core release closure
 
-Public normal Latest [v1.0.0](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0)
-was published once at 2026-10-12T16:47:31Z. Fresh technical public/main verification
-passes at `f71880fccc75092e6fad5ad699d4ea1af79d6f39`; actual UTC observations and commands are
-in [T27 preclosure verification](evidence/T27-preclosure-verification.json).
+Normal public Latest [v1.0.0](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0)
+was published at 2026-10-12T16:47:31Z. All required T01–T27/A01–A65 have concrete
+passing evidence. [Actual T27 integrated-main proof](evidence/T27-integrated-verification.json)
+records fresh unauthenticated public verification and clean supported-shell main
+checks at `d756c2933d9e8c0936bab2c1c6802b0993dd4c4c`. This reviewed completion record receives final
+integration under existing closure authority; final post-record main D/live/CI/public
+proof must then be published in the closing PR/session response rather than embedding
+a commit's own SHA within that commit.
 
-Immutable annotated v1.0.0 tag object is
-`279945f7d5a4b887b7bd44eae5244b03060f76cc`, peeled source C
-`2092a405c1d06eca336e771a0ed5d1881acd015a`. This tag and all public bytes remain fixed for closure.
+Immutable annotated tag object `279945f7d5a4b887b7bd44eae5244b03060f76cc` peels to
+frozen tested source C `2092a405c1d06eca336e771a0ed5d1881acd015a`. Released bytes stay exactly approved:
 
-| Approved public asset | Bytes | SHA-256 |
+| Public asset | Bytes | SHA-256 |
 | --- | ---: | --- |
 | AudioFileForPhone-v1.0.0.zip | 53,958 | `8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf` |
 | release-manifest.json | 4,162 | `7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146` |
 | SHA256SUMS.txt | 183 | `83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8` |
 
-Exact [draft download/smoke](evidence/T25-draft-verification.json), actual
-[public download/hash/member proof](evidence/T26-public-verification.json),
-[public ZIP Windows smoke](evidence/T26-zip-smoke.json) and
+Actual [draft assets/smoke](evidence/T25-draft-verification.json),
+[public bytes/member proof](evidence/T26-public-verification.json),
+[released ZIP Windows smoke](evidence/T26-zip-smoke.json) and
 [independent public review](evidence/T26-independent-public-review.json) pass.
-T27 downloads exact public bytes again; no additional audio smoke is claimed.
-Original T23 source checks pass 1,196 required groups plus six observations;
-ZIP routine/BAT checks pass 410 groups plus six observations. Actual T26 public
-ZIP smoke passes ten groups/24 fully decoded outputs/113 exited owned processes
-on PowerShell 5.1 and 7. Historical scopes/counts are retained, not recounted.
+T27 downloads all three public assets again with exact hashes/original equality,
+CRC/safe eight-member inventory and binary C Git blob equality. No media rebuild.
 
-Windows [T20](evidence/T20.md) and final phone
-[T21 named observations](evidence/T21-phone-final-observations.json) retain their
-accepted methods and explicit limits. Phone scope is Samsung S24 / One UI 8.5 /
-AIMP v4.31.1747 / USB; chapters unavailable and navigation not run. Earlier
-physical interaction limits stay untested. Scripts are unsigned; SHA-256 is
-integrity evidence, not publisher authentication. Supported automated Windows
-PowerShell 5.1 / PowerShell 7 routes and named player scope are not universal
-hardware/player guarantees. Optional measured loudness O01 is deferred/off.
+Original actual T23 source checks pass 1,196 required groups plus six observations;
+exact ZIP routine/BAT checks pass 410 groups plus six observations. Actual T26
+public ZIP smoke passes ten groups/24 fully decoded 64 kbps outputs/113 naturally
+exited and closed owned subprocesses on PS5.1 5.1.26100.9444 and PS7 7.6.5.
+These are original named scopes, not new T27 executions or duplicated totals.
 
-Exact source C CI38264447275, reviewed T26 push38280710395/PR38280719891 and
-current owner-merged main CI38286497255 pass both Windows jobs. Current clean
-local main equals freshly advertised main; C ancestor/full 121 changed paths
-all under docs/codex-v1 prove shipped/runtime/tests/build/CI Git bytes/modes equal C.
-[Core evidence audit](evidence/T27-evidence-audit.json) checks required task/case
-records and honest human/failure limits; no template or missing observation is
-counted as success.
+[T20 Windows evidence](evidence/T20.md) and
+[T21 final phone observations](evidence/T21-phone-final-observations.json) retain
+accepted methods and physical limits. Named phone scope is Samsung S24 / One UI
+8.5 / AIMP v4.31.1747 / USB; chapters unavailable and navigation not run. No new
+manual action, phone/long-media test or personal/ordinary-Music scan is invented.
+Scripts remain unsigned; hashes prove integrity, not publisher authentication.
+Inherited CP 65001 and recorded child-only module handling remain the technical
+baseline boundary. App-internal handles are not instrumented by the direct ZIP
+smoke. Optional measured loudness O01 is deferred and disabled by default.
 
-Actual original [T24 approval](evidence/T24-authorization.json) plus
-[T26 carried acceptance](evidence/T26-authorization.json) authorize reviewed
-docs-only post-publication closure. Owner PR #26 has already integrated reviewed
-release evidence. Remaining records will be reviewed/pushed/integrated under the
-same scope, followed by actual clean-main/public verification and a completion
-record. Final D/live equality and post-record CI/public checks will be reported
-in the closure PR/final response without putting a commit's own SHA inside itself.
+Source C CI38264447275, reviewed T26/PR #27 push/PR matrices and integrated-main
+CI38288057489 pass both Windows jobs. Actual [normal PR #27 integration](evidence/T27-records-integration.json)
+proves merged tree equals reviewed head `37b80271aeacc5c927e8b18f59b221b94b818e72`. C is an ancestor
+of verified main `d756c2933d9e8c0936bab2c1c6802b0993dd4c4c`; all 126 C..main paths are docs/codex-v1,
+so every shipped/runtime/test/CI/build Git blob and mode remains C. Both actual
+supported-shell RequireMain checks and combined public verifier return 0/pass,
+with clean local main equal to independently advertised main. Repeat those checks
+after this completion record's own integration and report final D in PR/response.
 
-Outstanding work: remaining closure-record integration, actual A64 completion and
-final main D/CI/public re-verification. **Project closure is not complete yet.**
+[Independent evidence audit](evidence/T27-evidence-audit.json) accounts for 26 prior
+required tasks, 62 cases and 645 references, with exact report/source/human bindings.
+Historical failed attempts remain failures and count zero. [Completion review](evidence/T27-completion-review.json)
+audits this record and actual integration/main/public proof. No required case or
+template is silently waived. Optional O01 has no claimed result.
+
+Actual original [T24 approval](evidence/T24-authorization.json) and
+[T26 carried scope](evidence/T26-authorization.json) cover these reviewed docs-only
+post-publication integrations. No tag retarget, public-byte replacement, history
+rewrite, repository-setting/protection change or broader future integration occurs.
+No outstanding core implementation, human, publication or asset blocker remains
+at this verified integrated checkpoint; final post-record technical checks still
+must pass before the closing response. There is no next required task. Future
+maintenance needs a new owner request. Never alter released bytes for evidence.

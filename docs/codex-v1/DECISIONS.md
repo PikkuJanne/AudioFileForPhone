@@ -1,5 +1,23 @@
 # Decisions and policy ledger
 
+## T27 actual A64 and completion record — 12 October 2026
+
+- Integrate exact reviewed PR #27 only after actual push/PR Windows matrices pass
+  and current head/base/ref/tag/assets/notes/authority checks agree. Actual normal
+  merge creates `d756c2933d9e8c0936bab2c1c6802b0993dd4c4c`, tree equal reviewed `37b80271aeacc5c927e8b18f59b221b94b818e72`.
+  Ordinary fetch/main fast-forward preserves history and all payload bytes.
+- Execute actual supported-shell clean-main and combined public verification on
+  the integrated record tree after its exact main CI passes. Fresh anonymous
+  downloads and binary C member proof pass; A64 receives actual evidence rather
+  than a hypothetical final-SHA placeholder. All 126 C..main paths are allowed docs.
+- Preserve integration/verification/audit JSON bytes. This completion record may
+  describe the known tested main and prior reviewed head. Its own final containing
+  merge SHA is reported only after fresh final checks in the closure PR/response;
+  no endless evidence-commit chain and no released tag/assets modification.
+- Close required scope and retain deferred O01/human limitations. No new audio/
+  phone/Music scan or previous-suite recount. Any failed final check remains a
+  blocker despite this completion record until resolved and truthfully reported.
+
 ## T27 actual closure preparation and main proof — 12 October 2026
 
 - Preserve the owner's post-publication PR #26 merge by normal main/evidence
