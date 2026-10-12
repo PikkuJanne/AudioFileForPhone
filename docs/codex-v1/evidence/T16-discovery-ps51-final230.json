@@ -1,0 +1,341 @@
+{
+    "schema_version":  1,
+    "task":  "T16",
+    "mode":  "bounded_discovery_and_boundary",
+    "command":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-Discovery.ps1 -EvidencePath docs/codex-v1/evidence/T16-discovery-ps51-final230.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+    "started_utc":  "2026-10-12T15:06:21.7807239Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Discovery.ps1",
+                              "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Discovery.ps1",
+                             "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\z last.OGG",
+                                 "sha256":  "ed1f0eee4b24293b5f8e6a58a13246458440fef25b78dd6bf6f558d9d64cd030"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Pod [literal]\\a first.MP3",
+                                 "sha256":  "02bd5a7c7d3e16e3cb9c6381444f2cc191453a6d05e67bf2251bcd6999cd2869"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Pod [literal]\\nested\\middle.m4a",
+                                 "sha256":  "7db69ec2c6155c318eb92f04c7f606fdd5ce4c44cb240f4df8a53fa208198720"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_user\\keep.mp3",
+                                 "sha256":  "5ffd3a75b815d54f39bb73b3dd72da7fcbf7f857888abd0500bae26e5e75a998"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010101-neighbor\\keep.mp3",
+                                 "sha256":  "3d45cac086b3989585506b5946cf63df1d42d84e6bf4592aa092855a7725dff3"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20261301_010101\\keep.mp3",
+                                 "sha256":  "9245ec8d216702a39de19a941f46ddb46437ab2888a16dc0620a3f97d1ebc628"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_63kbps_20260101_010101\\keep.mp3",
+                                 "sha256":  "2277e34f49b0ed9f0b20e56a415fe978f8f710988c6ac16d9b6aacb83133d2e0"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Destination\\AudioForPhone_64kbps_20261011_120000\\skip.mp3",
+                                 "sha256":  "36b9f894f835c9184f459692b62f46d4ae13ff0422fa1c9b7eeb090e9c5876fd"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Marked prior output\\skip.mp3",
+                                 "sha256":  "12bbf1662256e789e5266bb800cfe7e52fe37cf7850eadf5b24b37510f63d852"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010101\\Historical input\\skip.mp3",
+                                 "sha256":  "29aef091edc6f712b977520812aaa8fde55af2434390004a4c294054e4a626c0"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Malformed marker\\keep.mp3",
+                                 "sha256":  "9d46089acc16266413ee6ef83d05716fcb02a30c0697a64b83808ed3895a612a"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Marker wrong self\\keep.mp3",
+                                 "sha256":  "83b8d3e32ae0a3c73770fb41e86e2f99e8c5926c25cc88321a241a0cbf4a3852"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Marker wrong schema\\keep.mp3",
+                                 "sha256":  "ef0952c45a9a00b1d1ae67cf9d9618194ad899500d4e22a93f04d48de73839e4"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\Marker wrong kind\\keep.mp3",
+                                 "sha256":  "360e1111b1604edecadf5356b17b5a1540804875415bbb39419c0209e760f02b"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010103\\Historical input\\keep.mp3",
+                                 "sha256":  "46a3bbbc2bcbd0f673a32047be8dc67091e12c5479385209bbbe97d3ad0f7db5"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010104\\keep.mp3",
+                                 "sha256":  "8267bca6d4b7acf3205cd783991187019b5635b3ff37058e0d1466bb632e778f"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010105\\Historical input\\keep.mp3",
+                                 "sha256":  "0c2c20c75cb7d6e1421db0d04c7c444c4aec1e8c793f4dbb62449e92d719cdc8"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010106\\Historical input\\keep.mp3",
+                                 "sha256":  "db7c2590f0ec20440c98e9229614eb247df2b6798a153ef0624cc2910b6b0321"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010107\\Historical input\\keep.mp3",
+                                 "sha256":  "3bd45fc111948b2d0e1e3d0f08b33ac82195728083f51bc814ad54ca2d608b1b"
+                             },
+                             {
+                                 "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010108\\Historical input\\keep.mp3",
+                                 "sha256":  "a2976f2f2a0499110ca70d787e2c901b4b4f319bae2b8dc9a13f616f6e8cf652"
+                             },
+                             {
+                                 "relative_path":  "Outside source selection\\never traverse.mp3",
+                                 "sha256":  "9c9dd7c0234a9cdb7ae23bfa09b3891129394466f41d135e1a43bff0187cd3bd"
+                             },
+                             {
+                                 "relative_path":  "ACL input\\early.mp3",
+                                 "sha256":  "9c83b2b9531e38b276f798cdd283b1900b7cd5dc3e606d4a67be578371be180b"
+                             },
+                             {
+                                 "relative_path":  "ACL input\\denied subtree\\hidden.mp3",
+                                 "sha256":  "56dabc8e34ee2e156531a63ae9f3841788793b8ec67b198b98a7000a4efdf8aa"
+                             },
+                             {
+                                 "relative_path":  "Music [real fixture]\\Pod [literal]\\2024-01-02 - Synthetic.mp3",
+                                 "sha256":  "f6602d01114c610f0a098093edef2c253f818caef74266819ea2b4eeda071de1"
+                             },
+                             {
+                                 "relative_path":  "Music [real fixture]\\AudioForPhone_user\\2024-01-03 - User prefix.mp3",
+                                 "sha256":  "f6602d01114c610f0a098093edef2c253f818caef74266819ea2b4eeda071de1"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Music [discovery fixture]\\z last.OGG",
+                                "sha256":  "ed1f0eee4b24293b5f8e6a58a13246458440fef25b78dd6bf6f558d9d64cd030"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Pod [literal]\\a first.MP3",
+                                "sha256":  "02bd5a7c7d3e16e3cb9c6381444f2cc191453a6d05e67bf2251bcd6999cd2869"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Pod [literal]\\nested\\middle.m4a",
+                                "sha256":  "7db69ec2c6155c318eb92f04c7f606fdd5ce4c44cb240f4df8a53fa208198720"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_user\\keep.mp3",
+                                "sha256":  "5ffd3a75b815d54f39bb73b3dd72da7fcbf7f857888abd0500bae26e5e75a998"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010101-neighbor\\keep.mp3",
+                                "sha256":  "3d45cac086b3989585506b5946cf63df1d42d84e6bf4592aa092855a7725dff3"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20261301_010101\\keep.mp3",
+                                "sha256":  "9245ec8d216702a39de19a941f46ddb46437ab2888a16dc0620a3f97d1ebc628"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_63kbps_20260101_010101\\keep.mp3",
+                                "sha256":  "2277e34f49b0ed9f0b20e56a415fe978f8f710988c6ac16d9b6aacb83133d2e0"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Destination\\AudioForPhone_64kbps_20261011_120000\\skip.mp3",
+                                "sha256":  "36b9f894f835c9184f459692b62f46d4ae13ff0422fa1c9b7eeb090e9c5876fd"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Marked prior output\\skip.mp3",
+                                "sha256":  "12bbf1662256e789e5266bb800cfe7e52fe37cf7850eadf5b24b37510f63d852"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010101\\Historical input\\skip.mp3",
+                                "sha256":  "29aef091edc6f712b977520812aaa8fde55af2434390004a4c294054e4a626c0"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Malformed marker\\keep.mp3",
+                                "sha256":  "9d46089acc16266413ee6ef83d05716fcb02a30c0697a64b83808ed3895a612a"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Marker wrong self\\keep.mp3",
+                                "sha256":  "83b8d3e32ae0a3c73770fb41e86e2f99e8c5926c25cc88321a241a0cbf4a3852"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Marker wrong schema\\keep.mp3",
+                                "sha256":  "ef0952c45a9a00b1d1ae67cf9d9618194ad899500d4e22a93f04d48de73839e4"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\Marker wrong kind\\keep.mp3",
+                                "sha256":  "360e1111b1604edecadf5356b17b5a1540804875415bbb39419c0209e760f02b"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010103\\Historical input\\keep.mp3",
+                                "sha256":  "46a3bbbc2bcbd0f673a32047be8dc67091e12c5479385209bbbe97d3ad0f7db5"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010104\\keep.mp3",
+                                "sha256":  "8267bca6d4b7acf3205cd783991187019b5635b3ff37058e0d1466bb632e778f"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010105\\Historical input\\keep.mp3",
+                                "sha256":  "0c2c20c75cb7d6e1421db0d04c7c444c4aec1e8c793f4dbb62449e92d719cdc8"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010106\\Historical input\\keep.mp3",
+                                "sha256":  "db7c2590f0ec20440c98e9229614eb247df2b6798a153ef0624cc2910b6b0321"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010107\\Historical input\\keep.mp3",
+                                "sha256":  "3bd45fc111948b2d0e1e3d0f08b33ac82195728083f51bc814ad54ca2d608b1b"
+                            },
+                            {
+                                "relative_path":  "Music [discovery fixture]\\AudioForPhone_64kbps_20260101_010108\\Historical input\\keep.mp3",
+                                "sha256":  "a2976f2f2a0499110ca70d787e2c901b4b4f319bae2b8dc9a13f616f6e8cf652"
+                            },
+                            {
+                                "relative_path":  "Outside source selection\\never traverse.mp3",
+                                "sha256":  "9c9dd7c0234a9cdb7ae23bfa09b3891129394466f41d135e1a43bff0187cd3bd"
+                            },
+                            {
+                                "relative_path":  "ACL input\\early.mp3",
+                                "sha256":  "9c83b2b9531e38b276f798cdd283b1900b7cd5dc3e606d4a67be578371be180b"
+                            },
+                            {
+                                "relative_path":  "ACL input\\denied subtree\\hidden.mp3",
+                                "sha256":  "56dabc8e34ee2e156531a63ae9f3841788793b8ec67b198b98a7000a4efdf8aa"
+                            },
+                            {
+                                "relative_path":  "Music [real fixture]\\Pod [literal]\\2024-01-02 - Synthetic.mp3",
+                                "sha256":  "f6602d01114c610f0a098093edef2c253f818caef74266819ea2b4eeda071de1"
+                            },
+                            {
+                                "relative_path":  "Music [real fixture]\\AudioForPhone_user\\2024-01-03 - User prefix.mp3",
+                                "sha256":  "f6602d01114c610f0a098093edef2c253f818caef74266819ea2b4eeda071de1"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "copied_bytes_unchanged":  true,
+    "cases":  [
+                  {
+                      "name":  "canonical filesystem paths and separator-aware ordinal containment",
+                      "acceptance_case":  "A17",
+                      "status":  "pass",
+                      "comparison_checks":  9
+                  },
+                  {
+                      "name":  "output equal or ancestor rejected; nested output and prefix neighbors allowed",
+                      "acceptance_case":  "A17",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "deterministic snapshot excludes explicit marked and structured legacy output",
+                      "acceptance_case":  "A15",
+                      "status":  "pass",
+                      "input_count":  17,
+                      "skip_count":  8,
+                      "long_legacy_log_prefix_recognized":  true,
+                      "arbitrary_prefix_and_malformed_identity_retained":  true,
+                      "drive_relative_legacy_identity_retained":  true
+                  },
+                  {
+                      "name":  "junction loop outside target and actual file reparse skipped visibly",
+                      "acceptance_case":  "A16",
+                      "status":  "pass",
+                      "actual_junctions":  2,
+                      "actual_file_reparse_points":  1,
+                      "file_reparse_kind":  "inert custom non-Microsoft name-surrogate reparse tag 0x2000A06E",
+                      "file_symbolic_link_available":  false
+                  },
+                  {
+                      "name":  "selected generated root rejected before run and prompts",
+                      "acceptance_case":  "A15",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "selected reparse directory and reparse ancestry rejected",
+                      "acceptance_case":  "A16",
+                      "status":  "pass"
+                  },
+                  {
+                      "name":  "ACL-denied descendant aborts snapshot and application before prompts and run",
+                      "acceptance_case":  "A16",
+                      "status":  "pass",
+                      "effective_operation_denial":  true,
+                      "prompt_conversion_and_run_absent":  true
+                  },
+                  {
+                      "name":  "real Music-like input repeated runs preserve source layout and exclude prior output",
+                      "acceptance_case":  "A15",
+                      "status":  "pass",
+                      "runs":  2,
+                      "original_files_per_run":  2,
+                      "default_audio_bitrate":  64000,
+                      "full_decode_and_metadata":  true,
+                      "music_destination":  "owned TEMP synthetic Music only"
+                  }
+              ],
+    "acls_restored":  true,
+    "links_removed":  true,
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "ffmpeg":  {
+                   "version":  "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+                   "sha256":  "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec"
+               },
+    "ffprobe":  {
+                    "version":  "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+                    "sha256":  "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52"
+                },
+    "file_symlink_capability":  {
+                                    "available":  false,
+                                    "unprivileged_win32_error":  1314,
+                                    "ordinary_win32_error":  1314,
+                                    "machine_settings_changed":  false
+                                },
+    "file_reparse_fixture":  {
+                                 "kind":  "inert custom non-Microsoft name-surrogate reparse tag 0x2000A06E",
+                                 "actual_reparse_attribute":  true,
+                                 "ordinary_content_read_failed":  true
+                             },
+    "finished_utc":  "2026-10-12T15:06:39.4008476Z"
+}

@@ -1,0 +1,824 @@
+﻿{
+  "schema_version": 1,
+  "task": "T16",
+  "mode": "preflight_negative_and_helper",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-Preflight.ps1 -EvidencePath docs/codex-v1/evidence/T16-preflight-ps7-final230.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+  "started_utc": "2026-10-12T15:14:26.2530243Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-Preflight.ps1",
+      "sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    }
+  ],
+  "source_unchanged": true,
+  "synthetic_before": [
+    {
+      "relative_path": "Input [literal]\\2024-01-02 - Synthetic.mp3",
+      "sha256": "7b37cc67eeba467fa048ec0fe2337559e714f7a85d089029edfc25a42d0ea46e"
+    },
+    {
+      "relative_path": "Existing file [literal].txt",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Wrong cover.txt",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Corrupt cover.jpg",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Valid cover.jpg",
+      "sha256": "60acb810aa114bd5d35597caa1b1b742e45f511968e8c78f52704453af55a7c9"
+    },
+    {
+      "relative_path": "Valid cover.png",
+      "sha256": "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+    },
+    {
+      "relative_path": "ACL unreadable input\\Synthetic.mp3",
+      "sha256": "7b37cc67eeba467fa048ec0fe2337559e714f7a85d089029edfc25a42d0ea46e"
+    }
+  ],
+  "synthetic_after": [
+    {
+      "relative_path": "Input [literal]\\2024-01-02 - Synthetic.mp3",
+      "sha256": "7b37cc67eeba467fa048ec0fe2337559e714f7a85d089029edfc25a42d0ea46e"
+    },
+    {
+      "relative_path": "Existing file [literal].txt",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Wrong cover.txt",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Corrupt cover.jpg",
+      "sha256": "c87e1c53a9b42db719986459b1a417bc3d356272245ea4857563220e53a78a6d"
+    },
+    {
+      "relative_path": "Valid cover.jpg",
+      "sha256": "60acb810aa114bd5d35597caa1b1b742e45f511968e8c78f52704453af55a7c9"
+    },
+    {
+      "relative_path": "Valid cover.png",
+      "sha256": "70812615ff19a0d62fd55ff57a426b6a7dfdff603ddc4c843ce3cec5921fa3b5"
+    },
+    {
+      "relative_path": "ACL unreadable input\\Synthetic.mp3",
+      "sha256": "7b37cc67eeba467fa048ec0fe2337559e714f7a85d089029edfc25a42d0ea46e"
+    }
+  ],
+  "synthetic_unchanged": true,
+  "copied_bytes_unchanged": true,
+  "temp_exclusively_reserved": true,
+  "marker_create_new": true,
+  "cases": [
+    {
+      "name": "input-missing",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Missing input'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "input.*(directory|folder)|resolve input",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '<OWNED_TEMP>\\Missing input': Cannot find path '<OWNED_TEMP>\\Missing input' because it does not exist. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.127 Input folder : <OWNED_TEMP>\\Missing input Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-file",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Existing file [literal].txt'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "input.*(directory|folder)",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '<OWNED_TEMP>\\Existing file [literal].txt': InputFolder must be a directory, not a file. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.105 Input folder : <OWNED_TEMP>\\Existing file [literal].txt Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-provider-Env",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = 'Env:\\TEMP'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "filesystem.*directory|directory.*filesystem",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder 'Env:\\TEMP': InputFolder must be a filesystem directory. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.105 Input folder : Env:\\TEMP Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-provider-Registry",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = 'Registry::HKEY_CURRENT_USER\\Software'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "filesystem.*directory|directory.*filesystem",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder 'Registry::HKEY_CURRENT_USER\\Software': InputFolder must be a filesystem directory. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.099 Input folder : Registry::HKEY_CURRENT_USER\\Software Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-provider-Variable",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = 'Variable:\\PSVersionTable'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "filesystem.*directory|directory.*filesystem",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder 'Variable:\\PSVersionTable': InputFolder must be a filesystem directory. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.112 Input folder : Variable:\\PSVersionTable Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-embedded-quote",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]\\Bad\"path'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "invalid|malformed|input.*(directory|folder)|resolve input",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '<OWNED_TEMP>\\Input [literal]\\Bad\"path': Cannot find path '<OWNED_TEMP>\\Input [literal]\\Bad\"path' because it does not exist. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.107 Input folder : <OWNED_TEMP>\\Input [literal]\\Bad\"path Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-whitespace",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '   '\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "input.*(directory|folder)|empty|whitespace",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: InputFolder must be a non-empty filesystem directory. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.087 Input folder : Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-omitted-binding",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "InputFolder|mandatory|NonInteractive",
+      "diagnostic_excerpt": "Cannot process command because of one or more missing mandatory parameters: InputFolder.",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-drive-root",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = 'C:\\'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "root",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder 'C:\\': InputFolder root directories are not supported: 'C:\\' (root 'C:\\'). Select a folder below the root. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.113 Input folder : C:\\ Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "root_spelling_preserved": true,
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-unc-root-slash",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '\\\\synthetic.invalid\\share\\'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "root",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '\\\\synthetic.invalid\\share\\': InputFolder root directories are not supported: '\\\\synthetic.invalid\\share\\' (root '\\\\synthetic.invalid\\share'). Select a folder below the root. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.103 Input folder : \\\\synthetic.invalid\\share\\ Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "root_spelling_preserved": true,
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-unc-root-no-slash",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '\\\\synthetic.invalid\\share'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "root",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '\\\\synthetic.invalid\\share': InputFolder root directories are not supported: '\\\\synthetic.invalid\\share' (root '\\\\synthetic.invalid\\share'). Select a folder below the root. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.120 Input folder : \\\\synthetic.invalid\\share Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "root_spelling_preserved": true,
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-0",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '0'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '0'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.094 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate--1",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '-1'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '-1'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.093 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-7",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '7'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '7'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.086 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-65",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '65'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '65'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.091 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-145",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '145'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '145'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.090 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-321",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = '321'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|bitrate",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported BitrateKbps '321'. Use one of: 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320 kbps. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.085 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "max-base-23",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    MaxBaseLength = '23'\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "MaxBaseLength|base.*length",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: MaxBaseLength must be between 24 and 180 (received 23). ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.093 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "max-base-181",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    MaxBaseLength = '181'\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "MaxBaseLength|base.*length",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: MaxBaseLength must be between 24 and 180 (received 181). ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.087 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "bitrate-binding",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    BitrateKbps = 'not-an-integer'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "BitrateKbps|Int32|convert",
+      "diagnostic_excerpt": "Cannot process argument transformation on parameter 'BitrateKbps'. Cannot convert value \"not-an-integer\" to type \"System.Int32\". Error: \"The input string 'not-an-integer' was not in a correct format.\"",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "max-base-binding",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    MaxBaseLength = 'not-an-integer'\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "MaxBaseLength|Int32|convert",
+      "diagnostic_excerpt": "Cannot process argument transformation on parameter 'MaxBaseLength'. Cannot convert value \"not-an-integer\" to type \"System.Int32\". Error: \"The input string 'not-an-integer' was not in a correct format.\"",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "output-existing-file",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Existing file [literal].txt'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "existing file|output.*directory|output.*parent",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: OutputParent is an existing file: <OWNED_TEMP>\\Existing file [literal].txt ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.170 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "output-provider",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = 'Env:\\TEMP'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "filesystem.*directory|directory.*filesystem",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: OutputParent must be a filesystem directory. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.142 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "output-invalid",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]\\Bad\"path'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "invalid|malformed|Illegal characters in path|output.*(directory|parent)",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Unsupported preserved path component 'Bad\"path' in 'C:\\Bad\"path'. Choose a compatible source folder or a shorter output parent; folder names are not changed. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.145 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "output-file-ancestor",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Existing file [literal].txt\\nested child'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "file|output.*(directory|parent)",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: OutputParent is not writable '<OWNED_TEMP>\\Existing file [literal].txt\\nested child': Exception calling \"CreateDirectory\" with \"1\" argument(s): \"Cannot create '<OWNED_TEMP>\\Existing file [literal].txt' because a file or directory with the same name already exists.\" ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.511 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "cover-missing",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    CoverPath = '<OWNED_TEMP>\\Missing cover.jpg'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "cover",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid CoverPath '<OWNED_TEMP>\\Missing cover.jpg': Cannot find path '<OWNED_TEMP>\\Missing cover.jpg' because it does not exist. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.187 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "cover-directory",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    CoverPath = '<OWNED_TEMP>\\Input [literal]'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "cover",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid CoverPath '<OWNED_TEMP>\\Input [literal]': CoverPath must be a JPEG or PNG file (.jpg, .jpeg, .png). ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.116 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "cover-wrong-extension",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    CoverPath = '<OWNED_TEMP>\\Wrong cover.txt'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "cover|JPEG|PNG",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid CoverPath '<OWNED_TEMP>\\Wrong cover.txt': CoverPath must be a JPEG or PNG file (.jpg, .jpeg, .png). ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=0.968 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "cover-corrupt-jpeg",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    CoverPath = '<OWNED_TEMP>\\Corrupt cover.jpg'\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "cover|JPEG|decode|image",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid CoverPath '<OWNED_TEMP>\\Corrupt cover.jpg': Exception calling \"FromFile\" with \"1\" argument(s): \"An object could not be created, possibly due to a lack of memory, but most likely due to invalid input.\" ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.102 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "tool-missing-ffmpeg",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "ffmpeg",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Could not find ffmpeg.exe. Put it next to this script or add it to PATH. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=0.538 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "tool-missing-ffprobe",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "ffprobe",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Could not find ffprobe.exe. Put it next to this script or add it to PATH. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=0.564 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "tool-invalid-local-executable",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "ffmpeg|executable|version",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid ffmpeg executable '<OWNED_TEMP>\\App\\ffmpeg.exe': StartFailed: Exception calling \".ctor\" with \"4\" argument(s): \"An error occurred trying to start process '<OWNED_TEMP>\\App\\ffmpeg.exe' with working directory '<PROJECT>'. The specified executable is not a valid application for this OS platform.\" ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.450 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "tool-version-failure",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "Invalid ffmpeg executable|version",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid ffmpeg executable '<OWNED_TEMP>\\App\\ffmpeg.exe': Expected a successful tool version response. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.051 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "input-unreadable-acl",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\ACL unreadable input'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\Output [literal]'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "read|access|enumerat|input.*(directory|folder)",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: Invalid or unreadable InputFolder '<OWNED_TEMP>\\ACL unreadable input': Access to the path '<OWNED_TEMP>\\ACL unreadable input' is denied. ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=0; processed=0; converted=0; failed=0; not_processed=0; scan_excluded=0; unsupported=0; elapsed_seconds=0.171 Input folder : <OWNED_TEMP>\\ACL unreadable input Output root : (not available; see error for any reserved scope) Output base : Total files : 0 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    },
+    {
+      "name": "output-unwritable-acl",
+      "status": "pass",
+      "exit_code": 1,
+      "command_text": "$ErrorActionPreference = 'Stop'\n$arguments = @{\n    InputFolder = '<OWNED_TEMP>\\Input [literal]'\n    Interactive = $true\n    OutputParent = '<OWNED_TEMP>\\ACL unwritable output'\n}\n$global:LASTEXITCODE = $null\ntry {\n    & '<OWNED_TEMP>\\App\\AudioFileForPhone.ps1' @arguments *>&1 | ForEach-Object {\n        if ($_ -is [Management.Automation.ErrorRecord]) { [Console]::Out.WriteLine($_.Exception.Message) }\n        else { [Console]::Out.WriteLine([string]$_) }\n    }\n    if ($null -eq $global:LASTEXITCODE) { throw 'Application did not return a native script exit status.' }\n    exit $global:LASTEXITCODE\n} catch {\n    [Console]::Out.WriteLine($_.Exception.Message)\n    exit 1\n}",
+      "host_options": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-EncodedCommand"
+      ],
+      "expected_diagnostic_pattern": "writ|access|output.*(directory|parent)",
+      "diagnostic_excerpt": "[FATAL] The run stopped: Preflight failed: OutputParent is not writable '<OWNED_TEMP>\\ACL unwritable output': Exception calling \".ctor\" with \"4\" argument(s): \"Access to the path '<OWNED_TEMP>\\ACL unwritable output\\.AudioFileForPhone-write-96a74c2534fd410c8ca80066cfef8e5d.tmp' is denied.\" ============================================================ ==== Summary ==== [RESULT] status=FailedBeforeConversion; total=1; processed=0; converted=0; failed=0; not_processed=1; scan_excluded=0; unsupported=0; elapsed_seconds=1.482 Input folder : <OWNED_TEMP>\\Input [literal] Output root : (not available; see error for any reserved scope) Output base : Total files : 1 Converted : 0 Failed : 0 Log file : (not available) Manifest : (not available) Exit code : 1 ============================================================",
+      "prompt_and_conversion_absent": true,
+      "output_parent_empty": true
+    }
+  ],
+  "helper_cases": [
+    {
+      "name": "dot-source-inert",
+      "status": "pass",
+      "exit_code": 0,
+      "command_text": "$ErrorActionPreference = 'Stop'; . '<OWNED_TEMP>\\App\\AudioFileForPhone.Helpers.ps1'; Write-Output 'T04_HELPERS_IMPORTED'"
+    },
+    {
+      "name": "tool-prerequisites-ignore-local-exit-shadow",
+      "status": "pass",
+      "caller_local_exit": 17
+    },
+    {
+      "name": "cover-validate-jpg",
+      "status": "pass",
+      "caller_local_exit": 17
+    },
+    {
+      "name": "cover-validate-png",
+      "status": "pass",
+      "caller_local_exit": 17
+    },
+    {
+      "name": "numeric-boundaries-8-24",
+      "status": "pass"
+    },
+    {
+      "name": "numeric-boundaries-64-60",
+      "status": "pass"
+    },
+    {
+      "name": "numeric-boundaries-320-180",
+      "status": "pass"
+    },
+    {
+      "name": "skip-write-probe-no-creation",
+      "status": "pass",
+      "public_preview": "deferred to T12"
+    }
+  ],
+  "permissions": [
+    {
+      "name": "owned-input-list-denied",
+      "status": "pass",
+      "effective_operation_denial": true,
+      "rights": "ListDirectory/ReadData",
+      "scope": "new owned TEMP fixture only"
+    },
+    {
+      "name": "owned-output-create-denied",
+      "status": "pass",
+      "effective_operation_denial": true,
+      "rights": "WriteData/CreateFiles",
+      "scope": "new owned TEMP fixture only"
+    }
+  ],
+  "acls_restored": true,
+  "cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "ffmpeg": {
+    "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+    "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec"
+  },
+  "ffprobe": {
+    "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+    "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52"
+  },
+  "tool_version_failure_fixture": {
+    "source": "%WINDIR%\\System32\\whoami.exe",
+    "sha256": "23240ef9f8b0a9a324110b1c2331de31dc1b0e08f5359cb707e51a939af56cd3",
+    "purpose": "Trusted local native executable with a failing ffmpeg -version response"
+  },
+  "finished_utc": "2026-10-12T15:15:17.5309249Z"
+}

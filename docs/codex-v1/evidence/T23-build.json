@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "status": "pass",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "started_utc": "2026-10-12T15:12:46.545809+00:00",
+  "ended_utc": "2026-10-12T15:12:52.442634+00:00",
+  "command": [
+    "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "RemoteSigned",
+    "-File",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\build-source\\tools\\Build-Package.ps1",
+    "-SourcePath",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\build-source",
+    "-SourceCommit",
+    "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "-TargetTag",
+    "v1.0.0",
+    "-OutputDirectory",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets",
+    "-DependencyProvenancePath",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\dependency-provenance.json",
+    "-TestEvidencePath",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\candidate-test-evidence.json"
+  ],
+  "exit_code": 0,
+  "stdout_sha256": "30864357877ab36d634cbe496ad4dcaceb1a79be1f9f75ca5e713634f6b60a3f",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "driver_sha256": "2dbd9502f0309bb6d03839c21d58bd9e35eba8bf7f1ed35f6e2b3272e278d528",
+  "creationflags": 0,
+  "child_environment_change": "Remove PSMODULEPATH case-insensitively only from owned child environment; inherit existing console.",
+  "source_clean_before": true,
+  "source_clean_after": true,
+  "all_tracked_source_files_unchanged": true,
+  "tracked_file_count": 942,
+  "assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.0.zip",
+      "bytes": 53958,
+      "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 4162,
+      "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+    }
+  ],
+  "build_result": {
+    "status": "pass",
+    "source_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "app_version": "1.0.0",
+    "output_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets",
+    "zip_name": "AudioFileForPhone-v1.0.0.zip",
+    "zip_sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+    "manifest_sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+  },
+  "build_inputs": {
+    "dependency_provenance_sha256": "af0f052b893f35c1795b15251824d08c0992676512a0f4a5a7c99ec9a27a9b06",
+    "test_evidence_sha256": "e6f0569b615e26f47043dc81dda620236beacfdb55eb8d39dc2426b3098bc7f3"
+  },
+  "test_evidence": [
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps51-final230.json",
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "sha256": "89af7af6fb5024650fb3bc4c84276bac6a73ea63b0e22efa3c42266e04b0c9f5",
+      "status": "pass"
+    },
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps7-final230.json",
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "sha256": "1c196676babe22039af65275188f84e957a4a30c7bd0b5d95f0e05773453b4e3",
+      "status": "pass"
+    }
+  ],
+  "manifest_test_scope": "The two fresh exact-C routine parents bind 306 required groups and both retained full real-FFmpeg suites. Full milestone and exact-ZIP results are additionally bound in T23 candidate evidence after build. ZIP acceptance cannot be a pre-build attestation.",
+  "authoritative_build": "PS7 build bytes; no cross-shell compression reproducibility claim.",
+  "raw_capture_scope": "Private owned staging; no media/raw logs in Git."
+}

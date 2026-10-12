@@ -1,5 +1,22 @@
 # Authorization and external-change boundaries
 
+## T23 task authorization and freeze — 12 October 2026
+
+The owner requested "T23 next please". Fresh fetch, advertised main/ref reads and
+live GitHub verify approved T22 completion PR #23 merged by PikkuJanne at
+14:38:54Z into `2092a405c1d06eca336e771a0ed5d1881acd015a`. Both supported
+shells actually pass clean-main synchronization checks; that commit's main CI
+run 38264447275 passes both Windows jobs. Select this full commit as frozen C.
+
+Normal task authority covers clean detached C worktrees, isolated full automated
+source/ZIP checks, external package/provenance assets, docs/codex-v1 evidence and
+handoff, commits, feature push and a relevant draft PR. The evidence branch is
+`codex/v1-release-evidence`, based on C; main stays C until authorized closure.
+Only docs/codex-v1 may change after freeze. Preserve the existing human-test
+closure and reuse the unchanged media-processing payload's actual T20/T21 scope.
+This task request adds no main merge, tag, draft-release, publication, repository
+settings or changed-payload authority. T24 requires exact candidate approval.
+
 ## T22 bounded integration approval — 12 October 2026
 
 The owner answered **"Approve T22 integration"** to the explicit question:

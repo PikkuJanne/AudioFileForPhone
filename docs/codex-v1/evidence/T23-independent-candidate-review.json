@@ -1,0 +1,1073 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "kind": "independent_candidate_bytes_and_prebuild_evidence_review",
+  "status": "pass",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "started_utc": "2026-10-12T15:16:24.954783+00:00",
+  "scope": "Exact three local assets, binary C source/member/build identity, actual unsigned signature observations, dependencies and original supplied prebuild reports. Full milestone and ZIP acceptance remain pending separate root binders.",
+  "processes": [
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "155591dd98dda9894f00c786659e2cac9b68d5e5aa59d64d79dc018f9b61a2de",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "symbolic-ref",
+        "--quiet",
+        "HEAD"
+      ],
+      "exit_code": 1,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-files",
+        "-z"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "545491fafb076cb4b769a5886945c44a43c31b9ecbc914965188cfa25deebe10",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4e9e102499f09275069adb4662db4e9f76172cb28d86f0457eb2bdca11fcd620",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "fa1c5f420ec7c53e7a8e0fad6d5044ce0f4c279bc13349f0d1ed4cb2d1fdadf3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "f4fc738237f06817248aaf1ed6cf69abe2e1f83ff80699bf33bd9d09052fd00d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "6a93a3cff7b02928c7726adbd58a5981fa5816b5a01cacc79878e7ce13de4214",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "2e888477d800bb15c4315780c2ae96fae1d34b8766edcd1654bea4daf083b4f5",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d2dd937da2a4a40561390b261b2738ee16a15131f2d9f079d42ca7c517295353",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:CHANGELOG.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:CHANGELOG.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9bad74c773e0233f8e2696e1b307ab9fede837642ab54a0e2d0349bc25161076",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "CHANGELOG.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d1b3f6acbeb2948eff81b6384b922d442fe53c576a15c8a8d22383186631f8e2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:LICENSE"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:LICENSE"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "027e80ea639fb896c8b60d2bcb93378d42e97edf6fc24ab943dc5447b69331da",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "LICENSE"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "ac574a82898ee0c5c043025ddd14ce516342603c2392823c688f3f667d705d48",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:README.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:README.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "635f014dc98e8c32e3dd6a961d77cb644d0ba3a6b9c684f29ff0faeaf43566cd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "README.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "098292d3d199b0aa5b6f3fbd22c9251583fd6ef12694e3186f7e20ebb507ee52",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SECURITY.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SECURITY.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "8d4bbbf88f1e7b355ccaaeadd7c479a6dc74be7e3432215581c531068b1dd58e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "SECURITY.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "909f2d8d116665992210b21f002530927cc99ca4fb33dd096e4d4f3939040cb4",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SUPPORT.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "rev-parse",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SUPPORT.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "bba3aa21a26c5a25eac362ea2174dc8f03f2d31879d4a638066fd3c931d2acae",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-tree",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--",
+        "SUPPORT.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c2e1c03b07f9e09006dbc494a0a0da2d7033587eb4507d84a4eb9e15e113e923",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:tools/package-files.json"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:tools/Build-Package.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "<PS7>",
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<EXTERNAL_T23_STAGE>\\independent-signature-inspect.ps1",
+        "-Root",
+        "<EXTERNAL_T23_STAGE>\\independent-review-payload"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "ea4db9a0a0adb343e13121b2bc4aa1364acc9b87104ca06a0e0cd6257808b2b7",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "<USERPROFILE>\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-nostdin",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "711056f2bc922237113d5defe7da4dbd97beaab41098e5f8d425753dbfea99ff",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "<USERPROFILE>\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+        "-version"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c28ec08933e2c9eeac8a7341b1fced84e23745c7ca69e26e7ca83226714ef209",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "cat-file",
+        "blob",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "ls-files",
+        "-z"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "545491fafb076cb4b769a5886945c44a43c31b9ecbc914965188cfa25deebe10",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    },
+    {
+      "command_arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "<EXTERNAL_T23_STAGE>\\build-source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true,
+      "pipes_closed": true,
+      "process_handle_closed": true,
+      "creation_flags": 0
+    }
+  ],
+  "acceptance_completion_claimed": false,
+  "full_milestone_and_zip_gates": "pending_root_validation",
+  "release_authorization": "not_granted",
+  "tag_or_release_writes": false,
+  "new_human_tests": false,
+  "assets": [
+    {
+      "path": "AudioFileForPhone-v1.0.0.zip",
+      "bytes": 53958,
+      "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+    },
+    {
+      "path": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+    },
+    {
+      "path": "release-manifest.json",
+      "bytes": 4162,
+      "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+    }
+  ],
+  "members": [
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "git_blob_oid": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "bytes": 112323,
+      "sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "git_blob_oid": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "bytes": 1800,
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "git_blob_oid": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "bytes": 40032,
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "git_blob_oid": "e2c46a102ac9450ee333b56cd53b117ced0cdfdf",
+      "bytes": 1700,
+      "sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "LICENSE",
+      "git_blob_oid": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "bytes": 1070,
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "README.md",
+      "git_blob_oid": "aaae4e650aaf4481c17ab69bc16d726225efc7a5",
+      "bytes": 12749,
+      "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "SECURITY.md",
+      "git_blob_oid": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "bytes": 6589,
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "zip_matches_C_literal_bytes": true
+    },
+    {
+      "path": "SUPPORT.md",
+      "git_blob_oid": "ddae51c0951b7676ff94e711eeacf36c14d4752a",
+      "bytes": 13911,
+      "sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+      "zip_matches_C_literal_bytes": true
+    }
+  ],
+  "signatures": {
+    "shell": "7.6.5",
+    "version": "1.0.0",
+    "signatures": [
+      {
+        "name": "AudioFileForPhone.Helpers.ps1",
+        "status": "NotSigned",
+        "thumbprint": null
+      },
+      {
+        "name": "AudioFileForPhone.ps1",
+        "status": "NotSigned",
+        "thumbprint": null
+      }
+    ]
+  },
+  "dependencies": [
+    {
+      "executable_name": "ffmpeg.exe",
+      "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+    },
+    {
+      "executable_name": "ffprobe.exe",
+      "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+    }
+  ],
+  "manifest_test_parents": [
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps51-final230.json",
+      "sha256": "89af7af6fb5024650fb3bc4c84276bac6a73ea63b0e22efa3c42266e04b0c9f5",
+      "required_groups": 153,
+      "separate_observations": 3,
+      "children": [
+        {
+          "reference": "T17-unit-ps51-final230.json",
+          "sha256": "d37589e509cb88fd6712a6cb80906ff9469456fd31a3e171b82cc8244f73be95",
+          "required_groups": 31,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-ci-dependencyguards-ps51-final230.json",
+          "sha256": "4103069c225b8eb5f4697c00b30f9f4eef288ec856841ee0ea635ad37b4721ad",
+          "required_groups": 22,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-package-ps51-final230.json",
+          "sha256": "1e3179053580f676e37709eeaa5b01ab9b0d52238e64c90fc97e1457c8afacc9",
+          "required_groups": 51,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-baseline-ps51-final230.json",
+          "sha256": "86b1416901ae2dac550f8b1abe3891c6b62fe12f2341384f773b9e4659c06fdb",
+          "required_groups": 7,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-help-ps51-final230.json",
+          "sha256": "a246a5c92cc190de918eff9857fbeccce67793a5e61175a3076214369a996415",
+          "required_groups": 7,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-native-ps51-final230.json",
+          "sha256": "a1ddbaccc62ddac0ccf0538c7bb861c00145dbb8c072dd4cbff8148baf5794e6",
+          "required_groups": 35,
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps7-final230.json",
+      "sha256": "1c196676babe22039af65275188f84e957a4a30c7bd0b5d95f0e05773453b4e3",
+      "required_groups": 153,
+      "separate_observations": 3,
+      "children": [
+        {
+          "reference": "T17-unit-ps7-final230.json",
+          "sha256": "334219c7a732edb7a67c1866ae7a42420a0e4cc4694c2a668cc16083ee5a4e35",
+          "required_groups": 31,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-ci-dependencyguards-ps7-final230.json",
+          "sha256": "4175d69e6f3ce5621803184c177d6090966921bdcbb5828478b3bf2bc0c39207",
+          "required_groups": 22,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-package-ps7-final230.json",
+          "sha256": "17a50bf74eb0e05c09f8e270d5806342acf9f4d9817c6b79975d77d1c1a4fa0e",
+          "required_groups": 51,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-baseline-ps7-final230.json",
+          "sha256": "b1874977ea393d88a5d9dc9c8fcab1ba07c25e88d6184a9f56ce74d414361ac4",
+          "required_groups": 7,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-help-ps7-final230.json",
+          "sha256": "79bdabdc7e703721dd0918fb42e942e491c812102c4c589307de646c1a149e9e",
+          "required_groups": 7,
+          "status": "pass"
+        },
+        {
+          "reference": "T17-native-ps7-final230.json",
+          "sha256": "ba28bf2a29fbd41ce07cca72a5d24ada33f595a5ba372e077c6795a3a88a7b65",
+          "required_groups": 35,
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "prebuild_required_groups": 306,
+  "prebuild_separate_observations": 6,
+  "source_tracked_files": 942,
+  "source_bytes_unchanged": true,
+  "assets_bytes_unchanged": true,
+  "source_still_clean_detached_C": true,
+  "manifest_sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+  "zip_sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+  "checksums_sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
+  "dependency_input_sha256": "af0f052b893f35c1795b15251824d08c0992676512a0f4a5a7c99ec9a27a9b06",
+  "test_input_sha256": "e6f0569b615e26f47043dc81dda620236beacfdb55eb8d39dc2426b3098bc7f3",
+  "human_equivalence_runtime": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49"
+      },
+      "blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "equal": true
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "b59cbea5497f428b4b063929f06b924fc9e4424c"
+      },
+      "blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "equal": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "8bec7664cca0b27a484023daeddd4fab46294805"
+      },
+      "blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "equal": true
+    }
+  ],
+  "existing_evidence": [
+    {
+      "path": "evidence/T23-start.json",
+      "sha256": "a13cf1ec52e8c9b5b9fbd444b475eba28c8bd7a0152293a18977157b7d952478"
+    },
+    {
+      "path": "evidence/T23-build.json",
+      "sha256": "db88d36c2b69488d2bc1e845ecd6763f080eb85c4e3d39f74e6b0ffa894fab63"
+    },
+    {
+      "path": "evidence/T23-human-equivalence.json",
+      "sha256": "61776388ee977295a2a812a6e877cdf3ac36df887243292bf0d8c4f23fed5240"
+    }
+  ],
+  "direct_zip_smoke": {
+    "reference": "evidence/T23-zip-smoke.json",
+    "sha256": "0a232cb5cc68bbf0a796d945a23cba0f4af83615c308001b9a60864cd6c5fa2c",
+    "status": "pass",
+    "check_groups": 10,
+    "outputs": 24,
+    "naturally_exited_processes_with_closed_pipes_handles": 113,
+    "scope": "Both actual shells default/PNG/JPG conversions, four input codecs, recursive date layout, metadata/art override, independent64kbps/full audio/art decode, actual BAT missing-input preferred/fallback and missing-dependency failures. Application internal handles uninstrumented in direct smoke."
+  },
+  "preserved_preliminary_review": {
+    "reference": "independent-candidate-review-attempt1.json",
+    "sha256": "5f39a5457ae59fd43e2010241bacb98a87a56aaf59ce2fed029461c34f33c883",
+    "status": "fail",
+    "reason": "Review harness Path ordering folds case on Windows; corrected to explicit ordinal string sorting. Candidate bytes and acceptance tests unchanged."
+  },
+  "reviewer_script_sha256": "799a1d6f3fa482d27521defe4e99c57b3316bd3aed66de610097eda7f4720209",
+  "no_changed_source_payload": true,
+  "completed_utc": "2026-10-12T15:16:30.137863+00:00"
+}

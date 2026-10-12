@@ -1,0 +1,29 @@
+{
+  "task": "T23",
+  "generated_utc": "2026-10-12T15:05:08.622869+00:00",
+  "command": [
+    "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-NonInteractive",
+    "-ExecutionPolicy",
+    "RemoteSigned",
+    "-Command",
+    "[pscustomobject]@{ PSHOME=$PSHOME; PSModulePath=$env:PSModulePath; FileHashCommand=(Get-Command Get-FileHash -ErrorAction SilentlyContinue).Source; UtilityManifests=@(Get-Module -ListAvailable Microsoft.PowerShell.Utility | Select-Object Name,Path,Version); Shell=$PSVersionTable.PSVersion.ToString() } | ConvertTo-Json -Depth 4"
+  ],
+  "creationflags": 0,
+  "console_output_code_page": 65001,
+  "parent_module_path_key_casing": [
+    "PSMODULEPATH"
+  ],
+  "removed_child_key_casing": [
+    "PSMODULEPATH"
+  ],
+  "failed_driver_pop_key": "PSModulePath",
+  "failed_driver_plain_dict_pop_removed_key": false,
+  "exit_code": 0,
+  "stdout_sha256": "b1a92461e6f0a28b01e960e8428405ffc54b1d4917fd1003c01a4593a825d8b8",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stdout_text": "{\r\n    \"PSHOME\":  \"C:\\\\Windows\\\\System32\\\\WindowsPowerShell\\\\v1.0\",\r\n    \"PSModulePath\":  \"C:\\\\Users\\\\jtvuo\\\\OneDrive\\\\Tiedostot\\\\WindowsPowerShell\\\\Modules;C:\\\\Program Files\\\\WindowsPowerShell\\\\Modules;C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\Modules\",\r\n    \"FileHashCommand\":  \"Microsoft.PowerShell.Utility\",\r\n    \"UtilityManifests\":  [\r\n                             {\r\n                                 \"Name\":  \"Microsoft.PowerShell.Utility\",\r\n                                 \"Path\":  \"C:\\\\Windows\\\\system32\\\\WindowsPowerShell\\\\v1.0\\\\Modules\\\\Microsoft.PowerShell.Utility\\\\Microsoft.PowerShell.Utility.psd1\",\r\n                                 \"Version\":  {\r\n                                                 \"Major\":  3,\r\n                                                 \"Minor\":  1,\r\n                                                 \"Build\":  0,\r\n                                                 \"Revision\":  0,\r\n                                                 \"MajorRevision\":  0,\r\n                                                 \"MinorRevision\":  0\r\n                                             }\r\n                             }\r\n                         ],\r\n    \"Shell\":  \"5.1.26100.9444\"\r\n}\r\n",
+  "stderr_text": ""
+}

@@ -921,8 +921,17 @@
       "required": true,
       "method": "exact-commit clean worktree and ZIP test",
       "expected": "Freeze C only after final version/code/docs/CI are committed; build ZIP from clean C via deterministic allowlist; extracted ZIP passes shell/FFmpeg/launcher smoke.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T23.md",
+        "RELEASE_CANDIDATE.json",
+        "evidence/T23-build.json",
+        "evidence/T23-validation.json",
+        "evidence/T23-zip-smoke.json",
+        "evidence/T23-independent-candidate-review.json",
+        "evidence/T23-human-equivalence.json",
+        "evidence/T23-release-manifest.snapshot.json"
+      ]
     },
     {
       "id": "A56",
@@ -931,8 +940,17 @@
       "required": true,
       "method": "manifest and checksum validation",
       "expected": "Record C, ZIP digest, dependency/test versions, signing status and per-member hashes in external release-manifest; no self-hashing manifest or stale working-tree files.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T23.md",
+        "RELEASE_CANDIDATE.json",
+        "evidence/T23-build.json",
+        "evidence/T23-validation.json",
+        "evidence/T23-zip-smoke.json",
+        "evidence/T23-independent-candidate-review.json",
+        "evidence/T23-human-equivalence.json",
+        "evidence/T23-release-manifest.snapshot.json"
+      ]
     },
     {
       "id": "A57",

@@ -1,0 +1,99 @@
+{
+  "task": "T23",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "status": "pass",
+  "mode": "full_routine_exact_zip_payload",
+  "commands_report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\zip-routine-run\\routine-commands.json",
+  "commands_sha256": "65128727a0671a6f00d7a45408b7c89fe56a0a584fdbd558feecac0ba75b900d",
+  "started_utc": "2026-10-12T15:14:56.324920+00:00",
+  "ended_utc": "2026-10-12T15:22:21.275476+00:00",
+  "required_checks": 306,
+  "observations": 6,
+  "parent_count": 2,
+  "counting_policy": "Two parent totals only; their twelve children are bound but not added again.",
+  "all_tracked_source_unchanged": true,
+  "head_after": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "creation_flags": 0,
+  "parent_environment_changed": false,
+  "new_provisioning": false,
+  "error": null,
+  "parents": [
+    {
+      "shell": "ps51",
+      "report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\zip-source\\docs\\codex-v1\\evidence\\T17-ci-ps51-final231.json",
+      "report_sha256": "88c2147669b18de1b0d83515e0acf33fbab511dcee64e857cc31a8e1ec4e20ae",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 153,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "observations": 3
+    },
+    {
+      "shell": "ps7",
+      "report": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\zip-source\\docs\\codex-v1\\evidence\\T17-ci-ps7-final231.json",
+      "report_sha256": "c7e74b3ba1e4a47f08d3b67ccdedcfcfe8cc5fd6bf89857149ab6cc751742e25",
+      "status": "pass",
+      "exit_code": 0,
+      "required_checks": 153,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "observations": 3
+    }
+  ],
+  "zip_payload_binding": {
+    "zip_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets\\AudioFileForPhone-v1.0.0.zip",
+    "zip_sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+    "all_members_byte_equal_to_routine_source": true,
+    "members": [
+      {
+        "member": "AudioFileForPhone.Helpers.ps1",
+        "bytes": 112323,
+        "sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "AudioFileForPhone.bat",
+        "bytes": 1800,
+        "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "AudioFileForPhone.ps1",
+        "bytes": 40032,
+        "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "CHANGELOG.md",
+        "bytes": 1700,
+        "sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "LICENSE",
+        "bytes": 1070,
+        "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "README.md",
+        "bytes": 12749,
+        "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "SECURITY.md",
+        "bytes": 6589,
+        "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+        "zip_member_and_routine_source_byte_equal": true
+      },
+      {
+        "member": "SUPPORT.md",
+        "bytes": 13911,
+        "sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+        "zip_member_and_routine_source_byte_equal": true
+      }
+    ],
+    "zip_unchanged": true,
+    "all_members_unchanged": true
+  }
+}

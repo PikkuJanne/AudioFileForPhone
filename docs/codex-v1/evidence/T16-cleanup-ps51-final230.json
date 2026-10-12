@@ -1,0 +1,2264 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T16",
+    "mode":  "retained_cleanup_guard_faults",
+    "command":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-CleanupSafety.ps1 -EvidencePath docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+    "started_utc":  "2026-10-12T15:13:18.4901715Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "windows_build":  "26300.9457",
+    "tested_commit":  "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "source_before":  [
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.bat",
+                              "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+                          },
+                          {
+                              "relative_path":  "tests/Test-CleanupSafety.ps1",
+                              "sha256":  "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preflight.ps1",
+                              "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Discovery.ps1",
+                              "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NamingPlan.ps1",
+                              "sha256":  "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+                          },
+                          {
+                              "relative_path":  "tests/Test-RunReservation.ps1",
+                              "sha256":  "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NativeProcess.ps1",
+                              "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                              "sha256":  "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+                          },
+                          {
+                              "relative_path":  "tests/Test-ScriptResults.ps1",
+                              "sha256":  "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+                          },
+                          {
+                              "relative_path":  "tests/Test-LauncherResults.ps1",
+                              "sha256":  "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Cancellation.ps1",
+                              "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preview.ps1",
+                              "sha256":  "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Progress.ps1",
+                              "sha256":  "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Diagnostics.ps1",
+                              "sha256":  "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Metadata.ps1",
+                              "sha256":  "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+                          },
+                          {
+                              "relative_path":  "tests/Test-OutputParent.ps1",
+                              "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.bat",
+                             "sha256":  "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+                         },
+                         {
+                             "relative_path":  "tests/Test-CleanupSafety.ps1",
+                             "sha256":  "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preflight.ps1",
+                             "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Discovery.ps1",
+                             "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NamingPlan.ps1",
+                             "sha256":  "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+                         },
+                         {
+                             "relative_path":  "tests/Test-RunReservation.ps1",
+                             "sha256":  "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NativeProcess.ps1",
+                             "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                             "sha256":  "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+                         },
+                         {
+                             "relative_path":  "tests/Test-ScriptResults.ps1",
+                             "sha256":  "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+                         },
+                         {
+                             "relative_path":  "tests/Test-LauncherResults.ps1",
+                             "sha256":  "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Cancellation.ps1",
+                             "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preview.ps1",
+                             "sha256":  "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Progress.ps1",
+                             "sha256":  "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Diagnostics.ps1",
+                             "sha256":  "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Metadata.ps1",
+                             "sha256":  "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+                         },
+                         {
+                             "relative_path":  "tests/Test-OutputParent.ps1",
+                             "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "synthetic_before":  [
+                             {
+                                 "relative_path":  "Protected\\source-one.bin",
+                                 "sha256":  "897df7af23d7c3a6b7c74889114b205e783310321e7df2d2ae15a5e08250772b"
+                             },
+                             {
+                                 "relative_path":  "Protected\\source-two.bin",
+                                 "sha256":  "4ef919b2f642073d4b2661e78ec0b98fec5966fe4c2a975420fd887d9ba45fdb"
+                             },
+                             {
+                                 "relative_path":  "Protected\\unrelated-one.bin",
+                                 "sha256":  "bae4ae628a04ad5be3b08530a8d82ab7c097fbc4f1b67cbe7964bb242736679c"
+                             },
+                             {
+                                 "relative_path":  "Protected\\unrelated-two.bin",
+                                 "sha256":  "cb02b109a8b437d91b8803cadfd7373dba104b8a9e63d1a8733b7feb6866d253"
+                             }
+                         ],
+    "synthetic_after":  [
+                            {
+                                "relative_path":  "Protected\\source-one.bin",
+                                "sha256":  "897df7af23d7c3a6b7c74889114b205e783310321e7df2d2ae15a5e08250772b"
+                            },
+                            {
+                                "relative_path":  "Protected\\source-two.bin",
+                                "sha256":  "4ef919b2f642073d4b2661e78ec0b98fec5966fe4c2a975420fd887d9ba45fdb"
+                            },
+                            {
+                                "relative_path":  "Protected\\unrelated-one.bin",
+                                "sha256":  "bae4ae628a04ad5be3b08530a8d82ab7c097fbc4f1b67cbe7964bb242736679c"
+                            },
+                            {
+                                "relative_path":  "Protected\\unrelated-two.bin",
+                                "sha256":  "cb02b109a8b437d91b8803cadfd7373dba104b8a9e63d1a8733b7feb6866d253"
+                            }
+                        ],
+    "synthetic_unchanged":  true,
+    "synthetic_inventory_scope":  "Protected source/unrelated text sentinels; negative cases additionally compare their whole owned case inventory.",
+    "owned_temp_root":  "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1",
+    "temp_exclusively_reserved":  true,
+    "marker_create_new":  true,
+    "owner_marker_sha256":  "e83eab580a17d40b7ee8bb660f84f0d6b440ce44ad5311cb686a40e8392a1847",
+    "policies":  [
+                     {
+                         "retained_harness":  "Test-AudioFileForPhone.ps1",
+                         "cleanup_start_line":  263,
+                         "cleanup_ast_sha256":  "e369b4c63333a7ba9f2192b637c79e86994785daa426f8a9f545d62ca4bf0da7",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  false
+                     },
+                     {
+                         "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                         "cleanup_start_line":  241,
+                         "cleanup_ast_sha256":  "8b23170c60ef7d77680fbf5afa4891034917e0bf1b65eea37ba96977f522c4a0",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Preflight.ps1",
+                         "cleanup_start_line":  461,
+                         "cleanup_ast_sha256":  "c3184ab4ceb72c41070d874e293b109f2580f1d62aeb5a86df04a7856aae5798",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  true,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Discovery.ps1",
+                         "cleanup_start_line":  512,
+                         "cleanup_ast_sha256":  "bfc97623572229325db9a80ac7eed70c22fb022f5eff38de4dfad2d9add98cb5",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  true,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-NamingPlan.ps1",
+                         "cleanup_start_line":  552,
+                         "cleanup_ast_sha256":  "d9a03d0fe20c356a742459c745d4ae28ddc05275e39dc8aa25c329c9b14a61a4",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-RunReservation.ps1",
+                         "cleanup_start_line":  566,
+                         "cleanup_ast_sha256":  "cf356e1bd7e21481dab49badfb0a4af2d44cb915e0c7fa6626b5895b3e10408a",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  true,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-NativeProcess.ps1",
+                         "cleanup_start_line":  520,
+                         "cleanup_ast_sha256":  "6c5b54c696a8a97362a4ef224da1b9709a55925dd0fd8b3c7601bfa013c81c4e",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-TransactionalOutput.ps1",
+                         "cleanup_start_line":  592,
+                         "cleanup_ast_sha256":  "64f1689783d4ebe4f4f5231a41cedab84dbbf9de97e7ca660abfc7478f1e2ee8",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-ScriptResults.ps1",
+                         "cleanup_start_line":  397,
+                         "cleanup_ast_sha256":  "5d4f5e3e4df0c5da9eb4ad7851fcdfa0b6bb052923d6aa2567c9729d9c4796ce",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-LauncherResults.ps1",
+                         "cleanup_start_line":  255,
+                         "cleanup_ast_sha256":  "853d0137b783f30446321b3fb1939ae8947e09f8b8aba6fe16d1b2e04cbaae91",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Cancellation.ps1",
+                         "cleanup_start_line":  509,
+                         "cleanup_ast_sha256":  "72a8ea654f40788919d24d6a2ec080b0f4d694d911bf3de9f5d64e85a59d6af2",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Preview.ps1",
+                         "cleanup_start_line":  344,
+                         "cleanup_ast_sha256":  "7ead411e9b98445d917721c2150fd8ccc9781d4e44a67d5b4d3e5226015d97f7",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Progress.ps1",
+                         "cleanup_start_line":  426,
+                         "cleanup_ast_sha256":  "e897b3e89d49c8e744dc55750b934513cb7618bed55048c1a4b160ba7bf8d96a",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Diagnostics.ps1",
+                         "cleanup_start_line":  462,
+                         "cleanup_ast_sha256":  "5557694f7430d14dd21d931c0e0841664866ad03d1a6e76b06b1b00339dbbff6",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-Metadata.ps1",
+                         "cleanup_start_line":  383,
+                         "cleanup_ast_sha256":  "7daf0cc8272ee79d38de3fc4723806c2690fcf3f689830625c95be3c6d910aa0",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  true,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     },
+                     {
+                         "retained_harness":  "Test-OutputParent.ps1",
+                         "cleanup_start_line":  472,
+                         "cleanup_ast_sha256":  "d7099cd3cd524b18fbe2f47e20fec72d52ce43d02d492da88d42e2e1a3375a4f",
+                         "instrumentation":  "Only an observer before the unchanged recursive delete statement.",
+                         "scope":  "Actual TEMP cleanup IfStatement; parent finalizer statements are not executed.",
+                         "descendant_release_gate":  false,
+                         "acl_restore_gate":  false,
+                         "retained_cleanup_verified_field":  true
+                     }
+                 ],
+    "cases":  [
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a5f91a938104455997b2705bddabba52",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "cdabaa980432449780311f1c2ce17790",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ec93c5f74d1b4224a0a9213ab15e770a",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup outside the expected unique TEMP directory: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\ec93c5f74d1b4224a0a9213ab15e770a\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "608543e26e024e57aa1cf79af1c46724",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup outside the expected unique TEMP directory: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\608543e26e024e57aa1cf79af1c46724\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e5a1db61a4524367943c1e7cf7aab710",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup outside the expected unique TEMP directory: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\e5a1db61a4524367943c1e7cf7aab710\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "6cb053ddc29046349317355ac0253b96",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup outside the expected unique TEMP directory: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\6cb053ddc29046349317355ac0253b96\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "21e812de6dfd48b99ce3a76c4b10bdc7",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Reparse ancestor refused: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\21e812de6dfd48b99ce3a76c4b10bdc7\\Root-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e6e603c4e9774d34affd8277e0a12e67",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Reparse ancestor refused: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\e6e603c4e9774d34affd8277e0a12e67\\Ancestor-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a2eb6cfbd6b646a381a0e43d41615e7f",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Reparse child refused: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\a2eb6cfbd6b646a381a0e43d41615e7f\\Root\\Child-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-AudioFileForPhone.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b5e1522854b247f0888e59484b5d9644",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Reparse child refused: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\b5e1522854b247f0888e59484b5d9644\\Root\\File-link.bin",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "79c1d261ee304a91bbf5f1fa10755e7b",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "31263297ffd3456f92c68b4bb7b10354",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "8e77507364164ec6830a416a9edbf3de",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup without exact owned TEMP boundary: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\8e77507364164ec6830a416a9edbf3de\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "48620bcea34c4da8b373ebd3cdb11b9c",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup without exact owned TEMP boundary: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\48620bcea34c4da8b373ebd3cdb11b9c\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3d064614be1c408ba0009b7c4c76faba",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\3d064614be1c408ba0009b7c4c76faba\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "553286354bb84702a58379cf36c193f7",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing cleanup without exact owned TEMP boundary: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\553286354bb84702a58379cf36c193f7\\Root",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "23060afd060f4ef39b97257a4358eb06",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the owned test path: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\23060afd060f4ef39b97257a4358eb06\\Root-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e358da8e900a458d91e74acd70e6dfa2",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the owned test path: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\e358da8e900a458d91e74acd70e6dfa2\\Ancestor-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2821c96a95494e29a952128d5d9f1f8f",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the owned test tree: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\2821c96a95494e29a952128d5d9f1f8f\\Root\\Child-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7c040bc5d55b4d92874d36fa9af3ee9a",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the owned test tree: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\7c040bc5d55b4d92874d36fa9af3ee9a\\Root\\File-link.bin",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2012550bb78b44428e3cac7854913a82",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "d7ca64082c1849369abb7b12b41b0687",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "6a8f05613e734f39a454764db75f2abd",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "eef1fb2da4384cd9b5a10e8b4190e122",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "fc4d190bd12c4be3862818d28426be8d",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\fc4d190bd12c4be3862818d28426be8d\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "4d79efaa878d4ef1a6356247d5aebbc9",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires the exact create-new owner marker token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "94470ebc6fe141eeb537bf92735aed6f",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the test path or its ancestors.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "f0780483efeb4db8a6e7ce582cc42a32",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the test path or its ancestors.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e6c21263961e4b3fbbcbecfd02b1f0f6",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "919fc5c67bd84f72b6a79e2fde164543",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unrestored-acl",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "02b95436fc8543728f1734d8e388ac86",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "9fdc92275d7047b3a9d4af9e8b7419b2",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c53cc164933149a69f020b4f61d93b2a",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "f661664799774cc7ad4bb2353b387956",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "47b6543547a54fa1bf1b20ff4f981fc0",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "29009938bed94e36aac052f3797e6856",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\29009938bed94e36aac052f3797e6856\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2ee05ba256e14eda9e975945b01eee77",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires the exact create-new owner token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "d234fcc8763f41f0bde3564c7c22b374",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3d365e97030b4277b25a5244d474e431",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "309d044369884c268e9718d6efa16417",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing an unregistered reparse point inside the owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "341d47eee81443d5ae5ff7288470e6af",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing an unregistered reparse point inside the owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unrestored-acl",
+                      "retained_harness":  "Test-Discovery.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "663cd1919d1e4d169061a2e4b0bd87e1",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "1e9cafa8b51f4e1ab417c2e5085f54be",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "cb094bbfbab14bbf9d4785994d5419ec",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "452db9bde2b54a4c8ec5feecd317eb0c",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "72b2bbcc088c44d8a332ebcd9475e5c5",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "56ef88feac904b89a7f7c6abd18d0c5e",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\56ef88feac904b89a7f7c6abd18d0c5e\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a7f3e0cbe76a48c1ae999bbfb6a9c32f",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires the exact create-new owner marker token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7531e63de3e44d219891e09c2eaa7f8a",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b6ed1426976c40d6a4ddbdc24515fbb5",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "609d9bb724fc4d88ac9aeaf6206794a6",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-NamingPlan.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ec08691ee7d945b7bc2c565828acfaf5",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e233999027524b9383faa7a33ea71bfb",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e4fb7decf76140529cf9903546d5e588",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ad224f0063d44a05b5e60ac96d3b7aab",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "48556e709b0e4afba387f92859e8fabe",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must stay inside the exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "46d2250ffd3b4296822b2c281c03d632",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\46d2250ffd3b4296822b2c281c03d632\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3a79d54e2943485cabaac7224fc7dbdc",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires the exact create-new owner token from this invocation.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b156f6ba050e4ab58b43d10f4d9441e3",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "8d6a584a98074f56b3d51e3c9ae2d9b0",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2cb3d0bddd8c4d348b5b6814837a4924",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the exact owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "541c6e0a75b44bf4a16484eea6a70681",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the exact owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "278b8ef9306f4e9fa917e04dcdda857a",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unrestored-acl",
+                      "retained_harness":  "Test-RunReservation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c941805af96a42dc93eb30f6e2a07f87",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3682cf790718442f9331018093727861",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "cefe10e1f5de4a2fb27389c5df833de5",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ae390e41fa914d13bdf29241b309476b",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup stays inside the exact exclusively owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2d9ae0e620a94df29fdcb728bb18d41d",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup stays inside the exact exclusively owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7c735f4611c344f981bdc78cfe33aff5",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\7c735f4611c344f981bdc78cfe33aff5\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3fdb51a26a334c5aa8d42db3e1504016",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires exact create-new owner marker token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "31aa4336e3084132a40dc1108bf9f7d1",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7da39adec63642fc818553681f128e2e",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a test path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "0b741d2a13f741ab94f7c73cd2eed9a4",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "6dad9154a27c4759ba02b230ebdd0e7e",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-NativeProcess.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "37e80c1693944fb5936bcb23c6cbce26",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ba7b6397a41d4c6e88cd95b2deaef460",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "95f839f23a114ea289cd2cb23179a1ff",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "782009cf1d9443ee8e9b62d3e68bc027",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must remain exactly inside the current exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "6de3b7bd131b4b868734df32c8da7a7c",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must remain exactly inside the current exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "063e60571ed542e2a507c49d9e1b8b8b",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\063e60571ed542e2a507c49d9e1b8b8b\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "53e1ed50781749b6ad6c4fb564fecbbe",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup needs the exact create-new owner token from this invocation.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "8311f08521ee4f7e9096a08bd36d7578",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "53f8ab7687dd49678717da1631ec889c",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "65453dbb437f4f239de0e57d66bcc3fd",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse points inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "376c5608bfbd48068a906b35c118e182",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse points inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-TransactionalOutput.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3d4e19c944a14389b50a9859b6002dd2",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7098cac5dfca420990624aea72bf30f7",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "76888f7b180f4d87a626fb28c3ed12d1",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "070d919826dd4371a8a118205b65ac11",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to this exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b288fb3da9af4ed39bba5ed1b900ea45",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to this exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "1a3d9c6b7b324176a164be17064fccdd",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\1a3d9c6b7b324176a164be17064fccdd\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "77e4dd8b85374e7f9a0e5dfd6030c39e",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires the exact create-new owner token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "874b3ca359e248ceb2beba8580e881e1",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "98c88bcae6934c7185c41eb38f9db18b",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "45467f0fd2bf48e593909373114c0918",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "0676517e60234bf58d0c0eabfcc7681d",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-ScriptResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2866aca26eae4b96806f3953bf502424",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e7f562ba165a430ba213c27531214d6c",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "dc5d293ec7204a408dcb43eef63ee5bc",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "bf007783f4c548098527bf0fd360c733",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing cleanup outside this exact token-owned launcher root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "cd7b4e7bcbf343479db25f9269968f92",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing cleanup outside this exact token-owned launcher root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "535873ac6baa48b1b395f7e41ade0685",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\535873ac6baa48b1b395f7e41ade0685\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "4c370c22c703476681e0b88f882750dd",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing cleanup outside this exact token-owned launcher root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "e906d629bff94db392379b40673751d1",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "439cb01330ba426ea62e367fa6fd7cee",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a0a59ea260064a8c8d1ceb61858edd15",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the exact launcher cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "374d09d901314f8ca0b23b8f9ce343c3",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside the exact launcher cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-LauncherResults.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7a40da8c1d2c44e3a2963542f108f875",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "9a37612c9c4a442f9ce4981324e82319",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "18495cf62cb94ca5931ad42c135b9f2c",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a7fc0f8ed7be4003a5f84ce339f04946",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to exclusive owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "4644da38cb684dc89bf15e39d05e37d9",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to exclusive owned TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ea2ed0908b944f78af04564be9f8ed67",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\ea2ed0908b944f78af04564be9f8ed67\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ca09abce696147bfb4f45c7e0bca5336",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires exact CreateNew owner token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c9ecfd64f4634635a3b6736979bcd869",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ee29a632ce1343ce9b604d38aff321da",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point in a fixture path or ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c1d664d6fa194d179c35e94e5d8b51da",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "49dd3c9f009d41b4be622f46daad3f96",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing a reparse point inside exact cleanup scope.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-Cancellation.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2477c35e8693462a93de4405f9f91fdb",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "1e48f32f676a4932ae5bcd1bd0bc66d2",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "355313c0f9e24d98ade50f7198fcbc9d",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "75adbbc43f424bd18281879b5ff2fdae",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3aedd9314a5f4768a568b9bf3c487d88",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exactly to exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "9f279839a5e548afb2dce184b4129ce5",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\9f279839a5e548afb2dce184b4129ce5\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "8b49ef0f46f24db080fea24e9af9330c",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires exact CreateNew token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "7c3e26ccba9249aa9ffa794d3acccef5",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b2b054c717724e70bf027ff8049be3b3",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "efb56596dfb841caa5c15c82923b6ae5",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "3f3493a239204fd694f4d26740e15db6",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-Preview.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "af7f6cbcebee4033bd4dcd8573223df7",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "4d525720ec954403aacb95b2a325f27b",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "82e4757e59f64082b396a5214e1ef43d",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "960e7eb3b7c34f8caf0ea5d704145b49",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ebd9d285edcd4c7d84dca1ba9e532879",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "1537c48a2b604c82a136625ee72a0328",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\1537c48a2b604c82a136625ee72a0328\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "15769314be0c4be4bd02b4901e014218",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires exact CreateNew token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "d8c5b0be30ea40a598f1cd3fa3a32d59",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "421bfb436b7b4703b796546b79abff60",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "efdcfd3217c74c1e8db5f3309f2b64a0",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b5a060e13d8d42dbaf141e0a314aa434",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-Progress.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ead90c90207645b88418ac1f04e221c8",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "b9a57e4ba63e4731a48a3bd48c8a07ca",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "6ed9109369b24889a8f3c432b9c44bd0",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "084870e6f4a6440198590ab2babf63bf",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "d9d95564dcc643dbbb2c9ef33a7dfaec",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusively reserved TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "17612f4078364326bdc7e1083da5ec02",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\17612f4078364326bdc7e1083da5ec02\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2908bcaf00e44a5a9699cc70864fa7c2",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup requires exact CreateNew ownership token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c98c1d644c5d485fa025323a4bdcf7a0",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "be115876c2284807aa2a3a8c12384015",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ddb4c614b5c940749574500e811418f7",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "172f418e6a244f9ea99ee9d92b4a2875",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-Diagnostics.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "ef4734c79f4c4fd397ba08a069b03933",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "0aeb56f2b16c4d91a9366e13be272530",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "230198a905fd47329ca4f09e581b136f",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "16f45907418d4fb592c7518b1694c3dd",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "097c6767cd914cda8a5fa95fd638293e",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Cleanup must resolve exact exclusive TEMP root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "727a8b994f89404f980c63d45b3ec1de",
+                      "delete_reached":  false,
+                      "guard_reason":  "Exception calling \"ReadAllText\" with \"1\" argument(s): \"Could not find file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\727a8b994f89404f980c63d45b3ec1de\\Root\\.owner\u0027.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "a7d36ccd39b1442e9fdb1156a9e9084e",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Exact CreateNew token required.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "750b2468e28b413ab2ff75b534a982c0",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "9faf85294066469691553883caf38c04",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse fixture/ancestor.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "da9a713217fd44a0bac2cac0b9b3cf1b",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "acd9298c407447d28789bd2954895599",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: Refusing reparse inside exact owned tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unproved-release",
+                      "retained_harness":  "Test-Metadata.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "227d2260d13b467ebd6affae3d556148",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "valid-exclusive",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "89500bb13f40485e8088b90e9dd29f07",
+                      "delete_reached":  true,
+                      "guard_reason":  null,
+                      "exact_owned_target_removed":  true
+                  },
+                  {
+                      "name":  "preexisting-unreserved",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "38e04db307704529b6a2cc3780e1fb0f",
+                      "delete_reached":  false,
+                      "guard_reason":  null,
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-parent",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "f00f042e2b7e4fe7950f926dda76f53e",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: TEMP cleanup must stay inside its exact owned root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "prefix-sibling",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "9af7a1f320134b19b6e2895905bb0dc4",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: TEMP cleanup must stay inside its exact owned root.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "missing-marker",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "d0495cb8b13b41afa54aed1a38c03538",
+                      "delete_reached":  false,
+                      "guard_reason":  "Cannot find path \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\d0495cb8b13b41afa54aed1a38c03538\\Root\\.owner\u0027 because it does not exist.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "wrong-marker",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "71757a2ec213462a8703f30af35cef8a",
+                      "delete_reached":  false,
+                      "guard_reason":  "FAIL: TEMP cleanup requires the exact marker token.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "root-junction",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2f38e33ed3e5431c87839bfd21a7e225",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the test path or its ancestors.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "ancestor-junction",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "8e8eeb11a1534315ae0d8c939d4f9ae8",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point in the test path or its ancestors.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "child-junction",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "2301a276a52e412dbee01471a25384b0",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "file-reparse",
+                      "retained_harness":  "Test-OutputParent.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "c70153557ba7452faae9faedd4d1a8f2",
+                      "file_symlink_available":  false,
+                      "unprivileged_error":  1314,
+                      "ordinary_error":  1314,
+                      "file_reparse_kind":  "retained inert custom name-surrogate tag 0x2000A06E",
+                      "delete_reached":  false,
+                      "guard_reason":  "Refusing a reparse point inside the owned test tree.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unique-json-disposed",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "cf41fdeb547849bc8ac9ffd3b080b4c5",
+                      "exclusive_reopen_after_write":  true
+                  },
+                  {
+                      "name":  "preexisting-evidence",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "266d1e1dba0741ca9d98206a89847131",
+                      "guard_reason":  "Exception calling \"Open\" with \"4\" argument(s): \"The file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\266d1e1dba0741ca9d98206a89847131\\Evidence\\new.json\u0027 already exists.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-evidence-parent",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "24845f4d3e9544fba24a3be6c525a496",
+                      "guard_reason":  "Evidence must stay directly in its approved parent.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "reparse-evidence-ancestor",
+                      "retained_harness":  "Invoke-IsolatedBaseline.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "56a1741a21f146b9a6f5222f11e97c2a",
+                      "guard_reason":  "Refusing a reparse point in the owned test path: C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\56a1741a21f146b9a6f5222f11e97c2a\\Evidence-link",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "unique-json-disposed",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "09962c6a41004d97a298fab06fbc7fc4",
+                      "exclusive_reopen_after_write":  true
+                  },
+                  {
+                      "name":  "preexisting-evidence",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "067effec1abd4d8e8b23f62d2797e229",
+                      "guard_reason":  "Exception calling \"Open\" with \"4\" argument(s): \"The file \u0027C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1\\067effec1abd4d8e8b23f62d2797e229\\Evidence\\new.json\u0027 already exists.\"",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "outside-evidence-parent",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "31b711baaa69480bb85fa62bb89bbe70",
+                      "guard_reason":  "Evidence must stay directly in its approved parent.",
+                      "whole_case_inventory_unchanged":  true
+                  },
+                  {
+                      "name":  "reparse-evidence-ancestor",
+                      "retained_harness":  "Test-Preflight.ps1",
+                      "acceptance_case":  "A42",
+                      "status":  "pass",
+                      "owned_case_relative_path":  "bd424f0d1a944439949955c119cfd982",
+                      "guard_reason":  "Refusing a reparse point in the test path or its ancestors.",
+                      "whole_case_inventory_unchanged":  true
+                  }
+              ],
+    "media_or_controlled_native_children_started":  0,
+    "children_disposed":  true,
+    "ordinary_music_access":  false,
+    "physical_manual_evidence":  false,
+    "links_removed":  true,
+    "cleanup_verified":  true,
+    "status":  "pass",
+    "error":  null,
+    "finished_utc":  "2026-10-12T15:13:27.1941858Z"
+}
