@@ -1,5 +1,29 @@
 # Decisions and policy ledger
 
+## T22 approved integration and actual A54 closure — 12 October 2026
+
+- The owner's trusted answer "Approve T22 integration" authorizes exact reviewed
+  PR #22 head `f7ec7219fda1466826c896aad66b8194eed4650a` and subsequent
+  docs-only A54 progress/evidence integration. Record the actual reply and scope;
+  no general merge, tag/release or repository settings authority is added.
+- Fresh refs/PR head/base/checks/mergeability and clean local state passed.
+  Push 38261662854 and PR 38261671203 each pass both Windows jobs. Mark the
+  reviewed draft ready, then merge with --merge --match-head-commit, without
+  admin/protection bypass. PR #22 actually merged at 14:26:40Z into main
+  `1ab076bc696df08a0aaf05dd7ec4aab2490b1609`; its complete tree equals the
+  approved head and includes all final shipped/runtime/test/CI/build content.
+- Normal post-merge fetch and fast-forward synchronize clean local main. Actual
+  PS5.1 and PS7 -RequireMain Git-sync checks each independently compare the
+  full local SHA to the live advertised main and pass. A54 passes; no unmerged
+  runtime/test/build work remains. New evidence is T22-integration.json.
+- Update only docs/codex-v1 for task/case status, approval, actual integration
+  evidence and next-session routing. Independently review this bounded follow-up,
+  push/compare its live ref, require checks, then integrate under the same approval.
+  Report its final main SHA/live equality externally without a self-containing SHA.
+- T22 is complete after that record's integration/synchronization. Exactly next
+  is T23 in a new chat. Do not freeze a candidate or build/tag/publish a release
+  in this continuation; A55–A65 and O01's deferred state remain unchanged.
+
 ## T22 review and final-version documentation — 12 October 2026
 
 - Reconcile owner-merged PR #21 by normal fetch and fast-forward only. Main
