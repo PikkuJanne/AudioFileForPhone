@@ -56,6 +56,14 @@ next session regardless of a stored “done” flag.
 
 ## Release freeze and closure
 
+The actual T24 exact approval in evidence/T24-authorization.json accepts the
+owner's existing early docs-only PR #24 merge at
+`cf03cf7097640fcac287e24f6a90ff003e5fe0be`. Keep that live main until T27 as
+the narrow main-at-C timing exception; preserve frozen C
+`2092a405c1d06eca336e771a0ed5d1881acd015a` and all exact package bytes.
+Require C ancestry and the complete docs/codex-v1-only diff. This is no broader
+integration permission; subsequent progress stays on the evidence branch.
+
 C = immutable tested release source commit. Tag v1.0.0 must always resolve to C.
 E = release-evidence branch based on C; it may receive progress/evidence-only commits.
 D = final main after docs-only closure integration. D may differ from C, but only

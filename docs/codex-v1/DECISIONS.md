@@ -1,5 +1,59 @@
 # Decisions and policy ledger
 
+## T25 actual authenticated draft downloads — 12 October 2026
+
+- Verify actual uploaded bytes through authenticated gh release download into a
+  new empty owned TEMP directory. Compare all three exact names, sizes, SHA256
+  values and bytes to approved originals; retain commands/captures and never
+  substitute server digests for downloaded-byte evidence.
+- Reuse the unchanged T23 smoke driver's Git LF blob, hash 17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd.
+  Verify the current checkout differs only by CRLF representation. Preserve the
+  native report's T23/A55/A56 labels and bytes; the T25 wrapper binds the actual
+  fresh draft invocation to A59 rather than rewriting earlier task labels.
+- Safely extract all eight verified C members into fresh per-shell packages.
+  Real PS5.1/PS7 conversion, BAT and missing-dependency smoke passes ten groups,
+  24 short outputs and 113 naturally exited/released direct subprocesses. Keep
+  CP65001 inherited and module/PATH changes child-only; retain media/raw logs
+  externally. No cleanup, global kill, ordinary-Music access or human retest.
+- Preserve C, tag, draft assets, accepted main and prior reports. Record A59 pass
+  with independent review; keep PR #25 draft/unmerged. T26 conditional normal
+  publication/public downloads and T27 docs-only closure remain required. Carry
+  unchanged exact authority without another approval request; project incomplete.
+
+## T24 actual approval, immutable tag and draft — 12 October 2026
+
+- Record the trusted exact-request approval and observation timestamp before
+  release writes. The owner explicitly accepts the existing early docs-only PR
+  #24 main merge while retaining C and all exact assets. Apply only that bounded
+  timing exception and carry unchanged T24–T27 authority without re-asking.
+- Revalidate effective origin identity, approval/request/notes/assets, C ancestry,
+  allowed main/evidence diff, live main/checks and conflicts before each mutation.
+  Create the annotated tag at explicit C, push only its ref and independently
+  compare the advertised tag object and peeled target before draft creation.
+- Create draft using --verify-tag --draft --target C and exactly the three literal
+  reviewed asset paths. Independently read actual draft state/IDs/names/sizes and
+  reported server digests. Never turn those metadata checks into downloaded-byte
+  or public-access evidence; T25/T26 retain their separate actual download gates.
+- Keep reviewed release-note/request bytes and original preflight/authority/
+  operation reports unchanged. All progress stays under docs/codex-v1; main stays
+  the approved cf03cf7 until T27, source/tag C stays 2092a405. No public publication,
+  main integration, new media/human test or project completion is claimed in T24.
+
+## T24 preflight and explicit reconciliation request — 12 October 2026
+
+- Preserve the owner's existing docs-only T23 PR #24 merge by normal fast-forward.
+  Verify full C ancestry/tree/path scope and passing reconciled-main CI. Keep C
+  and all three T23 asset bytes fixed; do not rebuild or retarget to the newer main.
+- Report that Gate 2's literal main-equals-C condition is false. Request acceptance
+  of this one existing early evidence merge together with exact release authority;
+  do not silently waive the timing rule or treat the PR merge as release approval.
+- Revalidate exact asset/member/manifest/checksum bytes and live conflicts without
+  rerunning unchanged audio/human tests. Prepare reviewed release notes and a
+  single exact-candidate approval request carrying T24–T27 authority if granted.
+- Until an actual owner reply approves the exact request, A57 is blocked and
+  A58 not run. Keep later progress on the evidence branch. No release write,
+  new main merge or project completion is claimed.
+
 ## T23 exact source/ZIP evidence — 12 October 2026
 
 - Freeze full freshly integrated main 2092a405c1d06eca336e771a0ed5d1881acd015a

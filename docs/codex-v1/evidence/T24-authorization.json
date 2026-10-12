@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task": "T24",
+  "status": "approved",
+  "repository": "PikkuJanne/AudioFileForPhone",
+  "tag": "v1.0.0",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "asset_sha256": {
+    "AudioFileForPhone-v1.0.0.zip": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+    "release-manifest.json": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+    "SHA256SUMS.txt": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+  },
+  "accepted_main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+  "main_timing_exception_approved": true,
+  "main_exception_scope": "Accept existing owner docs-only T23 PR #24 merge. Preserve C and assets; require this main until authorized reviewed T27 docs-only closure. No further source or general main integration authority.",
+  "request_reference": "RELEASE_AUTHORIZATION_REQUEST.md",
+  "request_at_reviewed_checkpoint": "c7c6c91dfb064464c35b611bd92fe90f349e5a26",
+  "request_sha256": "caba28998b3fc8666962d2b5588a446bbc2417be6e610e00735de35c8a1d8c2c",
+  "notes_reference": "RELEASE_NOTES.md",
+  "notes_sha256": "911b3729862e00abe63338eee68698ba4f8a6b86ab8690a280787d19b3b39529",
+  "approval_reference": "Trusted structured user reply to request_user_input_async call_2c75c715b241448eb93e68148fcea600 item 0 in the T24 chat",
+  "question_item_id": "[\"request_user_input_async\",\"call_2c75c715b241448eb93e68148fcea600\",0]",
+  "actual_question": "Approve the reviewed v1.0.0 request at C:/projects/AudioFileForPhone-main/docs/codex-v1/RELEASE_AUTHORIZATION_REQUEST.md? It authorizes the annotated tag at C 2092a405c1d06eca336e771a0ed5d1881acd015a, draft and exact three asset uploads, later normal public publication only after download checks pass, and reviewed docs-only T27 closure. It also accepts the existing docs-only PR #24 merge at main cf03cf7097640fcac287e24f6a90ff003e5fe0be while keeping C and the package unchanged. ZIP SHA256: 8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf. Manifest SHA256: 7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146. Checksums SHA256: 83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8.",
+  "actual_owner_reply": "Approve exact v1.0.0 request",
+  "observed_at_utc": "2026-10-12T15:54:35.326398+00:00",
+  "timestamp_scope": "UTC time recording the received trusted reply; no separate user-message timestamp was supplied.",
+  "approved_operations": [
+    "Create and push annotated v1.0.0 tag at exact C",
+    "Create draft release at verified tag",
+    "Upload exactly reviewed ZIP, release-manifest.json and SHA256SUMS.txt",
+    "Publish normal public non-prerelease v1.0.0 after actual draft/download gates pass",
+    "Integrate reviewed docs-only closure PR after publication in T27"
+  ],
+  "carry_forward": "T24 through T27 for unchanged C/bytes/hashes/scope; do not request the same approval again.",
+  "invalidation_conditions": [
+    "Changed C",
+    "Changed source/payload/asset bytes or hashes",
+    "Changed approved scope",
+    "New failed required gate"
+  ],
+  "prohibited_operations": [
+    "Retarget/force existing tag",
+    "Replace public assets or upload --clobber",
+    "Delete existing release",
+    "Weaken protections or change repository visibility/settings",
+    "Publish prerelease",
+    "General main integration before T27"
+  ],
+  "publication": "conditional_later_T26_after_T25",
+  "project_complete": false
+}

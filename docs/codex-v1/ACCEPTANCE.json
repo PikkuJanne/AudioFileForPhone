@@ -959,8 +959,17 @@
       "required": true,
       "method": "owner approval + live tag read",
       "expected": "Recorded approval matches C and exact ZIP/manifest digests; no conflicting tag/release; annotated v1.0.0 remotely resolves to C; no forced retarget.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T24.md",
+        "evidence/T24-preflight.json",
+        "evidence/T24-authorization.json",
+        "evidence/T24-tag-draft.json",
+        "evidence/T24-independent-draft-review.json",
+        "RELEASE_CANDIDATE.json",
+        "RELEASE_AUTHORIZATION_REQUEST.md",
+        "RELEASE_NOTES.md"
+      ]
     },
     {
       "id": "A58",
@@ -969,8 +978,17 @@
       "required": true,
       "method": "GitHub draft inspection",
       "expected": "Draft points at verified existing tag; only expected assets uploaded; state remains incomplete; missing asset/upload or failed check blocks publication.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T24.md",
+        "evidence/T24-preflight.json",
+        "evidence/T24-authorization.json",
+        "evidence/T24-tag-draft.json",
+        "evidence/T24-independent-draft-review.json",
+        "RELEASE_CANDIDATE.json",
+        "RELEASE_AUTHORIZATION_REQUEST.md",
+        "RELEASE_NOTES.md"
+      ]
     },
     {
       "id": "A59",
@@ -979,8 +997,14 @@
       "required": true,
       "method": "draft download and archive smoke",
       "expected": "Download each draft asset into fresh temp through authenticated release read; names, sizes and SHA-256 match candidate; extracted uploaded ZIP smoke passes.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T25.md",
+        "evidence/T25-draft-verification.json",
+        "evidence/T25-zip-smoke.json",
+        "evidence/T25-independent-review.json",
+        "RELEASE_CANDIDATE.json"
+      ]
     },
     {
       "id": "A60",
