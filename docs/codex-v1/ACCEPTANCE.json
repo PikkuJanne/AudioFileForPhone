@@ -1013,8 +1013,12 @@
       "required": true,
       "method": "unauthenticated API/browser read",
       "expected": "v1.0.0 is public, published, non-draft and non-prerelease; repository visibility is public; no intermediate public releases were introduced.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T26.md",
+        "evidence/T26-public-verification.json",
+        "evidence/T26-independent-public-review.json"
+      ]
     },
     {
       "id": "A61",
@@ -1023,8 +1027,12 @@
       "required": true,
       "method": "fresh independent HTTP downloads",
       "expected": "Anonymous downloads of ZIP, external manifest and SHA256SUMS succeed; digests and every ZIP member match reviewed evidence and safe allowlist.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T26.md",
+        "evidence/T26-public-verification.json",
+        "evidence/T26-independent-public-review.json"
+      ]
     },
     {
       "id": "A62",
@@ -1033,8 +1041,13 @@
       "required": true,
       "method": "public-asset Windows smoke",
       "expected": "Extract newly downloaded public ZIP into a clean Windows location and run required smoke; record downloaded hash, shell version, command and actual result.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T26.md",
+        "evidence/T26-public-verification.json",
+        "evidence/T26-independent-public-review.json",
+        "evidence/T26-zip-smoke.json"
+      ]
     },
     {
       "id": "A63",

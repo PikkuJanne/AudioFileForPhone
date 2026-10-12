@@ -46,13 +46,14 @@ Recheck live main still C, evidence branch differs only by allowed progress file
 CI/tested source still matches, and local staged bytes match approval. Rebuild or
 source change invalidates asset authorization. Respect existing protections.
 
-For this exact v1.0.0 candidate, the actual T24 approval in
-`evidence/T24-authorization.json` expressly accepts the owner's existing early
-docs-only PR #24 merge. Require live main
-`cf03cf7097640fcac287e24f6a90ff003e5fe0be` until T27 instead of literal C.
-Verify C remains its ancestor and the entire C-to-main diff is docs/codex-v1.
-This narrow timing exception preserves C/all approved assets and grants no
-different source, changed package or general main-integration authority.
+For this exact v1.0.0 candidate, original exact T24 authority plus actual
+trusted T26 acceptance in `evidence/T26-authorization.json` accepts the owner's
+existing early docs-only PR #25 merge. Require live main
+`88f28c4056859852c526617d642c7e0ada8cc240` until T27 instead of literal C.
+Verify C remains its ancestor and the entire 113-path C-to-main diff is docs/codex-v1.
+Original T24 PR #24 acceptance remains historical/unchanged. The narrow timing
+exception preserves C/all approved assets and grants no different source,
+changed package, additional early merge or general main-integration authority.
 
 ## Gate 3 — Annotated tag and draft (T24)
 
