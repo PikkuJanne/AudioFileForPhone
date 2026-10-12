@@ -1,0 +1,45 @@
+{
+  "task": "T22",
+  "mode": "synthetic_ffprobe_encoding_diagnosis_no_application_execution",
+  "raw_utf8_title": "Original Ää 東京",
+  "expected_title": "Original Ää 東京",
+  "raw_json_sha256": "5681f93d6c94807de85c15300b255e80054bfd9b8e2230fd7e63cd03a16003b4",
+  "synthetic_media_sha256": "f22116a9dc340531ff6fb6cc60694846f27ed856ed3489c16624cd079df7b529",
+  "probe_executable_sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+  "driver_sha256": "5aed7ebf6d9ba261be5429c8c952c4c72f58e440ae79311fc412cb4a5c672974",
+  "rows": [
+    {
+      "before_code_page": 65001,
+      "used_code_page": 65001,
+      "restored_code_page": 65001,
+      "title": "Original Ää 東京",
+      "mode": "inherited_console",
+      "exit_code": 0,
+      "matches_raw_utf8_title": true,
+      "original_report_sha256": "b714de2d463ec5e7fa63754bfb3f6761385ee0b44f73015a458e09704889bca8"
+    },
+    {
+      "before_code_page": 437,
+      "used_code_page": 437,
+      "restored_code_page": 437,
+      "title": "Original ├ä├ñ µ¥▒Σ║¼",
+      "mode": "no_window",
+      "exit_code": 0,
+      "matches_raw_utf8_title": false,
+      "original_report_sha256": "9fb609faab7f412100415be322b9e4bd875a88defcae262b76335c533ba2b756"
+    },
+    {
+      "before_code_page": 437,
+      "used_code_page": 65001,
+      "restored_code_page": 437,
+      "title": "Original Ää 東京",
+      "mode": "no_window_utf8",
+      "exit_code": 0,
+      "matches_raw_utf8_title": true,
+      "original_report_sha256": "ed9a0dbb2a4ed99f7f1b4215edc5bf5630dd15aa5fb35352464d276ed5349b33"
+    }
+  ],
+  "private_fixture_retained": true,
+  "cleanup_claimed": false,
+  "personal_media_access": false
+}

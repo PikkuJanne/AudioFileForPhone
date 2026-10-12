@@ -1,0 +1,86 @@
+{
+  "task": "T22",
+  "tested_commit": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+  "status": "pass",
+  "started_utc": "2026-10-12T14:03:10.432661+00:00",
+  "ended_utc": "2026-10-12T14:08:47.113011+00:00",
+  "dependency_copies": [
+    {
+      "original_report": "T17-dependencies-ps51-final21.json",
+      "copy_report": "T17-dependencies-ps51-final221.json",
+      "original_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "copy_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "literal_byte_equal": true,
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "new_provisioning": false
+    },
+    {
+      "original_report": "T17-dependencies-ps7-final21.json",
+      "copy_report": "T17-dependencies-ps7-final221.json",
+      "original_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "copy_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "literal_byte_equal": true,
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "new_provisioning": false
+    }
+  ],
+  "driver_sha256": "dae63ed2c58b3b6f350c9104269cbcf44269b4c9a491cadabae2c48b14e49b72",
+  "creation_flags": 0,
+  "console_scope": "Inherit existing console; no CREATE_NO_WINDOW/CREATE_NEW_CONSOLE and no global or console setting mutation. Controlled probe established inherited page65001.",
+  "child_environment_change": "Remove inherited PSModulePath only from owned child environments; shell initializes defaults.",
+  "parent_environment_changed": false,
+  "invocations": [
+    {
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        ".github/scripts/Invoke-CiChecks.ps1",
+        "-DependenciesPath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps51-final221.json",
+        "-RunLabel",
+        "final221"
+      ],
+      "report": "docs/codex-v1/evidence/T17-ci-ps51-final221.json",
+      "started_utc": "2026-10-12T14:03:10.432788+00:00",
+      "ended_utc": "2026-10-12T14:05:35.555171+00:00",
+      "exit_code": 0,
+      "status": "pass",
+      "actual_tested_commit": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+      "report_sha256": "78dc4def0148addee402b68d7a9bc39ddd37716015af8ca92f30c2127efea372",
+      "stdout_sha256": "f293b716097f1568d7caefe367c1ade3624549d9af6833b7f01eca5d140b4098",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "shell": "ps7",
+      "executable": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        ".github/scripts/Invoke-CiChecks.ps1",
+        "-DependenciesPath",
+        "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps7-final221.json",
+        "-RunLabel",
+        "final221"
+      ],
+      "report": "docs/codex-v1/evidence/T17-ci-ps7-final221.json",
+      "started_utc": "2026-10-12T14:05:35.568615+00:00",
+      "ended_utc": "2026-10-12T14:08:47.096668+00:00",
+      "exit_code": 0,
+      "status": "pass",
+      "actual_tested_commit": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+      "report_sha256": "7a38679d2003f555bd609981498dc977467e5451fcc254b2d26a40f2d98b9786",
+      "stdout_sha256": "dd2824951381dd2a22438afeb4a6ec347a4a84125f524747c3c4487d684c6eaa",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

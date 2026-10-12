@@ -1,0 +1,1941 @@
+{
+  "schema_version": 1,
+  "task": "T16",
+  "mode": "transactional_output_real_and_faults",
+  "command": "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-TransactionalOutput.ps1 -EvidencePath docs/codex-v1/evidence/T16-transaction-ps7-final220.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+  "started_utc": "2026-10-12T13:51:07.3263272Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-TransactionalOutput.ps1",
+      "sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    }
+  ],
+  "source_unchanged": true,
+  "synthetic_before": [
+    {
+      "relative_path": "S\\m-mp3-0.025-8000.mp3",
+      "sha256": "962b6f455eb729bdde323e1eaa47674244ab981dce4d3e1a48d409db1282b2e6"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-11025.mp3",
+      "sha256": "ab0119f33f002d4cb6a17220d630c4d36eff2e9947147a9fd9f6a7553addf38c"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-16000.mp3",
+      "sha256": "c96d1550b74270d9e5cec3053a955820d7215924867ffddda512d29b4ea7a6aa"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-22050.mp3",
+      "sha256": "4c8c40054b5255c3839e6d174619b85d4c016a6150f85272ec313e9b0cf7adc5"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-44100.mp3",
+      "sha256": "118971ef6f89a7fbbdc7f49d170c09fe6ceca1099b821536d50b861e89cecf20"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-48000.mp3",
+      "sha256": "da08f8ef58f610fdaeadc7d581649e9bb0fa31176c2b3d1b5bba0a7a531b6d47"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-8000.mp3",
+      "sha256": "14d23374f823b45c2830c8166b045fd7e11538684fda021c653dbc3a679e6aad"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-11025.mp3",
+      "sha256": "b6804637e4983b7cc7c05e36a8449bfc9b165e43c01989b310d49c2c00d3e2e8"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-16000.mp3",
+      "sha256": "42f58b415d45e54811fbd7adfbb30efc1979a3bf20e3109390fb095fd75e94f6"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-22050.mp3",
+      "sha256": "4f3df255ba36ca404a57dd2d985105dc1c3e27b5acc130523fd988e995cbb956"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-44100.mp3",
+      "sha256": "e94283a31cccc74e3b7e1283ffdeaf2dbbfec7f13d343c6315b5ab6ff453d419"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-48000.mp3",
+      "sha256": "5946e821d7e68af1afc7ea5c92161bd7d8ac222fa731811df48eab30ce0acc6d"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-8000.mp3",
+      "sha256": "7241b063a13a03d1b360ea74a18b866fec11ec1deea59f5aa20f4925645a9528"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-11025.mp3",
+      "sha256": "3851806b9fbbda131140cc521f858f8137cf61d7cd7d8f21d745c05290dc9e44"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-16000.mp3",
+      "sha256": "36ae5a7695eaf9689d2e9f8557e1a9c52bf6c9109a0c185f55af043d7a227156"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-22050.mp3",
+      "sha256": "902c13725688d0f16546d2c1798ef0ed01a6c1efc3933b0717209b8038067a58"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-44100.mp3",
+      "sha256": "dd1a1ea63c6720949c8b9dab177c65dc5ec67b9eb4c8a22640a8e6e1b1ad7300"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-48000.mp3",
+      "sha256": "09104fe59a1aeceece291daac9d5b8ba5c8a175a03ca72a889a56cf26dd0f6a0"
+    },
+    {
+      "relative_path": "S\\edge-mp3-8.mp3",
+      "sha256": "aa3ad1dbae103bba14f6f9ca74a9ffe1a2c335f1be873e201ecca6dd6d7a1fc2"
+    },
+    {
+      "relative_path": "S\\edge-mp3-320.mp3",
+      "sha256": "1c033465f051ceabb147f37e6bfce2eaa2f6161d128a14014a18da42a3c77395"
+    },
+    {
+      "relative_path": "S\\unsupported-mp3-8.mp3",
+      "sha256": "fbbbcd393166a80e31e0c4792a38ab51dae7c68114457fdafec1a3aacd727409"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-8000.m4a",
+      "sha256": "4c3077105ede5d39fc25880aeb2e1e0edef1e152153aa0c7e80ad133f2d65ae4"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-11025.m4a",
+      "sha256": "74a505c9981ad3d2f5d255093998bcb33e34a5564aa87a6c9707aef48f0ce81a"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-16000.m4a",
+      "sha256": "5bd4c095fcc2dab2c0f2264628845599644c5c7149a3ae6649e6b9d782754e01"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-22050.m4a",
+      "sha256": "bb2a4af8e40af07e0b56a7f41b6339bf2a4451c572f788719353c91017a0dcda"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-44100.m4a",
+      "sha256": "bac698ec7a37945cb18b60c4c4bb3077560dd98e2de920be38a418090a1f6f15"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-48000.m4a",
+      "sha256": "85837215847ee827de284e040dadbef59bc57b5d8a4b8728a146ac7890763483"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-8000.m4a",
+      "sha256": "9ccad10636c58e613ee03cb6c94157e8dfac70c9cc7cda146b05f3974bab4e77"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-11025.m4a",
+      "sha256": "9a6be4d82d25e3f340a1d2dcb228e6010d4bf1e5e3900b458109ed2c5dc50c96"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-16000.m4a",
+      "sha256": "c4403da6bb29b800475508c89e035a7b685141201f844a54d22fef3520cfb78a"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-22050.m4a",
+      "sha256": "1e4ede1470cd4782c8cf35112ae5e1a8df2ae9651417bec9c0b34d31698b637c"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-44100.m4a",
+      "sha256": "27d20b203aa0705f75a02267fc4bde1ebd10e8d58ce103df17a62b41dc9516f1"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-48000.m4a",
+      "sha256": "6e5a71914bcc3d45166d3b7862d2639af836e2887cc2591ea696ffca3884c7a7"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-8000.m4a",
+      "sha256": "33193d922d38c83a19d6c0a5d51d48a391b7fe89d249eb16baf066863db1be9a"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-11025.m4a",
+      "sha256": "b42a1fd6dc64d49f8034c4fb4c9b0848d4620fc0a741aa8781c3994d0172cb04"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-16000.m4a",
+      "sha256": "766fd5bedc6364bce312870c6b29c8e6baa752382988d83e857881c25b8f640a"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-22050.m4a",
+      "sha256": "286d80b02cfe7ed55caeacc2834ff7d2b72037340428e20ca9450e34afbb6121"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-44100.m4a",
+      "sha256": "b942e53c77a8e1acc4354fea77ea88f59a3727b28877f574513af474746a3160"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-48000.m4a",
+      "sha256": "b0fbb5c4878d599fe5dc82561ea47a7131fa90ec6e80a239c3173f33e94ee810"
+    },
+    {
+      "relative_path": "S\\edge-m4a-8.m4a",
+      "sha256": "4e0e1d95668b49851fe52ba206987e6735b10e070e02167b29343ae1dd995cb1"
+    },
+    {
+      "relative_path": "S\\edge-m4a-320.m4a",
+      "sha256": "d2161025d2999535d8bc9deb753e49abca33624a7befb703fbd9a0427b350a27"
+    },
+    {
+      "relative_path": "S\\unsupported-m4a-8.m4a",
+      "sha256": "506539286615ed364d8f5c48bebf3ad44eca04a228768724a990d60f98cc212a"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-8000.ogg",
+      "sha256": "c58cbaf769ad966394e6d9106741eefe3189dae61203886915481e12577ddd38"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-11025.ogg",
+      "sha256": "4ec5b8b771ad890234f15a1cd0d9f08e49261b906d54213bd7ac8e1e410728d5"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-16000.ogg",
+      "sha256": "fe7d48cf553e33ec5bda9242d4404b28a770cfa938f423adbc592bb61598b7a7"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-22050.ogg",
+      "sha256": "fef6124e9f988ee0255a0856c6ec210adbf3c59cd0068a70ea1426114511ba7b"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-44100.ogg",
+      "sha256": "20feb67298b46800584aa2fb906635258774dedfa1b515712ea7561b82fe2544"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-48000.ogg",
+      "sha256": "688fce16a389f09f0d8e2b6d64307fca181fc0bfacc5f1cd6271c0a2f7e912af"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-8000.ogg",
+      "sha256": "1e08155a9c73b7f1d346b6340b030806d1c24888ae361a8f4023c5a6bd41eff2"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-11025.ogg",
+      "sha256": "72310b05a59f9253922fc8c4558cf22e52e8d2b39198b3bd5c0222d2d2824ca0"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-16000.ogg",
+      "sha256": "0815665fba3d111dc9a0b25e800b6571e1085f92a73918667a414f0a81370f05"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-22050.ogg",
+      "sha256": "1167e5095f7cd9bf286a7beaecca082f0b0f963fd6c80149b3dc054a9180f244"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-44100.ogg",
+      "sha256": "20dce88aba1f8bc1a7b7343d6a7e75b8b8392ce35517b0c0abc2b340d7082cc8"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-48000.ogg",
+      "sha256": "0eac95a89e364322386a310f3c4f7f3e22c3e42190d1aa310ca805437c68fb5d"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-8000.ogg",
+      "sha256": "d17d61bdd4e54d4574d10bbccf5c2e9d9baa7b3d1cb42ece840f00e91837ec8b"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-11025.ogg",
+      "sha256": "d4e0fe244b9a6a466063f64c167ce8f23e1c377ec2dc858f0740f79e72d7ad22"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-16000.ogg",
+      "sha256": "e7fa3ee27e2957642df728279067798b33537d7a241dafa1c9ae78ba21c4c9da"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-22050.ogg",
+      "sha256": "ee81401ff872ee1807373facb264f755d9a8f8b6790911bd65114ddf7337666f"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-44100.ogg",
+      "sha256": "e4bdbac67e18a7abd01a86ad383027a3129e212e6408de07ca4529b7536374d2"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-48000.ogg",
+      "sha256": "a09f0554d1175c70b4059a5d7e7cead74493ceebd27c0f6b309d8d0561fb4364"
+    },
+    {
+      "relative_path": "S\\edge-ogg-8.ogg",
+      "sha256": "5fe69821aff3653e4ded507bdd97fbf032a19b0cddad5f28d0afb92c89d4891c"
+    },
+    {
+      "relative_path": "S\\edge-ogg-320.ogg",
+      "sha256": "d5758138b3c2f27517861d79e194e00651807fc1509f287685a8c2a45c72ccfc"
+    },
+    {
+      "relative_path": "S\\unsupported-ogg-8.ogg",
+      "sha256": "d775d1b7173bb2acb5593bc3429da3171ec3c53f72114c17c5af4a5de69c12b6"
+    },
+    {
+      "relative_path": "S\\opus.ogg",
+      "sha256": "8effedf7af8b3abaced7af30a4af829ff09a1c0227e51a38611dfe73b8a66eea"
+    },
+    {
+      "relative_path": "S\\valid.mp3",
+      "sha256": "ceff47c6d059f77abcf82b5bd47e84b840475ee4172f7e71923deba2a9622756"
+    },
+    {
+      "relative_path": "S\\wrong-codec.m4a",
+      "sha256": "e5e3c07338323f7312b669c6f25b0dcebfe761432830157f3df1cd1ce217be17"
+    },
+    {
+      "relative_path": "S\\wrong-rate.mp3",
+      "sha256": "e825622b34a7dd8784e6910220b96549fd7e8cc9c3c6bf46a9d57f7fe0b97531"
+    },
+    {
+      "relative_path": "S\\picture.png",
+      "sha256": "50b192ebf203ad52d91439d7d9d11b20290d55fd495e2a43971e6fb77846c181"
+    },
+    {
+      "relative_path": "S\\cover.jpg",
+      "sha256": "1263b8c8ae9169bbb3b09ebfc1acf5db4bdb9f0fd84a71fbad5131a8b5b3d6ff"
+    },
+    {
+      "relative_path": "S\\cover-rate.mp3",
+      "sha256": "4436f49a35ed723f5c020374eea313b1ea5fb4dcb8cc6fd64c7431d03e77aded"
+    },
+    {
+      "relative_path": "S\\good64.mp3",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "S\\corrupt.mp3",
+      "sha256": "13cb4671cfe55571d8f6d13f530bf4ac94b0e728b6fa7d93dc6378fabe66d2ec"
+    },
+    {
+      "relative_path": "S\\truncated.mp3",
+      "sha256": "74aae25e12d1829833085f01f0330e2d99a8cc0a0373483564582af1a9a77264"
+    },
+    {
+      "relative_path": "S\\payload-corrupt.mp3",
+      "sha256": "42dba54a30640f8fa81ab9f2150dbd55a044c9e678ce5319bd7eb8ac44d6407d"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-07e94d099d244989af0c4cffd6989f26.partial",
+      "sha256": "573cd813c092f84fe5aa448133645d7fc685f8d60c2bcbf36cce97e5f3e27f0d"
+    },
+    {
+      "relative_path": "O\\race-final.mp3",
+      "sha256": "bc697d5516097471a23f274e7c948ef1a1f3c395cb4a1bdb1d69b18858719d79"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-6f2b049ba54d4cf4a0ff65e3b25487c8.partial",
+      "sha256": "b8264c97ac19e00a654a021681de8d2fa589a098be0284335f5334427d1a211a"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-6f2b049ba54d4cf4a0ff65e3b25487c8.partial.held",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-129d999422fe45bfa7b38687190ed77c.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-08b0798301164831b77108c365201155.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-8ee33105fa1d4bcea58ed2e962e1f428.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "E\\2024-01-02 Synthetic.mp3",
+      "sha256": "ceff47c6d059f77abcf82b5bd47e84b840475ee4172f7e71923deba2a9622756"
+    },
+    {
+      "relative_path": "log-driver.ps1",
+      "sha256": "0777d1a4b76aa8b122cc4f9cb73dac9c8c8a6a57c2d615e932e49cde9e74e634"
+    }
+  ],
+  "synthetic_after": [
+    {
+      "relative_path": "S\\m-mp3-0.025-8000.mp3",
+      "sha256": "962b6f455eb729bdde323e1eaa47674244ab981dce4d3e1a48d409db1282b2e6"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-11025.mp3",
+      "sha256": "ab0119f33f002d4cb6a17220d630c4d36eff2e9947147a9fd9f6a7553addf38c"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-16000.mp3",
+      "sha256": "c96d1550b74270d9e5cec3053a955820d7215924867ffddda512d29b4ea7a6aa"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-22050.mp3",
+      "sha256": "4c8c40054b5255c3839e6d174619b85d4c016a6150f85272ec313e9b0cf7adc5"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-44100.mp3",
+      "sha256": "118971ef6f89a7fbbdc7f49d170c09fe6ceca1099b821536d50b861e89cecf20"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.025-48000.mp3",
+      "sha256": "da08f8ef58f610fdaeadc7d581649e9bb0fa31176c2b3d1b5bba0a7a531b6d47"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-8000.mp3",
+      "sha256": "14d23374f823b45c2830c8166b045fd7e11538684fda021c653dbc3a679e6aad"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-11025.mp3",
+      "sha256": "b6804637e4983b7cc7c05e36a8449bfc9b165e43c01989b310d49c2c00d3e2e8"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-16000.mp3",
+      "sha256": "42f58b415d45e54811fbd7adfbb30efc1979a3bf20e3109390fb095fd75e94f6"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-22050.mp3",
+      "sha256": "4f3df255ba36ca404a57dd2d985105dc1c3e27b5acc130523fd988e995cbb956"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-44100.mp3",
+      "sha256": "e94283a31cccc74e3b7e1283ffdeaf2dbbfec7f13d343c6315b5ab6ff453d419"
+    },
+    {
+      "relative_path": "S\\m-mp3-0.200-48000.mp3",
+      "sha256": "5946e821d7e68af1afc7ea5c92161bd7d8ac222fa731811df48eab30ce0acc6d"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-8000.mp3",
+      "sha256": "7241b063a13a03d1b360ea74a18b866fec11ec1deea59f5aa20f4925645a9528"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-11025.mp3",
+      "sha256": "3851806b9fbbda131140cc521f858f8137cf61d7cd7d8f21d745c05290dc9e44"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-16000.mp3",
+      "sha256": "36ae5a7695eaf9689d2e9f8557e1a9c52bf6c9109a0c185f55af043d7a227156"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-22050.mp3",
+      "sha256": "902c13725688d0f16546d2c1798ef0ed01a6c1efc3933b0717209b8038067a58"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-44100.mp3",
+      "sha256": "dd1a1ea63c6720949c8b9dab177c65dc5ec67b9eb4c8a22640a8e6e1b1ad7300"
+    },
+    {
+      "relative_path": "S\\m-mp3-2.000-48000.mp3",
+      "sha256": "09104fe59a1aeceece291daac9d5b8ba5c8a175a03ca72a889a56cf26dd0f6a0"
+    },
+    {
+      "relative_path": "S\\edge-mp3-8.mp3",
+      "sha256": "aa3ad1dbae103bba14f6f9ca74a9ffe1a2c335f1be873e201ecca6dd6d7a1fc2"
+    },
+    {
+      "relative_path": "S\\edge-mp3-320.mp3",
+      "sha256": "1c033465f051ceabb147f37e6bfce2eaa2f6161d128a14014a18da42a3c77395"
+    },
+    {
+      "relative_path": "S\\unsupported-mp3-8.mp3",
+      "sha256": "fbbbcd393166a80e31e0c4792a38ab51dae7c68114457fdafec1a3aacd727409"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-8000.m4a",
+      "sha256": "4c3077105ede5d39fc25880aeb2e1e0edef1e152153aa0c7e80ad133f2d65ae4"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-11025.m4a",
+      "sha256": "74a505c9981ad3d2f5d255093998bcb33e34a5564aa87a6c9707aef48f0ce81a"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-16000.m4a",
+      "sha256": "5bd4c095fcc2dab2c0f2264628845599644c5c7149a3ae6649e6b9d782754e01"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-22050.m4a",
+      "sha256": "bb2a4af8e40af07e0b56a7f41b6339bf2a4451c572f788719353c91017a0dcda"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-44100.m4a",
+      "sha256": "bac698ec7a37945cb18b60c4c4bb3077560dd98e2de920be38a418090a1f6f15"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.025-48000.m4a",
+      "sha256": "85837215847ee827de284e040dadbef59bc57b5d8a4b8728a146ac7890763483"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-8000.m4a",
+      "sha256": "9ccad10636c58e613ee03cb6c94157e8dfac70c9cc7cda146b05f3974bab4e77"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-11025.m4a",
+      "sha256": "9a6be4d82d25e3f340a1d2dcb228e6010d4bf1e5e3900b458109ed2c5dc50c96"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-16000.m4a",
+      "sha256": "c4403da6bb29b800475508c89e035a7b685141201f844a54d22fef3520cfb78a"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-22050.m4a",
+      "sha256": "1e4ede1470cd4782c8cf35112ae5e1a8df2ae9651417bec9c0b34d31698b637c"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-44100.m4a",
+      "sha256": "27d20b203aa0705f75a02267fc4bde1ebd10e8d58ce103df17a62b41dc9516f1"
+    },
+    {
+      "relative_path": "S\\m-m4a-0.200-48000.m4a",
+      "sha256": "6e5a71914bcc3d45166d3b7862d2639af836e2887cc2591ea696ffca3884c7a7"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-8000.m4a",
+      "sha256": "33193d922d38c83a19d6c0a5d51d48a391b7fe89d249eb16baf066863db1be9a"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-11025.m4a",
+      "sha256": "b42a1fd6dc64d49f8034c4fb4c9b0848d4620fc0a741aa8781c3994d0172cb04"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-16000.m4a",
+      "sha256": "766fd5bedc6364bce312870c6b29c8e6baa752382988d83e857881c25b8f640a"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-22050.m4a",
+      "sha256": "286d80b02cfe7ed55caeacc2834ff7d2b72037340428e20ca9450e34afbb6121"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-44100.m4a",
+      "sha256": "b942e53c77a8e1acc4354fea77ea88f59a3727b28877f574513af474746a3160"
+    },
+    {
+      "relative_path": "S\\m-m4a-2.000-48000.m4a",
+      "sha256": "b0fbb5c4878d599fe5dc82561ea47a7131fa90ec6e80a239c3173f33e94ee810"
+    },
+    {
+      "relative_path": "S\\edge-m4a-8.m4a",
+      "sha256": "4e0e1d95668b49851fe52ba206987e6735b10e070e02167b29343ae1dd995cb1"
+    },
+    {
+      "relative_path": "S\\edge-m4a-320.m4a",
+      "sha256": "d2161025d2999535d8bc9deb753e49abca33624a7befb703fbd9a0427b350a27"
+    },
+    {
+      "relative_path": "S\\unsupported-m4a-8.m4a",
+      "sha256": "506539286615ed364d8f5c48bebf3ad44eca04a228768724a990d60f98cc212a"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-8000.ogg",
+      "sha256": "c58cbaf769ad966394e6d9106741eefe3189dae61203886915481e12577ddd38"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-11025.ogg",
+      "sha256": "4ec5b8b771ad890234f15a1cd0d9f08e49261b906d54213bd7ac8e1e410728d5"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-16000.ogg",
+      "sha256": "fe7d48cf553e33ec5bda9242d4404b28a770cfa938f423adbc592bb61598b7a7"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-22050.ogg",
+      "sha256": "fef6124e9f988ee0255a0856c6ec210adbf3c59cd0068a70ea1426114511ba7b"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-44100.ogg",
+      "sha256": "20feb67298b46800584aa2fb906635258774dedfa1b515712ea7561b82fe2544"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.025-48000.ogg",
+      "sha256": "688fce16a389f09f0d8e2b6d64307fca181fc0bfacc5f1cd6271c0a2f7e912af"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-8000.ogg",
+      "sha256": "1e08155a9c73b7f1d346b6340b030806d1c24888ae361a8f4023c5a6bd41eff2"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-11025.ogg",
+      "sha256": "72310b05a59f9253922fc8c4558cf22e52e8d2b39198b3bd5c0222d2d2824ca0"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-16000.ogg",
+      "sha256": "0815665fba3d111dc9a0b25e800b6571e1085f92a73918667a414f0a81370f05"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-22050.ogg",
+      "sha256": "1167e5095f7cd9bf286a7beaecca082f0b0f963fd6c80149b3dc054a9180f244"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-44100.ogg",
+      "sha256": "20dce88aba1f8bc1a7b7343d6a7e75b8b8392ce35517b0c0abc2b340d7082cc8"
+    },
+    {
+      "relative_path": "S\\m-ogg-0.200-48000.ogg",
+      "sha256": "0eac95a89e364322386a310f3c4f7f3e22c3e42190d1aa310ca805437c68fb5d"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-8000.ogg",
+      "sha256": "d17d61bdd4e54d4574d10bbccf5c2e9d9baa7b3d1cb42ece840f00e91837ec8b"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-11025.ogg",
+      "sha256": "d4e0fe244b9a6a466063f64c167ce8f23e1c377ec2dc858f0740f79e72d7ad22"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-16000.ogg",
+      "sha256": "e7fa3ee27e2957642df728279067798b33537d7a241dafa1c9ae78ba21c4c9da"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-22050.ogg",
+      "sha256": "ee81401ff872ee1807373facb264f755d9a8f8b6790911bd65114ddf7337666f"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-44100.ogg",
+      "sha256": "e4bdbac67e18a7abd01a86ad383027a3129e212e6408de07ca4529b7536374d2"
+    },
+    {
+      "relative_path": "S\\m-ogg-2.000-48000.ogg",
+      "sha256": "a09f0554d1175c70b4059a5d7e7cead74493ceebd27c0f6b309d8d0561fb4364"
+    },
+    {
+      "relative_path": "S\\edge-ogg-8.ogg",
+      "sha256": "5fe69821aff3653e4ded507bdd97fbf032a19b0cddad5f28d0afb92c89d4891c"
+    },
+    {
+      "relative_path": "S\\edge-ogg-320.ogg",
+      "sha256": "d5758138b3c2f27517861d79e194e00651807fc1509f287685a8c2a45c72ccfc"
+    },
+    {
+      "relative_path": "S\\unsupported-ogg-8.ogg",
+      "sha256": "d775d1b7173bb2acb5593bc3429da3171ec3c53f72114c17c5af4a5de69c12b6"
+    },
+    {
+      "relative_path": "S\\opus.ogg",
+      "sha256": "8effedf7af8b3abaced7af30a4af829ff09a1c0227e51a38611dfe73b8a66eea"
+    },
+    {
+      "relative_path": "S\\valid.mp3",
+      "sha256": "ceff47c6d059f77abcf82b5bd47e84b840475ee4172f7e71923deba2a9622756"
+    },
+    {
+      "relative_path": "S\\wrong-codec.m4a",
+      "sha256": "e5e3c07338323f7312b669c6f25b0dcebfe761432830157f3df1cd1ce217be17"
+    },
+    {
+      "relative_path": "S\\wrong-rate.mp3",
+      "sha256": "e825622b34a7dd8784e6910220b96549fd7e8cc9c3c6bf46a9d57f7fe0b97531"
+    },
+    {
+      "relative_path": "S\\picture.png",
+      "sha256": "50b192ebf203ad52d91439d7d9d11b20290d55fd495e2a43971e6fb77846c181"
+    },
+    {
+      "relative_path": "S\\cover.jpg",
+      "sha256": "1263b8c8ae9169bbb3b09ebfc1acf5db4bdb9f0fd84a71fbad5131a8b5b3d6ff"
+    },
+    {
+      "relative_path": "S\\cover-rate.mp3",
+      "sha256": "4436f49a35ed723f5c020374eea313b1ea5fb4dcb8cc6fd64c7431d03e77aded"
+    },
+    {
+      "relative_path": "S\\good64.mp3",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "S\\corrupt.mp3",
+      "sha256": "13cb4671cfe55571d8f6d13f530bf4ac94b0e728b6fa7d93dc6378fabe66d2ec"
+    },
+    {
+      "relative_path": "S\\truncated.mp3",
+      "sha256": "74aae25e12d1829833085f01f0330e2d99a8cc0a0373483564582af1a9a77264"
+    },
+    {
+      "relative_path": "S\\payload-corrupt.mp3",
+      "sha256": "42dba54a30640f8fa81ab9f2150dbd55a044c9e678ce5319bd7eb8ac44d6407d"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-07e94d099d244989af0c4cffd6989f26.partial",
+      "sha256": "573cd813c092f84fe5aa448133645d7fc685f8d60c2bcbf36cce97e5f3e27f0d"
+    },
+    {
+      "relative_path": "O\\race-final.mp3",
+      "sha256": "bc697d5516097471a23f274e7c948ef1a1f3c395cb4a1bdb1d69b18858719d79"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-6f2b049ba54d4cf4a0ff65e3b25487c8.partial",
+      "sha256": "b8264c97ac19e00a654a021681de8d2fa589a098be0284335f5334427d1a211a"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-6f2b049ba54d4cf4a0ff65e3b25487c8.partial.held",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-129d999422fe45bfa7b38687190ed77c.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-08b0798301164831b77108c365201155.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "O\\.AudioFileForPhone-8ee33105fa1d4bcea58ed2e962e1f428.partial",
+      "sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3"
+    },
+    {
+      "relative_path": "E\\2024-01-02 Synthetic.mp3",
+      "sha256": "ceff47c6d059f77abcf82b5bd47e84b840475ee4172f7e71923deba2a9622756"
+    },
+    {
+      "relative_path": "log-driver.ps1",
+      "sha256": "0777d1a4b76aa8b122cc4f9cb73dac9c8c8a6a57c2d615e932e49cde9e74e634"
+    }
+  ],
+  "synthetic_unchanged": true,
+  "temp_exclusively_reserved": true,
+  "marker_create_new": true,
+  "copied_bytes_unchanged": true,
+  "owned_temp_root_name": "T9-e9da21aa",
+  "temp_parent_selection": "shorter user/machine TEMP, read-only lookup",
+  "cases": [
+    {
+      "name": "empirical supported matrix fully decodes and unsupported selected rates fail safely",
+      "acceptance_case": "A24,A25",
+      "status": "pass",
+      "successful_rows": 61,
+      "unsupported_rate_rejections": 3,
+      "generated_durations": [
+        0.025,
+        0.2,
+        2.0
+      ],
+      "source_sample_rates": [
+        8000,
+        11025,
+        16000,
+        22050,
+        44100,
+        48000
+      ],
+      "selected_bitrates": [
+        8,
+        64,
+        320
+      ],
+      "mp3_m4a_vorbis_opus": true,
+      "all_final_outputs_fully_decoded": true,
+      "maximum_probe_delta_seconds": 0.031,
+      "maximum_source_decode_delta_seconds": 0.031
+    },
+    {
+      "name": "zero exit with empty owned output",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidOutput): Working output is not a nonempty regular file.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "zero exit with corrupt output",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (ProbeFailed): Output probe failed (Completed, exit 1): ; <OWNED_TEMP>\\O\\.AudioFileForPhone-67acad5833c24e02a69615405a9c3cda.partial: Invalid data found when processing input\r\n",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "zero exit with non-audio image",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidProbeData): Working output must be an MP3 container with an explicit streams array.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "unexpected AAC codec disguised by partial extension",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidProbeData): Working output must be an MP3 container with an explicit streams array.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "selected audio bitrate mismatch",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidProbeData): Output audio-stream bitrate does not match the selected bitrate.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "audio bitrate mismatch despite artwork/container bitrate",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidProbeData): Output audio-stream bitrate does not match the selected bitrate.",
+      "only_owned_working_removed": true,
+      "actual_audio_bitrate": 32000,
+      "container_bitrate": 289756
+    },
+    {
+      "name": "physically truncated MP3 retaining original Xing duration",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (DecodeFailed): Decoded output duration is outside the 0.35-second source/header tolerance.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "corrupted payload after valid MP3 header",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (DecodeFailed): Output audio decode failed (Completed, exit -1094995529): ; [mp3float @ 000001a72e84bc40] Header missing\r\n[aist#0:0/mp3 @ 000001a72e849a80] [dec:mp3float @ 000001a72e850f40] Error submitting packet to decoder: Invalid data found when processing input\r\n[aist#0:0/mp3 @ 000001a72e849a80] [dec:mp3float @ 000001a72e850f40] Error processing packet in decoder: Invalid data found when processing input\r\n[aist#0:0/mp3 @ 000001a72e849a80] [dec:mp3float @ 000001a72e850f40] Task finished with error code: -1094995529 (Invalid data found when processing input)\r\n[aist#0:0/mp3 @ 000001a72e849a80] [dec:mp3float @ 000001a72e850f40] Terminating thread with return code -1094995529 (Invalid data found when processing input)\r\n",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "implausibly long output",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (InvalidProbeData): Output audio duration is outside the 0.35-second source tolerance.",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "nonzero encoder after partial bytes",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "EncodeFailed",
+      "reason": "Encoder failed (Completed, exit 17): controlled encoder failure; controlled encoder failure",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "encoder startup failure",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "EncodeFailed",
+      "reason": "Encoder failed (StartFailed, exit 0): controlled startup failure; controlled startup failure",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "nonzero validation probe",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (ProbeFailed): Output probe failed (Completed, exit 19): controlled probe failure; controlled probe failure",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "validation probe startup failure",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (ProbeFailed): Output probe failed (StartFailed, exit 0): controlled probe startup failure; controlled probe startup failure",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "integrity decoder native failure",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "reason": "Output validation failed (DecodeFailed): Output audio decode failed (Completed, exit 23): controlled integrity decode failure; controlled integrity decode failure",
+      "only_owned_working_removed": true
+    },
+    {
+      "name": "malformed/missing/non-finite output duration and probe JSON rejected",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "payloads": 11,
+      "statuses": [
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed",
+        "ValidationFailed"
+      ]
+    },
+    {
+      "name": "missing/invalid source duration fails before encoding",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "invalid_values": [
+        "zero",
+        "negative",
+        "NaN",
+        "positive infinity"
+      ],
+      "statuses": [
+        "InvalidSourceDuration",
+        "InvalidSourceDuration",
+        "InvalidSourceDuration",
+        "InvalidSourceDuration"
+      ],
+      "no_encoder_calls": true
+    },
+    {
+      "name": "source inspection distinguishes missing/invalid duration and declared format fallback",
+      "acceptance_case": "A25",
+      "status": "pass",
+      "source_duration_results": [
+        {
+          "status": "Missing",
+          "origin": null,
+          "seconds": null
+        },
+        {
+          "status": "Invalid",
+          "origin": "Stream",
+          "seconds": null
+        },
+        {
+          "status": "Invalid",
+          "origin": "Stream",
+          "seconds": null
+        },
+        {
+          "status": "Valid",
+          "origin": "Format",
+          "seconds": 2.0
+        }
+      ],
+      "explicit_null_transaction_status": "InvalidSourceDuration"
+    },
+    {
+      "name": "apparently valid probe cannot bless corrupt audio payload",
+      "acceptance_case": "A25,A26",
+      "status": "pass",
+      "validation_status": "DecodeFailed",
+      "real_decode_exit": -1094995529
+    },
+    {
+      "name": "bounded duration policy rejects minute loss for multi-hour claimed source",
+      "acceptance_case": "A25",
+      "status": "pass",
+      "transaction_status": "ValidationFailed",
+      "source_claim_seconds": 7200,
+      "output_claim_seconds": 7140
+    },
+    {
+      "name": "promotion exception and actual locked working file fail safely",
+      "acceptance_case": "A26",
+      "status": "pass",
+      "statuses": [
+        "PromotionFailed",
+        "PromotionFailed"
+      ],
+      "reasons": [
+        "controlled rename/disk promotion failure",
+        "Exception calling \"Move\" with \"2\" argument(s): \"The process cannot access the file because it is being used by another process.\""
+      ],
+      "real_FileShare_None_move_failure": true,
+      "owned_lock_disposed_before_cleanup": true
+    },
+    {
+      "name": "concurrent final sentinel created after encode survives no-overwrite promotion",
+      "acceptance_case": "A26",
+      "status": "pass",
+      "sentinel_sha256": "bc697d5516097471a23f274e7c948ef1a1f3c395cb4a1bdb1d69b18858719d79",
+      "transaction_status": "PromotionFailed",
+      "writer_process_exit": 0,
+      "barrier_after_validation": true
+    },
+    {
+      "name": "ownership guard prevents actual working-path deletion during encoder",
+      "acceptance_case": "A24,A26",
+      "status": "pass",
+      "real_delete_sharing_failure": true,
+      "transaction_status": "Success",
+      "final_fully_decoded": true
+    },
+    {
+      "name": "changed working-file identity after guard release preserves replacement sentinel",
+      "acceptance_case": "A26",
+      "status": "pass",
+      "replacement_sha256": "b8264c97ac19e00a654a021681de8d2fa589a098be0284335f5334427d1a211a",
+      "cleanup_error": "Working-file ownership changed; preserving that path.",
+      "transaction_status": "PromotionFailed",
+      "replacement_preserved": true
+    },
+    {
+      "name": "unestablished native exit retains recognizable partial and explicit cleanup diagnostic",
+      "acceptance_case": "A26",
+      "status": "pass",
+      "stages": [
+        {
+          "phase": "encoder-unreleased",
+          "transaction_status": "EncodeFailed",
+          "partial_sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3",
+          "cleanup_error": "Owned native process exit was not established; leaving the incomplete working path."
+        },
+        {
+          "phase": "probe-unreleased",
+          "transaction_status": "ValidationFailed",
+          "partial_sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3",
+          "cleanup_error": "Owned native process exit was not established; leaving the incomplete working path."
+        },
+        {
+          "phase": "decode-unreleased",
+          "transaction_status": "ValidationFailed",
+          "partial_sha256": "f395720147080c8b46768bde2103aa065e9a1f17f460a6780fa78326165d57b3",
+          "cleanup_error": "Owned native process exit was not established; leaving the incomplete working path."
+        }
+      ],
+      "process_result_fault_injection_only": true,
+      "no_live_native_child_created_by_stub": true
+    },
+    {
+      "name": "actual entry postpublication log failure reports published mapping and preserves valid output",
+      "acceptance_case": "A24,A26",
+      "status": "pass",
+      "child_exit": 1,
+      "child_native_status": "Completed",
+      "child_process_released": true,
+      "diagnostic_published_phrase": true,
+      "diagnostic_log_failure_phrase": true,
+      "published_output_fully_decoded": true,
+      "published_sha256": "383734b0229cac3827e37d543d421ef4e4204b10f9db4c4955d235ae57ac4ba7",
+      "published_mapping_reported": true,
+      "subsequent_log_failure_reported": true
+    },
+    {
+      "name": "unrelated existing partial preserved across every owned cleanup",
+      "acceptance_case": "A26",
+      "status": "pass",
+      "sentinel_sha256": "573cd813c092f84fe5aa448133645d7fc685f8d60c2bcbf36cce97e5f3e27f0d",
+      "no_unexpected_partials": true,
+      "deliberately_preserved_partial_count": 5
+    }
+  ],
+  "duration_matrix": [
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025034,
+      "output_duration_seconds": 0.025034,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024943,
+      "source_decode_delta_seconds": 9.10000000000008E-05,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.024989,
+      "output_duration_seconds": 0.024989,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024943,
+      "source_decode_delta_seconds": 4.60000000000009E-05,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025011,
+      "output_duration_seconds": 0.025011,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024989,
+      "source_decode_delta_seconds": 2.1999999999997716E-05,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.199955,
+      "source_decode_delta_seconds": 4.500000000001725E-05,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 8,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "mp3",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 320,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025034,
+      "output_duration_seconds": 0.025034,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024943,
+      "source_decode_delta_seconds": 9.10000000000008E-05,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.024989,
+      "output_duration_seconds": 0.024989,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024943,
+      "source_decode_delta_seconds": 4.60000000000009E-05,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025011,
+      "output_duration_seconds": 0.025011,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.024989,
+      "source_decode_delta_seconds": 2.1999999999997716E-05,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.025,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.025,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.199955,
+      "source_decode_delta_seconds": 4.500000000001725E-05,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 8,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "m4a",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 320,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.032,
+      "absolute_probe_delta_seconds": 0.006999999999999999,
+      "decoded_duration_seconds": 0.032,
+      "source_decode_delta_seconds": 0.006999999999999999,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025034,
+      "output_duration_seconds": 0.04644,
+      "absolute_probe_delta_seconds": 0.021406,
+      "decoded_duration_seconds": 0.046349,
+      "source_decode_delta_seconds": 0.021315,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.056,
+      "absolute_probe_delta_seconds": 0.031,
+      "decoded_duration_seconds": 0.056,
+      "source_decode_delta_seconds": 0.031,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.024989,
+      "output_duration_seconds": 0.040635,
+      "absolute_probe_delta_seconds": 0.015645999999999997,
+      "decoded_duration_seconds": 0.040635,
+      "source_decode_delta_seconds": 0.015645999999999997,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025011,
+      "output_duration_seconds": 0.022109,
+      "absolute_probe_delta_seconds": 0.0029019999999999983,
+      "decoded_duration_seconds": 0.022086,
+      "source_decode_delta_seconds": 0.002924999999999997,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.025,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.025,
+      "output_duration_seconds": 0.022333,
+      "absolute_probe_delta_seconds": 0.0026670000000000027,
+      "decoded_duration_seconds": 0.022333,
+      "source_decode_delta_seconds": 0.0026670000000000027,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.224,
+      "absolute_probe_delta_seconds": 0.023999999999999994,
+      "decoded_duration_seconds": 0.223875,
+      "source_decode_delta_seconds": 0.02387499999999998,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.20898,
+      "absolute_probe_delta_seconds": 0.008979999999999988,
+      "decoded_duration_seconds": 0.20898,
+      "source_decode_delta_seconds": 0.008979999999999988,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.184,
+      "absolute_probe_delta_seconds": 0.016000000000000014,
+      "decoded_duration_seconds": 0.184,
+      "source_decode_delta_seconds": 0.016000000000000014,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.18839,
+      "absolute_probe_delta_seconds": 0.01161000000000001,
+      "decoded_duration_seconds": 0.188345,
+      "source_decode_delta_seconds": 0.011654999999999999,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.222041,
+      "absolute_probe_delta_seconds": 0.022040999999999977,
+      "decoded_duration_seconds": 0.222041,
+      "source_decode_delta_seconds": 0.022040999999999977,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.197333,
+      "absolute_probe_delta_seconds": 0.0026670000000000027,
+      "decoded_duration_seconds": 0.197333,
+      "source_decode_delta_seconds": 0.0026670000000000027,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 11025,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 11025,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 16000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 16000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 22050,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 22050,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 44100,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 44100,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 2.0,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 2.0,
+      "output_duration_seconds": 2.0,
+      "absolute_probe_delta_seconds": 0.0,
+      "decoded_duration_seconds": 2.0,
+      "source_decode_delta_seconds": 0.0,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 8000,
+      "selected_bitrate_kbps": 8,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.224,
+      "absolute_probe_delta_seconds": 0.023999999999999994,
+      "decoded_duration_seconds": 0.223875,
+      "source_decode_delta_seconds": 0.02387499999999998,
+      "output_sample_rate": 8000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 320,
+      "source_duration_seconds": 0.2,
+      "output_duration_seconds": 0.197333,
+      "absolute_probe_delta_seconds": 0.0026670000000000027,
+      "decoded_duration_seconds": 0.197333,
+      "source_decode_delta_seconds": 0.0026670000000000027,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    },
+    {
+      "extension": "ogg-opus",
+      "generated_seconds": 0.2,
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 64,
+      "source_duration_seconds": 0.2065,
+      "output_duration_seconds": 0.2,
+      "absolute_probe_delta_seconds": 0.006499999999999978,
+      "decoded_duration_seconds": 0.2,
+      "source_decode_delta_seconds": 0.006499999999999978,
+      "output_sample_rate": 48000,
+      "full_decode": true,
+      "status": "Success"
+    }
+  ],
+  "rejected_rate_matrix": [
+    {
+      "extension": "mp3",
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 8,
+      "actual_audio_bitrate": 32000,
+      "status": "ValidationFailed",
+      "final_absent": true,
+      "owned_partial_removed": true
+    },
+    {
+      "extension": "m4a",
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 8,
+      "actual_audio_bitrate": 32000,
+      "status": "ValidationFailed",
+      "final_absent": true,
+      "owned_partial_removed": true
+    },
+    {
+      "extension": "ogg",
+      "source_sample_rate": 48000,
+      "selected_bitrate_kbps": 8,
+      "actual_audio_bitrate": 32000,
+      "status": "ValidationFailed",
+      "final_absent": true,
+      "owned_partial_removed": true
+    }
+  ],
+  "acls_restored": true,
+  "children_disposed": true,
+  "cleanup_verified": true,
+  "status": "pass",
+  "error": null,
+  "tools": [
+    {
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+      "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    {
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+      "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  ],
+  "finished_utc": "2026-10-12T13:51:39.1473445Z"
+}

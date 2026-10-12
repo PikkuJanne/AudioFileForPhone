@@ -1,5 +1,44 @@
 # Decisions and policy ledger
 
+## T22 review and final-version documentation — 12 October 2026
+
+- Reconcile owner-merged PR #21 by normal fetch and fast-forward only. Main
+  `25856cf144b0b84cbedd378a58a8e537ae91c52b` contains T01–T21; its T21 tree
+  matches final feature `7629aeb8c183fbd4d5f16eb74e8a70969b91d9a7` and both
+  merge-push Windows CI jobs pass. No main or repository settings write occurs.
+- Independently audit improvements 1–15, historical report provenance and the
+  current security/usability/package contracts. Improvement 15's implementation
+  readiness is distinct from required future exact-ZIP/publication/closure gates
+  A55–A65. O01 stays deferred and no loudness default is introduced.
+- Candidate `64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723` corrects only the shipped
+  README/SUPPORT/CHANGELOG's stale progress text. Stable version/feature notes
+  link to mutable repository evidence without inventing a release date, frozen
+  package acceptance or public release. Narrow named T20/T21 observations and
+  unavailable/untested limits stay explicit. Runtime/tests/CI/build are unchanged.
+- Run the retained full milestone routing and routine CI sequentially on this
+  active Windows machine with fresh `final220` milestone and `final221` selected
+  routine reports. Dependency copies retain
+  actual historical provisioning bytes/commit; no download/global setting change
+  is implied. Ordinary media checks are isolated; only the established bounded
+  default-Music smoke touches its returned exact owned run.
+- Initial create-new driver preflight refused an occupied historical `final22`
+  cancellation filename before any suite launch or dependency copy. Preserve
+  `T22-driver-preflight.json`; use fresh labels without overwriting old reports.
+- Preserve the initial `final220` PS5.1 routine/baseline failure. The external
+  driver's CREATE_NO_WINDOW launch gave the retained characterization harness
+  code page 437, decoding FFprobe UTF-8 as mojibake. A controlled synthetic probe
+  proves correct raw UTF-8 tags, exact failure under 437, and exact success with
+  the inherited console's 65001 (also with a scoped restored UTF-8 setting).
+  Correct only the temporary driver to inherit the existing console and retry
+  the two routine jobs with fresh `final221` reports. Application/test sources
+  and strict comparisons remain unchanged; the failed record is never relabeled.
+- Preserve the owner's completed human-testing instruction and actual Samsung
+  S24/AIMP result. No personal media scan, long-file regeneration, new phone
+  observation or physical interaction is authorized or needed in this audit.
+- Main integration of the exact reviewed final-document PR remains owner-gated.
+  T23 can freeze only after those changes are integrated and freshly synchronized;
+  this task request adds no tag/release authority.
+
 These scope choices implement the accepted review. Verify contracts in T02 and
 record any owner-approved changes with rationale and impacted tests.
 
