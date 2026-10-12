@@ -1,5 +1,33 @@
 # Current project status
 
+State: **T24 exact-byte preflight passed; exact approval and main-timing exception pending.**
+Last completed task: T23. Exactly next: continue T24. A57 blocked; A58–A65
+pending. O01 deferred. Tag/release/project incomplete.
+
+## T24 prepared approval checkpoint — 12 October 2026
+
+- Owner merged T23 evidence PR #24 at 15:36:02Z into main
+  `cf03cf7097640fcac287e24f6a90ff003e5fe0be`. Main is an existing owner merge,
+  not frozen C. C is its ancestor; all 100 changed paths are docs/codex-v1 and
+  main's tree equals the T23 evidence head. Normal local fast-forward preserves
+  every byte; no rollback, candidate rebuild or new main merge is performed.
+- Exact three T23 asset hashes/sizes, ZIP CRC and eight binary C member bindings
+  freshly pass. Independent read-only candidate/report/manifest/builder/allowlist
+  and approval-request/release-note review finds no blocker. Original T23 test
+  and T20/T21 human results remain unchanged; no new media or Music check occurs.
+- Source C CI 38264447275, T23 final feature CI 38270713277 and reconciled main
+  CI 38271428429 pass. Fresh releases API is empty and no v1.0.0 tag is advertised.
+- RELEASE_AUTHORIZATION_REQUEST.md presents exact C and all three hashes,
+  reviewed RELEASE_NOTES.md, T24–T27 operations and the narrow exception accepting
+  the existing early docs-only merge. A single trusted approval question is
+  pending. The literal main-at-C gate is false and reported explicitly.
+- No tag, draft, upload or publication occurs before actual approval. A57 is
+  blocked and A58 not run. See evidence/T24.md and T24-preflight.json. Final
+  feature HEAD/live-ref/checks belong in PR/response. Continue this task after
+  approval; do not advance to T25 or declare the release/project complete.
+
+## Historical T23 status — superseded by the T24 checkpoint above
+
 State: **T23 A55/A56 passed; frozen C and exact ZIP validated.**
 Last completed task: T23. Exactly next: T24 in a new chat. A57–A65 pending;
 O01 deferred. Main remains C; release/project incomplete.

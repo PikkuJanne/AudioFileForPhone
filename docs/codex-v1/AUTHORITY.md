@@ -1,5 +1,25 @@
 # Authorization and external-change boundaries
 
+## T24 task preparation and pending exact approval — 12 October 2026
+
+The owner requested **"T24 next please"**. Normal T24 preparation, read-only
+candidate/live-state verification, evidence/handoff, commits, feature push and
+a relevant draft PR are authorized. This request does not itself approve the
+exact tag/release candidate under the recorded release gate.
+
+Fresh live inspection verifies owner PikkuJanne merged T23 PR #24 at 15:36:02Z
+into main `cf03cf7097640fcac287e24f6a90ff003e5fe0be`. Only docs/codex-v1 differs
+from frozen C; all runtime/shipped/test/build/CI bytes remain unchanged. Normal
+local main/evidence fast-forward reconciles existing work. No rollback or new
+main merge is authorized or performed by this preparation.
+
+The filled RELEASE_AUTHORIZATION_REQUEST.md and one trusted in-chat question
+request exact C/assets tag/draft/upload, conditional later normal publication,
+reviewed T27 closure, and a narrow acceptance of the existing early docs-only
+merge as a main-at-C timing exception. Approval remains pending. Until the actual
+reply is recorded, neither the prepared request nor the existing owner merge
+grants tag, draft-release, upload, publication or closure-integration authority.
+
 ## T23 task authorization and freeze — 12 October 2026
 
 The owner requested "T23 next please". Fresh fetch, advertised main/ref reads and

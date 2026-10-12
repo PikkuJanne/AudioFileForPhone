@@ -1296,7 +1296,7 @@
       "milestone": "M6",
       "title": "Authorize exact tag and prepare the draft release",
       "required": true,
-      "status": "todo",
+      "status": "blocked",
       "depends_on": [
         "T23"
       ],
@@ -1308,11 +1308,16 @@
         "A57",
         "A58"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T24.md",
+        "evidence/T24-preflight.json",
+        "RELEASE_AUTHORIZATION_REQUEST.md",
+        "RELEASE_NOTES.md"
+      ],
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "checkpoint_commit": "fc108114978671de1948d5243e3a4bd835ff5640",
+      "remote_checkpoint_verified": true,
+      "notes": "Fresh exact assets/C member/live state preflight passes; cf03cf7 main CI passes. Owner merged T23 docs-only PR #24 early; narrow timing exception and exact release authority are requested together and remain pending. A57 blocked; A58 not run. No tag/draft/upload/publication. Final feature HEAD/ref/CI belong in PR/response; continue T24 after approval. Main is existing owner merge, not C; C/assets stay frozen."
     },
     {
       "id": "T25",

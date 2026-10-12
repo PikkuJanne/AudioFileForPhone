@@ -1,5 +1,20 @@
 # Decisions and policy ledger
 
+## T24 preflight and explicit reconciliation request — 12 October 2026
+
+- Preserve the owner's existing docs-only T23 PR #24 merge by normal fast-forward.
+  Verify full C ancestry/tree/path scope and passing reconciled-main CI. Keep C
+  and all three T23 asset bytes fixed; do not rebuild or retarget to the newer main.
+- Report that Gate 2's literal main-equals-C condition is false. Request acceptance
+  of this one existing early evidence merge together with exact release authority;
+  do not silently waive the timing rule or treat the PR merge as release approval.
+- Revalidate exact asset/member/manifest/checksum bytes and live conflicts without
+  rerunning unchanged audio/human tests. Prepare reviewed release notes and a
+  single exact-candidate approval request carrying T24–T27 authority if granted.
+- Until an actual owner reply approves the exact request, A57 is blocked and
+  A58 not run. Keep later progress on the evidence branch. No release write,
+  new main merge or project completion is claimed.
+
 ## T23 exact source/ZIP evidence — 12 October 2026
 
 - Freeze full freshly integrated main 2092a405c1d06eca336e771a0ed5d1881acd015a

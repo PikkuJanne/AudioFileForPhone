@@ -959,8 +959,12 @@
       "required": true,
       "method": "owner approval + live tag read",
       "expected": "Recorded approval matches C and exact ZIP/manifest digests; no conflicting tag/release; annotated v1.0.0 remotely resolves to C; no forced retarget.",
-      "status": "not_run",
-      "evidence": []
+      "status": "blocked",
+      "evidence": [
+        "evidence/T24.md",
+        "evidence/T24-preflight.json",
+        "RELEASE_AUTHORIZATION_REQUEST.md"
+      ]
     },
     {
       "id": "A58",
@@ -970,7 +974,10 @@
       "method": "GitHub draft inspection",
       "expected": "Draft points at verified existing tag; only expected assets uploaded; state remains incomplete; missing asset/upload or failed check blocks publication.",
       "status": "not_run",
-      "evidence": []
+      "evidence": [
+        "evidence/T24.md",
+        "evidence/T24-preflight.json"
+      ]
     },
     {
       "id": "A59",

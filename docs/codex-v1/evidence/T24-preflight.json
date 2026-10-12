@@ -1,0 +1,373 @@
+{
+  "schema_version": 1,
+  "task": "T24",
+  "kind": "fresh_preapproval_preflight",
+  "checked_at_utc": "2026-10-12T15:40:07.066585+00:00",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "prior_verified_evidence_head": "fc108114978671de1948d5243e3a4bd835ff5640",
+  "observed_live_refs": {
+    "refs/heads/codex/v1-release-evidence": "fc108114978671de1948d5243e3a4bd835ff5640",
+    "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+  },
+  "assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.0.zip",
+      "bytes": 53958,
+      "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 4162,
+      "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+    }
+  ],
+  "zip_members": [
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "bytes": 112323,
+      "sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "bytes": 1800,
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "bytes": 40032,
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1700,
+      "sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1070,
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "README.md",
+      "bytes": 12749,
+      "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "SECURITY.md",
+      "bytes": 6589,
+      "sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "equals_binary_C_blob": true
+    },
+    {
+      "path": "SUPPORT.md",
+      "bytes": 13911,
+      "sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+      "equals_binary_C_blob": true
+    }
+  ],
+  "candidate_bytes_status": "pass",
+  "manifest_snapshot_identical": true,
+  "checksums_exact": true,
+  "main_reconciliation": {
+    "owner_merge": {
+      "headRefOid": "fc108114978671de1948d5243e3a4bd835ff5640",
+      "mergeCommit": {
+        "oid": "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      },
+      "mergedAt": "2026-10-12T15:36:02Z",
+      "mergedBy": {
+        "id": "U_kgDOB-_VbQ",
+        "is_bot": false,
+        "login": "PikkuJanne",
+        "name": "Janne Vuorela"
+      },
+      "number": 24,
+      "state": "MERGED",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/pull/24"
+    },
+    "C_is_ancestor": true,
+    "changed_path_count": 100,
+    "changed_outside_docs_codex_v1": [],
+    "main_tree_equals_T23_head": true,
+    "literal_main_equals_C": false,
+    "exception_authorization": "pending_owner_approval"
+  },
+  "conflicting_tag_present": false,
+  "releases": [],
+  "source_C_ci": {
+    "conclusion": "success",
+    "headSha": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "status": "completed",
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38264447275"
+  },
+  "T23_feature_ci": {
+    "conclusion": "success",
+    "headSha": "fc108114978671de1948d5243e3a4bd835ff5640",
+    "status": "completed",
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38270713277"
+  },
+  "reconciled_main_ci": {
+    "conclusion": "success",
+    "headSha": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+    "status": "completed",
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/38271428429"
+  },
+  "release_authorization_reference": null,
+  "release_operations": "not_run",
+  "acceptance": {
+    "A57": "blocked_pending_exact_approval_and_main_exception",
+    "A58": "not_run"
+  },
+  "prepared_request_sha256": "caba28998b3fc8666962d2b5588a446bbc2417be6e610e00735de35c8a1d8c2c",
+  "prepared_notes_sha256": "911b3729862e00abe63338eee68698ba4f8a6b86ab8690a280787d19b3b39529",
+  "independent_review": "Separate read-only subagent audited exact assets, binary C members, builder/allowlist, manifest parent reports and eight candidate evidence references; pass. No new audio or human test.",
+  "python": "3.14.6",
+  "driver_sha256": "a7eac51b0c6daf2c97faf9faaac6f1bec3cf1a03319706a6b55f95b278d5f792",
+  "commands": [
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.Helpers.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.bat"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:AudioFileForPhone.ps1"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:CHANGELOG.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:LICENSE"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:README.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SECURITY.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "cat-file",
+        "blob",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a:SUPPORT.md"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "ls-remote",
+        "origin",
+        "refs/heads/main",
+        "refs/heads/codex/v1-release-evidence",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "509d9d533b3686223c7e0e220ca1fb34b6bcdeac672f9daf0f3189f208763230",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "merge-base",
+        "--is-ancestor",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "68f00ff6c063ed5da210306c34d4f99d9d02130a1a9a6b66f6c9472008799442",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "diff",
+        "--quiet",
+        "fc108114978671de1948d5243e3a4bd835ff5640",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "gh",
+        "pr",
+        "view",
+        "24",
+        "--json",
+        "number,state,mergedAt,mergedBy,headRefOid,mergeCommit,url"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "a26142d0e470a249386f0e66ae63a42dd33a98cd8d66043e3d6569a6768f90a9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38271428429",
+        "--json",
+        "status,conclusion,headSha,url"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "861e578ae0918425b043bcf1aa58d13459f35550ba80c37c7119b9a9ac08ec0a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38264447275",
+        "--json",
+        "status,conclusion,headSha,url"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "c8e8c0a7f92534d40a11cf5ce08fbd52f922ed4d7093ff137ee89c3cac46ed34",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38270713277",
+        "--json",
+        "status,conclusion,headSha,url"
+      ],
+      "exit_code": 0,
+      "stdout_sha256": "644364786117b07ad39ff4689794e814eb9a116ceabca14ec2be6d09c134ecbb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "natural_exit_observed": true
+    }
+  ],
+  "limits": [
+    "No tag, draft, publication or uploaded/downloaded asset evidence yet.",
+    "No application, media suite, human test or ordinary Music access during T24 preflight.",
+    "T23 acceptance remains unchanged; this report revalidates source/assets/live release state."
+  ]
+}
