@@ -1,0 +1,553 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "status": "pass",
+  "started_utc": "2026-10-11T12:57:20.9901748Z",
+  "ended_utc": "2026-10-11T12:57:38.8175539Z",
+  "shell": "7.6.5",
+  "edition": "Core",
+  "root": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385",
+  "owner_token": "170225464e904534bc1e7fcf751e9fcf",
+  "ownership_marker_sha256": "2df635a7dd1b66da6b8f4a832af80e335d4dcd7889b2d8e52fe4d19f76362810",
+  "manifest_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\routine-source\\.github\\dependencies.json",
+  "manifest_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+  "setup_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\routine-source\\.github\\scripts\\Initialize-CiDependencies.ps1",
+  "setup_sha256": "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf",
+  "tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+  "source_unchanged": true,
+  "invocation": {
+    "script": "C:\\projects\\AudioFileForPhone-main\\.github\\scripts\\Initialize-CiDependencies.ps1",
+    "destination_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385",
+    "evidence_path": "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps7-final3.json",
+    "manifest_path": "C:\\projects\\AudioFileForPhone-main\\.github\\dependencies.json"
+  },
+  "ffmpeg_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+  "ffprobe_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+  "analyzer_module_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\PSScriptAnalyzer\\PSScriptAnalyzer.psd1",
+  "ffmpeg": {
+    "version": "9.0.2-essentials_build-www.gyan.dev",
+    "archive_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+    "archive_sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+    "ffmpeg_sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+    "ffprobe_sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+    "ffmpeg_version_line": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe_version_line": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "encoders": [
+      "libmp3lame",
+      "aac",
+      "libvorbis",
+      "libopus"
+    ],
+    "decoder": "mp3",
+    "extraction": {
+      "file_count": 45,
+      "inventory_sha256": "b8f58fcec6dfdff852e65404198bde4b4dcdb31e8865e99bfffe42d87b331bb5",
+      "files": [
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/LICENSE",
+          "bytes": 35147,
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/README.txt",
+          "bytes": 41577,
+          "sha256": "0342de6bb39dd421cbec2c00d89ad274b640d75ad3f2cab09ffd647ce2d8f949"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/presets/libvpx-1080p.ffpreset",
+          "bytes": 227,
+          "sha256": "cf0dca9d029e0aa29c242e5a7ecfb202a55ae41c1acdf5e2e59bf281a0136251"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/presets/libvpx-1080p50_60.ffpreset",
+          "bytes": 227,
+          "sha256": "4d32bed9032caf8bf4ef8e4bcac427f482c6191396ef6b11f075a264da3a8def"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/presets/libvpx-360p.ffpreset",
+          "bytes": 219,
+          "sha256": "c2ccd70a941c9b7003e364d7cc0296e8f3dea78cc3a87ccdcaae7c39a1a05b79"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/presets/libvpx-720p.ffpreset",
+          "bytes": 227,
+          "sha256": "5bcac409c81ec0e11091801d5d1322b5ec6a9bb8617d7dda022acfea0d498d52"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/presets/libvpx-720p50_60.ffpreset",
+          "bytes": 227,
+          "sha256": "b08a5ae448cb3cccd23faa6f42c8dbf61ead1a8381fce65636aa01a4a142cb8e"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/bootstrap.min.css",
+          "bytes": 109483,
+          "sha256": "3cedecf2b8064b4a56ba47bda04544e1b21d71c83a12e7b5709e7c7976ead70e"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/community.html",
+          "bytes": 13505,
+          "sha256": "ed1a149ca1f5129e31b71f7bf6547a690bbefed1f94b24d3b6cf15b9b5e7cac6"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/default.css",
+          "bytes": 2494,
+          "sha256": "504c4a0980e6ec809da02ce16b73151622a2fdfb4409098c7ce96c1cac9b3735"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/developer.html",
+          "bytes": 65540,
+          "sha256": "cc14a87cf4bb8d9e4509b4f9a7b2ade08015e8e93392dc72a0352a3daf0369ec"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/drawvg-reference.html",
+          "bytes": 147341,
+          "sha256": "e63e3aa79935d162c5e29e8feac866ae899ae0073f45595b3a029b42a897db90"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/faq.html",
+          "bytes": 65088,
+          "sha256": "12e4eaa685c874b975e9ad774aabd588871088a877f531ba2f7aa628b1670c45"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/fate.html",
+          "bytes": 18768,
+          "sha256": "603ae75dc972d486d4901c222ec881d6bb903058311dfcc9cda9f6471c50e3aa"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-all.html",
+          "bytes": 3075750,
+          "sha256": "3769955d8402f86969575ab35d60e04c43d67b69c248f1cea3c00bbb48555c26"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-bitstream-filters.html",
+          "bytes": 62913,
+          "sha256": "6783e37c2cafaec9337ac5188d72d1722b539f5bff9c08a1542ae0ec32bfb545"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-codecs.html",
+          "bytes": 348541,
+          "sha256": "1e0c1482d7c0df446173268563f515dca6ed6dedf62b114a834d04ecb8aecfa9"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-devices.html",
+          "bytes": 112837,
+          "sha256": "4cbeaf4948a0c267ea4de2f8bdaae49b169bd7d1a69202a4cf71fe79d9deb1a5"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-filters.html",
+          "bytes": 1691550,
+          "sha256": "47a2f160aa4a516f4a86f42d3d3716a7c9ce057df238f9f4c0014730fd19e189"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-formats.html",
+          "bytes": 332166,
+          "sha256": "e28f5c43faa8611c7ca67f4f0accf50e60e2b9b9f8d06781ff6c3ce3307870ad"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-protocols.html",
+          "bytes": 122284,
+          "sha256": "df0bcefb9bdad2b4325513e6da4a8780e1043d2486bf59995e33cfe70309940c"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-resampler.html",
+          "bytes": 13818,
+          "sha256": "ef33b5c00313e980fd8bef875e48ad49534f8d4da3acd62c2cb121cf2f767986"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-scaler.html",
+          "bytes": 12981,
+          "sha256": "77a322683a61362bf302e67fe62560f6c5a4ccb7ef944f5fb7e2e797685436ff"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg-utils.html",
+          "bytes": 55775,
+          "sha256": "f0acb1ad146da71c65450b975f6e7e102eed03ee40eb9163e5d7b70df2e82146"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffmpeg.html",
+          "bytes": 217190,
+          "sha256": "55652233f15f468e2ecfd8af15571de2f7aedc676110882e38a003c5fd968b41"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffplay-all.html",
+          "bytes": 2379314,
+          "sha256": "4826c1079c36c410304723fc0fac7c179ca4c923e16c1f903b2e9d5304c14e67"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffplay.html",
+          "bytes": 42145,
+          "sha256": "c94ff755a36c9028aeeaf93f853df75450c23962a7bea43b6ae0177684195c37"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffprobe-all.html",
+          "bytes": 2395749,
+          "sha256": "ec58871e57bed8b39b0e2a9cd01772abd85cfe0ce68b30508812ed310f4179ec"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/ffprobe.html",
+          "bytes": 58506,
+          "sha256": "ca1dead6f3c6b93f6245ce6be3101ca2e176c69c768579a8d0d2383b57884763"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/general.html",
+          "bytes": 129043,
+          "sha256": "0da20102efcc3435badffbe91d57672d3e41e459dc7122d583def2778be970dd"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/git-howto.html",
+          "bytes": 27737,
+          "sha256": "e44ed6484fa73f819c59494c68be232728319250bd86c6e32a760ddca620e108"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libavcodec.html",
+          "bytes": 3147,
+          "sha256": "faf8dd1ae157374e92a685970fa28f21e0df8a2dfb8c3ea99e58d6d956bee879"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libavdevice.html",
+          "bytes": 3026,
+          "sha256": "cea441629a753d099d8b1032f0814a87cfa113d830f8fcdebd047738cb5481ac"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libavfilter.html",
+          "bytes": 3092,
+          "sha256": "d02ec4ed1dddb7cb09f9c4e9f2bf38810b3050f6db5f839f398bd6561cab4322"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libavformat.html",
+          "bytes": 3122,
+          "sha256": "49f9fdced269207bfd3a6bcb63738b3f1dcf2b3c7641eba509fd46f37c5cebcc"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libavutil.html",
+          "bytes": 3621,
+          "sha256": "ba59342959874520f152b8df5eedde47295929a43e29646392e03c6fcdc2d8e9"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libswresample.html",
+          "bytes": 4005,
+          "sha256": "f66d2d2e5f29ba56f47d2855d5cd8f276bf207241d024a5a06d0564b96d52bf5"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/libswscale.html",
+          "bytes": 3621,
+          "sha256": "41859c7b95dd3d1089e2189c2dc81b1da920557e66ec181a1f8fe04dcc829118"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/mailing-list-faq.html",
+          "bytes": 31209,
+          "sha256": "e6a26273f248a5ca7f4354fc8b19e4d0bceeefc3c7aa492db58072fdc9e6a944"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/nut.html",
+          "bytes": 11279,
+          "sha256": "3c42c776be67cf21b69dd5a2fe3dd6b08cc196eb9bbb2a9886366b2efa139ce6"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/platform.html",
+          "bytes": 22177,
+          "sha256": "8d6c71e3d28c52cddd7de85fcdbbdd87d22a02fa9905a6b3169ff9767033fd6d"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/doc/style.min.css",
+          "bytes": 6523,
+          "sha256": "02496d7bdbd48d0f332dc94b62668906cbeabc3a8592253d5dfe2e5196522660"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe",
+          "bytes": 105423872,
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/bin/ffplay.exe",
+          "bytes": 106903552,
+          "sha256": "befbbd00a25965365f7fb3eed6ad5aa5f805eb70fabc567883a006de3b26c06f"
+        },
+        {
+          "name": "ffmpeg-9.0.2-essentials_build/bin/ffprobe.exe",
+          "bytes": 105221120,
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52"
+        }
+      ]
+    }
+  },
+  "analyzer": {
+    "version": "1.25.0",
+    "archive_url": "https://github.com/PowerShell/PSScriptAnalyzer/releases/download/1.25.0/PSScriptAnalyzer.1.25.0.nupkg",
+    "archive_sha256": "14e634c828eb98efb9f40b2918ba90f139ed5eccdf663a2a747736d996995d60",
+    "module_manifest_sha256": "2b219f688bcdd67101040f845e530b22907d39bbf49089b4b5b2afaba7996791",
+    "extraction": {
+      "file_count": 53,
+      "inventory_sha256": "09b36e241037a55426a5b19820a8e251cf175b61956927af41c1f35a5910d2cb",
+      "files": [
+        {
+          "name": ".signature.p7s",
+          "bytes": 12873,
+          "sha256": "6ac5b29a690659d4217f53c8c9a859e013ca3af21082bb5c62c84c42447cb58a"
+        },
+        {
+          "name": "[Content_Types].xml",
+          "bytes": 979,
+          "sha256": "e31db8af7077c5e513795cc616164fe38309df3347e8167cfd6e0ea24e4f4d4f"
+        },
+        {
+          "name": "LICENSE",
+          "bytes": 1073,
+          "sha256": "646f8936b8ddcd14e13e578ff6857e368780b0d1a4f6066bee89211923a373e2"
+        },
+        {
+          "name": "Microsoft.PowerShell.CrossCompatibility.dll",
+          "bytes": 143392,
+          "sha256": "a7c3a149c660c0cd0ac6e15f391d749c2dde918b45ed770fde95e8f4c924b76b"
+        },
+        {
+          "name": "Microsoft.Windows.PowerShell.ScriptAnalyzer.BuiltinRules.dll",
+          "bytes": 419872,
+          "sha256": "43450722c34b139c1934af56e7e0cc483ea21417eb4e2b8308445fc70890bc18"
+        },
+        {
+          "name": "Microsoft.Windows.PowerShell.ScriptAnalyzer.dll",
+          "bytes": 227360,
+          "sha256": "145ba1459672da808757b2bc6c6494926a13d92353ccd6a0354a0d5d8fe14a5f"
+        },
+        {
+          "name": "Newtonsoft.Json.dll",
+          "bytes": 731640,
+          "sha256": "99c6184c081fbe1b965c168d109c0112f3f2aa1e97d86601411773c34d3ce6a3"
+        },
+        {
+          "name": "PSScriptAnalyzer.nuspec",
+          "bytes": 1217,
+          "sha256": "469a21e9b1eac5d58cc2d0222d868b73ad8c7fa556dfe1d4bf52b0dfefedf434"
+        },
+        {
+          "name": "PSScriptAnalyzer.psd1",
+          "bytes": 17822,
+          "sha256": "2b219f688bcdd67101040f845e530b22907d39bbf49089b4b5b2afaba7996791"
+        },
+        {
+          "name": "PSScriptAnalyzer.psm1",
+          "bytes": 17647,
+          "sha256": "b69773fc9080cfb958dc13c95e42a625553e9bca5dcbedc27231e5c183a4e869"
+        },
+        {
+          "name": "README.md",
+          "bytes": 8629,
+          "sha256": "113ea1d2fe4f0ce77aa116cf265a2de35f82f881a4e6bd32e35756e08f6786e5"
+        },
+        {
+          "name": "ScriptAnalyzer.format.ps1xml",
+          "bytes": 20940,
+          "sha256": "d647e6c1cdfe4052d2382f2d76b899ec596ec71d23d724553b93f74827d49044"
+        },
+        {
+          "name": "ScriptAnalyzer.types.ps1xml",
+          "bytes": 18802,
+          "sha256": "34246566553fe97c96a9ffea8aeefee353c1e07e41a72d3bfe9fdf826cc71d2a"
+        },
+        {
+          "name": "SECURITY.md",
+          "bytes": 2701,
+          "sha256": "abe73f3d2a40900de478d8d6a9b9c76e7e9bf602309cdd3cee4355f1fcd1b459"
+        },
+        {
+          "name": "ThirdPartyNotices.txt",
+          "bytes": 1732,
+          "sha256": "2328c49f600036e032cbcca36b850ce4f2ae5db31a67d1485f779be03facf499"
+        },
+        {
+          "name": "Settings/CmdletDesign.psd1",
+          "bytes": 15025,
+          "sha256": "520c023182de4f23235af284db33d7e12cbc285aef6e82e45cb76539719140c0"
+        },
+        {
+          "name": "Settings/CodeFormatting.psd1",
+          "bytes": 16330,
+          "sha256": "8978821a976903e845dfbb591d2a82ab97cfd39291313b2bdd9bc114fbbdb592"
+        },
+        {
+          "name": "Settings/CodeFormattingAllman.psd1",
+          "bytes": 16331,
+          "sha256": "19eae3db753e04223b486f5246f53245e70e5cec342e48dc38d4b67340428f62"
+        },
+        {
+          "name": "Settings/CodeFormattingOTBS.psd1",
+          "bytes": 16331,
+          "sha256": "1dadb2ffd5e542cc009645d861b31c8bcb85c1b5ef9dabe7ea0435047d357610"
+        },
+        {
+          "name": "Settings/CodeFormattingStroustrup.psd1",
+          "bytes": 16375,
+          "sha256": "e501d3f729ba3bf4275e5c08852db5b1e971930323df14532cad34b500ea5198"
+        },
+        {
+          "name": "Settings/core-6.1.0-linux-arm.json",
+          "bytes": 141310,
+          "sha256": "4ac89539ca47eae3eb1d95547efc59894a8a6e062f86d52840da35edf189131b"
+        },
+        {
+          "name": "Settings/core-6.1.0-linux.json",
+          "bytes": 141310,
+          "sha256": "a43e4b44e055410dd18742a281a704945aa1f39519b19c344d7cd78f4a4757b5"
+        },
+        {
+          "name": "Settings/core-6.1.0-macos.json",
+          "bytes": 141310,
+          "sha256": "70703e205682f5d216320143ed50f9acc9cf4d3655240435fcd109ac504a3b05"
+        },
+        {
+          "name": "Settings/core-6.1.0-windows.json",
+          "bytes": 184113,
+          "sha256": "e35c5ab33003a8a4fbbd5aff0f659a920743080f9337c90819d4001c7928720e"
+        },
+        {
+          "name": "Settings/desktop-2.0-windows.json",
+          "bytes": 287033,
+          "sha256": "e0dd156000b822ff10a9347ef3ba6a17c00c2136811acea01ef47d6dd1c092a7"
+        },
+        {
+          "name": "Settings/desktop-3.0-windows.json",
+          "bytes": 1083242,
+          "sha256": "60aae851911741248d3414925cbaf4c59e8743efaf5a5005ed129db257dc4c4f"
+        },
+        {
+          "name": "Settings/desktop-4.0-windows.json",
+          "bytes": 1213067,
+          "sha256": "d11970a52c011335e3f93dea7f3da887428caf1f12807a803ec65a8068b77ba8"
+        },
+        {
+          "name": "Settings/desktop-5.1.14393.206-windows.json",
+          "bytes": 1821748,
+          "sha256": "b829ff1493cadd5284c5bc326487107a0617b0b8c3799c5b8dbfcbb78ac8f652"
+        },
+        {
+          "name": "Settings/DSC.psd1",
+          "bytes": 14674,
+          "sha256": "c1305c948b6ccc4dad6ae387ba7b9dc71ce7043df78e40b1e9e60485d6f76762"
+        },
+        {
+          "name": "Settings/PSGallery.psd1",
+          "bytes": 15735,
+          "sha256": "9e68228af73b868a35c63d1202c21b55aa09e846223ecda8e070a10e4bdbfdd8"
+        },
+        {
+          "name": "Settings/ScriptFunctions.psd1",
+          "bytes": 15157,
+          "sha256": "3fa7e84b1c8f8eb104b9ac4de2f12bd9bac588cd56c75456c018711fd79ee6de"
+        },
+        {
+          "name": "Settings/ScriptingStyle.psd1",
+          "bytes": 14736,
+          "sha256": "7a78670582d1b8309974131c3377b3a74163b5409ab390518c8a49ba44ff40ab"
+        },
+        {
+          "name": "Settings/ScriptSecurity.psd1",
+          "bytes": 14985,
+          "sha256": "13c5674bf0eb873aa909161add076117b1573ee3a13650eae6122b5fa5c8bdab"
+        },
+        {
+          "name": "PSv7/Microsoft.PowerShell.CrossCompatibility.dll",
+          "bytes": 153632,
+          "sha256": "d92cb413e18927bb64d9bac221191fc69cf1659f55c72c27ddf1fe19ef774caf"
+        },
+        {
+          "name": "PSv7/Microsoft.Windows.PowerShell.ScriptAnalyzer.BuiltinRules.dll",
+          "bytes": 472088,
+          "sha256": "c8aa9890743a6d9c47ccfee5ec33caaee58c30591454d3ccf379720025a1533c"
+        },
+        {
+          "name": "PSv7/Microsoft.Windows.PowerShell.ScriptAnalyzer.dll",
+          "bytes": 252488,
+          "sha256": "c377532a1d8d8975e598891602b5c3ed39ab719f589d054eb889d11eb6ccaea3"
+        },
+        {
+          "name": "PSv7/Pluralize.NET.dll",
+          "bytes": 30264,
+          "sha256": "eeecdf663a3e854f67bbbb872dc45577e785a581c1ca86ea2ae1d8215b8505d6"
+        },
+        {
+          "name": "package/services/metadata/core-properties/7fdaef68c7cf430cb91cb8c15762f473.psmdcp",
+          "bytes": 1054,
+          "sha256": "34682bef21da66d6dfee0a5c23479c07a5d2af3b6565e48cd6cecdd1ca11c053"
+        },
+        {
+          "name": "en-US/Microsoft.Windows.PowerShell.ScriptAnalyzer.dll-Help.xml",
+          "bytes": 109093,
+          "sha256": "efb6db773eb0790ddc793e04905eddcb14ae9d070202f74d1b8fc29d3fb604d0"
+        },
+        {
+          "name": "compatibility_profiles/ubuntu_x64_18.04_6.2.4_x64_4.0.30319.42000_core.json",
+          "bytes": 14057147,
+          "sha256": "878362300df6712cb3cbb98dd369331d54d0b5e07092dca7d14c71dd9aab4f04"
+        },
+        {
+          "name": "compatibility_profiles/ubuntu_x64_18.04_7.0.0_x64_3.1.2_core.json",
+          "bytes": 14800607,
+          "sha256": "cdb761d8e75be72b78157babd233487a79bf689b0b926ba6ae46f5aef3dc2a94"
+        },
+        {
+          "name": "compatibility_profiles/win-4_x64_10.0.18362.0_6.2.4_x64_4.0.30319.42000_core.json",
+          "bytes": 17942759,
+          "sha256": "196beb5415dfb8b63e3e3678268f2990e2239401a98b86d89800749504b69b66"
+        },
+        {
+          "name": "compatibility_profiles/win-4_x64_10.0.18362.0_7.0.0_x64_3.1.2_core.json",
+          "bytes": 33660662,
+          "sha256": "66a64ccee6b4bcb3b68842843693849d2beb88cd1ddde525a1c4f0132f1609bf"
+        },
+        {
+          "name": "compatibility_profiles/win-48_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework.json",
+          "bytes": 23653457,
+          "sha256": "9a99ccc7d25a974190e5352e0f773e24039d2fe831307d666a7502310d7c0907"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.14393.0_5.1.14393.2791_x64_4.0.30319.42000_framework.json",
+          "bytes": 23727309,
+          "sha256": "10cabb80ec1e5567a96d50f053854c833b7b9701b01ffc1e4700dc115fa2ba4a"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.14393.0_6.2.4_x64_4.0.30319.42000_core.json",
+          "bytes": 15076121,
+          "sha256": "d889900200c1bed3f098991ccef0c84d48226fdb5be722c1018102819a1a38ad"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.14393.0_7.0.0_x64_3.1.2_core.json",
+          "bytes": 30796461,
+          "sha256": "00d4fa18798da98b27a047f9cf629c71185e51e37ec627872450d4d2f7c67d87"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.17763.0_5.1.17763.316_x64_4.0.30319.42000_framework.json",
+          "bytes": 24690250,
+          "sha256": "01c0d51beb49979d55f52e0dd58cb06bafd8d0553e197b65d4b17955ce97270d"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.17763.0_6.2.4_x64_4.0.30319.42000_core.json",
+          "bytes": 17196301,
+          "sha256": "7fa1bbbc38a59984f9bb661dd653f64f6116b6661a4efcd70e9dd051c7576f84"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_10.0.17763.0_7.0.0_x64_3.1.2_core.json",
+          "bytes": 32967223,
+          "sha256": "bab82f4bc80c15bf3f2a2ef967c7244aae24acf9984b7910a3d95c0291a62b75"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_6.2.9200.0_3.0_x64_4.0.30319.42000_framework.json",
+          "bytes": 21257822,
+          "sha256": "60c3f51e87d332989cf0082dd8b785fa412f8b1cd488f7c8417560022e0bcc28"
+        },
+        {
+          "name": "compatibility_profiles/win-8_x64_6.3.9600.0_4.0_x64_4.0.30319.42000_framework.json",
+          "bytes": 21716676,
+          "sha256": "fc584750c710acf52d21eaf09b19ef52d54f87c95a67cb6c55fdd46746584153"
+        },
+        {
+          "name": "_rels/.rels",
+          "bytes": 510,
+          "sha256": "4ba8d6cf6d6d405732c45e1d2fc38eabd4edbfff44e4bcf47867d6a77630f112"
+        }
+      ]
+    }
+  },
+  "error": null,
+  "cleanup": "Not requested; this exact owned dependency root remains available for checks. No global installation or environment changes."
+}

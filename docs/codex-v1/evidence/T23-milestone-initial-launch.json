@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "kind": "full_milestone_parent_invocations",
+  "started_utc": "2026-10-12T15:03:49.982605+00:00",
+  "status": "fail",
+  "source_worktree": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-source",
+  "driver_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\run_milestone.py",
+  "driver_sha256": "4261651426275a88a8902f74371a7c7060b18e14fac09507728b3ad184325e51",
+  "creationflags": 0,
+  "console_output_code_page": 65001,
+  "child_environment_change": "Remove inherited PSModulePath only from each child environment; inherit existing console.",
+  "parent_environment_changed": false,
+  "new_dependency_provisioning": false,
+  "dependencies": [
+    {
+      "shell": "ps51",
+      "historical_setup_report": "T17-dependencies-ps51-final21.json",
+      "historical_setup_report_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "files": [
+        {
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version_line": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+          "exit_code": 0
+        },
+        {
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version_line": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "shell": "ps7",
+      "historical_setup_report": "T17-dependencies-ps7-final21.json",
+      "historical_setup_report_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+      "actual_setup_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d",
+      "files": [
+        {
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version_line": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+          "exit_code": 0
+        },
+        {
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version_line": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+          "exit_code": 0
+        }
+      ]
+    }
+  ],
+  "invocations": [
+    {
+      "ordinal": 1,
+      "shell": "ps51",
+      "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "executable_sha256": "8bb6fa8c283b4d92120b1ef249a9b311b0f804d4cabbe9981159976c8be76a5e",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-OutputParent.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+        "-FfmpegPath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "expanded_command_line": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-OutputParent.ps1 -EvidencePath docs/codex-v1/evidence/T16-output-ps51-final230.json -FfmpegPath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+      "working_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-source",
+      "report": "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+      "started_utc": "2026-10-12T15:04:13.851871+00:00",
+      "status": "fail",
+      "ended_utc": "2026-10-12T15:04:14.315413+00:00",
+      "exit_code": 1,
+      "stdout_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\T16-output-ps51-final230.stdout.bin",
+      "stderr_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\T16-output-ps51-final230.stderr.bin",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "441d61805bcc4af05f29964cc0e8e697e6941482edfcc5a9b2ec9e8fefa227aa",
+      "error": "Expected create-new evidence report absent"
+    }
+  ],
+  "command_data_source": {
+    "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-source\\docs\\codex-v1\\evidence\\T22-commands.json",
+    "sha256": "1f991b644c9b945e5b4936d441e76277045eb06f4788c5cf1fdda634f8e67f53"
+  },
+  "preflight": {
+    "clean_exact_C": true,
+    "report_paths_unoccupied": true,
+    "dependency_hashes_verified": true,
+    "tracked_file_count": 942
+  },
+  "ended_utc": "2026-10-12T15:04:14.331363+00:00",
+  "driver_error": "RuntimeError('Preserved failed invocation: docs/codex-v1/evidence/T16-output-ps51-final230.json')"
+}

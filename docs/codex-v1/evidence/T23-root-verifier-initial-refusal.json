@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "status": "fail",
+  "recorded_utc": "2026-10-12T15:25:51.248844+00:00",
+  "exit_code": 1,
+  "driver_sha256": "2fbd59bec209e22de02daeb6057ca6bfb41f3bde3247789a2a4f5993b7496ffb",
+  "error": "Absolute source_before.path row in T17-ci-dependencyguards-ps51-final230 was not recognized by relative_path/name-only mapping. No test assertion or source changed; this verifier stopped before copying any reports.",
+  "copied_report_count": 0,
+  "correction": "Map absolute path only when it is strictly relative to the exact named detached worktree; require known C catalog entry and current/hash/Git-byte variant equality as before."
+}

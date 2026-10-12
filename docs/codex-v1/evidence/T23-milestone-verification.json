@@ -1,0 +1,2188 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "kind": "post_execution_source_raw_report_and_launch_recovery_verification",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "status": "pass",
+  "generated_utc": "2026-10-12T15:24:41.363152+00:00",
+  "commands_sha256": "13c7cb5b18d8fe9ec54ff2989580f783a67d7b3e7ebcb7ca2d0bc64b13c22f02",
+  "verifier_sha256": "f855aec67da13b7af75447576bcdb5b71a7d97a831b2c2b931d7dd487890084c",
+  "parent_report_count": 32,
+  "required_case_or_check_execution_count": 890,
+  "covered_source_file_count": 22,
+  "source_report_relationship_count": 154,
+  "all_tracked_file_count": 942,
+  "all_tracked_bytes_unchanged": true,
+  "retained_dependency_preservation": [
+    {
+      "shell": "ps51",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+      "sha256_before": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "sha256_after": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "unchanged": true,
+      "version_line": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    {
+      "shell": "ps51",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+      "sha256_before": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "sha256_after": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "unchanged": true,
+      "version_line": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    },
+    {
+      "shell": "ps7",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+      "sha256_before": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "sha256_after": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "unchanged": true,
+      "version_line": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    {
+      "shell": "ps7",
+      "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+      "sha256_before": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "sha256_after": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "unchanged": true,
+      "version_line": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  ],
+  "test_suites_executed_by_this_verifier": 0,
+  "sources": [
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "git_blob_oid": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "independently_computed_git_blob_oid": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "git_blob_bytes": 112323,
+      "git_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "variants": {
+        "literal": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+        "strict_utf8_lf": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+        "strict_utf8_crlf": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "git_blob_oid": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "independently_computed_git_blob_oid": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "git_blob_bytes": 1800,
+      "git_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "variants": {
+        "literal": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+        "strict_utf8_lf": "6a1a1d370d69ede8f4fb575ec9f9b4cea482112932525705e8d18abf26f3ca1b",
+        "strict_utf8_crlf": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+      },
+      "working_matches_variants": [
+        "literal",
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "git_blob_oid": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "independently_computed_git_blob_oid": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "git_blob_bytes": 40032,
+      "git_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "variants": {
+        "literal": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+        "strict_utf8_lf": "787d6ad64ebb3feb9f7e5b57a190f1c1f0e15e6abf59e574355834ef92948e8a",
+        "strict_utf8_crlf": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+      },
+      "working_matches_variants": [
+        "literal",
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "git_blob_oid": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "independently_computed_git_blob_oid": "91d1ddf309806ce3b08b41139d7c945ea3e2d77a",
+      "git_blob_bytes": 14183,
+      "git_blob_sha256": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+      "working_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9",
+      "variants": {
+        "literal": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+        "strict_utf8_lf": "de48010e76ac87a1032ff789a95a8bca0ca1c9b4d4b550353d6f0b2c500a16d2",
+        "strict_utf8_crlf": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "git_blob_oid": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "independently_computed_git_blob_oid": "2e3effdf6d3d2dbe6ed01251fc6c625d298173cd",
+      "git_blob_bytes": 16619,
+      "git_blob_sha256": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+      "working_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3",
+      "variants": {
+        "literal": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+        "strict_utf8_lf": "08b566bca4c01b5d781e4c1402ceeed794768373bc02e015c3b0d79718d2fdcf",
+        "strict_utf8_crlf": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "git_blob_oid": "d4455b32d03b42c65ab6573f51c03afd90c98b2a",
+      "independently_computed_git_blob_oid": "d4455b32d03b42c65ab6573f51c03afd90c98b2a",
+      "git_blob_bytes": 32411,
+      "git_blob_sha256": "30ba1f5e4faa2ea0d94a4983691678260c6e4a1e462ba17149fe368a54c94f76",
+      "working_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee",
+      "variants": {
+        "literal": "30ba1f5e4faa2ea0d94a4983691678260c6e4a1e462ba17149fe368a54c94f76",
+        "strict_utf8_lf": "30ba1f5e4faa2ea0d94a4983691678260c6e4a1e462ba17149fe368a54c94f76",
+        "strict_utf8_crlf": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Cancellation.ps1",
+      "git_blob_oid": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+      "independently_computed_git_blob_oid": "82d225268bbc35b4f3ca043e076bc04c25682c33",
+      "git_blob_bytes": 48067,
+      "git_blob_sha256": "173e25d852c1ad8fc3138b753fa061bf52b6e9957c390fe664bbd837cc07df25",
+      "working_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5",
+      "variants": {
+        "literal": "173e25d852c1ad8fc3138b753fa061bf52b6e9957c390fe664bbd837cc07df25",
+        "strict_utf8_lf": "173e25d852c1ad8fc3138b753fa061bf52b6e9957c390fe664bbd837cc07df25",
+        "strict_utf8_crlf": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-CleanupSafety.ps1",
+      "git_blob_oid": "7290494ef531cb7f34011ca9ca53f9c1249717ce",
+      "independently_computed_git_blob_oid": "7290494ef531cb7f34011ca9ca53f9c1249717ce",
+      "git_blob_bytes": 26488,
+      "git_blob_sha256": "53e25716e915f526c4809ced35ed1aeaf71e7fc685f24e18818bb57cbcc5e4b1",
+      "working_sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987",
+      "variants": {
+        "literal": "53e25716e915f526c4809ced35ed1aeaf71e7fc685f24e18818bb57cbcc5e4b1",
+        "strict_utf8_lf": "53e25716e915f526c4809ced35ed1aeaf71e7fc685f24e18818bb57cbcc5e4b1",
+        "strict_utf8_crlf": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Diagnostics.ps1",
+      "git_blob_oid": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "independently_computed_git_blob_oid": "d660a9cae076cf2e4869ae0662e131f64a3fd348",
+      "git_blob_bytes": 49818,
+      "git_blob_sha256": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+      "working_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef",
+      "variants": {
+        "literal": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+        "strict_utf8_lf": "baf941a9ed4eddb8b75cdc9c46aacb2f9f1b27816730ee7357745f8ce4e7ed2c",
+        "strict_utf8_crlf": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Discovery.ps1",
+      "git_blob_oid": "417192382d8385f6f93f722cfef77b9e2eef693c",
+      "independently_computed_git_blob_oid": "417192382d8385f6f93f722cfef77b9e2eef693c",
+      "git_blob_bytes": 38183,
+      "git_blob_sha256": "27b4c510c23ba4c1e1bf137c234ca622c736928e65850fac413d96e666c71fcc",
+      "working_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1",
+      "variants": {
+        "literal": "27b4c510c23ba4c1e1bf137c234ca622c736928e65850fac413d96e666c71fcc",
+        "strict_utf8_lf": "27b4c510c23ba4c1e1bf137c234ca622c736928e65850fac413d96e666c71fcc",
+        "strict_utf8_crlf": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-LauncherResults.ps1",
+      "git_blob_oid": "dda9a007a543385c67740432f1f33f3b9178ade8",
+      "independently_computed_git_blob_oid": "dda9a007a543385c67740432f1f33f3b9178ade8",
+      "git_blob_bytes": 19251,
+      "git_blob_sha256": "3b7472b650aef167b29dac3c0bf4af483c1d9566ad400d3acec542628dc5b74e",
+      "working_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257",
+      "variants": {
+        "literal": "3b7472b650aef167b29dac3c0bf4af483c1d9566ad400d3acec542628dc5b74e",
+        "strict_utf8_lf": "3b7472b650aef167b29dac3c0bf4af483c1d9566ad400d3acec542628dc5b74e",
+        "strict_utf8_crlf": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Metadata.ps1",
+      "git_blob_oid": "7364dd56f395f267d0e4c45d82572a96a8955c66",
+      "independently_computed_git_blob_oid": "7364dd56f395f267d0e4c45d82572a96a8955c66",
+      "git_blob_bytes": 45271,
+      "git_blob_sha256": "d41ed4842977d256865a8e15ed4df16235e7efeee3d63da619d490a65151973e",
+      "working_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06",
+      "variants": {
+        "literal": "d41ed4842977d256865a8e15ed4df16235e7efeee3d63da619d490a65151973e",
+        "strict_utf8_lf": "d41ed4842977d256865a8e15ed4df16235e7efeee3d63da619d490a65151973e",
+        "strict_utf8_crlf": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-NamingPlan.ps1",
+      "git_blob_oid": "e228e28b78e548b2e391cdb601a9233d906c61ed",
+      "independently_computed_git_blob_oid": "e228e28b78e548b2e391cdb601a9233d906c61ed",
+      "git_blob_bytes": 44862,
+      "git_blob_sha256": "942caca14ae939d832c1b2a512eef0233bf61f7820e25de41b34b827f57e3b1d",
+      "working_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969",
+      "variants": {
+        "literal": "942caca14ae939d832c1b2a512eef0233bf61f7820e25de41b34b827f57e3b1d",
+        "strict_utf8_lf": "942caca14ae939d832c1b2a512eef0233bf61f7820e25de41b34b827f57e3b1d",
+        "strict_utf8_crlf": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-NativeProcess.ps1",
+      "git_blob_oid": "25e6298b6c4202af7b96091d1c90b6c6299587d6",
+      "independently_computed_git_blob_oid": "25e6298b6c4202af7b96091d1c90b6c6299587d6",
+      "git_blob_bytes": 38550,
+      "git_blob_sha256": "c535ea65d87831d65316a04c5d7d4dd3605596e51b82ebb428175ec40baa9c25",
+      "working_sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0",
+      "variants": {
+        "literal": "c535ea65d87831d65316a04c5d7d4dd3605596e51b82ebb428175ec40baa9c25",
+        "strict_utf8_lf": "c535ea65d87831d65316a04c5d7d4dd3605596e51b82ebb428175ec40baa9c25",
+        "strict_utf8_crlf": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-OutputParent.ps1",
+      "git_blob_oid": "aea05ad7750c174e8dc2c9622521136d2b8a0610",
+      "independently_computed_git_blob_oid": "aea05ad7750c174e8dc2c9622521136d2b8a0610",
+      "git_blob_bytes": 31254,
+      "git_blob_sha256": "099849ada3019dc24cfcfaf224b887f48a51d0f17d57b026ef38f4d764aa09ff",
+      "working_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9",
+      "variants": {
+        "literal": "099849ada3019dc24cfcfaf224b887f48a51d0f17d57b026ef38f4d764aa09ff",
+        "strict_utf8_lf": "099849ada3019dc24cfcfaf224b887f48a51d0f17d57b026ef38f4d764aa09ff",
+        "strict_utf8_crlf": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Preflight.ps1",
+      "git_blob_oid": "53bf5d59daaf33c79799839c03c967ea9a5f6cef",
+      "independently_computed_git_blob_oid": "53bf5d59daaf33c79799839c03c967ea9a5f6cef",
+      "git_blob_bytes": 29069,
+      "git_blob_sha256": "513b0c1c4da0c2230c9d07904ebc03e7e553694c3ac774514e8ba9cee8eaad91",
+      "working_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653",
+      "variants": {
+        "literal": "513b0c1c4da0c2230c9d07904ebc03e7e553694c3ac774514e8ba9cee8eaad91",
+        "strict_utf8_lf": "513b0c1c4da0c2230c9d07904ebc03e7e553694c3ac774514e8ba9cee8eaad91",
+        "strict_utf8_crlf": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Preview.ps1",
+      "git_blob_oid": "b2ba1e52bf32d5b554ff4fba9873f2befd2fbad6",
+      "independently_computed_git_blob_oid": "b2ba1e52bf32d5b554ff4fba9873f2befd2fbad6",
+      "git_blob_bytes": 34010,
+      "git_blob_sha256": "b8bd421d2945d44fc06c9183b70b082ecd55e667d9b3d336d7b910751e9e189c",
+      "working_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247",
+      "variants": {
+        "literal": "b8bd421d2945d44fc06c9183b70b082ecd55e667d9b3d336d7b910751e9e189c",
+        "strict_utf8_lf": "b8bd421d2945d44fc06c9183b70b082ecd55e667d9b3d336d7b910751e9e189c",
+        "strict_utf8_crlf": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-Progress.ps1",
+      "git_blob_oid": "9d1aed963a28c4f544e5106e51db5b1716e4b5e8",
+      "independently_computed_git_blob_oid": "9d1aed963a28c4f544e5106e51db5b1716e4b5e8",
+      "git_blob_bytes": 47475,
+      "git_blob_sha256": "49fd149ed5f9beb4f2dc4e76eedb363436208df33f6b793c2738027f1f4a99ca",
+      "working_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447",
+      "variants": {
+        "literal": "49fd149ed5f9beb4f2dc4e76eedb363436208df33f6b793c2738027f1f4a99ca",
+        "strict_utf8_lf": "49fd149ed5f9beb4f2dc4e76eedb363436208df33f6b793c2738027f1f4a99ca",
+        "strict_utf8_crlf": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-RegressionEdges.ps1",
+      "git_blob_oid": "a96938fa863da7d38dbd2c1615f1edc284dd0bd8",
+      "independently_computed_git_blob_oid": "a96938fa863da7d38dbd2c1615f1edc284dd0bd8",
+      "git_blob_bytes": 44715,
+      "git_blob_sha256": "ba1ab8113c814cc5ba761520a2a9f84bb7e73632d933b511d0bebba6bc983d6f",
+      "working_sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359",
+      "variants": {
+        "literal": "ba1ab8113c814cc5ba761520a2a9f84bb7e73632d933b511d0bebba6bc983d6f",
+        "strict_utf8_lf": "ba1ab8113c814cc5ba761520a2a9f84bb7e73632d933b511d0bebba6bc983d6f",
+        "strict_utf8_crlf": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-RunReservation.ps1",
+      "git_blob_oid": "afa7d149e3cc96ed713ca3e381122f6c6580b16a",
+      "independently_computed_git_blob_oid": "afa7d149e3cc96ed713ca3e381122f6c6580b16a",
+      "git_blob_bytes": 46610,
+      "git_blob_sha256": "115fc30144023bc26103e202ee3a2dd967c9fd06c66eff00451afc21441243ff",
+      "working_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54",
+      "variants": {
+        "literal": "115fc30144023bc26103e202ee3a2dd967c9fd06c66eff00451afc21441243ff",
+        "strict_utf8_lf": "115fc30144023bc26103e202ee3a2dd967c9fd06c66eff00451afc21441243ff",
+        "strict_utf8_crlf": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-ScriptResults.ps1",
+      "git_blob_oid": "1628ec0a86d5a082597ea497eb87b375c240a58c",
+      "independently_computed_git_blob_oid": "1628ec0a86d5a082597ea497eb87b375c240a58c",
+      "git_blob_bytes": 34141,
+      "git_blob_sha256": "1e07ff24b8e4670709cc5b9e730c6446f37e421a2a7ed52f390e312e56dff6a0",
+      "working_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65",
+      "variants": {
+        "literal": "1e07ff24b8e4670709cc5b9e730c6446f37e421a2a7ed52f390e312e56dff6a0",
+        "strict_utf8_lf": "1e07ff24b8e4670709cc5b9e730c6446f37e421a2a7ed52f390e312e56dff6a0",
+        "strict_utf8_crlf": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    },
+    {
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "git_blob_oid": "a24c5e4a54ae637f76921ac826dfcb60ab222624",
+      "independently_computed_git_blob_oid": "a24c5e4a54ae637f76921ac826dfcb60ab222624",
+      "git_blob_bytes": 53338,
+      "git_blob_sha256": "bc7c83dc7c5651ee1a7e978e9a9db89f2679d02feec3f830c11c070fac905488",
+      "working_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c",
+      "variants": {
+        "literal": "bc7c83dc7c5651ee1a7e978e9a9db89f2679d02feec3f830c11c070fac905488",
+        "strict_utf8_lf": "bc7c83dc7c5651ee1a7e978e9a9db89f2679d02feec3f830c11c070fac905488",
+        "strict_utf8_crlf": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+      },
+      "working_matches_variants": [
+        "strict_utf8_crlf"
+      ],
+      "utf8_bom_present": false
+    }
+  ],
+  "relationships": [
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "single_harness_fingerprint",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps51-final230.json",
+      "path": "tests/Test-Preflight.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps51-final230.json",
+      "path": "tests/Test-Discovery.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps51-final230.json",
+      "path": "tests/Test-NamingPlan.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps51-final230.json",
+      "path": "tests/Test-RunReservation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps51-final230.json",
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps51-final230.json",
+      "path": "tests/Test-ScriptResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps51-final230.json",
+      "path": "tests/Test-LauncherResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps51-final230.json",
+      "path": "tests/Test-Cancellation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps51-final230.json",
+      "path": "tests/Test-Preview.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps51-final230.json",
+      "path": "tests/Test-Progress.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps51-final230.json",
+      "path": "tests/Test-Diagnostics.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps51-final230.json",
+      "path": "tests/Test-Metadata.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-CleanupSafety.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Preflight.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Discovery.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-NamingPlan.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-RunReservation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-NativeProcess.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-ScriptResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-LauncherResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Cancellation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Preview.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Progress.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Diagnostics.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-Metadata.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps51-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps51-final230.json",
+      "path": "tests/Test-RegressionEdges.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps7-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "single_harness_fingerprint",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps7-final230.json",
+      "path": "tests/Test-Preflight.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps7-final230.json",
+      "path": "tests/Test-Discovery.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps7-final230.json",
+      "path": "tests/Test-NamingPlan.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps7-final230.json",
+      "path": "tests/Test-RunReservation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps7-final230.json",
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps7-final230.json",
+      "path": "tests/Test-ScriptResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps7-final230.json",
+      "path": "tests/Test-LauncherResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps7-final230.json",
+      "path": "tests/Test-Cancellation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps7-final230.json",
+      "path": "tests/Test-Preview.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps7-final230.json",
+      "path": "tests/Test-Progress.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps7-final230.json",
+      "path": "tests/Test-Diagnostics.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps7-final230.json",
+      "path": "tests/Test-Metadata.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-BaselineCharacterization.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-CleanupSafety.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Invoke-IsolatedBaseline.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Preflight.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Discovery.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-NamingPlan.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-RunReservation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-NativeProcess.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-TransactionalOutput.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-ScriptResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-LauncherResults.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Cancellation.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Preview.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Progress.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Diagnostics.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-Metadata.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps7-final230.json",
+      "path": "AudioFileForPhone.bat",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps7-final230.json",
+      "path": "tests/Test-RegressionEdges.ps1",
+      "evidence_form": "actual_before_after_array",
+      "reported_sha256": "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps51-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps51-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps51-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "single_harness_fingerprint",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps7-final230.json",
+      "path": "AudioFileForPhone.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps7-final230.json",
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "evidence_form": "actual_before_after_scalar",
+      "reported_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps7-final230.json",
+      "path": "tests/Test-OutputParent.ps1",
+      "evidence_form": "single_harness_fingerprint",
+      "reported_sha256": "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+    }
+  ],
+  "reports": [
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps51-final230.json",
+      "sha256": "696648e26afe1926e5c47799509dc46d18edaa8ba582804413765097545d9131",
+      "required_groups": 10,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-output-ps51-final230.stdout.bin",
+          "sha256": "e0bc8c5942a99a53ad5c334c42d2a87f5573f76f7f5b35a310a8cef9e292796b",
+          "bytes": 59
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-output-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-4ee89ec1f4604cca91ae24c64980c9bd",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps51-final230.json",
+      "sha256": "c7ef4613435915803ff902acb94385e886ea5900add67641ac63f35ba2fff039",
+      "required_groups": 45,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preflight-ps51-final230.stdout.bin",
+          "sha256": "d136e1133a9c2205958060df3388bed1e8d7b955fb22b30c50f20a0b59582305",
+          "bytes": 564
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preflight-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps51-final230.json",
+      "sha256": "edbd25c2ef95678e7dd13d149255b8e6e8e2d7486f9b380e373089dd5f9b12e3",
+      "required_groups": 8,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-discovery-ps51-final230.stdout.bin",
+          "sha256": "46cfe2fda86b8abddf0f6a2ba2df992adc7bd5d90ef4fae95255e60c6c23122a",
+          "bytes": 120
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-discovery-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps51-final230.json",
+      "sha256": "4b9fb36b73703a99582b0df9129df63f4e8e1d6e421db439785f188a340f5556",
+      "required_groups": 11,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-naming-ps51-final230.stdout.bin",
+          "sha256": "e1ac7afc139010113f3b048821b0bdbba69c92803a2c550647fd38e356d10106",
+          "bytes": 97
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-naming-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps51-final230.json",
+      "sha256": "b5a7a7c7309ad4ef965d469c7f6ceabf820e0c23f9660c3891599006c85d44e4",
+      "required_groups": 13,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-reservation-ps51-final230.stdout.bin",
+          "sha256": "3cdc159044c22af9f3b218318ca9e8b6bf06fdaad1b8b6cc4232905ec4311c63",
+          "bytes": 109
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-reservation-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps51-final230.json",
+      "sha256": "4f8daae01c9abc3caf54a93aff723f0262058d887fdc3747ff296a5de9bcbee3",
+      "required_groups": 27,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-transaction-ps51-final230.stdout.bin",
+          "sha256": "ca6c9e3920c710885e9553e82894840c1e33097ac3e586126be14e1fadb2ccf8",
+          "bytes": 100
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-transaction-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps51-final230.json",
+      "sha256": "17c79d53638b53ef735053a3ba260ea6fc88cb070410aefe3d32d0adcaddc66f",
+      "required_groups": 13,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-script-ps51-final230.stdout.bin",
+          "sha256": "88767a36ee0c6748045f8eb53d1995f3353fc5cb7e2803e42960af388bb4b48e",
+          "bytes": 84
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-script-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps51-final230.json",
+      "sha256": "cbf14f0cff42253d8b9bd66ff6cc00dca10c1d8dea2df65ebc821b1f37932323",
+      "required_groups": 52,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-launcher-ps51-final230.stdout.bin",
+          "sha256": "77064edec425afe4f0faa1e839369a810809170929c365bdfddba9b68f4b2df0",
+          "bytes": 70
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-launcher-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps51-final230.json",
+      "sha256": "75115fadc0e83f8dfafd793c10c32abff46ca5404478a69048edff29b717c861",
+      "required_groups": 9,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cancellation-ps51-final230.stdout.bin",
+          "sha256": "9d2f65f75d27a6e8e4943e07d5764bad63d6d181ce9a0bd7ece743a8f60e6a09",
+          "bytes": 112
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cancellation-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T11C-3eeff2ed",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps51-final230.json",
+      "sha256": "9e22b82cc4c65e95a5c9389ec8cfb60b78f7e1a9f068740fe4041132b4410ca5",
+      "required_groups": 8,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preview-ps51-final230.stdout.bin",
+          "sha256": "e50a4459ef83d478f3dcff2c9869b73d15ac78bc26e5afbe96cd503a994cf6db",
+          "bytes": 84
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preview-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T12P-e61825ff",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps51-final230.json",
+      "sha256": "61c154ae65bb40d9b6f388e60a045869fa2376797a0afae63b352125da36dbba",
+      "required_groups": 17,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-progress-ps51-final230.stdout.bin",
+          "sha256": "01ed995eddce73dfb66585174a25cfaa26adb760a80938599804a4a0c8eea641",
+          "bytes": 278
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-progress-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T13P-78bfaf3f",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps51-final230.json",
+      "sha256": "f9c5d1fae73ed25d56c025b2ede1406a287724e4ecad07d42d08d15cb173a0c0",
+      "required_groups": 19,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-diagnostics-ps51-final230.stdout.bin",
+          "sha256": "1073f03b851180a74b171683f4cd5c3ab28a118332d63a2e3d536705610d523b",
+          "bytes": 89
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-diagnostics-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T14D-50cbfb2b",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps51-final230.json",
+      "sha256": "f26ea465393d50f726bc88a8675cbcd5c3bdda9fb36579da8031141b8aeffedf",
+      "required_groups": 15,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-metadata-ps51-final230.stdout.bin",
+          "sha256": "83c62aab96204b03cf75b6eb96b58c5d6132bb0ec643cf352bb5a0fb47295d79",
+          "bytes": 86
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-metadata-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T15M-f88ed609",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps51-final230.json",
+      "sha256": "b8ecf98d22a8520d0cfb60cff2c6fc672ffaba1866b210e3da61384c27f5ccec",
+      "required_groups": 181,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cleanup-ps51-final230.stdout.bin",
+          "sha256": "4cf219a1749a72eaa44ca82067c2853c7ae5b138b81894126891ca91e817474a",
+          "bytes": 116
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cleanup-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-74a5a4a852484f6eb91c0dea1798c6d1",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps51-final230.json",
+      "sha256": "edf723944e4f3e28ee7ff3541a34fb0037cdff481b425f4dab05611f8a62816d",
+      "required_groups": 6,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-edges-ps51-final230.stdout.bin",
+          "sha256": "2f7b4d7995ef8feb8333d6a48e45db405c17c5adeff99a281592151c69b65086",
+          "bytes": 93
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-edges-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T16E-090b1de8",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-output-ps7-final230.json",
+      "sha256": "6c61783f66ecdba1c03fff339fe4e8aefb95ccbf9905f5dcba824d80f5669b77",
+      "required_groups": 10,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-output-ps7-final230.stdout.bin",
+          "sha256": "d674c7a47a04ff88a3b203587f944757d898771cce487e474629d03ab34a3112",
+          "bytes": 60
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-output-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-10c69a67d2774f1584df5b1b3e73c8d9",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preflight-ps7-final230.json",
+      "sha256": "1202e86d60419c8c9371983c060fd57e4ab6c3c4f96785936e8ae3a364dae858",
+      "required_groups": 45,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preflight-ps7-final230.stdout.bin",
+          "sha256": "53a7ac90b3550a3e43d13db88febfa04ce83403b6dd3bd4d3b4c51d607069ddc",
+          "bytes": 567
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preflight-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-discovery-ps7-final230.json",
+      "sha256": "cb370ddeb3dba8506bbef31257d69dcd98ede7d398de654ac3fb0f3f98bbcba7",
+      "required_groups": 8,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-discovery-ps7-final230.stdout.bin",
+          "sha256": "1bccfa72340210e473693b7bad332328832a7b0cb52eb0ab0b270baf15b9740a",
+          "bytes": 121
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-discovery-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-naming-ps7-final230.json",
+      "sha256": "22fc4aa9dd8ed585b0a6f41c82ad0fd811467178d2be6473db233e913ecd1b2b",
+      "required_groups": 11,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-naming-ps7-final230.stdout.bin",
+          "sha256": "53547fcf4bbbb1277b762b6d38e2c59c05a9ddc83df6137c7373442c76509d74",
+          "bytes": 98
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-naming-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-reservation-ps7-final230.json",
+      "sha256": "e80aca094b85f006879513fe36f1bc8b978a65cfca5e4c731b8befdb8b033857",
+      "required_groups": 13,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-reservation-ps7-final230.stdout.bin",
+          "sha256": "5d6387d96133db22af7ed47c673962fde7dc6f9293e3193f38120e4dc6f72bf1",
+          "bytes": 110
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-reservation-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-transaction-ps7-final230.json",
+      "sha256": "582661837fe4a6f2249b91052da90bcf627114629af26746ff349a78da84e78a",
+      "required_groups": 27,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-transaction-ps7-final230.stdout.bin",
+          "sha256": "042d6e79994c1bb4bc222ab2de7ff950d2c2bdd90369a8c99c1365ec80bf02d3",
+          "bytes": 101
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-transaction-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-script-ps7-final230.json",
+      "sha256": "5b60c4ff1019409ad8a3286a4c624f1c9c36bba88c9f5516e541ca2bb1cee982",
+      "required_groups": 13,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-script-ps7-final230.stdout.bin",
+          "sha256": "100b574b73e229a1b7e167f7263b084d23dc069e462f95b718be57330ea4c2b8",
+          "bytes": 85
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-script-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-launcher-ps7-final230.json",
+      "sha256": "40d59c30b7e93dc46b8281110c47630823dfa82afa16c47beb51d23c38803a4b",
+      "required_groups": 52,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-launcher-ps7-final230.stdout.bin",
+          "sha256": "a1469535adeb889f27f44173e0de4e923f23b6c0a73893e06daa3ff104a0fbd4",
+          "bytes": 71
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-launcher-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": []
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cancellation-ps7-final230.json",
+      "sha256": "32bf4bd8715e6a33b87db1906bee9fb91d60a0c498d929d30e8d4c13f767b2b7",
+      "required_groups": 9,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cancellation-ps7-final230.stdout.bin",
+          "sha256": "a9c2883120b096a4624fa7e595ed98b492f9893b1a0aff705624f4a1d1bb3c07",
+          "bytes": 113
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cancellation-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T11C-4ced2286",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-preview-ps7-final230.json",
+      "sha256": "d471a295c4d455c28f5b09144b3afda28c79c5a6a73b60091bbc018ba5875d41",
+      "required_groups": 8,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preview-ps7-final230.stdout.bin",
+          "sha256": "afa92a27a4f1ea5dd1ea17a053d726f5d59fa58dedae38b6d8176272f2875eb8",
+          "bytes": 85
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-preview-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T12P-47dd7e7c",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-progress-ps7-final230.json",
+      "sha256": "89b596dbfa4de55481775b12a5ca349d16ef62c5044cfa56e0b5be84895ca47c",
+      "required_groups": 17,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-progress-ps7-final230.stdout.bin",
+          "sha256": "4c99a4afd9d9281506fafa2c2f8cf5a2259ef7bacf78f200a16b96fc274dc756",
+          "bytes": 281
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-progress-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T13P-465e4466",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-diagnostics-ps7-final230.json",
+      "sha256": "0d20c600ccd7977cb3057b0c2cf1a42f205d34b0da048f2a52deb941fc4cacac",
+      "required_groups": 19,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-diagnostics-ps7-final230.stdout.bin",
+          "sha256": "74a41b6e162dd8d6a09c0c3a85d4f0d9d85b82c7a5158a2a40025c59f4ae9fa7",
+          "bytes": 90
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-diagnostics-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T14D-e2a4f077",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-metadata-ps7-final230.json",
+      "sha256": "f154c26e629db0e95a1552b370e17bd57059c8a599ba4e7e48611af6caa06ed4",
+      "required_groups": 15,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-metadata-ps7-final230.stdout.bin",
+          "sha256": "57a8e6f8adece52cd9f3c74ff412d6ce13c38151627fae1a00bef9b982343562",
+          "bytes": 87
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-metadata-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T15M-901e413f",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-cleanup-ps7-final230.json",
+      "sha256": "8f29a1e5ece6f860906dcf6ba9f7c85feaace61329a5fe55a11e58edb7646f58",
+      "required_groups": 181,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cleanup-ps7-final230.stdout.bin",
+          "sha256": "ca44bdc946c8b0334c435ef96c65c948a0294a5c2bf5de223d4d4c9a01a82b74",
+          "bytes": 118
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-cleanup-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-Cleanup-e27c6b624251498e9e8d585c394f3fa1",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-edges-ps7-final230.json",
+      "sha256": "dd5d97eff20036cfd8904435156c42f2bc09b5327610fea486573d68c62647c7",
+      "required_groups": 6,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-edges-ps7-final230.stdout.bin",
+          "sha256": "bb184ac552670be0558182816b2a3f80eb45de12823a44f970d34c92e7217b63",
+          "bytes": 94
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-edges-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "owned_temp_root",
+          "path": "C:\\Windows\\TEMP\\T16E-16a14289",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps51-final230.json",
+      "sha256": "a5781ba31af30156e1f3fc57e9e0ea6ed239d72d14b7312123d957844032ab2e",
+      "required_groups": 11,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-music-ps51-final230.stdout.bin",
+          "sha256": "e3a2030c801d22d108109086f88ba10c8ba5007f8bf5f94c18d1d6fc544981e2",
+          "bytes": 82
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-music-ps51-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-67721781b9f24e68b0cb4422a16e1d9b",
+          "absent": true
+        }
+      ]
+    },
+    {
+      "report": "docs/codex-v1/evidence/T16-music-ps7-final230.json",
+      "sha256": "864e14bdf7e9744e142b4361c4f06321d8f2513b14a45728710e1aba3307c48e",
+      "required_groups": 11,
+      "all_required_group_statuses_pass": true,
+      "actual_tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "raw_streams": [
+        {
+          "stream": "stdout",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-music-ps7-final230.stdout.bin",
+          "sha256": "555884e4b10733c4be087370e4bf20acf1de0b2496c6bfb519f14b3bfec16930",
+          "bytes": 83
+        },
+        {
+          "stream": "stderr",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\corrected\\T16-music-ps7-final230.stderr.bin",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      ],
+      "exact_reported_owned_root_checks": [
+        {
+          "field": "temp_root",
+          "path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AudioFileForPhone-T03-resolver-f1bd1a007d5f449892c89b65e34c2337",
+          "absent": true
+        }
+      ]
+    }
+  ],
+  "launch_recovery": {
+    "initial_failed_commands_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\milestone-commands.json",
+    "initial_failed_commands_sha256": "20a3f95868682d2baa82db451cb2d0fd3a3f3ad9b31eaa5ef088f8a9e1db49af",
+    "initial_failed_driver_sha256": "4261651426275a88a8902f74371a7c7060b18e14fac09507728b3ad184325e51",
+    "initial_failed_raw_report_count": 0,
+    "initial_failed_required_groups_counted": 0,
+    "diagnosis_path": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\milestone-run\\environment-diagnosis.json",
+    "diagnosis_sha256": "0d78ca9342ffae7c5a712019fb082cf400f2284b0ec38de535c755a4371dcc43",
+    "cause": "Initial driver plain dict pop did not remove uppercase PSMODULEPATH; PS5.1 inherited incompatible module paths and could not resolve Get-FileHash before report setup.",
+    "correction": "Case-insensitive removal only in owned child environment; shell initializes defaults; creationflags=0 preserves existing CP65001 console.",
+    "original_failed_files_unchanged": true,
+    "source_or_test_code_changed": false,
+    "report_paths_unoccupied_before_corrected_launch": true
+  },
+  "limitations": [
+    "Only automated tests; no new human or phone observations.",
+    "Only controlled -DefaultSmoke exact owned output; unrelated Music entries never enumerated.",
+    "Matrix rows, native children and historical reports are not counted separately."
+  ]
+}

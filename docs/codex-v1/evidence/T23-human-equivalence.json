@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "task": "T23",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "status": "pass",
+  "runtime_relationships": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49"
+      },
+      "blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "equal": true
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "b59cbea5497f428b4b063929f06b924fc9e4424c"
+      },
+      "blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "equal": true
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "git_blob_relationships": {
+        "2092a405c1d06eca336e771a0ed5d1881acd015a": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e": "8bec7664cca0b27a484023daeddd4fab46294805",
+        "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d": "8bec7664cca0b27a484023daeddd4fab46294805"
+      },
+      "blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "equal": true
+    }
+  ],
+  "phone_evidence": {
+    "reference": "evidence/T21-phone-final-observations.json",
+    "sha256": "6194458734696f0579aaa6826e22f348a7f0a25d28bec8b7bab1478e9fab956c",
+    "tester": "Janne Vuorela",
+    "device": "Samsung S24",
+    "os": "One UI 8.5",
+    "player": "AIMP v4.31.1747",
+    "transfer": "USB cable",
+    "chapters": "unavailable",
+    "selection_navigation": "not_run"
+  },
+  "windows_evidence": [
+    "evidence/T20.md",
+    "evidence/T20-long-bindings.json",
+    "evidence/T20-recovery-review.json"
+  ],
+  "rationale": "The complete media-processing payload and BAT have identical Git blobs to both actual long and short asset generation commits. Frozen C changes since accepted media generation affect documentation/evidence only. Reuse the same three hashed accepted T21 assets; no media regeneration, new phone observation, personal media scan, or additional human test is claimed. ZIP member equality will separately bind shipped runtime to C.",
+  "limitations": [
+    "Named aggregate observations on the reported S24/AIMP configuration, not universal phone support.",
+    "Chapter navigation is unavailable/not run.",
+    "T20 named/automated physical-interaction limits remain unchanged."
+  ]
+}

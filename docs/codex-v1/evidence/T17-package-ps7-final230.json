@@ -1,0 +1,4701 @@
+{
+  "schema_version": 1,
+  "task": "T17",
+  "mode": "synthetic_clean_commit_packaging_policy",
+  "status": "pass",
+  "error": null,
+  "started_utc": "2026-10-12T15:08:02.9283353Z",
+  "ended_utc": "2026-10-12T15:10:18.8271121Z",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9457",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "synthetic_source_commit": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+  "command": "<SHELL_ROOT>\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <REPOSITORY>\\tests\\Test-Package.ps1 -EvidencePath <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-package-ps7-final230.json -FfmpegPath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-5fdfc78fd13144a495703da766d6f385\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+  "owned_temp_root": "<OWNED_TEMP>",
+  "temp_exclusively_reserved": true,
+  "owned_temp_name": "T19P-44e58a34",
+  "temp_parent_kind": "process_temporary_directory",
+  "marker_create_new": true,
+  "ownership_marker_sha256": "439c02bc17aee74604bcb1814320371a34c23c295b8c8516e203d6d9db52cf79",
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+      "bytes": 1729
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+      "bytes": 1091
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+      "bytes": 12986
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+      "bytes": 6698
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+      "bytes": 14066
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+      "bytes": 25695
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+      "bytes": 240
+    },
+    {
+      "relative_path": "tests/Test-Package.ps1",
+      "sha256": "b78eadae9dd08db3257bc77190a6ecb127d319f0dd7f5614dbffa16df788e222",
+      "bytes": 49440
+    },
+    {
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "bytes": 2840
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+      "bytes": 1729
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+      "bytes": 1091
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+      "bytes": 12986
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+      "bytes": 6698
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+      "bytes": 14066
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+      "bytes": 25695
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+      "bytes": 240
+    },
+    {
+      "relative_path": "tests/Test-Package.ps1",
+      "sha256": "b78eadae9dd08db3257bc77190a6ecb127d319f0dd7f5614dbffa16df788e222",
+      "bytes": 49440
+    },
+    {
+      "relative_path": ".github/dependencies.json",
+      "sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "bytes": 2840
+    }
+  ],
+  "source_unchanged": true,
+  "fixture_before": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+      "bytes": 1729
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+      "bytes": 1091
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "bytes": 12749
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+      "bytes": 6698
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+      "bytes": 14066
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+      "bytes": 25695
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+      "bytes": 240
+    }
+  ],
+  "fixture_after": [
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "bytes": 114373
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "bytes": 1800
+    },
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "bytes": 40032
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+      "bytes": 1729
+    },
+    {
+      "relative_path": "LICENSE",
+      "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+      "bytes": 1091
+    },
+    {
+      "relative_path": "README.md",
+      "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "bytes": 12749
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+      "bytes": 6698
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+      "bytes": 14066
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+      "bytes": 25695
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+      "bytes": 240
+    }
+  ],
+  "synthetic_unchanged": true,
+  "dependencies": [
+    {
+      "tool": "ffmpeg",
+      "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "bundled": false
+    },
+    {
+      "tool": "ffprobe",
+      "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "bundled": false
+    }
+  ],
+  "native_runs": [
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<REPOSITORY>",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 235,
+      "stdout": "2092a405c1d06eca336e771a0ed5d1881acd015a\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "init",
+        "--quiet"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 52,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.eol",
+        "lf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 54,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.symlinks",
+        "false"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 104,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "T19 deterministic synthetic package fixture"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 119,
+      "stdout": "[master (root-commit) 095263f] T19 deterministic synthetic package fixture\n 21 files changed, 3912 insertions(+)\n create mode 100644 .gitignore\n create mode 100644 AudioFileForPhone.Helpers.ps1\n create mode 100644 AudioFileForPhone.bat\n create mode 100644 AudioFileForPhone.ps1\n create mode 100644 AudioFileForPhone_poster.png\n create mode 100644 CHANGELOG.md\n create mode 100644 LICENSE\n create mode 100644 README.md\n create mode 100644 SECURITY.md\n create mode 100644 SUPPORT.md\n create mode 100644 cache/temp.txt\n create mode 100644 docs/codex-v1/private-evidence.json\n create mode 100644 ffmpeg.exe\n create mode 100644 ffprobe.exe\n create mode 100644 private.log\n create mode 100644 private.m4a\n create mode 100644 private.mp3\n create mode 100644 private.ogg\n create mode 100644 tests/fixture.txt\n create mode 100644 tools/Build-Package.ps1\n create mode 100644 tools/package-files.json\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 60,
+      "stdout": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 67,
+      "stdout": "",
+      "stderr": "HEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "ffmpeg.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev3, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61.  1.102 / 61.  1.102\r\nlibavcodec     63.  1.102 / 63.  1.102\r\nlibavformat    63.  1.102 / 63.  1.102\r\nlibavdevice    63.  1.102 / 63.  1.102\r\nlibavfilter    12.  1.102 / 12.  1.102\r\nlibswscale     10.  1.102 / 10.  1.102\r\nlibswresample   7.  1.102 /  7.  1.102\r\n\r\nExiting with exit code 0\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "ffprobe.exe",
+      "arguments": [
+        "-version"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 47,
+      "stdout": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers\r\nbuilt with gcc 16.2.0 (Rev3, Built by MSYS2 project)\r\nconfiguration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-zlib --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-sdl2 --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-libaom --enable-libopenjpeg --enable-libvpx --enable-mediafoundation --enable-libass --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libvidstab --enable-libvmaf --enable-libzimg --enable-amf --enable-cuda-llvm --enable-cuvid --enable-dxva2 --enable-d3d11va --enable-d3d12va --enable-ffnvcodec --enable-libvpl --enable-nvdec --enable-nvenc --enable-vaapi --enable-openal --enable-libgme --enable-libopenmpt --enable-libopencore-amrwb --enable-libmp3lame --enable-libtheora --enable-libvo-amrwbenc --enable-libgsm --enable-libopencore-amrnb --enable-libopus --enable-libspeex --enable-libvorbis --enable-librubberband\r\nlibavutil      61.  1.102 / 61.  1.102\r\nlibavcodec     63.  1.102 / 63.  1.102\r\nlibavformat    63.  1.102 / 63.  1.102\r\nlibavdevice    63.  1.102 / 63.  1.102\r\nlibavfilter    12.  1.102 / 12.  1.102\r\nlibswscale     10.  1.102 / 10.  1.102\r\nlibswresample   7.  1.102 /  7.  1.102\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.autocrlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 51,
+      "stdout": "false\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.eol"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 55,
+      "stdout": "lf\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.autocrlf",
+        "true"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.eol",
+        "crlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.autocrlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.eol"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 55,
+      "stdout": "crlf\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\first",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5798,
+      "stdout": "{\r\n  \"status\": \"pass\",\r\n  \"source_commit\": \"095263f10d3e8f76bd25ddc97ce8aeca83a33a3f\",\r\n  \"app_version\": \"1.0.0\",\r\n  \"output_directory\": \"<OWNED_TEMP>\\\\builds\\\\first\",\r\n  \"zip_name\": \"AudioFileForPhone-v1.0.0.zip\",\r\n  \"zip_sha256\": \"da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5\",\r\n  \"manifest_sha256\": \"668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.autocrlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 51,
+      "stdout": "true\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.eol"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "crlf\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 71,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "core.eol",
+        "lf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 57,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.autocrlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 51,
+      "stdout": "false\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.eol"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 49,
+      "stdout": "lf\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.autocrlf"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 66,
+      "stdout": "false\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "config",
+        "--local",
+        "--get",
+        "core.eol"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 46,
+      "stdout": "lf\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\second",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5303,
+      "stdout": "{\r\n  \"status\": \"pass\",\r\n  \"source_commit\": \"095263f10d3e8f76bd25ddc97ce8aeca83a33a3f\",\r\n  \"app_version\": \"1.0.0\",\r\n  \"output_directory\": \"<OWNED_TEMP>\\\\builds\\\\second\",\r\n  \"zip_name\": \"AudioFileForPhone-v1.0.0.zip\",\r\n  \"zip_sha256\": \"da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5\",\r\n  \"manifest_sha256\": \"668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45\"\r\n}\r\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\first",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 862,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | OutputDirectory already exists; select a new directory.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\existing-file",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1443,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | OutputDirectory already exists; select a new directory.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1263,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit requires the full lowercase 40-character commit identifier.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "0000000000000000000000000000000000000000",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1416,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit must match checkout HEAD exactly.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263F10D3E8F76BD25DDC97CE8AECA83A33A3F",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-commit",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1247,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit requires the full lowercase 40-character commit identifier.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v9.9.9",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\bad-tag",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3459,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | TargetTag must match the exact source helper application version.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\source\\not-a-package",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1565,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | OutputDirectory must be outside the source checkout.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "switch",
+        "-c",
+        "synthetic-attached"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 64,
+      "stdout": "",
+      "stderr": "Switched to a new branch 'synthetic-attached'\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\attached",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1345,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must use detached HEAD.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 60,
+      "stdout": "",
+      "stderr": "HEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\tracked-dirty",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1422,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "?? untracked-fixture.log\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\untracked",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1637,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all",
+        "--ignored=matching"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 67,
+      "stdout": "!! ignored-fixture.log\n",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\untracked",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 763,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package source must be clean; dirty, untracked and ignored files are refused.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 52,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission AudioFileForPhone.Helpers.ps1"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 92,
+      "stdout": "[detached HEAD 1b4231b] Synthetic required omission AudioFileForPhone.Helpers.ps1\n 1 file changed, 2050 deletions(-)\n delete mode 100644 AudioFileForPhone.Helpers.ps1\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 53,
+      "stdout": "1b4231b72d6c81b754251a5b5269fdb183040543\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "1b4231b72d6c81b754251a5b5269fdb183040543"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": "HEAD is now at 1b4231b Synthetic required omission AudioFileForPhone.Helpers.ps1\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "1b4231b72d6c81b754251a5b5269fdb183040543",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1917,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\AudioFileForPhone.Helpers.ps1' because\r\n     | it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 64,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  1b4231b Synthetic required omission AudioFileForPhone.Helpers.ps1\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 1b4231b\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 48,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission AudioFileForPhone.bat"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 111,
+      "stdout": "[detached HEAD 5fb36e8] Synthetic required omission AudioFileForPhone.bat\n 1 file changed, 49 deletions(-)\n delete mode 100644 AudioFileForPhone.bat\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 67,
+      "stdout": "5fb36e8acb9db2cb821183861e10f9318b185b0e\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "5fb36e8acb9db2cb821183861e10f9318b185b0e"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 72,
+      "stdout": "",
+      "stderr": "HEAD is now at 5fb36e8 Synthetic required omission AudioFileForPhone.bat\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "5fb36e8acb9db2cb821183861e10f9318b185b0e",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1868,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\AudioFileForPhone.bat' because it does\r\n     | not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  5fb36e8 Synthetic required omission AudioFileForPhone.bat\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 5fb36e8\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 50,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission AudioFileForPhone.ps1"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 98,
+      "stdout": "[detached HEAD 204170d] Synthetic required omission AudioFileForPhone.ps1\n 1 file changed, 820 deletions(-)\n delete mode 100644 AudioFileForPhone.ps1\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 55,
+      "stdout": "204170dd862d5735ee3ec605888e1e719e6765ec\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "204170dd862d5735ee3ec605888e1e719e6765ec"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 60,
+      "stdout": "",
+      "stderr": "HEAD is now at 204170d Synthetic required omission AudioFileForPhone.ps1\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "204170dd862d5735ee3ec605888e1e719e6765ec",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1759,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\AudioFileForPhone.ps1' because it does\r\n     | not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 68,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  204170d Synthetic required omission AudioFileForPhone.ps1\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 204170d\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 57,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission CHANGELOG.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 100,
+      "stdout": "[detached HEAD 8813b25] Synthetic required omission CHANGELOG.md\n 1 file changed, 29 deletions(-)\n delete mode 100644 CHANGELOG.md\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 52,
+      "stdout": "8813b25df09b6ecd795b2054186f0716c3d61652\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "8813b25df09b6ecd795b2054186f0716c3d61652"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": "HEAD is now at 8813b25 Synthetic required omission CHANGELOG.md\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "8813b25df09b6ecd795b2054186f0716c3d61652",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1902,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\CHANGELOG.md' because it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  8813b25 Synthetic required omission CHANGELOG.md\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 8813b25\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 57,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission LICENSE"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 105,
+      "stdout": "[detached HEAD 731ed11] Synthetic required omission LICENSE\n 1 file changed, 21 deletions(-)\n delete mode 100644 LICENSE\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 46,
+      "stdout": "731ed11fc02736a28530de1a35d53b6b8b4e6435\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "731ed11fc02736a28530de1a35d53b6b8b4e6435"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 80,
+      "stdout": "",
+      "stderr": "HEAD is now at 731ed11 Synthetic required omission LICENSE\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "731ed11fc02736a28530de1a35d53b6b8b4e6435",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1911,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\LICENSE' because it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 60,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  731ed11 Synthetic required omission LICENSE\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 731ed11\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 57,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission README.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 95,
+      "stdout": "[detached HEAD 8582255] Synthetic required omission README.md\n 1 file changed, 237 deletions(-)\n delete mode 100644 README.md\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 60,
+      "stdout": "85822550f562e1425d6436373aea9dc78c09e647\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "85822550f562e1425d6436373aea9dc78c09e647"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": "HEAD is now at 8582255 Synthetic required omission README.md\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "85822550f562e1425d6436373aea9dc78c09e647",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1594,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\README.md' because it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 78,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  8582255 Synthetic required omission README.md\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 8582255\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission SECURITY.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 134,
+      "stdout": "[detached HEAD 22a38ff] Synthetic required omission SECURITY.md\n 1 file changed, 109 deletions(-)\n delete mode 100644 SECURITY.md\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 58,
+      "stdout": "22a38ffa56f385d995643b5529450ba79a82f455\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "22a38ffa56f385d995643b5529450ba79a82f455"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": "HEAD is now at 22a38ff Synthetic required omission SECURITY.md\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "22a38ffa56f385d995643b5529450ba79a82f455",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2115,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\SECURITY.md' because it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 73,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  22a38ff Synthetic required omission SECURITY.md\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 22a38ff\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 69,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic required omission SUPPORT.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 125,
+      "stdout": "[detached HEAD ecec7f2] Synthetic required omission SUPPORT.md\n 1 file changed, 155 deletions(-)\n delete mode 100644 SUPPORT.md\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 55,
+      "stdout": "ecec7f2292ddbe953f53e07cafb765b9467ddd99\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "ecec7f2292ddbe953f53e07cafb765b9467ddd99"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 74,
+      "stdout": "",
+      "stderr": "HEAD is now at ecec7f2 Synthetic required omission SUPPORT.md\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "ecec7f2292ddbe953f53e07cafb765b9467ddd99",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\omission",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2161,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\source\\SUPPORT.md' because it does not exist.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 64,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  ecec7f2 Synthetic required omission SUPPORT.md\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> ecec7f2\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist traversal"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 113,
+      "stdout": "[detached HEAD 56c4e41] Synthetic unsafe allowlist traversal\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 47,
+      "stdout": "56c4e41c314569a3cdaca03f5fc71ea57300194b\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "56c4e41c314569a3cdaca03f5fc71ea57300194b"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 62,
+      "stdout": "",
+      "stderr": "HEAD is now at 56c4e41 Synthetic unsafe allowlist traversal\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "56c4e41c314569a3cdaca03f5fc71ea57300194b",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2171,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Unsafe package member name; only literal ordinary root file names are allowed.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 91,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  56c4e41 Synthetic unsafe allowlist traversal\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 56c4e41\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 61,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist absolute"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 105,
+      "stdout": "[detached HEAD b5db592] Synthetic unsafe allowlist absolute\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 53,
+      "stdout": "b5db59215776a09f7f4f7738fa0daa99b8de03c5\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "b5db59215776a09f7f4f7738fa0daa99b8de03c5"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 57,
+      "stdout": "",
+      "stderr": "HEAD is now at b5db592 Synthetic unsafe allowlist absolute\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "b5db59215776a09f7f4f7738fa0daa99b8de03c5",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2101,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Unsafe package member name; only literal ordinary root file names are allowed.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 100,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  b5db592 Synthetic unsafe allowlist absolute\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> b5db592\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 71,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist wildcard"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 102,
+      "stdout": "[detached HEAD 78f4e70] Synthetic unsafe allowlist wildcard\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 48,
+      "stdout": "78f4e70ce7305333a1e570ed5ea616cdc6d70d3b\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "78f4e70ce7305333a1e570ed5ea616cdc6d70d3b"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": "HEAD is now at 78f4e70 Synthetic unsafe allowlist wildcard\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "78f4e70ce7305333a1e570ed5ea616cdc6d70d3b",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1989,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Unsafe package member name; only literal ordinary root file names are allowed.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  78f4e70 Synthetic unsafe allowlist wildcard\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 78f4e70\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist reserved device"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 108,
+      "stdout": "[detached HEAD aba041d] Synthetic unsafe allowlist reserved device\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "aba041d8092231e692a9e3afabb9be64a60470e7\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "aba041d8092231e692a9e3afabb9be64a60470e7"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 73,
+      "stdout": "",
+      "stderr": "HEAD is now at aba041d Synthetic unsafe allowlist reserved device\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "aba041d8092231e692a9e3afabb9be64a60470e7",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2001,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Unsafe package member name; only literal ordinary root file names are allowed.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 63,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  aba041d Synthetic unsafe allowlist reserved device\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> aba041d\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist case duplicate"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 150,
+      "stdout": "[detached HEAD 9677802] Synthetic unsafe allowlist case duplicate\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 70,
+      "stdout": "967780230d69764aa284884a5f0636ff044ad74c\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "967780230d69764aa284884a5f0636ff044ad74c"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 79,
+      "stdout": "",
+      "stderr": "HEAD is now at 9677802 Synthetic unsafe allowlist case duplicate\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "967780230d69764aa284884a5f0636ff044ad74c",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2008,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Duplicate package allowlist member.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 79,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  9677802 Synthetic unsafe allowlist case duplicate\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 9677802\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic unsafe allowlist third party binary"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 128,
+      "stdout": "[detached HEAD a140507] Synthetic unsafe allowlist third party binary\n 1 file changed, 3 insertions(+), 2 deletions(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 69,
+      "stdout": "a14050768be5b3f2759b5d227c90a859e7b1a32b\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "a14050768be5b3f2759b5d227c90a859e7b1a32b"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 77,
+      "stdout": "",
+      "stderr": "HEAD is now at a140507 Synthetic unsafe allowlist third party binary\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "a14050768be5b3f2759b5d227c90a859e7b1a32b",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\unsafe-allowlist",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1951,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Unexpected package allowlist member; update reviewed package policy before adding files.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 68,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  a140507 Synthetic unsafe allowlist third party binary\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> a140507\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 106,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic source helper version mismatch"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 165,
+      "stdout": "[detached HEAD 5bc6176] Synthetic source helper version mismatch\n 1 file changed, 1 insertion(+), 1 deletion(-)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 51,
+      "stdout": "5bc6176a93bf9756e5ad22a87235120ed45ec74c\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "5bc6176a93bf9756e5ad22a87235120ed45ec74c"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 70,
+      "stdout": "",
+      "stderr": "HEAD is now at 5bc6176 Synthetic source helper version mismatch\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "5bc6176a93bf9756e5ad22a87235120ed45ec74c",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\source-version",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3980,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | TargetTag must match the exact source helper application version.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 66,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  5bc6176 Synthetic source helper version mismatch\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 5bc6176\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "5bc6176a93bf9756e5ad22a87235120ed45ec74c",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\wrong-existing-head",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1451,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | SourceCommit must match checkout HEAD exactly.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 62,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic active helper statement"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 119,
+      "stdout": "[detached HEAD fb5f9c9] Synthetic active helper statement\n 1 file changed, 2 insertions(+)\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "fb5f9c9d8ce96d01699f49859a1c5a8c465bccb4\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "fb5f9c9d8ce96d01699f49859a1c5a8c465bccb4"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 73,
+      "stdout": "",
+      "stderr": "HEAD is now at fb5f9c9 Synthetic active helper statement\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "fb5f9c9d8ce96d01699f49859a1c5a8c465bccb4",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\active-helper",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 4010,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Exact commit helper must be an inert functions-only file.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 82,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  fb5f9c9 Synthetic active helper statement\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> fb5f9c9\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic archive attribute export-ignore"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 125,
+      "stdout": "[detached HEAD c6fbb60] Synthetic archive attribute export-ignore\n 1 file changed, 1 insertion(+)\n create mode 100644 .gitattributes\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 59,
+      "stdout": "c6fbb6049fb6506de26086af65e1749e3047f1f1\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "c6fbb6049fb6506de26086af65e1749e3047f1f1"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 70,
+      "stdout": "",
+      "stderr": "HEAD is now at c6fbb60 Synthetic archive attribute export-ignore\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 62,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "c6fbb6049fb6506de26086af65e1749e3047f1f1",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\archive-attribute",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3582,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Source archive omitted a required file.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 77,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  c6fbb60 Synthetic archive attribute export-ignore\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> c6fbb60\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 69,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic archive attribute export-subst"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 114,
+      "stdout": "[detached HEAD 3bd1b12] Synthetic archive attribute export-subst\n 2 files changed, 2 insertions(+), 237 deletions(-)\n create mode 100644 .gitattributes\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 54,
+      "stdout": "3bd1b12df4b2c0c4b4ab879eee1f6408e7bbc187\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "3bd1b12df4b2c0c4b4ab879eee1f6408e7bbc187"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 70,
+      "stdout": "",
+      "stderr": "HEAD is now at 3bd1b12 Synthetic archive attribute export-subst\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 65,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "3bd1b12df4b2c0c4b4ab879eee1f6408e7bbc187",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\archive-attribute",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3425,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Staged source bytes differ from exact commit blob (archive attributes are unsupported).\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 68,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  3bd1b12 Synthetic archive attribute export-subst\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> 3bd1b12\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "add",
+        "--all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 64,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic source-contained dependency input"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 114,
+      "stdout": "[detached HEAD e30865d] Synthetic source-contained dependency input\n 1 file changed, 17 insertions(+)\n create mode 100644 local-provenance.json\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 53,
+      "stdout": "e30865d39d9c8ad4afda1751115ba8bb0840f60c\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "e30865d39d9c8ad4afda1751115ba8bb0840f60c"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 71,
+      "stdout": "",
+      "stderr": "HEAD is now at e30865d Synthetic source-contained dependency input\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "e30865d39d9c8ad4afda1751115ba8bb0840f60c",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\inside-dependency",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\source\\local-provenance.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1582,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package dependency provenance and test evidence JSON must be external to the source checkout.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 128,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  e30865d Synthetic source-contained dependency input\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> e30865d\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\inside-tests",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\source\\docs\\codex-v1\\private-evidence.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1599,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package dependency provenance and test evidence JSON must be external to the source checkout.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "relative-package",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1466,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths must be absolute ordinary Windows filesystem paths without device namespaces or streams.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "C:relative-package",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1639,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths must be absolute ordinary Windows filesystem paths without device namespaces or streams.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\wild*.zip",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1800,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths cannot contain streams, wildcard characters or trailing dot/space aliases.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\package:stream",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1638,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths must be absolute ordinary Windows filesystem paths without device namespaces or streams.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\trailing.",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1796,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths cannot contain trailing dot/space aliases or dot traversal components.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\..\\escaped",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1779,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths cannot contain trailing dot/space aliases or dot traversal components.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "hash-object",
+        "-w",
+        "--",
+        "README.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 81,
+      "stdout": "e86948ab8d507ad23e6d348f7a52f31b7cbf4bfc\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "update-index",
+        "--cacheinfo",
+        "120000,e86948ab8d507ad23e6d348f7a52f31b7cbf4bfc,README.md"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 79,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "-c",
+        "user.name=T19 synthetic fixture",
+        "-c",
+        "user.email=t19@example.invalid",
+        "commit",
+        "-m",
+        "Synthetic tracked symlink mode"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 143,
+      "stdout": "[detached HEAD c7d74fa] Synthetic tracked symlink mode\n 1 file changed, 1 insertion(+), 237 deletions(-)\n mode change 100644 => 120000 README.md\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "rev-parse",
+        "HEAD"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 66,
+      "stdout": "c7d74fad8eb56d00b945b4d04db16cc54eaffd37\n",
+      "stderr": ""
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 76,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "c7d74fad8eb56d00b945b4d04db16cc54eaffd37",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\git-symlink",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 2282,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Required package file omitted or not a regular Git blob.\r\n"
+    },
+    {
+      "executable": "git.exe",
+      "arguments": [
+        "-C",
+        "<OWNED_TEMP>\\source",
+        "checkout",
+        "--detach",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f"
+      ],
+      "status": "Completed",
+      "exit_code": 0,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 64,
+      "stdout": "",
+      "stderr": "Warning: you are leaving 1 commit behind, not connected to\nany of your branches:\n\n  c7d74fa Synthetic tracked symlink mode\n\nIf you want to keep it by creating a new branch, this may be a good time\nto do so with:\n\n git branch <new-branch-name> c7d74fa\n\nHEAD is now at 095263f T19 deterministic synthetic package fixture\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\junction-source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\source-reparse",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1304,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths cannot contain symlinks or reparse ancestors.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\junction-output-parent\\not-created",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 1791,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Package paths cannot contain symlinks or reparse ancestors.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\dependency-mismatch",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependency-hash.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 4409,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Dependency ffmpeg executable hash mismatch.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\dependency-mismatch",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependency-version.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 4420,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Dependency version and public license notice are required without private paths.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\dependency-mismatch",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependency-missing-tool.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 3909,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Cannot find path '<OWNED_TEMP>\\does-not-exist.exe' because it does not exist.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\test-provenance",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests-commit.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5631,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Each test reference must be unique, safe, passing and identify SourceCommit with a SHA-256 report digest.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\test-provenance",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests-status.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5459,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Each test reference must be unique, safe, passing and identify SourceCommit with a SHA-256 report digest.\r\n"
+    },
+    {
+      "executable": "pwsh.exe",
+      "arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "<OWNED_TEMP>\\source\\tools\\Build-Package.ps1",
+        "-SourcePath",
+        "<OWNED_TEMP>\\source",
+        "-SourceCommit",
+        "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "-TargetTag",
+        "v1.0.0",
+        "-OutputDirectory",
+        "<OWNED_TEMP>\\builds\\test-provenance",
+        "-DependencyProvenancePath",
+        "<OWNED_TEMP>\\dependencies.json",
+        "-TestEvidencePath",
+        "<OWNED_TEMP>\\tests-unsafe-reference.json"
+      ],
+      "status": "Completed",
+      "exit_code": 1,
+      "process_released": true,
+      "deadline_requested": false,
+      "duration_ms": 5960,
+      "stdout": "",
+      "stderr": "Exception: <OWNED_TEMP>\\source\\tools\\Build-Package.ps1:417\r\nLine |\r\n 417 |  if ($null -ne $buildFailure) { throw $buildFailure }\r\n     |                                 ~~~~~~~~~~~~~~~~~~~\r\n     | Each test reference must be unique, safe, passing and identify SourceCommit with a SHA-256 report digest.\r\n"
+    }
+  ],
+  "cases": [
+    {
+      "name": "fixture preserves exact copied source bytes before owned README LF setup",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "copied_files": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "bytes": 114373
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "bytes": 1800
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "bytes": 40032
+        },
+        {
+          "relative_path": "CHANGELOG.md",
+          "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+          "bytes": 1729
+        },
+        {
+          "relative_path": "LICENSE",
+          "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+          "bytes": 1091
+        },
+        {
+          "relative_path": "README.md",
+          "sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+          "bytes": 12986
+        },
+        {
+          "relative_path": "SECURITY.md",
+          "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+          "bytes": 6698
+        },
+        {
+          "relative_path": "SUPPORT.md",
+          "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+          "bytes": 14066
+        },
+        {
+          "relative_path": "tools/Build-Package.ps1",
+          "sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+          "bytes": 25695
+        },
+        {
+          "relative_path": "tools/package-files.json",
+          "sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+          "bytes": 240
+        }
+      ],
+      "readme_normalization": {
+        "relative_path": "README.md",
+        "policy": "Owned README fixture only: remove CR byte only immediately before LF; preserve all other bytes, including UTF-8 BOM, existing LF and lone CR.",
+        "before": {
+          "relative_path": "README.md",
+          "sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+          "bytes": 12986
+        },
+        "after": {
+          "relative_path": "README.md",
+          "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+          "bytes": 12749
+        },
+        "crlf_pairs_removed": 237,
+        "utf8_bom_before": false,
+        "utf8_bom_after": false,
+        "bom_preserved": true,
+        "lone_cr_before": 0,
+        "lone_cr_after": 0,
+        "lone_cr_preserved": true,
+        "source_readme_sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+        "source_readme_unchanged": true
+      }
+    },
+    {
+      "name": "Git CRLF archive policy preserves exact blob package bytes",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "original_config": {
+        "core_autocrlf": "false",
+        "core_eol": "lf"
+      },
+      "lf_fixture_members": [
+        "README.md"
+      ],
+      "build_config": {
+        "core_autocrlf": "true",
+        "core_eol": "crlf"
+      },
+      "clean_source": true,
+      "config_after_build": {
+        "core_autocrlf": "true",
+        "core_eol": "crlf"
+      },
+      "configuration_unchanged": true,
+      "fixture_unchanged": true,
+      "source_commit": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+      "zip_inventory": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "bytes": 114373
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "bytes": 1800
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "bytes": 40032
+        },
+        {
+          "relative_path": "CHANGELOG.md",
+          "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+          "bytes": 1729
+        },
+        {
+          "relative_path": "LICENSE",
+          "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+          "bytes": 1091
+        },
+        {
+          "relative_path": "README.md",
+          "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+          "bytes": 12749
+        },
+        {
+          "relative_path": "SECURITY.md",
+          "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+          "bytes": 6698
+        },
+        {
+          "relative_path": "SUPPORT.md",
+          "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+          "bytes": 14066
+        }
+      ],
+      "restored_config": {
+        "core_autocrlf": "false",
+        "core_eol": "lf"
+      },
+      "configuration_restored": true
+    },
+    {
+      "name": "explicit eight-file allowlist excludes committed binary/media/log/cache/poster/evidence fixtures",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "source_commit": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+      "inventory": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "bytes": 114373
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "bytes": 1800
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "bytes": 40032
+        },
+        {
+          "relative_path": "CHANGELOG.md",
+          "sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+          "bytes": 1729
+        },
+        {
+          "relative_path": "LICENSE",
+          "sha256": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+          "bytes": 1091
+        },
+        {
+          "relative_path": "README.md",
+          "sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+          "bytes": 12749
+        },
+        {
+          "relative_path": "SECURITY.md",
+          "sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+          "bytes": 6698
+        },
+        {
+          "relative_path": "SUPPORT.md",
+          "sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+          "bytes": 14066
+        }
+      ],
+      "excluded_fixtures": [
+        "ffmpeg.exe",
+        "ffprobe.exe",
+        "private.mp3",
+        "private.m4a",
+        "private.ogg",
+        "private.log",
+        "AudioFileForPhone_poster.png",
+        "cache/temp.txt",
+        "tests/fixture.txt",
+        "docs/codex-v1/private-evidence.json"
+      ]
+    },
+    {
+      "name": "external manifest binds actual version commit per-member hashes signing and tool provenance without checksum self-reference",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "manifest": {
+        "schema_version": 1,
+        "repository": "PikkuJanne/AudioFileForPhone",
+        "app_version": "1.0.0",
+        "tag": "v1.0.0",
+        "release_commit": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+        "zip": {
+          "name": "AudioFileForPhone-v1.0.0.zip",
+          "bytes": 54188,
+          "sha256": "da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5"
+        },
+        "signing_status": "unsigned",
+        "signatures": {
+          "AudioFileForPhone.Helpers.ps1": {
+            "status": "NotSigned",
+            "signer_thumbprint": null
+          },
+          "AudioFileForPhone.ps1": {
+            "status": "NotSigned",
+            "signer_thumbprint": null
+          }
+        },
+        "dependencies": {
+          "bundled": false,
+          "ffmpeg": {
+            "executable_name": "ffmpeg.exe",
+            "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+            "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+            "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+            "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+          },
+          "ffprobe": {
+            "executable_name": "ffprobe.exe",
+            "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+            "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+            "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+            "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+          }
+        },
+        "files": {
+          "AudioFileForPhone.Helpers.ps1": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+          "AudioFileForPhone.bat": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+          "AudioFileForPhone.ps1": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+          "CHANGELOG.md": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+          "LICENSE": "28cd5b28cc287821be0bfc9f59bb08a3279ae4a119254f1e440d93b9d10f67f5",
+          "README.md": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+          "SECURITY.md": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+          "SUPPORT.md": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69"
+        },
+        "file_bytes": {
+          "AudioFileForPhone.Helpers.ps1": 114373,
+          "AudioFileForPhone.bat": 1800,
+          "AudioFileForPhone.ps1": 40032,
+          "CHANGELOG.md": 1729,
+          "LICENSE": 1091,
+          "README.md": 12749,
+          "SECURITY.md": 6698,
+          "SUPPORT.md": 14066
+        },
+        "test_evidence": [
+          {
+            "reference": "synthetic/fixture-copy-policy.json",
+            "tested_commit": "095263f10d3e8f76bd25ddc97ce8aeca83a33a3f",
+            "sha256": "5940f350e0271f5fa9b23a588f400cc49ee303ed7503e4bcecc503dd74d9eece",
+            "status": "pass"
+          }
+        ],
+        "build": {
+          "source_mode": "clean_detached_exact_git_blobs",
+          "archive_order": "Ordinal",
+          "zip_timestamp_utc": "1980-01-01T00:00:00Z",
+          "powershell_version": "7.6.5",
+          "powershell_edition": "Core",
+          "git_version": "git version 2.56.0.windows.2",
+          "builder_sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+          "allowlist_sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+          "inputs": {
+            "dependency_provenance_sha256": "4d432220487f475de593eb7155548f1df226c2aaf2985c8f6540b45a8baf336b",
+            "test_evidence_sha256": "b255edbd23e58e0a41a7ebadc9e0a7900fbc92836da6e01d4a6247e16a42a63e"
+          },
+          "evidence_scope": "Supplied passing report references; this build does not establish release acceptance or authorization."
+        }
+      },
+      "checksum_lines": [
+        "da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5  AudioFileForPhone-v1.0.0.zip",
+        "668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45  release-manifest.json"
+      ]
+    },
+    {
+      "name": "same-shell repeated clean build compares ZIP manifest and checksum bytes",
+      "acceptance_case": "A47",
+      "status": "pass",
+      "build_config": {
+        "core_autocrlf": "false",
+        "core_eol": "lf"
+      },
+      "first": [
+        {
+          "relative_path": "AudioFileForPhone-v1.0.0.zip",
+          "sha256": "da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5",
+          "bytes": 54188
+        },
+        {
+          "relative_path": "release-manifest.json",
+          "sha256": "668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45",
+          "bytes": 3885
+        },
+        {
+          "relative_path": "SHA256SUMS.txt",
+          "sha256": "71cf576def8e7b507a00c454c6105392b102672c1d13945ed9f27621b7a3dd25",
+          "bytes": 183
+        }
+      ],
+      "second": [
+        {
+          "relative_path": "AudioFileForPhone-v1.0.0.zip",
+          "sha256": "da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5",
+          "bytes": 54188
+        },
+        {
+          "relative_path": "release-manifest.json",
+          "sha256": "668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45",
+          "bytes": 3885
+        },
+        {
+          "relative_path": "SHA256SUMS.txt",
+          "sha256": "71cf576def8e7b507a00c454c6105392b102672c1d13945ed9f27621b7a3dd25",
+          "bytes": 183
+        }
+      ],
+      "byte_identical": true
+    },
+    {
+      "name": "existing artifact directory is preserved without overwrite",
+      "acceptance_case": "A47,A48",
+      "status": "pass",
+      "preserved": true
+    },
+    {
+      "name": "abbreviated source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "wrong full source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "uppercase source commit",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "wrong target tag cannot override the authoritative helper version",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "output inside source is refused before any directory creation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "attached branch checkout is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty tracked source is refused and restored byte-for-byte",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty untracked-fixture.log is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dirty ignored-fixture.log is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: AudioFileForPhone.Helpers.ps1",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: AudioFileForPhone.bat",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: AudioFileForPhone.ps1",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: CHANGELOG.md",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: LICENSE",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: README.md",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: SECURITY.md",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "required omission: SUPPORT.md",
+      "acceptance_case": "A47",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: traversal",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: absolute",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: wildcard",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: reserved device",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: case duplicate",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe expanded allowlist: third party binary",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "version is read from source helper rather than the invoked checkout or filename",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "valid existing full commit different from checkout HEAD is refused",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "exact source helper must be functions-only before loading",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "archive attribute cannot omit or substitute exact Git blobs: export-ignore",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "archive attribute cannot omit or substitute exact Git blobs: export-subst",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dependency input inside otherwise clean source is refused",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "test input inside otherwise clean source is refused",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "unsafe output path syntax is refused before mutation",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "tracked Git symlink mode is refused even with Windows regular-file checkout",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "reparse source ancestor is refused without following it",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "reparse output-parent ancestor is refused without following it",
+      "acceptance_case": "A47,A48",
+      "status": "pass"
+    },
+    {
+      "name": "dependency provenance mismatch: hash",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "dependency provenance mismatch: version",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "dependency provenance mismatch: missing-tool",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "test provenance mismatch: commit",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "test provenance mismatch: status",
+      "acceptance_case": "A48",
+      "status": "pass"
+    },
+    {
+      "name": "test provenance mismatch: unsafe-reference",
+      "acceptance_case": "A48",
+      "status": "pass"
+    }
+  ],
+  "artifacts": [
+    {
+      "relative_path": "AudioFileForPhone-v1.0.0.zip",
+      "sha256": "da3199cabf4de68ba0b1022559cd36aa5863ae592966c1787192a3c1044679a5",
+      "bytes": 54188
+    },
+    {
+      "relative_path": "release-manifest.json",
+      "sha256": "668f7e78447f2308459aa4664198cd63317a118c24c2280e429d04fb1fbaec45",
+      "bytes": 3885
+    },
+    {
+      "relative_path": "SHA256SUMS.txt",
+      "sha256": "71cf576def8e7b507a00c454c6105392b102672c1d13945ed9f27621b7a3dd25",
+      "bytes": 183
+    }
+  ],
+  "ordinary_music_access": false,
+  "media_conversion": false,
+  "physical_manual_evidence": false,
+  "release_candidate_acceptance": false,
+  "descendant_release_proved": true,
+  "cleanup_verified": true,
+  "cleanup_stage": "remove_exact_owned_tree"
+}

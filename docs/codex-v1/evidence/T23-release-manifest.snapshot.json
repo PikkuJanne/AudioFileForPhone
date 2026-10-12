@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "repository": "PikkuJanne/AudioFileForPhone",
+  "app_version": "1.0.0",
+  "tag": "v1.0.0",
+  "release_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "zip": {
+    "name": "AudioFileForPhone-v1.0.0.zip",
+    "bytes": 53958,
+    "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+  },
+  "signing_status": "unsigned",
+  "signatures": {
+    "AudioFileForPhone.Helpers.ps1": {
+      "status": "NotSigned",
+      "signer_thumbprint": null
+    },
+    "AudioFileForPhone.ps1": {
+      "status": "NotSigned",
+      "signer_thumbprint": null
+    }
+  },
+  "dependencies": {
+    "bundled": false,
+    "ffmpeg": {
+      "executable_name": "ffmpeg.exe",
+      "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+      "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+    },
+    "ffprobe": {
+      "executable_name": "ffprobe.exe",
+      "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+      "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "source_url": "https://github.com/GyanD/codexffmpeg/releases/download/9.0.2/ffmpeg-9.0.2-essentials_build.zip",
+      "license_notice": "External Gyan essentials build; its own GPLv3 license/provenance applies. These binaries are not redistributed in this package."
+    }
+  },
+  "files": {
+    "AudioFileForPhone.Helpers.ps1": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+    "AudioFileForPhone.bat": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+    "AudioFileForPhone.ps1": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+    "CHANGELOG.md": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+    "LICENSE": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+    "README.md": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+    "SECURITY.md": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+    "SUPPORT.md": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b"
+  },
+  "file_bytes": {
+    "AudioFileForPhone.Helpers.ps1": 112323,
+    "AudioFileForPhone.bat": 1800,
+    "AudioFileForPhone.ps1": 40032,
+    "CHANGELOG.md": 1700,
+    "LICENSE": 1070,
+    "README.md": 12749,
+    "SECURITY.md": 6589,
+    "SUPPORT.md": 13911
+  },
+  "test_evidence": [
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps51-final230.json",
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "sha256": "89af7af6fb5024650fb3bc4c84276bac6a73ea63b0e22efa3c42266e04b0c9f5",
+      "status": "pass"
+    },
+    {
+      "reference": "docs/codex-v1/evidence/T17-ci-ps7-final230.json",
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "sha256": "1c196676babe22039af65275188f84e957a4a30c7bd0b5d95f0e05773453b4e3",
+      "status": "pass"
+    }
+  ],
+  "build": {
+    "source_mode": "clean_detached_exact_git_blobs",
+    "archive_order": "Ordinal",
+    "zip_timestamp_utc": "1980-01-01T00:00:00Z",
+    "powershell_version": "7.6.5",
+    "powershell_edition": "Core",
+    "git_version": "git version 2.56.0.windows.2",
+    "builder_sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+    "allowlist_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+    "inputs": {
+      "dependency_provenance_sha256": "af0f052b893f35c1795b15251824d08c0992676512a0f4a5a7c99ec9a27a9b06",
+      "test_evidence_sha256": "e6f0569b615e26f47043dc81dda620236beacfdb55eb8d39dc2426b3098bc7f3"
+    },
+    "evidence_scope": "Supplied passing report references; this build does not establish release acceptance or authorization."
+  }
+}
