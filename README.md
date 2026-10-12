@@ -9,8 +9,9 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-The app reports 1.0.0 for the planned first release; exact release-package
-acceptance and public release verification remain pending. See [CHANGELOG.md](CHANGELOG.md) and the
+The app reports version 1.0.0. Exact package and publication verification are
+recorded in the repository's [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md).
+See [CHANGELOG.md](CHANGELOG.md) and the
 [tested boundaries in SUPPORT.md](SUPPORT.md#tested-boundaries).
 
 ## Setup

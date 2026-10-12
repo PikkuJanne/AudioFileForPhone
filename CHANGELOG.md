@@ -1,9 +1,10 @@
 # Changelog
 
-## 1.0.0 - unreleased
+## 1.0.0
 
-App version established for the planned first release. No frozen ZIP, phone
-acceptance or verified public release is claimed by this entry.
+Changes for app version 1.0.0. Publication and exact package verification are
+recorded separately in the repository's
+[release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md).
 
 - Preserve recursive MP3/M4A/OGG conversion to 64 kbps CBR MP3 by default, the
   configured Music destination, relative folder layout and date-first filenames.
@@ -22,5 +23,7 @@ acceptance or verified public release is claimed by this entry.
 - Provide comment-based help, executable examples, one runtime version source
   and unsigned-script/support guidance.
 
-FFmpeg remains external. Loudness normalization is deferred. Packaging and
-device/manual acceptance continue before publication.
+FFmpeg remains external. Loudness normalization is deferred. Named phone
+acceptance covers Samsung S24, One UI 8.5 and AIMP v4.31.1747 over USB cable;
+chapters were unavailable and navigation was not tested. See
+[SUPPORT.md](SUPPORT.md#tested-boundaries) for the recorded limits.

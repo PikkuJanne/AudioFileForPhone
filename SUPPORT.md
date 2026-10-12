@@ -17,7 +17,9 @@ failure results, cancellation components and local record persistence.
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
 | Music-folder default | Configured-folder resolver and dedicated owned generated-input smoke checks; no real network-redirected Music acceptance. Ordinary personal Music was not used as disposable test data. |
 | Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable | Named owner acceptance on the three T21 assets: long playback/seeking/duration, resume, tags, supplied blue cover and ordering work. Chapters unavailable; navigation not tested. [T21 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T21.md). |
-| Other phone/player or USB/MTP configurations, Explorer drag and drop, NAS/UNC and frozen release ZIP | Claims remain limited to recorded evidence, without a universal compatibility guarantee. Automated launcher checks do not establish unobserved Explorer/phone behavior; exact release-ZIP acceptance remains pending. |
+| Explorer folder drop and PS5.1 STA picker | Named owner folder-on-BAT observation reached "Completed with failures"; selected BAT shell, raw exit and output path were not captured. Actual PS5.1 picker outputs were independently verified. Current PS7 picker, physical Cancel and fallback remain unobserved. [T20 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T20.md). |
+| Other phone/player or USB/MTP configurations and NAS/UNC | Claims remain limited to recorded evidence, without a universal compatibility guarantee. Automated launcher checks do not establish unobserved Explorer/phone behavior. |
+| Exact release ZIP | Package verification is recorded separately in the repository's [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md); source tests alone do not establish acceptance of downloaded bytes. |
 
 Local regression history also uses an existing Gyan FFmpeg build dated
 2026-10-08. These tested builds do not establish compatibility with every FFmpeg
@@ -26,7 +28,7 @@ actual media/cover support is determined during probing, encoding and validation
 Tests do not certify arbitrary corrupt media or every filesystem/host environment.
 
 The support claims below are bounded by repository tests and recorded evidence;
-they do not extend the recorded device scope or pending release acceptance.
+they do not extend the recorded device scope or establish exact package acceptance.
 
 | Behavior | Tests and evidence |
 | --- | --- |
