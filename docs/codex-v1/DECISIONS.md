@@ -1,5 +1,23 @@
 # Decisions and policy ledger
 
+## T26 concrete preparation and existing main reconciliation — 12 October 2026
+
+- Preserve the owner's existing early PR #25 merge with normal fast-forwards.
+  Verify complete tree equality to the reviewed T25 head, C ancestry, all 113
+  changed paths under docs/codex-v1 and passing new-main CI. No source drift.
+- Recheck actual current draft downloads and every binary C ZIP member before
+  requesting only the specific new main timing acceptance. The original exact
+  approval/notes/request stay frozen. Never infer this acceptance from a merge
+  or task request when the recorded approval expressly fixes the earlier main.
+- Prepare a concrete external operator with a separate trusted acceptance gate,
+  fresh current prepublication checks and one publication command. Public API/
+  asset reads use no Authorization/cookies/netrc/proxies and restrict HTTPS hosts;
+  fresh public ZIP extraction/smoke uses unchanged original driver and both shells.
+- Keep preflight result/actual captures truthful and external raw/media retained.
+  The initial import generated one verifier bytecode cache under evidence tools;
+  relocate that owned file externally and use Python -B for subsequent execution.
+  No generated binary is staged. No publication/A60–A62 success before execution.
+
 ## T25 actual authenticated draft downloads — 12 October 2026
 
 - Verify actual uploaded bytes through authenticated gh release download into a

@@ -1356,7 +1356,7 @@
       "milestone": "M6",
       "title": "Publish public v1.0.0 and verify real downloads",
       "required": true,
-      "status": "todo",
+      "status": "blocked",
       "depends_on": [
         "T25"
       ],
@@ -1369,11 +1369,17 @@
         "A61",
         "A62"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T26.md",
+        "evidence/T26-main-reconciliation.md",
+        "evidence/T26-preflight.json",
+        "evidence/T26-independent-preflight-review.json",
+        "RELEASE_CANDIDATE.json"
+      ],
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "checkpoint_commit": "bf5e21473c506b8f7d34934f7826d9b332ca1b46",
+      "remote_checkpoint_verified": true,
+      "notes": "Concrete publication prepared; fresh actual draft bytes/eight binary C members/current tag/notes/CI pass. Owner already merged PR25 into main 88f28c4056859852c526617d642c7e0ada8cc240; full tree equals reviewed T25 evidence, C ancestor and all 113 changed paths docs/codex-v1 only. Original exact approval fixes earlier main until T27; one narrow trusted timing acceptance pending. No publication/public download/smoke/new audio/human/Music test or closure; A60-A62 not run/A63-A65 pending/O01 deferred/project incomplete. Preserve original authority/request/assets/C. Continue T26 after actual reply; final checkpoint sync belongs PR/response."
     },
     {
       "id": "T27",

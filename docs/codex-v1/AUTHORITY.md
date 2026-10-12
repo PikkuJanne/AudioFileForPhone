@@ -1,5 +1,22 @@
 # Authorization and external-change boundaries
 
+## T26 publication preparation — 12 October 2026
+
+The owner requested **"T26 next please"**. Normal T26 read-only live/byte/check
+verification, isolated external preparation, independent review, docs/codex-v1
+records, commit and feature push/PR checkpoint are authorized. Fresh reads find
+owner PR #25 already merged at 16:27:13Z into main
+`88f28c4056859852c526617d642c7e0ada8cc240`, whose tree equals reviewed T25 head.
+C is its ancestor; all 113 changed paths are docs/codex-v1; source/package fixed.
+
+Original exact T24 release authority remains the reviewed intended operations.
+Its specific fixed-main condition is false after this new early owner merge.
+One trusted narrow question asks acceptance of that existing PR #25 main and
+carry-forward of unchanged C/bytes/hashes/T24–T27 scope. Pending reply grants
+no exception. Publication remains not run until the actual reply is recorded.
+Preserve original T24 authorization and request bytes; do not silently broaden
+them, undo the owner merge, infer approval from credentials or alter the candidate.
+
 ## T25 authenticated draft verification — 12 October 2026
 
 The owner requested **"T25 next please"**. This authorizes the normal T25 fresh

@@ -1,5 +1,38 @@
 # Current project status
 
+State: **T26 publication prepared; existing owner PR #25 main timing acceptance pending.**
+Current task: T26. A60–A65 pending; O01 deferred. Draft remains unpublished.
+
+## T26 prepared publication checkpoint — 12 October 2026
+
+- Owner merged PR #25 at 16:27:13Z into main
+  `88f28c4056859852c526617d642c7e0ada8cc240`. Its complete tree equals reviewed
+  T25 head `bf5e21473c506b8f7d34934f7826d9b332ca1b46`; C is an ancestor and all
+  113 C-to-main changed paths are docs/codex-v1. Normal local main/evidence
+  fast-forwards preserve the existing merge. No rollback or new main merge occurs.
+- Fresh actual authenticated draft download rechecks all three approved sizes/
+  SHA256/local-original bytes, ZIP CRC/eight safe root members/every binary C blob.
+  Original approval/request/notes and T25 reports remain unchanged. Source C
+  CI38264447275, new main CI38277500074 and T25 feature CI38276500153/38276506324
+  pass both Windows jobs. Tag and unpublished draft410779813 remain exact.
+- The exact T24 approval requires the prior fixed main until T27. One trusted
+  narrow question asks acceptance of the existing owner PR #25 docs-only merge
+  while carrying unchanged C/assets/T24–T27 authority. See
+  evidence/T26-main-reconciliation.md and T26-preflight.json. Pending reply is
+  not approval; the prepared operator has performed no publication.
+- Independent pre-publication review finds no technical blocker. The public
+  phase is prepared to recheck gates, publish once as normal Latest, independently
+  read/download without authentication and run fresh downloaded-ZIP smoke on
+  both Windows shells. A60–A62 remain not run until those actual operations pass.
+- No frozen source/shipped/test/build/CI edit, rebuild, new audio/human/Music test,
+  tag mutation, public-byte replacement or closure integration occurs. Original
+  synthetic media/raw reports stay external. A generated verifier import cache
+  was relocated to owned external TEMP; future controller invocation uses -B.
+- Continue **T26** after the narrow answer. T27 is not next until public bytes
+  and actual public ZIP smoke pass. Project/release incomplete.
+
+## Historical T25 status — superseded by the T26 preparation above
+
 State: **T25 A59 passed; freshly downloaded actual draft assets and ZIP smoke verified.**
 Last completed task: T25. Exactly next: T26 in a new chat. A60–A65 pending;
 O01 deferred. Draft is unpublished; release/project incomplete.
