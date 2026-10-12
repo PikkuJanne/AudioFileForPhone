@@ -1,0 +1,717 @@
+{
+  "schema_version": 1,
+  "task": "T25",
+  "cases": [
+    "A59"
+  ],
+  "status": "pass",
+  "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+  "previous_verified_feature_checkpoint": "b527826306a3e06d1847cd137171e7fafce2ed24",
+  "started_utc": "2026-10-12T16:12:39.552477+00:00",
+  "commands": [
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "started_utc": "2026-10-12T16:12:39.556535+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 22952,
+      "elapsed_seconds": 0.062,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.623191+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "rev-parse",
+        "HEAD"
+      ],
+      "started_utc": "2026-10-12T16:12:39.623191+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 23356,
+      "elapsed_seconds": 0.032,
+      "stdout_sha256": "311118d3f970733d21106c09ef2a4806bf3cacb4a54156834ac5663f1f48c5f0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.656661+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "remote",
+        "get-url",
+        "--all",
+        "origin"
+      ],
+      "started_utc": "2026-10-12T16:12:39.667565+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 19156,
+      "elapsed_seconds": 0.047,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.705736+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "remote",
+        "get-url",
+        "--all",
+        "--push",
+        "origin"
+      ],
+      "started_utc": "2026-10-12T16:12:39.707022+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 9756,
+      "elapsed_seconds": 0.031,
+      "stdout_sha256": "3613880c795b2008624dd00d18cd2cb56d94f6c3167182706596d3cb93010364",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.739254+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "merge-base",
+        "--is-ancestor",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "started_utc": "2026-10-12T16:12:39.740255+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 3548,
+      "elapsed_seconds": 0.032,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.779729+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "cf03cf7097640fcac287e24f6a90ff003e5fe0be"
+      ],
+      "started_utc": "2026-10-12T16:12:39.779729+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 17344,
+      "elapsed_seconds": 0.046,
+      "stdout_sha256": "68f00ff6c063ed5da210306c34d4f99d9d02130a1a9a6b66f6c9472008799442",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.820447+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "diff",
+        "--name-only",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "b527826306a3e06d1847cd137171e7fafce2ed24"
+      ],
+      "started_utc": "2026-10-12T16:12:39.822383+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 336,
+      "elapsed_seconds": 0.047,
+      "stdout_sha256": "0398c4d07d84139e8a523101788fdde891750fa97ef0d7c0aabb37e0b70f3f55",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:39.862850+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38264447275",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--json",
+        "status,conclusion,headSha,jobs"
+      ],
+      "started_utc": "2026-10-12T16:12:39.863820+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 10916,
+      "elapsed_seconds": 1.453,
+      "stdout_sha256": "6410bb1097b2248f95bb564396b3d07a3e3565b92a647c96c3719f5088098a43",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:41.323630+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38271428429",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--json",
+        "status,conclusion,headSha,jobs"
+      ],
+      "started_utc": "2026-10-12T16:12:41.323630+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 22072,
+      "elapsed_seconds": 1.375,
+      "stdout_sha256": "7a662e9a39512289b4aab873046e7d8fde99c5a4426ad44f94d2b1f6c45579b2",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:42.690216+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38274261442",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--json",
+        "status,conclusion,headSha,jobs"
+      ],
+      "started_utc": "2026-10-12T16:12:42.690216+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 11816,
+      "elapsed_seconds": 1.141,
+      "stdout_sha256": "2db3782303eb7c19088ec9d7d09f6c02dcea9f40bc5b0adf6ccc1bccb4111a48",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:43.838391+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "run",
+        "view",
+        "38274268046",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--json",
+        "status,conclusion,headSha,jobs"
+      ],
+      "started_utc": "2026-10-12T16:12:43.839387+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 11324,
+      "elapsed_seconds": 1.141,
+      "stdout_sha256": "c71d0b80cc2a2e973fd2b2d762ba5b46477b3620d66ac4445065a0d9cb63facf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:44.981550+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "ls-remote",
+        "--exit-code",
+        "origin",
+        "refs/heads/main",
+        "refs/heads/codex/v1-release-evidence",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "started_utc": "2026-10-12T16:12:44.982555+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 20536,
+      "elapsed_seconds": 0.562,
+      "stdout_sha256": "e62d62fa778a8709e1993661ea05fc5ce4aac017e0b2f35e54ed4f8ed1e21272",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:45.538004+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases/410779813"
+      ],
+      "started_utc": "2026-10-12T16:12:45.540723+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 6580,
+      "elapsed_seconds": 0.5,
+      "stdout_sha256": "5e9f23346a7476f6228cfaa37b2e3420ea617105552eb0b0a2fdc8fda9d93cfb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:46.047048+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "cat-file",
+        "blob",
+        "b527826306a3e06d1847cd137171e7fafce2ed24:docs/codex-v1/tools/test_t23_zip.py"
+      ],
+      "started_utc": "2026-10-12T16:12:46.049954+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 7524,
+      "elapsed_seconds": 0.031,
+      "stdout_sha256": "17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:46.089516+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "release",
+        "download",
+        "v1.0.0",
+        "--repo",
+        "PikkuJanne/AudioFileForPhone",
+        "--dir",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download"
+      ],
+      "started_utc": "2026-10-12T16:12:46.123553+00:00",
+      "timeout_seconds": 180,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 12112,
+      "elapsed_seconds": 1.344,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:12:47.457377+00:00"
+    },
+    {
+      "arguments": [
+        "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\test_t23_zip.py",
+        "--assets",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download",
+        "--source",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\build-source",
+        "--source-commit",
+        "2092a405c1d06eca336e771a0ed5d1881acd015a",
+        "--workspace",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\draft-zip-smoke-run",
+        "--evidence",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\T23-t25-draft-smoke.json",
+        "--dependencies",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\dependency-provenance.json",
+        "--test-evidence",
+        "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\candidate-test-evidence.json",
+        "--ps51",
+        "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "--ps7",
+        "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+      ],
+      "started_utc": "2026-10-12T16:12:47.479655+00:00",
+      "timeout_seconds": 600,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 18932,
+      "elapsed_seconds": 46.734,
+      "stdout_sha256": "47f8d1707f0d8c61bba0219c7638f294279d102907af866571e1e04f0ed36b3c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:13:34.215802+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "ls-remote",
+        "--exit-code",
+        "origin",
+        "refs/heads/main",
+        "refs/heads/codex/v1-release-evidence",
+        "refs/tags/v1.0.0",
+        "refs/tags/v1.0.0^{}"
+      ],
+      "started_utc": "2026-10-12T16:13:34.221365+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 21232,
+      "elapsed_seconds": 0.562,
+      "stdout_sha256": "e62d62fa778a8709e1993661ea05fc5ce4aac017e0b2f35e54ed4f8ed1e21272",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:13:34.788421+00:00"
+    },
+    {
+      "arguments": [
+        "gh",
+        "api",
+        "repos/PikkuJanne/AudioFileForPhone/releases/410779813"
+      ],
+      "started_utc": "2026-10-12T16:13:34.788421+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 17344,
+      "elapsed_seconds": 0.547,
+      "stdout_sha256": "5e9f23346a7476f6228cfaa37b2e3420ea617105552eb0b0a2fdc8fda9d93cfb",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:13:35.341071+00:00"
+    },
+    {
+      "arguments": [
+        "git",
+        "--no-optional-locks",
+        "-C",
+        "C:\\projects\\AudioFileForPhone-main",
+        "status",
+        "--porcelain=v1",
+        "--untracked-files=all"
+      ],
+      "started_utc": "2026-10-12T16:13:35.347973+00:00",
+      "timeout_seconds": 60,
+      "creationflags": 0,
+      "exit_code": 0,
+      "natural_exit_observed": true,
+      "pipes_drained_and_closed": true,
+      "process_handle_closed": true,
+      "timed_out": false,
+      "owned_pid": 16780,
+      "elapsed_seconds": 0.047,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "completed_utc": "2026-10-12T16:13:35.408672+00:00"
+    }
+  ],
+  "publication": "not_run",
+  "main_integration": "not_run",
+  "project_complete": false,
+  "driver_sha256": "7228927b27a7c031546e4251b83bd9d95bc50955d83f5a24bb1bc66df709ca1f",
+  "console_output_code_page": 65001,
+  "python": "3.12.14",
+  "owned_staging_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405",
+  "actual_authenticated_draft_download": true,
+  "source_or_release_bytes_rebuilt": false,
+  "media_or_raw_logs_in_git": false,
+  "controller_killed_processes": false,
+  "ownership_marker_sha256": "0a7cb6c36876922a113987ed836b4239cc818310c0b4412d169729147225a220",
+  "authorization_sha256": "22e4fa0812be51ecacf9cd0d5a22eb8882cb22e8d125607e7de097eea4d24c21",
+  "candidate_input_sha256": "20cb79a4b2bcf8acb4a2167fd207e7e086eed9cf64098a7cacab0a31f0120f30",
+  "ci": [
+    {
+      "id": 38264447275,
+      "head_sha": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "windows (pwsh, ps7)",
+          "conclusion": "success"
+        },
+        {
+          "name": "windows (powershell, ps51)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 38271428429,
+      "head_sha": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "windows (pwsh, ps7)",
+          "conclusion": "success"
+        },
+        {
+          "name": "windows (powershell, ps51)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 38274261442,
+      "head_sha": "b527826306a3e06d1847cd137171e7fafce2ed24",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "windows (pwsh, ps7)",
+          "conclusion": "success"
+        },
+        {
+          "name": "windows (powershell, ps51)",
+          "conclusion": "success"
+        }
+      ]
+    },
+    {
+      "id": 38274268046,
+      "head_sha": "b527826306a3e06d1847cd137171e7fafce2ed24",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "windows (powershell, ps51)",
+          "conclusion": "success"
+        },
+        {
+          "name": "windows (pwsh, ps7)",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ],
+  "pre_download_live_state": {
+    "observed_utc": "2026-10-12T16:12:46.049954+00:00",
+    "refs": {
+      "refs/heads/codex/v1-release-evidence": "b527826306a3e06d1847cd137171e7fafce2ed24",
+      "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+      "refs/tags/v1.0.0": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+      "refs/tags/v1.0.0^{}": "2092a405c1d06eca336e771a0ed5d1881acd015a"
+    },
+    "release": {
+      "id": 410779813,
+      "tag_name": "v1.0.0",
+      "target_commitish": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "draft": true,
+      "prerelease": false,
+      "published_at": null,
+      "updated_at": "2026-10-12T15:55:09Z"
+    },
+    "assets": [
+      {
+        "id": 634242834,
+        "name": "AudioFileForPhone-v1.0.0.zip",
+        "size": 53958,
+        "state": "uploaded",
+        "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+      },
+      {
+        "id": 634242837,
+        "name": "SHA256SUMS.txt",
+        "size": 183,
+        "state": "uploaded",
+        "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+      },
+      {
+        "id": 634242836,
+        "name": "release-manifest.json",
+        "size": 4162,
+        "state": "uploaded",
+        "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+      }
+    ],
+    "notes_equal_approved": true
+  },
+  "smoke_driver_binding": {
+    "git_blob_sha256": "17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd",
+    "worktree_sha256": "0b92db2077049638ce34557fc67c3bc84de859eb0d29736c707f76e28538388c",
+    "executed_sha256": "17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd",
+    "exact_T23_executed_bytes": true,
+    "representation": "Unchanged Git LF blob; checkout CRLF difference explicitly verified"
+  },
+  "fresh_empty_download_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download",
+  "downloaded_assets": [
+    {
+      "id": 634242834,
+      "name": "AudioFileForPhone-v1.0.0.zip",
+      "bytes": 53958,
+      "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+      "equal_local_original": true
+    },
+    {
+      "id": 634242836,
+      "name": "release-manifest.json",
+      "bytes": 4162,
+      "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+      "equal_local_original": true
+    },
+    {
+      "id": 634242837,
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
+      "equal_local_original": true
+    }
+  ],
+  "smoke_exact_command": [
+    "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\test_t23_zip.py",
+    "--assets",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download",
+    "--source",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\build-source",
+    "--source-commit",
+    "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "--workspace",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\draft-zip-smoke-run",
+    "--evidence",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\T23-t25-draft-smoke.json",
+    "--dependencies",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\dependency-provenance.json",
+    "--test-evidence",
+    "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\candidate-test-evidence.json",
+    "--ps51",
+    "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "--ps7",
+    "C:\\Users\\jtvuo\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+  ],
+  "smoke_report": {
+    "reference": "evidence/T25-zip-smoke.json",
+    "sha256": "c6ff936ff20090af52c70acca2fa5f1510c4f7e611cfc24dfbb4e79c2d0cf5fd",
+    "original_task_field": "T23",
+    "invocation_scope": "Fresh T25 draft download; unchanged reusable driver retains T23 labels",
+    "status": "pass",
+    "groups": 10,
+    "outputs": 24,
+    "owned_released_processes": 113,
+    "tracked_source_files": 942
+  },
+  "post_smoke_live_state": {
+    "observed_utc": "2026-10-12T16:13:35.347973+00:00",
+    "refs": {
+      "refs/heads/codex/v1-release-evidence": "b527826306a3e06d1847cd137171e7fafce2ed24",
+      "refs/heads/main": "cf03cf7097640fcac287e24f6a90ff003e5fe0be",
+      "refs/tags/v1.0.0": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+      "refs/tags/v1.0.0^{}": "2092a405c1d06eca336e771a0ed5d1881acd015a"
+    },
+    "release": {
+      "id": 410779813,
+      "tag_name": "v1.0.0",
+      "target_commitish": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "draft": true,
+      "prerelease": false,
+      "published_at": null,
+      "updated_at": "2026-10-12T15:55:09Z"
+    },
+    "assets": [
+      {
+        "id": 634242834,
+        "name": "AudioFileForPhone-v1.0.0.zip",
+        "size": 53958,
+        "state": "uploaded",
+        "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+      },
+      {
+        "id": 634242837,
+        "name": "SHA256SUMS.txt",
+        "size": 183,
+        "state": "uploaded",
+        "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+      },
+      {
+        "id": 634242836,
+        "name": "release-manifest.json",
+        "size": 4162,
+        "state": "uploaded",
+        "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+      }
+    ],
+    "notes_equal_approved": true
+  },
+  "completed_utc": "2026-10-12T16:13:35.409713+00:00"
+}

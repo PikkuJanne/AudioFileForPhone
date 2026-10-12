@@ -1,5 +1,20 @@
 # Authorization and external-change boundaries
 
+## T25 authenticated draft verification — 12 October 2026
+
+The owner requested **"T25 next please"**. This authorizes the normal T25 fresh
+authenticated asset download, isolated downloaded-ZIP smoke, independent review,
+docs/codex-v1 evidence/handoff, commit and evidence-branch push/PR update. Fresh
+live reads verify starting evidence HEAD b527826306a3e06d1847cd137171e7fafce2ed24,
+approved main cf03cf7097640fcac287e24f6a90ff003e5fe0be, immutable tag/C and the
+unchanged unpublished draft 410779813. PR #25 remains draft/unmerged until T27.
+
+Actual downloaded bytes and both-shell smoke pass A59. The recorded exact T24
+approval continues unchanged through T26/T27 without a repeat request. Publication
+is the next coherent T26 task; T25 performs no publication or main integration.
+All original source/shipped/test/build/CI files and approved asset bytes stay fixed.
+Human testing remains closed and ordinary Music/personal media stay outside testing.
+
 ## T24 exact release approval and bounded main exception — 12 October 2026
 
 The owner answered **"Approve exact v1.0.0 request"** to the trusted in-chat

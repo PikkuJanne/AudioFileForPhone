@@ -39,10 +39,10 @@
     "Retained characterization uses inherited UTF8 console CP 65001; child-only case-insensitive module environment correction is recorded.",
     "One authoritative PS7 ZIP build; no cross-shell compressed-byte reproducibility claim.",
     "Build/test/raw/synthetic staging retained externally. Original preflight failures remain failed and count zero.",
-    "Annotated tag/draft metadata verified; actual draft downloads, publication/public downloads and final main closure remain pending T25-T27."
+    "Authenticated actual draft downloads and both-shell smoke pass A59. Public publication/public downloads and final main closure remain pending T26-T27."
   ],
   "optional_loudness": "deferred",
-  "state": "draft_created_awaiting_T25_uploaded_asset_download_verification",
+  "state": "uploaded_draft_bytes_verified_awaiting_T26_publication",
   "app_version": "1.0.0",
   "signing_status": "unsigned",
   "local_staging_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets",
@@ -105,9 +105,55 @@
   ],
   "draft_verification_evidence": [
     "evidence/T24-tag-draft.json",
-    "evidence/T24-independent-draft-review.json"
+    "evidence/T24-independent-draft-review.json",
+    "evidence/T25.md",
+    "evidence/T25-draft-verification.json",
+    "evidence/T25-zip-smoke.json",
+    "evidence/T25-independent-review.json"
   ],
-  "uploaded_asset_download_verification": "pending_T25",
+  "uploaded_asset_download_verification": "pass_A59_T25",
   "publication": "not_run",
-  "project_complete": false
+  "project_complete": false,
+  "uploaded_asset_download_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T25-2092a405\\download",
+  "downloaded_draft_asset_verification": {
+    "status": "pass",
+    "source_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "report_reference": "evidence/T25-draft-verification.json",
+    "report_sha256": "df651da9016b74074ad3f9349800ba0e1fdd7160448bd338119dc3e9eb3538b9",
+    "smoke_report_reference": "evidence/T25-zip-smoke.json",
+    "smoke_report_sha256": "c6ff936ff20090af52c70acca2fa5f1510c4f7e611cfc24dfbb4e79c2d0cf5fd",
+    "independent_review_reference": "evidence/T25-independent-review.json",
+    "assets": [
+      {
+        "id": 634242834,
+        "name": "AudioFileForPhone-v1.0.0.zip",
+        "bytes": 53958,
+        "sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf",
+        "equal_local_original": true
+      },
+      {
+        "id": 634242836,
+        "name": "release-manifest.json",
+        "bytes": 4162,
+        "sha256": "7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146",
+        "equal_local_original": true
+      },
+      {
+        "id": 634242837,
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8",
+        "equal_local_original": true
+      }
+    ],
+    "smoke_groups": 10,
+    "smoke_outputs": 24,
+    "observed_released_direct_processes": 113,
+    "frozen_source_file_count": 942,
+    "smoke_driver_sha256": "17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd",
+    "controller_sha256": "7228927b27a7c031546e4251b83bd9d95bc50955d83f5a24bb1bc66df709ca1f",
+    "report_native_labels": "Unchanged reused smoke report retains T23/A55/A56; fresh T25 wrapper binds download and invocation to A59.",
+    "publication": "not_run",
+    "project_complete": false
+  }
 }

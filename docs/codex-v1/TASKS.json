@@ -1328,7 +1328,7 @@
       "milestone": "M6",
       "title": "Verify uploaded draft assets before publication",
       "required": true,
-      "status": "todo",
+      "status": "done",
       "depends_on": [
         "T24"
       ],
@@ -1339,11 +1339,17 @@
       "acceptance_cases": [
         "A59"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T25.md",
+        "evidence/T25-draft-verification.json",
+        "evidence/T25-zip-smoke.json",
+        "evidence/T25-independent-review.json",
+        "RELEASE_CANDIDATE.json"
+      ],
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "checkpoint_commit": "b527826306a3e06d1847cd137171e7fafce2ed24",
+      "remote_checkpoint_verified": true,
+      "notes": "A59 passes: fresh authenticated gh draft download into new empty owned TEMP, exact three names/IDs/sizes/SHA256 and byte equality to approved originals; all eight safe ZIP members equal C Git blobs. Unchanged T23 Git LF smoke driver executes downloaded ZIP under PS5.1/PS7, 10 groups/24 outputs/113 naturally exited/released direct processes; all 942 source files, assets, fixtures, packages, dependencies and provenance preserved. Original fresh report retains reusable T23 labels; T25 wrapper binds actual download/invocation to A59. Independent actual-byte/report/live-state audit passes. Draft410779813 remains unpublished/non-prerelease; immutable tag resolves C. No frozen source/test/build/CI edits, rebuild, Music/personal media access, human retest, cleanup, publication or main merge. Main remains approved cf03cf7097640fcac287e24f6a90ff003e5fe0be until T27; PR25 stays draft/unmerged. Prior verified b527826 checkpoint/Windows CI passed; final T25 feature sync/new CI belongs PR/response. Carry unchanged T24 authority; exactly next T26. A60-A65 pending/O01 deferred/project incomplete."
     },
     {
       "id": "T26",

@@ -997,8 +997,14 @@
       "required": true,
       "method": "draft download and archive smoke",
       "expected": "Download each draft asset into fresh temp through authenticated release read; names, sizes and SHA-256 match candidate; extracted uploaded ZIP smoke passes.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T25.md",
+        "evidence/T25-draft-verification.json",
+        "evidence/T25-zip-smoke.json",
+        "evidence/T25-independent-review.json",
+        "RELEASE_CANDIDATE.json"
+      ]
     },
     {
       "id": "A60",

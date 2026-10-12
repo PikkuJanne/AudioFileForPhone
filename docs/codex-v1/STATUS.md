@@ -1,5 +1,50 @@
 # Current project status
 
+State: **T25 A59 passed; freshly downloaded actual draft assets and ZIP smoke verified.**
+Last completed task: T25. Exactly next: T26 in a new chat. A60–A65 pending;
+O01 deferred. Draft is unpublished; release/project incomplete.
+
+## T25 actual draft download checkpoint — 12 October 2026
+
+- Fresh authenticated `gh release download v1.0.0` fetched exactly all three
+  actual draft assets into a new empty owned TEMP directory. ZIP 53,958 bytes,
+  manifest 4,162 and checksums 183 match every approved SHA-256 and local original.
+  Actual downloaded ZIP inventory, safe extraction and all eight binary C member
+  bindings pass. See evidence/T25-draft-verification.json and T25-zip-smoke.json.
+- Downloaded-ZIP smoke passes on actual PS5.1 5.1.26100.9444 and PS7 7.6.5:
+  ten groups / 24 independently probed and fully decoded 64 kbps outputs /
+  113 naturally exited, closed owned subprocesses. Default metadata/layout,
+  PNG/JPEG overrides, actual BAT failure and missing-FFmpeg routes pass.
+  All 942 detached C source files, extracted payloads, downloaded assets,
+  fixtures, dependencies and provenance inputs remain unchanged.
+- The reusable T23 driver's exact Git LF bytes are unchanged (SHA-256
+  `17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd`);
+  its checkout CRLF representation is explicitly bound separately. Its fresh
+  T25 report retains literal T23/A55/A56 labels; the T25 wrapper binds actual
+  invocation/download scope to A59 without rewriting raw evidence or recounting
+  T23 results. Existing CP65001 and child-only module-key handling are retained.
+- Independent advertised refs and live release reads before/after smoke retain
+  annotated tag object `279945f7d5a4b887b7bd44eae5244b03060f76cc`, peeled frozen C
+  `2092a405c1d06eca336e771a0ed5d1881acd015a`, approved main
+  `cf03cf7097640fcac287e24f6a90ff003e5fe0be` and unpublished draft ID410779813.
+  Notes/assets stay approved. No publication, source rebuild or main integration
+  occurred; keep PR #25 draft/unmerged and main fixed until authorized T27.
+- Source C CI38264447275, approved-main CI38271428429 and prior verified feature
+  `b527826306a3e06d1847cd137171e7fafce2ed24` push/PR CI38274261442/38274268046
+  pass both Windows jobs. Final T25 feature HEAD/live-ref/new CI belong in
+  PR #25/response, avoiding self-containing commit hashes.
+- Carry the exact T24 approval without asking again while C, all approved bytes,
+  hashes, scope and required gates stay valid. Human tests remain closed at the
+  unchanged T20/T21 Samsung S24 / One UI 8.5 / AIMP v4.31.1747 / USB scope;
+  chapters unavailable and navigation not run. No personal/Music scan or new human
+  test occurred; synthetic media/raw output remain external and retained.
+- A59 passes. T26 must conditionally publish normal Latest v1.0.0, independently
+  read/download without authentication and smoke the newly public downloaded ZIP.
+  T27 then integrates reviewed docs-only closure and verifies final clean main D.
+  Exactly next prompt: **T26 next please**.
+
+## Historical T24 status — superseded by the T25 checkpoint above
+
 State: **T24 A57/A58 passed; exact approved annotated tag and draft created.**
 Last completed task: T24. Exactly next: T25 in a new chat. A59–A65 pending;
 O01 deferred. Draft is private/unpublished; release/project incomplete.

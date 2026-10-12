@@ -1,5 +1,37 @@
 # Evidence and efficient testing strategy
 
+## T25 downloaded-asset smoke and reusable-driver routing
+
+T25 A59 uses a fresh authenticated download of all three actual draft assets into
+a new empty owned TEMP directory, followed by exact hashes/local-original equality,
+ZIP allowlist/eight binary C members and clean downloaded-ZIP extraction. The
+actual commands and binding are evidence/T25-draft-verification.json; unchanged
+raw smoke is evidence/T25-zip-smoke.json. Ten groups / 24 independently probed,
+fully decoded 64 kbps outputs / 113 naturally exited, closed owned processes pass
+on PS5.1 5.1.26100.9444 and PS7 7.6.5. All 942 tracked C files and the assets,
+extracted packages, fixtures, dependencies and provenance inputs are preserved.
+
+Reuse docs/codex-v1/tools/test_t23_zip.py only after interface/hash review and
+binding the actual invocation to freshly downloaded bytes. T25 executes the same
+Git LF driver SHA-256 17960932b59496a093f6db8ce70e982fab48f2f09a123d05c5631fdc89e310fd
+used in T23. The checkout CRLF SHA-256
+0b92db2077049638ce34557fc67c3bc84de859eb0d29736c707f76e28538388c is a separately
+verified representation, not the executed hash. The reusable report retains
+literal task T23/cases A55/A56; the T25 wrapper establishes fresh A59 scope.
+Do not rewrite these labels or confuse this new run with historical T23 results.
+
+Choose new empty download/workspace and unique report paths on later reuse; bind
+source C, assets, driver, dependencies, exact shell commands/results and every
+preservation gate. Inherit CP65001 and retain child-only case-insensitive module-key
+handling. Direct subprocess release is observed; application internal child handles
+remain uninstrumented. BAT negative routes occur before Music resolution. Owned
+synthetic media/raw output remain external and retained; no process kill, cleanup,
+ordinary Music enumeration or new human/phone evidence is implied.
+
+T26 requires separate fresh unauthenticated public metadata and three-asset
+downloads, then exact-byte checks and a new smoke of that public-downloaded ZIP.
+Authenticated T25 download or server digest alone cannot satisfy A60–A62.
+
 ## T23 frozen-source and exact-ZIP routing
 
 Full C is 2092a405c1d06eca336e771a0ed5d1881acd015a. Fresh final230 C milestone/
