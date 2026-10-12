@@ -1,5 +1,34 @@
 # Decisions and policy ledger
 
+## T23 exact source/ZIP evidence — 12 October 2026
+
+- Freeze full freshly integrated main 2092a405c1d06eca336e771a0ed5d1881acd015a
+  after approved completion-record merge, two actual clean-main sync checks and
+  passing main Windows matrix. Use pristine detached build and separate C/ZIP
+  test worktrees on this active machine. Only docs/codex-v1 progress changes after C.
+- Select one PS7 build's exact ZIP/manifest/checksum bytes; prove eight literal C
+  Git members, external non-self-referencing provenance and actual unsigned state.
+  Manifest pre-build attestations cannot include later own-ZIP acceptance; bind
+  subsequent full C/ZIP suites separately in candidate evidence.
+- Run full milestone/default and routine C routing, then full routine/retained
+  suites and BAT contracts on exact ZIP-derived payload plus direct clean-extracted
+  both-shell conversion/dependency/actual-BAT smoke. Exclude children/preliminaries
+  from totals. Preserve original failures and strict expected/source comparisons.
+- The inherited environment key is uppercase PSMODULEPATH; remove it
+  case-insensitively only in owned children. Keep CP65001 console inheritance and
+  no global settings changes. Bind historical dependency path relocation adapters
+  explicitly without pretending new provisioning. ZIP LF bytes may differ from
+  checkout CRLF representation; bind every member to C and payload before/after,
+  while pristine build checkout stays clean.
+- No media-processing payload changed since actual T20/T21 assets. Carry their
+  accepted named scope and limits through exact runtime/helper/BAT equivalence;
+  human testing remains closed. No long regeneration or personal/Music scan.
+- Keep main C and progress on codex/v1-release-evidence until authorized T27
+  closure. Prepared exact approval request is not authority. T24 exact approval,
+  draft/public downloads and final main sync remain required; no release write
+  occurs in T23. O01 remains deferred and no loudness default is enabled.
+
+
 ## T22 approved integration and actual A54 closure — 12 October 2026
 
 - The owner's trusted answer "Approve T22 integration" authorizes exact reviewed

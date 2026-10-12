@@ -1,5 +1,37 @@
 # Evidence and efficient testing strategy
 
+## T23 frozen-source and exact-ZIP routing
+
+Full C is 2092a405c1d06eca336e771a0ed5d1881acd015a. Fresh final230 C milestone/
+default parents and routine parents pass 1,196 groups plus six observations.
+Fresh final231 exact ZIP-derived routine/retained media and BAT contracts pass
+410 groups plus six observations. Do not add routine children or failed launch
+preflights again. Independent raw/source/count bindings are T23-validation.json.
+
+The clean build worktree is separate from test worktrees. Detached dependency
+adapters relocate only manifest/setup source paths after literal byte/hash proof;
+original setup commit/invocation remains historical. Exact ZIP test worktree gets
+all eight verified C Git-blob members; expected LF/CRLF representation changes are
+explicitly bound, never confused with arbitrary dirty source. Frozen existing
+runtime/test/CI/build bytes remain unchanged. The initial representation-preflight
+refusal and mixed-case module-key failure stay failed and excluded.
+
+Use inherited existing CP65001 console and remove PSMODULEPATH case-insensitively
+only in owned child environments; Python dict keys preserve Windows variable
+casing. No persistent module/PATH/policy/console mutation. All original strict
+Unicode/source/release/cleanup checks remain. Media fixtures stay marker-owned;
+controlled default-Music smoke inspects/removes only its returned owned run.
+
+The evidence-only Python stdlib driver docs/codex-v1/tools/test_t23_zip.py verifies
+assets/member/manifest/C provenance then directly clean-extracts both-shell smoke.
+Its actual T23 run passes ten groups / 24 short outputs / 113 naturally exited,
+closed owned processes. It retains raw/media externally and never kills/cleans.
+This test driver is not a production dependency or a modification of frozen C
+tests. Record its hash when reused for later downloaded exact bytes. Direct app
+internal handles remain uninstrumented; bound full routine/native evidence covers
+deeper process contracts. Human-test closure and T20/T21 narrow limits persist.
+
+
 ## T22 milestone routing and retained baseline encoding
 
 T22 replays the T19-established full milestone commands with fresh `final220`

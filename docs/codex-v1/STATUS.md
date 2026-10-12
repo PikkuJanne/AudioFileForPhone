@@ -1,5 +1,51 @@
 # Current project status
 
+State: **T23 A55/A56 passed; frozen C and exact ZIP validated.**
+Last completed task: T23. Exactly next: T24 in a new chat. A57–A65 pending;
+O01 deferred. Main remains C; release/project incomplete.
+
+## T23 frozen candidate checkpoint — 12 October 2026
+
+- Approved completion PR #23 merged at 14:38:54Z into clean main
+  `2092a405c1d06eca336e771a0ed5d1881acd015a`. Both actual supported-shell clean-main checks and its main
+  CI run 38264447275 pass. This full commit is frozen C; all source/shipped docs/
+  tests/CI/build bytes are fixed. The evidence branch is based on C and changes
+  only docs/codex-v1. Main must stay C until authorized T27 closure.
+- Pristine detached C build under PS7 preserves all 942 tracked files. Exactly
+  eight root ZIP members equal binary C Git blobs, with no binaries/media/tests/
+  evidence included. External manifest/input/member/checksum/dependency/signing
+  provenance is independently consistent; actual scripts are unsigned.
+- Authoritative ZIP: 53,958 bytes, SHA256
+  `8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf`.
+  Manifest: 4,162 bytes, SHA256
+  `7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146`.
+  All three assets remain external at the exact path in RELEASE_CANDIDATE.json.
+  The manifest attests two actual pre-build routine parents; post-build acceptance
+  is separately bound, without self-hashes or compressed-byte reproducibility claims.
+- Fresh full C checks pass 1,196 required groups plus six observations. ZIP-derived
+  full routine and BAT contracts pass another 410 groups plus six observations.
+  Both retained full real-FFmpeg suites execute on each payload/shell route.
+  Direct clean-extracted smoke passes ten groups / 24 outputs / 113 observed
+  naturally exited, closed owned subprocesses. All preservation gates pass.
+  Counts exclude children and failed preliminary attempts. See T23-validation.json.
+- Initial milestone child-module casing failure and ZIP representation preflight
+  refusal remain failed, before media/test children. Corrected external routing
+  retains inherited UTF8 CP65001, removes PSMODULEPATH case-insensitively only in
+  children and binds detached dependency adapters / ZIP LF bytes explicitly.
+  Frozen application and existing test/CI/build sources remain unchanged.
+- Reuse the exact T20/T21 human evidence after media-processing/BAT blob equality
+  to both actual generation commits. Samsung S24 / One UI 8.5 / AIMP v4.31.1747 /
+  USB scope persists; chapters unavailable and navigation not run. No new human
+  test, long-media regeneration or personal/Music scan. Test raw logs/synthetic
+  staging remain external; original guarded inner fixture cleanup passes.
+- Prior verified feature checkpoint `f09a36d194c5dda0082703365cecff00d4cc8330` equals its live ref.
+  Final handoff HEAD/ref/new CI belong in the PR/response. Evidence integration
+  into main waits for authorized T27 closure. RELEASE_AUTHORIZATION_REQUEST.md
+  is prepared review text only; exact tag/draft/public approval remains T24.
+
+## Historical T22 status — superseded by T23 above
+
+
 State: **T22 A53/A54 passed; approved source integration and clean-main verification complete.**
 Last completed task: T22. Exactly next: T23 in a new chat after the completion
 record is integrated/synchronized. A55–A65 pending; O01 deferred. Release incomplete.
