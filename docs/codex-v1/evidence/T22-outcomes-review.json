@@ -1,0 +1,2962 @@
+{
+  "schema_version": 1,
+  "task": "T22",
+  "kind": "T22.IndependentOutcomesReview",
+  "reviewer": "Codex independent subagent /root/outcomes_audit",
+  "reviewed_utc": "2026-10-12T13:46:11.5705800Z",
+  "status": "historical_outcomes_preconditions_supported_final_T22_acceptance_pending",
+  "reviewed_application_candidate": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+  "original_task_request": "T22 next please",
+  "scope": "Independent mapping/evidence/support-limits audit; no tests, UI, media conversion, remote writes or human checks performed by this reviewer. This report is the sole new file written.",
+  "source_anchor": {
+    "candidate_commit_changes": [
+      "CHANGELOG.md",
+      "README.md",
+      "SUPPORT.md"
+    ],
+    "candidate_commit_has_only_three_shipped_document_fixes": true,
+    "earlier_corrected_package_source": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+    "runtime_helpers_BAT_tests_CI_build_tools_diff_paths": [],
+    "unchanged_application_git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+    "unchanged_helpers_git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+    "unchanged_BAT_git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+    "current_full_tested_candidate_not_claimed_executed_by_reviewer": true
+  },
+  "review_map": {
+    "path": "docs/codex-v1/ROADMAP.md",
+    "sha256": "d9d54ea95a5412c9a6f338a860ce7b11cfbefc23775578420d2a4585178ec7bd",
+    "separate_REVIEW_MAP_file_exists": false,
+    "required_improvements": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "optional_improvement": 16
+  },
+  "mapping15": [
+    {
+      "improvement": 1,
+      "tasks": [
+        "T09",
+        "T11",
+        "T22"
+      ],
+      "prior_cases": [
+        "A24",
+        "A25",
+        "A26",
+        "A29",
+        "A30"
+      ],
+      "passing_families": [
+        "T16-transaction-{ps51,ps7}-final19.json:27 groups per shell",
+        "T16-cancellation-{ps51,ps7}-final19.json:9 groups per shell",
+        "T16-cancellation-{ps51,ps7}-final22.json:9 automated groups per shell"
+      ],
+      "outcome": "Transactional validation/publication and interruption/cleanup boundaries pass. Historical physical Ctrl+C stays separately attributed to T11."
+    },
+    {
+      "improvement": 2,
+      "tasks": [
+        "T10",
+        "T22"
+      ],
+      "prior_cases": [
+        "A27",
+        "A28"
+      ],
+      "passing_families": [
+        "T16-script-{ps51,ps7}-final19.json:13 groups per shell",
+        "T16-launcher-{ps51,ps7}-final19.json:52 groups per shell"
+      ],
+      "outcome": "Actual batch result accounting and cmd argument/exit forwarding through both supported shells pass."
+    },
+    {
+      "improvement": 3,
+      "tasks": [
+        "T08",
+        "T22"
+      ],
+      "prior_cases": [
+        "A22",
+        "A23"
+      ],
+      "passing_families": [
+        "T16-reservation-{ps51,ps7}-final19.json:13 groups per shell",
+        "T16-edges-{ps51,ps7}-final19.json:6 groups per shell"
+      ],
+      "outcome": "Exclusive root/log reservation and observed live overlapping-run sibling preservation pass."
+    },
+    {
+      "improvement": 4,
+      "tasks": [
+        "T02",
+        "T04",
+        "T05",
+        "T22"
+      ],
+      "prior_cases": [
+        "A04",
+        "A05",
+        "A06",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14"
+      ],
+      "passing_families": [
+        "T17-baseline-{ps51,ps7}-final21.json:7 required checks plus 3 separate observations per shell",
+        "T16-preflight-{ps51,ps7}-final19.json:45 groups per shell",
+        "T17-native-{ps51,ps7}-final21.json:35 groups per shell"
+      ],
+      "outcome": "Baseline format/default/source safety, preflight and explicit native/dependency/probe errors pass."
+    },
+    {
+      "improvement": 5,
+      "tasks": [
+        "T06",
+        "T22"
+      ],
+      "prior_cases": [
+        "A15",
+        "A16",
+        "A17"
+      ],
+      "passing_families": [
+        "T16-discovery-{ps51,ps7}-final19.json:8 groups per shell"
+      ],
+      "outcome": "Prior output exclusion, actual junction/file-reparse fixtures, inaccessible subtree handling and input/output boundaries pass."
+    },
+    {
+      "improvement": 6,
+      "tasks": [
+        "T05",
+        "T11",
+        "T22"
+      ],
+      "prior_cases": [
+        "A12",
+        "A13",
+        "A14",
+        "A29",
+        "A30"
+      ],
+      "passing_families": [
+        "T17-native-{ps51,ps7}-final21.json:35 groups per shell",
+        "T16-cancellation-{ps51,ps7}-final22.json:9 automated groups per shell"
+      ],
+      "outcome": "Literal native argv, floods, bounded execution and positive release of only owned processes pass."
+    },
+    {
+      "improvement": 7,
+      "tasks": [
+        "T02",
+        "T07",
+        "T22"
+      ],
+      "prior_cases": [
+        "A04",
+        "A05",
+        "A06",
+        "A18",
+        "A19",
+        "A20",
+        "A21"
+      ],
+      "passing_families": [
+        "T17-baseline-{ps51,ps7}-final21.json",
+        "T16-naming-{ps51,ps7}-final19.json:11 groups per shell",
+        "T16-edges-{ps51,ps7}-final19.json:6 groups per shell"
+      ],
+      "outcome": "Dates, Unicode normalization, deterministic collisions, real safe-path boundaries and working260 preflight refusal pass."
+    },
+    {
+      "improvement": 8,
+      "tasks": [
+        "T03",
+        "T12",
+        "T22"
+      ],
+      "prior_cases": [
+        "A07",
+        "A08",
+        "A31",
+        "A32"
+      ],
+      "passing_families": [
+        "T16-output-{ps51,ps7}-final19.json:10 resolver checks per shell",
+        "T16-music-{ps51,ps7}-final19.json:11 checks per shell including owned default smoke",
+        "T16-preview-{ps51,ps7}-final19.json:8 groups per shell"
+      ],
+      "outcome": "Isolated explicit output, configured Music default and no-write real-planner preview pass."
+    },
+    {
+      "improvement": 9,
+      "tasks": [
+        "T13",
+        "T14",
+        "T22"
+      ],
+      "prior_cases": [
+        "A33",
+        "A34",
+        "A35",
+        "A36",
+        "A37"
+      ],
+      "passing_families": [
+        "T16-progress-{ps51,ps7}-final19.json:17 groups per shell",
+        "T16-diagnostics-{ps51,ps7}-final19.json:19 groups per shell"
+      ],
+      "outcome": "Honest encode/batch progress including actual 3605-second synthetic media and truthful durable log/manifest accounting pass within documented persistence limits."
+    },
+    {
+      "improvement": 10,
+      "tasks": [
+        "T02",
+        "T15",
+        "T22"
+      ],
+      "prior_cases": [
+        "A04",
+        "A05",
+        "A06",
+        "A38",
+        "A39",
+        "A40"
+      ],
+      "passing_families": [
+        "T17-baseline-{ps51,ps7}-final21.json",
+        "T16-metadata-{ps51,ps7}-final19.json:15 groups per shell",
+        "T20-picker-recovery-{ps51,ps7}-final1.json:verification of the same actual PS5.1 STA outputs"
+      ],
+      "outcome": "Metadata precedence, artwork preservation/replacement and local chapter-field documentation pass; phone chapter navigation remains unavailable and not run."
+    },
+    {
+      "improvement": 11,
+      "tasks": [
+        "T04",
+        "T22"
+      ],
+      "prior_cases": [
+        "A09",
+        "A10",
+        "A11"
+      ],
+      "passing_families": [
+        "T16-preflight-{ps51,ps7}-final19.json:45 groups per shell",
+        "T04.md and T04-tested-payload.json:historical incremental extraction"
+      ],
+      "outcome": "Incremental functions-only helper extraction and parameter/root/permission/disk preflight pass."
+    },
+    {
+      "improvement": 12,
+      "tasks": [
+        "T02",
+        "T03",
+        "T16",
+        "T20",
+        "T21",
+        "T22"
+      ],
+      "prior_cases": [
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A41",
+        "A42",
+        "A49",
+        "A50",
+        "A51",
+        "A52"
+      ],
+      "passing_families": [
+        "T16-tested-payload.json:974 required groups and 6 separate observations",
+        "T19-tested-payload.json:1196 required groups and 6 separate observations",
+        "T20-recovery-review.json:revised named Windows/automated mixed method",
+        "T20-long-bindings.json:both-shell selected real 79m35s source",
+        "T21-phone-final-observations.json:closed named phone acceptance"
+      ],
+      "outcome": "Retained meaningful regression, contained cleanup, accepted Windows method and narrow actual owner phone results pass; fresh T22 milestone checks remain a separate gate."
+    },
+    {
+      "improvement": 13,
+      "tasks": [
+        "T01",
+        "T17",
+        "T22"
+      ],
+      "prior_cases": [
+        "A01",
+        "A02",
+        "A03",
+        "A43",
+        "A44"
+      ],
+      "passing_families": [
+        "T01.md and T01-helper-results.json:historical import/sync helper evidence",
+        "T17-tested-payload.json",
+        "T17-workflow-audit.json",
+        "T17-workflow-fix-audit.json",
+        "T19-ci-runs-final3.json",
+        "T19-hosted-payload-final3.json"
+      ],
+      "outcome": "Historical repository/import checkpoints plus pinned least-privilege Windows CI and actual green hosted matrices pass. Root supplies fresh T22 live authority/ref/integration evidence."
+    },
+    {
+      "improvement": 14,
+      "tasks": [
+        "T18",
+        "T22"
+      ],
+      "prior_cases": [
+        "A45",
+        "A46"
+      ],
+      "passing_families": [
+        "T18-tested-payload-final2.json",
+        "T17-help-{ps51,ps7}-final21.json:7 groups per shell",
+        "T18-source-review-final2.json"
+      ],
+      "outcome": "Help examples, authoritative version and bounded support documentation pass. Candidate three shipped-document fixes require current root milestone checks."
+    },
+    {
+      "improvement": 15,
+      "tasks": [
+        "T01",
+        "T19",
+        "T20",
+        "T22",
+        "T23",
+        "T24",
+        "T25",
+        "T26",
+        "T27"
+      ],
+      "prior_cases": [
+        "A01",
+        "A02",
+        "A03",
+        "A47",
+        "A48",
+        "A49",
+        "A50"
+      ],
+      "passing_families": [
+        "T19-tested-payload.json",
+        "T17-package-{ps51,ps7}-final21.json:51 groups per shell",
+        "T19-exploratory-builds.json",
+        "T19-final-review.json",
+        "T20-long-bindings.json",
+        "T20-recovery-review.json"
+      ],
+      "outcome": "Repository/package policy and implementation/acceptance readiness pass; publication and final closure are future mandatory obligations.",
+      "future_cases": [
+        "A55",
+        "A56",
+        "A57",
+        "A58",
+        "A59",
+        "A60",
+        "A61",
+        "A62",
+        "A63",
+        "A64",
+        "A65"
+      ],
+      "future_obligations": [
+        "Freeze immutable C only after final committed code/docs/CI and fresh checks; exact clean-C ZIP and extracted smoke.",
+        "Self-consistent external manifest/checksums, exact owner authority and immutable annotated v1.0.0 tag.",
+        "Verified draft assets and downloads before ordinary public publication.",
+        "Independent anonymous public downloads and actual public ZIP Windows smoke.",
+        "Final docs-only main D, unchanged released C/tag/assets, live main equality and honest closure."
+      ]
+    }
+  ],
+  "catalog_audit": {
+    "path": "docs/codex-v1/ACCEPTANCE.json",
+    "sha256_at_review": "d8eec8c29fd6a7b576a7070e02876060fa238f27fe84758dcd81cfbb7cdc7a48",
+    "tasks_path": "docs/codex-v1/TASKS.json",
+    "tasks_sha256_at_review": "06e9e62894da74dd5d33d91dca145feeb4bd946a6ac2b8944dde2527115782e8",
+    "historical_case_count": 52,
+    "all_A01_A52_recorded_pass": true,
+    "linked_reference_count": 307,
+    "distinct_linked_reference_count": 171,
+    "missing_reference_count": 0,
+    "case_summaries": [
+      {
+        "id": "A01",
+        "task": "T01",
+        "recorded_status": "pass",
+        "linked_reference_count": 2
+      },
+      {
+        "id": "A02",
+        "task": "T01",
+        "recorded_status": "pass",
+        "linked_reference_count": 2
+      },
+      {
+        "id": "A03",
+        "task": "T01",
+        "recorded_status": "pass",
+        "linked_reference_count": 2
+      },
+      {
+        "id": "A04",
+        "task": "T02",
+        "recorded_status": "pass",
+        "linked_reference_count": 3
+      },
+      {
+        "id": "A05",
+        "task": "T02",
+        "recorded_status": "pass",
+        "linked_reference_count": 8
+      },
+      {
+        "id": "A06",
+        "task": "T02",
+        "recorded_status": "pass",
+        "linked_reference_count": 3
+      },
+      {
+        "id": "A07",
+        "task": "T03",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A08",
+        "task": "T03",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A09",
+        "task": "T04",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A10",
+        "task": "T04",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A11",
+        "task": "T04",
+        "recorded_status": "pass",
+        "linked_reference_count": 8
+      },
+      {
+        "id": "A12",
+        "task": "T05",
+        "recorded_status": "pass",
+        "linked_reference_count": 5
+      },
+      {
+        "id": "A13",
+        "task": "T05",
+        "recorded_status": "pass",
+        "linked_reference_count": 5
+      },
+      {
+        "id": "A14",
+        "task": "T05",
+        "recorded_status": "pass",
+        "linked_reference_count": 5
+      },
+      {
+        "id": "A15",
+        "task": "T06",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A16",
+        "task": "T06",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A17",
+        "task": "T06",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A18",
+        "task": "T07",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A19",
+        "task": "T07",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A20",
+        "task": "T07",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A21",
+        "task": "T07",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A22",
+        "task": "T08",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A23",
+        "task": "T08",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A24",
+        "task": "T09",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A25",
+        "task": "T09",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A26",
+        "task": "T09",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A27",
+        "task": "T10",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A28",
+        "task": "T10",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A29",
+        "task": "T11",
+        "recorded_status": "pass",
+        "linked_reference_count": 9
+      },
+      {
+        "id": "A30",
+        "task": "T11",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A31",
+        "task": "T12",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A32",
+        "task": "T12",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A33",
+        "task": "T13",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A34",
+        "task": "T13",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A35",
+        "task": "T14",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A36",
+        "task": "T14",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A37",
+        "task": "T14",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A38",
+        "task": "T15",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A39",
+        "task": "T15",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A40",
+        "task": "T15",
+        "recorded_status": "pass",
+        "linked_reference_count": 4
+      },
+      {
+        "id": "A41",
+        "task": "T16",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A42",
+        "task": "T16",
+        "recorded_status": "pass",
+        "linked_reference_count": 6
+      },
+      {
+        "id": "A43",
+        "task": "T17",
+        "recorded_status": "pass",
+        "linked_reference_count": 8
+      },
+      {
+        "id": "A44",
+        "task": "T17",
+        "recorded_status": "pass",
+        "linked_reference_count": 9
+      },
+      {
+        "id": "A45",
+        "task": "T18",
+        "recorded_status": "pass",
+        "linked_reference_count": 19
+      },
+      {
+        "id": "A46",
+        "task": "T18",
+        "recorded_status": "pass",
+        "linked_reference_count": 21
+      },
+      {
+        "id": "A47",
+        "task": "T19",
+        "recorded_status": "pass",
+        "linked_reference_count": 9
+      },
+      {
+        "id": "A48",
+        "task": "T19",
+        "recorded_status": "pass",
+        "linked_reference_count": 10
+      },
+      {
+        "id": "A49",
+        "task": "T20",
+        "recorded_status": "pass",
+        "linked_reference_count": 12
+      },
+      {
+        "id": "A50",
+        "task": "T20",
+        "recorded_status": "pass",
+        "linked_reference_count": 7
+      },
+      {
+        "id": "A51",
+        "task": "T21",
+        "recorded_status": "pass",
+        "linked_reference_count": 11
+      },
+      {
+        "id": "A52",
+        "task": "T21",
+        "recorded_status": "pass",
+        "linked_reference_count": 11
+      }
+    ],
+    "evidence_reference_current_digests": [
+      {
+        "path": "docs/codex-v1/CI_SECURITY.md",
+        "sha256_at_review": "3b8f0b949ef77fc8cd7723d0c4328ea7e803d8e1903a9be2c589734d5c4b6280"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T01-helper-results.json",
+        "sha256_at_review": "169141f7ad72accc021fabf4a8d0d95b292d802f68de2a5b28954cf96e2e493c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T01.md",
+        "sha256_at_review": "1c2a90b37c68b471e349fad0309e621a0d9366a2ec30398bb9f2711a34574427"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-baseline-ps51.json",
+        "sha256_at_review": "0b1abb8092c13820b5a3607532d1da21617a369107587ae6b1cbe457f96368e4"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-baseline-ps7.json",
+        "sha256_at_review": "1c0b5b513a86a274c5f806f4448fd621182fb2c25675a673d87bee79a65da508"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-bitrate-matrix.json",
+        "sha256_at_review": "dd2122c4d5bffcbdbfa0330c033479ca4328d7afe18980741ec46894829a5682"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-launcher.json",
+        "sha256_at_review": "85d5910bd497c70ae2314b69d315fbebfd1e6f1738b28fc3d3aed7706b7ef145"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-name-contracts-ps51.json",
+        "sha256_at_review": "5e621364e744bc1e23dbf56549984fd67deddf3667b769bb0f11f18bf7fef00c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02-name-contracts-ps7.json",
+        "sha256_at_review": "f4476690c4cdb9d04fbf2dbf8726e3f65fae0cce54345d89cd6061e9c6e198ab"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T02.md",
+        "sha256_at_review": "8641710d70039a7f11ebf5af141afe44460fb3c2910d8a440fa4fd95973b4e30"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-baseline-ps51.json",
+        "sha256_at_review": "c27a718674df860bfdae1adabf6fc5cc4554a447d5eba236d06bedeef03b65de"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-baseline-ps7.json",
+        "sha256_at_review": "18b441bf076d6cc1ac15bcde608c7c72069c38def0b99db0254bbb838305c49c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-default-smoke-ps51.json",
+        "sha256_at_review": "a61eb68268ca782e97b48b83a75b6073dde7cf1f1bffd4aaccb12165962d9cdd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-default-smoke-ps7.json",
+        "sha256_at_review": "3d3d6e2e76f4595ee7baac64cf0f803e7e1a42b5b2b0192da460cbf144427b21"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-resolver-ps51.json",
+        "sha256_at_review": "d92399c22f90e9786f5c43493e0094d750ac1b5e6fdfd01791b2e524ee793203"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-resolver-ps7.json",
+        "sha256_at_review": "946501f8d6afcf1a249451ca3435fd6b647e838d876035eaf52cb2690d5cb343"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03-tested-payload.json",
+        "sha256_at_review": "583f557493b560f5ed69e3cf424cbd2d367bc6badd8e95d2adcb7827d8454fc5"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T03.md",
+        "sha256_at_review": "e2d1db40c74753566a1a00c7b1cfce23da8df46a7bf3dd560b61fea191c641cd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-baseline-ps51.json",
+        "sha256_at_review": "f233dfa19ec817bec9b403c59ff0d0d70fd9a5d44065a3266d27e1677dec0275"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-baseline-ps7.json",
+        "sha256_at_review": "57577be1c00f244095deede09dab365037ea65b871a37501daecba365085699a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-preflight-ps51.json",
+        "sha256_at_review": "9e028399f7ebb13983c407f694b8dfa6118ffaf8efd61fa31a5fa1e83def28dd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-preflight-ps7.json",
+        "sha256_at_review": "492078f6180662cad196f7c9a882a08f9dfbcd99e6bad4c8190f82d0252319c1"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-resolver-ps51.json",
+        "sha256_at_review": "0cc41a8b62e336684a96647c86522f499dec222e34202c1fafcbdf1e03140597"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-resolver-ps7.json",
+        "sha256_at_review": "34de96d31be2f6489188ff1a2020ee8497ebb3fd290030737452f8264944f00b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04-tested-payload.json",
+        "sha256_at_review": "9affd6566cb12e868cc7559c12d9983922607c46352708628bfc6eae0b53a4de"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T04.md",
+        "sha256_at_review": "c570ab1a4981222c679785e53b1d5b228d2c532f9d1f4071d893fc6401b38e76"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T05-baseline-ps51.json",
+        "sha256_at_review": "6d88d960202414f45cfe3dbcf4d36c0ba373917487aa04e6f4585d7f6ff945fd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T05-baseline-ps7.json",
+        "sha256_at_review": "d06b1624c632169c76c5ec9b2a8229e6d328232f140efd734c03d43353d74704"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T05-native-ps51-final.json",
+        "sha256_at_review": "7122137bbbbefa49aa02f601d330b54f9b04b45bb167651de4565929ca2c1c3c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T05-native-ps7-final.json",
+        "sha256_at_review": "b801452eed0c40483df8797c14a6cc2326d2df3b6e84b07022124795cd2a85d1"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T05.md",
+        "sha256_at_review": "7109688f56244a639b5bb3be17c310d434f26204288568298c2d6940b626a1cb"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-baseline-ps51-verified.json",
+        "sha256_at_review": "b305996efb0a714b029447db488a492d3bac31dc90b252d3f1e92cb5030c8a74"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-baseline-ps7-verified.json",
+        "sha256_at_review": "286a825777d66ecbaf34ab891ae433d59d7774c5609dacdd43237483c8ab8644"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-discovery-ps51-final.json",
+        "sha256_at_review": "15b577e2cc0424a802d1f7c78f550b19555fa3b7bfc6a5872a59c01bed879595"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-discovery-ps7-final2.json",
+        "sha256_at_review": "34977519d3e8bfc36b98aedd187101060a0e807b3f2639e82ab3dff94330013c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-preflight-ps51-verified.json",
+        "sha256_at_review": "065e78a3e5a16c5419a68c233379fe5b52b114c52110443d4d8f965c29bb5ec3"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-preflight-ps7-verified.json",
+        "sha256_at_review": "5f83a3b30bfb63bce1921af4a12f289a106e16b626674f7858d4d2e7cbcfabb0"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06-tested-payload.json",
+        "sha256_at_review": "c34e64c8eb2b1e359bcd4d837bfe8c137d44460f163dbd5c7fe0e5c4fb1065e1"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T06.md",
+        "sha256_at_review": "2a47ef053df0277f9f46e69ebfe11a1922b73d7ec1fc71cfb9b29b99cb4b323a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T07-naming-ps51-final2.json",
+        "sha256_at_review": "5d961adf185fd563c032c6604bd53ecd20ea8830eb13e16dc19f7a9834810cda"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T07-naming-ps7-final2.json",
+        "sha256_at_review": "008905f97359f8ced7f96131d8905c1194840baf642f4f740e05646254ffa273"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T07-tested-payload.json",
+        "sha256_at_review": "9d8f8d9f6e89b7f781a5097e930f52deb1aaa1d1329287b5e02abf5b3abda16f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T07.md",
+        "sha256_at_review": "70ce93ed8d2d13c9f2bdc166014d0f1bf80da91ad17b7f89cf9b2f196705b55a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T08-reservation-ps51-final3.json",
+        "sha256_at_review": "96661a20f92aaa7bea6dfbf5d26db8ff0dd266ddc09ea7bec0b44c352b700b64"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T08-reservation-ps7-final3.json",
+        "sha256_at_review": "2a717e7ec33de4009cd2fa1e0ce52239d71114b3ad568e97a0f21ba5795ede6a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T08-tested-payload.json",
+        "sha256_at_review": "c6b2026e07c8f14dbccaea7144ab9816e1df61d12c3fb9d92fd3199eab80c99c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T08.md",
+        "sha256_at_review": "b20bfccafb687508b4ed511aebbad5a7aebcc41ca190a488bf03aa0552994e54"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T09-tested-payload.json",
+        "sha256_at_review": "95ad0e5eb547b99fa46edd50dd7c1153501b6498cbfb2a79a82787ca97f15655"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T09-transaction-ps51-attempt6.json",
+        "sha256_at_review": "596c53eecb1c655aca7603cfc9fd400a010c27fc586cd332299c5546098c3cd7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T09-transaction-ps7-final1.json",
+        "sha256_at_review": "9ee85769c307decbb736ceb9e547741c250372170bcdf01f7940b3222859cd39"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T09.md",
+        "sha256_at_review": "536514c41280a811485bf81c378a8e32896c2376f1213cd9d138d9ac9acc8dd6"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10-launcher-ps51-final2.json",
+        "sha256_at_review": "c5a327a14d91e4a3cd5646a637ad79880ef9ecbe77cb0d926610e359701c25ac"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10-launcher-ps7-final2.json",
+        "sha256_at_review": "cbf647770f870c445f962ff3d2436bdfcbeb9474e19e3c321468ddd757fe423c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10-script-ps51-final3.json",
+        "sha256_at_review": "af28f9878ebd36e7732535d48c7dc2b62ab8b06c9af3e7831cc54fe6bfbe4667"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10-script-ps7-final2.json",
+        "sha256_at_review": "85f3c7993e3c002cfb66eaa4a9abacdf4ef233bf6d4e4331a68ba158feb56518"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10-tested-payload.json",
+        "sha256_at_review": "b3ff5143ac15b7471cd9431f263bd0771d55a736a801e21c32317c1c65ea1811"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T10.md",
+        "sha256_at_review": "724d0133e5d7d880ba2015e9cd00bb2d1dc37808a9039f1286fea319e58dc413"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps51-final2.json",
+        "sha256_at_review": "e9bd543ba342e19e66df48f96a56060db0e59092846ebd9235bc9166e96ac31e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps51-manual1.json",
+        "sha256_at_review": "3094d6157a5ae849f5322f8b7382140813b1d48d2a566adfc960f72374ece8c7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps7-final2.json",
+        "sha256_at_review": "b4de74a4b505141df4f93dd456463c4a6d2a5dc9e7d2b19c34933d698e1df672"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps7-final3.json",
+        "sha256_at_review": "7c629b97248f4d5dee52eb148c0df99d1e447b955ae9ae9fc5731c042d2ed2ef"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps7-final4.json",
+        "sha256_at_review": "0ff630aaf4254f753fb2fc50b02683ec0fe2baf8aa95e0ce513c76e2bc20b20a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps7-manual1.json",
+        "sha256_at_review": "0a1fc56bbc0e62a002cd73f5d3415bc46500c1d5c33466fc7535cd78d189fdb3"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-cancellation-ps7-manual2.json",
+        "sha256_at_review": "3e0605658b4093687f39cf2703f07b3b9155364b8f7cc208ee8d151e7b2ec674"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11-tested-payload.json",
+        "sha256_at_review": "c5d650bdb1755a79deeb089433ad1b7070dcded24f151a7dfd47ad8d5851aca2"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T11.md",
+        "sha256_at_review": "2470d46b922ae2b0f5f981fa661970fcec261c637db7013dec809d7d9e74ea81"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T12-preview-ps51-final1.json",
+        "sha256_at_review": "dd5e3b20aab4599af6aeb8ac32141fbb4799fffdedb9a56779fa299f5c34ab0f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T12-preview-ps7-final1.json",
+        "sha256_at_review": "71fc9eb6eae28e888438cede70cd376f063043d3b3e26a753c5d3ceca69c4495"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T12-tested-payload.json",
+        "sha256_at_review": "100b8ac96a7736860cb4e7cba55e4a65bd6923e91a39cdb613b30dfaa090245a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T12.md",
+        "sha256_at_review": "792a93752fdf8c94ccff34f9663cee18e2ec5d1bbcf5144e74d1d6a1e9d97153"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T13-progress-ps51-final1.json",
+        "sha256_at_review": "d3842c7bf86c19efdf65198d060ca5b33f5c1d07e7cad207d5e60940a7fc92be"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T13-progress-ps7-final1.json",
+        "sha256_at_review": "63713e57db2a1e6776c4864eebeecb5d8967577290de36e4f79db162908fd2bd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T13-tested-payload.json",
+        "sha256_at_review": "8001539142326552ca7c55c84a2b34109ea3dbf9854bbd98e100c67db2cfb365"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T13.md",
+        "sha256_at_review": "ce94d62634a3c2bf64b185eccac3db9375ad9e1a3e8dd1c055c2b8b7569156ac"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T14-diagnostics-ps51-final1.json",
+        "sha256_at_review": "af8be7540805520be5a3ecc46e1de9ce9b24f843ad7deecbda80a09982daab13"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T14-diagnostics-ps7-final1.json",
+        "sha256_at_review": "5e4bc248ea8fb9d9234481691a559deb7f4fb4934ebdeb3f407c0f94adf07f09"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T14-tested-payload.json",
+        "sha256_at_review": "2fc37f6175c4ad7cf6bc70ca29f3d9672da70a494fb4265df6e5439fff062d8b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T14.md",
+        "sha256_at_review": "b56249b8df2ec263b1e81d4b1472011a9af7b14d3e45dfca274d6ce06508879d"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15-metadata-ps51-final1.json",
+        "sha256_at_review": "90000cffada91c30068e1a475bf57d67e839e7e538153c6914063ca8a98a45fe"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15-metadata-ps7-final1.json",
+        "sha256_at_review": "ece4990fb9da2fe946b86d5fafb6daf0aac96429029ffc5c797db5cacd40d34b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15-native-ps51-final1.json",
+        "sha256_at_review": "7fadc75526555fb2bd846de6251bb26c73dc5fb8ea36fa875fa64ba53a52a4e8"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15-native-ps7-final1.json",
+        "sha256_at_review": "9bdfbbb12f8471c2bf310e8143a846bcc813db79af9e3e0edc10f7c282eeefcd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15-tested-payload.json",
+        "sha256_at_review": "5e585f49d475693d84bf27e885d9877b7ca019939dc29ea881d946fcd3d82155"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T15.md",
+        "sha256_at_review": "c2cc2582febbbad6a0641e6e26d8a875b1be2ab32a97acffe3cc8d06efbf0ee2"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cleanup-ps51-final1.json",
+        "sha256_at_review": "fa4eb0398b9f801ef8de03f6daef0466cab88ab08dada1bd27c7ebd9b8b6249b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cleanup-ps7-final1.json",
+        "sha256_at_review": "e8d4985953d2992e038c0258c9fad191715d95440dd4155ef385f3fe38952657"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-edges-ps51-final1.json",
+        "sha256_at_review": "4de5334e1057e3b8b9493c791888edb349e7cfbc3a259122612ed34e9223ab17"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-edges-ps7-final1.json",
+        "sha256_at_review": "1cfaf8973d9bf5d88960380bbbd9c108b377a4c60aefc62978188b7f27d1bb02"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-native-ps51-final1.json",
+        "sha256_at_review": "6e75b146c6ed3e2f370cd72bde0083de25cd506f2b8363db33fbd7cf7a9a7f98"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-native-ps7-final1.json",
+        "sha256_at_review": "b581c03076c943ceee0b52a7a5cae5de082fb19eba3b1cc4643384660ca7b0bb"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-tested-payload.json",
+        "sha256_at_review": "0b5631cb9a4ac963215bc0c02524c0c1fd5a106477ab9f897cb50d86995ddc6e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16.md",
+        "sha256_at_review": "0ab0ca998ba30b6a971f8cdda422a7157defa86f04f6bb0cf0e4a02af1bf5114"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final2.json",
+        "sha256_at_review": "d89bd85a38f9fe903c955abadd7c96b145ef7a6ded920626a3f63bb65500e60a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final2.json",
+        "sha256_at_review": "f27276d309427d34cc24ac87fde5f6f5706206a16223d95b547837b5b7dd6b16"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final2.json",
+        "sha256_at_review": "acaa388850a62039e52e0d314d22c9e74fb0cec998593d11826540b106f25cd4"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final3.json",
+        "sha256_at_review": "6e02ff34dd80c4585561a3f28e211f0d169f90fc4959eef885b7d1b743b4d913"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-final4.json",
+        "sha256_at_review": "37eb26b01f0043c1d311fff2c40488bb587f4794f988e00e678bbf93d76f2542"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-run38139568879_1.json",
+        "sha256_at_review": "05fa0fd51a8b6d5fe2b3a4702a9f2c8d6b941afbe8e76e7910d310b88f7bc95d"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps51-run38142299941_1.json",
+        "sha256_at_review": "f5f42abece6ee2e9e8a7749574a127171069bcfb0e80a57a66ce6722779cd19c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final2.json",
+        "sha256_at_review": "d6e1cfc57e65693e9059afc33960c081ed18bd251b577c232d072f6233446200"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final3.json",
+        "sha256_at_review": "2462acefd5d9451fa2dd7989eba8003fe2f3fb90961e278e24975cce48030066"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-final4.json",
+        "sha256_at_review": "a828b28e2ef3c30fb17edc99a6191c5d1ac5ca2aa48085ab8f8fb16ae004a6e0"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-run38139568879_1.json",
+        "sha256_at_review": "0524275a1e3559beee7f3279577cace0ad927a07d3c705588e949709db96d944"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-ps7-run38142299941_1.json",
+        "sha256_at_review": "3139e50b21fc48ea7c2ce548c2cbde1a9dbb32294e6623112be77e05d1a17dc0"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-ci-runs.json",
+        "sha256_at_review": "baf35060559a2e7e357b13045e4885434ca42eabc0124b6e9047cb5ff0230a25"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-final3.json",
+        "sha256_at_review": "4f6f6ef15a4ab5ff8516c65a7e7211b3fbfc027bfdeb8e40b64be8906bfd43c5"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-final4.json",
+        "sha256_at_review": "b519d6787679ea54a08083e2893f27199efa934c068314a12302c2bc72636b7f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps51-run38142299941_1.json",
+        "sha256_at_review": "a42697a2491d04c685551fc6164e2c9a301fe49c3fe871393dfc14e6b15ac690"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-final3.json",
+        "sha256_at_review": "abf652f787286587f949ebc8d455f61f4deeb57d8de5dd3bf307135faf6647e9"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-final4.json",
+        "sha256_at_review": "0c153a0d4442e445e684a952044b8aed09dc59ab83e218071a63004252ac3da6"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-help-ps7-run38142299941_1.json",
+        "sha256_at_review": "f91f9eca1161e1e9121ffb97e75c5d5e72ee4021c0ff2fa027e2f7f502274794"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-hosted-path-audit.json",
+        "sha256_at_review": "50bf28960603f4ef1bd5f6af3590ba4c0ce7a0fb8eead81c971df854215d61a6"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps51-final21.json",
+        "sha256_at_review": "d3973f56a32bfab8b9511abb0914e406b95ee71efa6b93d9bb6cdbce3d51c9e0"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-package-ps7-final21.json",
+        "sha256_at_review": "062c6d93cc2714a9e11f16b2a84cacee1ab9a44ede6f3080061d0eabadd2d392"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-tested-payload.json",
+        "sha256_at_review": "3966aa8b550e48cd1ae5cbf31bd52cd1835e12fc6d36ddad42e44df124055c7e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps51-final2.json",
+        "sha256_at_review": "bf4a6f0d0ccc283db5c1ec024245774742b56dd38c8bbe66ac421e3c4821d313"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-unit-ps7-final2.json",
+        "sha256_at_review": "64b3ec7d304341fb4914789f5e29a16149b13fc7af26cd9c420b8c63e64e6c49"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-workflow-audit.json",
+        "sha256_at_review": "a7cf9bda19731319982e97cd2ca032540c6371cdc7928ae99290d8cc3cdb132d"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-workflow-fix-audit.json",
+        "sha256_at_review": "c139b16f93b90a2ef2ef62392363534b678ee2586f915179d92f0ad3ff3bc226"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17.md",
+        "sha256_at_review": "af17ede9a9611cb1c9bfc8aa67c3fc6de88cecd17678f59659c1d48d9d1ad076"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-ci-runs.json",
+        "sha256_at_review": "eac93c38d22c5ad857db44bea6119137bf4013cc2195220333ded4be79de17cd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-diagnostics-ps51-final1.json",
+        "sha256_at_review": "76f890f4fd952826a6c0e71f6cb10bc06bd042c770a62f2f1bb09e0f4e4809d7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-diagnostics-ps7-final1.json",
+        "sha256_at_review": "31ee26504cfa43cddf7247ff57255893648541e9b8f0f12111f4074478caf102"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-help-ps51-attempt2.json",
+        "sha256_at_review": "86b63cb79e6023a46219b5fb29447d94006c0dfbefb0ee1b554223e43222b1c8"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-help-ps7-attempt2.json",
+        "sha256_at_review": "a71af382216a03c7e37f313e82a5d91b877e60ae6aec4a11e27218ce2eecf4b1"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-hosted-payload.json",
+        "sha256_at_review": "6039d2724b3dd78a6563a149674858d720fc2d423aa3ce5178781cfa0e61c4b3"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-source-review-final2.json",
+        "sha256_at_review": "d54c659333141b390d9fa825fe931e49af3d49879800e938d4093ed73c78c2c4"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-source-review.json",
+        "sha256_at_review": "17c87cd38ee912ec64f0a8edfa8087dbcd8d6a637f1357854d3755649e2f235a"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-tested-payload-final2.json",
+        "sha256_at_review": "d035b607c4f7b9d40666808c96458df7d8a159c0a299a0c5eabaea7cd9192163"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-tested-payload.json",
+        "sha256_at_review": "b62288a741431e8cb621bf4bde90ee39dcc2d7431631e1f8def744a48873f443"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18.md",
+        "sha256_at_review": "840a7623d649957e8cc27de0536fb30356a731755397964e8b03c6ea8f1a65b4"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-ci-runs-final3.json",
+        "sha256_at_review": "c3acdcde9284f7e82fb6055893a8af05f6ab37e287c435bdab613bdede8da877"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-dependency-sources.json",
+        "sha256_at_review": "1a2feac0f954a23026a9995a4a67dbe19896a60b22f910f85ccf425480b5607f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-builds.json",
+        "sha256_at_review": "440dacaa6d33f9b07b7bc5f2bd2bcbf71456202cd908a244fe848d3daa02993e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-command-bindings.json",
+        "sha256_at_review": "306b234c350be68b928c9a403ea9d7c07559118422b2aef82959fe90d48538d6"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-manifest-ps51.json",
+        "sha256_at_review": "0a4dd8f331fb34f4a996d38e1c6a19cb24fa162d9146fe9d52a47a41209d6c73"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-exploratory-manifest-ps7.json",
+        "sha256_at_review": "32497bf3f569e686cea64520b2c43aee12bb13f0251c96b5505e99534bac2f2e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-final-review.json",
+        "sha256_at_review": "1d862d68318f24fcd3732193fe3152c40365bd59794424f97c5b3e7e2470eb9b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-capture-limit.json",
+        "sha256_at_review": "c36a0e61540644d0e58791a0a4c4e8c69c87c0b5737c4616155263a3305535a7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-hosted-payload-final3.json",
+        "sha256_at_review": "118a3012465919f6dd0806e2429c1851a44d704be8f67d2a6fe877e3efb44c27"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-preliminary-cleanup-limit.json",
+        "sha256_at_review": "78df5dcd77e1b389dedf3c0be7af2db1c7c492ff949851636a2b88380f75f771"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-source-review-final3.json",
+        "sha256_at_review": "039d2258b2bc198468d223311402cd427900fd0470735a3dfc09e83940c847da"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-tested-payload.json",
+        "sha256_at_review": "51ba3a4d9808a9f0df98eb4c7dfc9bf5f5ea5f5bed5ee9b23e46425170770ceb"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19.md",
+        "sha256_at_review": "24e84fbfe4238fdd35652b484bfb49b841a573a786a545814e892913f02ae25b"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-cancellation-bindings-final2.json",
+        "sha256_at_review": "0881f5b5ff5af1b442cb4c6618ef01b1258c8d8535d73af7d9cbd149c96957f7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-guided-correction-check.json",
+        "sha256_at_review": "3dd2216f71b543731f3293eeebab4a58d5caaa7883734d2b255e97e7687c15fd"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-guided-validation.json",
+        "sha256_at_review": "e56bf6188c56095d5a23f409191dee8791c22a13537bdabd6cab88a2b40411ce"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-bindings.json",
+        "sha256_at_review": "b70dddff11670c8c7232333a0cc2761eee49cbbca5899a46083b69dafd1cb39c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-ps51-final1.json",
+        "sha256_at_review": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+        "sha256_at_review": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-owner-observations.json",
+        "sha256_at_review": "b3a05c52246064e7c1bcab1b6dc4c4432dcb3b7b34de0dd4c4bff0effb73bca3"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-bindings.json",
+        "sha256_at_review": "8558c4f7e10a905574f40a5b8bf317d5212475b62ec07a8fccbbf95eb3cb78d4"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-ps51-final1.json",
+        "sha256_at_review": "b764c677df915c7fd73f55052f7bf87702c38de81500638b5a4c2230122366ec"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-ps7-final1.json",
+        "sha256_at_review": "b075e36fb8459c2f374468f6774d72fc6e801ed70e5516796dc0f0d59ffc829e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-recovery-review.json",
+        "sha256_at_review": "ed5730004d38350978bed75951aa7344098fe524a0dd1ee2a7b4ddd1d3a70eff"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-revision-review.json",
+        "sha256_at_review": "e28229633b3ea558629ef2508ca3f5f4b960eec38192532a4eb3d81edcc8261c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-supplemental.json",
+        "sha256_at_review": "67488ea8bd8d777cc6d81105adee97c4abe8935a75f687a270924e36a35f59e2"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20.md",
+        "sha256_at_review": "5f054531e1e26dfa4cb44780bb22c23a80415b4e409b69ac63856e744ae295d7"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-asset-check.json",
+        "sha256_at_review": "4e9d72bdf12298ba039c8eb3c4b5da95a7f89b27df5cfe840965da0f17f0fbba"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-final-observations.json",
+        "sha256_at_review": "6194458734696f0579aaa6826e22f348a7f0a25d28bec8b7bab1478e9fab956c"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-final-review.json",
+        "sha256_at_review": "b8873f3ea1976a80504c1c425f549a3832989bc1218fbce9fd735d9e0aae7568"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-observations.json",
+        "sha256_at_review": "f2e932e35fcc43f59b576d00db911ce79cbb2d3fbd8671e402382578b6fb9b6f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-review.json",
+        "sha256_at_review": "e6c8179df945e7f2a563b4de59ca16e7c7895623c0e295635a630fa2e3cdab77"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+        "sha256_at_review": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+        "sha256_at_review": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-review.json",
+        "sha256_at_review": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-start.json",
+        "sha256_at_review": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21.md",
+        "sha256_at_review": "1ee15b95dad0127de0788eb6b3efc5db23a0f6a48269b7090e92fcaa676c96cc"
+      },
+      {
+        "path": "docs/codex-v1/T02_REGRESSION_MATRIX.md",
+        "sha256_at_review": "f8ea72d3c4ad892845bbc90f4db4326834c7ec9ef522f946feef161e6f741bce"
+      },
+      {
+        "path": "docs/codex-v1/T20_MANUAL_STEPS.md",
+        "sha256_at_review": "7e7f9a5ebc1e312aa3625422aacc6a95df8cc4cc963bc20d72042c3f30d90b7f"
+      },
+      {
+        "path": "docs/codex-v1/T21_MANUAL_STEPS.md",
+        "sha256_at_review": "7f9784b6c202d0f0b9e103d8087ec05e0dbccebfa214d99c054ac3c3f3203374"
+      }
+    ],
+    "current_digest_boundary": "Catalog linked-file hashes establish exact bytes seen at this audit, not historical execution by themselves. Recorded historical expected digests are independently compared in selected_report_hash_audit. Root may subsequently update live tracking documents."
+  },
+  "selected_report_hash_audit": {
+    "binder_audits": [
+      {
+        "path": "docs/codex-v1/evidence/T16-tested-payload.json",
+        "sha256": "0b5631cb9a4ac963215bc0c02524c0c1fd5a106477ab9f897cb50d86995ddc6e",
+        "reviewed_code_checkpoint": "3f3c21d2ca65025202ea4a364a157f671031a2a8",
+        "checked_row_count": 36,
+        "distinct_checked_report_count": 36,
+        "mismatch_count": 0,
+        "report_checks": [
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps51-final1.json",
+            "recorded_sha256": "51bf460bbfe6a9cafb204efadf7abfdd71dfa6b231f463f0790ec2be3fc039de",
+            "actual_sha256": "51bf460bbfe6a9cafb204efadf7abfdd71dfa6b231f463f0790ec2be3fc039de",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps7-final1.json",
+            "recorded_sha256": "720d6b4b9a8d4a447e8da5555edd4dc20a7a245dae737a887ab1c5412f8f7af6",
+            "actual_sha256": "720d6b4b9a8d4a447e8da5555edd4dc20a7a245dae737a887ab1c5412f8f7af6",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-native-ps51-final1.json",
+            "recorded_sha256": "6e75b146c6ed3e2f370cd72bde0083de25cd506f2b8363db33fbd7cf7a9a7f98",
+            "actual_sha256": "6e75b146c6ed3e2f370cd72bde0083de25cd506f2b8363db33fbd7cf7a9a7f98",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-native-ps7-final1.json",
+            "recorded_sha256": "b581c03076c943ceee0b52a7a5cae5de082fb19eba3b1cc4643384660ca7b0bb",
+            "actual_sha256": "b581c03076c943ceee0b52a7a5cae5de082fb19eba3b1cc4643384660ca7b0bb",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps51-final1.json",
+            "recorded_sha256": "f1eaa094b6b9db6402ed2b437d8d060b1f7405acba058e87b8ceaf689a2bd299",
+            "actual_sha256": "f1eaa094b6b9db6402ed2b437d8d060b1f7405acba058e87b8ceaf689a2bd299",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps7-final1.json",
+            "recorded_sha256": "9c09270584d206f48c5d11d86c5f5bfe7f029a3d2c40919e0feb1fe29c0eb23c",
+            "actual_sha256": "9c09270584d206f48c5d11d86c5f5bfe7f029a3d2c40919e0feb1fe29c0eb23c",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps51-final1.json",
+            "recorded_sha256": "5b60f0a4c26ca585a5e81b2664e74b12b3a4618ec97ff7054cd9b30533613405",
+            "actual_sha256": "5b60f0a4c26ca585a5e81b2664e74b12b3a4618ec97ff7054cd9b30533613405",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps7-final1.json",
+            "recorded_sha256": "5a170e7e183d2e5f8a0ae40974e1d5b47a86d7e2209351d272f7fbd32fbed4bc",
+            "actual_sha256": "5a170e7e183d2e5f8a0ae40974e1d5b47a86d7e2209351d272f7fbd32fbed4bc",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps51-final1.json",
+            "recorded_sha256": "c6219f1b09e8e86eb128959401502ca11b749d3e4d6ef04df07729ece7985a34",
+            "actual_sha256": "c6219f1b09e8e86eb128959401502ca11b749d3e4d6ef04df07729ece7985a34",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps7-final1.json",
+            "recorded_sha256": "066aee260334595b48352717ad7bd3a712992bdcf45058436aab72cbdabaa944",
+            "actual_sha256": "066aee260334595b48352717ad7bd3a712992bdcf45058436aab72cbdabaa944",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-baseline-ps51-final1.json",
+            "recorded_sha256": "3d4197f22dfbc5daa1f4a78baaef3a82b3890aef1d08aba7befb7a8f981dfb84",
+            "actual_sha256": "3d4197f22dfbc5daa1f4a78baaef3a82b3890aef1d08aba7befb7a8f981dfb84",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-baseline-ps7-final1.json",
+            "recorded_sha256": "0f808d4af6d2f057398a6c396c15fd49cb5726a7cee76887fcdb999d9ce75f13",
+            "actual_sha256": "0f808d4af6d2f057398a6c396c15fd49cb5726a7cee76887fcdb999d9ce75f13",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps51-final1.json",
+            "recorded_sha256": "cd376f3528da79f5bbc908e9f42f8f2733b176eb830558daca3e888d7521bd11",
+            "actual_sha256": "cd376f3528da79f5bbc908e9f42f8f2733b176eb830558daca3e888d7521bd11",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps7-final1.json",
+            "recorded_sha256": "33906a34d69fab760a3a001896bf51db22849eef36c48fbb1089e3009a8d2812",
+            "actual_sha256": "33906a34d69fab760a3a001896bf51db22849eef36c48fbb1089e3009a8d2812",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps51-final1.json",
+            "recorded_sha256": "6f2f4548892bcaeaa1a73dbedf80464b6168e14e138f2d30c603c39b038ca87e",
+            "actual_sha256": "6f2f4548892bcaeaa1a73dbedf80464b6168e14e138f2d30c603c39b038ca87e",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps7-final1.json",
+            "recorded_sha256": "d0b02ac9ce50890abdd9111b862de1be5cdecf9b40c1abcfd02e3677233bc7e2",
+            "actual_sha256": "d0b02ac9ce50890abdd9111b862de1be5cdecf9b40c1abcfd02e3677233bc7e2",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps51-final1.json",
+            "recorded_sha256": "3cf8224ea21bc751bf5424ed67255980835eb36f57defd675d6b869f2621c8db",
+            "actual_sha256": "3cf8224ea21bc751bf5424ed67255980835eb36f57defd675d6b869f2621c8db",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps7-final1.json",
+            "recorded_sha256": "3b545058615ec1df43a5f378c588c9da3516fd38163929d3233f03e84da8b6cf",
+            "actual_sha256": "3b545058615ec1df43a5f378c588c9da3516fd38163929d3233f03e84da8b6cf",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps51-final1.json",
+            "recorded_sha256": "be8654aba279fd3180bc8f11b7c5475eb0a41849dd6f1127119ec3c4ddeab0f9",
+            "actual_sha256": "be8654aba279fd3180bc8f11b7c5475eb0a41849dd6f1127119ec3c4ddeab0f9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps7-final1.json",
+            "recorded_sha256": "56195ae10db196a0147513b4a52afb1cd9d87f9837e9249a29a4da2a83ac53a3",
+            "actual_sha256": "56195ae10db196a0147513b4a52afb1cd9d87f9837e9249a29a4da2a83ac53a3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps51-final1.json",
+            "recorded_sha256": "50967079606d790f0820653bab4a4a3e1afe1897dea68b2aa7ce3705710f089a",
+            "actual_sha256": "50967079606d790f0820653bab4a4a3e1afe1897dea68b2aa7ce3705710f089a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps7-final1.json",
+            "recorded_sha256": "40cd8a93d07e97de331dd99eaf4cc2ee6bb29fa78d2faab38e11cc3c5a5678ce",
+            "actual_sha256": "40cd8a93d07e97de331dd99eaf4cc2ee6bb29fa78d2faab38e11cc3c5a5678ce",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps51-final1.json",
+            "recorded_sha256": "fba64156f617fc504e31240ec75793e6bdc110b1bf5872fe5ed1365e1f54fc69",
+            "actual_sha256": "fba64156f617fc504e31240ec75793e6bdc110b1bf5872fe5ed1365e1f54fc69",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps7-final1.json",
+            "recorded_sha256": "0e1677e91f4258254e908bf11d0c3ace13c6a3674ef3eeb3ba497eb8441ecc91",
+            "actual_sha256": "0e1677e91f4258254e908bf11d0c3ace13c6a3674ef3eeb3ba497eb8441ecc91",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps51-final1.json",
+            "recorded_sha256": "c2bc8a86daa7c26a77c8a861e517302309d31a6e450f41c0c3ea805fcfe9f379",
+            "actual_sha256": "c2bc8a86daa7c26a77c8a861e517302309d31a6e450f41c0c3ea805fcfe9f379",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps7-final1.json",
+            "recorded_sha256": "ab3e37168f5e0dbdc7ed757283dbd6dcccf8298e0c1e43347995578f38a9debf",
+            "actual_sha256": "ab3e37168f5e0dbdc7ed757283dbd6dcccf8298e0c1e43347995578f38a9debf",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps51-final1.json",
+            "recorded_sha256": "a3cc158e688023b659e1b4af86dde036ec5762c3d1c5af5b49ec404f2ad93948",
+            "actual_sha256": "a3cc158e688023b659e1b4af86dde036ec5762c3d1c5af5b49ec404f2ad93948",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps7-final1.json",
+            "recorded_sha256": "7daa529836d32e2ece7fc54f56c02244582427e1451f8cc9cddcd4d98181a17f",
+            "actual_sha256": "7daa529836d32e2ece7fc54f56c02244582427e1451f8cc9cddcd4d98181a17f",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-resolver-ps51-final1.json",
+            "recorded_sha256": "df1e92835fcaac60ac1c179cc3975559d83ea53369342c94e5c3cf1bb9790c8b",
+            "actual_sha256": "df1e92835fcaac60ac1c179cc3975559d83ea53369342c94e5c3cf1bb9790c8b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-resolver-ps7-final1.json",
+            "recorded_sha256": "c7df3694e694e266eff7aba4f00bac46c9d0833b5ce6cf0d1f5dd7985c98e202",
+            "actual_sha256": "c7df3694e694e266eff7aba4f00bac46c9d0833b5ce6cf0d1f5dd7985c98e202",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps51-final1.json",
+            "recorded_sha256": "40bec548cf3c487437bf649d9bfc4c67b5bce018a9dcbfcef9857bdac82b9c17",
+            "actual_sha256": "40bec548cf3c487437bf649d9bfc4c67b5bce018a9dcbfcef9857bdac82b9c17",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps7-final1.json",
+            "recorded_sha256": "64ac7a048f2cb00e536c3f10fa3603eb3c75a4157a64862554bf0cc1d11f73c9",
+            "actual_sha256": "64ac7a048f2cb00e536c3f10fa3603eb3c75a4157a64862554bf0cc1d11f73c9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "42d80236521fbcbaf77d511abaca6d55456879c5"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps51-final1.json",
+            "recorded_sha256": "fa4eb0398b9f801ef8de03f6daef0466cab88ab08dada1bd27c7ebd9b8b6249b",
+            "actual_sha256": "fa4eb0398b9f801ef8de03f6daef0466cab88ab08dada1bd27c7ebd9b8b6249b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps7-final1.json",
+            "recorded_sha256": "e8d4985953d2992e038c0258c9fad191715d95440dd4155ef385f3fe38952657",
+            "actual_sha256": "e8d4985953d2992e038c0258c9fad191715d95440dd4155ef385f3fe38952657",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps51-final1.json",
+            "recorded_sha256": "4de5334e1057e3b8b9493c791888edb349e7cfbc3a259122612ed34e9223ab17",
+            "actual_sha256": "4de5334e1057e3b8b9493c791888edb349e7cfbc3a259122612ed34e9223ab17",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps7-final1.json",
+            "recorded_sha256": "1cfaf8973d9bf5d88960380bbbd9c108b377a4c60aefc62978188b7f27d1bb02",
+            "actual_sha256": "1cfaf8973d9bf5d88960380bbbd9c108b377a4c60aefc62978188b7f27d1bb02",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3f3c21d2ca65025202ea4a364a157f671031a2a8"
+          }
+        ]
+      },
+      {
+        "path": "docs/codex-v1/evidence/T17-tested-payload.json",
+        "sha256": "3966aa8b550e48cd1ae5cbf31bd52cd1835e12fc6d36ddad42e44df124055c7e",
+        "reviewed_code_checkpoint": "8cb3c07c40bf60bd3fa543f29431496029362d74",
+        "checked_row_count": 24,
+        "distinct_checked_report_count": 24,
+        "mismatch_count": 0,
+        "report_checks": [
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final2.json",
+            "recorded_sha256": "3666b7ce8703661140ff687531e0b23cc0c3e862d53021ae9942980846896060",
+            "actual_sha256": "3666b7ce8703661140ff687531e0b23cc0c3e862d53021ae9942980846896060",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps51-final2.json",
+            "recorded_sha256": "acaa388850a62039e52e0d314d22c9e74fb0cec998593d11826540b106f25cd4",
+            "actual_sha256": "acaa388850a62039e52e0d314d22c9e74fb0cec998593d11826540b106f25cd4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps51-final2.json",
+            "recorded_sha256": "bf4a6f0d0ccc283db5c1ec024245774742b56dd38c8bbe66ac421e3c4821d313",
+            "actual_sha256": "bf4a6f0d0ccc283db5c1ec024245774742b56dd38c8bbe66ac421e3c4821d313",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final2.json",
+            "recorded_sha256": "d89bd85a38f9fe903c955abadd7c96b145ef7a6ded920626a3f63bb65500e60a",
+            "actual_sha256": "d89bd85a38f9fe903c955abadd7c96b145ef7a6ded920626a3f63bb65500e60a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps51-final2.json",
+            "recorded_sha256": "f323401341d8d10c6a68dc6805c09fbdcb59706bd62ac867fbe9da99116db17d",
+            "actual_sha256": "f323401341d8d10c6a68dc6805c09fbdcb59706bd62ac867fbe9da99116db17d",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps51-final2.json",
+            "recorded_sha256": "a821bcd17171390ad12cccc3c250e7f61aea73c2f3ab0840edb3c63d295e219d",
+            "actual_sha256": "a821bcd17171390ad12cccc3c250e7f61aea73c2f3ab0840edb3c63d295e219d",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final2.json",
+            "recorded_sha256": "5fd85353dc65c0be050f24907a783535a5a8acb764b63f45440daf09e0b90ca3",
+            "actual_sha256": "5fd85353dc65c0be050f24907a783535a5a8acb764b63f45440daf09e0b90ca3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps7-final2.json",
+            "recorded_sha256": "d6e1cfc57e65693e9059afc33960c081ed18bd251b577c232d072f6233446200",
+            "actual_sha256": "d6e1cfc57e65693e9059afc33960c081ed18bd251b577c232d072f6233446200",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps7-final2.json",
+            "recorded_sha256": "64b3ec7d304341fb4914789f5e29a16149b13fc7af26cd9c420b8c63e64e6c49",
+            "actual_sha256": "64b3ec7d304341fb4914789f5e29a16149b13fc7af26cd9c420b8c63e64e6c49",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final2.json",
+            "recorded_sha256": "f27276d309427d34cc24ac87fde5f6f5706206a16223d95b547837b5b7dd6b16",
+            "actual_sha256": "f27276d309427d34cc24ac87fde5f6f5706206a16223d95b547837b5b7dd6b16",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps7-final2.json",
+            "recorded_sha256": "3e2e4512566ae47887ee86e3e5b888c055d76b03083dcfe75e900b3a2c352284",
+            "actual_sha256": "3e2e4512566ae47887ee86e3e5b888c055d76b03083dcfe75e900b3a2c352284",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps7-final2.json",
+            "recorded_sha256": "75b2dc286bbba59cdad2f3631216490564498ec71a043f4f8e7bfb9787604eca",
+            "actual_sha256": "75b2dc286bbba59cdad2f3631216490564498ec71a043f4f8e7bfb9787604eca",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "8cb3c07c40bf60bd3fa543f29431496029362d74"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps51-run38139568879_1.json",
+            "recorded_sha256": "5d8009012155d349995ac219aa36f3e562181b1742a70baa930698f029eb8f99",
+            "actual_sha256": "5d8009012155d349995ac219aa36f3e562181b1742a70baa930698f029eb8f99",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps51-run38139568879_1.json",
+            "recorded_sha256": "05fa0fd51a8b6d5fe2b3a4702a9f2c8d6b941afbe8e76e7910d310b88f7bc95d",
+            "actual_sha256": "05fa0fd51a8b6d5fe2b3a4702a9f2c8d6b941afbe8e76e7910d310b88f7bc95d",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps51-run38139568879_1.json",
+            "recorded_sha256": "9f3a5894f9a0a9c73b7da7a744e1f1a432eac16311788e23bf9a06d18c0e77f3",
+            "actual_sha256": "9f3a5894f9a0a9c73b7da7a744e1f1a432eac16311788e23bf9a06d18c0e77f3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-run38139568879_1.json",
+            "recorded_sha256": "8867893099eb08044955b1f9efc05e3135bf049760515acb09118a29358550b3",
+            "actual_sha256": "8867893099eb08044955b1f9efc05e3135bf049760515acb09118a29358550b3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps51-run38139568879_1.json",
+            "recorded_sha256": "2b6037c100579b7746de2ecdbe437cdeb070137c25c04095609bdbefdbee3fc7",
+            "actual_sha256": "2b6037c100579b7746de2ecdbe437cdeb070137c25c04095609bdbefdbee3fc7",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps51-run38139568879_1.json",
+            "recorded_sha256": "10efa379f26b299d237a2f65580565e3665bf115e7b2455561d0823df6f9f977",
+            "actual_sha256": "10efa379f26b299d237a2f65580565e3665bf115e7b2455561d0823df6f9f977",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps7-run38139568879_1.json",
+            "recorded_sha256": "0b2490133035838d4b26cdc58f7483f7cab7cf27db89002e10c064907b411d95",
+            "actual_sha256": "0b2490133035838d4b26cdc58f7483f7cab7cf27db89002e10c064907b411d95",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps7-run38139568879_1.json",
+            "recorded_sha256": "0524275a1e3559beee7f3279577cace0ad927a07d3c705588e949709db96d944",
+            "actual_sha256": "0524275a1e3559beee7f3279577cace0ad927a07d3c705588e949709db96d944",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps7-run38139568879_1.json",
+            "recorded_sha256": "0c92a87392edd199b6450b8b4f36f8bf9fc3eb41bcdbf26a29313a68d619fc15",
+            "actual_sha256": "0c92a87392edd199b6450b8b4f36f8bf9fc3eb41bcdbf26a29313a68d619fc15",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-run38139568879_1.json",
+            "recorded_sha256": "ca0e7d12e96b4fa8ac5dfc6ae3120f2e87c1c87a16f5299ecd6a1a76865b2f66",
+            "actual_sha256": "ca0e7d12e96b4fa8ac5dfc6ae3120f2e87c1c87a16f5299ecd6a1a76865b2f66",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps7-run38139568879_1.json",
+            "recorded_sha256": "aacd5097ea5832acdd828e874fc6d6a570e51126d1249fde760b0ab6e54362dc",
+            "actual_sha256": "aacd5097ea5832acdd828e874fc6d6a570e51126d1249fde760b0ab6e54362dc",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps7-run38139568879_1.json",
+            "recorded_sha256": "2ba9ec15a620ee0b5c7440d015d55101c6f7f9b1015ce5b4ae15d93dd0020f1a",
+            "actual_sha256": "2ba9ec15a620ee0b5c7440d015d55101c6f7f9b1015ce5b4ae15d93dd0020f1a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "f8f9d71eff213af172eba14a33123845f4fcf139"
+          }
+        ]
+      },
+      {
+        "path": "docs/codex-v1/evidence/T18-tested-payload-final2.json",
+        "sha256": "d035b607c4f7b9d40666808c96458df7d8a159c0a299a0c5eabaea7cd9192163",
+        "reviewed_code_checkpoint": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae",
+        "checked_row_count": 16,
+        "distinct_checked_report_count": 16,
+        "mismatch_count": 0,
+        "report_checks": [
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final4.json",
+            "recorded_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+            "actual_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps51-final4.json",
+            "recorded_sha256": "37eb26b01f0043c1d311fff2c40488bb587f4794f988e00e678bbf93d76f2542",
+            "actual_sha256": "37eb26b01f0043c1d311fff2c40488bb587f4794f988e00e678bbf93d76f2542",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps51-final4.json",
+            "recorded_sha256": "29bd8d4b2b53c5aa66094919a43967e4b3c2b995b95399338580bc417cf5a58a",
+            "actual_sha256": "29bd8d4b2b53c5aa66094919a43967e4b3c2b995b95399338580bc417cf5a58a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final4.json",
+            "recorded_sha256": "a6dd32b9892cda0e8dde5b884b41687ca7929a0ff5fced12e84d6d725552d7b1",
+            "actual_sha256": "a6dd32b9892cda0e8dde5b884b41687ca7929a0ff5fced12e84d6d725552d7b1",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps51-final4.json",
+            "recorded_sha256": "6694ce5309066fed1edc87fe6c13a73b42dde42a070fcda55f17bb092f4deb37",
+            "actual_sha256": "6694ce5309066fed1edc87fe6c13a73b42dde42a070fcda55f17bb092f4deb37",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-help-ps51-final4.json",
+            "recorded_sha256": "b519d6787679ea54a08083e2893f27199efa934c068314a12302c2bc72636b7f",
+            "actual_sha256": "b519d6787679ea54a08083e2893f27199efa934c068314a12302c2bc72636b7f",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps51-final4.json",
+            "recorded_sha256": "82174e305f4d0c527600e78d309fde14ac571b593c93c42ce32cf956df81ae24",
+            "actual_sha256": "82174e305f4d0c527600e78d309fde14ac571b593c93c42ce32cf956df81ae24",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final4.json",
+            "recorded_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+            "actual_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps7-final4.json",
+            "recorded_sha256": "a828b28e2ef3c30fb17edc99a6191c5d1ac5ca2aa48085ab8f8fb16ae004a6e0",
+            "actual_sha256": "a828b28e2ef3c30fb17edc99a6191c5d1ac5ca2aa48085ab8f8fb16ae004a6e0",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps7-final4.json",
+            "recorded_sha256": "c4e1faae69bdc25e8747507f51a56d8f2aa74634515c37cf38bff0ffa802b9b3",
+            "actual_sha256": "c4e1faae69bdc25e8747507f51a56d8f2aa74634515c37cf38bff0ffa802b9b3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final4.json",
+            "recorded_sha256": "c43178bdac1deed98564194e6fd86ee8abd8ed39b59e315807723750fd15b8e3",
+            "actual_sha256": "c43178bdac1deed98564194e6fd86ee8abd8ed39b59e315807723750fd15b8e3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps7-final4.json",
+            "recorded_sha256": "39a3e388748375eeb068576eea3b86929fd08cade65196c6cdb702e7ea2ef5aa",
+            "actual_sha256": "39a3e388748375eeb068576eea3b86929fd08cade65196c6cdb702e7ea2ef5aa",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-help-ps7-final4.json",
+            "recorded_sha256": "0c153a0d4442e445e684a952044b8aed09dc59ab83e218071a63004252ac3da6",
+            "actual_sha256": "0c153a0d4442e445e684a952044b8aed09dc59ab83e218071a63004252ac3da6",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps7-final4.json",
+            "recorded_sha256": "dbbaf428dca4b43a728931ed545d1f08845ae226283b722ea4d343fe6ea17c75",
+            "actual_sha256": "dbbaf428dca4b43a728931ed545d1f08845ae226283b722ea4d343fe6ea17c75",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "3766e168a1cf983d38b3a079d14d0fb589c0e6ae"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T18-diagnostics-ps51-final1.json",
+            "recorded_sha256": "76f890f4fd952826a6c0e71f6cb10bc06bd042c770a62f2f1bb09e0f4e4809d7",
+            "actual_sha256": "76f890f4fd952826a6c0e71f6cb10bc06bd042c770a62f2f1bb09e0f4e4809d7",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T18-diagnostics-ps7-final1.json",
+            "recorded_sha256": "31ee26504cfa43cddf7247ff57255893648541e9b8f0f12111f4074478caf102",
+            "actual_sha256": "31ee26504cfa43cddf7247ff57255893648541e9b8f0f12111f4074478caf102",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          }
+        ]
+      },
+      {
+        "path": "docs/codex-v1/evidence/T19-tested-payload.json",
+        "sha256": "51ba3a4d9808a9f0df98eb4c7dfc9bf5f5ea5f5bed5ee9b23e46425170770ceb",
+        "reviewed_code_checkpoint": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+        "checked_row_count": 82,
+        "distinct_checked_report_count": 48,
+        "mismatch_count": 0,
+        "report_checks": [
+          {
+            "path": "docs/codex-v1/evidence/T16-output-ps51-final19.json",
+            "recorded_sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b",
+            "actual_sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps51-final19.json",
+            "recorded_sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282",
+            "actual_sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps51-final19.json",
+            "recorded_sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4",
+            "actual_sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps51-final19.json",
+            "recorded_sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874",
+            "actual_sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps51-final19.json",
+            "recorded_sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b",
+            "actual_sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps51-final19.json",
+            "recorded_sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a",
+            "actual_sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps51-final19.json",
+            "recorded_sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216",
+            "actual_sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps51-final19.json",
+            "recorded_sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2",
+            "actual_sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps51-final19.json",
+            "recorded_sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5",
+            "actual_sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps51-final19.json",
+            "recorded_sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999",
+            "actual_sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps51-final19.json",
+            "recorded_sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183",
+            "actual_sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps51-final19.json",
+            "recorded_sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58",
+            "actual_sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps51-final19.json",
+            "recorded_sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc",
+            "actual_sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps51-final19.json",
+            "recorded_sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9",
+            "actual_sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps51-final19.json",
+            "recorded_sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb",
+            "actual_sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps51-final19.json",
+            "recorded_sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a",
+            "actual_sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps51-final21.json",
+            "recorded_sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+            "actual_sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-output-ps7-final19.json",
+            "recorded_sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743",
+            "actual_sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps7-final19.json",
+            "recorded_sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6",
+            "actual_sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps7-final19.json",
+            "recorded_sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a",
+            "actual_sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps7-final19.json",
+            "recorded_sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b",
+            "actual_sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps7-final19.json",
+            "recorded_sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4",
+            "actual_sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps7-final19.json",
+            "recorded_sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7",
+            "actual_sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps7-final19.json",
+            "recorded_sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f",
+            "actual_sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps7-final19.json",
+            "recorded_sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1",
+            "actual_sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps7-final19.json",
+            "recorded_sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff",
+            "actual_sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps7-final19.json",
+            "recorded_sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8",
+            "actual_sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps7-final19.json",
+            "recorded_sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982",
+            "actual_sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps7-final19.json",
+            "recorded_sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4",
+            "actual_sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps7-final19.json",
+            "recorded_sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e",
+            "actual_sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps7-final19.json",
+            "recorded_sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733",
+            "actual_sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps7-final19.json",
+            "recorded_sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981",
+            "actual_sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps7-final19.json",
+            "recorded_sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858",
+            "actual_sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps7-final21.json",
+            "recorded_sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+            "actual_sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-output-ps51-final19.json",
+            "recorded_sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b",
+            "actual_sha256": "097b80cb496b81d9cefaeac7711745bcd94f1787e581b6491538d765fa895c5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps51-final19.json",
+            "recorded_sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282",
+            "actual_sha256": "a2d6dbba3b493ef432535dc6fcc60e983b365c32283f3dd4fe1e66ccb3b87282",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps51-final19.json",
+            "recorded_sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4",
+            "actual_sha256": "c23a98d6175a123157704c193f44e5c05ac19a965d60ba8bfcd3b9809c4278c4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps51-final19.json",
+            "recorded_sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874",
+            "actual_sha256": "2d134a9acdf587cba348c37b6879640b8ee102684e6ad7f973f2d63130bd0874",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps51-final19.json",
+            "recorded_sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b",
+            "actual_sha256": "78b5885261edd7a71100c3489bc3e181505a51b6f95c374e9d78f7e49280ef5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps51-final19.json",
+            "recorded_sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a",
+            "actual_sha256": "c99553e58c97f8c348e5676e9b721e58c97ab2360808f94d985520249c7ec64a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps51-final19.json",
+            "recorded_sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216",
+            "actual_sha256": "b86dbf32b7cc28579e678f217cab36b6325b495b214c3528a64583874e8d6216",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps51-final19.json",
+            "recorded_sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2",
+            "actual_sha256": "63d4d0f85dfba0e5a4e2eba7fede8f2b5d855da08493970cfb015b1228df85e2",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps51-final19.json",
+            "recorded_sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5",
+            "actual_sha256": "f17934c5e0135501234b71c12850b9b7b398f586faf9083143bfd550069e55d5",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps51-final19.json",
+            "recorded_sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999",
+            "actual_sha256": "b43f1ce74e11226e5dfd5556c4b8e73b18290f2050a1c9d6b9007bbfc145b999",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps51-final19.json",
+            "recorded_sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183",
+            "actual_sha256": "138b41b3367dac10bb736508be795c28e6eeb013e9fd261a3bc03ae24b4cf183",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps51-final19.json",
+            "recorded_sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58",
+            "actual_sha256": "98dd252d09d1caf2e5fad7b2a6a441ecc5726a8345f289f2fd2fcbf4a86abd58",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps51-final19.json",
+            "recorded_sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc",
+            "actual_sha256": "c5ab8e6f298c3643ba28e27b0a5a579f74b8742c9d7727bf5b30924a937f04fc",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps51-final19.json",
+            "recorded_sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9",
+            "actual_sha256": "eac92b8b0a9ab997b5857e43ab8b1f4c98ad86006a7e52cd3bddc3ea0fe59cb9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps51-final19.json",
+            "recorded_sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb",
+            "actual_sha256": "53403a80f359b55f81614617754e656180213382ceb51306667188e262db3fbb",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps51-final19.json",
+            "recorded_sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a",
+            "actual_sha256": "d19cfdde6e0842eeb48066a62c7fa30c0db6a8652181ab26ebc020383fb7919a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps51-final21.json",
+            "recorded_sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+            "actual_sha256": "e7ffa2ba4b41780b4c069bc7e740b95cc7bea513831a3ae21f0904e5bcea2f3a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps51-final21.json",
+            "recorded_sha256": "9f8d78225e924905ab0fad7975ab0071f835d7885e550107bdf8db3d0eb273d5",
+            "actual_sha256": "9f8d78225e924905ab0fad7975ab0071f835d7885e550107bdf8db3d0eb273d5",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps51-final21.json",
+            "recorded_sha256": "c44a1606d7e5c9a19ce56037daf496807ee2de8266216c8b4d37baccad33551a",
+            "actual_sha256": "c44a1606d7e5c9a19ce56037daf496807ee2de8266216c8b4d37baccad33551a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-package-ps51-final21.json",
+            "recorded_sha256": "d3973f56a32bfab8b9511abb0914e406b95ee71efa6b93d9bb6cdbce3d51c9e0",
+            "actual_sha256": "d3973f56a32bfab8b9511abb0914e406b95ee71efa6b93d9bb6cdbce3d51c9e0",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps51-final21.json",
+            "recorded_sha256": "5b97e9af5ed4a01d891507a9b282275f6ccd7f110816e2d39b7df7d8738ef9e4",
+            "actual_sha256": "5b97e9af5ed4a01d891507a9b282275f6ccd7f110816e2d39b7df7d8738ef9e4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-help-ps51-final21.json",
+            "recorded_sha256": "5e323774024d7baeeac51c7c429e62813280f8e6c7892577d15dfb3d596c3a0c",
+            "actual_sha256": "5e323774024d7baeeac51c7c429e62813280f8e6c7892577d15dfb3d596c3a0c",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps51-final21.json",
+            "recorded_sha256": "a7420b396037b5d0a83fb559c16d592686211c895645c2e3390f5f477e4e2c88",
+            "actual_sha256": "a7420b396037b5d0a83fb559c16d592686211c895645c2e3390f5f477e4e2c88",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps51-final21.json",
+            "recorded_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+            "actual_sha256": "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-output-ps7-final19.json",
+            "recorded_sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743",
+            "actual_sha256": "d6cb9d495ce3865733c28f4514768016f0cb19955edf2b864c9221c35aa82743",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preflight-ps7-final19.json",
+            "recorded_sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6",
+            "actual_sha256": "93c8129877df223ca61b61127d55d6f7dd2bc3f6462f05d07480a1d6895554d6",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-discovery-ps7-final19.json",
+            "recorded_sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a",
+            "actual_sha256": "4ae76a9f3e48ff8e495f2ae3759f8ec059f6dcc542bd4314a9782b25b70e790a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-naming-ps7-final19.json",
+            "recorded_sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b",
+            "actual_sha256": "3f9142e49e0a2b3f600cc090de5157d7fc284abc486b9565ba5b0808895fcd5b",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-reservation-ps7-final19.json",
+            "recorded_sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4",
+            "actual_sha256": "cc5d354f768811a5ef6f155300a069698e3bc492274f76f72a7ba8d0cc4ac5b4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-transaction-ps7-final19.json",
+            "recorded_sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7",
+            "actual_sha256": "e001be3b57b708f3b6883db75c551478a2a9b985c788a67b0cb17b982b92a5b7",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-script-ps7-final19.json",
+            "recorded_sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f",
+            "actual_sha256": "2ac5c60f975f9be129e6f4b962e4d62a6f0eeacf3b67281425f0cb108b4dcc7f",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-launcher-ps7-final19.json",
+            "recorded_sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1",
+            "actual_sha256": "edead43a5cd7f8ac37e8928c90755d68ada965409b6839aff9c608aa3b03cce1",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cancellation-ps7-final19.json",
+            "recorded_sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff",
+            "actual_sha256": "823b43e8878c83970a3ae6697de8631497816d4cfbfeb2782c0de7402e4b25ff",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-preview-ps7-final19.json",
+            "recorded_sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8",
+            "actual_sha256": "0af955c615a3a50f5c94378f6317a7da6531e2d222c9f1ccebf7be136caf6cf8",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-progress-ps7-final19.json",
+            "recorded_sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982",
+            "actual_sha256": "310190018143b6fc688491e2e1b719e735987b03ebd8f28a00a9586c71861982",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-diagnostics-ps7-final19.json",
+            "recorded_sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4",
+            "actual_sha256": "edcc38c6cd35730530a6cbc3a0e868f542eae6cd5e48c1d3655f70e6167fe4c4",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-metadata-ps7-final19.json",
+            "recorded_sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e",
+            "actual_sha256": "b9c4cba119dcbdf82c45e7018baedf553d080b43761326e5eb1516e3b7e58a5e",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-cleanup-ps7-final19.json",
+            "recorded_sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733",
+            "actual_sha256": "d39148211c4490e9cf29c757dcd3512027d9be59469c49d9be2188ad1780e733",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-edges-ps7-final19.json",
+            "recorded_sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981",
+            "actual_sha256": "edbb51a842d558b3ce974f24e8fa9e42a2f51729acc74cf6e9b0a036c4259981",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "d69732aa91bde6ccf966cb584544251b463004e4"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T16-music-ps7-final19.json",
+            "recorded_sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858",
+            "actual_sha256": "9f47baff1ac8a315dfce6f37e50a6ee5983ea5f8c70e45f89904915a27972858",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-ps7-final21.json",
+            "recorded_sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+            "actual_sha256": "ad8f5ac8c8fb9fbf2ebb849057fe1787c77214891d16e1af34236c504712cad3",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-unit-ps7-final21.json",
+            "recorded_sha256": "e7bcb99d9ea485b85ed5c0bbc9d3ddfcd75422d110781be9c2f61f286ca9e7a9",
+            "actual_sha256": "e7bcb99d9ea485b85ed5c0bbc9d3ddfcd75422d110781be9c2f61f286ca9e7a9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-ci-dependencyguards-ps7-final21.json",
+            "recorded_sha256": "b18ad2fdeffe30c2d8bdbee818ab0512196eee26130521d1d92c96324402a3ef",
+            "actual_sha256": "b18ad2fdeffe30c2d8bdbee818ab0512196eee26130521d1d92c96324402a3ef",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-package-ps7-final21.json",
+            "recorded_sha256": "062c6d93cc2714a9e11f16b2a84cacee1ab9a44ede6f3080061d0eabadd2d392",
+            "actual_sha256": "062c6d93cc2714a9e11f16b2a84cacee1ab9a44ede6f3080061d0eabadd2d392",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-baseline-ps7-final21.json",
+            "recorded_sha256": "32cc57f64d0d01e470f7fd79660632fed49abecbbf35254e1867b1e8eb847bf9",
+            "actual_sha256": "32cc57f64d0d01e470f7fd79660632fed49abecbbf35254e1867b1e8eb847bf9",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-help-ps7-final21.json",
+            "recorded_sha256": "1210681d95709ca1265ef356aed8cc8c1e6592da8f266c6ce30812aad9a5c80a",
+            "actual_sha256": "1210681d95709ca1265ef356aed8cc8c1e6592da8f266c6ce30812aad9a5c80a",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-native-ps7-final21.json",
+            "recorded_sha256": "ab04433ff8156033e3724c8822f2b3215d38d0d498be95f3250c7624c65e4609",
+            "actual_sha256": "ab04433ff8156033e3724c8822f2b3215d38d0d498be95f3250c7624c65e4609",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e"
+          },
+          {
+            "path": "docs/codex-v1/evidence/T17-dependencies-ps7-final21.json",
+            "recorded_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+            "actual_sha256": "8095e21d7690ed620bd9de2110150304eb614384528ed283c2f3b4ba8bffa254",
+            "exact_match": true,
+            "raw_status": "pass",
+            "actual_tested_commit": "15d8dc1f43199c08bdd12f3bc49cb093db7d2e9d"
+          }
+        ]
+      }
+    ],
+    "T20_binder_digests": [
+      {
+        "path": "docs/codex-v1/evidence/T20-supplemental.json",
+        "sha256": "67488ea8bd8d777cc6d81105adee97c4abe8935a75f687a270924e36a35f59e2",
+        "recorded_status": "pass"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-bindings.json",
+        "sha256": "b70dddff11670c8c7232333a0cc2761eee49cbbca5899a46083b69dafd1cb39c",
+        "recorded_status": "pass_selected_automated_long_audio"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-bindings.json",
+        "sha256": "8558c4f7e10a905574f40a5b8bf317d5212475b62ec07a8fccbbf95eb3cb78d4",
+        "recorded_status": "pass"
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-cancellation-bindings-final2.json",
+        "sha256": "0881f5b5ff5af1b442cb4c6618ef01b1258c8d8535d73af7d9cbd149c96957f7",
+        "recorded_status": "pass"
+      }
+    ],
+    "T20_checked_rows": 14,
+    "T20_report_checks": [
+      {
+        "path": "docs/codex-v1/evidence/T16-metadata-ps51-final20.json",
+        "recorded_sha256": "043412b0697e1889751851f0c4359c4273791b7b22eafda7209a5320169c2092",
+        "actual_sha256": "043412b0697e1889751851f0c4359c4273791b7b22eafda7209a5320169c2092",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-metadata-ps7-final20.json",
+        "recorded_sha256": "743e3d980f8336560cd0346185b7275c7b4e1603bd9e2c364cc9c211b32f8557",
+        "actual_sha256": "743e3d980f8336560cd0346185b7275c7b4e1603bd9e2c364cc9c211b32f8557",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-script-ps51-final20.json",
+        "recorded_sha256": "3dd76e6e587d75b3517f468dda2dd55ed85025a0c9b294bb69f2989c8974f025",
+        "actual_sha256": "3dd76e6e587d75b3517f468dda2dd55ed85025a0c9b294bb69f2989c8974f025",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-script-ps7-final20.json",
+        "recorded_sha256": "215531c97e617c669b9df38140932562a62e51d7cbdeef7c0b3b64dfab1d24b8",
+        "actual_sha256": "215531c97e617c669b9df38140932562a62e51d7cbdeef7c0b3b64dfab1d24b8",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-launcher-ps51-final20.json",
+        "recorded_sha256": "8c8053e6c637b109c612130193a4e0e7687635e3626810011ee1659ba55d0b20",
+        "actual_sha256": "8c8053e6c637b109c612130193a4e0e7687635e3626810011ee1659ba55d0b20",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-launcher-ps7-final20.json",
+        "recorded_sha256": "b6bae56d352748a3b9f6625acb7f436b15a77da405e05b51797688a57c3d806f",
+        "actual_sha256": "b6bae56d352748a3b9f6625acb7f436b15a77da405e05b51797688a57c3d806f",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-music-ps51-final20.json",
+        "recorded_sha256": "5da9d3db616a512b04f6dfec1ffc3f8d85007d06a4d3adfc543769c8221980b9",
+        "actual_sha256": "5da9d3db616a512b04f6dfec1ffc3f8d85007d06a4d3adfc543769c8221980b9",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-music-ps7-final20.json",
+        "recorded_sha256": "7a3c76610e0d73ef61fe5976c21bf84f40f03a6f038f00e7f166ba0149eacc0c",
+        "actual_sha256": "7a3c76610e0d73ef61fe5976c21bf84f40f03a6f038f00e7f166ba0149eacc0c",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-ps51-final1.json",
+        "recorded_sha256": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191",
+        "actual_sha256": "7180c8feda3ec171e3060a3ea807da34bf949fa909939a87ba9b89a1c6aa4191",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-long-ps7-final1.json",
+        "recorded_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+        "actual_sha256": "7830d118cd4b27bfa8d144ec1a72491368d27018c19f733af813910711e5bce0",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-ps51-final1.json",
+        "recorded_sha256": "b764c677df915c7fd73f55052f7bf87702c38de81500638b5a4c2230122366ec",
+        "actual_sha256": "b764c677df915c7fd73f55052f7bf87702c38de81500638b5a4c2230122366ec",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T20-picker-recovery-ps7-final1.json",
+        "recorded_sha256": "b075e36fb8459c2f374468f6774d72fc6e801ed70e5516796dc0f0d59ffc829e",
+        "actual_sha256": "b075e36fb8459c2f374468f6774d72fc6e801ed70e5516796dc0f0d59ffc829e",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cancellation-ps51-final22.json",
+        "recorded_sha256": "60e615d7db340d2c642dcdc0631df4c263b76ca07a59fbd7feaf092ea8783ce9",
+        "actual_sha256": "60e615d7db340d2c642dcdc0631df4c263b76ca07a59fbd7feaf092ea8783ce9",
+        "exact_match": true
+      },
+      {
+        "path": "docs/codex-v1/evidence/T16-cancellation-ps7-final22.json",
+        "recorded_sha256": "ed02b9b40fef81129716ade679eba40b48854b545613a3b96a3ea284256bc0a2",
+        "actual_sha256": "ed02b9b40fef81129716ade679eba40b48854b545613a3b96a3ea284256bc0a2",
+        "exact_match": true
+      }
+    ],
+    "T21_final_owner_observation_path": "docs/codex-v1/evidence/T21-phone-final-observations.json",
+    "T21_final_owner_observation_sha256": "6194458734696f0579aaa6826e22f348a7f0a25d28bec8b7bab1478e9fab956c",
+    "T21_preserved_artifact_rows": [
+      {
+        "path": "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+        "recorded_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+        "actual_sha256": "3f7095c686af5019a973b535a048b77765f1a38a400cf0b3d739ec5502d8d3d6",
+        "exact_match": false,
+        "line_ending_equivalence": {
+          "kind": "strict_UTF8_CRLF_to_LF_only_preserving_BOM",
+          "roundtrip_equal": true,
+          "has_BOM": false,
+          "lone_CR": false,
+          "normalized_LF_sha256": "ce360e3a31e276242018c3ad247768aac8687ad37e9d029510ee8ea9d15fe839",
+          "recorded_hash_matches_normalized_LF": true,
+          "unchanged_git_blob": "3f774f28b09ece84cdfa3f63dc776e0d87da10cf",
+          "compared_commit": "35f275ae284919757632ac4658cb81de00b498b5"
+        }
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-start.json",
+        "recorded_sha256": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e",
+        "actual_sha256": "8dbf535a9e8ea436750cc35dc574877527e2c475f8f7f0ef50ebf2807427851e",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-preparation-ps7-final1.json",
+        "recorded_sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+        "actual_sha256": "c260b0a6a46e7733acf39d1806c2bf4215fa4c2531b7abf18e36fefbb97a3619",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-preparation-bindings.json",
+        "recorded_sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+        "actual_sha256": "ce9f8684253b709fdd2cbcb0554cef0a4638be6ebb542c19578e0b006020a393",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-review.json",
+        "recorded_sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f",
+        "actual_sha256": "32d2babd425a0072c62101c5466cb0c6f95409079c7d0aa7077481cdb858da9f",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-observations.json",
+        "recorded_sha256": "f2e932e35fcc43f59b576d00db911ce79cbb2d3fbd8671e402382578b6fb9b6f",
+        "actual_sha256": "f2e932e35fcc43f59b576d00db911ce79cbb2d3fbd8671e402382578b6fb9b6f",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-asset-check.json",
+        "recorded_sha256": "4e9d72bdf12298ba039c8eb3c4b5da95a7f89b27df5cfe840965da0f17f0fbba",
+        "actual_sha256": "4e9d72bdf12298ba039c8eb3c4b5da95a7f89b27df5cfe840965da0f17f0fbba",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      },
+      {
+        "path": "docs/codex-v1/evidence/T21-phone-review.json",
+        "recorded_sha256": "e6c8179df945e7f2a563b4de59ca16e7c7895623c0e295635a630fa2e3cdab77",
+        "actual_sha256": "e6c8179df945e7f2a563b4de59ca16e7c7895623c0e295635a630fa2e3cdab77",
+        "exact_match": true,
+        "line_ending_equivalence": null
+      }
+    ],
+    "historical_expected_digest_failure_count": 0,
+    "literal_vs_line_ending_boundary": "Seven T21 prior JSON records match literal bytes; preparer matches only through proved strict UTF8 CRLF-to-LF equivalence and unchanged Git blob. No raw report tested_commit, failure flag or missing field is rewritten."
+  },
+  "historical_count_audit": {
+    "T19_selected_parent_count": 34,
+    "T19_all_selected_parent_status_pass": true,
+    "T19_summed_counted_required_groups": 1196.0,
+    "T19_recorded_required_groups": 1196,
+    "T19_summed_separate_baseline_observations": 6.0,
+    "T19_recorded_separate_baseline_observations": 6,
+    "T19_distinct_raw_report_count": 48,
+    "T19_parent_raw_hash_row_count_includes_duplicate_rows": 82,
+    "routine_children_not_counted_twice": true,
+    "source_fingerprints_without_execution_not_counted_as_test_pass": true
+  },
+  "original_execution_provenance": {
+    "T16_selected_retained_actual_base": "42d80236521fbcbaf77d511abaca6d55456879c5",
+    "T16_direct_focused_checkpoint": "3f3c21d2ca65025202ea4a364a157f671031a2a8",
+    "T19_retained_milestone_actual_base": "d69732aa91bde6ccf966cb584544251b463004e4",
+    "T19_retained_Music_actual_base": "1cb92a18ed162861b286a47cabb6ae365ee8b4e0",
+    "T19_corrected_equivalence_target": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+    "T20_long_original_generation": "f992a54c8e7a8ad9ce2b95bd26bf66be86f5bf4e",
+    "T21_short_original_generation": "3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d",
+    "preserved_raw_tested_commits_are_not_relabelled": true,
+    "hosted_Windows_Server_is_supplementary_not_active_Windows_11_acceptance": true
+  },
+  "preserved_limitations": [
+    "Human testing is explicitly completed by owner Janne Vuorela; no further human checks are requested or required for this accepted candidate. Untested features stay untested.",
+    "Accepted phone scope is Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable and the three named T21 assets. Earlier A56 wording is superseded, not a second accepted phone or separate observed run.",
+    "Phone playback/seeking/expected duration/resume/tags/blue cover/order are prompted aggregate owner observations, not independent instrumented phone measurements or universal compatibility.",
+    "Phone chapters are unavailable; selection/navigation is not_run. A52 is satisfied through the documented actual chapter limitation, not a chapter-navigation pass.",
+    "Phone-side hashes, exact test timestamp/display, base Android release, USB protocol, sorting mode and separate disc ordering remain unreported and are not inferred.",
+    "T20 Windows mixed method was explicitly revised at repeated owner request. PS7 verifier execution is not a PS7 native picker application run.",
+    "Current physical Cancel, hardware Ctrl+C and physical fallback remain unobserved. Historical owner-confirmed T11 PS5.1/Store PS7 physical Ctrl+C evidence stays historical.",
+    "Named T20 folder-on-BAT interaction reached Completed with failures; BAT shell/version, raw exit and output root remain unknown. Unknown Music output stays retained without scan or cleanup.",
+    "Selected real long asset is 79m35s, not multi-hour or a newly regenerated phone output; measured process resource figures are not total-system or universal performance limits.",
+    "Earlier failed/intermediate reports keep original status and bytes. Corrections and later passes do not retrospectively relabel failed aggregate or cleanup proof.",
+    "T07 possible unknown TEMP residue, T09 post-guard path interval, T11 forced-host/cancellation limits and T14 narrow local-record persistence/concurrency limits remain documented.",
+    "Separately rejected T17 research/T19 preliminary cleanup actions remain retained and unverified; no broad cleanup or equivalent retry is claimed by this audit.",
+    "T16 CleanupSafety executes only sixteen selected TEMP IfStatement bodies; parent finalizers are not exercised by that harness. Six legacy bodies lack descendant-release conditions; hardening does not imply every retained harness gained a native ledger.",
+    "Actual directory junction/custom inert file-reparse coverage does not imply privileged Windows file-symlink capability was available.",
+    "Source260 behavior is a recorded host/build observation; arbitrary long-path, NAS/UNC/network Music and all phone/MTP filesystems are not supported by universal evidence.",
+    "Configured-Music smoke uses exact owned generated-input runs; ordinary Music is not disposable test data or broadly enumerated.",
+    "Pinned analyzer acceptance is configured default Error plus ten selected rules; legacy warnings outside that scope are not a globally warning-free claim.",
+    "Scripts remain unsigned; hashes identify bytes and do not authenticate publisher. FFmpeg/ffprobe remain external; no telemetry/service/account/downloader/updater or production Python dependency.",
+    "Normalization remains absent from default processing; optional O01 stays deferred.",
+    "T19 exploratory source builds do not establish exact frozen/released ZIP acceptance. Cross-shell ZIP/manifest/checksum byte equality is not inferred from member-byte equality.",
+    "Improvement15 retains mandatory future A55-A65 release obligations; prepared ZIP/tag/draft or A53 readiness is not project completion."
+  ],
+  "optional_scope": {
+    "task": "O01",
+    "recorded_status": "deferred",
+    "required": false,
+    "activated": false,
+    "default_loudness_normalization": false,
+    "optional_cases": [
+      "O-A01",
+      "O-A02"
+    ],
+    "optional_case_status": "not_run"
+  },
+  "findings": [],
+  "unresolved_historical_required_defects": [],
+  "remaining_required_gates": {
+    "A53": "Historical mapping/existence/hash preconditions supported. Root must complete and review fresh candidate final220 milestone checks and final source/safety review before marking A53 pass. This audit does not infer their result.",
+    "current_final220_tests_executed_by_reviewer": false,
+    "current_final220_test_results_inferred": false,
+    "A54": "Final T22 docs/evidence require a reviewed PR22 owner-approved main integration under AUTHORITY.md. A54 depends on that actual merge, clean local main/live advertised main equality and no pending runtime/test/build changes; creating/pushing a feature checkpoint alone does not pass A54.",
+    "A55_A65": "Future T23-T27 exact-C/ZIP provenance, release authority, immutable tag/draft/assets/public downloads/public ZIP smoke and final-main closure remain not_run until actual evidence.",
+    "project_complete": false,
+    "release_complete": false
+  },
+  "creation_boundary": "Report does not include its own digest/containing commit. Root supplies final reviewed checkpoint, feature push/live ref/CI and eventual PR22 main integration evidence separately."
+}

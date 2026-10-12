@@ -1,0 +1,784 @@
+﻿{
+    "schema_version":  1,
+    "task":  "T17",
+    "mode":  "syntax_analysis_unit_real_ffmpeg",
+    "command":  "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-dependencies-ps51-final221.json -RunLabel final221",
+    "started_utc":  "2026-10-12T14:03:10.6870551Z",
+    "shell":  "5.1.26100.9444",
+    "shell_edition":  "Desktop",
+    "os":  "10.0.26300.0",
+    "tested_commit":  "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+    "github_sha":  null,
+    "github_event":  null,
+    "github_run_id":  null,
+    "github_run_attempt":  null,
+    "github_ref":  null,
+    "github_head_ref":  null,
+    "github_base_ref":  null,
+    "runner_os":  null,
+    "runner_arch":  null,
+    "runner_image":  null,
+    "runner_image_version":  null,
+    "execution_environment":  "local_windows",
+    "dependency_report":  "T17-dependencies-ps51-final221.json",
+    "dependency_report_sha256":  "3c66817ac9ee3256e9a7bda1b41afb454dff21feab5b9438fbe29a0c21be0b37",
+    "dependencies_rechecked_against_lock":  true,
+    "checkout_matches_github_sha":  null,
+    "source_before":  [
+                          {
+                              "relative_path":  ".github/dependencies.json",
+                              "sha256":  "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/Initialize-CiDependencies.ps1",
+                              "sha256":  "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/Invoke-CiChecks.ps1",
+                              "sha256":  "936863590bb8063761a2a7bdc8c48c11fd81d3270555183831f60c49aa2f0a53"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/PSScriptAnalyzerSettings.psd1",
+                              "sha256":  "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8"
+                          },
+                          {
+                              "relative_path":  ".github/scripts/Test-CiPolicy.ps1",
+                              "sha256":  "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a"
+                          },
+                          {
+                              "relative_path":  ".github/workflows/windows-ci.yml",
+                              "sha256":  "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                              "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                          },
+                          {
+                              "relative_path":  "AudioFileForPhone.ps1",
+                              "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+                              "sha256":  "0bc98e749892637f4dafa332c8159a20c18df65f66839aa579c6a98e0a54da4c"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+                              "sha256":  "3f7095c686af5019a973b535a048b77765f1a38a400cf0b3d739ec5502d8d3d6"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Start-T20Guided.ps1",
+                              "sha256":  "24752807d5c0d4787f2b80d00f94c399e22cac0e9a4aadc3db6445d00d453d5c"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-GitSync.ps1",
+                              "sha256":  "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+                              "sha256":  "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-T02Launcher.ps1",
+                              "sha256":  "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+                              "sha256":  "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+                              "sha256":  "37e4a10eab2b6497592f5313733eca719191fefe04dd4706e8dd633e674c2daa"
+                          },
+                          {
+                              "relative_path":  "docs/codex-v1/tools/Test-T20PickerRecovery.ps1",
+                              "sha256":  "c2d544bc7f0987347a9676aea4e3d79af971c6ae5a32a45d623ac19ec33f6269"
+                          },
+                          {
+                              "relative_path":  "tests/ci/Test-CiContracts.ps1",
+                              "sha256":  "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f"
+                          },
+                          {
+                              "relative_path":  "tests/ci/Test-CiDependencies.ps1",
+                              "sha256":  "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902"
+                          },
+                          {
+                              "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                              "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                          },
+                          {
+                              "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                              "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                          },
+                          {
+                              "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                              "sha256":  "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Cancellation.ps1",
+                              "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                          },
+                          {
+                              "relative_path":  "tests/Test-CleanupSafety.ps1",
+                              "sha256":  "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Diagnostics.ps1",
+                              "sha256":  "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Discovery.ps1",
+                              "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                          },
+                          {
+                              "relative_path":  "tests/Test-HelpVersion.ps1",
+                              "sha256":  "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71"
+                          },
+                          {
+                              "relative_path":  "tests/Test-LauncherResults.ps1",
+                              "sha256":  "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Metadata.ps1",
+                              "sha256":  "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NamingPlan.ps1",
+                              "sha256":  "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+                          },
+                          {
+                              "relative_path":  "tests/Test-NativeProcess.ps1",
+                              "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                          },
+                          {
+                              "relative_path":  "tests/Test-OutputParent.ps1",
+                              "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Package.ps1",
+                              "sha256":  "b78eadae9dd08db3257bc77190a6ecb127d319f0dd7f5614dbffa16df788e222"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preflight.ps1",
+                              "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Preview.ps1",
+                              "sha256":  "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+                          },
+                          {
+                              "relative_path":  "tests/Test-Progress.ps1",
+                              "sha256":  "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+                          },
+                          {
+                              "relative_path":  "tests/Test-RegressionEdges.ps1",
+                              "sha256":  "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+                          },
+                          {
+                              "relative_path":  "tests/Test-RunReservation.ps1",
+                              "sha256":  "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+                          },
+                          {
+                              "relative_path":  "tests/Test-ScriptResults.ps1",
+                              "sha256":  "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+                          },
+                          {
+                              "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                              "sha256":  "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+                          },
+                          {
+                              "relative_path":  "tools/Build-Package.ps1",
+                              "sha256":  "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150"
+                          },
+                          {
+                              "relative_path":  "tools/package-files.json",
+                              "sha256":  "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345"
+                          }
+                      ],
+    "source_after":  [
+                         {
+                             "relative_path":  ".github/dependencies.json",
+                             "sha256":  "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/Initialize-CiDependencies.ps1",
+                             "sha256":  "f48c011656d585978ace4500b99a0788a1f65b303f0c12cd40147228e02eeccf"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/Invoke-CiChecks.ps1",
+                             "sha256":  "936863590bb8063761a2a7bdc8c48c11fd81d3270555183831f60c49aa2f0a53"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/PSScriptAnalyzerSettings.psd1",
+                             "sha256":  "86e2efeec290406379cc8f997ce14ea75aa1f35d85f717c347959af97b0bc0d8"
+                         },
+                         {
+                             "relative_path":  ".github/scripts/Test-CiPolicy.ps1",
+                             "sha256":  "223e2a931862e21ae7ddcfd1026063fc3d3350117c318003508b308663025a2a"
+                         },
+                         {
+                             "relative_path":  ".github/workflows/windows-ci.yml",
+                             "sha256":  "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.Helpers.ps1",
+                             "sha256":  "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+                         },
+                         {
+                             "relative_path":  "AudioFileForPhone.ps1",
+                             "sha256":  "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+                             "sha256":  "0bc98e749892637f4dafa332c8159a20c18df65f66839aa579c6a98e0a54da4c"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+                             "sha256":  "3f7095c686af5019a973b535a048b77765f1a38a400cf0b3d739ec5502d8d3d6"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Start-T20Guided.ps1",
+                             "sha256":  "24752807d5c0d4787f2b80d00f94c399e22cac0e9a4aadc3db6445d00d453d5c"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-GitSync.ps1",
+                             "sha256":  "038703687a3ab75a42411fcf37850f3992fa8e2edcdcb96c57a64e6ed84498bc"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+                             "sha256":  "9e8602738bceac56a9ce3c5914667140b98b88b7aa35a412f02369673f88191d"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-T02Launcher.ps1",
+                             "sha256":  "19bb1e75a6455da9c13c6497df181fc5961244d132a43a69bfa6bb396f6889aa"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+                             "sha256":  "b1c239915cad2ada235e58f9530fb9b0c65a2100fb65c8ba438b1a029efdc3cd"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+                             "sha256":  "37e4a10eab2b6497592f5313733eca719191fefe04dd4706e8dd633e674c2daa"
+                         },
+                         {
+                             "relative_path":  "docs/codex-v1/tools/Test-T20PickerRecovery.ps1",
+                             "sha256":  "c2d544bc7f0987347a9676aea4e3d79af971c6ae5a32a45d623ac19ec33f6269"
+                         },
+                         {
+                             "relative_path":  "tests/ci/Test-CiContracts.ps1",
+                             "sha256":  "1aab2467a1cffe6e4b67092eb0f484eeb0199294bc31a2c9a10e0704842d0c0f"
+                         },
+                         {
+                             "relative_path":  "tests/ci/Test-CiDependencies.ps1",
+                             "sha256":  "1b7683158dcc4e02d0ed9c62ea778919b05c799d87bcbc3fac0b9702b2202902"
+                         },
+                         {
+                             "relative_path":  "tests/Invoke-IsolatedBaseline.ps1",
+                             "sha256":  "064583d8dcf729d49580d36a1904ef5324406817d4be649247706b040c0bedf9"
+                         },
+                         {
+                             "relative_path":  "tests/Test-AudioFileForPhone.ps1",
+                             "sha256":  "5ec8c12f800d89dbd835c55ae8d1a5e9d09c299df3bea19c6111dff8c92955e3"
+                         },
+                         {
+                             "relative_path":  "tests/Test-BaselineCharacterization.ps1",
+                             "sha256":  "149f8949a742ba651c628ba1114f195f14c203d81b9d82469db5cd96258e7aee"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Cancellation.ps1",
+                             "sha256":  "ab7f666ba42a87dde51ddcaa7f693f1fc706eeb1cfdb3ca9e4c895a070782cc5"
+                         },
+                         {
+                             "relative_path":  "tests/Test-CleanupSafety.ps1",
+                             "sha256":  "6ba464a8792894efe39a8214e9b4b2d28d20f525d2ea3c4c6eae4c4a40ca5987"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Diagnostics.ps1",
+                             "sha256":  "deb397004d7f283d450e593a4c4358bac21b275f45feb592e6c7e60f2bb333ef"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Discovery.ps1",
+                             "sha256":  "3432ce7cd1d69d47d9c1bf9321d0202652a5acb7fd2d970a9f267b8a25a93ed1"
+                         },
+                         {
+                             "relative_path":  "tests/Test-HelpVersion.ps1",
+                             "sha256":  "e852f74f82ae5d4d52094eb4a99ac67732c353f3ea6da5f5506edc78ae305b71"
+                         },
+                         {
+                             "relative_path":  "tests/Test-LauncherResults.ps1",
+                             "sha256":  "7f5eb9b8d1135745888378c09062ab5216098fa11b9d1870103e2c5fd361a257"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Metadata.ps1",
+                             "sha256":  "c937bf4d39df6a74cdcc091eb01f25c5dc04a37431a3dd4c48e1863b8fd17a06"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NamingPlan.ps1",
+                             "sha256":  "6015515101d7b58e78344b6d4abe4bf63a28f277f8b5922b401ce94985877969"
+                         },
+                         {
+                             "relative_path":  "tests/Test-NativeProcess.ps1",
+                             "sha256":  "046afbda314f998fbd159cf05a95dc2128ea781baa68577316f4bc003006f8d0"
+                         },
+                         {
+                             "relative_path":  "tests/Test-OutputParent.ps1",
+                             "sha256":  "f43deaebf03370dcb3b95bb401ae219ff13db67650ceb0f22e0600e8aeb637b9"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Package.ps1",
+                             "sha256":  "b78eadae9dd08db3257bc77190a6ecb127d319f0dd7f5614dbffa16df788e222"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preflight.ps1",
+                             "sha256":  "cdf0d6a1ef8eacea586c966d8c8b300225df29148402ca3af8cf5bb110ef1653"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Preview.ps1",
+                             "sha256":  "1c8679ea120964dbb35fe6ed4adf7af23fffa5513a56d80f4d55e30d5abf3247"
+                         },
+                         {
+                             "relative_path":  "tests/Test-Progress.ps1",
+                             "sha256":  "ff3e6cf258c2c202e84864d4a81882b760c00c14f01181f5454b5dacc93df447"
+                         },
+                         {
+                             "relative_path":  "tests/Test-RegressionEdges.ps1",
+                             "sha256":  "568c170462aa5c68525fbcba4469339d837dd226b4e8b9b13918326068ddb359"
+                         },
+                         {
+                             "relative_path":  "tests/Test-RunReservation.ps1",
+                             "sha256":  "92d7609587188dd2539d1b591bef369a29d3a7ac871f8900367bbe1994924e54"
+                         },
+                         {
+                             "relative_path":  "tests/Test-ScriptResults.ps1",
+                             "sha256":  "44c6a7c0c4ec440bc26d0bc7c1320e6ffff77f3582804b4d163527c3b3157c65"
+                         },
+                         {
+                             "relative_path":  "tests/Test-TransactionalOutput.ps1",
+                             "sha256":  "5644a55b913aab83dc81e452bb9fc59358c84c4bf8cd46815cf19030008ca70c"
+                         },
+                         {
+                             "relative_path":  "tools/Build-Package.ps1",
+                             "sha256":  "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150"
+                         },
+                         {
+                             "relative_path":  "tools/package-files.json",
+                             "sha256":  "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345"
+                         }
+                     ],
+    "source_unchanged":  true,
+    "syntax":  [
+                   {
+                       "path":  ".github/scripts/Initialize-CiDependencies.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  ".github/scripts/Invoke-CiChecks.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  ".github/scripts/PSScriptAnalyzerSettings.psd1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  ".github/scripts/Test-CiPolicy.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "AudioFileForPhone.Helpers.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "AudioFileForPhone.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Prepare-T20Manual.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Prepare-T21Phone.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Start-T20Guided.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-GitSync.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-T02Bitrates.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-T02Launcher.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-T02NameContracts.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-T20LongAudio.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "docs/codex-v1/tools/Test-T20PickerRecovery.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/ci/Test-CiContracts.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/ci/Test-CiDependencies.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Invoke-IsolatedBaseline.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-AudioFileForPhone.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-BaselineCharacterization.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Cancellation.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-CleanupSafety.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Diagnostics.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Discovery.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-HelpVersion.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-LauncherResults.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Metadata.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-NamingPlan.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-NativeProcess.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-OutputParent.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Package.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Preflight.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Preview.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-Progress.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-RegressionEdges.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-RunReservation.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-ScriptResults.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tests/Test-TransactionalOutput.ps1",
+                       "errors":  [
+
+                                  ]
+                   },
+                   {
+                       "path":  "tools/Build-Package.ps1",
+                       "errors":  [
+
+                                  ]
+                   }
+               ],
+    "analysis":  {
+                     "status":  "pass",
+                     "rules":  [
+                                   "PSAvoidUsingInvokeExpression",
+                                   "PSAvoidUsingPlainTextForPassword",
+                                   "PSAvoidUsingConvertToSecureStringWithPlainText",
+                                   "PSAvoidUsingUsernameAndPasswordParams",
+                                   "PSAvoidUsingAllowUnencryptedAuthentication",
+                                   "PSAvoidUsingBrokenHashAlgorithms",
+                                   "PSUsePSCredentialType",
+                                   "PSAvoidAssignmentToAutomaticVariable",
+                                   "PSMisleadingBacktick",
+                                   "PSUseCompatibleSyntax"
+                               ],
+                     "files":  [
+                                   "AudioFileForPhone.ps1",
+                                   "AudioFileForPhone.Helpers.ps1",
+                                   ".github/scripts/Initialize-CiDependencies.ps1",
+                                   ".github/scripts/Invoke-CiChecks.ps1",
+                                   ".github/scripts/Test-CiPolicy.ps1",
+                                   "tests/ci/Test-CiContracts.ps1",
+                                   "tests/ci/Test-CiDependencies.ps1",
+                                   "tests/Test-Package.ps1",
+                                   "tools/Build-Package.ps1"
+                               ],
+                     "diagnostics":  [
+
+                                     ],
+                     "all_default_errors_gated":  true,
+                     "analyzer_version":  "1.25.0"
+                 },
+    "tests":  [
+                  {
+                      "family":  "unit",
+                      "harness":  "tests/ci/Test-CiContracts.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\ci\\Test-CiContracts.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-unit-ps51-final221.json"
+                                            ],
+                      "report":  "T17-unit-ps51-final221.json",
+                      "report_sha256":  "67c3787ddec5eeb501b6d9ed0b2e617647eff54c5e92b1f9dfe82affdb340b93",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  31,
+                      "observations":  null
+                  },
+                  {
+                      "family":  "ci-dependencyguards",
+                      "harness":  "tests/ci/Test-CiDependencies.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\ci\\Test-CiDependencies.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-ci-dependencyguards-ps51-final221.json"
+                                            ],
+                      "report":  "T17-ci-dependencyguards-ps51-final221.json",
+                      "report_sha256":  "a44f10949645fd64bbe335ba1ae862d3c4e685cc62659793f2447265447d2272",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  22,
+                      "observations":  null
+                  },
+                  {
+                      "family":  "package",
+                      "harness":  "tests/Test-Package.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\Test-Package.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-package-ps51-final221.json",
+                                                "-FfmpegPath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                "-FfprobePath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+                                            ],
+                      "report":  "T17-package-ps51-final221.json",
+                      "report_sha256":  "e246445640b1c40357b15d845957059944d66963b96924c148f5da96433d5a33",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  51,
+                      "observations":  null
+                  },
+                  {
+                      "family":  "baseline",
+                      "harness":  "tests/Invoke-IsolatedBaseline.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\Invoke-IsolatedBaseline.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-baseline-ps51-final221.json",
+                                                "-FfmpegPath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                "-FfprobePath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+                                            ],
+                      "report":  "T17-baseline-ps51-final221.json",
+                      "report_sha256":  "676e78b4c8904865d646495b323e12d0123ac4e2afa15309ef700138e5310ff0",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  7,
+                      "observations":  3
+                  },
+                  {
+                      "family":  "help",
+                      "harness":  "tests/Test-HelpVersion.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\Test-HelpVersion.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-help-ps51-final221.json",
+                                                "-FfmpegPath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                "-FfprobePath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+                                            ],
+                      "report":  "T17-help-ps51-final221.json",
+                      "report_sha256":  "606b06c5cda37e84ee3bb6ae4d16227703d34f26d09bd2b442eba19385eceec3",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  7,
+                      "observations":  null
+                  },
+                  {
+                      "family":  "native",
+                      "harness":  "tests/Test-NativeProcess.ps1",
+                      "command_arguments":  [
+                                                "-NoLogo",
+                                                "-NoProfile",
+                                                "-NonInteractive",
+                                                "-ExecutionPolicy",
+                                                "RemoteSigned",
+                                                "-File",
+                                                "C:\\projects\\AudioFileForPhone-main\\tests\\Test-NativeProcess.ps1",
+                                                "-EvidencePath",
+                                                "C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-native-ps51-final221.json",
+                                                "-FfmpegPath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+                                                "-FfprobePath",
+                                                "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-CI-813ca6d7976e4b448d318107e56b4ebd\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+                                            ],
+                      "report":  "T17-native-ps51-final221.json",
+                      "report_sha256":  "e0c22222729c9b23c570144b5e649461c34f707b7944d6b34217610295ecde78",
+                      "exit_code":  0,
+                      "status":  "pass",
+                      "required_checks":  35,
+                      "observations":  null
+                  }
+              ],
+    "required_checks":  153,
+    "observations":  3,
+    "status":  "pass",
+    "error":  null,
+    "completed_utc":  "2026-10-12T14:05:35.4980298Z"
+}

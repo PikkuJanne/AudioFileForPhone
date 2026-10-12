@@ -1,5 +1,34 @@
 # Evidence and efficient testing strategy
 
+## T22 milestone routing and retained baseline encoding
+
+T22 replays the T19-established full milestone commands with fresh `final220`
+reports, then selects the two routine CI reproductions under fresh `final221`.
+Exact executable/argument/exit records are in evidence/T22-commands.json and
+evidence/T22-routine-commands.json; the former retains its failed preliminary
+routine tail. Select passing scopes without changing original report status,
+task IDs, tested commits, BOM or byte hashes. Do not double-count routine children
+or the preliminary passing partial suites.
+
+The retained characterization helper captures FFprobe text through PowerShell's
+native operator and therefore requires the expected UTF-8 console decoding.
+The new temporary driver's CREATE_NO_WINDOW launch selected code page 437 and
+caused two Unicode comparisons to fail despite correct actual tags. The controlled
+synthetic evidence/T22-encoding-diagnosis.json compares the same media's raw UTF-8
+JSON with inherited-console 65001, no-window 437 and scoped/restored UTF-8 capture.
+Only the external driver's launch environment is corrected: inherit the existing
+UTF-8 console without creating a new console or changing global settings.
+Application/test sources and strict expected strings stay unchanged. Preserve
+the failed PS5.1 baseline/routine reports as failed and disclose this harness
+environment boundary in later exact-source/ZIP routing.
+
+Media tests remain isolated. The separate established -DefaultSmoke route inspects
+and removes only its exact returned owned synthetic Music run. Dependency records
+are literal historical-provisioning copies, revalidated by the actual routine
+checks; no new download/global setting or human observation is implied. Human
+testing is closed for this accepted candidate; T23–T27 exact-ZIP and publication
+gates remain required.
+
 ## Required environments
 
 Windows 11 with Windows PowerShell 5.1 and PowerShell 7 on the active Codex machine.

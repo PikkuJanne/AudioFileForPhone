@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "task": "T22",
+  "kind": "T22.IndependentContractReview",
+  "reviewed_utc": "2026-10-12T13:42:26.7974913Z",
+  "reviewer": "Codex independent subagent /root/contract_audit",
+  "status": "pass",
+  "reviewed_source_candidate": "64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723",
+  "reviewed_source_parent": "25856cf144b0b84cbedd378a58a8e537ae91c52b",
+  "previous_core_source": "70d1e2f3b47b84b595915c73a6ecb1b09d981d8e",
+  "scope": "Independent read-only security, source safety, usability and release-package contract review; focused candidate shipped-doc edit verification. Only this create-new review is written.",
+  "review_methods": [
+    "Read applicable AGENTS, startup routing/authority, T22 task, ROADMAP and release runbook.",
+    "Read runtime/helper/BAT and reviewed native argument transport, owned-process disposal, path handling, output reservation/transaction, configured Music resolution and defaults.",
+    "Read full public README/SUPPORT/CHANGELOG/SECURITY, allowlist/build policy, package contract and workflow; read retained T19-T21 review/evidence boundaries.",
+    "Read candidate64772f1 commit diff/stat and full updated README/SUPPORT/CHANGELOG; compare Git core paths against selected T19 C2.",
+    "Read exact candidate Git blobs as binary into memory, hash SHA256 and Git object identities, and bind reviewed working bytes. Only strict UTF8 LF/CRLF conversion preserving BOM is accepted when exact byte hashes differ."
+  ],
+  "conclusions": {
+    "final_shipped_docs": "Candidate changes only README.md, SUPPORT.md and CHANGELOG.md. They now state version1.0.0/features with neutral repository status links; no public release, frozen ZIP acceptance or publication date is claimed.",
+    "T20_scope": "SUPPORT names the actual folder-on-BAT Completed with failures observation and uncaptured shell/raw exit/output. Independently verified PS5.1 picker output is separate from unobserved current PS7 picker, physical Cancel and fallback; historical physical Ctrl+C remains identified as historical.",
+    "T21_scope": "README/SUPPORT/CHANGELOG identify only Samsung S24, One UI8.5, AIMPv4.31.1747 and USB cable. Detailed acceptance stays restricted to the three assets and named owner report; chapters unavailable/navigation not tested. A56 is not retained as a second accepted device.",
+    "security_source_safety": "Literal filesystem operations, direct native Process/CRT argv transport, bounded capture and owned-child teardown support the stated safety boundary. CreateNew recognizable partials, file identity checks, full decode/validation and non-overwriting promotion protect sources/completed outputs. Forced host closure, retained incomplete paths and unsupported environments stay explicit limits; no universal race-proof claim is added.",
+    "defaults_and_scope": "Entry/helper/BAT, tests, CI, build files, SECURITY and LICENSE match T19 C2. Default64kbps CBR MP3, MP3/M4A/OGG, configured Music destination, recursive relative layout, date-first names and metadata/artwork rules remain unchanged. O01 loudness remains deferred with no enabled option; no hosted service, telemetry/account, app downloader/updater or production Python dependency is added.",
+    "usability": "Public setup/options/help/preview/result/cancellation/diagnostic guidance remains consistent with runtime. BAT process-scoped Bypass and direct policy-checking launch guidance remain disclosed. Private diagnostic content and vendor/tool limits stay explicit.",
+    "package_contract": "Eight root files remain the allowlist/build policy. Builder requires exact clean detached commit, verifies regular Git blobs/archive member bytes, reads functions-only helper version, checks supplied external tools and emits ZIP/external manifest/two non-self-referential checksums. Caller test references are expressly attestations; checksum/signing/provenance and source/package acceptance are distinguished.",
+    "resolved_prior_finding": "Mutable planned/unreleased/pending-acceptance wording in frozen shipped docs is removed; current package/publication evidence is linked to docs/codex-v1 status. Narrow T20/T21 limits are added/retained without expanding observed results."
+  },
+  "candidate_changed_paths": [
+    "CHANGELOG.md",
+    "README.md",
+    "SUPPORT.md"
+  ],
+  "unchanged_core_comparison_paths": [
+    "AudioFileForPhone.ps1",
+    "AudioFileForPhone.Helpers.ps1",
+    "AudioFileForPhone.bat",
+    "tests",
+    ".github",
+    "tools",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "unchanged_core_diff_paths": [],
+  "findings": [],
+  "unresolved_findings": [],
+  "automated_tests_run_by_reviewer": false,
+  "human_UI_or_phone_actions_run_by_reviewer": false,
+  "application_FFmpeg_or_builder_run_by_reviewer": false,
+  "source_test_count_or_new_pass_claim": false,
+  "fresh_feature_main_sync_or_merge_approval_claimed": false,
+  "limitations_and_future_gates": [
+    "This pass concerns reviewed source/contracts/docs; it does not establish root current milestone test results or A54 reviewed main integration. Parent must bind actual fresh checks, approve/integrate under AUTHORITY and verify clean local/live main equality.",
+    "T23 source freezeC, exact clean-commit ZIP build/extraction/two-shell runtime/launcher/missing-dependency acceptance and candidate asset digests remain future work; this reviewed candidate is not declared frozenC.",
+    "T24-T27 exact recorded owner release authorization, immutable v1.0.0 tag, verified draft uploads/downloads, normal public publication, independent unauthenticated download/smoke, and docs-only closure/mainD equality remain future gates.",
+    "No new human tests are requested; owner-accepted T20/T21 observations retain their explicit unavailable/untested limits. No ordinary Music or private media directories are searched."
+  ],
+  "reviewed_source_identities": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "candidate_git_blob_oid": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "candidate_blob_bytes": 40032,
+      "candidate_blob_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "reviewed_working_bytes": 40032,
+      "reviewed_working_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_to_candidate_relation": "exact_bytes"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "candidate_git_blob_oid": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "candidate_blob_bytes": 112323,
+      "candidate_blob_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "reviewed_working_bytes": 114373,
+      "reviewed_working_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "candidate_git_blob_oid": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "candidate_blob_bytes": 1800,
+      "candidate_blob_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "reviewed_working_bytes": 1800,
+      "reviewed_working_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_to_candidate_relation": "exact_bytes"
+    },
+    {
+      "relative_path": "README.md",
+      "candidate_git_blob_oid": "aaae4e650aaf4481c17ab69bc16d726225efc7a5",
+      "candidate_blob_bytes": 12749,
+      "candidate_blob_sha256": "d29aa338b1f4603595917caab2409b1f244c368c91d20970ca36971c0eca9787",
+      "reviewed_working_bytes": 12986,
+      "reviewed_working_sha256": "5af1f4cfaf66a20a9e01b21fafeddbba65eb516e8718971b45b18a28fafdc65c",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "SUPPORT.md",
+      "candidate_git_blob_oid": "ddae51c0951b7676ff94e711eeacf36c14d4752a",
+      "candidate_blob_bytes": 13911,
+      "candidate_blob_sha256": "457d2afa8bf522ea8a3e643718a9801c40b65ed39d202088657aee87fbebac7b",
+      "reviewed_working_bytes": 14066,
+      "reviewed_working_sha256": "63b8fcdf3a68c4501e4587edecf74a7ac71e18e992a43df526cf358414cd8b69",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "CHANGELOG.md",
+      "candidate_git_blob_oid": "e2c46a102ac9450ee333b56cd53b117ced0cdfdf",
+      "candidate_blob_bytes": 1700,
+      "candidate_blob_sha256": "2ff15718cd49ab3bd67ca6404d7085cb41b4d9f7ae0d71299d6c78979b00f5b0",
+      "reviewed_working_bytes": 1729,
+      "reviewed_working_sha256": "6eb281756b1337651a63a3d492f72550b31cc19e28e456d294f08dc4367a0b1c",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "SECURITY.md",
+      "candidate_git_blob_oid": "d57265d62cf21e6a8e16f291f52fb91733eebd59",
+      "candidate_blob_bytes": 6589,
+      "candidate_blob_sha256": "11fed5cfa213b55d325d6afa4dc836094c2339584751889ac69e64d2df7a2967",
+      "reviewed_working_bytes": 6698,
+      "reviewed_working_sha256": "6276d3bfd30cb99a03b3d3f464447b3b7c7307f14a08a31dd5ffeefb3b431676",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "LICENSE",
+      "candidate_git_blob_oid": "d8cca2639474e791c0aaa4d77aac79d8c8900359",
+      "candidate_blob_bytes": 1070,
+      "candidate_blob_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "reviewed_working_bytes": 1070,
+      "reviewed_working_sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "working_to_candidate_relation": "exact_bytes"
+    },
+    {
+      "relative_path": "tools/Build-Package.ps1",
+      "candidate_git_blob_oid": "4172d467c09011b7d1c31771f421620a3eea452c",
+      "candidate_blob_bytes": 25277,
+      "candidate_blob_sha256": "9060ed72309f016bf8b683ce81beba564214a245fd4367fb7a7fe4ecb8e73ab0",
+      "reviewed_working_bytes": 25695,
+      "reviewed_working_sha256": "1c744679fba36d545b8397f4da9a307fbb31987a3be844226099e9e1b5759150",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "tools/package-files.json",
+      "candidate_git_blob_oid": "d0810372063cac978c0a7a49471f4cf865d6c4af",
+      "candidate_blob_bytes": 227,
+      "candidate_blob_sha256": "1d23ebb24943d1b163399c91a06437f9c5eef5397b19b5d8245c34f67fcb787e",
+      "reviewed_working_bytes": 240,
+      "reviewed_working_sha256": "07fdb123901dd793d9cfbc82acec4c58459cf1e08a57d55ec6863e89ea68f345",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": ".github/workflows/windows-ci.yml",
+      "candidate_git_blob_oid": "a1ae6a91fa85c0c354ef2846410b40cc12877122",
+      "candidate_blob_bytes": 2016,
+      "candidate_blob_sha256": "eb7178f4b6e790ffe5bf3c90e7435c04a301bfa24e072bc90254ccb54306539c",
+      "reviewed_working_bytes": 2071,
+      "reviewed_working_sha256": "f213c214de45091177f3bb6195020e8a3e61775973936fa3585783bdddd41b7a",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": ".github/dependencies.json",
+      "candidate_git_blob_oid": "c530a03cfe122a00f96f5a641a5524fe7e5a712e",
+      "candidate_blob_bytes": 2798,
+      "candidate_blob_sha256": "aefdf507774124c4447c58e5b41a34381a8d336645be1c369fc5af88800da030",
+      "reviewed_working_bytes": 2840,
+      "reviewed_working_sha256": "5582f7118eadda1792b558097b40cdd4248589ecddcccb83184bc768f465e851",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "docs/codex-v1/tasks/T22.md",
+      "candidate_git_blob_oid": "d93aa58d17c285c6ef7147730a0882e54e909093",
+      "candidate_blob_bytes": 1999,
+      "candidate_blob_sha256": "84a5168d6f80726baf4eacd55df09dce4a47e5c63836d340cb1c8f8eb9411408",
+      "reviewed_working_bytes": 2026,
+      "reviewed_working_sha256": "2b65226f36a7133ab50ea473e6411ba4d9bbc2c7876b42343f58332489f28800",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "docs/codex-v1/ROADMAP.md",
+      "candidate_git_blob_oid": "cae3911f22ae3e4ba0a45e24ae92083c8082258b",
+      "candidate_blob_bytes": 3653,
+      "candidate_blob_sha256": "b675b4b0afc44bd549f6bf036de658e7102d7709935c8a74a6f054c5ee5e3f4a",
+      "reviewed_working_bytes": 3742,
+      "reviewed_working_sha256": "d9d54ea95a5412c9a6f338a860ce7b11cfbefc23775578420d2a4585178ec7bd",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "docs/codex-v1/RELEASE_RUNBOOK.md",
+      "candidate_git_blob_oid": "4ae535c2bff90560aec2f798bd0985b2e07e9178",
+      "candidate_blob_bytes": 8071,
+      "candidate_blob_sha256": "ec9d829402cbffa58b7f8578a1ff9db785f155229a0684ab177ac74ee6839f3e",
+      "reviewed_working_bytes": 8219,
+      "reviewed_working_sha256": "a342b14ab9ffe777368b4c067104f5d54866132d1c6a0b07c12763f1a5481bda",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "docs/codex-v1/specs/RELEASE_PACKAGE.md",
+      "candidate_git_blob_oid": "67dcde277f347f6fc1944c3c7c2353a81a20132a",
+      "candidate_blob_bytes": 7501,
+      "candidate_blob_sha256": "c0a4ddfabcd82a9874cab38629e491add3167c33f6fdfd2e8a874dd3a909ebdb",
+      "reviewed_working_bytes": 7616,
+      "reviewed_working_sha256": "fea9b1da0aed21284d142d1c80aca8f033ecbbb5cc41d02352efb8bd9c5a70a2",
+      "working_to_candidate_relation": "strict_UTF8_LF_CRLF_only_BOM_preserved"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T20-recovery-review.json",
+      "candidate_git_blob_oid": "cd854271d9541b7c2d59b035d72ef6c9a742b728",
+      "candidate_blob_bytes": 8887,
+      "candidate_blob_sha256": "ed5730004d38350978bed75951aa7344098fe524a0dd1ee2a7b4ddd1d3a70eff",
+      "reviewed_working_bytes": 8887,
+      "reviewed_working_sha256": "ed5730004d38350978bed75951aa7344098fe524a0dd1ee2a7b4ddd1d3a70eff",
+      "working_to_candidate_relation": "exact_bytes"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-final-observations.json",
+      "candidate_git_blob_oid": "efea938d3d3191c0291e2e7ec8dff6e963ebe9ab",
+      "candidate_blob_bytes": 7629,
+      "candidate_blob_sha256": "6194458734696f0579aaa6826e22f348a7f0a25d28bec8b7bab1478e9fab956c",
+      "reviewed_working_bytes": 7629,
+      "reviewed_working_sha256": "6194458734696f0579aaa6826e22f348a7f0a25d28bec8b7bab1478e9fab956c",
+      "working_to_candidate_relation": "exact_bytes"
+    },
+    {
+      "relative_path": "docs/codex-v1/evidence/T21-phone-final-review.json",
+      "candidate_git_blob_oid": "32c4e091e010e5b936e5c999f7f66a9947c71e3a",
+      "candidate_blob_bytes": 5924,
+      "candidate_blob_sha256": "b8873f3ea1976a80504c1c425f549a3832989bc1218fbce9fd735d9e0aae7568",
+      "reviewed_working_bytes": 5924,
+      "reviewed_working_sha256": "b8873f3ea1976a80504c1c425f549a3832989bc1218fbce9fd735d9e0aae7568",
+      "working_to_candidate_relation": "exact_bytes"
+    }
+  ],
+  "creation_boundary": "FileMode.CreateNew for this new review only. No source, public docs, historical reports/reviews or task tracking is edited; review excludes its own self-containing identity."
+}

@@ -1,8 +1,49 @@
 # Current project status
 
-State: **T21 phone acceptance complete on the feature branch; main integration pending.**
-Last completed task: T21. Exactly next task: T22 after owner integration of PR #21.
-Required improvements 1-15; optional O01 deferred. Project/release incomplete.
+State: **T22 A53 audit passed; A54 final-document main integration awaits owner approval.**
+Last integrated task: T21. Exactly next: finish T22 integration of reviewed PR #22.
+T23–T27 remain pending; optional O01 deferred. Project/release incomplete.
+
+## T22 reviewed and tested checkpoint
+
+- Owner merged PR #21 at 13:36:50Z on 12 October 2026 into main
+  `25856cf144b0b84cbedd378a58a8e537ae91c52b`, final feature
+  `7629aeb8c183fbd4d5f16eb74e8a70969b91d9a7`. Normal fetch, advertised refs,
+  live GitHub and complete trees agree. All 21 prior PR merges are ancestors;
+  clean local main was fast-forwarded. Main CI run 38256915314 passes both jobs.
+- Candidate `64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723` changes only shipped
+  README/SUPPORT/CHANGELOG progress wording and narrow accepted evidence scope.
+  Runtime/helper/BAT/tests/CI/build/license/security/defaults are unchanged.
+  Stable version 1.0.0 notes link to mutable repository release evidence.
+- Independent audits cover improvements 1–15, all 52 prior passing cases / 307 links,
+  selected historical report bytes and security/usability/package contracts.
+  No implementation blocker remains. Improvement15 still requires future
+  exact-ZIP/authorization/draft/public-download/closure gates A55–A65.
+- Selected local runs pass **1,196 required groups plus six separate baseline
+  observations**: 890 milestone/default groups and 306 routine groups. Full retained
+  real-FFmpeg suites execute on PS5.1/PS7. Milestone 32 parents use final220,
+  routine 2 parents use final221; exact commands/source/fixture/release/cleanup
+  verification are in T22-commands/routine-commands/validation.json. Preliminary
+  partial groups and children are not counted twice.
+- Keep initial occupied-label preflight refusal and failed routine 220 reports
+  unchanged. Same-fixture raw UTF-8/CP437/inherited65001 diagnosis proves the
+  temporary CREATE_NO_WINDOW driver's Unicode capture error. Correct only the
+  external launch environment, retaining strict comparisons/source bytes; both
+  routine 221 runs pass. Later baseline routing inherits the documented UTF-8
+  console. Private captures/diagnostic fixture remain outside Git.
+- Prior candidate 647 push / live ref independently agree; both candidate push/PR
+  Windows matrices pass. Final handoff commit/push/ref/new CI observations belong
+  in PR #22/response. PR #22 remains draft/open, owner main-integration gate stays.
+  A54 is blocked until final shipped docs are integrated and clean main is freshly
+  synchronized; do not freeze a source or mark T22/project/release complete yet.
+- Owner human testing remains closed. Reuse exact T20/T21 results; accepted
+  Samsung S24/One UI 8.5/AIMP v4.31.1747/USB scope and unavailable chapter/navigation
+  limits persist. No new phone/manual observation or personal/Music scan occurred.
+
+## Historical T21 handoff — integration superseded by T22 above
+
+The following preserved feature-checkpoint sections keep their original evidence
+scopes; their pending-main and then-next-task wording is historical.
 
 ## T21 completed phone acceptance
 
@@ -29,7 +70,7 @@ Required improvements 1-15; optional O01 deferred. Project/release incomplete.
   describe this narrow accepted phone scope. No conversion or human retest ran.
   Previous checkpoint `35f275ae284919757632ac4658cb81de00b498b5` independently
   matches its live feature ref; push38159023529 and PR38159025835 pass both Windows
-  jobs. Final push/live-ref/new CI observations belong in PR #21 and the response.
+  jobs. Final push / live-ref/new CI observations belong in PR #21 and the response.
 - Main stays `3e5b6fbec1f0c172b9d996b7473ae9f7d77e035d`; T01-T20 are integrated.
   PR #21 remains draft/unmerged and owner-controlled. T21 is done on the feature
   branch, not integrated main or a completed release. Next T22 after integration.
@@ -67,7 +108,7 @@ Required improvements 1-15; optional O01 deferred. Project/release incomplete.
   and controlled-Music passes. No further owner Windows tests are needed.
 - Last verified feature checkpoint before recovery is
   `1e9e5de182f9cbe710f84ff0e63526698ac086d1`; push/PR CI 38154161336/38154164444
-  pass both Windows jobs each. Final recovery push/live-ref comparison and checks
+  pass both Windows jobs each. Final recovery push / live-ref comparison and checks
   belong in PR #20/response. Main is da2a627, unmerged; no release authority.
 
 ## T20 previous checkpoint — historical simplified continuation

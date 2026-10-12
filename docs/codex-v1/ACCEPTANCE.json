@@ -887,8 +887,16 @@
       "required": true,
       "method": "independent audit",
       "expected": "Improvements 1–15 map to passing evidence, known limits are explicit and no blocking defects remain; O01 stays deferred unless specifically activated.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T22.md",
+        "evidence/T22-outcomes-review.json",
+        "evidence/T22-contract-review.json",
+        "evidence/T22-validation.json",
+        "evidence/T22-commands.json",
+        "evidence/T22-routine-commands.json",
+        "evidence/T22-encoding-diagnosis.json"
+      ]
     },
     {
       "id": "A54",
@@ -897,8 +905,13 @@
       "required": true,
       "method": "fresh Git/GitHub read",
       "expected": "Approved in-scope PRs integrated without bypass; clean local main equals live main; no unmerged runtime/test/build changes remain.",
-      "status": "not_run",
-      "evidence": []
+      "status": "blocked",
+      "evidence": [
+        "evidence/T22.md",
+        "evidence/T22-start.json",
+        "evidence/T22-candidate-sync.json",
+        "evidence/T22-ci-candidate.json"
+      ]
     },
     {
       "id": "A55",

@@ -1,5 +1,21 @@
 # Authorization and external-change boundaries
 
+## T22 task authorization — 12 October 2026
+
+The owner requested "T22 next please". Fresh normal fetch, independently
+advertised refs and live GitHub verify owner PikkuJanne merged T21 PR #21 at
+13:36:50Z into main `25856cf144b0b84cbedd378a58a8e537ae91c52b`, with final
+feature `7629aeb8c183fbd4d5f16eb74e8a70969b91d9a7`. Complete merge/feature
+trees match; all T01–T21 PR merge commits are ancestors of that verified main.
+Clean local main was fast-forwarded; T22 uses `codex/v1-t22-outcomes-audit`.
+Normal independent audits, isolated milestone/routine tests, bounded synthetic
+default-Music smoke, final shipped-document corrections, evidence/handoff,
+feature commits/push and relevant draft PR are authorized. The exact reviewed
+T22 PR still requires owner main-integration approval under the existing default
+policy. No broader merge policy, tag/release write or settings authority is added.
+The owner's human-test closure persists; do not request another phone/manual
+check for this accepted candidate. Automated source/exact-ZIP gates stay separate.
+
 The owner started implementation on 10 October 2026 and scoped this thread to T01.
 The imported bundle does not itself grant GitHub write authority. The actual
 startup authorization and checkout-recovery approval are recorded in DECISIONS.
