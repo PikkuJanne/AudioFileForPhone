@@ -1,5 +1,33 @@
 # Current project status
 
+State: **T27 closure records prepared; current integrated main/public checks pass.**
+Current task: T27. A63 source relationship and A65 evidence audit pass for this
+checkpoint; final A64/integration completion remains pending. O01 deferred.
+
+## T27 preclosure checkpoint — 12 October 2026
+
+- Owner post-publication PR #26 merge at 17:46:54Z creates main `f71880fccc75092e6fad5ad699d4ea1af79d6f39`,
+  complete tree equal to reviewed T26 head `33ec82f0d68e71fd9d713c382cd61ca887e878fd`.
+  Normal local main/evidence fast-forwards preserve it. C ancestor/full 121-path
+  docs-only diff passes; no shipped/runtime/tests/CI/build content changes.
+- Main CI38286497255 and source C CI38264447275 pass both Windows jobs. Actual
+  clean-main PS5.1/PS7 RequireMain checks and combined public verifier pass.
+  Fresh anonymous downloads retain all three approved hashes, exact safe eight
+  ZIP members and binary C equality. See evidence/T27-preclosure-verification.json.
+- Independent evidence audit verifies prior required records/human limits and
+  preserves failures as failures. See evidence/T27-evidence-audit.json. Existing
+  T23 full-source/ZIP and T26 public-smoke results remain their original scopes;
+  no new audio/phone/Music test occurs. O01 remains deferred.
+- Original T24 plus T26 carried authority covers remaining reviewed docs-only
+  closure integration; no repeat approval required. C/tag/assets/notes/history/
+  protections stay fixed. Integrate reviewed preparation records, then verify
+  clean integrated main and record actual A64 completion. Final post-record
+  D/live/CI/public proof belongs in response/PR, not a self-referential commit.
+- Project closure is still pending. Continue **T27** through final integration
+  and verification; do not advance to another task or declare completion yet.
+
+## Historical T26 status — superseded by current T27 preparation above
+
 State: **T26 A60–A62 passed; normal public Latest v1.0.0 and actual public ZIP verified.**
 Last completed task: T26. Exactly next: T27 in a new chat. A63–A65 pending;
 O01 deferred. Release is public; final main closure/project completion is pending.

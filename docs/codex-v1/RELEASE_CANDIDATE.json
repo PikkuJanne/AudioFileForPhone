@@ -42,7 +42,7 @@
     "Actual anonymous public metadata/downloads and both-shell public ZIP smoke pass A60-A62. Final reviewed docs-only main closure and post-integration public verification remain pending T27."
   ],
   "optional_loudness": "deferred",
-  "state": "public_exact_bytes_smoke_verified_awaiting_T27_closure",
+  "state": "T27_closure_records_prepared_final_sync_pending",
   "app_version": "1.0.0",
   "signing_status": "unsigned",
   "local_staging_directory": "C:\\Users\\jtvuo\\AppData\\Local\\Temp\\AFP-T23-2092a405\\assets",
@@ -54,9 +54,8 @@
   "direct_zip_outputs": 24,
   "direct_zip_observed_released_processes": 113,
   "evidence_branch": "codex/v1-release-evidence",
-  "main_must_remain_at": "88f28c4056859852c526617d642c7e0ada8cc240",
   "manifest_attestation_scope": "Two exact-C routine parents (306 groups) are pre-build attestations. Full C milestone, post-build ZIP suites and smoke are additionally bound by candidate evidence; no circular claim that a pre-build manifest attests its own later ZIP test.",
-  "observed_main": "88f28c4056859852c526617d642c7e0ada8cc240",
+  "observed_main": "f71880fccc75092e6fad5ad699d4ea1af79d6f39",
   "main_reconciliation": {
     "existing_owner_merge_pr": 24,
     "changed_path_count": 100,
@@ -220,5 +219,20 @@
     "authentication": "none",
     "normal_latest_and_only_public_release": true,
     "final_main_closure": "pending_T27"
+  },
+  "closure_initial_main": "f71880fccc75092e6fad5ad699d4ea1af79d6f39",
+  "main_policy": "Within authorized T27 docs-only closure; final clean local/live main D must descend from C with only docs/codex-v1 changes.",
+  "closure_authority_references": [
+    "evidence/T24-authorization.json",
+    "evidence/T26-authorization.json"
+  ],
+  "closure_preparation": {
+    "status": "pass_technical_and_evidence_checkpoint",
+    "report_reference": "evidence/T27-preclosure-verification.json",
+    "report_sha256": "1b376a0c65dbc1bd0487e60bcb24b999ea33f8b83bf46f9d08ce0a9f9a58e405",
+    "evidence_audit_reference": "evidence/T27-evidence-audit.json",
+    "evidence_audit_sha256": "1d5184563250814610440f497fbe45abb032359ec057a19b052dced5c2ac3132",
+    "verified_clean_main": "f71880fccc75092e6fad5ad699d4ea1af79d6f39",
+    "final_A64": "pending_record_integration_and_actual_final_verification"
   }
 }

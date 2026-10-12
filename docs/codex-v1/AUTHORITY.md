@@ -1,5 +1,24 @@
 # Authorization and external-change boundaries
 
+## T27 reviewed docs-only closure — 12 October 2026
+
+The owner requests **"T27 next please"**. Original exact T24 approval expressly
+authorizes reviewed docs-only closure integration after publication; actual T26
+acceptance carries that unchanged C/assets/scope. Both trusted records stay fixed.
+Fresh actual reads find owner PikkuJanne already merged reviewed PR #26 after
+publication at 17:46:54Z into main `f71880fccc75092e6fad5ad699d4ea1af79d6f39`, whose complete
+tree equals reviewed T26 head `33ec82f0d68e71fd9d713c382cd61ca887e878fd`. C is its ancestor;
+all 121 C-to-main paths are docs/codex-v1. This post-publication reviewed evidence
+merge fits the recorded closure operation; no new timing acceptance is required.
+
+Remaining reviewed T27 records and their actual post-integration verification
+record may be integrated under the same bounded closure authority. Recheck exact
+reviewed heads/live base/CI/allowed complete diff before each normal merge; respect
+protections. This covers only necessary docs/codex-v1 closure/verification, with
+unchanged C, tag and released bytes. No general future merge, settings/history/tag
+retarget/public-byte replacement authority is granted. Final post-record D/live
+and public checks belong in the final response/closure PR, avoiding self-hashes.
+
 ## T26 actual narrow acceptance and publication — 12 October 2026
 
 The owner answered **"Accept existing PR #25 merge and proceed"** to the trusted
