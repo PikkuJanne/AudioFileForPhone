@@ -1,5 +1,25 @@
 # Decisions and policy ledger
 
+## T27 actual closure preparation and main proof — 12 October 2026
+
+- Preserve the owner's post-publication PR #26 merge by normal main/evidence
+  fast-forwards. Its tree equals reviewed T26 head, C ancestor/full 121-path
+  docs/codex-v1-only relationship holds, and exact main CI38286497255 passes.
+  The original carried closure approval covers this operation and remaining
+  reviewed T27 records; no repeat approval for unchanged scope is needed.
+- On actually clean main `f71880fccc75092e6fad5ad699d4ea1af79d6f39`, execute both supported
+  shell RequireMain checks and the unchanged combined public verifier. Separately
+  download all three public assets anonymously into new retained owned TEMP and
+  verify approved sizes/hashes, eight safe members and binary C equality. All pass.
+- Independent A65 evidence audit binds prior required task/case references and
+  preserves historical failed attempts/limited human methods. Keep O01 deferred;
+  do not invent another phone/audio test or recount prior full suites/smoke.
+- Integrate reviewed preparation records before claiming final A64. Then verify
+  actual clean integrated main/public state and record that result in a docs-only
+  completion checkpoint. After integrating that checkpoint, rerun final D/live/
+  public checks and report the final SHA externally. No endless self-containing
+  hash updates and no tag/public-byte changes for closure.
+
 ## T26 exact public publication and downloaded-ZIP proof — 12 October 2026
 
 - Record the actual trusted narrow PR #25 main timing acceptance separately;

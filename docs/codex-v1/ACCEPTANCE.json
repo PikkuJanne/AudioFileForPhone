@@ -1056,8 +1056,11 @@
       "required": true,
       "method": "full commit diff and ancestry check",
       "expected": "C remains tag target; final main D contains only docs/codex-v1 progress/evidence additions beyond C; all shipped/runtime/test/build/CI files remain unchanged.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T27.md",
+        "evidence/T27-preclosure-verification.json"
+      ]
     },
     {
       "id": "A64",
@@ -1076,8 +1079,11 @@
       "required": true,
       "method": "closure evidence audit",
       "expected": "Missing authorization, manual test, remote access, asset or CI remains blocker; no required case is silently waived and no template is counted as a result.",
-      "status": "not_run",
-      "evidence": []
+      "status": "pass",
+      "evidence": [
+        "evidence/T27.md",
+        "evidence/T27-evidence-audit.json"
+      ]
     },
     {
       "id": "O-A01",

@@ -1390,7 +1390,7 @@
       "milestone": "M6",
       "title": "Close with synchronized evidence and immutable release",
       "required": true,
-      "status": "todo",
+      "status": "in_progress",
       "depends_on": [
         "T26"
       ],
@@ -1403,11 +1403,18 @@
         "A64",
         "A65"
       ],
-      "evidence": [],
-      "tested_commit": null,
-      "checkpoint_commit": null,
-      "remote_checkpoint_verified": false,
-      "notes": null
+      "evidence": [
+        "evidence/T27.md",
+        "RELEASE_CLOSURE.md",
+        "evidence/T27-preclosure-verification.json",
+        "evidence/T27-independent-start.json",
+        "evidence/T27-evidence-audit.json",
+        "RELEASE_CANDIDATE.json"
+      ],
+      "tested_commit": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+      "checkpoint_commit": "33ec82f0d68e71fd9d713c382cd61ca887e878fd",
+      "remote_checkpoint_verified": true,
+      "notes": "Reviewed owner PR26 integrated post-publication into main f71880fccc75092e6fad5ad699d4ea1af79d6f39; tree equals reviewed T26 head, C ancestor and full 121-path docs-only diff. Actual clean-main PS5.1/PS7 checks, exact source/mainCI and combined public verifier plus fresh three anonymous approved assets/eight binary C members pass. Independent prior evidence/human-limit audit passes; A63 current source relation and A65 truth audit evidenced. Remaining reviewed T27 docs-only records/completion integration and final A64/D/live/public/CI proof pending under carried exact closure authority. No new audio/human/Music check or payload/tag/public-byte change. O01 deferred/project incomplete; continue T27."
     },
     {
       "id": "O01",

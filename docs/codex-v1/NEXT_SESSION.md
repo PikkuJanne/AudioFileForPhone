@@ -1,62 +1,44 @@
-# Next session — T27 final docs-only closure and synchronized main
+# Continue T27 — reviewed closure records, final integration pending
 
-T26 A60–A62 pass. Exactly next T27 in a new chat. A63–A65 remain pending;
-O01 deferred. Normal public Latest v1.0.0 exists and actual public ZIP works;
-final reviewed main closure/project completion is pending.
+Current T27 has actual current-main/source/public evidence and independent prior
+evidence audit. A63 and A65 pass for this checkpoint; final A64/records integration
+and project completion remain pending. Optional O01 stays deferred.
 
-Read STATUS.md, this file, TASKS.json, AUTHORITY.md, SYNC_PROTOCOL.md and applicable
-AGENTS first, then tasks/T27.md, RELEASE_RUNBOOK.md, RELEASE_CANDIDATE.json,
-evidence/T24-authorization.json, T26-authorization.json, T26.md,
-T26-public-verification.json, T26-zip-smoke.json and T26-independent-public-review.json.
-Inspect actual Git/remote/dirty/live PR/check/tag/release state; preserve unrelated work.
+Read STATUS/NEXT/TASKS/AUTHORITY/SYNC and applicable AGENTS first, then tasks/T27,
+RELEASE_RUNBOOK, RELEASE_CANDIDATE, RELEASE_CLOSURE and evidence/T27.md,
+T27-preclosure-verification.json, T27-evidence-audit.json, original T24/T26
+authorization and actual T26 public ZIP evidence. Reinspect live state; preserve work.
 
-Actual trusted original T24 exact approval plus T26 reply **"Accept existing PR #25
-merge and proceed"** carries unchanged C/assets/T24–T27 scope. The separate T26
-record accepts only existing owner main 88f28c4056859852c526617d642c7e0ada8cc240 as the timing
-exception. Keep this main until reviewed T27 docs-only closure. No repeat approval
-is required for unchanged C/bytes/hashes/scope and valid gates; no extra early/main
-merge, settings/protection/visibility change, tag retarget or public-byte replacement.
-Original T24 authority/request/release-note bytes remain fixed.
+Owner PR #26 was merged after publication into `f71880fccc75092e6fad5ad699d4ea1af79d6f39`, tree
+equal reviewed T26 `33ec82f0d68e71fd9d713c382cd61ca887e878fd`. C ancestor/full 121 docs-only
+paths and exact-main CI38286497255 both jobs pass. Normal main/evidence fast-forwards
+preserve this merge. Actual PS5.1/PS7 RequireMain checks and combined public verifier
+plus fresh anonymous three-asset approved downloads/eight binary C members pass on this main.
+Independent truth audit preserves historical failures/phone limits and templates
+are not evidence. Original required source/public ZIP tests keep original scopes.
 
-Frozen C: 2092a405c1d06eca336e771a0ed5d1881acd015a. Annotated tag object 279945f7d5a4b887b7bd44eae5244b03060f76cc
-still peels to C. Existing release 410779813 was published once at 2026-10-12T16:47:31Z:
-[v1.0.0 release](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.0). Anonymous repository/release/list/latest/tag reads prove normal
-public Latest and exactly one public release; draft=false/prerelease=false.
+Original actual T24 approval plus T26 carried exact acceptance already authorizes
+reviewed docs-only T27 closure/necessary verification-record integration. Do not
+request unchanged approval again. No broader integration/settings/tag/public-byte
+authority. C `2092a405c1d06eca336e771a0ed5d1881acd015a`, annotated object 279945f7d5a4b887b7bd44eae5244b03060f76cc,
+published release 410779813 and all approved three asset hashes/notes remain fixed.
 
-Exact public downloaded assets keep original IDs and hashes:
+Review/diff/check intended records, commit/push evidence branch, independently
+compare HEAD/live ref and exact push/PR CI, then merge reviewed docs-only PR under
+carried authority respecting protections. Normal fetch/main fast-forward only.
+Run actual clean-main supported-shell/combined public verifier plus immutable-byte
+proof on the integrated main. Record A64/task completion only after those actual
+operations; integrate reviewed docs-only completion record, rerun final D/live/
+public/CI and report final full SHA externally. No endless self-containing hashes.
 
-- ZIP 53,958 bytes SHA256 8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf.
-- Manifest 4,162 bytes SHA256 7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146.
-- Checksums 183 bytes SHA256 83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8.
+External reviewed read-only controller is
+C:/Users/jtvuo/AppData/Local/Temp/AFP-T27-2092a405/verify_main.py, hash
+89bea016ee4ed742b25383c834b9059900eea2d936a1a39215b0a9b9ebf1e0f1.
+Use Python -B, fresh unused phase paths and exact independently read --main/--main-ci.
+It does not merge/publish/rebuild/test audio; no historical run is recounted.
+Current preclosure report SHA256 1b376a0c65dbc1bd0487e60bcb24b999ea33f8b83bf46f9d08ce0a9f9a58e405 is frozen.
 
-Actual fresh no-auth/cookie/netrc/proxy public HTTP downloads match approved original
-bytes, safe exact eight-member inventory, CRC/checksums/manifest and every binary C
-member. Fresh actual public-ZIP smoke passes ten groups/24 fully decoded 64 kbps
-outputs/113 naturally exited closed owned processes on PS5.1 5.1.26100.9444 and
-PS7 7.6.5. All 942 source and package/fixture/dependency/provenance/ownership gates
-pass. Raw reusable report retains T23 labels; T26 wrapper binds actual public bytes
-and invocation to A62. Independent review downloads public bytes again separately.
-
-Prior verified f99 evidence HEAD f99cee28cd017c06570b6a6582e16dcfab445c25 and its push38278784232/PR38278822897
-CI pass both jobs. Final T26 HEAD/live-ref/new CI are in PR #26/response; inspect
-again and avoid self-containing hashes. PR #26 remains draft/unmerged, changes only
-docs/codex-v1. The complete C..current accepted-main diff has 113 allowed paths;
-full C..D scope/ancestry must be checked again after closure. All shipped/runtime/
-tests/CI/build bytes stay identical to C; do not modify the payload or released tag.
-
-T27 creates traceable closure evidence and marks actual required gates truthfully,
-reviews intended docs-only diff, pushes/verifies branch and checks, then integrates
-under recorded closure authority while respecting protections. Normal fetch/main
-fast-forward only; prove clean local main equals independently advertised final D,
-C ancestor and ENTIRE C..D diff docs/codex-v1 only. Run actual supported-shell
-Git-sync checks and the combined public technical verifier after final integration.
-This T26 evidence-branch checkout is not final main. Never infer closure from
-publication, a feature push or pending/self-reported status flags.
-
-Human testing stays closed: Samsung S24/One UI 8.5/AIMP v4.31.1747/USB; chapters
-unavailable/navigation not run and prior physical limits persist. No new retest,
-long regeneration, personal media/Music scan. Raw/media remain external. Existing
-source/ZIP full suites retain their scopes; do not recount them as new T27 tests.
-Public bytes/tag must never be replaced to include closure evidence.
-
-Copy-ready prompt: **T27 next please**.
+Human testing remains closed at S24/One UI 8.5/AIMP v4.31.1747/USB; chapters unavailable,
+navigation not run and prior physical limits persist. No retest/media/Music scan.
+Do not declare project complete until required integrated records and final clean
+main/public gates pass. Continue **T27** through final closure.
