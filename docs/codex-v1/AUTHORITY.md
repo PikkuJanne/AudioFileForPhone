@@ -1,5 +1,26 @@
 # Authorization and external-change boundaries
 
+## T22 bounded integration approval — 12 October 2026
+
+The owner answered **"Approve T22 integration"** to the explicit question:
+"May I merge reviewed PR #22 at
+f7ec7219fda1466826c896aad66b8194eed4650a and integrate the subsequent docs-only
+A54 verification record to complete T22? All local and GitHub checks passed."
+This trusted question reply authorizes the exact reviewed PR #22 head and the
+subsequent actual A54 progress/evidence record, confined to docs/codex-v1.
+It does not add a general main-merge policy, tag/release or settings authority.
+Public approval record: [PR #22 comment](https://github.com/PikkuJanne/AudioFileForPhone/pull/22#issuecomment-6126263578).
+
+Fresh advertised refs, clean local state, exact PR head/base/mergeability and
+both Windows jobs in each push/PR run were verified before marking PR #22 ready
+and merging with --merge --match-head-commit at the approved full SHA. No admin
+override, protection change or history rewrite occurred. Actual integration is
+main `1ab076bc696df08a0aaf05dd7ec4aab2490b1609`, whose complete tree equals
+the approved head. Both supported shells independently verify clean local main
+equals live main after normal fetch and fast-forward. See evidence/T22-integration.json.
+The same recorded approval covers the reviewed docs-only completion record;
+do not ask for it again. Human testing stays closed and release gates stay separate.
+
 ## T22 task authorization — 12 October 2026
 
 The owner requested "T22 next please". Fresh normal fetch, independently

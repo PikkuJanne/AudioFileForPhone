@@ -1,8 +1,47 @@
 # Current project status
 
-State: **T22 A53 audit passed; A54 final-document main integration awaits owner approval.**
-Last integrated task: T21. Exactly next: finish T22 integration of reviewed PR #22.
-T23–T27 remain pending; optional O01 deferred. Project/release incomplete.
+State: **T22 A53/A54 passed; approved source integration and clean-main verification complete.**
+Last completed task: T22. Exactly next: T23 in a new chat after the completion
+record is integrated/synchronized. A55–A65 pending; O01 deferred. Release incomplete.
+
+## T22 approved integration and completion record
+
+- Owner answered "Approve T22 integration" for exact reviewed PR #22 head
+  `f7ec7219fda1466826c896aad66b8194eed4650a` and subsequent docs-only A54
+  verification integration. AUTHORITY and T22-integration.json record the actual
+  reply/scope. No general main-merge, settings, tag or release authority is added.
+- Fresh advertised refs, clean local state, exact PR head/base/mergeability and
+  passing push run 38261662854/PR run 38261671203 Windows matrices were verified. PR #22
+  was marked ready and merged at 14:26:40Z on 12 October 2026 into main
+  `1ab076bc696df08a0aaf05dd7ec4aab2490b1609`; its entire tree equals the
+  approved head. No admin/protection bypass or history rewrite occurred.
+- Normal fetch and fast-forward synchronize local main. Actual PS5.1 and PS7
+  -RequireMain Git-sync checks each prove clean local main equals the independently
+  advertised full SHA. A54 passes: all final shipped/runtime/test/CI/build content
+  is integrated and no unmerged runtime/test/build work remains.
+  Integrated-source main push CI run 38262956305 passes both Windows jobs.
+- A53's independent evidence remains unchanged: improvements 1–15 mapped, all
+  52 prior cases/307 references reviewed; selected local runs pass 1,196 required
+  groups plus six separate observations at tested candidate
+  `64772f1e5cbc4ea4fb5d0a5f0aefda8eab145723`. Both retained full real-FFmpeg
+  suites ran on this active Windows machine. Binder covers 34 parents/48 raw
+  records/50 sources/664 relationships; no children/preliminaries double counted.
+- Completed source/shipped docs are byte-identical to the tested candidate;
+  its later differences are only docs/codex-v1. Initial occupied-label refusal
+  and CP437 routine failure remain failed; corrected inherited-console 65001
+  routine passes unchanged sources/strict checks. Original evidence stays frozen.
+- The reviewed completion record changes only docs/codex-v1 and is covered by
+  the same owner approval. Its final feature push/live-ref, checks, merge and
+  clean-main equality belong in the PR/response, avoiding a self-containing SHA.
+  Source is not frozen; T23 must select full C only after fresh final main checks.
+- Human testing remains closed. Reuse narrow T20/T21 results, including Samsung
+  S24/One UI 8.5/AIMP v4.31.1747/USB and unavailable/untested chapter navigation.
+  No further human test, personal media scan or ordinary-Music test occurred.
+  A55–A65 exact ZIP/authority/draft/public-download/closure gates remain required.
+
+## Historical T22 pre-integration checkpoint — superseded by approval above
+
+The following preserved checkpoint's pending-approval/main wording is historical.
 
 ## T22 reviewed and tested checkpoint
 
