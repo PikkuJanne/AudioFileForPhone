@@ -147,3 +147,15 @@ D26 - 2026-10-17, S04 checkpoint: source
       recorded separately from the feature SHA. Mark S04 complete and S05
       eligible/NOT_STARTED. Observe the final containing docs HEAD/live/CI after
       push in the final response; no self-containing SHA or main merge authority.
+
+D27 - 2026-10-17, S04 final compatibility audit: the initial exclusion of every
+      absolute PATH entry equal to CWD breaks a valid legacy setup when launched
+      from its explicitly configured tool bin. Supersede that part of D23: honor
+      absolute PATH entries regardless of current directory. Enumerating only
+      absolute entries already prevents implicit CWD, blank and relative '.'
+      discovery. Remove only the equality filter and add real positive coverage
+      for both current-directory forms plus blank/relative decoy rejection.
+      Reopen S04 for refreshed source/runtime evidence and CI; retain prior
+      f1a7b17/a6e70d4 validation as earlier evidence, not final corrected bytes.
+      This restores the owner's legacy-compatibility requirement; no new approval
+      or S05 work is needed. Other selection and release safeguards remain.

@@ -134,7 +134,8 @@ save settings. Setup interaction and downloading are separate planned work.
 
 Only the app directory itself is an app-local layout; `tools\ffmpeg\bin` is not
 searched. PATH discovery uses the first regular `.exe` under absolute PATH
-directories, excluding the current directory and blank/relative entries. It never
+directories, excluding implicit current-directory lookup and blank/relative entries.
+An absolute PATH entry remains valid when it is also the working directory. It never
 executes aliases, functions or shell wrappers. Separate PATH directories remain
 supported; differing tool build IDs produce a warning. No source folders or whole
 drives are searched for tools.

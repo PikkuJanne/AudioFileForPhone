@@ -312,9 +312,15 @@ try {
         $local = Invoke-WithPath $pathDirectory { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $appRoot }
         $pathChoice = Invoke-WithPath ($pathDirectory + ';' + $selected) { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
         Assert-True ($saved.Origin -ceq 'Saved' -and $saved.Directory -ceq $selected -and $local.Origin -ceq 'AppLocal' -and $local.Directory -ceq $appRoot -and $pathChoice.Origin -ceq 'PATH' -and $pathChoice.Ffmpeg.Path -ceq $ffmpeg -and $pathChoice.Ffprobe.Path -ceq $ffprobe) 'Saved then root app-local then first PATH executable pair must be selected and disclosed.'
+        $location = Get-Location; $processDirectory = [Environment]::CurrentDirectory
+        try {
+            Set-Location -LiteralPath $pathDirectory; [Environment]::CurrentDirectory = $pathDirectory
+            $explicitCurrent = Invoke-WithPath $pathDirectory { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($explicitCurrent.Origin -ceq 'PATH' -and $explicitCurrent.Ffmpeg.Path -ceq $ffmpeg -and $explicitCurrent.Ffprobe.Path -ceq $ffprobe) 'An explicitly configured absolute PATH directory remains trusted when it is also both current directories.'
+        } finally { Set-Location -LiteralPath $location.ProviderPath; [Environment]::CurrentDirectory = $processDirectory }
         $partial = New-Directory 'PartialApp'; Copy-Item -LiteralPath $ffmpeg -Destination (Join-Path $partial 'ffmpeg.exe'); Add-Fixture (Join-Path $partial 'ffmpeg.exe')
         $case['incomplete_local_failure'] = Assert-Throws { Invoke-WithPath $pathDirectory { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $partial } } 'local|pair|ffprobe|missing'
-        $case['origins'] = @($saved.Origin,$local.Origin,$pathChoice.Origin); $case['duplicate_PATH_first_pair_wins'] = $true
+        $case['origins'] = @($saved.Origin,$local.Origin,$pathChoice.Origin); $case['duplicate_PATH_first_pair_wins'] = $true; $case['absolute_PATH_current_directory_supported'] = $true
     }
     Invoke-Case 'no tools one missing and invalid executable fail before conversion' 'S04-A1,S04-A3' {
         param($case)
@@ -340,16 +346,19 @@ try {
         }
         $wrapperDir = New-Directory 'Wrappers'
         foreach ($name in @('ffmpeg.exe.cmd','ffprobe.exe.cmd','ffmpeg.cmd','ffprobe.cmd')) { $path = Join-Path $wrapperDir $name; Write-NewText $path '@exit /b 88'; Add-Fixture $path }
-        $location = Get-Location
+        $location = Get-Location; $processDirectory = [Environment]::CurrentDirectory
         try {
-            Set-Location -LiteralPath $decoy
+            Set-Location -LiteralPath $decoy; [Environment]::CurrentDirectory = $decoy
             function ffmpeg.exe { throw 'Unexpected function ffmpeg execution' }
             function ffprobe.exe { throw 'Unexpected function ffprobe execution' }
             Set-Alias -Name ffmpeg -Value ffmpeg.exe; Set-Alias -Name ffprobe -Value ffprobe.exe
-            $case['decoy_failure'] = Assert-Throws { Invoke-WithPath $wrapperDir { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp } } 'find|missing|FFmpeg|ffmpeg|setup'
+            $case['decoy_failures'] = @()
+            foreach ($decoyPath in @('', ('.;' + $wrapperDir))) {
+                $case['decoy_failures'] += Assert-Throws { Invoke-WithPath $decoyPath { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp } } 'find|missing|FFmpeg|ffmpeg|setup'
+            }
             $choice = Invoke-WithPath $pathDirectory { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
             Assert-True ($choice.Origin -ceq 'PATH' -and $choice.Ffmpeg.Path -ceq $ffmpeg -and -not (Test-Path -LiteralPath $marker)) 'Only real executable PATH candidates may be invoked; CWD/input decoys and shell commands must remain inert.'
-        } finally { Set-Location -LiteralPath $location.ProviderPath; Remove-Item -LiteralPath Alias:ffmpeg,Alias:ffprobe -ErrorAction SilentlyContinue; Remove-Item -LiteralPath Function:ffmpeg.exe,Function:ffprobe.exe -ErrorAction SilentlyContinue }
+        } finally { Set-Location -LiteralPath $location.ProviderPath; [Environment]::CurrentDirectory = $processDirectory; Remove-Item -LiteralPath Alias:ffmpeg,Alias:ffprobe -ErrorAction SilentlyContinue; Remove-Item -LiteralPath Function:ffmpeg.exe,Function:ffprobe.exe -ErrorAction SilentlyContinue }
         $case['decoy_execution_marker_absent'] = $true; $case['independent_compiled_sentinel'] = $true
     }
     Invoke-Case 'independent synthetic differing PATH build identities warn while preserving separate paths' 'S04-A1' {

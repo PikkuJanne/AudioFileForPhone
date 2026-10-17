@@ -23,8 +23,10 @@ without rewriting the bad file. A failed save throws with not-remembered guidanc
 The retained app-local convention is a complete pair directly beside the script;
 an incomplete pair fails rather than mixing local and PATH tools. The nested
 tools/ffmpeg/bin layout is deliberately unsupported. PATH uses absolute entries
-only and excludes current-directory candidates, blank/relative entries, aliases,
-functions and wrappers; separate installed PATH directories remain supported.
+only and excludes implicit current-directory candidates, blank/relative entries,
+aliases, functions and wrappers. An explicitly absolute PATH directory remains
+eligible when it equals the working directory; separate installed PATH directories
+remain supported.
 
 ## Deterministic resolution
 

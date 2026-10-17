@@ -1,3 +1,5 @@
+S04 reopened for a bounded compatibility correction: an absolute PATH entry must remain eligible when it equals CWD. Prior completed evidence below belongs to f1a7b17/a6e70d4; corrected runtime verification is IN_PROGRESS. Resume only S04 until its refreshed checkpoint passes. S05 remains NOT_STARTED.
+
 # Status
 
 Project IN_PROGRESS. S01/S02/S03/S04 are COMPLETED. S04-A1/A2/A3 pass on the

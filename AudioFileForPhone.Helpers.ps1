@@ -265,16 +265,11 @@ function Get-AudioPathTool {
     # Resolve only exact .exe files under absolute PATH entries. Get-Command also
     # searches the process working directory on Windows; source folders never gain
     # executable-selection authority through that implicit search (or PATH '.').
-    $currentDirectories = New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
-    $null = $currentDirectories.Add((Get-AudioPath -Path ([Environment]::CurrentDirectory)))
-    $location = Get-Location
-    if ($location.Provider.Name -eq 'FileSystem') { $null = $currentDirectories.Add((Get-AudioPath -Path $location.Path)) }
     foreach ($entry in @($env:PATH -split ';')) {
         $directory = $entry.Trim().Trim('"')
         if ($directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { continue }
         try { $full = Get-AudioSelectionPath -Path $directory }
         catch { continue }
-        if ($currentDirectories.Contains($full)) { continue }
         $candidate = [IO.Path]::Combine($full, $ExeName)
         if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) { continue }
         $item = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop

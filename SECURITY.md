@@ -33,8 +33,9 @@ sharing diagnostics.
    or use a trusted installation already in your shell's `PATH`, in that order.
    For shared builds retain their required DLLs according to the publisher's
    instructions. Invalid explicit/saved choices and incomplete app-local pairs
-   stop preflight. PATH searches absolute directories only, excluding the current
-   directory. Inspect both actual resolved paths and the printed origin.
+   stop preflight. PATH searches absolute directories only, without implicit
+   current-directory lookup. An absolute PATH entry still works when it is the
+   working directory. Inspect both actual resolved paths and the printed origin.
 
 After reviewing the app/helper and trusting the chosen vendor files, run these
 commands from the application folder to inspect the exact selected files.
