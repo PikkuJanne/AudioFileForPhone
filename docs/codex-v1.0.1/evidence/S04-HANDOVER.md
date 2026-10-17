@@ -4,7 +4,7 @@
 
 S04-A1/A2/A3 pass on the available Windows 11 client under both shells.
 Explicit and deliberately remembered selection is implemented and verified.
-Source f1a7b17e3f9a1074059cd4d2de424d90adad0a78 is pushed/live-equal;
+Source 68e14aded3c2e80493512af8cc10d5abe34c4c19 is pushed/live-equal;
 exact-source push and associated PR CI pass. Final containing documentation
 HEAD/live equality and exact-head CI are observed after push in the final
 response and must be refreshed next entry. S05 is NOT_STARTED.
@@ -23,8 +23,9 @@ explicit -> saved -> complete pair directly beside script -> PATH.
 Invalid explicit/saved choices and incomplete local pairs stop with guidance;
 no invisible fallback or mixed local/PATH pair. Exact regular EXEs under
 absolute PATH entries are supported, including separate installed directories.
-Process CWD, PowerShell filesystem location, relative/blank PATH entries and
-aliases/functions/wrappers are excluded. Differing build IDs warn. Bounded
+Implicit CWD lookup, relative/blank PATH entries and aliases/functions/wrappers
+are excluded. Absolute PATH entries remain eligible when equal to either working
+directory, preserving legacy launches from a configured bin. Differing build IDs warn. Bounded
 version/libmp3lame validation is reused; PE headers disclose known architecture.
 
 Config defaults to Windows LocalApplicationData/AudioFileForPhone/config.json.
@@ -62,20 +63,22 @@ TEMP records. No ordinary Music, owner config or personal media.
 
 | Check | Exact command / report | Environment and source | Observed result | Evidence |
 |---|---|---|---|---|
-| Selection | tests/Test-ToolSelection.ps1 with explicit C:/ffmpeg/bin tools; S04-toolselection-ps51/ps7-final1.json | Windows 11 Pro 26H2 26300.9711 x64; PS5.1 5.1.26100.9711 / PS7 7.6.5; f1a7b17 | 14 each; real explicit/saved fresh processes on empty PATH, 64 kbps independent probe/full decode, preserved metadata and inert input decoys | S04.json |
-| Isolation | tests/Invoke-IsolatedBaseline.ps1 -ValidateOnly; T17-s04-isolation-ps51/ps7-final7.json | Same | PASS byte copies/owned cleanup | S04.json |
-| Baseline | Same without ValidateOnly and explicit tools; T17-s04-baseline-ps51/ps7-final7.json | Local 2026-10-08-git-ec420ba161 essentials | PASS legacy 0; 7 required characterizations/ 3 observations each | S04.json |
-| Pure contracts | tests/ci/Test-CiContracts.ps1; T17-unit-ps51/ps7-final7.json | Same | 31 each | S04.json |
-| Transactions | tests/Test-TransactionalOutput.ps1; T16-transaction-ps51/ps7-final7.json | Same real+fault fixtures | 27 each | S04.json |
-| Cancellation | tests/Test-Cancellation.ps1; T16-cancellation-ps51/ps7-final7.json; no Manual | Controlled automated input/forced host | 9 each; no physical Ctrl+C claim | S04.json |
-| Cleanup | tests/Test-CleanupSafety.ps1; T16-cleanup-ps51/ps7-final7.json | AST-derived retained ownership guards | 181 each | S04.json |
-| Preview | tests/Test-Preview.ps1; T16-preview-ps51/ps7-final7.json | Resolver/config access forbidden during preview | 8 each | S04.json |
-| Help/examples | tests/Test-HelpVersion.ps1; T17-help-ps51/ps7-final7.json | Five exact help examples, 12 parameters | 7 each | S04.json |
-| Characterization | tests/Test-SetupEncodingRegressions.ps1; T17-setupencoding-ps51/ps7-final7.json | Existing safe bitrate rejection retained | 12 each; historical pending selection cases superseded by actual S04 API tests | S04.json |
-| Deadlines | tests/Test-ShortOperations.ps1; T17-shortoperations-ps51/ps7-final7.json | Retained S03 bounds/independent child fixtures | 15 each | S04.json |
-| Native/resources | tests/Test-NativeProcess.ps1; T17-native-ps51/ps7-final7.json; last/sequential | Same real client/tools | 35 each including 40-call resource check | S04.json |
-| Source CI | gh run view/download 39050312230 and 39050314938 | Exact push f1a7b17; PR integration checkout recorded separately; supplementary hosted Windows Server | All 4 jobs; artifacts prove 14 new cases plus every retained family | S04.json |
-| Review | Independent runtime/test/path audits; git -c core.whitespace=cr-at-eol diff --check fc31a86..HEAD | Actual intended scope, source safety and privacy | No remaining blocking finding | S04.json; D23-D26 |
+| Selection | tests/Test-ToolSelection.ps1 with explicit C:/ffmpeg/bin tools; S04-toolselection-ps51/ps7-final2.json | Windows 11 Pro 26H2 26300.9711 x64; PS5.1 5.1.26100.9711 / PS7 7.6.5; 68e14ad | 14 each, including absolute PATH=CWD compatibility, blank/relative decoy rejection, real explicit/saved empty-PATH conversion and independent 64 kbps full decode | S04.json accepted_local_reports |
+| Isolation | tests/Invoke-IsolatedBaseline.ps1 -ValidateOnly; T17-s04-isolation-ps51/ps7-final8.json | Same corrected source/client | PASS byte copies/owned cleanup | S04.json |
+| Baseline | Same without ValidateOnly and explicit tools; T17-s04-baseline-ps51/ps7-final8.json | Same corrected source; local 2026-10-08-git-ec420ba161 essentials | PASS legacy 0; 7 required characterizations/3 observations each | S04.json |
+| Pure contracts | tests/ci/Test-CiContracts.ps1; T17-unit-ps51/ps7-final8.json | Same corrected source/client | 31 each | S04.json |
+| Help/examples | tests/Test-HelpVersion.ps1; T17-help-ps51/ps7-final8.json | Same corrected source; five exact examples/12 parameters | 7 each | S04.json |
+| Source CI | gh run view/download 39051385250 and 39051387556 | Exact push 68e14ad; PR integration checkout recorded separately; supplementary hosted Windows Server | All 4 jobs; artifacts prove 14 new cases plus every retained family | S04.json |
+| Review | Independent runtime/test/path audits; git -c core.whitespace=cr-at-eol diff --check fc31a86..HEAD | Actual intended scope, source safety and privacy | No remaining blocking finding | S04.json;D23-D28 |
+
+The earlier full local run on f1a7b17 is preserved separately under
+S04.json prior_validation: 24 reports, including 27 transaction, 9 controlled
+cancellation, 181 cleanup, 8 preview, 12 characterization, 15 deadline and 35
+native/resource cases per shell, plus baseline/unit/help/selection. These are
+prior-source results, not a claim that every local suite reran on 68e14ad.
+Corrected-source local verification targets the five-line PATH delta; full
+exact-source CI reruns every retained CI family. D27 records why this final audit
+reopened S04 before stopping. No S05 work was started.
 
 Preparation attempt1 interpreted a BOM-less UTF8 driver as ANSI under PS5.1;
 overlapping final harness edits also invalidated source stability. Attempts2/3
@@ -83,7 +86,7 @@ reached successful explicit conversion but EncodedCommand duplicated information
 as CLIXML and overflowed the retained stderr cap, even with Text output requested.
 The final BOM-marked UTF8 -File driver preserves Unicode and every cap/release
 assertion. Failed reports remain private with public hashes/reasons. Uncommitted
-attempt4 passes both shells; final1 repeats on committed source. No safeguard
+attempt4 and committed final1 pass both shells; final2 repeats on corrected source. No safeguard
 was disabled and failed harness attempts are not product passes.
 
 Windows 10 22H2, another local real FFmpeg build, exact ZIP/kit and new phone
@@ -101,9 +104,9 @@ Entry local/live fc31a863809ebce595658472c35bdf3ab6d77052 was clean; entry
 push 39048718023 and PR 39048721360 pass both shells.
 Main local/live stays 28f53b10529495754273d55654c7b29e78848c83.
 
-Source f1a7b17e3f9a1074059cd4d2de424d90adad0a78 was normally pushed and
-independently advertised by fresh ls-remote. Exact-source push 39050312230 and
-PR 39050314938 pass. Final docs-only containing HEAD cannot contain its own SHA;
+Source 68e14aded3c2e80493512af8cc10d5abe34c4c19 was normally pushed and
+independently advertised by fresh ls-remote. Exact-source push 39051385250 and
+PR 39051387556 pass. Final docs-only containing HEAD cannot contain its own SHA;
 fresh clean/live equality, comparison time and exact-head CI are reported after
 push in the final response. Refresh them next entry. No force/reset/clean, merge,
 history/protection/visibility change, tag or release write.
@@ -114,7 +117,7 @@ owner-approval default. No frozen release source or ZIP exists. Runtime remains
 
 ## Decisions, risks and blockers
 
-D23-D26 record interfaces, deterministic pairs, bounded strict/lexically preserved
+D23-D28 record interfaces, deterministic pairs, bounded strict/lexically preserved
 config and isolated evidence. Review found and corrected omitted-param binding
 and read-before-guard issues before final verification. No S04 blocker remains.
 Atomic replacement serializes cooperating saves and detects observed identity/
@@ -137,7 +140,7 @@ Start a separate thread using:
     Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
     RELEASE_TARGET.json, evidence/S04.json and evidence/S04-HANDOVER.md.
     Refresh actual local/live feature and main identities and exact-head CI.
-    Verified source: f1a7b17e3f9a1074059cd4d2de424d90adad0a78; refresh the later
+    Verified source: 68e14aded3c2e80493512af8cc10d5abe34c4c19; refresh the later
     containing checkpoint recorded in the prior final response.
     Complete ONLY S05 - Add first-run setup and manual recovery.
     S01/S02/S03/S04 are complete; do not reset/reimport or restart them.

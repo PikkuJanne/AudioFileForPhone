@@ -1,10 +1,8 @@
-S04 reopened for a bounded compatibility correction: an absolute PATH entry must remain eligible when it equals CWD. Prior completed evidence below belongs to f1a7b17/a6e70d4; corrected runtime verification is IN_PROGRESS. Resume only S04 until its refreshed checkpoint passes. S05 remains NOT_STARTED.
-
 # Next session
 
 S01/S02/S03/S04 COMPLETED. S05 - Add first-run setup and manual recovery is
 NOT_STARTED and is the next eligible step. Do not restart earlier steps.
-Source f1a7b17e3f9a1074059cd4d2de424d90adad0a78 has passing source push/PR CI.
+Source 68e14aded3c2e80493512af8cc10d5abe34c4c19 has passing source push/PR CI.
 Refresh final containing checkpoint/live refs and exact-head CI from the prior
 final response at entry. No S05 work was started in S04.
 
@@ -16,7 +14,7 @@ Use this filled next-thread prompt:
     Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
     RELEASE_TARGET.json, evidence/S04.json and evidence/S04-HANDOVER.md.
     Refresh actual local/live feature and main identities and exact-head CI.
-    Verified source: f1a7b17e3f9a1074059cd4d2de424d90adad0a78; refresh the later
+    Verified source: 68e14aded3c2e80493512af8cc10d5abe34c4c19; refresh the later
     containing checkpoint recorded in the prior final response.
     Complete ONLY S05 - Add first-run setup and manual recovery.
     S01/S02/S03/S04 are complete; do not reset/reimport or restart them.

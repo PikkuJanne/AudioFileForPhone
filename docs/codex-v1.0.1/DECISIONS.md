@@ -159,3 +159,15 @@ D27 - 2026-10-17, S04 final compatibility audit: the initial exclusion of every
       f1a7b17/a6e70d4 validation as earlier evidence, not final corrected bytes.
       This restores the owner's legacy-compatibility requirement; no new approval
       or S05 work is needed. Other selection and release safeguards remain.
+
+D28 - 2026-10-17, corrected S04 checkpoint: source
+      68e14aded3c2e80493512af8cc10d5abe34c4c19 passes 10 targeted local reports:
+      selection 14, pure contracts 31 and help 7 cases per shell, plus isolated
+      real baseline/validation. Both current-directory forms and blank/relative
+      decoys are covered. Preserve the earlier 24 full local reports separately
+      under prior_validation at f1a7b17. Corrected-source push CI 39051385250 and
+      PR CI 39051387556 pass all four jobs, 194 checks/3 observations/14 selection
+      cases each; PR integration is 34c0f2d1cb919c9925e4c4860346dbf7fb8a6f0c.
+      Mark S04 complete and S05 NOT_STARTED. Final containing docs HEAD/live/CI
+      is observed after push without a self-hash. Main/release authority stays
+      separate; no owner action is needed for this step.
