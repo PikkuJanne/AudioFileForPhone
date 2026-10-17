@@ -443,11 +443,19 @@ try {
         foreach ($mode in @('NoArguments','Extra','QuotedEmpty','QuotedEmptyExtra')) {
             $driver = Join-Path $testRoot ('BAT-' + $mode + '.cmd')
             $arguments = switch ($mode) { 'NoArguments' { '' }; 'Extra' { ' extra' }; 'QuotedEmpty' { ' ""' }; 'QuotedEmptyExtra' { ' "" extra' } }
-            Write-NewText $driver ('@echo off' + "`r`ncall " + '"' + (Join-Path $appRoot 'Setup-AudioFileForPhone.bat') + '"' + $arguments + ' <NUL' + "`r`nexit /b %ERRORLEVEL%`r`n") -NoBom; Add-Fixture $driver
+            # The hidden native CMD starts its own console; establish UTF-8 in
+            # this owned driver before it reads the literal Unicode BAT path.
+            $driverText = '@echo off' + "`r`n" + '"' + (Join-Path $env:SystemRoot 'System32\chcp.com') + '" 65001 >NUL' + "`r`ncall " + '"' + (Join-Path $appRoot 'Setup-AudioFileForPhone.bat') + '"' + $arguments + ' <NUL' + "`r`nexit /b %ERRORLEVEL%`r`n"
+            Write-NewText $driver $driverText -NoBom; Add-Fixture $driver
             $native = Invoke-WithPath '' { Invoke-AudioNativeProcess -ExecutablePath (Join-Path $env:SystemRoot 'System32\cmd.exe') -Arguments @('/d','/c',$driver) -TimeoutMilliseconds 30000 -Operation ('S05 setup BAT ' + $mode) }; Assert-NativeComplete $native
             Assert-True ($native.ExitCode -eq 1 -and $native.Stdout -notmatch 'Press any key') ('BAT must preserve bounded exit1 with redirected input: ' + $mode + ' ' + $native.Stdout + $native.Stderr)
             if ($mode -cne 'NoArguments') { Assert-True ($native.Stdout -match 'accepts no arguments') 'Every supplied argument must be rejected before setup begins.' }
-            else { Assert-True ($native.Stdout -match 'explicit existing-tool directory|console input is unavailable') 'Double-click entry under redirected input must show direct recovery route.' }
+            else {
+                if ($native.Stdout -notmatch 'explicit existing-tool directory|console input is unavailable') {
+                    $case['observed_diagnostic'] = ($native.Stdout + $native.Stderr).Replace($testRoot,'<OWNED_TEMP>')
+                }
+                Assert-True ($native.Stdout -match 'explicit existing-tool directory|console input is unavailable') 'Double-click entry under redirected input must show direct recovery route.'
+            }
             $observations += [pscustomobject]@{mode=$mode;exit_code=1;pause_shown=$false}
         }
         $case['observations'] = $observations
