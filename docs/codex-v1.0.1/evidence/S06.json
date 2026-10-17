@@ -1,0 +1,4120 @@
+{
+  "schema_version": 1,
+  "step": "S06",
+  "status": "COMPLETED",
+  "scope": "Consent-based managed dependency setup only; S07 not started.",
+  "entry_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+  "tested_source_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+  "runtime_unchanged_since": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+  "recorded_utc": "2026-10-17T22:22:32.0178176Z",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "output_codepage": 65001,
+    "hidden_driver": "BOM-marked UTF8 owned PS bootstrap explicitly sets Console.OutputEncoding65001; hidden CMD drivers retain their existing65001",
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "owner_config_access": false,
+    "persistent_path_registry_policy_changes": false,
+    "physical_manual_evidence": false
+  },
+  "interface": {
+    "setup_options": [
+      "FfmpegDirectory",
+      "ConfigPath",
+      "Remember",
+      "NonInteractive",
+      "Download",
+      "Consent",
+      "ManagedRoot"
+    ],
+    "network": "Only separate setup AllowManagedDownload path; conversion D prints separate route then returns",
+    "selection": "Retained shared resolver/validator/atomic deliberate save; config persistence requires separate Remember/Y",
+    "storage": "Default managed sibling of selected config; explicit ManagedRoot portable scope; unique owned stage and unique complete versioned destination",
+    "cancellation": "Captured only during prompt-free managed work; scoped context restored before remember input",
+    "zip_policy": "Reviewed methods0/8, matching local/central headers, bounded EOCD/count/size, no encryption/descriptors/ZIP64, safe paths/attributes, raw bounded decompression+actual lengths+CRC32, stored empty directories",
+    "publication": "Same-volume no-replace rename; only transient5/32/33 retry<=5seconds with owner/reparse/identity/hash/cancel checks",
+    "runtime_updates": false
+  },
+  "pin": {
+    "schema_version": 1,
+    "provider": "Gyan Doshi (www.gyan.dev)",
+    "build": "9.0.2-essentials_build-www.gyan.dev",
+    "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+    "allowed_redirect_hosts": [
+      "www.gyan.dev"
+    ],
+    "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+    "archive_size_bytes": 114768076,
+    "max_download_bytes": 125829120,
+    "max_expanded_bytes": 402653184,
+    "max_entries": 100,
+    "archive_root": "ffmpeg-9.0.2-essentials_build",
+    "bin_relative_path": "bin",
+    "source_url": "https://github.com/FFmpeg/FFmpeg/commit/946fcce07b6dcd0331c8cc609192aeff5e1924f8",
+    "license_url": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "notices": [
+      "LICENSE",
+      "README.txt"
+    ],
+    "connect_timeout_seconds": 20,
+    "download_timeout_seconds": 300
+  },
+  "provenance": {
+    "primary": "https://www.gyan.dev/ffmpeg/builds/",
+    "checksum_url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip.sha256",
+    "publisher_release": "https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2",
+    "observed_bytes": 114768076,
+    "observed_entries": 49,
+    "observed_regular_files": 45,
+    "observed_expanded_bytes": 329221735,
+    "published_checksum_and_github_asset_digest_match": true,
+    "vendor_audit_sha256": "27d04c9c54e0f0eb34d79a5c33ce0e4dfd61bbc73abe31b790fe90dd0eca0bf8",
+    "all_vendor_files_retained": true,
+    "repository_bundles_vendor_binaries": false
+  },
+  "acceptance": [
+    {
+      "id": "S06-A1",
+      "status": "PASSED",
+      "evidence": "Both shells refuse absent/declined consent before transport/staging; conversion D never loads engine. Real affirmative shared setup installs pinned bytes; remembering is separate. Existing-tool/noninteractive/preview retained tests pass."
+    },
+    {
+      "id": "S06-A2",
+      "status": "PASSED",
+      "evidence": "50 cases per shell: executable sentinels, unsafe/duplicate/traversing/linked/oversized/malformed archives, header size lies, directory hidden payload, CRC/count/byte bounds, offline/timeout/cancellation, preserved prior valid config/tools, safe cleanup, two successful unique installs with actual supplied tools. Transport fixture substitution is explicit; production stream copier separately executed."
+    },
+    {
+      "id": "S06-A3",
+      "status": "PASSED",
+      "evidence": "Both actual Windows shells each perform an unmocked primary-publisher network installation through production shared setup, retaining45 vendor files/notices/provenance and validating startup+synthetic encode/probe/decode. Fresh empty-PATH process uses saved managed pair for actual64kbps conversion, independent artist probe/full decode; owned cleanup and hashes pass."
+    }
+  ],
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "1491f596cba95d6edd9d09e6b859893bdc2cbca3e63a0815b31dc231d33b644d"
+    },
+    {
+      "path": "AudioFileForPhone.ManagedSetup.ps1",
+      "sha256": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "e5e26a3b82cc78c287073395cbf69a29c06fab9d2163225a90114ba25a5768fe"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "20b2e31de62a0ee20159f463631baa55f004d7fa3b502ba784223bc2f119fc00"
+    },
+    {
+      "path": "tools/ffmpeg-download.json",
+      "sha256": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a"
+    }
+  ],
+  "accepted_local_reports": [
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final70.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 52248,
+      "report_sha256": "99aa1524b9815dfe12e666b2761a5fd1aff34420327b61f4eec0216b122a98bf",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps51-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps51-final70.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 129783,
+      "report_sha256": "eb41ac3394731fab0f6066112011e483eaece5a8b47e15fbb898e795598e6c56",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final70.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 58297,
+      "report_sha256": "6d9968eaefc4b20723c1d725d277da4ef5945fade7d716f34b81a14678914898",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 50
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetupReal.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final70.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 149267,
+      "report_sha256": "f1c0bdfd2c6b63431de7d43d4c2c183333f27f6af6779974c1b92cf51f96554d",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 3
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps51-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps51-final70.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 29979,
+      "report_sha256": "1a4de66c08ca5a9d773b3fcbecf84ce4e08cdd1737d1f196d80ecf7fb6a37fc3",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 35
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final70.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 58691,
+      "report_sha256": "f6bab410e6f61af3c9ffe48c0d72b676ff8e180fcece2858c2ab9766ddb445c1",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps7-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps7-final70.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 158645,
+      "report_sha256": "71c08191311febe1f74794abb9a808f1f72d81198809fe8ca20c8f5fb765d888",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final70.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 47963,
+      "report_sha256": "8a1fbb9ae1c1033723cf8fff25b7c2f328b22c4b722bcafaae17681cc46e4880",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 50
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetupReal.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final70.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 49405,
+      "report_sha256": "7f2dcd39c915f5bb71df298a15ef5c06fd82211cae2d5c2d5ae1af1b0e4389e2",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 3
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps7-final70.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps7-final70.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 31704,
+      "report_sha256": "fba5fb9673d9c4b0a6211536c9fe765aad21c2c96a04bc9e5c330e5e616caf9e",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 35
+    }
+  ],
+  "managed_security": [
+    {
+      "shell": "5.1.26100.9711",
+      "case_count": 50,
+      "cases": [
+        {
+          "name": "archive-preflight-accepts-complete-safe-fixture-without-executing",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "explicit-install-without-consent-performs-no-transport-or-staging",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested-cancellation-performs-no-transport-or-staging",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "shared-setup-explicit-download-without-consent-refuses-early",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "shared-interactive-D-decline-is-one-shot-without-installation",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "conversion-D-cannot-grant-download-authority",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "standalone-download-without-consent-refuses-in-UTF8-child",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "installer-offline-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "installer-timeout-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "installer-cancel-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "pinned-hash-mismatch-is-refused-before-execution",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "pinned-archive-byte-length-mismatch-is-refused-before-execution",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "invalid-manifest-download-bound-refused-before-transport",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "hash-valid-non-ZIP-is-refused",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-dot-dot-traversal-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-backslash-traversal-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-rooted-drive-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-drive-relative-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-rooted-slash-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-UNC-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-ADS-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-reserved-device-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-trailing-dot-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-trailing-space-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-wildcard-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-root-prefix-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-exact-duplicate-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-case-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-implicit-parent-case-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-file-as-parent-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-unix-symlink-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-windows-reparse-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-entry-count-bound",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-directory-lying-entry-count-rejected-before-materialization",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-directory-ZIP64-sentinel-rejected-before-materialization",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-expanded-size-bound",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "actual-expanded-entry-cannot-exceed-declared-metadata-central-only",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "actual-expanded-entry-cannot-exceed-declared-metadata-both-headers",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "directory-entry-cannot-hide-compressed-payload-behind-zero-expanded-size",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "required-vendor-notice-is-checked-before-any-executable",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "existing-reparse-managed-root-is-refused-without-following",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-exact",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-short",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-pin-overflow",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-max-overflow",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-timeout",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-cancel",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "all-failed-installs-remove-only-their-owned-staging",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "repeat-managed-install-uses-unique-complete-directories-and-preserves-earlier-install",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "owned-install-cancellation-survives-engine-result-handoff-before-remember",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        }
+      ],
+      "repeat_install": {
+        "name": "repeat-managed-install-uses-unique-complete-directories-and-preserves-earlier-install",
+        "acceptance_case": "S06-A2",
+        "status": "pass",
+        "scope": "real supplied x64 tool pair, full production capability checks and synthetic MP3 encode/probe/full-decode twice; download transport only is mocked; not primary-vendor provenance evidence",
+        "completed_installs": 2,
+        "unique_destinations": true,
+        "previous_install_unchanged": true,
+        "config_unchanged": true,
+        "first_publication_attempts": 2,
+        "second_publication_attempts": 2
+      },
+      "cancellation_handoff": {
+        "name": "owned-install-cancellation-survives-engine-result-handoff-before-remember",
+        "acceptance_case": "S06-A2",
+        "status": "pass",
+        "scope": "test-only engine-result injection after loading exact production managed module; shared setup cancellation handoff only, not archive or primary-vendor install evidence",
+        "engine_calls": 1,
+        "pending_owned_cancellation_preserved": true,
+        "later_native_calls": 0,
+        "remembered": false,
+        "prior_context_restored": true,
+        "config_and_tools_unchanged": true
+      },
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "codepage": 65001
+    },
+    {
+      "shell": "7.6.5",
+      "case_count": 50,
+      "cases": [
+        {
+          "name": "archive-preflight-accepts-complete-safe-fixture-without-executing",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "explicit-install-without-consent-performs-no-transport-or-staging",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested-cancellation-performs-no-transport-or-staging",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "shared-setup-explicit-download-without-consent-refuses-early",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "shared-interactive-D-decline-is-one-shot-without-installation",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "conversion-D-cannot-grant-download-authority",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "standalone-download-without-consent-refuses-in-UTF8-child",
+          "acceptance_case": "S06-A1",
+          "status": "pass"
+        },
+        {
+          "name": "installer-offline-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "installer-timeout-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "installer-cancel-preserves-previous-selection",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "pinned-hash-mismatch-is-refused-before-execution",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "pinned-archive-byte-length-mismatch-is-refused-before-execution",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "invalid-manifest-download-bound-refused-before-transport",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "hash-valid-non-ZIP-is-refused",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-dot-dot-traversal-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-backslash-traversal-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-rooted-drive-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-drive-relative-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-rooted-slash-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-UNC-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-ADS-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-reserved-device-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-trailing-dot-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-trailing-space-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-wildcard-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-root-prefix-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-exact-duplicate-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-case-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-implicit-parent-case-collision-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-file-as-parent-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-unix-symlink-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe-archive-windows-reparse-never-executes-tools",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-entry-count-bound",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-directory-lying-entry-count-rejected-before-materialization",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-directory-ZIP64-sentinel-rejected-before-materialization",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "archive-expanded-size-bound",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "actual-expanded-entry-cannot-exceed-declared-metadata-central-only",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "actual-expanded-entry-cannot-exceed-declared-metadata-both-headers",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "directory-entry-cannot-hide-compressed-payload-behind-zero-expanded-size",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "required-vendor-notice-is-checked-before-any-executable",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "existing-reparse-managed-root-is-refused-without-following",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-exact",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-short",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-pin-overflow",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-max-overflow",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-timeout",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "production-download-stream-cancel",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "all-failed-installs-remove-only-their-owned-staging",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "repeat-managed-install-uses-unique-complete-directories-and-preserves-earlier-install",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        },
+        {
+          "name": "owned-install-cancellation-survives-engine-result-handoff-before-remember",
+          "acceptance_case": "S06-A2",
+          "status": "pass"
+        }
+      ],
+      "repeat_install": {
+        "name": "repeat-managed-install-uses-unique-complete-directories-and-preserves-earlier-install",
+        "acceptance_case": "S06-A2",
+        "status": "pass",
+        "scope": "real supplied x64 tool pair, full production capability checks and synthetic MP3 encode/probe/full-decode twice; download transport only is mocked; not primary-vendor provenance evidence",
+        "completed_installs": 2,
+        "unique_destinations": true,
+        "previous_install_unchanged": true,
+        "config_unchanged": true,
+        "first_publication_attempts": 3,
+        "second_publication_attempts": 3
+      },
+      "cancellation_handoff": {
+        "name": "owned-install-cancellation-survives-engine-result-handoff-before-remember",
+        "acceptance_case": "S06-A2",
+        "status": "pass",
+        "scope": "test-only engine-result injection after loading exact production managed module; shared setup cancellation handoff only, not archive or primary-vendor install evidence",
+        "engine_calls": 1,
+        "pending_owned_cancellation_preserved": true,
+        "later_native_calls": 0,
+        "remembered": false,
+        "prior_context_restored": true,
+        "config_and_tools_unchanged": true
+      },
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "codepage": 65001
+    }
+  ],
+  "real_primary_install": [
+    {
+      "shell": "5.1.26100.9711",
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "status": "pass",
+      "case_count": 3,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+          "architecture": "x64"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+          "architecture": "x64"
+        }
+      ],
+      "provenance": {
+        "schema_version": 1,
+        "manifest": {
+          "schema_version": 1,
+          "provider": "Gyan Doshi (www.gyan.dev)",
+          "build": "9.0.2-essentials_build-www.gyan.dev",
+          "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+          "allowed_redirect_hosts": [
+            "www.gyan.dev"
+          ],
+          "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+          "archive_size_bytes": 114768076,
+          "max_download_bytes": 125829120,
+          "max_expanded_bytes": 402653184,
+          "max_entries": 100,
+          "archive_root": "ffmpeg-9.0.2-essentials_build",
+          "bin_relative_path": "bin",
+          "source_url": "https://github.com/FFmpeg/FFmpeg/commit/946fcce07b6dcd0331c8cc609192aeff5e1924f8",
+          "license_url": "https://www.gnu.org/licenses/gpl-3.0.html",
+          "notices": [
+            "LICENSE",
+            "README.txt"
+          ],
+          "connect_timeout_seconds": 20,
+          "download_timeout_seconds": 300
+        },
+        "archive_sha256": "60F467265B1E312373DBCD92200C2618A74850F98D3D078E94296BB3FA2047BA",
+        "archive_entries": 49,
+        "expanded_bytes": 329221735,
+        "final_download_url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+        "tool_sha256": {
+          "ffmpeg.exe": "3256173F3F8BFFD7DF12227C68ADF68025EDB1832273A9530688A7BB1ED8EDEC",
+          "ffprobe.exe": "F0D36ECBBDD3BCFAC3EFA078C96C7271C2E68B3810595552AC3B7F17E9A65C52"
+        },
+        "smoke": "64 kbps MP3 encode, probe and full decode passed",
+        "installed_utc": "2026-10-17T22:19:23.6961102Z"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "bytes": 35147
+        },
+        {
+          "path": "README.txt",
+          "sha256": "0342de6bb39dd421cbec2c00d89ad274b640d75ad3f2cab09ffd647ce2d8f949",
+          "bytes": 41577
+        }
+      ],
+      "conversion": {
+        "exit_code": 0,
+        "converted": 1,
+        "bitrate_kbps": 64,
+        "selection_origin": "Saved",
+        "artist": "S06 synthetic artist",
+        "full_decode": true,
+        "output_sha256": "ee192ba0d3256af771117b294918c14c75f531806257930f837482fe89cefbfe"
+      },
+      "child_audit": {
+        "output_encoding_codepage": 65001,
+        "helper_loads": 1,
+        "native_proofs": [
+          {
+            "operation": "ffmpeg version check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "ffprobe version check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "ffmpeg encoder capability check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Source media probe",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Native operation",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Output media probe",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Native operation",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          }
+        ],
+        "forbidden_calls": []
+      },
+      "network_installations_requested": 1,
+      "mocked_network": false,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "codepage": 65001
+    },
+    {
+      "shell": "7.6.5",
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "status": "pass",
+      "case_count": 3,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+          "architecture": "x64"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+          "architecture": "x64"
+        }
+      ],
+      "provenance": {
+        "schema_version": 1,
+        "manifest": {
+          "schema_version": 1,
+          "provider": "Gyan Doshi (www.gyan.dev)",
+          "build": "9.0.2-essentials_build-www.gyan.dev",
+          "url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+          "allowed_redirect_hosts": [
+            "www.gyan.dev"
+          ],
+          "sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+          "archive_size_bytes": 114768076,
+          "max_download_bytes": 125829120,
+          "max_expanded_bytes": 402653184,
+          "max_entries": 100,
+          "archive_root": "ffmpeg-9.0.2-essentials_build",
+          "bin_relative_path": "bin",
+          "source_url": "https://github.com/FFmpeg/FFmpeg/commit/946fcce07b6dcd0331c8cc609192aeff5e1924f8",
+          "license_url": "https://www.gnu.org/licenses/gpl-3.0.html",
+          "notices": [
+            "LICENSE",
+            "README.txt"
+          ],
+          "connect_timeout_seconds": 20,
+          "download_timeout_seconds": 300
+        },
+        "archive_sha256": "60F467265B1E312373DBCD92200C2618A74850F98D3D078E94296BB3FA2047BA",
+        "archive_entries": 49,
+        "expanded_bytes": 329221735,
+        "final_download_url": "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip",
+        "tool_sha256": {
+          "ffmpeg.exe": "3256173F3F8BFFD7DF12227C68ADF68025EDB1832273A9530688A7BB1ED8EDEC",
+          "ffprobe.exe": "F0D36ECBBDD3BCFAC3EFA078C96C7271C2E68B3810595552AC3B7F17E9A65C52"
+        },
+        "smoke": "64 kbps MP3 encode, probe and full decode passed",
+        "installed_utc": "2026-10-17T22:18:20.380865Z"
+      },
+      "notices": [
+        {
+          "path": "LICENSE",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "bytes": 35147
+        },
+        {
+          "path": "README.txt",
+          "sha256": "0342de6bb39dd421cbec2c00d89ad274b640d75ad3f2cab09ffd647ce2d8f949",
+          "bytes": 41577
+        }
+      ],
+      "conversion": {
+        "exit_code": 0,
+        "converted": 1,
+        "bitrate_kbps": 64,
+        "selection_origin": "Saved",
+        "artist": "S06 synthetic artist",
+        "full_decode": true,
+        "output_sha256": "ee192ba0d3256af771117b294918c14c75f531806257930f837482fe89cefbfe"
+      },
+      "child_audit": {
+        "output_encoding_codepage": 65001,
+        "helper_loads": 1,
+        "native_proofs": [
+          {
+            "operation": "ffmpeg version check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "ffprobe version check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "ffmpeg encoder capability check",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Source media probe",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Native operation",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Output media probe",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          },
+          {
+            "operation": "Native operation",
+            "status": "Completed",
+            "process_released": true,
+            "pipe_drain_completed": true
+          }
+        ],
+        "forbidden_calls": []
+      },
+      "network_installations_requested": 1,
+      "mocked_network": false,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "codepage": 65001
+    }
+  ],
+  "prior_validation": [
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 57473,
+      "report_sha256": "5fd222635e382e2580d1db4f0f8f0adc2032513b3f6e3d1b08df1c54abc531da",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s06-isolation-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s06-isolation-ps51-final62.json",
+        "-ValidateOnly"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 1461,
+      "report_sha256": "c2de5bcdfb6b3696e6b2a5a2276fe3ffb3b497f232a32e0f1b699dafc1ae0cc1",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 0
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s06-baseline-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s06-baseline-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 53616,
+      "report_sha256": "cb48097af01e169ecc5cf6d806dd87cad58c0634be900289ea63e3a3ed8fe06f",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 7
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps51-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 4900,
+      "report_sha256": "9c3e4b894d6ad41dff546e44cae06d9122609ac222f4ab0ffab1127f2fd10657",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "shell": "5.1.26100.9711",
+      "required_checks": 31
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 38405,
+      "report_sha256": "41394de7e42eefebe86c14f8ae93ef6f428e302b28d826bf0828716b3be505ef",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 7
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-toolselection-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-toolselection-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 46490,
+      "report_sha256": "9bce01b3fbda645a76782550c156d72fb20d9687bd653e5cf299c18d53d2807c",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 14
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T12-preview-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 39355,
+      "report_sha256": "9039b5bb26cabb62caa95d7ef6a4ae84421596b361f9b8dad6e0ac7cd889327c",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 8
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T09-transaction-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T09-transaction-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 59740,
+      "report_sha256": "ca01d7588d2d0d3c1d90d43693ca19937ca776a35dfa052ec4120b6d350f22e6",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 27
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T11-cancellation-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T11-cancellation-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 27865,
+      "report_sha256": "340d1998bf5fe5e7e26f0bc6450b0d74b180b2fccde5438fa1ed973bdd387623",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 9
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 31085,
+      "report_sha256": "f12955d3dc62f9ff459e68e30a608a39da5509ded943491869a7bb18ea5925be",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps51-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 48753,
+      "report_sha256": "9c3849e4fd04c05bd584795a23da90466642fc2dd8e56952e47ddd9ef371491d",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 12
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps51-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 11595,
+      "report_sha256": "0d76bac752080285ec0eaa33ecb9def79b0c50947179e05dc9420ece8bc6399a",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 181
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps51-final62.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 119619,
+      "report_sha256": "65edb16dd121dfd9b5c02fe50752078ca669e9a4432b25940cd3c7faa50ffc0f",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 1,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 60647,
+      "report_sha256": "884005445dd2234c6e1110191739ed30ed3e3d57df6ba41ae9eddcba0cba737b",
+      "status": "fail",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": false,
+      "synthetic_unchanged": false,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 49
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetupReal.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 1,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 213172,
+      "report_sha256": "a19a024a695aa79005f40104cb92d2fe89b5deb083ca5953c1ae909e76b0dc8b",
+      "status": "fail",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": false,
+      "synthetic_unchanged": false,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 3
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps51-final63.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps51-final63.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 178735,
+      "report_sha256": "68f7e6c36556daabc9a62c45784cedfcd20c94afa3cd9d52dda36aeccdd014c8",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 63569,
+      "report_sha256": "bb58b6edfc25812effe2456646ca76979f59f3ddd2f2706fa23e29d6f20296e7",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s06-isolation-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s06-isolation-ps7-final62.json",
+        "-ValidateOnly"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 1505,
+      "report_sha256": "1b55fd6ffab21abbd5d6b59826e98426ef6d73aeefe5edaa304485a160b5f56a",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 0
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s06-baseline-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s06-baseline-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 64920,
+      "report_sha256": "10bb4301c95a96e9776a208cb1a46f4711d73b9c8956f387378464d9366122ec",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 7
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps7-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 4345,
+      "report_sha256": "ecd3731658e992aa1782c18460151e4bf504a65d47e88dd70c4a4ffa16df8ffb",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "shell": "7.6.5",
+      "required_checks": 31
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 38841,
+      "report_sha256": "5e7ff8f587dc553239a0fa02c596b604121f395be14da6c0b42062d522195ee0",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 7
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-toolselection-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-toolselection-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 53442,
+      "report_sha256": "d00d998068a67472f6be89cdeafede8af3c5bb63bab4743b0315dbf9fdec3784",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 14
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T12-preview-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 40374,
+      "report_sha256": "93b96721cec69b0094b882440bb14ef1ed675011ee4391e2e58e8905660ca44e",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 8
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T09-transaction-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T09-transaction-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 59915,
+      "report_sha256": "add44b0560122be2ff106fbdf4dd97ceb068d164fa29c208b776e9303f12f242",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 27
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T11-cancellation-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T11-cancellation-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 21027,
+      "report_sha256": "d5f7227f492e612d220533a05817deb5a6b0a0f1ee0f5e47b1690125d6916e5d",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 9
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 30672,
+      "report_sha256": "266267a0ac49f6a1169f3b20e06b9ea6a3ff53b94a919a16c6250fe14a852a39",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 15
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps7-final62.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 55683,
+      "report_sha256": "0b1c0c0bafdf35793d8f1f8b13f088d291f0fb301f44c3fa299c62cc6e0a6d5e",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 12
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps7-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 16038,
+      "report_sha256": "258f167dc46334bc67ee7d0946a0f0ea74008fab8851c5e49aefc28c859f3889",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 181
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps7-final62.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 147932,
+      "report_sha256": "4edd1541d9d9e92a35453b943609d479363ab23b38dc93d8cf35345191f74421",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 1,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 48272,
+      "report_sha256": "cfd7d77749090b63d4f4e78c335c821308c151abb611df93eea920d931ee9541",
+      "status": "fail",
+      "error": "Pending owned installation cancellation must remain Cancelled across the engine return and prevent Remember.",
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": false,
+      "synthetic_unchanged": false,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 50
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final62.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ManagedSetupReal.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final62.json"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 109903,
+      "report_sha256": "b31777e6bd93f6b2ff4649b66b5e34c874cf896821b877cd618870f4daaf51e7",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "inherited_console_output_codepage": 65001,
+      "required_checks": 3
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps7-final63.json",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Package.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-package-ps7-final63.json",
+        "-FfmpegPath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+        "-FfprobePath",
+        "<PRIVATE_TEMP>\\S06records-00664986\\package-tools\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+      ],
+      "outer_status": "Completed",
+      "outer_exit_code": 0,
+      "outer_process_released": true,
+      "outer_pipe_drain_completed": true,
+      "elapsed_ms": 219228,
+      "report_sha256": "3bb98ac6f1a36af0cf0de17e3603594a47ff1199f916e93fe9e309306d7b7da4",
+      "status": "pass",
+      "error": null,
+      "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_checks": 55
+    }
+  ],
+  "runtime_identity": {
+    "final_source": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+    "managed_engine_and_pin_unchanged_since": "70bd7525ecd7894d447275850a4ea95bbee240a1",
+    "late_delta": "After broad retained local runs, five Helpers lines preserve owned cancellation before Remember and print unwrapped D outcome. Test case50 added; exact RED before fix. Final focus70 and native70 test final69bce4a; complete exact-source CI reruns every retained family.",
+    "prior_report_identity": "Prior validation retains each actual tested_commit and report digest; these are not mislabeled as final-runtime reports. Concurrent late-repair source snapshot failures are failures, retained in preparation.",
+    "normal_conversion": "AudioFileForPhone.ps1/BAT, existing encode/decode transactions and defaults untouched. Late helper lines are confined to managed setup handoff and D guidance.",
+    "hash_scope": "Local working-tree/copy bytes are recorded; hosted checkouts record their own inventories. Git LF/CRLF materialization is not silently equated."
+  },
+  "commands": {
+    "root": "C:\\projects\\AudioFileForPhone-main",
+    "common_flags": [
+      "-NoLogo",
+      "-NoProfile",
+      "-NonInteractive",
+      "-ExecutionPolicy",
+      "RemoteSigned"
+    ],
+    "actual_invocations": "Private TEMP prefixes in command_arguments are redacted as <PRIVATE_TEMP>; other arguments are preserved. Exact invocation arrays and bootstrap command lines remain in hash-bound private raw reports. Outer owned UTF8 bootstraps execute literal quoted test paths.",
+    "raw_records": "Fresh approved active/historical report paths, create-new, then literal move to marked private TEMP records. Raw fixtures/config/logs/audio/CI archives are outside Git.",
+    "native_order": "Native resource tests last and sequential after both main local matrices and auxiliary package checks finish",
+    "extra_package": "Both actual shells also run corrected pinned package policy final63 separately; preserve under prior_validation",
+    "watchdog": "Outer owned test host360000ms; controlled native teardown; normal conversion encode/decode remains unlimited"
+  },
+  "preparation": {
+    "reports": [
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-attempt1.json",
+        "sha256": "7423914548b9335d96d801784490ac8907f9d20a71f173e4b51d543478a93859",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "pass",
+        "cases": 42,
+        "error": null,
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-attempt2.json",
+        "sha256": "7011aeed6a3e7c45d2ce90c80457aab129c6bc7639e65d8d20f60551f95d4919",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "fail",
+        "cases": 45,
+        "error": "Exception calling \"Move\" with \"2\" argument(s): \"Access to the path '<OWNED_TEMP>\\Managed [literal]\\.AudioFileForPhone-staging-f2244bfd390f462faadfa76c5b91ed07\\payload\\fixture-build' is denied.\"",
+        "hash_verification_error": "Repository source bytes changed during tests.",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-attempt3.json",
+        "sha256": "dd09db72c55f86064fb73c383ea418c5ebb145d380c28d4df30762eb3002715c",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "fail",
+        "cases": 48,
+        "error": "Exception calling \"Move\" with \"2\" argument(s): \"Access to the path '<OWNED_TEMP>\\Managed [literal]\\.AudioFileForPhone-staging-c693063c07924a0d881a2c41df18aa9c\\payload\\fixture-build' is denied.\"",
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-attempt4.json",
+        "sha256": "80cdac78c4617038e6f32ee474510df0de5dbaa87b782dfc2eff2df3940c2a86",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "pass",
+        "cases": 49,
+        "error": null,
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-attempt1.json",
+        "sha256": "a00a88bb1b7e907388ee91875d53df4d0ec6ea122f8f454237e6df387e617775",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "pass",
+        "cases": 42,
+        "error": null,
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-attempt2.json",
+        "sha256": "b15ecffd66b612f1fb7bb037420479b90fe2fb52bea5e621aaa9d0f4b54bd53f",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "fail",
+        "cases": 35,
+        "error": "Expected specific managed-install refusal expansion|expanded|metadata|length|archive|size; observed Explicit FFmpeg selection failed validation: Invalid ffmpeg executable '<OWNED_TEMP>\\Managed [literal]\\.AudioFileForPhone-staging-ad07c1aaf58b4074832c8a7fd68be793\\payload\\fixture-build\\bin\\ffmpeg.exe': Expected a successful tool version response. Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted.",
+        "hash_verification_error": "Repository source bytes changed during tests.",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-attempt3.json",
+        "sha256": "bce12b7c959281926a1c6be58e1badcc019c38e2e65435077e3a266a392ade15",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "fail",
+        "cases": 48,
+        "error": "Exception calling \"Move\" with \"2\" argument(s): \"Access to the path '<OWNED_TEMP>\\Managed [literal]\\.AudioFileForPhone-staging-1ba2355992204fd2bab22f8266560faf\\payload\\fixture-build' is denied.\"",
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-attempt4.json",
+        "sha256": "78c1b06561e01a2e08c5e9d554c2cf278aa933bc2968ad9cd04ad2d234afd5fc",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "mode": "managed_installer_failure_boundaries_and_production_stream_bounds",
+        "status": "pass",
+        "cases": 49,
+        "error": null,
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-attempt5.json",
+        "sha256": "93e07c6e370659acdcfb74ab17a91300aca10c570491ad412c559c10bb553346",
+        "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+        "mode": "focused_engine_result_handoff_injection_only",
+        "status": "fail",
+        "cases": 1,
+        "error": "Pending owned installation cancellation must remain Cancelled across the engine return and prevent Remember.",
+        "hash_verification_error": null,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "raw_local_only": true,
+        "classification": "Preparation only; actual mode/case count retained. No relabeling as final50-case acceptance."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-FirstRunSetup.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final61.json",
+          "-FfmpegPath",
+          "C:/ffmpeg/bin/ffmpeg.exe",
+          "-FfprobePath",
+          "C:/ffmpeg/bin/ffprobe.exe"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 1395,
+        "report_sha256": "1bd91d6c2681e6ab650bbc026d720a0a4f6895f75728e5c3f1f860fb2577be22",
+        "status": "fail",
+        "error": "Run this suite from the inherited UTF8 CP65001 console.",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": false,
+        "descendant_release_proved": true,
+        "shell": "5.1.26100.9711",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 437,
+        "required_checks": 0
+      },
+      {
+        "original_contract_path": "docs/codex-v1/evidence/T17-s06-baseline-ps51-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Invoke-IsolatedBaseline.ps1",
+          "-EvidencePath",
+          "docs/codex-v1/evidence/T17-s06-baseline-ps51-final61.json",
+          "-FfmpegPath",
+          "C:/ffmpeg/bin/ffmpeg.exe",
+          "-FfprobePath",
+          "C:/ffmpeg/bin/ffprobe.exe"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 47961,
+        "report_sha256": "b516c52ac356911143e862d8dd4b60088bb189fbb430b6c73a9f34019bb0c7ca",
+        "status": "fail",
+        "error": "Baseline checks failed (legacy=0, characterization=1).",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "shell": "5.1.26100.9711",
+        "windows_build": "26300.9711",
+        "required_checks": 7
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-FirstRunSetup.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final61.json",
+          "-FfmpegPath",
+          "C:/ffmpeg/bin/ffmpeg.exe",
+          "-FfprobePath",
+          "C:/ffmpeg/bin/ffprobe.exe"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 1678,
+        "report_sha256": "8fd62e584d905a6b7d20a352259ce43d6e009285d5ff4e587289e2bcd1bd53be",
+        "status": "fail",
+        "error": "Run this suite from the inherited UTF8 CP65001 console.",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": false,
+        "descendant_release_proved": true,
+        "shell": "7.6.5",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 437,
+        "required_checks": 0
+      },
+      {
+        "original_contract_path": "docs/codex-v1/evidence/T17-s06-baseline-ps7-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Invoke-IsolatedBaseline.ps1",
+          "-EvidencePath",
+          "docs/codex-v1/evidence/T17-s06-baseline-ps7-final61.json",
+          "-FfmpegPath",
+          "C:/ffmpeg/bin/ffmpeg.exe",
+          "-FfprobePath",
+          "C:/ffmpeg/bin/ffprobe.exe"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 62093,
+        "report_sha256": "2fe9a401c508d01c634f6e2f16a8bef19fe43f86887307153d75f79cb7814630",
+        "status": "fail",
+        "error": "Baseline checks failed (legacy=0, characterization=1).",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "shell": "7.6.5",
+        "windows_build": "26300.9711",
+        "required_checks": 7
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-ManagedSetupReal.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final61.json"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 122890,
+        "report_sha256": "07bc89d5781d720007e0855567dc64839772451128af687fad1bb2815521062d",
+        "status": "fail",
+        "error": "Real production managed setup must complete and remember: Exception calling \"Move\" with \"2\" argument(s): \"Access to the path '<OWNED_TEMP>\\M [x] ä\\.AudioFileForPhone-staging-40ce866c1d9c488f98bf01f95eec8e02\\payload\\ffmpeg-9.0.2-essentials_build' is denied.\" ",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "shell": "5.1.26100.9711",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 65001,
+        "required_checks": 1
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final61.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-ManagedSetupReal.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S06-managedreal-ps7-final61.json"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 54620,
+        "report_sha256": "a454a8b9248705e8f828fc4f8b0eb0ea2a04647e2f891e2e5bc3cc8c0ea0ba16",
+        "status": "fail",
+        "error": "Real production managed setup must complete and remember: Exception calling \"Move\" with \"2\" argument(s): \"Access to the path '<OWNED_TEMP>\\M [x] ä\\.AudioFileForPhone-staging-d5ec49d50721482d918b75934fb7d6c6\\payload\\ffmpeg-9.0.2-essentials_build' is denied.\" ",
+        "tested_commit": "c348e2f24e85e76b6e342677e2042ae4c99b428e",
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "shell": "7.6.5",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 65001,
+        "required_checks": 1
+      }
+    ],
+    "late_diagnostic_ci": [
+      39073471860,
+      39073474224
+    ],
+    "late_diagnostic_ci_result": "PS7 complete pass262 required checks with49 managed cases; PS5 failed strict D no-download text due ErrorRecord wrapping. Added plain host sentence without weakening assertion.",
+    "late_cancellation_repair": "Focused case50 failed old helper with actual later native validations/save; Assert while owned context remains active plus post-dispose flag now prevents saving. Full final50-case suites and exact69 CI retest this repair.",
+    "inflight_source_repair_reports": [
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final62.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-ManagedSetup.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S06-managedsetup-ps51-final62.json"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 60647,
+        "report_sha256": "884005445dd2234c6e1110191739ed30ed3e3d57df6ba41ae9eddcba0cba737b",
+        "status": "fail",
+        "error": null,
+        "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "shell": "5.1.26100.9711",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 65001,
+        "required_checks": 49
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final62.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-ManagedSetupReal.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S06-managedreal-ps51-final62.json"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 213172,
+        "report_sha256": "a19a024a695aa79005f40104cb92d2fe89b5deb083ca5953c1ae909e76b0dc8b",
+        "status": "fail",
+        "error": null,
+        "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "shell": "5.1.26100.9711",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 65001,
+        "required_checks": 3
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final62.json",
+        "command_arguments": [
+          "-NoLogo",
+          "-NoProfile",
+          "-NonInteractive",
+          "-ExecutionPolicy",
+          "RemoteSigned",
+          "-File",
+          "tests/Test-ManagedSetup.ps1",
+          "-EvidencePath",
+          "docs/codex-v1.0.1/evidence/S06-managedsetup-ps7-final62.json"
+        ],
+        "outer_status": "Completed",
+        "outer_exit_code": 1,
+        "outer_process_released": true,
+        "outer_pipe_drain_completed": true,
+        "elapsed_ms": 48272,
+        "report_sha256": "cfd7d77749090b63d4f4e78c335c821308c151abb611df93eea920d931ee9541",
+        "status": "fail",
+        "error": "Pending owned installation cancellation must remain Cancelled across the engine return and prevent Remember.",
+        "tested_commit": "aceaa4d03276c674c8e90f2e67832529f9f35c7c",
+        "source_unchanged": false,
+        "synthetic_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "shell": "7.6.5",
+        "windows_build": "26300.9711",
+        "inherited_console_output_codepage": 65001,
+        "required_checks": 50
+      }
+    ],
+    "initial_source_ci": [
+      39073369752,
+      39073372561
+    ],
+    "initial_ci_result": "FAILED: retained independent ZIP-member assertion still allowed root files only; exact nested reviewed pin added without permitting other nested paths. All syntax/security analyzer checks passed; no gate disabled.",
+    "archive_findings": "Initial malformed-header fixtures exposed .NET truncation, including both-header lies. Add independent raw bounded decompression/count/CRC and local/central+directory checks; retain every assertion.",
+    "publication_finding": "Exact owned-file RestartManager read-only query identified external Windows service handle; identical unique rename succeeded1second later. No system process/control modified. Bounded guarded retry fixed actual fixture and vendor installs.",
+    "diagnostic_script_sha256": "ad3e49838d5ac3f98863a4b20c5066a5f60c49f25b862028207d4573201c0408",
+    "outer_driver_finding": "Initial hidden outer driver failed CP65001 guard and baseline Unicode; final BOM UTF8 bootstrap restores explicit codepage. No product/assertion change for this preparation repair."
+  },
+  "ci": [
+    {
+      "run_id": 39074124256,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074124256",
+      "event": "push",
+      "head_sha": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "databaseId": 117517638670,
+          "name": "windows (pwsh, ps7)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074124256/job/117517638670"
+        },
+        {
+          "databaseId": 117517638823,
+          "name": "windows (powershell, ps51)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074124256/job/117517638823"
+        }
+      ]
+    },
+    {
+      "run_id": 39074127630,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074127630",
+      "event": "pull_request",
+      "head_sha": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "databaseId": 117517648341,
+          "name": "windows (powershell, ps51)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074127630/job/117517648341"
+        },
+        {
+          "databaseId": 117517648472,
+          "name": "windows (pwsh, ps7)",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39074127630/job/117517648472"
+        }
+      ]
+    }
+  ],
+  "downloaded_ci_reports": [
+    {
+      "file": "T17-ci-ps51-run39074124256_1.json",
+      "sha256": "b17f4d8b20352a609e2601d419e4ed5b9f9d6577ac5e1000d38d7a0b9fb5962b",
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "github_event": "push",
+      "github_sha": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "run_id": "39074124256",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "runner_image": "win25-vs2026",
+      "status": "pass",
+      "required_checks": 263,
+      "observations": 3,
+      "syntax_errors": 0,
+      "analysis_diagnostics": 0,
+      "tests": [
+        {
+          "family": "unit",
+          "harness": "tests/ci/Test-CiContracts.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiContracts.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-unit-ps51-run39074124256_1.json"
+          ],
+          "report": "T17-unit-ps51-run39074124256_1.json",
+          "report_sha256": "09991908c21ad8b5d11f3b331bbc063f3b7ac91c354ff146fd088d1198c51713",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 31,
+          "observations": null
+        },
+        {
+          "family": "ci-dependencyguards",
+          "harness": "tests/ci/Test-CiDependencies.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiDependencies.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-ci-dependencyguards-ps51-run39074124256_1.json"
+          ],
+          "report": "T17-ci-dependencyguards-ps51-run39074124256_1.json",
+          "report_sha256": "921de15eb3003cd0f4a8f543ee41a698f14dcdb53de46c1140b07b16c80dccb7",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 22,
+          "observations": null
+        },
+        {
+          "family": "package",
+          "harness": "tests/Test-Package.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-Package.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-package-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-package-ps51-run39074124256_1.json",
+          "report_sha256": "d33229d4649fd1fb7d1afde62827d5ca5c58766d5fe7fa714f52ebec2019ba71",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 55,
+          "observations": null
+        },
+        {
+          "family": "baseline",
+          "harness": "tests/Invoke-IsolatedBaseline.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Invoke-IsolatedBaseline.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-baseline-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-baseline-ps51-run39074124256_1.json",
+          "report_sha256": "469e5452092f1f748abea71fec53d05c3b725a4029c4108325e1507409bca469",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": 3
+        },
+        {
+          "family": "help",
+          "harness": "tests/Test-HelpVersion.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-HelpVersion.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-help-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-help-ps51-run39074124256_1.json",
+          "report_sha256": "1ad607ae1e78abe81997adbdd56a3c0abbd8d88029964f5e3bec7e08a6de2ee7",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": null
+        },
+        {
+          "family": "setupencoding",
+          "harness": "tests/Test-SetupEncodingRegressions.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-SetupEncodingRegressions.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-setupencoding-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-setupencoding-ps51-run39074124256_1.json",
+          "report_sha256": "e9aaca5cdc5342ad9a619f36b0c4f4b3c255678147541feb3872559088015a42",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 12,
+          "observations": null
+        },
+        {
+          "family": "shortoperations",
+          "harness": "tests/Test-ShortOperations.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ShortOperations.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-shortoperations-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-shortoperations-ps51-run39074124256_1.json",
+          "report_sha256": "6ffaac2f6f38394145f46b502ffd7e6f2452e1cba4780ccfc664ce1612b45812",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "toolselection",
+          "harness": "tests/Test-ToolSelection.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ToolSelection.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-toolselection-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-toolselection-ps51-run39074124256_1.json",
+          "report_sha256": "f15cf9e0c77b265130fec9f789cbf1a99e1158b98c5ee9148bc6604c71b2b282",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 14,
+          "observations": null
+        },
+        {
+          "family": "firstrunsetup",
+          "harness": "tests/Test-FirstRunSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-FirstRunSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-firstrunsetup-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-firstrunsetup-ps51-run39074124256_1.json",
+          "report_sha256": "e239f1653b0459c07b862dc747988578d2e063bd4a31fb63bd29ae26d55cbdb3",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "managedsetup",
+          "harness": "tests/Test-ManagedSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ManagedSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-managedsetup-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-managedsetup-ps51-run39074124256_1.json",
+          "report_sha256": "09473dfbce73186fa1d3afa70f7d272aec8d50dd4b7e9e9aa4ad009f393a0d02",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 50,
+          "observations": null
+        },
+        {
+          "family": "native",
+          "harness": "tests/Test-NativeProcess.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-NativeProcess.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-native-ps51-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-821e47b7e4d94757b4413dce52abfdc8\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-native-ps51-run39074124256_1.json",
+          "report_sha256": "055caa858117e2c8c637c808c712ca06c8525d389575798bc4dd33a51e2c4aa8",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 35,
+          "observations": null
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "1491f596cba95d6edd9d09e6b859893bdc2cbca3e63a0815b31dc231d33b644d"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ManagedSetup.ps1",
+          "sha256": "da1a31cb9fb221e68d53f1790d22cbb7e41886ca0ad6e41b5c5fd2c2a38fdbd8"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+        },
+        {
+          "relative_path": "Setup-AudioFileForPhone.ps1",
+          "sha256": "b3dacc41fb8a492443a48f59272a2eecd01923cbe7d7f26230fecc23baa108d8"
+        },
+        {
+          "relative_path": "tools/ffmpeg-download.json",
+          "sha256": "cf8dd9862baf808168bcc5b7dbcba3f8170331c6adb03b9671e804c7ca1a4836"
+        }
+      ]
+    },
+    {
+      "file": "T17-ci-ps7-run39074124256_1.json",
+      "sha256": "931cc4e2d35aacf89259e05a923ef9839d0264fbe7d13cf64aa29c119ea073a1",
+      "tested_commit": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "github_event": "push",
+      "github_sha": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+      "run_id": "39074124256",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "runner_image": "win25-vs2026",
+      "status": "pass",
+      "required_checks": 263,
+      "observations": 3,
+      "syntax_errors": 0,
+      "analysis_diagnostics": 0,
+      "tests": [
+        {
+          "family": "unit",
+          "harness": "tests/ci/Test-CiContracts.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiContracts.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-unit-ps7-run39074124256_1.json"
+          ],
+          "report": "T17-unit-ps7-run39074124256_1.json",
+          "report_sha256": "826a23132a540956b80c521121104131a5e06b4a471ff2f36b24038518997df0",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 31,
+          "observations": null
+        },
+        {
+          "family": "ci-dependencyguards",
+          "harness": "tests/ci/Test-CiDependencies.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiDependencies.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-ci-dependencyguards-ps7-run39074124256_1.json"
+          ],
+          "report": "T17-ci-dependencyguards-ps7-run39074124256_1.json",
+          "report_sha256": "6595e3d6cbd38a5372e6dd9e32aaaa71ecc4e661c1b5198a4727d74a72ac862a",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 22,
+          "observations": null
+        },
+        {
+          "family": "package",
+          "harness": "tests/Test-Package.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-Package.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-package-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-package-ps7-run39074124256_1.json",
+          "report_sha256": "3e7b6a2f97dc11a0105c6a81bf6767726bc7848fc704cb8d7e23237b79855e33",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 55,
+          "observations": null
+        },
+        {
+          "family": "baseline",
+          "harness": "tests/Invoke-IsolatedBaseline.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Invoke-IsolatedBaseline.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-baseline-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-baseline-ps7-run39074124256_1.json",
+          "report_sha256": "f9e55c549dbfda9eeb87ceb09f4c5e1073ec3b6041c819b6ab606d8674c3fcf8",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": 3
+        },
+        {
+          "family": "help",
+          "harness": "tests/Test-HelpVersion.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-HelpVersion.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-help-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-help-ps7-run39074124256_1.json",
+          "report_sha256": "10ebcbe879e6917b95d5e38549e3c02066744e305e9ed5bef7842192b9163cbc",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": null
+        },
+        {
+          "family": "setupencoding",
+          "harness": "tests/Test-SetupEncodingRegressions.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-SetupEncodingRegressions.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-setupencoding-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-setupencoding-ps7-run39074124256_1.json",
+          "report_sha256": "a96b397c11cd5cbb560b2b6ed82898ce83c39350eecab04d31e392f23fcc42e7",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 12,
+          "observations": null
+        },
+        {
+          "family": "shortoperations",
+          "harness": "tests/Test-ShortOperations.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ShortOperations.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-shortoperations-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-shortoperations-ps7-run39074124256_1.json",
+          "report_sha256": "33e999e37365952b3218cc156ca17b355962895ec11a0ced554318533630ac48",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "toolselection",
+          "harness": "tests/Test-ToolSelection.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ToolSelection.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-toolselection-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-toolselection-ps7-run39074124256_1.json",
+          "report_sha256": "9b0d06a65c5c433aefcaaf33d1ed10b1526fecb6181552248cfb503844bb5849",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 14,
+          "observations": null
+        },
+        {
+          "family": "firstrunsetup",
+          "harness": "tests/Test-FirstRunSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-FirstRunSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-firstrunsetup-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-firstrunsetup-ps7-run39074124256_1.json",
+          "report_sha256": "f0a039d7ed305d2027ccf8ce4b6c977277a8d74beb173919d6a41bdce048337f",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "managedsetup",
+          "harness": "tests/Test-ManagedSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ManagedSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-managedsetup-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-managedsetup-ps7-run39074124256_1.json",
+          "report_sha256": "d9c02511090c23d965cf937853ed1bbd46ed65f0d7a72a01d43e28da3cb56acb",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 50,
+          "observations": null
+        },
+        {
+          "family": "native",
+          "harness": "tests/Test-NativeProcess.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-NativeProcess.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-native-ps7-run39074124256_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-304e7e3736bd4ff78955900327a198df\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-native-ps7-run39074124256_1.json",
+          "report_sha256": "fdb6060f1c7708f9cada4cd3509f404e05cb26076a7354a35e195ab4a8735405",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 35,
+          "observations": null
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "1491f596cba95d6edd9d09e6b859893bdc2cbca3e63a0815b31dc231d33b644d"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ManagedSetup.ps1",
+          "sha256": "da1a31cb9fb221e68d53f1790d22cbb7e41886ca0ad6e41b5c5fd2c2a38fdbd8"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+        },
+        {
+          "relative_path": "Setup-AudioFileForPhone.ps1",
+          "sha256": "b3dacc41fb8a492443a48f59272a2eecd01923cbe7d7f26230fecc23baa108d8"
+        },
+        {
+          "relative_path": "tools/ffmpeg-download.json",
+          "sha256": "cf8dd9862baf808168bcc5b7dbcba3f8170331c6adb03b9671e804c7ca1a4836"
+        }
+      ]
+    },
+    {
+      "file": "T17-ci-ps51-run39074127630_1.json",
+      "sha256": "d89007fd646649354db2073268ad0c6426fe4ad38ec2852d16114f227a4925fd",
+      "tested_commit": "c02767e30aadc88268bd08333987c70e9da18bbb",
+      "github_event": "pull_request",
+      "github_sha": "c02767e30aadc88268bd08333987c70e9da18bbb",
+      "run_id": "39074127630",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "runner_image": "win25-vs2026",
+      "status": "pass",
+      "required_checks": 263,
+      "observations": 3,
+      "syntax_errors": 0,
+      "analysis_diagnostics": 0,
+      "tests": [
+        {
+          "family": "unit",
+          "harness": "tests/ci/Test-CiContracts.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiContracts.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-unit-ps51-run39074127630_1.json"
+          ],
+          "report": "T17-unit-ps51-run39074127630_1.json",
+          "report_sha256": "5274025c278727d4335cf2c659191890bb1ca0edbe63c8a7a3ba96403b6a1283",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 31,
+          "observations": null
+        },
+        {
+          "family": "ci-dependencyguards",
+          "harness": "tests/ci/Test-CiDependencies.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiDependencies.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-ci-dependencyguards-ps51-run39074127630_1.json"
+          ],
+          "report": "T17-ci-dependencyguards-ps51-run39074127630_1.json",
+          "report_sha256": "2c618e3c4bf7142a7a9b6f1399680d9377d7d4f2f4a5476055476d4bd16073eb",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 22,
+          "observations": null
+        },
+        {
+          "family": "package",
+          "harness": "tests/Test-Package.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-Package.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-package-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-package-ps51-run39074127630_1.json",
+          "report_sha256": "2db6339fc4c3b7f59e7ae1999f966e991df0302ab22a897c4719c0f1928e6fdd",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 55,
+          "observations": null
+        },
+        {
+          "family": "baseline",
+          "harness": "tests/Invoke-IsolatedBaseline.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Invoke-IsolatedBaseline.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-baseline-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-baseline-ps51-run39074127630_1.json",
+          "report_sha256": "3820681509d3cdcaba66e259e00a080732b42d91ea53d01d854097ea086d5ddc",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": 3
+        },
+        {
+          "family": "help",
+          "harness": "tests/Test-HelpVersion.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-HelpVersion.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-help-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-help-ps51-run39074127630_1.json",
+          "report_sha256": "3620f97945345e4aa951899ff5dd587689897684966908fbfd9cdd43e32dac15",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": null
+        },
+        {
+          "family": "setupencoding",
+          "harness": "tests/Test-SetupEncodingRegressions.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-SetupEncodingRegressions.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-setupencoding-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-setupencoding-ps51-run39074127630_1.json",
+          "report_sha256": "efb54ba3d3047444bdb1fb38181ab0c8d09a92eefbedd3056f28266075650fbb",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 12,
+          "observations": null
+        },
+        {
+          "family": "shortoperations",
+          "harness": "tests/Test-ShortOperations.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ShortOperations.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-shortoperations-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-shortoperations-ps51-run39074127630_1.json",
+          "report_sha256": "80d8009f7f48a3cc2d99597a17c2cd5ab881f6406d9ea5a3f27475951be5a397",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "toolselection",
+          "harness": "tests/Test-ToolSelection.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ToolSelection.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-toolselection-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-toolselection-ps51-run39074127630_1.json",
+          "report_sha256": "a960712dc6f27b88020f5a5bdb7d8a1a79767c0be4779f9d5dfe57bd733a22f5",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 14,
+          "observations": null
+        },
+        {
+          "family": "firstrunsetup",
+          "harness": "tests/Test-FirstRunSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-FirstRunSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-firstrunsetup-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-firstrunsetup-ps51-run39074127630_1.json",
+          "report_sha256": "b8b307196d6200b74f77944920cb9acf551a0cb7c6e85827d1498d958badaed6",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "managedsetup",
+          "harness": "tests/Test-ManagedSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ManagedSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-managedsetup-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-managedsetup-ps51-run39074127630_1.json",
+          "report_sha256": "3044e52758746537abae0c49f315f9b8f79147d9c7ed34761b0783f2c25c9592",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 50,
+          "observations": null
+        },
+        {
+          "family": "native",
+          "harness": "tests/Test-NativeProcess.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-NativeProcess.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-native-ps51-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-3ed536d7ab2046e3b52dbc860a747640\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-native-ps51-run39074127630_1.json",
+          "report_sha256": "4179ea4f02827786c79430969ea7b01a6cc190a768b69262b2b62780e171027b",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 35,
+          "observations": null
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "1491f596cba95d6edd9d09e6b859893bdc2cbca3e63a0815b31dc231d33b644d"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ManagedSetup.ps1",
+          "sha256": "da1a31cb9fb221e68d53f1790d22cbb7e41886ca0ad6e41b5c5fd2c2a38fdbd8"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+        },
+        {
+          "relative_path": "Setup-AudioFileForPhone.ps1",
+          "sha256": "b3dacc41fb8a492443a48f59272a2eecd01923cbe7d7f26230fecc23baa108d8"
+        },
+        {
+          "relative_path": "tools/ffmpeg-download.json",
+          "sha256": "cf8dd9862baf808168bcc5b7dbcba3f8170331c6adb03b9671e804c7ca1a4836"
+        }
+      ]
+    },
+    {
+      "file": "T17-ci-ps7-run39074127630_1.json",
+      "sha256": "f4d33a57c53c4fb19d0e6b3971d71941d07fdaad7ed172bf5d88ce6b10d1ff13",
+      "tested_commit": "c02767e30aadc88268bd08333987c70e9da18bbb",
+      "github_event": "pull_request",
+      "github_sha": "c02767e30aadc88268bd08333987c70e9da18bbb",
+      "run_id": "39074127630",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "runner_image": "win25-vs2026",
+      "status": "pass",
+      "required_checks": 263,
+      "observations": 3,
+      "syntax_errors": 0,
+      "analysis_diagnostics": 0,
+      "tests": [
+        {
+          "family": "unit",
+          "harness": "tests/ci/Test-CiContracts.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiContracts.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-unit-ps7-run39074127630_1.json"
+          ],
+          "report": "T17-unit-ps7-run39074127630_1.json",
+          "report_sha256": "47965f867649c09065058f8c89778c97c4414443210c6c2e54332c89fbe28641",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 31,
+          "observations": null
+        },
+        {
+          "family": "ci-dependencyguards",
+          "harness": "tests/ci/Test-CiDependencies.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\ci\\Test-CiDependencies.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-ci-dependencyguards-ps7-run39074127630_1.json"
+          ],
+          "report": "T17-ci-dependencyguards-ps7-run39074127630_1.json",
+          "report_sha256": "65fd70c987cf7d254d2336664cd135f1123ae1dacf9f0837a3a0f9f77450d9fa",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 22,
+          "observations": null
+        },
+        {
+          "family": "package",
+          "harness": "tests/Test-Package.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-Package.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-package-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-package-ps7-run39074127630_1.json",
+          "report_sha256": "23cd207383547064bb4c8266030e3af0460cce51b0960619ef0e263e32fc3be5",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 55,
+          "observations": null
+        },
+        {
+          "family": "baseline",
+          "harness": "tests/Invoke-IsolatedBaseline.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Invoke-IsolatedBaseline.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-baseline-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-baseline-ps7-run39074127630_1.json",
+          "report_sha256": "c5c5b6e544dc753cc0def605b0981ab5a4eed2459e76a6417777ddd4ff6d3b2f",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": 3
+        },
+        {
+          "family": "help",
+          "harness": "tests/Test-HelpVersion.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-HelpVersion.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-help-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-help-ps7-run39074127630_1.json",
+          "report_sha256": "f759d950a11797598ef1116820fa885a728eae5c7e862d144dd8d2b92982e500",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 7,
+          "observations": null
+        },
+        {
+          "family": "setupencoding",
+          "harness": "tests/Test-SetupEncodingRegressions.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-SetupEncodingRegressions.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-setupencoding-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-setupencoding-ps7-run39074127630_1.json",
+          "report_sha256": "78aecc55cfe28fd1d061f196c2e6a8451d9b6f498c873d10cae35ca6c24977e6",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 12,
+          "observations": null
+        },
+        {
+          "family": "shortoperations",
+          "harness": "tests/Test-ShortOperations.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ShortOperations.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-shortoperations-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-shortoperations-ps7-run39074127630_1.json",
+          "report_sha256": "d8c424639b7d6d171be678637c2c9dff42fc96d19bd15f4f627bed8e41d625ab",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "toolselection",
+          "harness": "tests/Test-ToolSelection.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ToolSelection.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-toolselection-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-toolselection-ps7-run39074127630_1.json",
+          "report_sha256": "a10e7a37fb378aa7f2c08008de9c03df7c4572b6305640b7c9852915cd3c40df",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 14,
+          "observations": null
+        },
+        {
+          "family": "firstrunsetup",
+          "harness": "tests/Test-FirstRunSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-FirstRunSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-firstrunsetup-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-firstrunsetup-ps7-run39074127630_1.json",
+          "report_sha256": "346dc2455013c9ec5355c79b1adf15af070393d80c3b3f27f50541645f2b98a2",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 15,
+          "observations": null
+        },
+        {
+          "family": "managedsetup",
+          "harness": "tests/Test-ManagedSetup.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-ManagedSetup.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-managedsetup-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-managedsetup-ps7-run39074127630_1.json",
+          "report_sha256": "a5f1b05c4da162d1d9b0ce142700b04d02fb595ad0fabf1c3622c078b2cc470e",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 50,
+          "observations": null
+        },
+        {
+          "family": "native",
+          "harness": "tests/Test-NativeProcess.ps1",
+          "command_arguments": [
+            "-NoLogo",
+            "-NoProfile",
+            "-NonInteractive",
+            "-ExecutionPolicy",
+            "RemoteSigned",
+            "-File",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\tests\\Test-NativeProcess.ps1",
+            "-EvidencePath",
+            "D:\\a\\AudioFileForPhone\\AudioFileForPhone\\docs\\codex-v1\\evidence\\T17-native-ps7-run39074127630_1.json",
+            "-FfmpegPath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+            "-FfprobePath",
+            "D:\\a\\_temp\\AFP-CI-ad5cb26aaddb4ecbbc845d95d0c0d714\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+          ],
+          "report": "T17-native-ps7-run39074127630_1.json",
+          "report_sha256": "fa273ad5f6744a4b2c2ba21d4e7fbd79fa73bd955afa76aefc5cb197cc44dc42",
+          "exit_code": 0,
+          "status": "pass",
+          "required_checks": 35,
+          "observations": null
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "1491f596cba95d6edd9d09e6b859893bdc2cbca3e63a0815b31dc231d33b644d"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ManagedSetup.ps1",
+          "sha256": "da1a31cb9fb221e68d53f1790d22cbb7e41886ca0ad6e41b5c5fd2c2a38fdbd8"
+        },
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+        },
+        {
+          "relative_path": "Setup-AudioFileForPhone.ps1",
+          "sha256": "b3dacc41fb8a492443a48f59272a2eecd01923cbe7d7f26230fecc23baa108d8"
+        },
+        {
+          "relative_path": "tools/ffmpeg-download.json",
+          "sha256": "cf8dd9862baf808168bcc5b7dbcba3f8170331c6adb03b9671e804c7ca1a4836"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "independent": "Separate runtime, adversarial test, vendor provenance/raw-archive and integration reviews; final no remaining blocker",
+    "whitespace": "git -c core.whitespace=cr-at-eol diff --check",
+    "privacy": "Only source/tests/public pin/docs and redacted aggregate evidence; no raw reports/media/config/binaries or private support logs in Git",
+    "preserved": "Main conversion PS1/BAT, setup BAT and artwork byte-identical to entry.64kbps defaults, Music/OutputParent, formats/layout/date naming/metadata and S03 safeguards unchanged."
+  },
+  "limitations": [
+    "Physical menus/dialogs/keyboard observations NOT_RUN; scripted interaction adapters and controlled cancellation are automated evidence.",
+    "Windows10 22H2, exact eventualv1.0.1 ZIP/acceptance kit and new phone observations NOT_RUN; future numbered gates remain.",
+    "Positive network test uses shared production setup API; standalone refusal/parameter boundaries are separately executed. No physical owner setup claim.",
+    "Windows ServerCI supplementary to actual client; each actual shell/OS/checkout is recorded.",
+    "Safe cleanup/publication refuses unexpected concurrent ownership/reparse changes. Existing arbitrary external-editor config race limits remain.",
+    "Private developer vendor audit/extraction/debug scopes and raw test/CI records are retained outside Git; suite-owned runtime/media scopes prove cleanup."
+  ],
+  "git": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "source_live_equality": "69bce4ac129b7acc0d95b4d9f443e782efdd8763",
+    "main_local_live": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED",
+    "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "pr_state": "OPEN_DRAFT",
+    "authority": "S14 ordinary reviewed policy and existing owner-approval default; no main merge",
+    "final_containing_checkpoint": "Observe final documentation HEAD against fresh advertised branch and exact-head CI after push in final response; refresh next entry. No self-containing SHA."
+  },
+  "release": {
+    "runtime_version": "1.0.0",
+    "fixed_public_target": "v1.0.1",
+    "publication": "PENDING_S17",
+    "frozen_source": null,
+    "zip_sha256": null,
+    "authority": "Only separately started S17 publishes S16 exact accepted source/assets",
+    "release_tag_asset_writes": false,
+    "preserved_v1_0_0_tag": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+    "preserved_v1_0_0_source": "2092a405c1d06eca336e771a0ed5d1881acd015a",
+    "preserved_release_id": 410779813,
+    "preserved_zip_sha256": "8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+  },
+  "human_action": "None for S06.",
+  "next_step": "S07 - Simplify metadata interaction; NOT_STARTED, only a separately started thread."
+}

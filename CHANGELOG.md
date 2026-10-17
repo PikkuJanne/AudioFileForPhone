@@ -12,7 +12,7 @@ remembering remain available offline; no automatic update or global install.
   repair that resumes the same conversion after validating a selected pair.
   Show tool identities/hashes, ask before remembering, retain typed-path and
   offline recovery, and give exact repair commands on noninteractive failures.
-  Optional setup downloading is explicitly unavailable pending its own step.
+  Optional downloading is available in separate setup after affirmative consent.
 - Add explicit `-FfmpegDirectory` and portable `-ConfigPath` tool selection with
   deterministic explicit/saved/app-local/PATH precedence and bounded validation.
 - Add deliberate atomic user-selection persistence through

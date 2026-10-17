@@ -213,3 +213,63 @@ D32 - 2026-10-17, S05 checkpoint: source
       NOT_STARTED. Final containing docs HEAD/live/exact-head CI is observed after
       push in the final response without a self-hash. Main remains unintegrated;
       no release/tag operation or owner action. Public v1.0.1 remains PENDING_S17.
+
+D33 - 2026-10-18, S06 consent and pin: keep network installation exclusively in
+      separate setup. Conversion's D choice prints that separate route and stops.
+      Interactive setup displays provider/build/bytes/destination/hash/license/
+      source before Y; unattended setup requires Download plus Consent. Remember
+      remains independent. Pin exact direct Gyan 9.0.2 essentials Windows x64 ZIP,
+      114768076 bytes / SHA256 60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba,
+      verified against published vendor SHA and publisher asset digest. Scoped
+      HTTPS redirects, normal certificate validation, transfer deadlines/size and
+      reviewed expanded/count bounds are mandatory. No runtime latest lookup,
+      update, global install or user-managed tool replacement. Default private
+      storage is managed beside ConfigPath, with explicit ManagedRoot portability.
+
+D34 - 2026-10-18, S06 extraction: malicious fixtures established that ZipArchive
+      can truncate real deflate output to forged central sizes, including matching
+      lies in both headers. Do not weaken those tests. Independently bound EOCD
+      and central parsing before entry allocation, compare local/central metadata,
+      refuse unsupported ZIP64/descriptors/encryption, reject unsafe/colliding/
+      linked paths and overlap, then decode bounded raw payloads with actual byte
+      counts and CRC32. Directory entries must be empty stored entries. All vendor
+      files/notices survive; shared capability checks and synthetic encode/probe/
+      full decode precede unique directory publication and optional atomic save.
+      These restrictions apply to the reviewed managed ZIP, not existing-tool
+      version/capability compatibility. Keep normal conversion runtime unlimited.
+
+D35 - 2026-10-18, S06 Windows publication/input: repeated successful-install tests
+      and real vendor setup exposed a deterministic transient rename denial. A
+      read-only RestartManager query of exact owned files identified an external
+      Windows service; identical unique rename succeeded after one second. Retry
+      only access/sharing errors 5/32/33 for at most five seconds, checking owned
+      marker, no reparse path, absent destination and binary identities/hashes on
+      every attempt. No service/process/security setting is changed. Capture Ctrl+C
+      only during managed work, dispose before remember input; menu/consent typing
+      must not be consumed by polling. Retain UTF8 CP65001 in owned hidden drivers.
+      Initial local outer-driver encoding failures and the retained root-only ZIP
+      test failure remain honest preparation evidence. Permit only the exact nested
+      tools/ffmpeg-download.json in package policy; retain all other path defenses.
+
+D36 - 2026-10-18, S06 final cancellation/diagnostic repair: case50 first reproduced
+      that disposing the setup-owned context after install could lose a pending
+      request before Remember. Assert while active, then inspect its request flag
+      after disposal; preserve completed install but stop config selection/save.
+      The labeled engine-result injection proves no later validation/save. Earlier
+      aceaa4d CI passed PS7 and failed PS5.1 when ErrorRecord wrapped D's no-download
+      sentence. Print that short sentence separately; retain the strict assertion.
+      These five helper lines do not change normal conversion/runtime defaults.
+
+D37 - 2026-10-18, S06 checkpoint: tested source
+      69bce4ac129b7acc0d95b4d9f443e782efdd8763 includes final helper repair; engine
+      and pin remain byte-identical to 70bd752. All 10 final targeted local reports
+      pass in both client shells, with 50 setup/security and 3 real primary-install/
+      saved-conversion groups per shell. Broader retained prior validation records
+      its actual source/runtime hashes; no relabeling as final bytes.
+      Exact-source push 39074124256 and PR 39074127630 pass all 4 jobs; downloaded
+      artifacts bind actual tested checkouts and every retained/managed family.
+      Keep failed preparation evidence separate. Mark S06 complete and S07
+      eligible/NOT_STARTED. The containing docs HEAD/live/exact-head CI observation
+      belongs in the final response after push, without a self-containing SHA.
+      Main integration remains separate under S14/owner approval. No tag/release
+      operation or owner action; public v1.0.1 remains PENDING_S17.
