@@ -1,0 +1,2119 @@
+{
+  "schema_version": 1,
+  "step": "S05",
+  "status": "COMPLETED",
+  "scope": "Existing-tool first-run setup and manual/offline recovery only; no S06 download implementation",
+  "entry_commit": "01f90defb27bb8af8736e5206a8e68999410f57d",
+  "tested_source_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+  "recorded_utc": "2026-10-17T18:42:12.1647815Z",
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "0b26157a24eb2acf36ed84f925d4a73d78ca716ed3571f9dc1e1ede59404760a"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "51c65d402306f8bcde5fb4f133833dc2d353055928bc011ed3463277dc0e4752"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "20b2e31de62a0ee20159f463631baa55f004d7fa3b502ba784223bc2f119fc00"
+    }
+  ],
+  "environment": {
+    "os": "Microsoft Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "cim_version": "10.0.26300",
+    "registry_legacy_product_name": "Windows 10 Pro",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "inherited_outer_console_output_codepage": 65001,
+    "owned_hidden_ps_child_stdout": "Explicit UTF8 CP65001, audited for every production child, matching retained help/regression test drivers",
+    "owned_cmd_driver": "BOM-less UTF8; explicit System32/chcp.com 65001 before Unicode literal BAT path",
+    "execution_policy": "RemoteSigned in owned children only",
+    "child_environment": "PSModulePath removed case-insensitively only in owned outer child; PATH isolated in fixture children",
+    "tools": [
+      {
+        "name": "ffmpeg.exe",
+        "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+        "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      {
+        "name": "ffprobe.exe",
+        "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+        "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+      }
+    ],
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "owner_config_access": false,
+    "persistent_path_registry_policy_changes": false,
+    "physical_manual_evidence": false
+  },
+  "interface": {
+    "setup_entries": [
+      "Setup-AudioFileForPhone.ps1",
+      "Setup-AudioFileForPhone.bat"
+    ],
+    "setup_options": [
+      "FfmpegDirectory",
+      "Remember",
+      "ConfigPath",
+      "NonInteractive"
+    ],
+    "setup_result": [
+      "Ready",
+      "Cancelled",
+      "NotConfigured"
+    ],
+    "setup_exit_codes": [
+      0,
+      1,
+      130
+    ],
+    "selection": "Retained S04 resolver/save API, precedence and absolute PATH=CWD behavior",
+    "interaction": "S/M/D/Q then exact selected pair, bounded one-shot inputs and optional remember",
+    "conversion": "Interactive repair resumes same launch before metadata/output reservation; normal noninteractive and preview never invoke setup",
+    "save_failure": "Current interactive launch may continue, clear NOT remembered; standalone requested-save failure returns1",
+    "download": "UNAVAILABLE_PENDING_S06",
+    "bat_host": "Full SystemRoot Windows PowerShell5.1; STA; process RemoteSigned; no post-entry fallback",
+    "persistence": "Only shared Save-AudioToolSelection after Y or explicit Remember",
+    "packaging": "Two setup entries added consistently to reviewed runtime allowlist, builder and independent tests; no release candidate frozen"
+  },
+  "commands": {
+    "root": "C:\\projects\\AudioFileForPhone-main",
+    "common_flags": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned",
+    "shell_resolution": "Get-Command powershell.exe / pwsh.exe; PS7 is the bundled runtime on this machine",
+    "focused": "<shell> <common_flags> -File tests/Test-FirstRunSetup.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S05-firstrunsetup-<edition>-final3.json -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe",
+    "retained": "Every accepted_local_reports[].command_arguments records the actual invocation; historical T-prefixed report contracts retained",
+    "raw_records": "Create-new reports in approved active/historical evidence parent; literal move to token-marked private TEMP records; no raw reports/media/config committed",
+    "outer_watchdog": "300000ms per retained owned test host; no process-name/tree termination; native resource checks run last/sequentially",
+    "ci": "gh run view <run> --json headSha,status,conclusion,jobs; gh run download <run> --dir <fresh private directory>"
+  },
+  "acceptance": [
+    {
+      "id": "S05-A1",
+      "status": "PASSED",
+      "evidence": "Both shells: real synthetic conversion on empty PATH after production setup selection/typed fallback, deliberate remember and same-launch resume; fresh process saved read; decline and failed-save current-launch full conversion; independent64kbps MP3 probe, artist and full decode."
+    },
+    {
+      "id": "S05-A2",
+      "status": "PASSED",
+      "evidence": "Both shells: scripted UI cancellation/menu/dialog/typed-path/remember EOF, invalid pair, read-only save, manual and unavailable-download choice, standalone outcomes; actual noninteractive Host.UI refusal, actual MTA adapter unavailable, redirected setup BAT four routes. No physical dialog/owner claim."
+    },
+    {
+      "id": "S05-A3",
+      "status": "PASSED",
+      "evidence": "Both shells: strict exact quoted repair command with Unicode/apostrophe paths; missing/stale/corrupt normal conversion forbids setup/prompts/save/network/output; preview with Interactive/corrupt config forbids resolver/config read/native/persistence; explicit standalone setup requires deliberate Remember."
+    }
+  ],
+  "accepted_local_reports": [
+    {
+      "family": "firstrunsetup",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final3.json",
+      "raw_local_only": true,
+      "sha256": "98c34bca68cbadcac77aa43edb1d8de32bd81424f0cdfd90fbf350211f019ced",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final3.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_first_run_with_scripted_UI_adapters",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 15,
+      "elapsed_seconds": 68.19,
+      "cases_detail": [
+        {
+          "name": "production first launch repairs missing tools by typed fallback remembers and converts in the same launch",
+          "acceptance_case": "S05-A1,S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Saved",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "PATH": "empty",
+          "interaction": "scripted production UI adapters; actual conversion",
+          "dialog_unavailable_typed_fallback": true
+        },
+        {
+          "name": "fresh independent noninteractive launch uses saved choice without setup or settings mutation",
+          "acceptance_case": "S05-A1,S05-A3",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Saved",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "config_unchanged": true,
+          "PATH": "empty"
+        },
+        {
+          "name": "declining remember continues actual conversion for current launch only",
+          "acceptance_case": "S05-A1,S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Explicit",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "settings_created": false
+        },
+        {
+          "name": "read-only stale config save failure is explicit preserves bytes and allows current launch conversion",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Explicit",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "previous_config_unchanged": true,
+          "current_launch_completed": true
+        },
+        {
+          "name": "menu dialog remember and EOF cancellations are bounded before output or settings creation",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "observations": [
+            {
+              "condition": "MenuCancel",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "DialogCancel",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "RememberCancel",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "RememberEof",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "MenuEof",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "TypedEof",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            }
+          ]
+        },
+        {
+          "name": "manual and unavailable download choices return bounded guidance without pretending setup succeeded",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "observations": [
+            {
+              "choice": "M",
+              "exit_code": 1,
+              "native_calls": 0,
+              "settings_created": false
+            },
+            {
+              "choice": "D",
+              "exit_code": 1,
+              "native_calls": 0,
+              "settings_created": false
+            }
+          ]
+        },
+        {
+          "name": "invalid pair selection reports missing companion and never remembers or retries invisibly",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "exit_code": 1,
+          "settings_created": false,
+          "retry_count": 0
+        },
+        {
+          "name": "redirected noninteractive host cannot open first-run interaction and returns exact repair action",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "host": "real -NonInteractive child, redirected stdout/stderr",
+          "exit_code": 1
+        },
+        {
+          "name": "production response reader respects actual NonInteractive host authority when console precheck passes",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "adapter_override": "availability only; production response reader unchanged",
+          "exit_code": 1
+        },
+        {
+          "name": "noninteractive missing stale and corrupt config paths never prompt save download or create outputs",
+          "acceptance_case": "S05-A3",
+          "status": "pass",
+          "observations": [
+            {
+              "condition": "NoninteractiveMissing",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            },
+            {
+              "condition": "NoninteractiveStale",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            },
+            {
+              "condition": "NoninteractiveCorrupt",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            }
+          ]
+        },
+        {
+          "name": "preview with Interactive and corrupt config never reads setup state prompts downloads persists or invokes tools",
+          "acceptance_case": "S05-A3",
+          "status": "pass",
+          "exit_code": 0,
+          "native_calls": 0,
+          "config_bytes_unchanged": true
+        },
+        {
+          "name": "separate explicit setup entry validates real external pair and only deliberately remembers",
+          "acceptance_case": "S05-A1,S05-A3",
+          "status": "pass",
+          "exit_code": 0,
+          "setup_only": true,
+          "actual_pair_validated": true,
+          "PATH": "empty"
+        },
+        {
+          "name": "separate setup distinguishes no-save requested-save failure and absent noninteractive directory",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "no_save_exit": 0,
+          "failed_requested_save_exit": 1,
+          "no_directory_noninteractive_exit": 1,
+          "previous_config_unchanged": true
+        },
+        {
+          "name": "real MTA Windows runspace returns unavailable dialog without opening Windows Forms",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "actual_apartment": "MTA",
+          "dialog_result": "Unavailable",
+          "physical_dialog": "NOT_RUN"
+        },
+        {
+          "name": "setup BAT rejects extra and quoted-empty arguments and never pauses redirected launches",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "observations": [
+            {
+              "mode": "NoArguments",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "Extra",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "QuotedEmpty",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "QuotedEmptyExtra",
+              "exit_code": 1,
+              "pause_shown": false
+            }
+          ]
+        }
+      ],
+      "inherited_outer_console_output_codepage": 65001,
+      "physical_dialog_evidence": "NOT_RUN",
+      "interaction": "simulated through three named production UI adapters and metadata Read-Host only"
+    },
+    {
+      "family": "firstrunsetup",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final3.json",
+      "raw_local_only": true,
+      "sha256": "6d80294ba2fabfc2172700938e351ef1b9ed9f7de7418779e9e79e1626508de5",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-FirstRunSetup.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-final3.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_first_run_with_scripted_UI_adapters",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 15,
+      "elapsed_seconds": 71.81,
+      "cases_detail": [
+        {
+          "name": "production first launch repairs missing tools by typed fallback remembers and converts in the same launch",
+          "acceptance_case": "S05-A1,S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Saved",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "PATH": "empty",
+          "interaction": "scripted production UI adapters; actual conversion",
+          "dialog_unavailable_typed_fallback": true
+        },
+        {
+          "name": "fresh independent noninteractive launch uses saved choice without setup or settings mutation",
+          "acceptance_case": "S05-A1,S05-A3",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Saved",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "config_unchanged": true,
+          "PATH": "empty"
+        },
+        {
+          "name": "declining remember continues actual conversion for current launch only",
+          "acceptance_case": "S05-A1,S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Explicit",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "settings_created": false
+        },
+        {
+          "name": "read-only stale config save failure is explicit preserves bytes and allows current launch conversion",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "conversion": {
+            "exit_code": 0,
+            "converted": 1,
+            "bitrate_kbps": 64,
+            "selection_origin": "Explicit",
+            "full_decode": true,
+            "output_sha256": "5b776426a2e7acf04d2d30db2f96a77d5900ffa2e1523f4d9480d3487961440d"
+          },
+          "previous_config_unchanged": true,
+          "current_launch_completed": true
+        },
+        {
+          "name": "menu dialog remember and EOF cancellations are bounded before output or settings creation",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "observations": [
+            {
+              "condition": "MenuCancel",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "DialogCancel",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "RememberCancel",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "RememberEof",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "MenuEof",
+              "exit_code": 130,
+              "setup_prompts": 1,
+              "output_created": false,
+              "config_created": false
+            },
+            {
+              "condition": "TypedEof",
+              "exit_code": 130,
+              "setup_prompts": 2,
+              "output_created": false,
+              "config_created": false
+            }
+          ]
+        },
+        {
+          "name": "manual and unavailable download choices return bounded guidance without pretending setup succeeded",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "observations": [
+            {
+              "choice": "M",
+              "exit_code": 1,
+              "native_calls": 0,
+              "settings_created": false
+            },
+            {
+              "choice": "D",
+              "exit_code": 1,
+              "native_calls": 0,
+              "settings_created": false
+            }
+          ]
+        },
+        {
+          "name": "invalid pair selection reports missing companion and never remembers or retries invisibly",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "exit_code": 1,
+          "settings_created": false,
+          "retry_count": 0
+        },
+        {
+          "name": "redirected noninteractive host cannot open first-run interaction and returns exact repair action",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "host": "real -NonInteractive child, redirected stdout/stderr",
+          "exit_code": 1
+        },
+        {
+          "name": "production response reader respects actual NonInteractive host authority when console precheck passes",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "adapter_override": "availability only; production response reader unchanged",
+          "exit_code": 1
+        },
+        {
+          "name": "noninteractive missing stale and corrupt config paths never prompt save download or create outputs",
+          "acceptance_case": "S05-A3",
+          "status": "pass",
+          "observations": [
+            {
+              "condition": "NoninteractiveMissing",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            },
+            {
+              "condition": "NoninteractiveStale",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            },
+            {
+              "condition": "NoninteractiveCorrupt",
+              "exit_code": 1,
+              "exact_repair_command": true,
+              "config_unchanged": true,
+              "prompt_count": 0
+            }
+          ]
+        },
+        {
+          "name": "preview with Interactive and corrupt config never reads setup state prompts downloads persists or invokes tools",
+          "acceptance_case": "S05-A3",
+          "status": "pass",
+          "exit_code": 0,
+          "native_calls": 0,
+          "config_bytes_unchanged": true
+        },
+        {
+          "name": "separate explicit setup entry validates real external pair and only deliberately remembers",
+          "acceptance_case": "S05-A1,S05-A3",
+          "status": "pass",
+          "exit_code": 0,
+          "setup_only": true,
+          "actual_pair_validated": true,
+          "PATH": "empty"
+        },
+        {
+          "name": "separate setup distinguishes no-save requested-save failure and absent noninteractive directory",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "no_save_exit": 0,
+          "failed_requested_save_exit": 1,
+          "no_directory_noninteractive_exit": 1,
+          "previous_config_unchanged": true
+        },
+        {
+          "name": "real MTA Windows runspace returns unavailable dialog without opening Windows Forms",
+          "acceptance_case": "S05-A2",
+          "status": "pass",
+          "actual_apartment": "MTA",
+          "dialog_result": "Unavailable",
+          "physical_dialog": "NOT_RUN"
+        },
+        {
+          "name": "setup BAT rejects extra and quoted-empty arguments and never pauses redirected launches",
+          "acceptance_case": "S05-A2,S05-A3",
+          "status": "pass",
+          "observations": [
+            {
+              "mode": "NoArguments",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "Extra",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "QuotedEmpty",
+              "exit_code": 1,
+              "pause_shown": false
+            },
+            {
+              "mode": "QuotedEmptyExtra",
+              "exit_code": 1,
+              "pause_shown": false
+            }
+          ]
+        }
+      ],
+      "inherited_outer_console_output_codepage": 65001,
+      "physical_dialog_evidence": "NOT_RUN",
+      "interaction": "simulated through three named production UI adapters and metadata Read-Host only"
+    },
+    {
+      "family": "isolation",
+      "original_contract_path": "docs/codex-v1/evidence/T17-s05-isolation-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "504212ca50066ba0a490580e9c7dddbe7e8f094f36059abca7e9fa2357e76940",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s05-isolation-ps51-final12.json",
+        "-ValidateOnly"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "isolation_validation",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": null,
+      "elapsed_seconds": 1.21
+    },
+    {
+      "family": "isolation",
+      "original_contract_path": "docs/codex-v1/evidence/T17-s05-isolation-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "b8fe9d576f3f9a096187461e34fd65701e5d10ccb22ccc6b6b9b6d8e37562642",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s05-isolation-ps7-final12.json",
+        "-ValidateOnly"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "isolation_validation",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": null,
+      "elapsed_seconds": 1.36
+    },
+    {
+      "family": "baseline",
+      "original_contract_path": "docs/codex-v1/evidence/T17-s05-baseline-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "f51fc31ab26e40dd50779bd7ad5cdb1a613b7af1607722af3577f7682d2fd13c",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s05-baseline-ps51-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_ffmpeg_baseline",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": null,
+      "elapsed_seconds": 48.7,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "required_characterizations": 7,
+      "observations": 3
+    },
+    {
+      "family": "baseline",
+      "original_contract_path": "docs/codex-v1/evidence/T17-s05-baseline-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "9e99a22d271fdbde6d15baa9cb84adbeadecd698b55dd67ef0bcaea7919af27e",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s05-baseline-ps7-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_ffmpeg_baseline",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": null,
+      "elapsed_seconds": 58.86,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "required_characterizations": 7,
+      "observations": 3
+    },
+    {
+      "family": "unit",
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "35255335184e248c171b482796a9c47f1080b2bfdd4f725f04449f8a34414063",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps51-final12.json"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": null,
+      "mode": "pure_runtime_and_ci_contracts",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "cases": 31,
+      "elapsed_seconds": 3.42
+    },
+    {
+      "family": "unit",
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "a73ba5ddb968770cfaf66360d56f635b24f0c23ffff494de4a8684667c03d0bd",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps7-final12.json"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": null,
+      "mode": "pure_runtime_and_ci_contracts",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "cases": 31,
+      "elapsed_seconds": 3.39
+    },
+    {
+      "family": "help",
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "e5b425499df47f89385498cf2514133a2d368173d05bedf2c741f0fe5686852a",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps51-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 7,
+      "elapsed_seconds": 30.54
+    },
+    {
+      "family": "help",
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "3b09b239a3bf5e4a91fa232e34d0e3456445677ad5c5d4bbf4bb7293feb78a07",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps7-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 7,
+      "elapsed_seconds": 33.85
+    },
+    {
+      "family": "toolselection",
+      "original_contract_path": "docs/codex-v1/evidence/T17-toolselection-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "0988d6fa658fcf213c76e5bf936f5345aa9c29f1c28becda788b9e02894ca65b",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-toolselection-ps51-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_tool_selection_and_config",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 14,
+      "elapsed_seconds": 34.12
+    },
+    {
+      "family": "toolselection",
+      "original_contract_path": "docs/codex-v1/evidence/T17-toolselection-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "d3c3e0f3d5c53443904453e9b89cf9a2b813e591b997875e27a0d2bfb47f5b17",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-toolselection-ps7-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_tool_selection_and_config",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 14,
+      "elapsed_seconds": 32.88
+    },
+    {
+      "family": "preview",
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps51-final12.json",
+      "raw_local_only": true,
+      "sha256": "ea4292a7d33612cc6dcece27a46d71d50d157a94689ce02234b2f3220e7d42dc",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T12-preview-ps51-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "preview_inventory_equality_and_real_plan_equivalence",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 8,
+      "elapsed_seconds": 22.05
+    },
+    {
+      "family": "preview",
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps7-final12.json",
+      "raw_local_only": true,
+      "sha256": "88573f9e411ab17694c1f896a1aaeaaefe0533b0d26998703c2f0ef64214a78b",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T12-preview-ps7-final12.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "preview_inventory_equality_and_real_plan_equivalence",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 8,
+      "elapsed_seconds": 21.98
+    },
+    {
+      "family": "transactions",
+      "original_contract_path": "docs/codex-v1/evidence/T09-transaction-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "a2f7f705c7e45cfaec4efd38c21bbeb1be3ce0cc03f4d80a3f956a59a23460cb",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T09-transaction-ps51-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "transactional_output_real_and_faults",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 27,
+      "elapsed_seconds": 41.83
+    },
+    {
+      "family": "transactions",
+      "original_contract_path": "docs/codex-v1/evidence/T09-transaction-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "dbf24381bec0e31d9884ca788354867e81c0b285eb2613720b3221f967b79eba",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T09-transaction-ps7-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "transactional_output_real_and_faults",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 27,
+      "elapsed_seconds": 44.51
+    },
+    {
+      "family": "cancellation",
+      "original_contract_path": "docs/codex-v1/evidence/T11-cancellation-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "0109d357eaeb5e5008809780bfdf347f843f1726f25b33bbfac43a4db9e65b02",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T11-cancellation-ps51-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 9,
+      "elapsed_seconds": 21.9
+    },
+    {
+      "family": "cancellation",
+      "original_contract_path": "docs/codex-v1/evidence/T11-cancellation-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "1b1181b20fe07d0719958cbd9acaba3ba4bc423c37ad8b7e7184578c615c49a7",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T11-cancellation-ps7-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 9,
+      "elapsed_seconds": 22.02
+    },
+    {
+      "family": "shortoperations",
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "32a361a64b251d19784a0f821361fcf8732fd16c45a67dd0045ad2289e71c715",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps51-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_short_operations",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 15,
+      "elapsed_seconds": 41.98
+    },
+    {
+      "family": "shortoperations",
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "6fd2b024f783be46666f0369a4b7348e16579f851c08c37cf66c3521e3510b51",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps7-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_short_operations",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 15,
+      "elapsed_seconds": 41.28
+    },
+    {
+      "family": "setupencoding",
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "aa5ccb3deb8aa05920fa029b67e448642e94e795a767b16230445dfe4e1c50a1",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps51-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_s02_characterization",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 12,
+      "elapsed_seconds": 53.21
+    },
+    {
+      "family": "setupencoding",
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "08cac49d8e51ce79f0262f657216c8f82b5d4f14722086948270492b06fa1f39",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps7-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_s02_characterization",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 12,
+      "elapsed_seconds": 65.89
+    },
+    {
+      "family": "cleanup",
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "291ba953d89a3d855a0ad96c8c075ebc0095ba2f7db6881d1514b128e60309e0",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps51-final10.json"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "retained_cleanup_guard_faults",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 181,
+      "elapsed_seconds": 14.7
+    },
+    {
+      "family": "cleanup",
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "5ec3913944c30206f7ba3f41556c135272736d82aeb7d4c821d960ba542497a6",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps7-final10.json"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "retained_cleanup_guard_faults",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "cases": 181,
+      "elapsed_seconds": 21.05
+    },
+    {
+      "family": "native",
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps51-final10.json",
+      "raw_local_only": true,
+      "sha256": "2185f1ece07344dc9d6ed4160639a704526d80dff4d1f899ad31ab3c23f671c5",
+      "shell_executable": "powershell.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps51-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "native_process_and_probe",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 35,
+      "elapsed_seconds": 27.98
+    },
+    {
+      "family": "native",
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps7-final10.json",
+      "raw_local_only": true,
+      "sha256": "93a12455bdfe15ffeaafa5341582397001ce2d6c2808e1c2793bec8ccabfc085",
+      "shell_executable": "pwsh.exe",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps7-final10.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "native_process_and_probe",
+      "status": "pass",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 35,
+      "elapsed_seconds": 30.92
+    }
+  ],
+  "preparation": {
+    "failed_reports": [
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-attempt1.json",
+        "sha256": "e7512f5643a3d26a16e5d289f41485a86e7ad461a3bceeca4502998da38eb667",
+        "tested_commit": "6b03e6537ab9b572ce64dc2be1bc7ffc1b96a5df",
+        "status": "fail",
+        "error": "Noninteractive dependency failure must contain exact repair command and no setup/output.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "FAILED_FIXTURE_OR_DIAGNOSTIC_VERIFICATION"
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final1.json",
+        "sha256": "ed76a5535135047ece09394e9deadab29a9accf376241ad62aac59288054d8aa",
+        "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+        "status": "fail",
+        "error": "Noninteractive dependency failure must contain exact repair command and no setup/output.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "FAILED_FIXTURE_OR_DIAGNOSTIC_VERIFICATION"
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-attempt2.json",
+        "sha256": "f0e4a26c0184dfb3769a017f70ee5d8bcaed74f3e102ac6988e688eff9e9c41b",
+        "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+        "status": "fail",
+        "error": "Noninteractive dependency failure must contain exact repair command and no setup/output.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "FAILED_FIXTURE_OR_DIAGNOSTIC_VERIFICATION",
+        "diagnostic_test_instrumentation": "Uncommitted diagnostic-only test capture; actual HEAD recorded separately from source-before test hash; not a pass."
+      },
+      {
+        "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-final2.json",
+        "sha256": "b02b112c95ef82b323b7bb68c77d42c4061f4b329310b52332af3c4605d2b109",
+        "tested_commit": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+        "status": "fail",
+        "error": "Double-click entry under redirected input must show direct recovery route.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "FAILED_FIXTURE_OR_DIAGNOSTIC_VERIFICATION"
+      },
+      {
+        "original_contract_path": "docs/codex-v1/evidence/T17-package-ps51-final10.json",
+        "sha256": "82db59bd2c9c3b3ca1909f6373053d94459ab50f55ad3696e4604ec54311fb31",
+        "tested_commit": "6b03e6537ab9b572ce64dc2be1bc7ffc1b96a5df",
+        "status": "fail",
+        "error": "Packaging tests require the retained CI-pinned external FFmpeg/ffprobe build for accurate vendor provenance.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "BLOCKED_LOCAL_PIN_PRECONDITION"
+      },
+      {
+        "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-final11.json",
+        "sha256": "5ceb5acb02ee8507c4c68b5bed57fd23ce6c646f7279ec96b15f12e519918273",
+        "tested_commit": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+        "status": "fail",
+        "error": "FAIL: First five README commands must be the same exact executable help examples.",
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "raw_local_only": true,
+        "result_classification": "FAILED_DOCUMENTATION_CONTRACT"
+      }
+    ],
+    "classification": "Initial source CI/retained help correctly caught new README fences preceding original five examples; corrected documentation, retained assertion. Focused attempts exposed PS5.1 redirected Unicode diagnostic encoding, then hidden CMD Unicode fixture encoding. Match retained driver UTF8 behavior; assert child65001, preserve every strict assertion. Three-line product Write-Host separately keeps full repair action outside wrapping error records. Local package check correctly rejects supplied Git build because it requires CI-pinned9.0.2; no pin/safeguard changed. Failed reports remain private and are not passes.",
+    "initial_ci": [
+      {
+        "source": "6b03e6537ab9b572ce64dc2be1bc7ffc1b96a5df",
+        "runs": [
+          39058264504,
+          39058267673
+        ],
+        "conclusion": "failure",
+        "reason": "Retained README help fence ordering",
+        "observed_runs": [
+          {
+            "conclusion": "failure",
+            "databaseId": 39058264504,
+            "headSha": "6b03e6537ab9b572ce64dc2be1bc7ffc1b96a5df",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058264504"
+          },
+          {
+            "conclusion": "failure",
+            "databaseId": 39058267673,
+            "headSha": "6b03e6537ab9b572ce64dc2be1bc7ffc1b96a5df",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058267673"
+          }
+        ]
+      },
+      {
+        "source": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+        "runs": [
+          39058435197,
+          39058439424
+        ],
+        "reason": "Preparation runs; refresh recorded GitHub conclusions in source CI metadata if needed",
+        "observed_runs": [
+          {
+            "conclusion": "failure",
+            "databaseId": 39058435197,
+            "headSha": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058435197"
+          },
+          {
+            "conclusion": "failure",
+            "databaseId": 39058439424,
+            "headSha": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058439424"
+          }
+        ]
+      },
+      {
+        "source": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+        "runs": [
+          39058701453,
+          39058704290
+        ],
+        "reason": "Preparation before final CMD fixture UTF8 correction",
+        "observed_runs": [
+          {
+            "conclusion": "failure",
+            "databaseId": 39058701453,
+            "headSha": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058701453"
+          },
+          {
+            "conclusion": "failure",
+            "databaseId": 39058704290,
+            "headSha": "6b099176082becce0f40c459e1e6af12ab9d08bf",
+            "status": "completed",
+            "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058704290"
+          }
+        ]
+      }
+    ],
+    "auxiliary": "Agent PS7 explicit existing-tool setup smoke was preparation only. A direct PS5.1 attempt without the authored RemoteSigned child route was blocked by Restricted policy before application entry; no bypass attempted; final accepted matrix uses the documented process-scoped route."
+  },
+  "ci": [
+    {
+      "run_id": 39058815762,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058815762",
+      "event": "push",
+      "head_sha": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "shell": "5.1.26100.33438",
+          "shell_edition": "Desktop",
+          "os": "10.0.26100.0",
+          "runner_image": "win25-vs2026",
+          "runner_image_version": "20261007.264.1",
+          "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+          "github_sha": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+          "checkout_matches_github_sha": true,
+          "source_unchanged": true,
+          "analysis": "pass",
+          "required_checks": 211,
+          "observations": 3,
+          "summary_sha256": "b3bf4b67bc7eafc5adedc044ba64661d579c3fd40e0a1f46b2dd2d7a5e4eaf1f",
+          "tests": [
+            {
+              "family": "unit",
+              "status": "pass",
+              "required_checks": 31,
+              "observations": null,
+              "report": "T17-unit-ps51-run39058815762_1.json",
+              "report_sha256": "2c823d70889788d788d0e3b9b9a8306bb0cef2cc05546ff619f0cf495a69e3e8"
+            },
+            {
+              "family": "ci-dependencyguards",
+              "status": "pass",
+              "required_checks": 22,
+              "observations": null,
+              "report": "T17-ci-dependencyguards-ps51-run39058815762_1.json",
+              "report_sha256": "96f3594a6b6593f691af1c3c4cea85a4a5aabdb12948a436e0810c64aeeae4b2"
+            },
+            {
+              "family": "package",
+              "status": "pass",
+              "required_checks": 53,
+              "observations": null,
+              "report": "T17-package-ps51-run39058815762_1.json",
+              "report_sha256": "a3ea4f8962cb368a7de0f3fa7a0ae17885c8c90be839d2f1172b50c050c6141e"
+            },
+            {
+              "family": "baseline",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": 3,
+              "report": "T17-baseline-ps51-run39058815762_1.json",
+              "report_sha256": "cde3145d4c9150682003146d2ea28f51820e1f94cdfb894490bb311ce1358378"
+            },
+            {
+              "family": "help",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": null,
+              "report": "T17-help-ps51-run39058815762_1.json",
+              "report_sha256": "8cd067e49fb9c1e89a57fdd2eeed6630445ded16f046223e7003246358867292"
+            },
+            {
+              "family": "setupencoding",
+              "status": "pass",
+              "required_checks": 12,
+              "observations": null,
+              "report": "T17-setupencoding-ps51-run39058815762_1.json",
+              "report_sha256": "1e2232efc62e6f1595ce0e8b4e0d3198a38059f264d59a5e0d689b315b3df22d"
+            },
+            {
+              "family": "shortoperations",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-shortoperations-ps51-run39058815762_1.json",
+              "report_sha256": "8ecbc930afa23d1ade1d7050b3cf5e4797c12d95d8f5e2ff9c6a4f5047982763"
+            },
+            {
+              "family": "toolselection",
+              "status": "pass",
+              "required_checks": 14,
+              "observations": null,
+              "report": "T17-toolselection-ps51-run39058815762_1.json",
+              "report_sha256": "a4c79a52f35705962a979de564c52b0f7e5d2c0782d2cc7891bbf3181383f743"
+            },
+            {
+              "family": "firstrunsetup",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-firstrunsetup-ps51-run39058815762_1.json",
+              "report_sha256": "a6dd09da6feed5ca9538dc132fa4d9f142dbcf74f145b271893e99bb23c9d73c"
+            },
+            {
+              "family": "native",
+              "status": "pass",
+              "required_checks": 35,
+              "observations": null,
+              "report": "T17-native-ps51-run39058815762_1.json",
+              "report_sha256": "9c6741a511b57b5394539a075b9c549820ced5faf0fa41fec8b40acae63e714d"
+            }
+          ]
+        },
+        {
+          "shell": "7.6.6",
+          "shell_edition": "Core",
+          "os": "10.0.26100.0",
+          "runner_image": "win25-vs2026",
+          "runner_image_version": "20261007.264.1",
+          "tested_commit": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+          "github_sha": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+          "checkout_matches_github_sha": true,
+          "source_unchanged": true,
+          "analysis": "pass",
+          "required_checks": 211,
+          "observations": 3,
+          "summary_sha256": "1580779097dcf41e06ba2ca62ed5a45ad077d4cab37a989e7dd850c6371b6f50",
+          "tests": [
+            {
+              "family": "unit",
+              "status": "pass",
+              "required_checks": 31,
+              "observations": null,
+              "report": "T17-unit-ps7-run39058815762_1.json",
+              "report_sha256": "ce60fab613f97091a5b8baed24de2fb0e9d10564abc462a0b75e0722e45b5a13"
+            },
+            {
+              "family": "ci-dependencyguards",
+              "status": "pass",
+              "required_checks": 22,
+              "observations": null,
+              "report": "T17-ci-dependencyguards-ps7-run39058815762_1.json",
+              "report_sha256": "46403e4f0962571e6f914375a4cd22fd12ba36547bd108d89114c1653e89109f"
+            },
+            {
+              "family": "package",
+              "status": "pass",
+              "required_checks": 53,
+              "observations": null,
+              "report": "T17-package-ps7-run39058815762_1.json",
+              "report_sha256": "9739c937fdb436d0cfe228f53fdce1d4634c90d890679a8d5a6025283e6d794c"
+            },
+            {
+              "family": "baseline",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": 3,
+              "report": "T17-baseline-ps7-run39058815762_1.json",
+              "report_sha256": "d68c06c3b812a68917fe5e0a1402503359ea9f01c027e3d65f1fa25bfcfc059f"
+            },
+            {
+              "family": "help",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": null,
+              "report": "T17-help-ps7-run39058815762_1.json",
+              "report_sha256": "e8d970fbde2a206edd8e55e4980b67db7ddbe6153df45b584a22536227b2db0a"
+            },
+            {
+              "family": "setupencoding",
+              "status": "pass",
+              "required_checks": 12,
+              "observations": null,
+              "report": "T17-setupencoding-ps7-run39058815762_1.json",
+              "report_sha256": "d55bc59d76b1da911c674e5d9b7a68b9fdc939030788fe6ca8c094837d6a65fc"
+            },
+            {
+              "family": "shortoperations",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-shortoperations-ps7-run39058815762_1.json",
+              "report_sha256": "14032739bc4201c13129cc3702e4f99bab19574c6e7d45d40e80483f358dbd94"
+            },
+            {
+              "family": "toolselection",
+              "status": "pass",
+              "required_checks": 14,
+              "observations": null,
+              "report": "T17-toolselection-ps7-run39058815762_1.json",
+              "report_sha256": "9f9280cecbb5158213b6b67d549661b772cefbb87251c0a0d8eaddb1f8bf26ef"
+            },
+            {
+              "family": "firstrunsetup",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-firstrunsetup-ps7-run39058815762_1.json",
+              "report_sha256": "99d41f1d870e6f9f633601afa8e48087f64af9ff0e014803543e38981a48a848"
+            },
+            {
+              "family": "native",
+              "status": "pass",
+              "required_checks": 35,
+              "observations": null,
+              "report": "T17-native-ps7-run39058815762_1.json",
+              "report_sha256": "38c186115af975afd6e02d8f1bca22d98995db5eb4909f7c851395ba02197649"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 39058820107,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39058820107",
+      "event": "pull_request",
+      "head_sha": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "shell": "5.1.26100.33438",
+          "shell_edition": "Desktop",
+          "os": "10.0.26100.0",
+          "runner_image": "win25-vs2026",
+          "runner_image_version": "20261007.264.1",
+          "tested_commit": "00d1f0df363e0c8ea5e89757af2d67ff5aaa9c1c",
+          "github_sha": "00d1f0df363e0c8ea5e89757af2d67ff5aaa9c1c",
+          "checkout_matches_github_sha": true,
+          "source_unchanged": true,
+          "analysis": "pass",
+          "required_checks": 211,
+          "observations": 3,
+          "summary_sha256": "a490d2ba9963409187be49434b302ecacc9f5e5d688dabd2ebf70ed0363f2054",
+          "tests": [
+            {
+              "family": "unit",
+              "status": "pass",
+              "required_checks": 31,
+              "observations": null,
+              "report": "T17-unit-ps51-run39058820107_1.json",
+              "report_sha256": "23ea6b410cd73b1866feb4feda9f8d1d1362211d72068f9f4aede37f2df1428f"
+            },
+            {
+              "family": "ci-dependencyguards",
+              "status": "pass",
+              "required_checks": 22,
+              "observations": null,
+              "report": "T17-ci-dependencyguards-ps51-run39058820107_1.json",
+              "report_sha256": "d43b8e9c0f6edf81e55944ae41dc1d58b6085a35373303ffb134bf288d4aca54"
+            },
+            {
+              "family": "package",
+              "status": "pass",
+              "required_checks": 53,
+              "observations": null,
+              "report": "T17-package-ps51-run39058820107_1.json",
+              "report_sha256": "f8979a0c981a80dafaa27baad3f29eb5c4e50abf8a819d201c301580eedebaea"
+            },
+            {
+              "family": "baseline",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": 3,
+              "report": "T17-baseline-ps51-run39058820107_1.json",
+              "report_sha256": "b439f656ab8fc4866fefc7d0b8d94f38936fed6ca5a1e534309198297018b37c"
+            },
+            {
+              "family": "help",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": null,
+              "report": "T17-help-ps51-run39058820107_1.json",
+              "report_sha256": "c10f81847b2c7829b30f595a62e59a8e96e019df1b8e27263d93300e2f0d296c"
+            },
+            {
+              "family": "setupencoding",
+              "status": "pass",
+              "required_checks": 12,
+              "observations": null,
+              "report": "T17-setupencoding-ps51-run39058820107_1.json",
+              "report_sha256": "eb30603cfc2dd7fb56590911a0b250560e67b1f32b3bab3a08247d2b348e7845"
+            },
+            {
+              "family": "shortoperations",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-shortoperations-ps51-run39058820107_1.json",
+              "report_sha256": "10ad443ebb85d1d7dea92dfa58b95eb0c319fe8507734cf9cfdefe267b3495bc"
+            },
+            {
+              "family": "toolselection",
+              "status": "pass",
+              "required_checks": 14,
+              "observations": null,
+              "report": "T17-toolselection-ps51-run39058820107_1.json",
+              "report_sha256": "b79c3fc9429c2f67ec3f038f7d6ae903d2a77671b60eea81802534f1029acd15"
+            },
+            {
+              "family": "firstrunsetup",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-firstrunsetup-ps51-run39058820107_1.json",
+              "report_sha256": "374c5472e0980bab44768caf66c94bf468da9c82b9d43f250b06567bad371769"
+            },
+            {
+              "family": "native",
+              "status": "pass",
+              "required_checks": 35,
+              "observations": null,
+              "report": "T17-native-ps51-run39058820107_1.json",
+              "report_sha256": "f94789c20f47ca13087acda3035ff3b77f921fea65b22cdcc091827d993c2791"
+            }
+          ]
+        },
+        {
+          "shell": "7.6.6",
+          "shell_edition": "Core",
+          "os": "10.0.26100.0",
+          "runner_image": "win25-vs2026",
+          "runner_image_version": "20261007.264.1",
+          "tested_commit": "00d1f0df363e0c8ea5e89757af2d67ff5aaa9c1c",
+          "github_sha": "00d1f0df363e0c8ea5e89757af2d67ff5aaa9c1c",
+          "checkout_matches_github_sha": true,
+          "source_unchanged": true,
+          "analysis": "pass",
+          "required_checks": 211,
+          "observations": 3,
+          "summary_sha256": "d1fc2b85862a33e6eace56d4ebb6a219a7f18e922ca083254c28c7f0d18cf9cd",
+          "tests": [
+            {
+              "family": "unit",
+              "status": "pass",
+              "required_checks": 31,
+              "observations": null,
+              "report": "T17-unit-ps7-run39058820107_1.json",
+              "report_sha256": "871a2d140aaa1b6dbbbb927a83de29a5beb6ca916a692612c9bd25bea0491768"
+            },
+            {
+              "family": "ci-dependencyguards",
+              "status": "pass",
+              "required_checks": 22,
+              "observations": null,
+              "report": "T17-ci-dependencyguards-ps7-run39058820107_1.json",
+              "report_sha256": "ff706870a4c448469a76e9a325e999940e841189ee13da7a6bc04076ef80ede4"
+            },
+            {
+              "family": "package",
+              "status": "pass",
+              "required_checks": 53,
+              "observations": null,
+              "report": "T17-package-ps7-run39058820107_1.json",
+              "report_sha256": "a03cc340a0d0807d8bf5954af4ce5fcbbed22b1ea116ef1a0c717f013c27a3c9"
+            },
+            {
+              "family": "baseline",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": 3,
+              "report": "T17-baseline-ps7-run39058820107_1.json",
+              "report_sha256": "8fcbabbd9db5e789012142235b0d7a452b7a63a555611abe1903f3effc2ec591"
+            },
+            {
+              "family": "help",
+              "status": "pass",
+              "required_checks": 7,
+              "observations": null,
+              "report": "T17-help-ps7-run39058820107_1.json",
+              "report_sha256": "b72f667d5a0fd67b9332e714a9b9136821e63ba82ecbd835f7a0cf5d058c93f9"
+            },
+            {
+              "family": "setupencoding",
+              "status": "pass",
+              "required_checks": 12,
+              "observations": null,
+              "report": "T17-setupencoding-ps7-run39058820107_1.json",
+              "report_sha256": "ac6f128f11dc0e17a6883f28124f6190c365b96e9edb2cb66b59adb61e1233d5"
+            },
+            {
+              "family": "shortoperations",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-shortoperations-ps7-run39058820107_1.json",
+              "report_sha256": "e7b664cfafcb683cba31b3bb815050cc90a675e1658dbaa825c3cb36b9b36d36"
+            },
+            {
+              "family": "toolselection",
+              "status": "pass",
+              "required_checks": 14,
+              "observations": null,
+              "report": "T17-toolselection-ps7-run39058820107_1.json",
+              "report_sha256": "08362bb9e66467b0a6ee54846b15b042350e148e6f576218b09bd2e8b6319ae3"
+            },
+            {
+              "family": "firstrunsetup",
+              "status": "pass",
+              "required_checks": 15,
+              "observations": null,
+              "report": "T17-firstrunsetup-ps7-run39058820107_1.json",
+              "report_sha256": "4d05e119a3b4788a4ae27238a1917ee9d6de3e85722b69a009bbfa3f8f3d1f60"
+            },
+            {
+              "family": "native",
+              "status": "pass",
+              "required_checks": 35,
+              "observations": null,
+              "report": "T17-native-ps7-run39058820107_1.json",
+              "report_sha256": "b97775143eab0a057e14205c8661917e2a09227374b57fd4717a51f4b8ccc9ba"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runtime_identity": {
+    "runtime_unchanged_since": "dcc9408dd070f11c49c15d7be1c05534f90ec51d",
+    "later_delta": "6b09917 changes README/test driver; cea4217 changes only test driver",
+    "retained_report_commits": "Actual tested_commit is recorded per report. Final runtime identity proof: git diff dcc9408..cea4217 -- AudioFileForPhone.ps1 AudioFileForPhone.Helpers.ps1 AudioFileForPhone.bat Setup-AudioFileForPhone.ps1 Setup-AudioFileForPhone.bat returned empty.",
+    "hash_scope": "Actual local working-tree/copy bytes; ordinary Git checkout/archive newline materialization can differ, so CI records its own source inventories."
+  },
+  "review": {
+    "independent": "Runtime, tests and public docs reviewed by separate agents; later driver and diagnostic corrections independently rereviewed",
+    "whitespace": "git -c core.whitespace=cr-at-eol diff --check 01f90de..HEAD",
+    "privacy": "Only runtime/test/docs/build policy and redacted aggregate evidence; raw logs, fixtures/config and downloaded CI reports remain private",
+    "preserved": "Main conversion BAT, icons/posters, runtime1.0.0, source read-only/default64CBR/layout/metadata, S03 deadlines and unlimited encode/decode, transaction/cancellation/release safeguards"
+  },
+  "limitations": [
+    "Physical folder picker/owner keyboard observations NOT_RUN; interaction adapters are simulated, production resolver/save/native conversion execute on actual Windows. Real MTA/unavailable and Host.UI noninteractive behavior execute without simulation.",
+    "Windows10 22H2, another local vendor build, exact v1.0.1 ZIP/acceptance kit and new phone evidence NOT_RUN here; future gates remain.",
+    "Local package-policy precondition was not met by supplied Git build; exact-source CI uses its retained pinned build and verifies package policy. This is not release-package acceptance.",
+    "Hosted Windows Server CI is supplementary, separate from this client matrix.",
+    "No production download is implemented; D remains clearly unavailable until separately started S06."
+  ],
+  "git": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "source_live_equality": "cea42175a309fc841445f2765fc19e1d6de4c35e",
+    "main_local_live": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED",
+    "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "pr_state": "OPEN_DRAFT",
+    "authority": "S14 ordinary reviewed policy and existing owner-approval default; no merge",
+    "final_containing_checkpoint": "Observe fresh local HEAD/live equality, comparison time and exact-head push/PR CI after final docs push in final response; refresh at next entry"
+  },
+  "release": {
+    "runtime_version": "1.0.0",
+    "fixed_public_target": "v1.0.1",
+    "publication": "PENDING_S17",
+    "frozen_source": null,
+    "zip_sha256": null,
+    "authority": "Only separately started S17 publishes S16 exact accepted source/assets",
+    "release_tag_asset_writes": false,
+    "published_v1_0_0": "No change"
+  },
+  "human_action": "None for S05",
+  "next_step": "S06 - Implement consent-based managed dependency setup; NOT_STARTED; separate thread only",
+  "tested_source_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "4ff6e609fbfb242a16cf2bf756c4985a6908c864724dd57deabe2f83cb229963"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "0b26157a24eb2acf36ed84f925d4a73d78ca716ed3571f9dc1e1ede59404760a"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "51c65d402306f8bcde5fb4f133833dc2d353055928bc011ed3463277dc0e4752"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "20b2e31de62a0ee20159f463631baa55f004d7fa3b502ba784223bc2f119fc00"
+    },
+    {
+      "path": "tests/Test-FirstRunSetup.ps1",
+      "sha256": "fba9bb9af4e7d10e88f3b842487bdadee5ebaeaebec29edacb18253302b8ed17"
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "sha256": "02758a50cc3f63c7eeee59fe0385bff267d1cce2a11db77862a196c635be2c57"
+    },
+    {
+      "path": "tests/Test-Package.ps1",
+      "sha256": "91a6c56fd4648a349301dbef4add2e216dc3ae60f39395b0e59433ad7c6b5248"
+    },
+    {
+      "path": "tools/Build-Package.ps1",
+      "sha256": "a2f2fe5af9f1eb0b2876df56fad5f52e57173e77456f81da6784ba18f8f019c3"
+    },
+    {
+      "path": "tools/package-files.json",
+      "sha256": "d605aac38dd46a55f624e1085577acb4928a226c2963859a404374fb40767f2d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a9ece8aa4f6a31a161882ecef6d15d40f9196a72c38e70ea9fbe05af77e5eeb7"
+    },
+    {
+      "path": "SUPPORT.md",
+      "sha256": "079cb38d068693f2658aa7f52d30b3c65c915c7a368c0f6d0b2b2987378c9d00"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "afedd31c66f6eedc679c52ef989e171199bed39083903577c535c8171d2b65e8"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "ecc2ad587296e53369bb92fde28ad17fdfb44bbd4dba15550eaece96e0ddc8fd"
+    }
+  ]
+}

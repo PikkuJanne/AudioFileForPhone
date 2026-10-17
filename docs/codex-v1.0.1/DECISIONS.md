@@ -171,3 +171,45 @@ D28 - 2026-10-17, corrected S04 checkpoint: source
       Mark S04 complete and S05 NOT_STARTED. Final containing docs HEAD/live/CI
       is observed after push without a self-hash. Main/release authority stays
       separate; no owner action is needed for this step.
+
+D29 - 2026-10-17, S05 setup: add separate existing-tool PS1/BAT entries and one
+      shared Invoke-AudioToolSetup over S04 resolver/save APIs. Accept only the
+      explicitly selected exact bin directory, validate capabilities and display
+      identity/hashes under read guards. Ask before remembering; explicit Remember
+      is deliberate consent. Interactive conversion resumes the same launch before
+      metadata/output reservation. Failed save clearly says NOT remembered and
+      permits current-launch use; standalone requested-save failure returns 1.
+      No download or S06 implementation; D is visibly unavailable. Normal bounded
+      step authority suffices, with main/release authority unchanged.
+
+D30 - 2026-10-17, S05 interaction: use one-shot S/M/D/Q and remember inputs, a
+      Windows Forms picker with typed fallback only when unavailable, distinct
+      cancellation/EOF and actionable errors. Host.UI.ReadLine respects actual
+      NonInteractive host authority. Preview bypasses all setup/config/tool calls;
+      normal noninteractive conversion only displays a quoted repair command.
+      Print that command outside formatted error records to preserve copyability.
+      Setup BAT uses full SystemRoot PS5.1, STA and process RemoteSigned; no
+      post-entry fallback, argument forwarding, persistent policy or PATH change.
+
+D31 - 2026-10-17, S05 evidence repairs: retained help correctly caught README's
+      new setup fences preceding the original five examples. Move the walkthrough;
+      keep the existing ordering/text assertion. Capture of a strict exact-repair
+      failure showed hidden PS5.1 diagnostics decoding Unicode as replacement
+      characters. Match retained UTF8 test drivers and audit child CP65001; establish
+      UTF8 in the owned hidden CMD fixture before its Unicode literal path. Keep
+      all strict assertions and record failed attempts privately by hash. A local
+      package policy run rejected the supplied Git build because it requires the
+      retained CI-pinned 9.0.2 tools. Preserve that precondition and use passing
+      exact-source pinned CI for package-policy evidence, not release acceptance.
+
+D32 - 2026-10-17, S05 checkpoint: source
+      cea42175a309fc841445f2765fc19e1d6de4c35e is pushed/live-equal. All 26 accepted
+      local reports pass; focused setup has 15 grouped cases per shell. Retained
+      reports on dcc9408/6b09917 share all final runtime bytes; actual tested
+      commits remain distinct. Push 39058815762 and PR 39058820107 pass all four
+      jobs; downloaded reports prove 211 required checks, 3 observations and 15 setup
+      groups each. PR integration checkout 00d1f0df363e0c8ea5e89757af2d67ff5aaa9c1c
+      is separate from exact push source. Mark S05 complete and S06 eligible but
+      NOT_STARTED. Final containing docs HEAD/live/exact-head CI is observed after
+      push in the final response without a self-hash. Main remains unintegrated;
+      no release/tag operation or owner action. Public v1.0.1 remains PENDING_S17.

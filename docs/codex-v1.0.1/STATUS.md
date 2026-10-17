@@ -1,5 +1,59 @@
 # Status
 
+Project IN_PROGRESS. S01-S05 are COMPLETED. S05-A1/A2/A3 pass on the
+available Windows 11 client. Next eligible: S06 - Implement consent-based
+managed dependency setup, in a new thread. S06 and later remain NOT_STARTED.
+
+Existing-tool setup now has separate PS1/BAT entries and a shared bounded flow.
+Interactive dependency repair validates the selected exact pair and resumes the
+same conversion. Remembering requires Y or explicit Remember; failed save says
+NOT remembered, preserving current-launch use and previous config. Cancel/EOF/
+invalid input stop without loops. Actual noninteractive host and MTA adapter
+failures are bounded. Normal noninteractive conversion gives a full quoted repair
+action; preview never invokes setup/config/tools. Download is clearly unavailable
+until S06. No persistent PATH, registry, profile or policy change.
+
+Windows 11 Pro 26H2 26300.9711 x64, PS5.1 5.1.26100.9711 and PS7 7.6.5:
+15 focused groups per shell pass on cea42175a309fc841445f2765fc19e1d6de4c35e.
+Four real synthetic conversions per shell independently prove 64 kbps MP3,
+artist retention and full decode after same-launch setup, saved selection,
+declined remember and failed save. UI adapters are scripted; physical dialogs
+are NOT_RUN. Actual MTA and noninteractive Host.UI adapters execute unmodified.
+
+All 26 accepted local reports pass, including retained isolation/baseline, pure
+contracts, help, selection, preview, transaction, controlled cancellation,
+deadlines, captured regressions, cleanup and final sequential native-resource
+checks. Some reports use earlier dcc9408/6b09917 with the exact final runtime;
+actual commits and hashes are distinguished in S05.json. Outer CP65001 is
+inherited; hidden owned PS/CMD drivers explicitly preserve UTF8. All fixtures,
+config and records stay owned/isolated. No ordinary Music or personal media.
+
+Exact-source push CI 39058815762 and PR CI 39058820107 pass all four jobs.
+Downloaded artifacts prove 211 required checks, 3 observations and 15 setup groups
+per job, including package policy with retained pinned tools. Initial README
+ordering and hidden-driver Unicode failures, plus the local package-pin
+precondition stop, remain honest preparation non-passes in S05 evidence.
+No assertion, tool pin or safeguard was disabled.
+
+Source cea4217 is pushed/live-equal. Final containing documentation HEAD/live
+comparison and exact-head CI are observed after push in the final response,
+avoiding a self-containing SHA. Main remains 28f53b10529495754273d55654c7b29e78848c83;
+PR #29 stays OPEN draft/unmerged. Main integration is NOT_INTEGRATED under S14
+reviewed policy and the existing owner-approval default. No owner action for S05.
+
+Runtime remains 1.0.0; fixed eventual public release is v1.0.1. Publication is
+PENDING_S17, only from separately authorized S16 exact source/assets. No frozen
+candidate/ZIP exists. Published v1.0.0 and artwork remain. Windows 10, another
+local vendor build, exact package/kit, physical UI and new phone evidence remain
+future acceptance work. S03 deadlines, cancellation/release safeguards and
+unlimited normal encode/decode remain. Full handover: evidence/S05-HANDOVER.md.
+
+## Preserved checkpoints through S04
+
+The following content is historical context. Current routing and results are above.
+
+# Status
+
 Project IN_PROGRESS. S01/S02/S03/S04 are COMPLETED. S04-A1/A2/A3 pass on the
 available Windows 11 client. Next eligible: S05 - Add first-run setup and manual
 recovery, in a new thread. S05 and later remain NOT_STARTED.
