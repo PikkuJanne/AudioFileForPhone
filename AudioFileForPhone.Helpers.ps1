@@ -534,6 +534,7 @@ function Invoke-AudioToolSetup {
                         if ($ConfigPath) { $setupCommand += " -ConfigPath '" + $ConfigPath.Replace("'", "''") + "'" }
                         Write-Host 'Conversion never downloads tools. Run separate setup and choose D to review the optional download:'
                         Write-Host $setupCommand
+                        Write-Host 'No files were downloaded or installed.'
                         $result.Error = 'Optional download requires separate setup. No files were downloaded or installed.'
                         return [pscustomobject]$result
                     }
@@ -596,12 +597,16 @@ function Invoke-AudioToolSetup {
                     $script:AudioCancellationContext = $managedCancellation
                 }
                 $installed = Invoke-AudioManagedToolInstall -Manifest $manifest -ConfigPath $ConfigPath -ManagedRoot $storage -Consent -CancellationState (Get-AudioCancellationContext)
+                Assert-AudioNotCancelled -Cancellation (Get-AudioCancellationContext)
             }
             finally {
                 if ($null -ne $managedCancellation) {
                     $managedCancellation.Dispose()
                     $script:AudioCancellationContext = $priorCancellation
                 }
+            }
+            if ($null -ne $managedCancellation -and $managedCancellation.IsCancellationRequested) {
+                throw (New-Object OperationCanceledException('Managed setup was cancelled before remembering the completed installation.'))
             }
             $FfmpegDirectory = $installed.ToolSelection.Directory
         }

@@ -1,6 +1,7 @@
 <#
 S06 managed-download failure boundaries on Windows. Only the named transport
-adapter is replaced for installer fixtures. Production manifest, archive preflight,
+adapter is replaced for archive installer fixtures. One separately labeled setup
+handoff case injects an engine result with pending cancellation. Production manifest, archive preflight,
 extraction, selection and cleanup code remain intact. Timed response-stream tests
 exercise the real bounded stream copier separately. No personal media or user
 configuration is touched; raw fixtures stay in an exclusively owned TEMP tree.
@@ -623,6 +624,49 @@ class ExecutionMarker {
         $case['completed_installs']=2; $case['unique_destinations']=$true; $case['previous_install_unchanged']=$true; $case['config_unchanged']=$true
         $case['first_publication_attempts']=[int]$first.PublicationAttempts
         $case['second_publication_attempts']=[int]$second.PublicationAttempts
+    }
+    Invoke-Case 'owned-install-cancellation-survives-engine-result-handoff-before-remember' {
+        param($case)
+        $handoffRoot=Join-Path $testRoot 'Handoff injection [literal]'; [IO.Directory]::CreateDirectory($handoffRoot) | Out-Null
+        [IO.Directory]::CreateDirectory((Join-Path $handoffRoot 'tools')) | Out-Null
+        $handoffManifest=Join-Path $handoffRoot 'tools/ffmpeg-download.json'
+        Copy-Item -LiteralPath $manifestCopy -Destination $handoffManifest; Add-Fixture $handoffManifest
+        $loader=Join-Path $handoffRoot 'AudioFileForPhone.ManagedSetup.ps1'
+        $productionLiteral="'"+(Join-Path $appRoot 'AudioFileForPhone.ManagedSetup.ps1').Replace("'","''")+"'"
+        $directoryLiteral="'"+(Split-Path -Parent $ffmpeg).Replace("'","''")+"'"
+        # The exact production module is loaded. Only the engine result is
+        # injected to expose the shared setup's cancellation ownership handoff;
+        # no archive, smoke or primary-vendor evidence is claimed by this case.
+        $loaderText='. '+$productionLiteral+"`r`n"+@'
+function Invoke-AudioManagedToolInstall {
+    param([object]$Manifest,[string]$ConfigPath,[switch]$Consent,[object]$CancellationState,[string]$ManagedRoot)
+    $script:S06HandoffAudit.Calls++
+    $script:S06HandoffAudit.Context=$CancellationState
+    $CancellationState.Request()
+'@+"`r`n"+'    return [pscustomobject]@{ToolSelection=[pscustomobject]@{Directory='+$directoryLiteral+'}}'+"`r`n}`r`n"
+        Write-NewText $loader $loaderText; Add-Fixture $loader
+        $savedContext=Get-Variable -Name AudioCancellationContext -Scope Script -ErrorAction SilentlyContinue
+        $savedContextValue=if ($null -ne $savedContext) {$savedContext.Value} else {$null}
+        $script:S06HandoffAudit=[pscustomobject]@{Calls=0;Context=$null}
+        $script:AudioCancellationContext=$null
+        $unusedRoot=Join-Path $testRoot 'handoff-engine-does-not-install'
+        $nativeBefore=$nativeRuns.Count
+        try {
+            $result=Invoke-AudioToolSetup -ScriptDirectory $handoffRoot -ConfigPath $configPath -ManagedRoot $unusedRoot -AllowManagedDownload -Download -Consent -Remember -NonInteractive
+            Assert-True ($script:S06HandoffAudit.Calls -eq 1 -and $null -ne $script:S06HandoffAudit.Context -and $script:S06HandoffAudit.Context.IsCancellationRequested) 'Injected handoff must request cancellation on the actual setup-owned context exactly once.'
+            Assert-True ($result.Status -ceq 'Cancelled' -and -not $result.Remembered) 'Pending owned installation cancellation must remain Cancelled across the engine return and prevent Remember.'
+            Assert-True ($nativeRuns.Count -eq $nativeBefore) 'Cancelled engine handoff must precede every later native pair validation and save validation.'
+            Assert-True ($null -eq (Get-AudioCancellationContext)) 'Shared setup must restore the prior null cancellation context after disposing its owned context.'
+            Assert-True (-not (Test-Path -LiteralPath $unusedRoot)) 'The handoff-only injection must create no dependency storage.'
+            Assert-PreservedSelection
+            $case['scope']='test-only engine-result injection after loading exact production managed module; shared setup cancellation handoff only, not archive or primary-vendor install evidence'
+            $case['engine_calls']=1; $case['pending_owned_cancellation_preserved']=$true; $case['later_native_calls']=0
+            $case['remembered']=$false; $case['prior_context_restored']=$true; $case['config_and_tools_unchanged']=$true
+        } finally {
+            if ($null -ne $savedContext) {$script:AudioCancellationContext=$savedContextValue}
+            else {Remove-Variable -Name AudioCancellationContext -Scope Script -ErrorAction SilentlyContinue}
+            Remove-Variable -Name S06HandoffAudit -Scope Script -ErrorAction SilentlyContinue
+        }
     }
     $report.status='pass'; $exitCode=0
 } catch { $report.error=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>'); Write-Warning $report.error }
