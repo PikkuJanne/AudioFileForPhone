@@ -273,3 +273,38 @@ D37 - 2026-10-18, S06 checkpoint: tested source
       belongs in the final response after push, without a self-containing SHA.
       Main integration remains separate under S14/owner approval. No tag/release
       operation or owner action; public v1.0.1 remains PENDING_S17.
+
+D38 - 2026-10-18, S07 interaction: show Ready with actual count/bitrate after
+      successful preflight/setup. Enter starts immediately; M exposes the existing
+      metadata controls and explains automatic continuation; Q/EOF cancel130.
+      Invalid/pasted input fails1 and is never evaluated. Read each stage once
+      through named metadata UI adapters; actual unavailable/NonInteractive input
+      cannot start a batch. Explicit Artist/Album values, including blank retain-
+      source values, skip M controls. No batch metadata is persisted. Durable
+      phase labels distinguish probing/encoding/validation/publication; accurate
+      final counts remain. Existing setup APIs and managed safeguards are intact.
+
+D39 - 2026-10-18, S07 verification: preserve preflight writability semantics,
+      which may leave an empty OutputParent, while requiring zero batch/config
+      entries and only the three exact bounded tool-selection native operations
+      on stopped choices. Real output tests independently probe tags/bitrate/
+      artwork pixels, full decode and440Hz sound. A first tiny-tone assertion
+      counted MP3 boundary noise; stable middle-half measurement now excludes it
+      with a tighter10Hz tolerance. PS5.1 formatted diagnostic wordwrap is handled
+      by whitespace normalization of the observed NonInteractive token; the real
+      reader and no-batch checks remain unchanged. Private module/newline/contract
+      preparation failures and earlier reports remain honest non-passes/prior
+      validation. Null EOF injection is not physical-console observation.
+
+D40 - 2026-10-18, S07 checkpoint: sourcec08d97571bd70d140acc89c1de86e2fc0f4c6583
+      has six exact-source final focused/first-run/native reports; all30 accepted
+      local reports pass. Twenty-four retained reports keep entry889db48 and
+      actual matching final runtime hashes. Native35 runs last and sequentially
+      in both shells. Mark S07 complete and S08 eligible/NOT_STARTED. Commit source
+      locally, then push one containing evidence/documentation checkpoint and
+      observe fresh advertised equality/exact-head push and PR CI in the final
+      response, without a self-containing SHA or invented standalone source CI.
+      Main integration stays separate under S14/owner approval. Managed50 case50
+      remains engine-result injection; S06 real vendor installs remain separate.
+      No owner action, tag/release operation or changed frozen/public bytes.
+      Public v1.0.1 remains PENDING_S17.

@@ -1,5 +1,65 @@
 # Status
 
+Project IN_PROGRESS. S01-S07 are COMPLETED. S07-A1/A2/A3 pass on the available
+Windows 11 client in both shells. Next eligible: S08 - Harden the BAT and
+PowerShell startup route, in a separate thread. S08 remains NOT_STARTED.
+
+Interactive conversion now offers Enter/M/Q after successful preflight/setup.
+Enter immediately starts defaults while retaining explicit parameters. M exposes
+this batch's cover/Artist/Album controls; explicit blank tag values retain source
+tags. Q/EOF cancels130; invalid input fails1; unavailable/redirected input cannot
+start a batch. Normal noninteractive conversion and dry-run stay prompt-free.
+Batch metadata is never saved. Preflight/waiting/probing/encoding/validation/
+publication are distinct, with existing honest final counts/status preserved.
+Existing preflight may create an empty OutputParent; stopped choices create no
+batch output and execute only bounded tool-selection checks.
+
+Tested source c08d97571bd70d140acc89c1de86e2fc0f4c6583 has 6 final exact-source
+client reports: focused23, first-run15 and native35 groups per shell. Native checks
+ran last and sequentially. Twenty-four retained reports on entry889db48 record
+actual matching final runtime hashes: isolated baseline, metadata/artwork15,
+progress17 including3605-second synthetic decode, transactions27, preflight35
+negative+8helpers, pure31, managed50, cancellation9, preview8, short15,
+selection14 and help7 per shell. All30 accepted local reports pass. Prior first-
+run reports and three earlier focused attempts remain separate prior validation.
+
+Windows 11 Pro 26H2 26300.9711 x64, PS5.1 5.1.26100.9711, PS7 7.6.5;
+existing C:\ffmpeg\bin tools. Owned BOM UTF8/CP65001 outer drivers and explicit
+UTF8 hidden drivers remain. Private-only module/newline/contract preparation
+failures, tiny-tone boundary measurement and PS5 diagnostic wrapping failures
+remain recorded; no assertion or product safeguard was disabled. All owned
+fixture/source hashes and cleanup pass; raw reports/media/config stay outside Git.
+Physical UI/console EOF observations are NOT_RUN; null responses are injected and
+actual production redirected/NonInteractive refusals execute. No ordinary Music,
+personal media, owner config, persistent environment change or owner action.
+
+Shared resolver/save/setup APIs, FfmpegDirectory/ConfigPath, absolute PATH=CWD,
+S03 deadlines, cancellation/release safeguards and unlimited normal encode/decode
+remain. Managed engine/pin/setup/BAT bytes are unchanged. Managed case50 is engine-
+result injection, not vendor installation; real S06 vendor acceptance remains
+separate on69bce4a. Consent, notices/provenance, owned bounded staging/cleanup,
+guarded retry and validation/smoke before selection remain. Conversion never
+downloads. Sources, artwork and published v1.0.0 remain preserved.
+
+Entry checkpoint889db48 was live-equal with successful push39075046972 and
+PR39075049920 CI, all4jobs. Only the containing S07 documentation checkpoint is
+pushed; its final HEAD/live/exact-head CI is observed after push in the final
+response and refreshed next entry. No standalone CI for local sourcec08d975 is
+claimed. Main remains independently NOT_INTEGRATED at entry28f53b10529495754273d55654c7b29e78848c83;
+PR#29 remains OPEN draft/unmerged. S14 reviewed policy and owner-approval default
+still apply. Full evidence/handover: evidence/S07.json and S07-HANDOVER.md.
+
+Runtime remains1.0.0. Fixed public v1.0.1 is PENDING_S17, published only by a
+separately started S17 using S16 exact accepted source/assets. No frozen candidate,
+accepted ZIP or publication authority exists. Windows10, exact ZIP/kit and new
+phone evidence remain later gates.
+
+## Preserved checkpoints through S06
+
+Historical context follows; current routing and results are above.
+
+# Status
+
 Project IN_PROGRESS. S01-S06 are COMPLETED. S06-A1/A2/A3 pass on the
 available Windows 11 client. Next eligible: S07 - Simplify metadata interaction,
 in a separate thread. S07 and later remain NOT_STARTED.
