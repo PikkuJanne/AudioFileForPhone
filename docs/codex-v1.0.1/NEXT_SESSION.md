@@ -1,40 +1,34 @@
-# S03 preparation: resume S03 if interrupted
-
-S03 is IN_PROGRESS. Finish its retained checks, final focused rerun and exact-head
-CI; update its evidence and handover before marking complete. Do not start S04.
-The following S02 prompt is historical context pending the final S03 handover.
-
 # Next session
 
-S01 and S02 COMPLETED. Next eligible step: S03 - Add bounded short-operation
-execution. S03 is NOT_STARTED; do not restart S01/S02 or reset imported state.
-Preparation checkpoint 76339f97211868b3bd23bb1557cc91469d287270 is clean/live-equal
-and exact-head push/associated PR CI pass both shells. Refresh the final containing
-HEAD/live identities and CI at entry; its own SHA is in the post-push response.
+S01/S02/S03 COMPLETED. Next eligible: S04 - Implement explicit and remembered
+tool selection. S04 is NOT_STARTED. Do not restart earlier steps. Source 9b30f96
+has passing exact-head push/PR CI; refresh the final containing HEAD/live refs
+and its CI at entry. The prior response records that final identity.
+
 Use this filled next-thread prompt:
 
     Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
-    docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1, draft PR #29:
-    https://github.com/PikkuJanne/AudioFileForPhone/pull/29. Read AGENTS.md,
-    CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md, evidence/S02.json and
-    evidence/S02-HANDOVER.md; inspect actual diff and refresh local/live feature
-    and main identities plus exact-head CI. Complete ONLY S03 - Add bounded
-    short-operation execution. Read tasks/S03.md and its referenced specs, plus
-    specs/SYNC_AND_RELEASE.md. S01/S02 are complete; do not reset/reimport them.
-    Last independently verified preparation checkpoint is
-    76339f97211868b3bd23bb1557cc91469d287270. Actual local Windows 11 Pro 26H2
-    26300.9711 x64 has PS5.1 5.1.26100.9711 and PS7 7.6.5. Local FFmpeg/ffprobe
-    C:\ffmpeg\bin report 2026-10-08-git-ec420ba161 essentials. S02 final1 passes
-    12 cases per shell; both retained baseline suites and 31 CI contracts per
-    shell pass. Known late bitrate failures remain captured, not fixed; saved
-    selection APIs remain pending. Runtime remains unchanged from
-    28f53b10529495754273d55654c7b29e78848c83. Keep real FFmpeg suites, historical
-    T-prefixed evidence contracts and inherited UTF8 CP65001; use isolated owned
-    fixtures, public OutputParent and per-process RemoteSigned. Do not repeat
-    owner diagnostics or scan ordinary Music/personal media. Preserve defaults,
-    source safety, artwork and published v1.0.0. Main integration remains separate
-    under the existing owner-approval default. Update evidence/state/status/
-    next-session/decisions and full handover; test/review/commit/push intended work,
-    verify fresh live equality and exact-commit CI. Give filled next-thread prompt,
-    then STOP. Do not start S04. Fixed final deliverable is public v1.0.1; only
-    separately started S17 publishes S16's exact accepted source/assets.
+    docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+    Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+    Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+    evidence/S03.json and evidence/S03-HANDOVER.md. Refresh actual local/live
+    feature and main identities and verify exact-head CI. The independently
+    verified tested source is 9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a;
+    the later containing docs checkpoint/CI is in the prior thread's final response
+    and must be refreshed. Complete ONLY S04 - Implement explicit and remembered
+    tool selection. S01/S02/S03 are complete; do not reset/reimport or restart them.
+    Read tasks/S04.md and its referenced specs, plus specs/SYNC_AND_RELEASE.md.
+    Available host: Windows 11 Pro 26H2 26300.9711 x64, PS5.1 5.1.26100.9711
+    and PS7 7.6.5; FFmpeg/ffprobe in C:\ffmpeg\bin. S03 focused final3 passes
+    15 cases per shell with inherited UTF8 CP65001, bounded short operations and
+    source/output ProbeTimeoutSeconds (default 60). Encode/full decode keep no short
+    runtime ceiling. Retained suites and exact-source CI pass; keep original
+    T-prefixed evidence-path contracts and additive proxy support. Use isolated owned
+    synthetic fixtures and per-process RemoteSigned. Do not repeat owner diagnostics
+    or scan ordinary Music/personal media. Preserve defaults, source safety,
+    artwork and published v1.0.0. Main integration remains separate under existing
+    owner-approval authority. Update evidence/state/status/next-session/decisions and
+    full handover; test/review/commit/push intended changes; verify fresh live equality
+    and exact-commit CI. Give the filled next-thread prompt, then STOP. Do not start
+    S05. The fixed deliverable is public v1.0.1. Only separately started S17 publishes
+    S16's exact accepted source/assets.

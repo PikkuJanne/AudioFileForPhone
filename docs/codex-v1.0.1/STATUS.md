@@ -1,12 +1,50 @@
-# S03 preparation checkpoint
-
-S03 IN_PROGRESS. Bounded native execution and source/output probe overrides are
-implemented. Focused attempt1 passes 15 cases per actual PS5.1/PS7 shell; final
-parent-exit proof assertions require a final rerun. Retained regression checks
-and pushed exact-commit CI are still pending. S01/S02 remain complete. S04 is
-NOT_STARTED. No owner action, main integration or release operation is authorized
-by this preparation checkpoint. See evidence/S03.json. Earlier S02 record follows.
 # Status
+
+Project IN_PROGRESS. S01/S02/S03 are COMPLETED. S03-A1/A2/A3 pass on the
+available Windows 11 client. Next eligible step is S04 - Implement explicit and
+remembered tool selection, in a new thread. S04 and later remain NOT_STARTED.
+
+Short operations now carry deadlines and distinct Timeout/Cancelled results.
+Version/capability defaults are 15 seconds; media probes 60 seconds, publicly overridable with
+ProbeTimeoutSeconds for source/output probes. Pipe completion after exit has a
+separate 5-second default; teardown is bounded. Encoding/full decode retain unlimited
+normal runtime. Only the retained owned child is terminated. Missing EOF/release
+proof retains the exact .partial; publication and source safeguards remain.
+
+Windows 11 Pro 26H2 build 26300.9711 x64, PS5.1 5.1.26100.9711 and PS7 7.6.5:
+focused final3 passes 15 cases each under inherited UTF8 CP65001. Real paced 2-second
+encode/decode exceed the 1-second test startup bound. Retained suites pass per shell:
+legacy baseline 0 plus 7 required characterizations/3 observations, 31 pure
+contracts, 27 transaction, 9 controlled cancellation, 181 cleanup, 7 help and 35
+native cases; S02 characterization remains 12 cases. Source/synthetic hashes,
+owned cleanup and native resource release pass. Raw reports remain outside Git.
+
+Preparation 0d2d8ff CI correctly failed its stale help parameter expectation.
+709370a adds the authorized parameter to that test; 9b30f96 adjusts only cold
+fixture timing and adds readiness proof. Runtime bytes are unchanged. Push CI
+39048368905 and associated PR
+CI 39048372292 pass both shells; downloaded reports prove all 15 new cases and
+every retained CI family executed. Initial CP437 outer-host attempts are invalid
+for acceptance, preserved and replaced by CP65001 runs. See evidence/S03.json
+and evidence/S03-HANDOVER.md for commands, digests, caveats and full handover.
+
+Feature source 9b30f96 is pushed/live-equal, main remains
+28f53b10529495754273d55654c7b29e78848c83, and draft PR #29 is unmerged.
+The final containing docs checkpoint gets fresh live/exact-head CI observation
+in the session response, avoiding a self-containing SHA. Main integration stays
+NOT_INTEGRATED under S14 reviewed policy and existing owner-approval default.
+
+Runtime remains 1.0.0; the fixed eventual public release is v1.0.1. No candidate
+is frozen and publication is PENDING_S17, solely from separately authorized
+S16 exact source/assets. Published v1.0.0 and artwork are preserved. Windows 10,
+another local FFmpeg build, exact package/kit and new phone observations remain
+future acceptance evidence. No owner action is needed for S03.
+
+## Preserved S02 checkpoint
+
+The prior status is preserved below as historical context; active routing is above.
+
+### S02 status at entry
 
 Project IN_PROGRESS. S01 and S02 are COMPLETED. All S02 acceptance criteria pass.
 Next eligible step: S03 - Add bounded short-operation execution, in a new thread.

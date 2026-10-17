@@ -89,12 +89,20 @@ D20 - 2026-10-17, S03 validation: preserve inherited console CP65001 in the
       parameter to that exact help contract; retain all descriptions/examples,
       ownership and source-safety assertions. Repeat exact-head CI on the fix.
 
-D21 - 2026-10-17, S03 CI fixture startup: both PS7 hosted runs on709370a
-      correctly returned Timeout/released/EOF at533-534ms, but the cold .NET
+D21 - 2026-10-17, S03 CI fixture startup: both PS7 hosted runs on 709370a
+      correctly returned Timeout/released/EOF at 533-534 ms, but the cold .NET
       fixture had written zero characters. PS5.1 passed the complete family.
-      Increase only deliberate fixture budgets from500ms to2000ms, retaining
+      Increase only deliberate fixture budgets from 500 ms to 2000 ms, retaining
       exact output/EOF/ownership assertions and adding explicit readiness proof.
-      Held-pipe lower bounds use their configured300ms drain deadline. Save
-      caught startup details before assertions. Production15s/60s defaults,
+      Held-pipe lower bounds use their configured 300 ms drain deadline. Save
+      caught startup details before assertions. Production 15-second/60-second defaults,
       probe overrides and runtime bytes remain unchanged. Repeat focused local
       tests and exact-head CI; no owner approval or safeguard exception needed.
+
+D22 - 2026-10-17, S03 checkpoint: runtime 0d2d8ff remains unchanged in source
+      9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a. Final3 focused 15 cases per shell,
+      corrected CP65001 baselines and retained suites pass. Push CI 39048368905 and
+      PR CI 39048372292 pass; artifact reports prove every focused/retained CI family.
+      Mark S03 complete and S04 eligible/NOT_STARTED. Final docs-only containing
+      HEAD/live/CI is observed after push, without another self-referential record.
+      Keep main integration and S16-to-S17 publication authority separate.
