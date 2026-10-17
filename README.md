@@ -36,41 +36,8 @@ never downloads tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
 
-After reviewing a trusted existing build, run setup from the application folder:
-
-```powershell
-.\Setup-AudioFileForPhone.ps1
-```
-
-Choose **S** to select the directory containing both executables. A Windows folder
-picker is used when available; otherwise type the exact directory path without
-surrounding quotes. Only that directory is checked. Setup shows both paths,
-versions, detected architecture and SHA-256 hashes, then asks whether to remember
-the choice. **N** keeps it for this launch only; **Q** cancels. **M** gives manual
-instructions. **D** explains that downloading is unavailable and returns without
-network access. An invalid pair stops setup without replacing a saved choice.
-
-`Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
-STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
-arguments; use the PS1 entry for explicit options. A console with readable input
-is needed for interactive setup. To select and remember a reviewed pair directly,
-without prompts or a PATH edit:
-
-```powershell
-.\Setup-AudioFileForPhone.ps1 -FfmpegDirectory 'D:\Trusted tools\bin' -Remember -NonInteractive
-```
-
-Omit `-Remember` to validate and display the pair without saving. Setup returns 0
-when the selected pair is ready, 1 when configuration or an explicitly requested
-save fails, and 130 on cancel. A failed settings write clearly says the choice
-was **not remembered** and gives an explicit `-FfmpegDirectory` conversion command.
-The valid pair can still be used for the current interactive conversion.
-
-When an `-Interactive` conversion cannot resolve its tools, it offers the same
-setup before metadata prompts and resumes that launch with the validated pair.
-Ordinary conversion never prompts, downloads or saves settings; it reports the
-exact setup repair command. Preview never starts setup, reads config or calls
-tools, including when `-Interactive` is supplied.
+For the setup walkthrough and offline recovery, see
+[Existing-tool setup and recovery](#existing-tool-setup-and-recovery).
 
 For manual download sources, tested build identities, license differences and
 checks of the exact resolved executables, read
@@ -131,6 +98,44 @@ For drag and drop, drop **exactly one folder** onto `AudioFileForPhone.bat`.
 It uses `pwsh` when available, otherwise Windows PowerShell, starts in STA mode
 for the optional cover picker and supplies `-Interactive`. The wrapper pauses
 before returning the child exit code. See the security note above before using it.
+
+## Existing-tool setup and recovery
+
+After reviewing a trusted existing build, run setup from the application folder:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1
+```
+
+Choose **S** to select the directory containing both executables. A Windows folder
+picker is used when available; otherwise type the exact directory path without
+surrounding quotes. Only that directory is checked. Setup shows both paths,
+versions, detected architecture and SHA-256 hashes, then asks whether to remember
+the choice. **N** keeps it for this launch only; **Q** cancels. **M** gives manual
+instructions. **D** explains that downloading is unavailable and returns without
+network access. An invalid pair stops setup without replacing a saved choice.
+
+`Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
+STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
+arguments; use the PS1 entry for explicit options. A console with readable input
+is needed for interactive setup. To select and remember a reviewed pair directly,
+without prompts or a PATH edit:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -FfmpegDirectory 'D:\Trusted tools\bin' -Remember -NonInteractive
+```
+
+Omit `-Remember` to validate and display the pair without saving. Setup returns 0
+when the selected pair is ready, 1 when configuration or an explicitly requested
+save fails, and 130 on cancel. A failed settings write clearly says the choice
+was **not remembered** and gives an explicit `-FfmpegDirectory` conversion command.
+The valid pair can still be used for the current interactive conversion.
+
+When an `-Interactive` conversion cannot resolve its tools, it offers the same
+setup before metadata prompts and resumes that launch with the validated pair.
+Ordinary conversion never prompts, downloads or saves settings; it reports the
+exact setup repair command. Preview never starts setup, reads config or calls
+tools, including when `-Interactive` is supplied.
 
 ## Inputs and options
 

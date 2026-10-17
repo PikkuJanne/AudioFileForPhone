@@ -168,6 +168,9 @@ function Invoke-ProductionChild {
     $driver = Join-Path $testRoot ($Label + '-driver.ps1')
     $code = @(
         '$ErrorActionPreference=''Stop''; $ProgressPreference=''SilentlyContinue''; $global:LASTEXITCODE=0',
+        # Match the retained help/regression drivers: the native host redirects
+        # UTF-8 streams, so its owned PS5.1 child must emit UTF-8 as well.
+        '[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)',
         ('$global:S05ExpectedHelper=' + (Get-Literal (Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'))),
         ('$global:S05Loader=' + (Get-Literal $loader)),
         ('$global:S05ScriptedUI=$' + $ScriptedUI.IsPresent.ToString().ToLowerInvariant()),
@@ -203,7 +206,7 @@ try {
     $code += $Command
     $code += @'
 } finally {
-    Write-Host ('[S05_AUDIT] ' + ([pscustomobject]@{helper_loads=$global:S05Loads;dialog_calls=$global:S05DialogCalls;setup_prompts=@($global:S05SetupPrompts.ToArray());remaining_responses=$global:S05Responses.Count;native_proofs=@($global:S05NativeProofs.ToArray());forbidden_calls=@($global:S05Forbidden.ToArray())} | ConvertTo-Json -Depth 6 -Compress))
+    Write-Host ('[S05_AUDIT] ' + ([pscustomobject]@{output_encoding_codepage=[Console]::OutputEncoding.CodePage;helper_loads=$global:S05Loads;dialog_calls=$global:S05DialogCalls;setup_prompts=@($global:S05SetupPrompts.ToArray());remaining_responses=$global:S05Responses.Count;native_proofs=@($global:S05NativeProofs.ToArray());forbidden_calls=@($global:S05Forbidden.ToArray())} | ConvertTo-Json -Depth 6 -Compress))
 }
 exit $LASTEXITCODE
 '@
@@ -216,6 +219,7 @@ exit $LASTEXITCODE
     $audits = @($text -split '\r?\n' | Where-Object { $_.StartsWith('[S05_AUDIT] ', [StringComparison]::Ordinal) })
     Assert-True ($audits.Count -eq 1) 'Production child must emit one finally audit before cleanup.'
     $audit = $audits[0].Substring(12) | ConvertFrom-Json
+    Assert-True ($audit.output_encoding_codepage -eq 65001) 'Owned redirected PowerShell children must emit UTF-8 without losing Unicode repair paths.'
     Assert-True (@($audit.native_proofs | Where-Object { -not $_.process_released -or -not $_.pipe_drain_completed }).Count -eq 0) 'Every production native invocation must prove release and pipe completion.'
     $script:releaseProved = $previousRelease
     Assert-True ($audit.helper_loads -eq 1 -and @($audit.forbidden_calls).Count -eq 0) ('Production helper load or forbidden-call guard failed: ' + $text.Replace($testRoot,'<OWNED_TEMP>'))
@@ -378,6 +382,10 @@ try {
             $before = if (Test-Path -LiteralPath $config) { (Get-FileHash -LiteralPath $config).Hash } else { $null }
             $child = Invoke-ProductionChild $label (Get-AppCommand $config $parent) -ForbidSetup
             $repair = Get-AudioSetupRepairCommand -ScriptDirectory $appRoot -ConfigPath $config
+            if (-not $child.Text.Contains($repair)) {
+                $case['expected_repair'] = $repair.Replace($testRoot,'<OWNED_TEMP>')
+                $case['observed_diagnostic'] = $child.Text.Replace($testRoot,'<OWNED_TEMP>')
+            }
             Assert-True ($child.ExitCode -eq 1 -and $child.Text.Contains($repair) -and $child.Audit.setup_prompts.Count -eq 0 -and -not (Test-Path -LiteralPath $parent)) 'Noninteractive dependency failure must contain exact repair command and no setup/output.'
             if ($null -eq $before) { Assert-True (-not (Test-Path -LiteralPath $config)) 'Missing config must not be created.' } else { Assert-True ((Get-FileHash -LiteralPath $config).Hash -ceq $before) 'Failed noninteractive path must preserve config bytes.' }
             $observations += [pscustomobject]@{condition=$label;exit_code=$child.ExitCode;exact_repair_command=$true;config_unchanged=$true;prompt_count=0}
