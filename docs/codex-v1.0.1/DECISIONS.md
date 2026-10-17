@@ -88,3 +88,13 @@ D20 - 2026-10-17, S03 validation: preserve inherited console CP65001 in the
       stale nine-parameter expectation. Add only the authorized advanced probe
       parameter to that exact help contract; retain all descriptions/examples,
       ownership and source-safety assertions. Repeat exact-head CI on the fix.
+
+D21 - 2026-10-17, S03 CI fixture startup: both PS7 hosted runs on709370a
+      correctly returned Timeout/released/EOF at533-534ms, but the cold .NET
+      fixture had written zero characters. PS5.1 passed the complete family.
+      Increase only deliberate fixture budgets from500ms to2000ms, retaining
+      exact output/EOF/ownership assertions and adding explicit readiness proof.
+      Held-pipe lower bounds use their configured300ms drain deadline. Save
+      caught startup details before assertions. Production15s/60s defaults,
+      probe overrides and runtime bytes remain unchanged. Repeat focused local
+      tests and exact-head CI; no owner approval or safeguard exception needed.

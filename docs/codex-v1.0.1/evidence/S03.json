@@ -119,5 +119,12 @@
     "pr_run": 39047703714,
     "remediation": "Extend exact parameter expectation by one; retain all checks; rerun exact-head CI.",
     "push_run": 39047699943
+  },
+  "fixture_ci_failure": {
+    "pr_run": 39047955727,
+    "push_run": 39047952851,
+    "observed": "PS7 Timeout at533-534ms, release/EOF true, zero stdout/stderr; PS5.1 full pass",
+    "fix": "2s deliberate fixture budget plus readiness marker; keep all assertions; production runtime unchanged",
+    "head": "709370abfea1f28309032d64863ee92d776155b5"
   }
 }

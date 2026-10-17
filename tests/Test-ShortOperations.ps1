@@ -125,10 +125,10 @@ function Assert-Success {
     Assert-True ($Result.Status -ceq 'Completed' -and $Result.ExitCode -eq 0 -and $Result.ProcessReleased -and $Result.PipeDrainCompleted) ('Expected complete success/release/EOF: ' + $Result.Status + ' ' + $Result.Error + ' ' + $Result.Stderr)
 }
 function Assert-Timeout {
-    param([object]$Result, [int]$Timeout, [bool]$Released = $true)
+    param([object]$Result, [int]$Timeout, [bool]$Released = $true, [int]$EarliestMilliseconds = $Timeout)
     Save-NativeResult $Result
     Assert-True ($Result.Status -ceq 'Timeout' -and $Result.TimeoutMilliseconds -eq $Timeout -and $Result.ProcessReleased -eq $Released) 'Timeout must preserve its deadline and conservative release result.'
-    Assert-True ($Result.ElapsedMilliseconds -ge ($Timeout - 40) -and $Result.ElapsedMilliseconds -lt ($Timeout + 8000)) 'Deadline plus separately bounded teardown must finish within eight seconds of the configured deadline.'
+    Assert-True ($Result.ElapsedMilliseconds -ge ($EarliestMilliseconds - 40) -and $Result.ElapsedMilliseconds -lt ($Timeout + 8000)) 'The earliest operation/drain deadline plus separately bounded teardown must finish within eight seconds of the configured operation deadline.'
     Assert-True (-not [string]::IsNullOrWhiteSpace($Result.Operation) -and $Result.Error -match 'Timeout|timed out|deadline') 'Timeout must identify its operation and diagnostic.'
 }
 function Get-ExactFixtureProcess {
@@ -294,8 +294,13 @@ class ShortChild {
     Invoke-Case 'never-exiting-child-times-out-with-owned-release' {
         param($case)
         $identity = Join-Path $testRoot 'hung-child.json'; $identityFiles.Add($identity)
-        $result = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('hang',$identity,$ownerToken) -TimeoutMilliseconds 500 -Operation 'S03 never-exiting child'
-        Assert-Timeout $result 500
+        # A new compiled fixture can take longer than 500ms to start on a cold
+        # CI host. This operation budget permits startup without relaxing EOF,
+        # diagnostic, owned-release or independently retained sentinel checks.
+        $result = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @('hang',$identity,$ownerToken) -TimeoutMilliseconds 2000 -Operation 'S03 never-exiting child'
+        $case['fixture_ready_marker_created'] = Test-Path -LiteralPath $identity -PathType Leaf
+        Assert-Timeout $result 2000
+        Assert-True $case['fixture_ready_marker_created'] 'The independently compiled child must reach its hang readiness marker before the deadline.'
         Assert-True ($result.PipeDrainCompleted -and $result.Stdout -ceq 'before hang' -and $result.Stderr -ceq 'hang diagnostic') 'Timeout retains independently captured output and proves both EOFs after owned child kill.'
         Assert-True (-not $sentinel.HasExited) 'Unrelated sentinel must survive timeout.'
         $case['native_status'] = $result.Status; $case['elapsed_ms'] = $result.ElapsedMilliseconds; $case['unrelated_process_survived'] = $true
@@ -304,8 +309,8 @@ class ShortChild {
         Invoke-Case ('exited-parent-with-held-' + $stream + '-reports-timeout') {
             param($case)
             $identity = Join-Path $testRoot ('held-' + $stream + '.json'); $identityFiles.Add($identity)
-            $result = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @(('hold-' + $stream),$identity,$ownerToken) -TimeoutMilliseconds 500 -PipeDrainTimeoutMilliseconds 300 -Operation ('S03 held ' + $stream)
-            Assert-Timeout $result 500 $false
+            $result = Invoke-AudioNativeProcess -ExecutablePath $child -Arguments @(('hold-' + $stream),$identity,$ownerToken) -TimeoutMilliseconds 2000 -PipeDrainTimeoutMilliseconds 300 -Operation ('S03 held ' + $stream)
+            Assert-Timeout $result 2000 $false 300
             Assert-True ($result.ExitCode -eq 0 -and -not $result.PipeDrainCompleted -and $result.Stdout -ceq 'parent stdout' -and $result.Stderr -ceq 'parent stderr') 'Exited child with inherited writer must time out, preserve both streams and withhold complete release proof.'
             $descendant = Get-ExactFixtureProcess $identity
             Assert-True (-not $descendant.HasExited -and -not $sentinel.HasExited) 'Runtime must leave exact fixture descendant and unrelated sentinel alive.'
@@ -334,12 +339,13 @@ class ShortChild {
             $mockFfmpeg = if ($mode -ceq 'version-hang-ffprobe') { Join-Path $toolPairs['normal'] 'ffmpeg.exe' } else { Join-Path $dir 'ffmpeg.exe' }
             $mockFfprobe = if ($mode -ceq 'version-hang-ffmpeg') { Join-Path $toolPairs['normal'] 'ffprobe.exe' } else { Join-Path $dir 'ffprobe.exe' }
             $watch = [Diagnostics.Stopwatch]::StartNew(); $message = $null
-            try { Assert-ToolPrerequisites -FfmpegPath $mockFfmpeg -FfprobePath $mockFfprobe -TimeoutMilliseconds 500 | Out-Null }
+            try { Assert-ToolPrerequisites -FfmpegPath $mockFfmpeg -FfprobePath $mockFfprobe -TimeoutMilliseconds 2000 | Out-Null }
             catch { $message = $_.Exception.Message }
             $watch.Stop()
-            Assert-True ($null -ne $message -and $message -match 'Timeout|timed out' -and $message -match 'ffmpeg|ffprobe' -and $watch.ElapsedMilliseconds -lt 8500) 'Version/capability hang must report executable/Timeout within bounded startup time.'
+            $case['diagnostic'] = if ($null -eq $message) { $null } else { $message.Replace($testRoot,'<OWNED_TEMP>') }
+            $case['elapsed_ms'] = $watch.ElapsedMilliseconds; $case['configured_deadline_ms'] = 2000
+            Assert-True ($null -ne $message -and $message -match 'Timeout|timed out' -and $message -match 'ffmpeg|ffprobe' -and $watch.ElapsedMilliseconds -lt 10000) 'Version/capability hang must report executable/Timeout within bounded startup time.'
             Assert-True (-not $sentinel.HasExited) 'Startup timeout must preserve unrelated sentinel.'
-            $case['diagnostic'] = $message.Replace($testRoot,'<OWNED_TEMP>'); $case['elapsed_ms'] = $watch.ElapsedMilliseconds; $case['configured_deadline_ms'] = 500
         }
     }
     Invoke-Case 'media-probe-timeout-is-distinct-and-actionable' {
