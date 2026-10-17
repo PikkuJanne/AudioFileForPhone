@@ -258,6 +258,9 @@ try {
         catch {
             $selectionError = $_.Exception.Message
             $repairCommand = Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath
+            # Keep the copyable action outside formatted error records, which can
+            # wrap long commands in Windows PowerShell 5.1.
+            Write-Host ('[SETUP] Existing-tool repair: ' + $repairCommand)
             if (-not $Interactive) { throw "$selectionError Existing-tool repair: $repairCommand" }
             $setup = Invoke-AudioToolSetup -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath -Reason $selectionError
             if ($setup.Status -eq 'Cancelled') { throw (New-Object OperationCanceledException('Dependency setup cancelled before conversion.')) }
