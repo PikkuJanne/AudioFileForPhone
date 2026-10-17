@@ -1,0 +1,4162 @@
+{
+  "schema_version": 1,
+  "step": "S04",
+  "status": "COMPLETED",
+  "scope": "Explicit and remembered tool selection only",
+  "entry_commit": "fc31a863809ebce595658472c35bdf3ab6d77052",
+  "tested_source_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "65ae2946f6338eedef5c97fb108b3557fbfdda31f6cb78cd29cf0878b2b608cf"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "c1136da4833a33ab7bd67608d71542fff0f66add415389ff0aa2e28147c7b0c6"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "recorded_utc": "2026-10-17T16:49:03.0631359Z",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "inherited_console_output_codepage": 65001,
+    "execution_policy": "RemoteSigned in owned child only",
+    "child_environment": "Inherited console; remove PSModulePath case-insensitively in owned child only; explicit C:/ffmpeg/bin tools.",
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "owner_config_access": false,
+    "persistent_path_registry_policy_changes": false,
+    "physical_manual_evidence": false
+  },
+  "interface": {
+    "conversion_parameters": [
+      "FfmpegDirectory",
+      "ConfigPath"
+    ],
+    "precedence": [
+      "Explicit",
+      "Saved",
+      "AppLocal",
+      "PATH"
+    ],
+    "config_default": "Windows LocalApplicationData/AudioFileForPhone/config.json",
+    "save_api": "Save-AudioToolSelection",
+    "schema_version": 1,
+    "maximum_config_bytes": 65536,
+    "app_local_layout": "complete pair directly beside script only",
+    "setup_ui_or_download_added": false,
+    "automatic_persistence": false
+  },
+  "commands": {
+    "root": "C:\\projects\\AudioFileForPhone-main",
+    "common_flags": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned",
+    "focused": "<shell> <common_flags> -File tests/Test-ToolSelection.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S04-toolselection-<edition>-final1.json -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe",
+    "retained": "Each accepted_local_reports[].command_arguments is the exact command; retain historical T-prefixed paths. No Manual flag.",
+    "record_handling": "Create-new report in original historical/active location, then Move-Item -LiteralPath to marked owned private TEMP records. Public evidence binds digest and sanitized summary only.",
+    "outer_watchdog": "Owned shell 300000ms; no global process termination; inherited CP65001; raw stdout/stderr private.",
+    "git": "git rev-parse HEAD; git ls-remote origin refs/heads/codex/audiofileforphone-v1.0.1 refs/heads/main",
+    "ci": "gh run view <run> --json headSha,status,conclusion,jobs; gh run download <run> --dir <fresh private directory>"
+  },
+  "acceptance": [
+    {
+      "id": "S04-A1",
+      "status": "PASSED",
+      "evidence": "Both shells: explicit/saved/app-local/PATH precedence; invalid explicit/stale saved and incomplete local pair fail without fallback; duplicate PATH first pair; inert CWD/input/alias/wrapper sentinels; mismatched separate PATH synthetic build warnings."
+    },
+    {
+      "id": "S04-A2",
+      "status": "PASSED",
+      "evidence": "Both shells: deliberate first/replacement saves, fresh-process saved load, real explicit and remembered conversion on empty PATH. Independent probe 64 kbps MP3, metadata, full decode and source/config hashes pass."
+    },
+    {
+      "id": "S04-A3",
+      "status": "PASSED",
+      "evidence": "Both shells: schema/type/strict JSON/duplicate keys/64 KiB corruption refused unchanged; read-only/locked save fails safely; exact unknown dates/precision/escapes/nested JSON preserved; Unicode/bracket/apostrophe paths and current-run override; retained safeguards pass."
+    }
+  ],
+  "accepted_local_reports": [
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S04-toolselection-ps51-final1.json",
+      "raw_local_only": true,
+      "sha256": "22eccaf9a94a4908c4bba478906f4a1a45e148b43af66ef89a91f482e21e4c66",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S04-toolselection-ps51-final1.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_tool_selection_and_config",
+      "status": "pass",
+      "cases": 14,
+      "cases_detail": [
+        {
+          "name": "explicit config location is public deterministic and read-only when absent",
+          "status": "pass"
+        },
+        {
+          "name": "explicit external Unicode literal pair works without PATH and never remembers implicitly",
+          "status": "pass"
+        },
+        {
+          "name": "deliberate validated atomic save preserves unrelated fields and fresh process loads it",
+          "status": "pass"
+        },
+        {
+          "name": "explicit valid selection overrides stale corrupt and newer saved state without mutation",
+          "status": "pass"
+        },
+        {
+          "name": "invalid explicit selection and stale saved selection never fall back",
+          "status": "pass"
+        },
+        {
+          "name": "corrupt newer schema invalid types and oversize configs are preserved and actionable",
+          "status": "pass"
+        },
+        {
+          "name": "read-only config refuses persistence while explicit current-run choice stays valid",
+          "status": "pass"
+        },
+        {
+          "name": "external edit survives save and a destination held against replacement fails unchanged",
+          "status": "pass"
+        },
+        {
+          "name": "remembering one field preserves unknown JSON dates precision escapes and exact lexemes",
+          "status": "pass"
+        },
+        {
+          "name": "saved app-local and PATH precedence is deterministic and incomplete local pairs fail",
+          "status": "pass"
+        },
+        {
+          "name": "no tools one missing and invalid executable fail before conversion",
+          "status": "pass"
+        },
+        {
+          "name": "current-directory input-directory aliases functions and wrappers are never executable discovery sources",
+          "status": "pass"
+        },
+        {
+          "name": "independent synthetic differing PATH build identities warn while preserving separate paths",
+          "status": "pass"
+        },
+        {
+          "name": "fresh processes convert with explicit and remembered external pair on empty PATH",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 30.74
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S04-toolselection-ps7-final1.json",
+      "raw_local_only": true,
+      "sha256": "f2376d11e0c44bc328f22a930cc06f1ea5a25816a1388764dc6819fc8ed0f4c5",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ToolSelection.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S04-toolselection-ps7-final1.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_tool_selection_and_config",
+      "status": "pass",
+      "cases": 14,
+      "cases_detail": [
+        {
+          "name": "explicit config location is public deterministic and read-only when absent",
+          "status": "pass"
+        },
+        {
+          "name": "explicit external Unicode literal pair works without PATH and never remembers implicitly",
+          "status": "pass"
+        },
+        {
+          "name": "deliberate validated atomic save preserves unrelated fields and fresh process loads it",
+          "status": "pass"
+        },
+        {
+          "name": "explicit valid selection overrides stale corrupt and newer saved state without mutation",
+          "status": "pass"
+        },
+        {
+          "name": "invalid explicit selection and stale saved selection never fall back",
+          "status": "pass"
+        },
+        {
+          "name": "corrupt newer schema invalid types and oversize configs are preserved and actionable",
+          "status": "pass"
+        },
+        {
+          "name": "read-only config refuses persistence while explicit current-run choice stays valid",
+          "status": "pass"
+        },
+        {
+          "name": "external edit survives save and a destination held against replacement fails unchanged",
+          "status": "pass"
+        },
+        {
+          "name": "remembering one field preserves unknown JSON dates precision escapes and exact lexemes",
+          "status": "pass"
+        },
+        {
+          "name": "saved app-local and PATH precedence is deterministic and incomplete local pairs fail",
+          "status": "pass"
+        },
+        {
+          "name": "no tools one missing and invalid executable fail before conversion",
+          "status": "pass"
+        },
+        {
+          "name": "current-directory input-directory aliases functions and wrappers are never executable discovery sources",
+          "status": "pass"
+        },
+        {
+          "name": "independent synthetic differing PATH build identities warn while preserving separate paths",
+          "status": "pass"
+        },
+        {
+          "name": "fresh processes convert with explicit and remembered external pair on empty PATH",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 31.57
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s04-isolation-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "b6a2361c441b63ae1e20fee0f4aba24f3865e80cfaa7d99fc7c3f42f378eda29",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s04-isolation-ps51-final7.json",
+        "-ValidateOnly"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "isolation_validation",
+      "status": "pass",
+      "cases": 0,
+      "cases_detail": null,
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": {
+        "status": "not_run",
+        "exit_code": null
+      },
+      "characterization_checks": null,
+      "elapsed_seconds": 1.05
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s04-baseline-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "0ea31ca3b38ebe7c1efe119258bd37a98c7d5aa27ea334ac5c67ff6211167792",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s04-baseline-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_ffmpeg_baseline",
+      "status": "pass",
+      "cases": 0,
+      "cases_detail": null,
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_checks": [
+        {
+          "id": "fixture_codecs_and_source_artwork",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "supported_and_unsupported_extensions",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "default_audio_cbr_id3_and_full_decode",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "default_naming_recursion_and_metadata",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "Plain metadata overrides",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "Unicode metadata overrides",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "impossible_leading_date",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "Corrupt only exit observation",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "Mixed valid and corrupt exit observation",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "source_bytes_and_relative_names_unchanged",
+          "required": true,
+          "status": "pass"
+        }
+      ],
+      "elapsed_seconds": 40.95
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "1032c074da0fa0de9f7640d245ef5330f15d6961a6619f22eecdace80860c41d",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps51-final7.json"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": null,
+      "mode": "pure_runtime_and_ci_contracts",
+      "status": "pass",
+      "cases": 31,
+      "cases_detail": [
+        {
+          "name": "actual workflow lock and inventory enforce the reviewed read-only CI boundary",
+          "status": "pass"
+        },
+        {
+          "name": "release-write token refused",
+          "status": "pass"
+        },
+        {
+          "name": "job permission override refused",
+          "status": "pass"
+        },
+        {
+          "name": "privileged PR trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "workflow_run trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "tag trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "secret-bearing environment refused",
+          "status": "pass"
+        },
+        {
+          "name": "mutable action version refused",
+          "status": "pass"
+        },
+        {
+          "name": "fork head checkout refused",
+          "status": "pass"
+        },
+        {
+          "name": "persisted checkout credential refused",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe checkout opt-out refused",
+          "status": "pass"
+        },
+        {
+          "name": "self-hosted execution refused",
+          "status": "pass"
+        },
+        {
+          "name": "hidden artifact upload refused",
+          "status": "pass"
+        },
+        {
+          "name": "artifact overwrite capability refused",
+          "status": "pass"
+        },
+        {
+          "name": "release command injection refused",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate YAML permission key refused",
+          "status": "pass"
+        },
+        {
+          "name": "YAML anchor unsupported and refused",
+          "status": "pass"
+        },
+        {
+          "name": "dependency mutable URL refused",
+          "status": "pass"
+        },
+        {
+          "name": "dependency wrong digest refused",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate JSON digest key refused",
+          "status": "pass"
+        },
+        {
+          "name": "additional release workflow refused",
+          "status": "pass"
+        },
+        {
+          "name": "ci labels reject traversal metacharacters and zero before writes",
+          "status": "pass"
+        },
+        {
+          "name": "numeric defaults and unsupported rates are actual runtime preflight contracts",
+          "status": "pass"
+        },
+        {
+          "name": "dependency records reject changed pins failed status and invented extraction hashes",
+          "status": "pass"
+        },
+        {
+          "name": "real calendar dates and fallback remain invariant across cultures",
+          "status": "pass"
+        },
+        {
+          "name": "Unicode normalization and filtering keep equivalent source titles equivalent",
+          "status": "pass"
+        },
+        {
+          "name": "collision suffix and supplementary scalars fit the complete UTF16 budget",
+          "status": "pass"
+        },
+        {
+          "name": "pure batch plans are deterministic and never create their virtual trees",
+          "status": "pass"
+        },
+        {
+          "name": "path boundaries reject prefix siblings traversal device and reserved components",
+          "status": "pass"
+        },
+        {
+          "name": "machine progress waits for complete records and recovers after bounded overflow",
+          "status": "pass"
+        },
+        {
+          "name": "unknown durations stay indeterminate and encoder end stays below publication100",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 2.0
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-transaction-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "e09201708fec313061cd52c7920a6abfdd23aa6ea7aed70d1d7b14559a901667",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-transaction-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "transactional_output_real_and_faults",
+      "status": "pass",
+      "cases": 27,
+      "cases_detail": [
+        {
+          "name": "empirical supported matrix fully decodes and unsupported selected rates fail safely",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with empty owned output",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with corrupt output",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with non-audio image",
+          "status": "pass"
+        },
+        {
+          "name": "unexpected AAC codec disguised by partial extension",
+          "status": "pass"
+        },
+        {
+          "name": "selected audio bitrate mismatch",
+          "status": "pass"
+        },
+        {
+          "name": "audio bitrate mismatch despite artwork/container bitrate",
+          "status": "pass"
+        },
+        {
+          "name": "physically truncated MP3 retaining original Xing duration",
+          "status": "pass"
+        },
+        {
+          "name": "corrupted payload after valid MP3 header",
+          "status": "pass"
+        },
+        {
+          "name": "implausibly long output",
+          "status": "pass"
+        },
+        {
+          "name": "nonzero encoder after partial bytes",
+          "status": "pass"
+        },
+        {
+          "name": "encoder startup failure",
+          "status": "pass"
+        },
+        {
+          "name": "nonzero validation probe",
+          "status": "pass"
+        },
+        {
+          "name": "validation probe startup failure",
+          "status": "pass"
+        },
+        {
+          "name": "integrity decoder native failure",
+          "status": "pass"
+        },
+        {
+          "name": "malformed/missing/non-finite output duration and probe JSON rejected",
+          "status": "pass"
+        },
+        {
+          "name": "missing/invalid source duration fails before encoding",
+          "status": "pass"
+        },
+        {
+          "name": "source inspection distinguishes missing/invalid duration and declared format fallback",
+          "status": "pass"
+        },
+        {
+          "name": "apparently valid probe cannot bless corrupt audio payload",
+          "status": "pass"
+        },
+        {
+          "name": "bounded duration policy rejects minute loss for multi-hour claimed source",
+          "status": "pass"
+        },
+        {
+          "name": "promotion exception and actual locked working file fail safely",
+          "status": "pass"
+        },
+        {
+          "name": "concurrent final sentinel created after encode survives no-overwrite promotion",
+          "status": "pass"
+        },
+        {
+          "name": "ownership guard prevents actual working-path deletion during encoder",
+          "status": "pass"
+        },
+        {
+          "name": "changed working-file identity after guard release preserves replacement sentinel",
+          "status": "pass"
+        },
+        {
+          "name": "unestablished native exit retains recognizable partial and explicit cleanup diagnostic",
+          "status": "pass"
+        },
+        {
+          "name": "actual entry postpublication log failure reports published mapping and preserves valid output",
+          "status": "pass"
+        },
+        {
+          "name": "unrelated existing partial preserved across every owned cleanup",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 39.45
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cancellation-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "d33bbfdf333787a49d4518a3e990e8a7ac547e22bdc1b5349a22429e623928a7",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cancellation-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "status": "pass",
+      "cases": 9,
+      "cases_detail": [
+        {
+          "name": "pre-requested context starts no native child",
+          "status": "pass"
+        },
+        {
+          "name": "programmatic native cancellation releases only owned real FFmpeg",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested source inspection reports cancellation before probe/staging",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at validation-probe preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at full-decode preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at publication preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at unproved-release preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "controlled isolated console Ctrl+C key records preserve first output, remove current partial and return130",
+          "status": "pass"
+        },
+        {
+          "name": "forced owned host termination leaves recognizable partial and completed output; next run preserves both plus arbitrary orphan",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 20.64
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "7d1e3fbc142acac33ea5131265127ef8cd73be67bbb6100be6127d8711ad1341",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps51-final7.json"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "retained_cleanup_guard_faults",
+      "status": "pass",
+      "cases": 181,
+      "cases_detail": [
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unique-json-disposed",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-evidence",
+          "status": "pass"
+        },
+        {
+          "name": "outside-evidence-parent",
+          "status": "pass"
+        },
+        {
+          "name": "reparse-evidence-ancestor",
+          "status": "pass"
+        },
+        {
+          "name": "unique-json-disposed",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-evidence",
+          "status": "pass"
+        },
+        {
+          "name": "outside-evidence-parent",
+          "status": "pass"
+        },
+        {
+          "name": "reparse-evidence-ancestor",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 9.87
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-preview-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "0e2983e51b4f66b431c7a18d72af743c640d93e15115181e658b5d98263f73ca",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-preview-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "preview_inventory_equality_and_real_plan_equivalence",
+      "status": "pass",
+      "cases": 8,
+      "cases_detail": [
+        {
+          "name": "guarded preview ignores Interactive/invalid cover and preserves every directory/file property",
+          "status": "pass"
+        },
+        {
+          "name": "missing explicit destination and missing ancestor stay absent",
+          "status": "pass"
+        },
+        {
+          "name": "omitted destination uses only owned substituted Music resolver without creation",
+          "status": "pass"
+        },
+        {
+          "name": "supported corrupt media is planned with unknown duration and no probe",
+          "status": "pass"
+        },
+        {
+          "name": "empty unsupported-only preview fails without writes/native calls/partial plans",
+          "status": "pass"
+        },
+        {
+          "name": "invalid output-parent file and invalid parameters fail without writes",
+          "status": "pass"
+        },
+        {
+          "name": "late complete-path budget failure emits no partial preview plans and writes nothing",
+          "status": "pass"
+        },
+        {
+          "name": "unchanged-input real MP3/M4A/OGG run matches preview relative allocations despite occupied provisional root",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 22.01
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "8b715ada2121c83ce11467c3d8fe998c9a8e5f87d9e698bca77dcdc18beb651f",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "status": "pass",
+      "cases": 7,
+      "cases_detail": [
+        {
+          "name": "Get-Help recognizes all public parameters and exact executable examples without entry execution",
+          "status": "pass"
+        },
+        {
+          "name": "one runtime version literal and real helper output are consistent",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 1",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 2",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 3",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 4",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 5",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 23.37
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "77139c2513440382163dc52e6cbc8238dbd1b7912b61a5e65261fde8ab1922dc",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_s02_characterization",
+      "status": "pass",
+      "cases": 12,
+      "cases_detail": [
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 43.63
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "aa4db37900bf9bb118de8a140581cc39e4bd521cc91bf5170779a00b627beb66",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_short_operations",
+      "status": "pass",
+      "cases": 15,
+      "cases_detail": [
+        {
+          "name": "never-exiting-child-times-out-with-owned-release",
+          "status": "pass"
+        },
+        {
+          "name": "exited-parent-with-held-stdout-reports-timeout",
+          "status": "pass"
+        },
+        {
+          "name": "exited-parent-with-held-stderr-reports-timeout",
+          "status": "pass"
+        },
+        {
+          "name": "pipe-drain-has-separate-bound-without-operation-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-version-hang-ffmpeg",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-version-hang-ffprobe",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-encoder-hang",
+          "status": "pass"
+        },
+        {
+          "name": "media-probe-timeout-is-distinct-and-actionable",
+          "status": "pass"
+        },
+        {
+          "name": "media-probe-deadline-override-allows-slow-valid-probe",
+          "status": "pass"
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-hang",
+          "status": "pass"
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-held",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested-cancellation-precedes-tiny-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "active-cancellation-remains-distinct-before-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "normal-argv-output-size-and-legacy-unlimited-default",
+          "status": "pass"
+        },
+        {
+          "name": "real-progressing-encode-and-complete-decode-exceed-short-bound",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 32.54
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps51-final7.json",
+      "raw_local_only": true,
+      "sha256": "0f43d3ec3665a6b65281ea3dbc4f119d6f66a649aaee319673fe726f5e8d2d2e",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps51-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "mode": "native_process_and_probe",
+      "status": "pass",
+      "cases": 35,
+      "cases_detail": [
+        {
+          "name": "exact-argv-special-empty-backslash-unicode",
+          "status": "pass"
+        },
+        {
+          "name": "ffmpeg-nostdin-argv",
+          "status": "pass"
+        },
+        {
+          "name": "immediate-exit-status-and-both-streams",
+          "status": "pass"
+        },
+        {
+          "name": "ordinary-stderr-is-success-and-caller-exit-unchanged",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-dual-stream-flood-alternating",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-dual-stream-flood-concurrent",
+          "status": "pass"
+        },
+        {
+          "name": "custom-zero-and-small-retention-caps",
+          "status": "pass"
+        },
+        {
+          "name": "embedded-nul-argument-is-rejected",
+          "status": "pass"
+        },
+        {
+          "name": "process-resource-handles-released",
+          "status": "pass"
+        },
+        {
+          "name": "missing-executable",
+          "status": "pass"
+        },
+        {
+          "name": "directory-executable",
+          "status": "pass"
+        },
+        {
+          "name": "relative-executable",
+          "status": "pass"
+        },
+        {
+          "name": "non-executable-file",
+          "status": "pass"
+        },
+        {
+          "name": "probe-nonzero",
+          "status": "pass"
+        },
+        {
+          "name": "probe-invalid-json",
+          "status": "pass"
+        },
+        {
+          "name": "probe-empty-output",
+          "status": "pass"
+        },
+        {
+          "name": "probe-whitespace-output",
+          "status": "pass"
+        },
+        {
+          "name": "probe-truncated",
+          "status": "pass"
+        },
+        {
+          "name": "probe-wrong-shape",
+          "status": "pass"
+        },
+        {
+          "name": "probe-singleton-array",
+          "status": "pass"
+        },
+        {
+          "name": "probe-bad-tags",
+          "status": "pass"
+        },
+        {
+          "name": "probe-no-audio",
+          "status": "pass"
+        },
+        {
+          "name": "probe-multi",
+          "status": "pass"
+        },
+        {
+          "name": "probe-video",
+          "status": "pass"
+        },
+        {
+          "name": "probe-bad-index",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-no-title",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-present-container",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-present-stream",
+          "status": "pass"
+        },
+        {
+          "name": "probe-native-startup-failure-distinct",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-unsupported",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-version-failure",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-no-lame",
+          "status": "pass"
+        },
+        {
+          "name": "real-metadata-probe-and-selected-audio",
+          "status": "pass"
+        },
+        {
+          "name": "real-cover-and-caller-state",
+          "status": "pass"
+        },
+        {
+          "name": "real-entry-quoted-unicode-metadata-full-decode-tool-log",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 28.13
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s04-isolation-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "124941b1df3d41ed4daf5300b8ae2c2ad91892783c34a207c78c1edff4b69d72",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s04-isolation-ps7-final7.json",
+        "-ValidateOnly"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "isolation_validation",
+      "status": "pass",
+      "cases": 0,
+      "cases_detail": null,
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": {
+        "status": "not_run",
+        "exit_code": null
+      },
+      "characterization_checks": null,
+      "elapsed_seconds": 1.33
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s04-baseline-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "1a6360eb66f99417bdd28b39d4743662b2e08d5934678f11ca6a3339eb6bec66",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s04-baseline-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_ffmpeg_baseline",
+      "status": "pass",
+      "cases": 0,
+      "cases_detail": null,
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_checks": [
+        {
+          "id": "fixture_codecs_and_source_artwork",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "supported_and_unsupported_extensions",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "default_audio_cbr_id3_and_full_decode",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "default_naming_recursion_and_metadata",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "Plain metadata overrides",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "Unicode metadata overrides",
+          "required": true,
+          "status": "pass"
+        },
+        {
+          "id": "impossible_leading_date",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "Corrupt only exit observation",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "Mixed valid and corrupt exit observation",
+          "required": false,
+          "status": "observed_behavior"
+        },
+        {
+          "id": "source_bytes_and_relative_names_unchanged",
+          "required": true,
+          "status": "pass"
+        }
+      ],
+      "elapsed_seconds": 43.92
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "cddb050b0df073b1d7493d951fe15a0dd3198857c89232688d378007686e4f1f",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps7-final7.json"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": null,
+      "mode": "pure_runtime_and_ci_contracts",
+      "status": "pass",
+      "cases": 31,
+      "cases_detail": [
+        {
+          "name": "actual workflow lock and inventory enforce the reviewed read-only CI boundary",
+          "status": "pass"
+        },
+        {
+          "name": "release-write token refused",
+          "status": "pass"
+        },
+        {
+          "name": "job permission override refused",
+          "status": "pass"
+        },
+        {
+          "name": "privileged PR trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "workflow_run trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "tag trigger refused",
+          "status": "pass"
+        },
+        {
+          "name": "secret-bearing environment refused",
+          "status": "pass"
+        },
+        {
+          "name": "mutable action version refused",
+          "status": "pass"
+        },
+        {
+          "name": "fork head checkout refused",
+          "status": "pass"
+        },
+        {
+          "name": "persisted checkout credential refused",
+          "status": "pass"
+        },
+        {
+          "name": "unsafe checkout opt-out refused",
+          "status": "pass"
+        },
+        {
+          "name": "self-hosted execution refused",
+          "status": "pass"
+        },
+        {
+          "name": "hidden artifact upload refused",
+          "status": "pass"
+        },
+        {
+          "name": "artifact overwrite capability refused",
+          "status": "pass"
+        },
+        {
+          "name": "release command injection refused",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate YAML permission key refused",
+          "status": "pass"
+        },
+        {
+          "name": "YAML anchor unsupported and refused",
+          "status": "pass"
+        },
+        {
+          "name": "dependency mutable URL refused",
+          "status": "pass"
+        },
+        {
+          "name": "dependency wrong digest refused",
+          "status": "pass"
+        },
+        {
+          "name": "duplicate JSON digest key refused",
+          "status": "pass"
+        },
+        {
+          "name": "additional release workflow refused",
+          "status": "pass"
+        },
+        {
+          "name": "ci labels reject traversal metacharacters and zero before writes",
+          "status": "pass"
+        },
+        {
+          "name": "numeric defaults and unsupported rates are actual runtime preflight contracts",
+          "status": "pass"
+        },
+        {
+          "name": "dependency records reject changed pins failed status and invented extraction hashes",
+          "status": "pass"
+        },
+        {
+          "name": "real calendar dates and fallback remain invariant across cultures",
+          "status": "pass"
+        },
+        {
+          "name": "Unicode normalization and filtering keep equivalent source titles equivalent",
+          "status": "pass"
+        },
+        {
+          "name": "collision suffix and supplementary scalars fit the complete UTF16 budget",
+          "status": "pass"
+        },
+        {
+          "name": "pure batch plans are deterministic and never create their virtual trees",
+          "status": "pass"
+        },
+        {
+          "name": "path boundaries reject prefix siblings traversal device and reserved components",
+          "status": "pass"
+        },
+        {
+          "name": "machine progress waits for complete records and recovers after bounded overflow",
+          "status": "pass"
+        },
+        {
+          "name": "unknown durations stay indeterminate and encoder end stays below publication100",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 2.03
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-transaction-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "b41dcec9abcc4d666988fe55e1e47116948c34cb7a0c9e086199d44b8aa66c63",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-transaction-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "transactional_output_real_and_faults",
+      "status": "pass",
+      "cases": 27,
+      "cases_detail": [
+        {
+          "name": "empirical supported matrix fully decodes and unsupported selected rates fail safely",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with empty owned output",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with corrupt output",
+          "status": "pass"
+        },
+        {
+          "name": "zero exit with non-audio image",
+          "status": "pass"
+        },
+        {
+          "name": "unexpected AAC codec disguised by partial extension",
+          "status": "pass"
+        },
+        {
+          "name": "selected audio bitrate mismatch",
+          "status": "pass"
+        },
+        {
+          "name": "audio bitrate mismatch despite artwork/container bitrate",
+          "status": "pass"
+        },
+        {
+          "name": "physically truncated MP3 retaining original Xing duration",
+          "status": "pass"
+        },
+        {
+          "name": "corrupted payload after valid MP3 header",
+          "status": "pass"
+        },
+        {
+          "name": "implausibly long output",
+          "status": "pass"
+        },
+        {
+          "name": "nonzero encoder after partial bytes",
+          "status": "pass"
+        },
+        {
+          "name": "encoder startup failure",
+          "status": "pass"
+        },
+        {
+          "name": "nonzero validation probe",
+          "status": "pass"
+        },
+        {
+          "name": "validation probe startup failure",
+          "status": "pass"
+        },
+        {
+          "name": "integrity decoder native failure",
+          "status": "pass"
+        },
+        {
+          "name": "malformed/missing/non-finite output duration and probe JSON rejected",
+          "status": "pass"
+        },
+        {
+          "name": "missing/invalid source duration fails before encoding",
+          "status": "pass"
+        },
+        {
+          "name": "source inspection distinguishes missing/invalid duration and declared format fallback",
+          "status": "pass"
+        },
+        {
+          "name": "apparently valid probe cannot bless corrupt audio payload",
+          "status": "pass"
+        },
+        {
+          "name": "bounded duration policy rejects minute loss for multi-hour claimed source",
+          "status": "pass"
+        },
+        {
+          "name": "promotion exception and actual locked working file fail safely",
+          "status": "pass"
+        },
+        {
+          "name": "concurrent final sentinel created after encode survives no-overwrite promotion",
+          "status": "pass"
+        },
+        {
+          "name": "ownership guard prevents actual working-path deletion during encoder",
+          "status": "pass"
+        },
+        {
+          "name": "changed working-file identity after guard release preserves replacement sentinel",
+          "status": "pass"
+        },
+        {
+          "name": "unestablished native exit retains recognizable partial and explicit cleanup diagnostic",
+          "status": "pass"
+        },
+        {
+          "name": "actual entry postpublication log failure reports published mapping and preserves valid output",
+          "status": "pass"
+        },
+        {
+          "name": "unrelated existing partial preserved across every owned cleanup",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 44.35
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cancellation-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "0ee8d92f42a94aca46c4aa36a59cab8b23ab45daa467ff0def9d738396340434",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cancellation-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "status": "pass",
+      "cases": 9,
+      "cases_detail": [
+        {
+          "name": "pre-requested context starts no native child",
+          "status": "pass"
+        },
+        {
+          "name": "programmatic native cancellation releases only owned real FFmpeg",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested source inspection reports cancellation before probe/staging",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at validation-probe preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at full-decode preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at publication preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "transaction cancellation at unproved-release preserves publication/cleanup boundary",
+          "status": "pass"
+        },
+        {
+          "name": "controlled isolated console Ctrl+C key records preserve first output, remove current partial and return130",
+          "status": "pass"
+        },
+        {
+          "name": "forced owned host termination leaves recognizable partial and completed output; next run preserves both plus arbitrary orphan",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 18.54
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "a7dc02835a435482ff393c7d0172557d79e14fd08343f5fe4e532094bf92c334",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps7-final7.json"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "retained_cleanup_guard_faults",
+      "status": "pass",
+      "cases": 181,
+      "cases_detail": [
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "unrestored-acl",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unproved-release",
+          "status": "pass"
+        },
+        {
+          "name": "valid-exclusive",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-unreserved",
+          "status": "pass"
+        },
+        {
+          "name": "outside-parent",
+          "status": "pass"
+        },
+        {
+          "name": "prefix-sibling",
+          "status": "pass"
+        },
+        {
+          "name": "missing-marker",
+          "status": "pass"
+        },
+        {
+          "name": "wrong-marker",
+          "status": "pass"
+        },
+        {
+          "name": "root-junction",
+          "status": "pass"
+        },
+        {
+          "name": "ancestor-junction",
+          "status": "pass"
+        },
+        {
+          "name": "child-junction",
+          "status": "pass"
+        },
+        {
+          "name": "file-reparse",
+          "status": "pass"
+        },
+        {
+          "name": "unique-json-disposed",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-evidence",
+          "status": "pass"
+        },
+        {
+          "name": "outside-evidence-parent",
+          "status": "pass"
+        },
+        {
+          "name": "reparse-evidence-ancestor",
+          "status": "pass"
+        },
+        {
+          "name": "unique-json-disposed",
+          "status": "pass"
+        },
+        {
+          "name": "preexisting-evidence",
+          "status": "pass"
+        },
+        {
+          "name": "outside-evidence-parent",
+          "status": "pass"
+        },
+        {
+          "name": "reparse-evidence-ancestor",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 11.0
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-preview-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "c4b433aa4be9a8e007ae0fdb1856971e4cb3ea41c2b33b15a009bcc59022b965",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Preview.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-preview-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "preview_inventory_equality_and_real_plan_equivalence",
+      "status": "pass",
+      "cases": 8,
+      "cases_detail": [
+        {
+          "name": "guarded preview ignores Interactive/invalid cover and preserves every directory/file property",
+          "status": "pass"
+        },
+        {
+          "name": "missing explicit destination and missing ancestor stay absent",
+          "status": "pass"
+        },
+        {
+          "name": "omitted destination uses only owned substituted Music resolver without creation",
+          "status": "pass"
+        },
+        {
+          "name": "supported corrupt media is planned with unknown duration and no probe",
+          "status": "pass"
+        },
+        {
+          "name": "empty unsupported-only preview fails without writes/native calls/partial plans",
+          "status": "pass"
+        },
+        {
+          "name": "invalid output-parent file and invalid parameters fail without writes",
+          "status": "pass"
+        },
+        {
+          "name": "late complete-path budget failure emits no partial preview plans and writes nothing",
+          "status": "pass"
+        },
+        {
+          "name": "unchanged-input real MP3/M4A/OGG run matches preview relative allocations despite occupied provisional root",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 21.16
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "bd5561bab3717f6785c15269dabbb32462e08fb1071e8a261328573bb640db12",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "status": "pass",
+      "cases": 7,
+      "cases_detail": [
+        {
+          "name": "Get-Help recognizes all public parameters and exact executable examples without entry execution",
+          "status": "pass"
+        },
+        {
+          "name": "one runtime version literal and real helper output are consistent",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 1",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 2",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 3",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 4",
+          "status": "pass"
+        },
+        {
+          "name": "execute exact Get-Help example 5",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 22.56
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-setupencoding-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "d2ce4784a8e7034e5f0d8f834d1add7d6f5322764691ec489f70782873e49136",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-setupencoding-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_s02_characterization",
+      "status": "pass",
+      "cases": 12,
+      "cases_detail": [
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        },
+        {
+          "name": null,
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 44.08
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-shortoperations-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "29aa5a5281d729b8e13635dc21cad1fb6522cb5ed48d1c0a22876a161ac9d519",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-shortoperations-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "real_windows_short_operations",
+      "status": "pass",
+      "cases": 15,
+      "cases_detail": [
+        {
+          "name": "never-exiting-child-times-out-with-owned-release",
+          "status": "pass"
+        },
+        {
+          "name": "exited-parent-with-held-stdout-reports-timeout",
+          "status": "pass"
+        },
+        {
+          "name": "exited-parent-with-held-stderr-reports-timeout",
+          "status": "pass"
+        },
+        {
+          "name": "pipe-drain-has-separate-bound-without-operation-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-version-hang-ffmpeg",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-version-hang-ffprobe",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-startup-encoder-hang",
+          "status": "pass"
+        },
+        {
+          "name": "media-probe-timeout-is-distinct-and-actionable",
+          "status": "pass"
+        },
+        {
+          "name": "media-probe-deadline-override-allows-slow-valid-probe",
+          "status": "pass"
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-hang",
+          "status": "pass"
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-held",
+          "status": "pass"
+        },
+        {
+          "name": "pre-requested-cancellation-precedes-tiny-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "active-cancellation-remains-distinct-before-deadline",
+          "status": "pass"
+        },
+        {
+          "name": "normal-argv-output-size-and-legacy-unlimited-default",
+          "status": "pass"
+        },
+        {
+          "name": "real-progressing-encode-and-complete-decode-exceed-short-bound",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": 65001,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 31.82
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps7-final7.json",
+      "raw_local_only": true,
+      "sha256": "edbf16a268920278c5c70bce411802f9551fbd1652188c58175004bd6e69eb18",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-native-ps7-final7.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "tested_commit": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "mode": "native_process_and_probe",
+      "status": "pass",
+      "cases": 35,
+      "cases_detail": [
+        {
+          "name": "exact-argv-special-empty-backslash-unicode",
+          "status": "pass"
+        },
+        {
+          "name": "ffmpeg-nostdin-argv",
+          "status": "pass"
+        },
+        {
+          "name": "immediate-exit-status-and-both-streams",
+          "status": "pass"
+        },
+        {
+          "name": "ordinary-stderr-is-success-and-caller-exit-unchanged",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-dual-stream-flood-alternating",
+          "status": "pass"
+        },
+        {
+          "name": "bounded-dual-stream-flood-concurrent",
+          "status": "pass"
+        },
+        {
+          "name": "custom-zero-and-small-retention-caps",
+          "status": "pass"
+        },
+        {
+          "name": "embedded-nul-argument-is-rejected",
+          "status": "pass"
+        },
+        {
+          "name": "process-resource-handles-released",
+          "status": "pass"
+        },
+        {
+          "name": "missing-executable",
+          "status": "pass"
+        },
+        {
+          "name": "directory-executable",
+          "status": "pass"
+        },
+        {
+          "name": "relative-executable",
+          "status": "pass"
+        },
+        {
+          "name": "non-executable-file",
+          "status": "pass"
+        },
+        {
+          "name": "probe-nonzero",
+          "status": "pass"
+        },
+        {
+          "name": "probe-invalid-json",
+          "status": "pass"
+        },
+        {
+          "name": "probe-empty-output",
+          "status": "pass"
+        },
+        {
+          "name": "probe-whitespace-output",
+          "status": "pass"
+        },
+        {
+          "name": "probe-truncated",
+          "status": "pass"
+        },
+        {
+          "name": "probe-wrong-shape",
+          "status": "pass"
+        },
+        {
+          "name": "probe-singleton-array",
+          "status": "pass"
+        },
+        {
+          "name": "probe-bad-tags",
+          "status": "pass"
+        },
+        {
+          "name": "probe-no-audio",
+          "status": "pass"
+        },
+        {
+          "name": "probe-multi",
+          "status": "pass"
+        },
+        {
+          "name": "probe-video",
+          "status": "pass"
+        },
+        {
+          "name": "probe-bad-index",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-no-title",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-present-container",
+          "status": "pass"
+        },
+        {
+          "name": "probe-title-present-stream",
+          "status": "pass"
+        },
+        {
+          "name": "probe-native-startup-failure-distinct",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-unsupported",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-version-failure",
+          "status": "pass"
+        },
+        {
+          "name": "dependency-no-lame",
+          "status": "pass"
+        },
+        {
+          "name": "real-metadata-probe-and-selected-audio",
+          "status": "pass"
+        },
+        {
+          "name": "real-cover-and-caller-state",
+          "status": "pass"
+        },
+        {
+          "name": "real-entry-quoted-unicode-metadata-full-decode-tool-log",
+          "status": "pass"
+        }
+      ],
+      "inherited_console_output_codepage": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "legacy": null,
+      "characterization_checks": null,
+      "elapsed_seconds": 32.24
+    }
+  ],
+  "failed_preparation_reports": [
+    {
+      "report": "S04-toolselection-ps51-attempt1.json",
+      "sha256": "88486c1f072dae0c4b81777fc5de9b7cb28a269023fc3870c3902fa09b1c3623",
+      "status": "fail",
+      "accepted": false,
+      "source_unchanged": false,
+      "cleanup_verified": true,
+      "reason": "PS5.1 interpreted BOM-less UTF8 driver as ANSI; concurrent final test edits invalidate source stability. Replaced by final1."
+    },
+    {
+      "report": "S04-toolselection-ps51-attempt2.json",
+      "sha256": "cee27512bc7e22cb27ead8927680da523db3501dc6714128053b17f4b41981df",
+      "status": "fail",
+      "accepted": false,
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "reason": "PS5.1 EncodedCommand duplicated information records as CLIXML and exceeded retained stderr cap after real conversion; Text output flag did not prevent it in attempt3. Use BOM-marked UTF8 -File driver; retain caps/release assertions. Replaced by final1."
+    },
+    {
+      "report": "S04-toolselection-ps51-attempt3.json",
+      "sha256": "edad99cadbb8b0e2c81ec7300782079f2329bc1d88b9a9a0355678c656cb3023",
+      "status": "fail",
+      "accepted": false,
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "reason": "PS5.1 EncodedCommand duplicated information records as CLIXML and exceeded retained stderr cap after real conversion; Text output flag did not prevent it in attempt3. Use BOM-marked UTF8 -File driver; retain caps/release assertions. Replaced by final1."
+    }
+  ],
+  "ci": [
+    {
+      "run_id": 39050312230,
+      "event": "push",
+      "head_sha": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "tested_checkout": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39050312230_1.json",
+      "report_sha256": "708b543313f805bf5840d6dbb24f7f1d2ce519394b8b23abb30c55d59052dca5",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 194,
+      "observations": 3,
+      "syntax_files": 42,
+      "syntax_errors": 0,
+      "analysis_status": "pass",
+      "analysis_diagnostics": 0,
+      "all_default_errors_gated": true,
+      "dependencies_rechecked_against_lock": true,
+      "source_unchanged": true,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps51-run39050312230_1.json",
+          "report_sha256": "ad2edfcf022009a8c600f558e86546451eba443543c39f2350acbbfce10312c4"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps51-run39050312230_1.json",
+          "report_sha256": "3913013981ef586bcf6c98bbb1a11ce870bc33111ac3b7cb1614aec2c220ddca"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps51-run39050312230_1.json",
+          "report_sha256": "8615644aeb887c8ba6a2b488db3b38689e305269a1d6241672584ee541df49d3"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps51-run39050312230_1.json",
+          "report_sha256": "6ef2a6752fb9981259242498ceea8ce4eac91f232744be4c56ef68da70c2fc07"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps51-run39050312230_1.json",
+          "report_sha256": "cb99907deb759ed2bd7cafd05f410faac6ffbe5a74086ac2ae525538276ee334"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps51-run39050312230_1.json",
+          "report_sha256": "09a1fed333544d09d95ac4d8a71196a0cc6be3568168704828d3587d3fac2305"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps51-run39050312230_1.json",
+          "report_sha256": "2ee6e06e95fbd18fa2b2ff82da09fcc5310b5679c276e72f0ed10621757ea70f"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "required_checks": 14,
+          "report": "T17-toolselection-ps51-run39050312230_1.json",
+          "report_sha256": "c8f75fd666560b02a2c9f80c0c318e2d6902551449a30ca55d0dab79cae43798"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps51-run39050312230_1.json",
+          "report_sha256": "b329e79a039b57b26a967d4a63b4f6c68f4b6fed63d7c30406f6245d645649d6"
+        }
+      ]
+    },
+    {
+      "run_id": 39050312230,
+      "event": "push",
+      "head_sha": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "tested_checkout": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39050312230_1.json",
+      "report_sha256": "36c66f848e8962480bbc120c316804b9bfa30e3b09efb88e14dbcf52d8a15645",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 194,
+      "observations": 3,
+      "syntax_files": 42,
+      "syntax_errors": 0,
+      "analysis_status": "pass",
+      "analysis_diagnostics": 0,
+      "all_default_errors_gated": true,
+      "dependencies_rechecked_against_lock": true,
+      "source_unchanged": true,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps7-run39050312230_1.json",
+          "report_sha256": "6cf9eb95dbc577d136ac942ccce9f1c8d382e29985e91f6b5420cb51e157301d"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps7-run39050312230_1.json",
+          "report_sha256": "2fead4575936377117892aa4aa448116b2f677a2f0539d40426c20f19e99d738"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps7-run39050312230_1.json",
+          "report_sha256": "8854bb3b98c2da45ac269308c995fb274d123a9e8fe56ca5debc0778f018199b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps7-run39050312230_1.json",
+          "report_sha256": "41cb6dee400ef3eac85b0201dbc2581c7d63bd15b36fd9085fcb0748c220f406"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps7-run39050312230_1.json",
+          "report_sha256": "bb16d8211b1c435d800aea96668b5dc18bda22ab2a271e605d28e79abcc9257f"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps7-run39050312230_1.json",
+          "report_sha256": "1b81352797e3443ff6b4ab4dfc2da41315b78774b0c651c2fd4f67495fe393a6"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps7-run39050312230_1.json",
+          "report_sha256": "c844dc2210a59736b6d87812c04dfcab791558cb591616c5011149e46cdf4569"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "required_checks": 14,
+          "report": "T17-toolselection-ps7-run39050312230_1.json",
+          "report_sha256": "b3545fd4414a0add0e1db7cf82f997f73da6ca772a6f5d2596ff79ab190290fd"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps7-run39050312230_1.json",
+          "report_sha256": "a6d89248a2884a04f06bfeb450c3b46b00a1f0903ffd2a26c2c4b0041d7bf524"
+        }
+      ]
+    },
+    {
+      "run_id": 39050314938,
+      "event": "pull_request",
+      "head_sha": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "tested_checkout": "53736bdfe2c85d0effb44ee98b8e550046c6bd94",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39050314938_1.json",
+      "report_sha256": "5fb4609302e8de71a44ac943c7c77006497c4f37d8023bedc8440882b9ca5503",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 194,
+      "observations": 3,
+      "syntax_files": 42,
+      "syntax_errors": 0,
+      "analysis_status": "pass",
+      "analysis_diagnostics": 0,
+      "all_default_errors_gated": true,
+      "dependencies_rechecked_against_lock": true,
+      "source_unchanged": true,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps51-run39050314938_1.json",
+          "report_sha256": "3316f3abe74dc1539808daed26fbd7254767a422a40838bc9d6fc67061253722"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps51-run39050314938_1.json",
+          "report_sha256": "0c0779d9972543f3dd88d7eda57d72f977cdfec6619dd26901203e265377163d"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps51-run39050314938_1.json",
+          "report_sha256": "ff15fbd3327de3e6616cd2cfe6ba8c91dfb2c95b3b0d610ae0a67d8fa9bc188d"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps51-run39050314938_1.json",
+          "report_sha256": "6968fa49fd9b4c4527220338d2887a8978ff70b3b1e97482b29c5cf70f8ad0bc"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps51-run39050314938_1.json",
+          "report_sha256": "a75bce72d13e9ae36a677157445258cdcb30e60fb4cac1ac267cd6d5df25a6e5"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps51-run39050314938_1.json",
+          "report_sha256": "755be41b607697b0a40b5a5f9fc74ab2d24beb6c2510a1b90f81c703b6a9aeb7"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps51-run39050314938_1.json",
+          "report_sha256": "ae2216c4f7aaa5208f3438940007efd6a454466dc72613717bb903d3aa5d5026"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "required_checks": 14,
+          "report": "T17-toolselection-ps51-run39050314938_1.json",
+          "report_sha256": "f8436301239b3a4fa27c6724309ad7a45b835d70ada3b5aaa154bac44322fe63"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps51-run39050314938_1.json",
+          "report_sha256": "134664227778a6e48961f0c61c0831f604b513eebe76e08631008ac263622495"
+        }
+      ]
+    },
+    {
+      "run_id": 39050314938,
+      "event": "pull_request",
+      "head_sha": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+      "tested_checkout": "53736bdfe2c85d0effb44ee98b8e550046c6bd94",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39050314938_1.json",
+      "report_sha256": "eb841017a849fac5ceb17c443263dfa59f15798cf3f45f25efa9c6b6d6ab8da6",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 194,
+      "observations": 3,
+      "syntax_files": 42,
+      "syntax_errors": 0,
+      "analysis_status": "pass",
+      "analysis_diagnostics": 0,
+      "all_default_errors_gated": true,
+      "dependencies_rechecked_against_lock": true,
+      "source_unchanged": true,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps7-run39050314938_1.json",
+          "report_sha256": "5279c81cfdb7c3bd18fc0cbd2e612b752b6f238789d085633dfb4971f62f6dd0"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps7-run39050314938_1.json",
+          "report_sha256": "177571e43c5c85399caacc29560f2c36e5974c07fceb1ffabb1919cd4397234a"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps7-run39050314938_1.json",
+          "report_sha256": "a77234073f19399ce1f1f7cab2f1092a3b3abb0b2296f40886f0168c7949d497"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps7-run39050314938_1.json",
+          "report_sha256": "0e79b420316a8e2c14887c09a443a58d9c246ca5ae999a23dd750c145fd92330"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps7-run39050314938_1.json",
+          "report_sha256": "f5d76912aeaca29ada005ddea8f8e6b8d9c4dea13f881fbe1c6468597ca1ef99"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps7-run39050314938_1.json",
+          "report_sha256": "1a6cb817b5192de1009de36a8a64ab75cc418681df8d78debfad09a6c42ba552"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps7-run39050314938_1.json",
+          "report_sha256": "0180bb6623e3b88d147bd0ba5eb50ee491e6265d59bde6e8d58e59110af140ba"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "required_checks": 14,
+          "report": "T17-toolselection-ps7-run39050314938_1.json",
+          "report_sha256": "29191ad95de8f317dad9f32870aeed0890ee633d43c5ae2ef16ea7c0c13004df"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps7-run39050314938_1.json",
+          "report_sha256": "15d4004c4e3931d4d9eb771feef2650026713711388a41d39a8c949ad52cedd9"
+        }
+      ]
+    }
+  ],
+  "review": {
+    "independent": "Separate implementation/test reviewers; omitted-param binding and read-before-guard race corrected before final source. No remaining blocking finding.",
+    "intended_diff": "Runtime entry/helper, targeted/retained isolation tests, public docs, active evidence only. BAT/icons/posters/published v1.0.0 untouched.",
+    "whitespace_command": "git -c core.whitespace=cr-at-eol diff --check fc31a86..HEAD",
+    "privacy": "No raw local/CI reports, binaries, media, config, credentials or logs in Git."
+  },
+  "limitations": [
+    "Windows 10 22H2 client NOT_RUN in S04; required later acceptance.",
+    "Another local real FFmpeg build, exact release ZIP/kit and new phone observations NOT_RUN in S04; future gates.",
+    "Independent mismatched PATH fixture is synthetic version/capability evidence, not acceptance of another real vendor build.",
+    "Invalid executable bytes exercise actual CreateProcess failure; no actual missing-DLL or incompatible-hardware execution claim.",
+    "Atomic replacement serializes cooperating saves and checks observed identity/hash; it does not promise isolation against arbitrary external editors racing the final check."
+  ],
+  "git": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "source_push": "PASSED",
+    "source_live_equality": "f1a7b17e3f9a1074059cd4d2de424d90adad0a78",
+    "main_local_live": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED",
+    "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "pr_state": "OPEN_DRAFT",
+    "authority": "S14 ordinary reviewed PR policy, existing owner-approval default; no main merge.",
+    "final_containing_checkpoint": "Observe fresh HEAD/live equality and exact-head CI after final docs push in final response; refresh at next entry."
+  },
+  "release": {
+    "target": "v1.0.1",
+    "runtime_version": "1.0.0",
+    "publication": "PENDING_S17",
+    "frozen_source": null,
+    "zip_sha256": null,
+    "authorization": "Only separately started S17 publishes S16 exact accepted source/assets."
+  },
+  "human_action": "None for S04.",
+  "next_step": "S05 - Add first-run setup and manual recovery; NOT_STARTED. Start a separate thread."
+}

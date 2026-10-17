@@ -1,5 +1,49 @@
 # Status
 
+Project IN_PROGRESS. S01/S02/S03/S04 are COMPLETED. S04-A1/A2/A3 pass on the
+available Windows 11 client. Next eligible: S05 - Add first-run setup and manual
+recovery, in a new thread. S05 and later remain NOT_STARTED.
+
+FfmpegDirectory and ConfigPath are frozen public selection options. Resolution
+uses explicit -> saved -> complete app-local pair -> absolute PATH directories.
+Invalid explicit/saved choices and incomplete local pairs fail visibly.
+Save-AudioToolSelection is the only deliberate persistence API: bounded schema1
+UTF8 config, strict parsing, atomic write and verbatim preservation of unrelated
+JSON. Conversion/preview never save; preview does not read config. No setup UI,
+download, persistent PATH change or new runtime dependency was added.
+
+Windows 11 Pro 26H2 build 26300.9711 x64, PS5.1 5.1.26100.9711 and PS7 7.6.5:
+14 focused cases each pass on source f1a7b17e3f9a1074059cd4d2de424d90adad0a78.
+Real explicit/saved fresh-process conversions succeed on empty PATH with
+independently probed 64 kbps MP3, preserved metadata and full decode. Schema,
+stale/corrupt/duplicate/strict JSON, read-only/locked persistence, exact unknown
+lexemes and executable-discovery sentinels pass. Retained isolation/baseline,
+pure contracts, transactions, cancellation, cleanup, preview, help, captured
+regressions, deadlines and native-resource tests pass in both shells.
+All final local runs inherit CP65001 and preserve source/owned fixture hashes.
+
+Source push CI 39050312230 and associated PR CI 39050314938 pass all four jobs.
+Downloaded artifacts prove 14 focused cases plus every retained CI family.
+Preparation fixture failures and their replacements are recorded honestly in
+evidence/S04.json and evidence/S04-HANDOVER.md. Raw reports remain outside Git.
+
+Feature source f1a7b17 is pushed/live-equal. The final containing docs checkpoint
+receives fresh live/exact-head CI verification in the final response, avoiding
+a self-containing SHA. Main remains 28f53b10529495754273d55654c7b29e78848c83;
+PR #29 stays draft/unmerged. Main integration is NOT_INTEGRATED under S14 reviewed
+policy and existing owner-approval default. No owner action is needed for S04.
+
+Runtime remains 1.0.0; fixed eventual public release is v1.0.1. No candidate/ZIP
+is frozen; publication is PENDING_S17, only from separately authorized S16 exact
+source/assets. Published v1.0.0 and artwork are preserved. Windows 10, another
+local real tool build, exact package/kit and new phone evidence remain future
+acceptance work. S03 deadlines, cancellation/release safeguards and unlimited
+normal encode/decode runtime remain verified.
+
+## Preserved S03 checkpoint
+
+# S03 status at entry
+
 Project IN_PROGRESS. S01/S02/S03 are COMPLETED. S03-A1/A2/A3 pass on the
 available Windows 11 client. Next eligible step is S04 - Implement explicit and
 remembered tool selection, in a new thread. S04 and later remain NOT_STARTED.

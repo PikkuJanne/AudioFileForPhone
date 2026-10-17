@@ -106,3 +106,44 @@ D22 - 2026-10-17, S03 checkpoint: runtime 0d2d8ff remains unchanged in source
       Mark S03 complete and S04 eligible/NOT_STARTED. Final docs-only containing
       HEAD/live/CI is observed after push, without another self-referential record.
       Keep main integration and S16-to-S17 publication authority separate.
+
+D23 - 2026-10-17, S04 selection: freeze FfmpegDirectory and ConfigPath as public
+      conversion options. Explicit selection overrides config contents for this
+      run; invalid explicit/saved selections stop without fallback. Retain only
+      a complete pair directly beside the app, then absolute PATH entries; never
+      mix a local executable with PATH or discover tools from the input/CWD.
+      Preserve separately installed PATH pairs, warning on differing build IDs.
+      Reuse bounded startup validation and disclose PE architecture where known.
+      No UI/setup/download or automatic config mutation is introduced in S04.
+      Normal bounded step authority suffices; main/release authority is unchanged.
+
+D24 - 2026-10-17, S04 config: resolve the default with Windows LocalApplicationData
+      APIs; ConfigPath is a legitimate portable/test override. Deliberate
+      Save-AudioToolSelection uses 64 KiB UTF-8 schema1, an exclusive temporary
+      lock, guarded reads, identity/hash checks and atomic publication. Reject
+      corrupt/unknown schemas, ambiguous keys, JSON comments/trailing commas and
+      read-only/locked storage; preserve the old selection on observed failure.
+      Replace only the root directory string token in existing valid JSON so
+      unrelated dates, decimals, escapes and nested fields survive verbatim.
+      Guards close for Windows atomic replacement; this does not promise serial
+      isolation against an arbitrary external editor racing the final check.
+
+D25 - 2026-10-17, S04 evidence isolation: retained actual-entry launches now use
+      owned absent ConfigPath values. Exact public help examples retain their
+      text through the existing audited loader's owned config resolver. No old
+      assertion or historical report-path contract is removed. An initial
+      PS5.1 fixture read BOM-less UTF-8 driver text as ANSI; EncodedCommand then
+      duplicated information as CLIXML, even with Text output requested. Use a
+      BOM-marked UTF-8 -File test driver to preserve Unicode and retain all native
+      output/release assertions. Failed preparation reports
+      remain private and are classified separately from accepted final runs.
+
+D26 - 2026-10-17, S04 checkpoint: source
+      f1a7b17e3f9a1074059cd4d2de424d90adad0a78 is pushed/live-equal. All 24
+      final local reports pass on the available Windows 11 client in both shells;
+      focused selection has 14 cases each. Source push CI 39050312230 and PR CI
+      39050314938 pass all four jobs; artifact reports prove 194 checks and 3
+      observations per job, with PR integration 53736bdfe2c85d0effb44ee98b8e550046c6bd94
+      recorded separately from the feature SHA. Mark S04 complete and S05
+      eligible/NOT_STARTED. Observe the final containing docs HEAD/live/CI after
+      push in the final response; no self-containing SHA or main merge authority.
