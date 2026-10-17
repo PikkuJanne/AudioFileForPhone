@@ -283,7 +283,8 @@ try {
     $throwHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
     if (@($Arguments | Where-Object { $_ -match '2024-01-02 throw\.m4a$' }).Count -gt 0) { throw 'controlled source probe native boundary exception' }
     return & $script:T10OriginalNative @PSBoundParameters
 }
@@ -299,7 +300,8 @@ function Invoke-AudioNativeProcess {
     $encodeThrowHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
     if ([IO.Path]::GetFileName($ExecutablePath) -ieq 'ffmpeg.exe' -and
         @($Arguments | Where-Object { $_ -match 'encode-throw\.mp3$' }).Count -gt 0) { throw 'controlled encoder native boundary exception' }
     return & $script:T10OriginalNative @PSBoundParameters

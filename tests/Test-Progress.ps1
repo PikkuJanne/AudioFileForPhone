@@ -338,7 +338,7 @@ try {
     Invoke-Case 'encoder end followed by validation rejection never displays success or leaves a final' 'A33' {
         param($case);$outRoot=Join-Path $testRoot 'Reject';[IO.Directory]::CreateDirectory($outRoot)|Out-Null;$target=Join-Path $outRoot 'result.mp3'
         $originalValidation=(Get-Item -LiteralPath Function:Get-AudioOutputValidation).ScriptBlock;$events=New-Object 'System.Collections.Generic.List[object]'
-        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation)
+        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation,[int]$ProbeTimeoutSeconds=60)
             $result=& $originalValidation @PSBoundParameters;$result.Status='ControlledRejectedAfterRealValidation';$result.Error='controlled T13 validation rejection';return $result}.GetNewClosure()
         try{Set-Item -LiteralPath Function:Get-AudioOutputValidation -Value $wrapper;$script:descendantReleaseProved=$false
             $transaction=Invoke-AudioOutputTransaction -OutputPath $target -OutputRoot $outRoot -SourcePath $short -SourceDurationSeconds 0.25 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments @('-nostdin','-v','error','-i',$short,'-vn','-c:a','libmp3lame','-b:a','64k') -Cancellation $null -ProgressCallback {param($event);$events.Add($event)}
@@ -364,7 +364,8 @@ try {
 $script:T13OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $proof=[pscustomobject]@{process_released=$false;status='not returned'};$global:T13NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     if($null -ne $ProgressCallback){$originalCallback=$ProgressCallback;$nativeParameters.ProgressCallback={param($progress);$global:T13Machine=$progress;try{& $originalCallback $progress}finally{$global:T13Machine=$null}}.GetNewClosure()}

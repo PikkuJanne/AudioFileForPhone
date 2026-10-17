@@ -181,7 +181,8 @@ function Invoke-Conversion {
     Assert-True (-not (Test-Path -LiteralPath $runParent)) 'Each conversion requires a fresh output parent.'
     New-Item -ItemType Directory -Path $runParent | Out-Null
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
-        '-File', $ApplicationScript, '-InputFolder', $InputPath, '-OutputParent', $runParent) + $Options
+        '-File', $ApplicationScript, '-InputFolder', $InputPath, '-OutputParent', $runParent,
+        '-ConfigPath', (Join-Path $runParent 'missing-config.json')) + $Options
     $native = Invoke-CapturedNative "application: $Name" $shellPath $nativeArgs -AllowFailure
     $reportedRoots = @($native.Output | ForEach-Object {
         if ($_ -match '^\[INFO\] Output root\s+: (.+)$') { $Matches[1] }

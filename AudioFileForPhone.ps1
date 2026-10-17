@@ -12,7 +12,9 @@ NFC title with a bounded, collision-safe suffix. Folder names are preserved.
 Conversion changes bitrate, names and supported metadata. It performs no loudness
 normalization, noise reduction or EQ. .opus, .wav, .flac and .m4b are not scanned.
 OGG supports Vorbis and Opus in .ogg files. FFmpeg and ffprobe are external tools,
-resolved beside the script first, then PATH. Conversion requires libmp3lame.
+selected by FfmpegDirectory, saved config, a pair beside the script, then PATH.
+Conversion requires libmp3lame. Interactive launches offer deliberate setup repair
+when tool selection fails; other launches stop with an exact setup command.
 
 Source title and supported tags are copied; a missing/empty title uses the planned
 output basename. Nonblank Artist/Album override source tags. Source artwork is
@@ -37,7 +39,8 @@ Full file/working paths must be below 260 units; created directories below 248.
 These limits do not guarantee acceptance by every phone or MTP implementation.
 
 .PARAMETER Interactive
-Prompts once for optional batch metadata and a Windows cover picker after preflight.
+Offers dependency repair when needed, then optional batch metadata and a Windows
+cover picker after preflight. Setup asks before remembering a selected tool pair.
 Use an STA console for the picker. Without this switch there are no prompts.
 DryRun explicitly ignores Interactive.
 
@@ -63,6 +66,24 @@ Plans source-to-output names without writing directories, audio, logs or manifes
 calling tools, checking cover/media or prompting. Root is provisional; durations,
 writability and dependency availability remain unverified. Returns Previewed/0 on
 success. Remove this switch to convert with the same naming/metadata options.
+
+.PARAMETER ProbeTimeoutSeconds
+Advanced media-probe deadline in seconds (default 60, range 1-2147483). Increase
+for large files or slow storage after a probe Timeout. Applies to source and output
+probes. Encoding and full audio decode have no short fixed runtime ceiling.
+
+.PARAMETER FfmpegDirectory
+Optional filesystem directory containing both ffmpeg.exe and ffprobe.exe. Overrides
+saved/app-local/PATH selection for this run only; never saves or changes PATH.
+Invalid explicit choices fail preflight without falling back to another build.
+
+.PARAMETER ConfigPath
+Optional JSON config file location for portable use or isolated environments.
+Overrides the default Windows LocalApplicationData\AudioFileForPhone\config.json.
+Relative paths use the current PowerShell location. Normal conversion only reads
+config; preview does not read it. Interactive dependency repair can remember a
+selection only after affirmative consent. Corrupt/new-schema config is preserved;
+use an explicit FfmpegDirectory override or another writable ConfigPath.
 
 .EXAMPLE
 .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
@@ -142,7 +163,16 @@ param(
     [string]$OutputParent,
 
     # Read-only preview using the same discovery and naming planner as conversion
-    [switch]$DryRun
+    [switch]$DryRun,
+
+    [ValidateRange(1, 2147483)]
+    [int]$ProbeTimeoutSeconds = 60,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$FfmpegDirectory,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$ConfigPath
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -221,9 +251,25 @@ try {
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
-        $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
-        $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
-        $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+        $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir }
+        if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $selectionOptions.FfmpegDirectory = $FfmpegDirectory }
+        try { $toolInfo = Resolve-AudioToolSelection @selectionOptions }
+        catch [OperationCanceledException] { throw }
+        catch {
+            $selectionError = $_.Exception.Message
+            $repairCommand = Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath
+            # Keep the copyable action outside formatted error records, which can
+            # wrap long commands in Windows PowerShell 5.1.
+            Write-Host ('[SETUP] Existing-tool repair: ' + $repairCommand)
+            if (-not $Interactive) { throw "$selectionError Existing-tool repair: $repairCommand" }
+            $setup = Invoke-AudioToolSetup -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath -Reason $selectionError
+            if ($setup.Status -eq 'Cancelled') { throw (New-Object OperationCanceledException('Dependency setup cancelled before conversion.')) }
+            if ($setup.Status -ne 'Ready' -or $null -eq $setup.Selection) { throw "$($setup.Error) Existing-tool repair: $repairCommand" }
+            $toolInfo = $setup.Selection
+            Write-Host '[SETUP] Continuing this launch with the validated selected tools.'
+        }
+        $ffmpeg = $toolInfo.Ffmpeg.Path
+        $ffprobe = $toolInfo.Ffprobe.Path
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
             $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
             $CoverPath = $coverValidation.Path
@@ -231,6 +277,7 @@ try {
         Test-OutputWritable -Path $outputParentPath
     }
 }
+catch [OperationCanceledException] { throw }
 catch {
     throw "Preflight failed: $($_.Exception.Message)"
 }
@@ -447,6 +494,7 @@ try {
     "FFmpeg version: $($toolInfo.Ffmpeg.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe path  : $($toolInfo.Ffprobe.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe version: $($toolInfo.Ffprobe.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Tool selection: $($toolInfo.Origin)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "App version   : $($manifest.Data.app_version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Entry SHA256  : $($manifest.Data.build.entry_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Helper SHA256 : $($manifest.Data.build.helper_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
@@ -546,8 +594,9 @@ foreach ($plan in $plans) {
     $fileStatus = 'ProbeFailed'; $fileReason = ''
     try {
     Write-Host "       [DEBUG] Running ffprobe..."
-    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
+    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
+    if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
     if ($media.Status -ne 'Success') {
         throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
@@ -615,7 +664,7 @@ foreach ($plan in $plans) {
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
-            -ProgressCallback $fileProgressCallback
+            -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -679,7 +728,7 @@ $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
 }
 catch [OperationCanceledException] {
     $runStatus = 'Cancelled'; $batchExitCode = 130
-    Set-ActiveAudioRecordCancelled
+    if ($manifest) { Set-ActiveAudioRecordCancelled }
     Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
     $cancelProcessNote = $null
     if ($null -ne $script:AudioCancellationContext -and $script:AudioCancellationContext.ActiveProcessId -ne 0) {

@@ -13,6 +13,7 @@ failure results, cancellation components and local record persistence.
 | Environment or workflow | Evidence boundary |
 | --- | --- |
 | Active Windows 11 Pro 26300.9457 | Local synthetic regression runs on Windows PowerShell 5.1.26100.9444 and PowerShell 7.6.5. |
+| Active v1.0.1 development, Windows 11 Pro 26H2 26300.9711 x64 | S03/S04 synthetic source tests on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5; see the active plan's evidence. Windows 10 22H2 and exact v1.0.1 package acceptance remain pending. |
 | Hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. This is separate from Windows 11 acceptance. |
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
 | Music-folder default | Configured-folder resolver and dedicated owned generated-input smoke checks; no real network-redirected Music acceptance. Ordinary personal Music was not used as disposable test data. |
@@ -50,6 +51,7 @@ Get-ExecutionPolicy
 Get-ExecutionPolicy -List
 Get-AuthenticodeSignature -LiteralPath '.\AudioFileForPhone.ps1'
 Get-AuthenticodeSignature -LiteralPath '.\AudioFileForPhone.Helpers.ps1'
+Get-AuthenticodeSignature -LiteralPath '.\Setup-AudioFileForPhone.ps1'
 ```
 
 The scripts have no Authenticode publisher signature. A SHA-256 comparison checks
@@ -77,24 +79,79 @@ the exact files you have inspected:
 ```powershell
 Unblock-File -LiteralPath '.\AudioFileForPhone.ps1'
 Unblock-File -LiteralPath '.\AudioFileForPhone.Helpers.ps1'
+Unblock-File -LiteralPath '.\Setup-AudioFileForPhone.ps1'
 ```
 
 This removes each file's download mark; it does not sign the file or change
 execution policy. Do not recursively unblock a download directory. See
 [Microsoft's Unblock-File documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/unblock-file).
 
-The existing BAT launcher explicitly supplies process-scoped
+The existing conversion BAT launcher explicitly supplies process-scoped
 `-ExecutionPolicy Bypass`, suppressing ordinary policy blocking/warnings in that
 child session. It does not override Group Policy. Choose the direct invocation
 above when you want policy checks; the BAT is not an approved way around an
 enforced policy.
+
+The separate setup BAT uses process-scoped `RemoteSigned` in Windows PowerShell
+5.1 and does not retry another shell if policy or startup fails. For a direct
+setup launch with policy checks, choose your installed shell:
+
+```powershell
+powershell.exe -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\Setup-AudioFileForPhone.ps1
+pwsh -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\Setup-AudioFileForPhone.ps1
+```
+
+## Existing-tool and offline recovery
+
+If the trusted FFmpeg build is already extracted, no internet connection or PATH
+edit is needed. Run setup and choose **S**, then select the exact folder containing
+both `ffmpeg.exe` and `ffprobe.exe`. If the picker is unavailable, type that folder
+without surrounding quotes. Cancel exits 130; an invalid pair exits 1 without
+replacing a saved selection. **M** prints manual instructions, while the download
+choice explains that it is unavailable and performs no network operation.
+
+For a command that never prompts, replace the example directory with your reviewed
+installation and run from the application folder:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -FfmpegDirectory 'D:\Trusted tools\bin' -Remember -NonInteractive
+```
+
+Use `-ConfigPath '.\portable-config.json'` on both setup and conversion when using
+a portable config. Omit `-Remember` to inspect/validate a pair without saving; then
+pass the same explicit directory to conversion:
+
+```powershell
+.\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -FfmpegDirectory 'D:\Trusted tools\bin'
+```
+
+Setup validates and prints both paths, build responses, detected architectures
+and SHA-256 hashes. It does not authenticate the publisher. Keep a shared build's
+required DLLs and vendor notices with it. Never select tools merely because an
+audio download folder happens to contain executables.
+
+An invalid saved selection stops ordinary discovery. An explicit
+`-FfmpegDirectory` bypasses its contents for one run. Corrupt, unsupported-schema,
+read-only or locked config is preserved, and a failed save says **not remembered**.
+Use a different writable `-ConfigPath`, or review and move only that config file
+aside before deliberately saving again. Standalone requested-save failure exits
+1 and prints the current-run conversion route; an interactive conversion can
+continue with the validated pair without saving. No administrator access or
+persistent environment changes are required.
+
+Interactive setup requires a readable console. Redirected input and PowerShell's
+`-NonInteractive` host mode cause a bounded error with a direct setup command;
+they never assume consent. Ordinary conversion without `-Interactive` returns
+the repair action instead of opening setup. `-DryRun` skips setup and dependency
+checks entirely.
 
 ## Common problems
 
 | Symptom | What to check |
 | --- | --- |
 | Script cannot run or window closes | Run from an existing PowerShell window to keep diagnostics visible; inspect execution policy as above. Keep the helper beside the entry script. |
-| FFmpeg/ffprobe missing or capability check fails | Provide both trusted executables beside the app or in `PATH`. An app-adjacent executable takes precedence over a PATH copy. Check the printed actual versions/paths and `libmp3lame` error. |
+| FFmpeg/ffprobe missing or capability check fails | Run `Setup-AudioFileForPhone.ps1` and select a trusted pair, or use the explicit existing-tool command above. Selection order remains explicit, saved config, complete app-local pair, then PATH. Check the printed origin, versions/paths and `libmp3lame` error. |
+| Saved tool folder is stale, config is corrupt/newer, or saving fails | Follow existing-tool/offline recovery above. `-FfmpegDirectory` works for the current run without changing config. The app preserves a bad/unsupported file and never silently falls back; failed persistence means not remembered. |
 | Invalid/unreadable input or no supported files | Select an existing folder below the drive/share root, not a file, shortcut or generated output. Only MP3/M4A/OGG extensions are scanned. |
 | Permission, junction or scan error | Choose accessible ordinary filesystem paths. Selected paths with reparse-point ancestors are rejected; descendant reparse points are excluded. An inaccessible subtree stops the scan. Preview does not test destination writability. |
 | Long/incompatible preserved path | Use a shallower input selection or shorter OutputParent. Folder names are kept; MaxBaseLength cannot shorten folders. File/working paths must be under 260 UTF-16 units and created directories under 248. |

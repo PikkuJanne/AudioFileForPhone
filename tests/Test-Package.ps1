@@ -22,7 +22,7 @@ if (-not [IO.Path]::GetDirectoryName($evidence).Equals($evidenceParent, [StringC
     throw 'Package evidence must use a fresh T19/T17-package-<actual shell>-attemptN/finalN/runN_N JSON directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidence) { throw 'Package evidence already exists; choose a fresh label.' }
-$required = @('AudioFileForPhone.bat', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ps1',
+$required = @('AudioFileForPhone.bat', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat',
     'CHANGELOG.md', 'LICENSE', 'README.md', 'SECURITY.md', 'SUPPORT.md')
 [Array]::Sort($required, [StringComparer]::Ordinal)
 $buildFiles = @('tools/Build-Package.ps1', 'tools/package-files.json')
@@ -367,7 +367,7 @@ try {
             Assert-True $case.configuration_restored 'Owned fixture configuration must be restored.'
         }
     }
-    Invoke-Case 'explicit eight-file allowlist excludes committed binary/media/log/cache/poster/evidence fixtures' 'A47,A48' {
+    Invoke-Case 'explicit distributable allowlist excludes committed binary/media/log/cache/poster/evidence fixtures' 'A47,A48' {
         param($case)
         $zipName = 'AudioFileForPhone-v' + (Get-AudioAppVersion) + '.zip'
         $inventory = Read-ZipInventory (Join-Path $first $zipName)

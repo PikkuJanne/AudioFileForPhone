@@ -1,0 +1,81 @@
+# Charter — incremental setup and compatibility release
+
+## User mandate
+
+Implement the accepted compatibility changes step by step in the existing local
+PowerShell utility, keeping GitHub synchronized. Stop after every numbered step
+with a substantive handover so the owner can start the next thread. Human testing
+must be minimal, simple and consolidated. The publication goal is **Codex publishing v1.0.1** as a new, independently
+verified public release. This exact version is the owner's explicit instruction;
+v1.0.0 is not to be replaced and no alternate target may be selected silently.
+
+## Fixed boundaries
+
+Preserve the PS1 and BAT entry points and existing argument semantics except the
+explicitly requested clearer interactive menu. Preserve the 64 kbps CBR default,
+Music default (with existing OutputParent option), date-first names, supported
+MP3/M4A/OGG inputs, relative tree, title/Artist/Album and supplied-cover policies,
+source read-only behavior, transactional output, full-decode validation and honest
+0/1/2/130 outcomes. Do not accept the wrong bitrate to suppress failures.
+
+Maintain Windows PowerShell 5.1 compatibility and test a contemporary PowerShell 7
+on real Windows 10 22H2 x64 and Windows 11 x64. These are application test targets,
+not statements about Microsoft's servicing lifecycle. Record actual builds and
+unsupported conditions. No promise of every Windows, CPU, phone or FFmpeg build.
+
+No website, hosted processing, accounts, telemetry, cloud storage, new GUI stack,
+production Python, bundled global installer, silent updates, new formats,
+parallel encoder architecture, noise reduction, or loudness normalization.
+Do not recreate/delete current icons or posters. No secrets/private media/raw
+support logs in public Git. Do not persist PATH, registry or execution-policy changes.
+No administrator requirement or attempts to bypass managed application controls.
+
+## Explicit narrow supersessions of the old plan
+
+1. Active tasks now live at docs/codex-v1.0.1, not docs/codex-v1.
+2. The fixed next public release is v1.0.1, not a replacement v1.0.0.
+   RELEASE_TARGET.json is the machine-readable release contract.
+3. Windows 10 22H2 x64 is now an explicit acceptance target alongside Windows 11.
+4. A separate **user-invoked, consent-based dependency setup download** is in scope.
+   The old prohibition on an automatic downloader still applies to conversion,
+   background updating, silent installs, unrelated tools and PATH modification.
+5. Consolidate owner testing into the final prepared kit rather than repeated
+   manual host/codec matrices. Automate everything that can be verified mechanically.
+
+These changes supersede only conflicting project-plan rules; unrelated AGENTS
+instructions, platform safety rules and new owner instructions still apply.
+
+## Decisions Codex should not repeatedly send back to the owner
+
+Use the proposed names/paths in the specs, documented capability-based compatibility,
+JSON user config, narrow owned cleanup, no silent fallback, reference ZIP build for
+setup, and the staged plan. Make small implementation decisions and record why.
+A changed public behavior, privilege requirement, data loss risk, occupied version,
+or missing publication authorization is not a small decision to hide.
+
+## Truthful evidence
+
+NOT_RUN, BLOCKED, FAILED, PASSED and documented not-applicable are different.
+A Linux codec experiment is not a Windows application pass. Server CI is not
+Windows 10/11 client acceptance. A prompt is not a converted file. Reaching a
+metadata prompt in the owner's latest log is the last confirmed application stage.
+Do not create historical test claims or infer success from the previous v1.0.0
+completion record. Require outputs and identities on the new candidate.
+
+## Completion and publication authority
+
+Create no public intermediate version. The user has selected v1.0.1; do not
+request version approval again or substitute a different target based on a
+versioning preference. At S01 check live version occupancy and preserve existing
+releases. The release title, annotated tag, runtime version, ZIP filename and
+manifest must match RELEASE_TARGET.json. A target mismatch blocks publication.
+S17 is a separate publish step. S16 must generate a next-thread prompt containing
+the frozen source SHA and exact asset digests, explicitly requesting publication.
+The owner starting S17 with that prompt is the release authorization. Generic
+continuation alone does not authorize arbitrary unverified bytes. No extra manual
+QA exercise is tied to this authorization.
+
+Final completion: accepted code/package; required OS and simple phone observations;
+public normal **v1.0.1** release and correct assets independently redownloaded; old release
+unchanged; final local main equals fresh live main. The release tag remains on the
+tested source even when closure-only documentation produces a later main commit.

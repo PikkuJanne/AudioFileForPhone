@@ -1,5 +1,19 @@
 # Changelog
 
+## Unreleased v1.0.1 work
+
+- Add separate existing-tool setup PS1/BAT entries and interactive dependency
+  repair that resumes the same conversion after validating a selected pair.
+  Show tool identities/hashes, ask before remembering, retain typed-path and
+  offline recovery, and give exact repair commands on noninteractive failures.
+  Optional setup downloading is explicitly unavailable pending its own step.
+- Add explicit `-FfmpegDirectory` and portable `-ConfigPath` tool selection with
+  deterministic explicit/saved/app-local/PATH precedence and bounded validation.
+- Add deliberate atomic user-selection persistence through
+  `Save-AudioToolSelection`; ordinary conversion and preview never save settings.
+- Preserve short-operation deadlines and unlimited normal encode/full-decode
+  runtime. Runtime version remains 1.0.0 until the planned package step.
+
 ## 1.0.0
 
 Changes for app version 1.0.0. Publication and exact package verification are

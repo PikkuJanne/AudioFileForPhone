@@ -126,8 +126,9 @@ function New-AppCopy {
     }
     if ($Guards) {
         $append = @'
-function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation); Stop-T12Forbidden 'native' }
+function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,[int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000); Stop-T12Forbidden 'native' }
 function Get-ToolPath { param($ExeName,$ScriptDirectory); Stop-T12Forbidden 'tool lookup' }
+function Resolve-AudioToolSelection { param($FfmpegDirectory,$ConfigPath,$ScriptDirectory); Stop-T12Forbidden 'tool selection/config read' }
 function Assert-ToolPrerequisites { param($FfmpegPath,$FfprobePath); Stop-T12Forbidden 'tool prerequisites' }
 function Get-ValidatedCoverPath { param($Path,$FfmpegPath); Stop-T12Forbidden 'cover validation/cache' }
 function Test-OutputWritable { param($Path,[switch]$SkipWriteProbe); Stop-T12Forbidden 'destination write probe' }
@@ -154,7 +155,7 @@ function New-Driver {
     param([string]$Label, [string]$Entry, [string]$InputPath, [string]$OutputParent, [switch]$Preview,
           [switch]$Interactive, [string]$Cover = '', [int]$Limit = 40, [switch]$OmitOutputParent)
     $command = '& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -BitrateKbps 64 -MaxBaseLength ' + $Limit +
-        ' -Artist ' + (Get-Literal "Synthetic O'Brien & !% ^ artist") + ' -Album ' + (Get-Literal 'Synthetic preview album')
+        ' -Artist ' + (Get-Literal "Synthetic O'Brien & !% ^ artist") + ' -Album ' + (Get-Literal 'Synthetic preview album') + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'missing-config.json'))
     if (-not $OmitOutputParent) { $command += ' -OutputParent ' + (Get-Literal $OutputParent) }
     if ($Preview) { $command += ' -DryRun' }; if ($Interactive) { $command += ' -Interactive' }; if ($Cover) { $command += ' -CoverPath ' + (Get-Literal $Cover) }
     $prefix = @('$ErrorActionPreference=''Stop''', '$ProgressPreference=''SilentlyContinue''', '[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)',
