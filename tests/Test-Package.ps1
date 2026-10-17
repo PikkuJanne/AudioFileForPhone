@@ -210,7 +210,8 @@ function Read-ZipInventory {
     $archive = [IO.Compression.ZipFile]::OpenRead($Path)
     try {
         return @($archive.Entries | ForEach-Object {
-            Assert-True ($_.FullName -cmatch '^[A-Za-z0-9._-]+$' -and -not $_.FullName.EndsWith('/') -and $_.FullName -cne '.' -and $_.FullName -cne '..') 'ZIP entry must be a safe root filename.'
+            Assert-True ($_.FullName -ceq 'tools/ffmpeg-download.json' -or
+                ($_.FullName -cmatch '^[A-Za-z0-9._-]+$' -and -not $_.FullName.EndsWith('/') -and $_.FullName -cne '.' -and $_.FullName -cne '..')) 'ZIP entry must be a safe root filename or the exact reviewed nested pin.'
             Assert-True (($_.ExternalAttributes -band 1024) -eq 0 -and ($_.ExternalAttributes -band -268435456) -ne -1610612736) 'ZIP entry cannot be a reparse point or symlink.'
             Assert-True ($_.LastWriteTime.Year -eq 1980 -and $_.LastWriteTime.Month -eq 1 -and $_.LastWriteTime.Day -eq 1 -and $_.LastWriteTime.Hour -eq 0 -and $_.LastWriteTime.Minute -eq 0 -and $_.LastWriteTime.Second -eq 0) 'ZIP timestamps must use the deterministic epoch.'
             $stream = $_.Open(); $hasher = [Security.Cryptography.SHA256]::Create()
