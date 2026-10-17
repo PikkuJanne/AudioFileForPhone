@@ -78,3 +78,13 @@ D19 - 2026-10-17, S03 deadlines: extend the existing native helper with opt-in
       No process tree/name termination, persistent settings or dependency download.
       Adapt retained proxies additively; preserve all old assertions/contracts.
       Normal bounded S03 authority suffices; main/release authority is unchanged.
+
+D20 - 2026-10-17, S03 validation: preserve inherited console CP65001 in the
+      outer test host; CreateNoWindow accidentally selected CP437 in initial
+      local replay, producing Unicode characterization failures. Those attempts
+      are invalid for final acceptance and retained privately, not hidden.
+      Restore inherited console and rerun without changing product safeguards.
+      Preparation CI reached the retained help suite and correctly rejected the
+      stale nine-parameter expectation. Add only the authorized advanced probe
+      parameter to that exact help contract; retain all descriptions/examples,
+      ownership and source-safety assertions. Repeat exact-head CI on the fix.

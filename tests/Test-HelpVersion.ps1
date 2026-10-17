@@ -314,7 +314,7 @@ try {
         $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
-        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun')
+        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds')
         $actual = @($help.parameters.parameter.name)
         Assert-True ($help.Synopsis -match 'MP3.*M4A.*OGG' -and $examples.Count -eq 5) 'Proper comment help must contain synopsis and five examples.'
         foreach ($name in $expected) {

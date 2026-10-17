@@ -4,8 +4,8 @@
   "status": "IN_PROGRESS",
   "scope": "Bounded short native operations only",
   "entry_commit": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
-  "tested_source_commit": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
-  "tested_source_note": "Initial local tests use modified working-tree runtime hashes; preparation and final CI bind committed source.",
+  "tested_source_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+  "tested_source_note": "Runtime unchanged from preparation. Final2 focused reports use inherited CP65001; earlier outer-host CP437 runs are invalid for final acceptance.",
   "environment": {
     "build": "26300.9711",
     "ps7": "7.6.5",
@@ -78,5 +78,46 @@
   },
   "main_integration": "NOT_INTEGRATED",
   "publication": "PENDING_S17",
-  "recorded_utc": "2026-10-17T16:02:36.3689371Z"
+  "recorded_utc": "2026-10-17T16:02:36.3689371Z",
+  "focused_final2": [
+    {
+      "name": "S03-shortoperations-ps51-final2.json",
+      "exit_code": 0,
+      "status": "pass",
+      "cases": 15,
+      "error": null,
+      "sha256": "af4b7e9bc8e65828a0b44339d557da247f94f2adeb6bd4d4f231c2d13f4525ab",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "synthetic_unchanged": true,
+      "shell": "5.1.26100.9711",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps51-final2.json",
+      "started_utc": "2026-10-17T16:03:35.16488Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:04:00.1990514Z"
+    },
+    {
+      "name": "S03-shortoperations-ps7-final2.json",
+      "exit_code": 0,
+      "status": "pass",
+      "cases": 15,
+      "error": null,
+      "sha256": "a8724da16afa57888288cfad64ce4ef01540abf8f3329121d90623ae62837fec",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "synthetic_unchanged": true,
+      "shell": "7.6.5",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps7-final2.json",
+      "started_utc": "2026-10-17T16:03:45.3813342Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:04:13.5641829Z"
+    }
+  ],
+  "preparation_ci_failure": {
+    "head": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+    "reason": "Retained help expectation lacked newly authorized ProbeTimeoutSeconds",
+    "pr_run": 39047703714,
+    "remediation": "Extend exact parameter expectation by one; retain all checks; rerun exact-head CI.",
+    "push_run": 39047699943
+  }
 }
