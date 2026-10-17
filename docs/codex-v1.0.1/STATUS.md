@@ -1,3 +1,11 @@
+# S03 preparation checkpoint
+
+S03 IN_PROGRESS. Bounded native execution and source/output probe overrides are
+implemented. Focused attempt1 passes 15 cases per actual PS5.1/PS7 shell; final
+parent-exit proof assertions require a final rerun. Retained regression checks
+and pushed exact-commit CI are still pending. S01/S02 remain complete. S04 is
+NOT_STARTED. No owner action, main integration or release operation is authorized
+by this preparation checkpoint. See evidence/S03.json. Earlier S02 record follows.
 # Status
 
 Project IN_PROGRESS. S01 and S02 are COMPLETED. All S02 acceptance criteria pass.

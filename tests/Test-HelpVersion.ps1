@@ -167,7 +167,8 @@ function Get-OutputParent {
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
           [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,
-          [object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     if($global:T18Preview) { $global:T18Forbidden.Add('native'); throw 'T18 preview attempted a native call.' }
     $proof=[pscustomobject]@{status='not returned';exit_code=$null;process_released=$false}
     $global:T18NativeProofs.Add($proof)

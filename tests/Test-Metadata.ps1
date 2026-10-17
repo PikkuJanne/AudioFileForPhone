@@ -149,7 +149,8 @@ function Get-ValidatedCoverPath {
 function Get-CoverDiagnostics {param([string]$Path);throw 'T15 cached cover diagnostics must be reused without reopening image'}
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;cover_decode=$false;image_exclusively_reopened=$false;cover_temporarily_corrupted=$false;cover_bytes_restored=$false};$global:T15NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     $saved=$null;$result=$null
@@ -355,7 +356,7 @@ try {
     }
     Invoke-Case 'Completed exit0 without release proof is rejected even after disposed image validation' 'A39,A40' {
         param($case);$originalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock;$calls=0
-        $stub={param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,$ProgressParser,$ProgressCallback,$ProgressDurationSeconds,$ProgressCallbackState);$script:T15NoChildCalls++;return [pscustomobject]@{Status='Completed';ExitCode=0;ProcessReleased=$false;Stdout='';Stderr='';Error='';DurationMilliseconds=0}};$script:T15NoChildCalls=0;$refused=$false
+        $stub={param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,$ProgressParser,$ProgressCallback,$ProgressDurationSeconds,$ProgressCallbackState,[int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000);$script:T15NoChildCalls++;return [pscustomobject]@{Status='Completed';ExitCode=0;ProcessReleased=$false;Stdout='';Stderr='';Error='';DurationMilliseconds=0}};$script:T15NoChildCalls=0;$refused=$false
         try{Set-Item -LiteralPath Function:Invoke-AudioNativeProcess -Value $stub;try{Get-ValidatedCoverPath -Path $blueJpg -FfmpegPath $ffmpeg -PassThru|Out-Null}catch{$refused=$true;$case['reason']=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>')}}finally{Set-Item -LiteralPath Function:Invoke-AudioNativeProcess -Value $originalNative}
         Assert-True ($refused -and $script:T15NoChildCalls -eq 1) 'Cover preflight must not treat Completed/exit0 as release proof.';Assert-FileUnlocked $blueJpg;$case['native_fixture_kind']='explicit no-process stub; no unknown child launched';$case['image_handle_disposed']=$true
     }

@@ -101,7 +101,7 @@ function Invoke-CiHarness {
     } else {
         $resultRow.required_checks = @($child.cases).Count
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
-        if ($Family -in @('native', 'help') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
+        if ($Family -in @('native', 'help', 'shortoperations') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
         }
     }
@@ -234,6 +234,7 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-HelpVersion.ps1' -Family 'help' -RealMedia
     # Characterization records known safe failures; pending future APIs are separate.
     Invoke-CiHarness -RelativePath 'tests/Test-SetupEncodingRegressions.ps1' -Family 'setupencoding' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-ShortOperations.ps1' -Family 'shortoperations' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)

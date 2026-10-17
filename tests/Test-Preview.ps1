@@ -126,7 +126,7 @@ function New-AppCopy {
     }
     if ($Guards) {
         $append = @'
-function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation); Stop-T12Forbidden 'native' }
+function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,[int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000); Stop-T12Forbidden 'native' }
 function Get-ToolPath { param($ExeName,$ScriptDirectory); Stop-T12Forbidden 'tool lookup' }
 function Assert-ToolPrerequisites { param($FfmpegPath,$FfprobePath); Stop-T12Forbidden 'tool prerequisites' }
 function Get-ValidatedCoverPath { param($Path,$FfmpegPath); Stop-T12Forbidden 'cover validation/cache' }

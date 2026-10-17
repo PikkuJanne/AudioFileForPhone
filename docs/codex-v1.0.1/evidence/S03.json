@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "step": "S03",
+  "status": "IN_PROGRESS",
+  "scope": "Bounded short native operations only",
+  "entry_commit": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
+  "tested_source_commit": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
+  "tested_source_note": "Initial local tests use modified working-tree runtime hashes; preparation and final CI bind committed source.",
+  "environment": {
+    "build": "26300.9711",
+    "ps7": "7.6.5",
+    "inherited_console_output_codepage": 65001,
+    "ps51": "5.1.26100.9711",
+    "os": "Windows 11 Pro 26H2 x64"
+  },
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "84b4b70ef17df0bbceba2f1f8292028a6affe6a8bf804a82dd0524ba10be2434"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "dfec8e2f9190e9823c8f217f5d6ee1f17c95de774bda7f59d330499508e3ce52"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "focused_attempt1": [
+    {
+      "name": "S03-shortoperations-ps51-attempt1.json",
+      "exit_code": 0,
+      "status": "pass",
+      "cases": 15,
+      "error": null,
+      "sha256": "3d98b7619a6ecda2d6ede9410cf4dba2602a209bd350bb24c79267ab7dad5e33",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "synthetic_unchanged": true,
+      "shell": "5.1.26100.9711",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps51-attempt1.json",
+      "started_utc": "2026-10-17T16:01:19.1320837Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:01:44.534118Z"
+    },
+    {
+      "name": "S03-shortoperations-ps7-attempt1.json",
+      "exit_code": 0,
+      "status": "pass",
+      "cases": 15,
+      "error": null,
+      "sha256": "5c36eb82f13a8b20649790c7c4212222fb86f518b86f02bae1ac30fe3dc4b2b6",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "synthetic_unchanged": true,
+      "shell": "7.6.5",
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps7-attempt1.json",
+      "started_utc": "2026-10-17T16:01:19.3367374Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:01:44.3658661Z"
+    }
+  ],
+  "remaining_work": [
+    "Final focused rerun with explicit parent exit assertions",
+    "Retained regression suites",
+    "Fresh live equality and exact-head CI",
+    "Full completion handover"
+  ],
+  "entry_github": {
+    "feature": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
+    "conclusion": "success",
+    "push_run": 39045862937,
+    "draft": true,
+    "main": "28f53b10529495754273d55654c7b29e78848c83",
+    "pr": 29,
+    "pr_run": 39045866602
+  },
+  "main_integration": "NOT_INTEGRATED",
+  "publication": "PENDING_S17",
+  "recorded_utc": "2026-10-17T16:02:36.3689371Z"
+}

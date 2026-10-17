@@ -1,3 +1,9 @@
+# S03 preparation: resume S03 if interrupted
+
+S03 is IN_PROGRESS. Finish its retained checks, final focused rerun and exact-head
+CI; update its evidence and handover before marking complete. Do not start S04.
+The following S02 prompt is historical context pending the final S03 handover.
+
 # Next session
 
 S01 and S02 COMPLETED. Next eligible step: S03 - Add bounded short-operation

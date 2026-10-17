@@ -414,14 +414,18 @@ function Invoke-AudioNativeProcess {
         [AllowNull()][scriptblock]$ProgressCallback,
         [AllowNull()][object]$ProgressDurationSeconds,
         [AllowNull()][object]$ProgressParser,
-        [AllowNull()][object]$ProgressCallbackState
+        [AllowNull()][object]$ProgressCallbackState,
+        [ValidateRange(0, 2147483647)][int]$TimeoutMilliseconds = 0,
+        [ValidateNotNullOrEmpty()][string]$Operation = 'Native operation',
+        [ValidateRange(1, 2147483647)][int]$PipeDrainTimeoutMilliseconds = 5000
     )
 
     $result = [ordered]@{
         Status = 'StartFailed'; ExecutablePath = $ExecutablePath; Arguments = [string[]]$Arguments.Clone()
         ExitCode = $null; Stdout = ''; Stderr = ''; StdoutTruncated = $false; StderrTruncated = $false
         StdoutTotalChars = [long]0; StderrTotalChars = [long]0; DurationMilliseconds = [long]0; Error = ''
-        ProcessReleased = $true; ProgressError = ''
+        ProcessReleased = $true; ProgressError = ''; Operation = $Operation
+        TimeoutMilliseconds = $TimeoutMilliseconds; ElapsedMilliseconds = [long]0; PipeDrainCompleted = $false
     }
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
@@ -460,20 +464,35 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 namespace AudioFileForPhone {
     public sealed class NativeCapture : IDisposable {
         private sealed class DrainResult {
-            public string Text;
+            public readonly object Gate = new object();
+            public readonly StringBuilder Text = new StringBuilder();
             public long TotalChars;
-            public string ConsumerError;
+            public string ConsumerError = "";
+            public bool EndOfPipe;
         }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool PeekNamedPipe(SafeFileHandle pipe, IntPtr buffer, uint size, IntPtr read, out uint available, IntPtr left);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ReadFile(SafeFileHandle pipe, byte[] buffer, uint size, out uint read, IntPtr overlapped);
         private Process process;
         private Task<DrainResult> stdoutTask;
         private Task<DrainResult> stderrTask;
+        private readonly DrainResult stdoutState = new DrainResult();
+        private readonly DrainResult stderrState = new DrainResult();
+        private volatile bool stopDrains;
         private bool completed;
         private bool started;
         public bool Released { get; private set; }
+        public bool PipeDrainCompleted { get; private set; }
         public int ExitCode { get; private set; }
         public string Stdout { get; private set; }
         public string Stderr { get; private set; }
@@ -507,41 +526,55 @@ namespace AudioFileForPhone {
             quoted.Append('"');
             return quoted.ToString();
         }
-        private static DrainResult Drain(StreamReader reader, int limit, Action<char[], int> consumer) {
-            StringBuilder retained = new StringBuilder(Math.Min(limit, 4096));
-            char[] buffer = new char[4096];
-            long total = 0;
-            string consumerError = "";
-            while (true) {
-                int count = 0;
-                if (consumer == null) { count = reader.Read(buffer, 0, buffer.Length); }
-                else {
-                    // StreamReader.Read(buffer,...) may wait to fill the buffer.
-                    // Feed progress at line boundaries so sparse records are
-                    // visible promptly while keeping worker buffers bounded.
-                    while (count < buffer.Length) {
-                        int character = reader.Read();
-                        if (character == -1) break;
-                        buffer[count++] = (char)character;
-                        if (character == '\n') break;
-                    }
+        private DrainResult Drain(StreamReader reader, int limit, Action<char[], int> consumer, DrainResult state) {
+            // One worker owns each anonymous read handle. Peek and ReadFile use
+            // that handle sequentially, and read only bytes already available.
+            // No worker blocks in StreamReader.Read/Dispose waiting for a writer
+            // inherited by another process. Use a decoder across UTF-8 fragments.
+            SafeFileHandle pipe = ((FileStream)reader.BaseStream).SafeFileHandle;
+            byte[] bytes = new byte[4096];
+            char[] chars = new char[4097];
+            Decoder decoder = new UTF8Encoding(false, false).GetDecoder();
+            bool first = true;
+            while (!stopDrains) {
+                uint available;
+                bool eof = false;
+                if (!PeekNamedPipe(pipe, IntPtr.Zero, 0, IntPtr.Zero, out available, IntPtr.Zero)) {
+                    int error = Marshal.GetLastWin32Error();
+                    if (error != 109) throw new IOException("Native pipe peek failed (Win32 " + error + ").");
+                    eof = true;
                 }
-                if (count == 0) break;
-                total += count;
-                int keep = Math.Min(count, limit - retained.Length);
-                if (keep > 0) retained.Append(buffer, 0, keep);
+                uint read = 0;
+                if (!eof && available == 0) { Thread.Sleep(10); continue; }
+                if (!eof && !ReadFile(pipe, bytes, Math.Min((uint)bytes.Length, available), out read, IntPtr.Zero)) {
+                    int error = Marshal.GetLastWin32Error();
+                    if (error != 109) throw new IOException("Native pipe read failed (Win32 " + error + ").");
+                    eof = true;
+                }
+                int count = decoder.GetChars(bytes, 0, (int)read, chars, 0, eof);
+                if (first && count > 0) {
+                    first = false;
+                    if (chars[0] == '\uFEFF') { Array.Copy(chars, 1, chars, 0, --count); }
+                }
+                lock (state.Gate) {
+                    state.TotalChars += count;
+                    int keep = Math.Min(count, limit - state.Text.Length);
+                    if (keep > 0) state.Text.Append(chars, 0, keep);
+                    if (eof) state.EndOfPipe = true;
+                }
                 if (consumer != null) {
-                    try { consumer(buffer, count); }
+                    try { consumer(chars, count); }
                     catch (Exception error) {
-                        consumerError = error.GetType().Name + ": " + error.Message;
-                        if (consumerError.Length > 1024) consumerError = consumerError.Substring(0, 1024);
+                        string consumerError = error.GetType().Name + ": " + error.Message;
+                        lock (state.Gate) { state.ConsumerError = consumerError.Substring(0, Math.Min(1024, consumerError.Length)); }
                         // A failed optional observer cannot stop pipe drainage
                         // and leave the owned child blocked on its stdout pipe.
                         consumer = null;
                     }
                 }
+                if (eof) break;
             }
-            return new DrainResult { Text = retained.ToString(), TotalChars = total, ConsumerError = consumerError };
+            return state;
         }
         public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit)
             : this(executablePath, arguments, stdoutLimit, stderrLimit, null) { }
@@ -570,8 +603,8 @@ namespace AudioFileForPhone {
                 StreamReader stderrReader = process.StandardError;
                 // Reuse pool workers rather than allocate two CLR threads and
                 // their native handles for every media item in a long batch.
-                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer, stdoutState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null, stderrState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
                 // Observe faults even if an interrupted caller cannot join a drain.
                 stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
@@ -584,15 +617,19 @@ namespace AudioFileForPhone {
         }
         public bool WaitForExit(int milliseconds) { return process.WaitForExit(milliseconds); }
         public int CaptureExitCode() { ExitCode = process.ExitCode; return ExitCode; }
-        public bool Complete(int milliseconds) {
-            if (!Task.WaitAll(new Task[] { stdoutTask, stderrTask }, milliseconds)) return false;
-            Stdout = stdoutTask.Result.Text;
-            Stderr = stderrTask.Result.Text;
-            StdoutTotalChars = stdoutTask.Result.TotalChars;
-            StderrTotalChars = stderrTask.Result.TotalChars;
+        private void Snapshot() {
+            lock (stdoutState.Gate) {
+                Stdout = stdoutState.Text.ToString(); StdoutTotalChars = stdoutState.TotalChars;
+                ProgressConsumerError = stdoutState.ConsumerError;
+            }
+            lock (stderrState.Gate) { Stderr = stderrState.Text.ToString(); StderrTotalChars = stderrState.TotalChars; }
             StdoutTruncated = StdoutTotalChars > Stdout.Length;
             StderrTruncated = StderrTotalChars > Stderr.Length;
-            ProgressConsumerError = stdoutTask.Result.ConsumerError;
+            PipeDrainCompleted = stdoutState.EndOfPipe && stderrState.EndOfPipe;
+        }
+        public bool Complete(int milliseconds) {
+            if (!Task.WaitAll(new Task[] { stdoutTask, stderrTask }, milliseconds)) return false;
+            Snapshot();
             completed = true;
             return true;
         }
@@ -612,29 +649,40 @@ namespace AudioFileForPhone {
                 // wait is separate from the unlimited normal conversion wait.
                 try { exited = process.WaitForExit(5000); } catch { }
             }
-            // Process.Dispose closes its process handle; explicitly own each pipe
-            // reader/writer on successful completion and on abnormal unwind.
-            try { process.StandardInput.Dispose(); } catch { }
-            try { process.StandardOutput.Dispose(); } catch { }
-            try { process.StandardError.Dispose(); } catch { }
-            // This bounded teardown join is separate from process runtime: normal
-            // conversions have no timeout. Killed/closed pipes should promptly end.
+            // Allow EOF after killing our child; a surviving inherited writer
+            // cannot extend teardown indefinitely. Stop polling before disposing
+            // readers, so stream closure never races a blocked managed read.
+            try {
+                if (stdoutTask != null && stderrTask != null) Task.WaitAll(new Task[] { stdoutTask, stderrTask }, 1000);
+            } catch { }
+            stopDrains = true;
             try {
                 if (stdoutTask != null && stderrTask != null) Task.WaitAll(new Task[] { stdoutTask, stderrTask }, 1000);
                 else if (stdoutTask != null) stdoutTask.Wait(1000);
                 else if (stderrTask != null) stderrTask.Wait(1000);
             } catch { }
+            bool joined = (stdoutTask == null || stdoutTask.IsCompleted) && (stderrTask == null || stderrTask.IsCompleted);
+            Snapshot();
+            bool closed = true;
+            if (started) {
+                try { process.StandardInput.Dispose(); } catch { closed = false; }
+                try { process.StandardOutput.Dispose(); } catch { closed = false; }
+                try { process.StandardError.Dispose(); } catch { closed = false; }
+            }
             if (stdoutTask != null && stdoutTask.IsCompleted) stdoutTask.Dispose();
             if (stderrTask != null && stderrTask.IsCompleted) stderrTask.Dispose();
             process.Dispose();
             process = null;
-            Released = exited;
+            Released = exited && joined && closed && (!started || PipeDrainCompleted);
         }
     }
 }
 '@ -ErrorAction Stop
         }
         Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) {
+            throw (New-Object TimeoutException('Operation deadline expired before native start.'))
+        }
         $result.ProcessReleased = $false
         if ($null -eq $ProgressParser) {
             $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
@@ -643,16 +691,26 @@ namespace AudioFileForPhone {
             $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars, $ProgressParser.Consumer)
         }
         if ($null -ne $Cancellation) { $Cancellation.SetActiveProcessId($capture.ProcessId) }
-        # Short polls allow controlled cancellation without a conversion timeout.
-        while (-not $capture.WaitForExit(100)) {
+        # Zero means unlimited process runtime (encoding/full decode). Only
+        # callers for short operations opt into an operation-wide deadline.
+        while (-not $capture.WaitForExit(50)) {
             Assert-AudioNotCancelled -Cancellation $Cancellation
+            if ($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) {
+                throw (New-Object TimeoutException('Native process exceeded its operation deadline.'))
+            }
             Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
         }
         $result.ExitCode = $capture.CaptureExitCode()
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'CaptureFailed'
-        while (-not $capture.Complete(100)) {
+        $drainTimer = [Diagnostics.Stopwatch]::StartNew()
+        while ($true) {
             Assert-AudioNotCancelled -Cancellation $Cancellation
+            if (($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) -or
+                $drainTimer.ElapsedMilliseconds -ge $PipeDrainTimeoutMilliseconds) {
+                throw (New-Object TimeoutException('Native output pipes did not finish within the operation/drain deadline.'))
+            }
+            if ($capture.Complete(50)) { break }
             Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
         }
         if ($null -ne $ProgressParser) {
@@ -674,6 +732,7 @@ namespace AudioFileForPhone {
         $result.Error = $_.Exception.Message
         $nativeError = $_.Exception.GetBaseException()
         if ($nativeError -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        elseif ($nativeError -is [TimeoutException]) { $result.Status = 'Timeout' }
         if ($nativeError.Data.Contains('AudioFileForPhone.ProcessReleased')) {
             $result.ProcessReleased = [bool]$nativeError.Data['AudioFileForPhone.ProcessReleased']
         }
@@ -683,17 +742,28 @@ namespace AudioFileForPhone {
             $ownedProcessId = $capture.ProcessId
             $capture.Dispose()
             $result.ProcessReleased = $capture.Released
+            $result.PipeDrainCompleted = $capture.PipeDrainCompleted
+            # Snapshot bounded diagnostics even on cancellation/timeout.
+            $result.Stdout = $capture.Stdout; $result.Stderr = $capture.Stderr
+            $result.StdoutTruncated = $capture.StdoutTruncated; $result.StderrTruncated = $capture.StderrTruncated
+            $result.StdoutTotalChars = $capture.StdoutTotalChars; $result.StderrTotalChars = $capture.StderrTotalChars
+            $result.ProgressError = $capture.ProgressConsumerError
             if ($capture.Released -and $null -ne $Cancellation) { $Cancellation.ClearActiveProcessId($ownedProcessId) }
         }
         $timer.Stop()
         $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+        $result.ElapsedMilliseconds = $timer.ElapsedMilliseconds
+        if ($result.Status -eq 'Timeout') {
+            $result.Error = "Timeout during $Operation using '$ExecutablePath' after $($result.ElapsedMilliseconds) ms (operation limit $TimeoutMilliseconds ms; pipe limit $PipeDrainTimeoutMilliseconds ms; process released=$($result.ProcessReleased)). $($result.Error) Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds."
+        }
     }
     return [pscustomobject]$result
 }
 
 function Get-AudioMediaInfo {
     param([string]$Path, [string]$FfprobePath,
-          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60)
     $result = [ordered]@{
         Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
         StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
@@ -714,7 +784,7 @@ function Get-AudioMediaInfo {
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
             'stream=index,codec_type,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
-        ) -Cancellation $Cancellation
+        ) -Cancellation $Cancellation -Operation 'Source media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
             $result.Status = $native.Status
@@ -901,7 +971,8 @@ function Get-AudioOutputValidation {
         [int]$BitrateKbps = 64, [bool]$HasCover = $false,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
-        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60
     )
     $result = [ordered]@{
         Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
@@ -921,10 +992,11 @@ function Get-AudioOutputValidation {
             '-v', 'error', '-show_entries',
             'stream=index,codec_type,codec_name,bit_rate,duration:stream_disposition=attached_pic:format=format_name',
             '-of', 'json', '-i', $Path
-        ) -Cancellation $Cancellation
+        ) -Cancellation $Cancellation -Operation 'Output media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.ProbeResult = $probe
         $result.ProcessReleased = $null -ne $probe.PSObject.Properties['ProcessReleased'] -and $probe.ProcessReleased
         if ($probe.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $probe.Error }
+        if ($probe.Status -eq 'Timeout') { $result.Status = 'Timeout'; throw $probe.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($probe.Status -ne 'Completed' -or $probe.ExitCode -ne 0 -or -not $result.ProcessReleased) {
             $result.Status = 'ProbeFailed'
@@ -1030,7 +1102,8 @@ function Invoke-AudioOutputTransaction {
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments,
         [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
-        [AllowNull()][scriptblock]$ProgressCallback
+        [AllowNull()][scriptblock]$ProgressCallback,
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60
     )
     $result = [ordered]@{
         Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
@@ -1099,10 +1172,11 @@ function Invoke-AudioOutputTransaction {
             -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Validating') | Out-Null
         $canCleanup = $false
         $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
-            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation
+            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation -ProbeTimeoutSeconds $ProbeTimeoutSeconds
         $result.ValidationResult = $validation
         $canCleanup = $validation.ProcessReleased
         if ($validation.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $validation.Error }
+        if ($validation.Status -eq 'Timeout') { $result.Status = 'Timeout'; throw $validation.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($validation.Status -ne 'Success') { throw "Output validation failed ($($validation.Status)): $($validation.Error)" }
         $result.Status = 'PromotionFailed'
@@ -1140,15 +1214,16 @@ function Invoke-AudioOutputTransaction {
 }
 
 function Assert-ToolPrerequisites {
-    param([string]$FfmpegPath, [string]$FfprobePath)
+    param([string]$FfmpegPath, [string]$FfprobePath,
+          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
     $tools = [ordered]@{}
     foreach ($tool in @(@{ Name = 'ffmpeg'; Path = $FfmpegPath }, @{ Name = 'ffprobe'; Path = $FfprobePath })) {
         try {
             $arguments = if ($tool.Name -eq 'ffmpeg') { @('-nostdin', '-version') } else { @('-version') }
-            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments
+            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments -Operation ($tool.Name + ' version check') -TimeoutMilliseconds $TimeoutMilliseconds
             $version = ($native.Stdout -split '\r?\n' | Select-Object -First 1)
             if ($native.Status -ne 'Completed') { throw "$($native.Status): $($native.Error)" }
-            if ($native.ExitCode -ne 0 -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
+            if ($native.ExitCode -ne 0 -or -not $native.ProcessReleased -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
                 throw 'Expected a successful tool version response.'
             }
             $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version }
@@ -1156,8 +1231,9 @@ function Assert-ToolPrerequisites {
         }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
-    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders')
-    if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or $encoders.StdoutTruncated -or
+    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders') -Operation 'ffmpeg encoder capability check' -TimeoutMilliseconds $TimeoutMilliseconds
+    if ($encoders.Status -ne 'Completed') { throw "ffmpeg encoder capability check failed ($($encoders.Status)): $($encoders.Error)" }
+    if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or -not $encoders.ProcessReleased -or $encoders.StdoutTruncated -or
         ($encoders.Stdout + "`n" + $encoders.Stderr) -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {
         throw "ffmpeg does not provide the required libmp3lame encoder: $FfmpegPath"
     }

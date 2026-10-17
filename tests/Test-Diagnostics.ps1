@@ -144,7 +144,8 @@ function New-AudioCancellationContext {
 }
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;cancelled_encoder=$false;owned_partial_seen=$false};$global:T14NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     $working=@($Arguments|Where-Object{$_.EndsWith('.partial',[StringComparison]::Ordinal)})

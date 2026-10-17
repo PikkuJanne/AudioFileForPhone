@@ -67,3 +67,14 @@ D18 - 2026-10-17, S02 checkpoint: preparation
       ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf. Mark S02 complete and S03 eligible
       but NOT_STARTED; final docs-only containing HEAD/CI is observed after push.
       Main integration and S16/S17 exact-byte publication authority are unchanged.
+
+D19 - 2026-10-17, S03 deadlines: extend the existing native helper with opt-in
+      operation deadlines, retaining zero/unlimited encode/full-decode runtime.
+      Version/capability checks default to 15 seconds; source/output probes to
+      60 seconds with public ProbeTimeoutSeconds override. Independent pipe
+      polling avoids blocked reader disposal; retain bounded diagnostic snapshots
+      and require owned child exit plus drained/disposed pipes for release proof.
+      Held inherited writers withhold release and preserve transaction partials.
+      No process tree/name termination, persistent settings or dependency download.
+      Adapt retained proxies additively; preserve all old assertions/contracts.
+      Normal bounded S03 authority suffices; main/release authority is unchanged.

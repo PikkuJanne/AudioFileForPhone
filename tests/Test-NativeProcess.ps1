@@ -135,7 +135,10 @@ function Invoke-OwnedNative {
         [AllowNull()][scriptblock]$ProgressCallback,
         [AllowNull()][object]$ProgressDurationSeconds,
         [AllowNull()][object]$ProgressParser,
-        [AllowNull()][object]$ProgressCallbackState
+        [AllowNull()][object]$ProgressCallbackState,
+        [int]$TimeoutMilliseconds = 0,
+        [string]$Operation = 'Native operation',
+        [int]$PipeDrainTimeoutMilliseconds = 5000
     )
     # Intercept nested prerequisite/probe/cover calls as well as direct fixtures.
     # Keep only scalar evidence; never retain a live Process or capture handle.

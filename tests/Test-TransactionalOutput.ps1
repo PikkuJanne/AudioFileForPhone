@@ -98,8 +98,9 @@ function New-NativeResult {
     return [pscustomobject]@{ Status = $Status; ExitCode = $Code; Stdout = $Stdout; Stderr = $Stderr; Error = $Stderr; StdoutTruncated = $Truncated; StderrTruncated = $false; ElapsedMilliseconds = 0; ProcessReleased = $Released }
 }
 function Invoke-RealNative {
-    param([string]$Tool, [string[]]$NativeArguments)
-    return & $script:originalNative -ExecutablePath $Tool -Arguments $NativeArguments
+    param([string]$Tool, [string[]]$NativeArguments,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
+    return & $script:originalNative -ExecutablePath $Tool -Arguments $NativeArguments -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
 }
 function Invoke-RealSuccess {
     param([string]$Tool, [string[]]$NativeArguments)
@@ -152,7 +153,8 @@ function Set-NativeMock {
     param([string]$Mode, [string]$CopyPath = '', [string]$Json = '')
     $script:faultMode = $Mode; $script:encodeCopy = $CopyPath; $script:probeJson = $Json; $script:encoderCalls = 0; $script:capturedWorking = ''
     Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value {
-        param([string]$ExecutablePath, [string[]]$Arguments)
+        param([string]$ExecutablePath, [string[]]$Arguments,
+              [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
         $encode = $ExecutablePath -ieq $ffmpeg -and @($Arguments | Where-Object { $_ -eq '-b:a' }).Count -gt 0
         if ($encode) {
             $script:encoderCalls++; $work = $Arguments[$Arguments.Count - 1]; $script:capturedWorking = $work
@@ -184,7 +186,7 @@ function Set-NativeMock {
         }
         if ($script:faultMode -eq 'decode-nonzero' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 23 '' 'controlled integrity decode failure' }
         if ($script:faultMode -eq 'decode-unreleased' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 0 '' 'controlled exit ownership unknown' 'Completed' $false $false }
-        return Invoke-RealNative $ExecutablePath $Arguments
+        return Invoke-RealNative $ExecutablePath $Arguments -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
     }
 }
 

@@ -64,6 +64,11 @@ calling tools, checking cover/media or prompting. Root is provisional; durations
 writability and dependency availability remain unverified. Returns Previewed/0 on
 success. Remove this switch to convert with the same naming/metadata options.
 
+.PARAMETER ProbeTimeoutSeconds
+Advanced media-probe deadline in seconds (default 60, range 1-2147483). Increase
+for large files or slow storage after a probe Timeout. Applies to source and output
+probes. Encoding and full audio decode have no short fixed runtime ceiling.
+
 .EXAMPLE
 .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
 
@@ -142,7 +147,10 @@ param(
     [string]$OutputParent,
 
     # Read-only preview using the same discovery and naming planner as conversion
-    [switch]$DryRun
+    [switch]$DryRun,
+
+    [ValidateRange(1, 2147483)]
+    [int]$ProbeTimeoutSeconds = 60
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -546,8 +554,9 @@ foreach ($plan in $plans) {
     $fileStatus = 'ProbeFailed'; $fileReason = ''
     try {
     Write-Host "       [DEBUG] Running ffprobe..."
-    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
+    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
+    if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
     if ($media.Status -ne 'Success') {
         throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
@@ -615,7 +624,7 @@ foreach ($plan in $plans) {
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
-            -ProgressCallback $fileProgressCallback
+            -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {

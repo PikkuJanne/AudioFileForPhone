@@ -102,6 +102,14 @@ before returning the child exit code. See the security note above before using i
 | `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
 | `-Interactive` | Optional cover and tag prompts before conversion; cover picker needs STA. Ignored during preview. |
 | `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
+| `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
+
+Version and encoder capability checks each have a 15-second deadline. A timeout
+reports the operation, executable, elapsed time and whether process release was
+proved. Media probes use the deadline above; encoding and full audio decode have
+no short fixed runtime ceiling. Pipe completion after child exit is bounded
+separately at five seconds, with bounded teardown. An unproved release retains
+the clearly incomplete working file and reports why.
 
 Inputs are `.mp3`, `.m4a` and `.ogg`, case-insensitively. OGG supports Vorbis and
 Opus audio. **`.opus`, `.wav`, `.flac` and `.m4b` are not scanned.** An unsupported
