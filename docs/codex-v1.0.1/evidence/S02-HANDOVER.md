@@ -1,10 +1,13 @@
-# S02 handover - IN_PROGRESS checkpoint
+# S02 handover - COMPLETED
 
 ## Outcome
 
-S02-A1/A2/A3 pass locally. The current checkpoint still requires push, fresh live
-equality, exact-head CI and the completion record. S01 remains complete; S03 has
-not started. Captured failures remain unfixed by design in this step.
+S02-A1/A2/A3 pass. Reviewed preparation 76339f97211868b3bd23bb1557cc91469d287270
+is pushed, clean/live-equal under both local shells, and green in exact-head push
+and associated PR CI. Downloaded structured reports verify the new family actually
+executed. Final docs-only record receives its own post-push live/CI observation in
+the session response. S01 remains complete; S03 has not started. Captured failures
+remain unfixed by design in this step.
 
 ## Changes
 
@@ -33,6 +36,8 @@ inherited PSModulePath is removed only from its environment. Console output page
 | CI pure contracts | tests/ci/Test-CiContracts.ps1 -EvidencePath docs/codex-v1/evidence/T17-unit-ps51-attempt20261017.json (and ps7) | Both actual local shells; no media | PASS 31 cases each | S02.json retained_suites |
 | Evidence overwrite refusal | Repeat the PS5.1 regression command with existing final1 destination | Same client | Expected exit 1 before conversion; evidence SHA256 unchanged | S02.json evidence_overwrite_guard |
 | Independent review | Read-only subagent audit plus root intended-diff/privacy/scope/whitespace checks | Actual new harness and two-line CI change | No material blockers; bounded pipe review fix included | S02.json review |
+| Feature sync | Each shell with common flags above, -File docs/codex-v1/tools/Test-GitSync.ps1 -RepoPath C:/projects/AudioFileForPhone-main -AsJson | Preparation 76339f97211868b3bd23bb1557cc91469d287270 | PASS clean/live-equal at 15:32:02.7656208Z / 15:32:05.3191008Z | S02.json checkpoint_verification |
+| Exact-head CI and PR checks | gh run view 39045431885 / 39045437165 --repo PikkuJanne/AudioFileForPhone --json headSha,status,conclusion,jobs; gh run download each into private local evidence | Push checks feature 76339f97211868b3bd23bb1557cc91469d287270; PR integration checkout ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf | PASS all four jobs; source unchanged, exact event checkout, 12 focused cases + all retained families verified from artifacts | S02.json ci |
 
 Each focused shell run records two missing-tool failures (exit 1, converted 0,
 neither command resolvable, output parent absent), four normal default controls
@@ -67,9 +72,14 @@ https://github.com/PikkuJanne/AudioFileForPhone/pull/29. Entry local/live HEAD i
 888b4f12da31af417b4f03c050147440fe0cf27c, clean; exact-head push 39044347056 and
 PR 39044349551 pass both jobs. Local/live main remain
 28f53b10529495754273d55654c7b29e78848c83. Fetch and independent ls-remote confirmed
-these identities; no main integration performed. Checkpoint push/equality/CI are
-pending here and must be observed after push. No frozen release SHA or ZIP exists.
-The final containing commit cannot store its own SHA; final response reports it.
+these entry identities. Preparation 76339f97211868b3bd23bb1557cc91469d287270 was
+pushed and independently verified clean/equal at 15:32:02Z (PS5.1) and 15:32:05Z
+(PS7). Push CI39045431885 and PR CI39045437165 pass both jobs; downloaded artifact
+reports confirm the exact feature/integration checkout distinction above. Main
+integration remains NOT_INTEGRATED, deferred to S14 ordinary reviewed policy and
+existing owner-approval default. No frozen release SHA or ZIP exists. The final
+containing commit cannot store its own SHA; final response reports its fresh
+live equality and exact-commit CI, and the next thread must refresh them.
 
 ## Decisions, risks and blockers
 
@@ -86,8 +96,34 @@ No repeated diagnostics, manual commands, PATH edits or personal media requested
 
 ## Next step and fully filled prompt
 
-Until checkpoint verification completes, resume S02 with the filled prompt in
-NEXT_SESSION.md. S03 is NOT_STARTED; no next-step implementation in this thread.
+Next eligible step is S03 - Add bounded short-operation execution, NOT_STARTED.
+Start a new thread with this prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+    docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1, draft PR #29:
+    https://github.com/PikkuJanne/AudioFileForPhone/pull/29. Read AGENTS.md,
+    CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md, evidence/S02.json and
+    evidence/S02-HANDOVER.md; inspect actual diff and refresh local/live feature
+    and main identities plus exact-head CI. Complete ONLY S03 - Add bounded
+    short-operation execution. Read tasks/S03.md and its referenced specs, plus
+    specs/SYNC_AND_RELEASE.md. S01/S02 are complete; do not reset/reimport them.
+    Last independently verified preparation checkpoint is
+    76339f97211868b3bd23bb1557cc91469d287270. Actual local Windows 11 Pro 26H2
+    26300.9711 x64 has PS5.1 5.1.26100.9711 and PS7 7.6.5. Local FFmpeg/ffprobe
+    C:\ffmpeg\bin report 2026-10-08-git-ec420ba161 essentials. S02 final1 passes
+    12 cases per shell; both retained baseline suites and 31 CI contracts per
+    shell pass. Known late bitrate failures remain captured, not fixed; saved
+    selection APIs remain pending. Runtime remains unchanged from
+    28f53b10529495754273d55654c7b29e78848c83. Keep real FFmpeg suites, historical
+    T-prefixed evidence contracts and inherited UTF8 CP65001; use isolated owned
+    fixtures, public OutputParent and per-process RemoteSigned. Do not repeat
+    owner diagnostics or scan ordinary Music/personal media. Preserve defaults,
+    source safety, artwork and published v1.0.0. Main integration remains separate
+    under the existing owner-approval default. Update evidence/state/status/
+    next-session/decisions and full handover; test/review/commit/push intended work,
+    verify fresh live equality and exact-commit CI. Give filled next-thread prompt,
+    then STOP. Do not start S04. Fixed final deliverable is public v1.0.1; only
+    separately started S17 publishes S16's exact accepted source/assets.
 
 ## Stop
 

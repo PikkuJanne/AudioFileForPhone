@@ -59,3 +59,11 @@ D17 - 2026-10-17, S02 classification: Windows 11 26300.9711 with the local
       selection and external-selection success stay PENDING_API; an owned JSON
       fixture is not a production config pass. Windows 10/other build/full matrix
       evidence remains open for later acceptance. No owner diagnostics needed.
+D18 - 2026-10-17, S02 checkpoint: preparation
+      76339f97211868b3bd23bb1557cc91469d287270 is clean/live-equal in PS5.1 and
+      PS7; push CI39045431885 and PR CI39045437165 pass. Downloaded reports prove
+      new focused family execution as well as old retained suites. Record push
+      exact feature checkout separately from PR integration
+      ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf. Mark S02 complete and S03 eligible
+      but NOT_STARTED; final docs-only containing HEAD/CI is observed after push.
+      Main integration and S16/S17 exact-byte publication authority are unchanged.
