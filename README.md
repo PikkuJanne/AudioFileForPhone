@@ -22,7 +22,8 @@ together:
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
-- `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (existing-tool setup)
+- `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (dependency setup)
+- `AudioFileForPhone.ManagedSetup.ps1` and `tools/ffmpeg-download.json` (optional pinned download)
 
 For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe`. Selection order is
 `-FfmpegDirectory`, a deliberately saved user selection, a complete pair beside
@@ -30,8 +31,8 @@ the scripts, then `PATH`. Explicit, saved and app-local choices require both
 regular executables in that directory. An incomplete local pair or an invalid
 explicit/saved choice stops preflight with repair guidance. Startup checks that
 both run and that FFmpeg provides `libmp3lame`, and prints the origin and paths.
-FFmpeg stays external. Existing-tool setup needs no network access; its download
-choice is unavailable until optional download support is implemented. Conversion
+FFmpeg stays external. Existing-tool setup needs no network access. Separate setup
+also offers an optional pinned vendor download after affirmative consent. Conversion
 never downloads tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
@@ -112,8 +113,10 @@ picker is used when available; otherwise type the exact directory path without
 surrounding quotes. Only that directory is checked. Setup shows both paths,
 versions, detected architecture and SHA-256 hashes, then asks whether to remember
 the choice. **N** keeps it for this launch only; **Q** cancels. **M** gives manual
-instructions. **D** explains that downloading is unavailable and returns without
-network access. An invalid pair stops setup without replacing a saved choice.
+instructions. In the separate setup entry, **D** displays the pinned provider,
+build, transfer size, destination, SHA-256, source and license before asking **Y**
+to download. Any other answer cancels. An invalid pair stops setup without
+replacing a saved choice.
 
 `Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
 STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
@@ -132,10 +135,35 @@ was **not remembered** and gives an explicit `-FfmpegDirectory` conversion comma
 The valid pair can still be used for the current interactive conversion.
 
 When an `-Interactive` conversion cannot resolve its tools, it offers the same
-setup before metadata prompts and resumes that launch with the validated pair.
+existing-tool setup before metadata prompts and resumes that launch with the validated pair.
+Its **D** choice gives the separate setup command and stops without downloading.
 Ordinary conversion never prompts, downloads or saves settings; it reports the
 exact setup repair command. Preview never starts setup, reads config or calls
 tools, including when `-Interactive` is supplied.
+
+For optional managed setup, review [the pinned manifest](tools/ffmpeg-download.json)
+and its vendor/license references. It selects the exact Gyan Windows x64 static
+9.0.2 essentials ZIP, downloaded directly from the publisher. All extracted vendor
+files, GPLv3 notices and provenance are retained in a new private versioned
+directory. Tools are checked and a tiny synthetic MP3 is encoded, probed and fully
+decoded before the install is offered for selection. Existing installations stay
+in place; future launches never update them automatically.
+
+To consent explicitly without prompts:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -Download -Consent -Remember -NonInteractive
+```
+
+`-Download` without `-Consent` refuses. Omit `-Remember` to install/validate and
+display a current-run command without changing config. Default managed storage is
+`managed` beside the selected config file; `-ManagedRoot` chooses a private portable
+storage directory. `-ConfigPath` still selects the same config for setup/conversion.
+HTTPS certificate checks, pinned SHA-256, transfer/time limits and safe extraction
+bounds must pass. Ctrl+C cancels owned work; offline/errors preserve the previous
+selection and leave manual setup available. No admin access or persistent PATH,
+registry or policy change is needed. The repository/package contains no FFmpeg
+binaries. A newer pin requires a reviewed application change.
 
 ## Inputs and options
 

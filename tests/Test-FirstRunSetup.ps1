@@ -336,7 +336,7 @@ try {
         }
         $case['observations'] = $observations
     }
-    Invoke-Case 'manual and unavailable download choices return bounded guidance without pretending setup succeeded' 'S05-A2' {
+    Invoke-Case 'manual and separate download choices return bounded guidance without pretending setup succeeded' 'S05-A2,S06-A1' {
         param($case)
         $observations = @()
         foreach ($mode in @('M','D')) {
@@ -344,7 +344,7 @@ try {
             $child = Invoke-ProductionChild ('Guidance' + $mode) (Get-AppCommand $config $parent -Interactive) -Responses @($mode) -ScriptedUI
             Assert-True ($child.ExitCode -eq 1 -and -not (Test-Path -LiteralPath $config) -and -not (Test-Path -LiteralPath $parent) -and $child.Audit.setup_prompts.Count -eq 1) 'Guidance-only choice must stop without tools, settings or output.'
             if ($mode -ceq 'M') { Assert-True ($child.Text -match '(?i)ffmpeg.exe' -and $child.Text -match '(?i)ffprobe.exe' -and $child.Text -match 'Setup-AudioFileForPhone.ps1') 'Manual/offline instructions must identify both binaries and exact setup entry.' }
-            else { Assert-True ($child.Text -match '(?i)unavailable|not available' -and $child.Text -match 'S06') 'S05 download choice must honestly say unavailable until S06.' }
+            else { Assert-True ($child.Text -match 'Conversion never downloads tools' -and $child.Text -match 'Setup-AudioFileForPhone.ps1' -and $child.Text -match 'No files were downloaded') 'Conversion must direct optional download to separate setup without network or configuration changes.' }
             $observations += [pscustomobject]@{choice=$mode;exit_code=$child.ExitCode;native_calls=$child.Audit.native_proofs.Count;settings_created=$false}
         }
         $case['observations'] = $observations

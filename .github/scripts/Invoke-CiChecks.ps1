@@ -194,7 +194,7 @@ try {
     $allPaths = @(& git -C $projectRoot ls-files --cached --others --exclude-standard)
     if ($LASTEXITCODE -ne 0) { throw 'Cannot enumerate reviewed repository sources.' }
     $sourcePaths = @($allPaths | Where-Object { $_ -match '\.(ps1|psd1)$' -and ($_ -notmatch '/' -or $_ -match '^(tests/|tools/|\.github/scripts/|docs/codex-v1/tools/)') } | Sort-Object -Unique)
-    $sourcePaths += @('.github/workflows/windows-ci.yml', '.github/dependencies.json', 'tools/package-files.json')
+    $sourcePaths += @('.github/workflows/windows-ci.yml', '.github/dependencies.json', 'tools/package-files.json', 'tools/ffmpeg-download.json')
     $sourcePaths = @($sourcePaths | Sort-Object -Unique)
     $report.source_before = Get-CiSourceInventory $sourcePaths
     foreach ($relative in @($sourcePaths | Where-Object { $_ -match '\.(ps1|psd1)$' })) {
@@ -210,7 +210,7 @@ try {
         throw 'Exact pinned analyzer module/version must be loaded from the verified extraction.'
     }
     $report.analysis.analyzer_version = $analyzer[0].Version.ToString()
-    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
+    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -237,6 +237,7 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-ShortOperations.ps1' -Family 'shortoperations' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ToolSelection.ps1' -Family 'toolselection' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-FirstRunSetup.ps1' -Family 'firstrunsetup' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-ManagedSetup.ps1' -Family 'managedsetup' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)

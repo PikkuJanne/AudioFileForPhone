@@ -87,7 +87,8 @@ function Assert-PackageCleanSource {
 
 function Assert-PackageMemberName {
     param([string]$Name)
-    # This release uses root files only; reject path syntax instead of normalizing it.
+    # Only the reviewed inert pin may be nested; all other files remain root-only.
+    if ($Name -ceq 'tools/ffmpeg-download.json') { return }
     if ($Name -notmatch '^[A-Za-z0-9][A-Za-z0-9._-]*$' -or $Name -eq '.' -or $Name -eq '..' -or
         $Name.EndsWith('.') -or $Name -match '^(?i:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)') {
         throw 'Unsafe package member name; only literal ordinary root file names are allowed.'
@@ -241,7 +242,7 @@ try {
     $allowlist = ($allowlistText.Lines -join "`n") | ConvertFrom-Json -ErrorAction Stop
     if ($allowlist.schema_version -ne 1) { throw 'Package allowlist requires schema_version 1.' }
     $members = @($allowlist.files)
-    $required = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'README.md', 'SUPPORT.md', 'CHANGELOG.md', 'SECURITY.md', 'LICENSE')
+    $required = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'tools/ffmpeg-download.json', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'README.md', 'SUPPORT.md', 'CHANGELOG.md', 'SECURITY.md', 'LICENSE')
     $unique = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
     foreach ($member in $members) {
         if ($member -isnot [string]) { throw 'Package allowlist files must be strings.' }

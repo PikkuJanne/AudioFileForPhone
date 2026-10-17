@@ -283,7 +283,8 @@ function Get-AudioPathTool {
 
 function Resolve-AudioToolSelection {
     param([string]$FfmpegDirectory, [string]$ConfigPath,
-          [Parameter(Mandatory = $true)][string]$ScriptDirectory)
+          [Parameter(Mandatory = $true)][string]$ScriptDirectory,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
     $configFile = Get-AudioConfigPath -ConfigPath $ConfigPath
     $origin = $null; $pair = $null
     if ($PSBoundParameters.ContainsKey('FfmpegDirectory') -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
@@ -320,7 +321,8 @@ function Resolve-AudioToolSelection {
             }
         }
     }
-    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath }
+    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation }
+    catch [OperationCanceledException] { throw }
     catch { throw "$origin FFmpeg selection failed validation: $($_.Exception.Message) Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted." }
     Write-Host ("[INFO] FFmpeg selection origin: {0}" -f $origin)
     return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = $origin; ConfigPath = $configFile; Directory = $pair.Directory }
@@ -487,17 +489,26 @@ function Invoke-AudioToolSetup {
         [string]$Reason,
         [string]$FfmpegDirectory,
         [switch]$Remember,
-        [switch]$NonInteractive
+        [switch]$NonInteractive,
+        [switch]$AllowManagedDownload,
+        [switch]$Download,
+        [switch]$Consent,
+        [string]$ManagedRoot
     )
     $result = [ordered]@{ Status = 'NotConfigured'; Selection = $null; Remembered = $false; SaveError = $null; Error = $null }
     $guards = New-Object 'Collections.Generic.List[IDisposable]'
     try {
         Assert-AudioNotCancelled
         $explicit = $PSBoundParameters.ContainsKey('FfmpegDirectory')
+        $downloadRequested = [bool]$Download
+        if ($Download -and (-not $AllowManagedDownload -or $explicit)) { throw '-Download is available only in the separate setup entry and cannot be combined with -FfmpegDirectory.' }
+        if ($Consent -and -not $Download) { throw '-Consent requires explicit -Download.' }
+        if ($Download -and -not $Consent) { throw 'Download refused: explicit -Download requires -Consent. No files were downloaded or installed.' }
+        if ($ManagedRoot -and -not $AllowManagedDownload) { throw '-ManagedRoot is available only in the separate setup entry.' }
         if ($explicit -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
             throw '-FfmpegDirectory must be a non-empty directory containing ffmpeg.exe and ffprobe.exe.'
         }
-        if (-not $explicit) {
+        if (-not $explicit -and -not $Download) {
             if ($Remember) { throw '-Remember requires an explicit -FfmpegDirectory. Interactive setup asks whether to remember the selected pair.' }
             if ($NonInteractive -or -not (Test-AudioSetupInteractionAvailable)) {
                 throw ('Setup requires an explicit existing-tool directory when console input is unavailable. Repair action: ' +
@@ -505,7 +516,7 @@ function Invoke-AudioToolSetup {
             }
             if (-not [string]::IsNullOrWhiteSpace($Reason)) { Write-Host ('FFmpeg setup is needed: ' + $Reason) }
             Write-Host 'No conversion has started. Select an existing FFmpeg pair to continue this launch.'
-            Write-Host 'S = select existing folder | M = manual/offline instructions | D = download (unavailable until S06) | Q = cancel'
+            Write-Host 'S = select existing folder | M = manual/offline instructions | D = optional managed setup | Q = cancel'
             $answer = Read-AudioSetupResponse -Prompt 'Setup selection'
             if ($null -eq $answer -or [string]::IsNullOrWhiteSpace($answer) -or $answer.Trim() -ieq 'Q') {
                 $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled; no selection was changed.'
@@ -518,10 +529,15 @@ function Invoke-AudioToolSetup {
                     return [pscustomobject]$result
                 }
                 'D' {
-                    Write-Host 'Optional setup download is unavailable until S06. No files were downloaded or installed.'
-                    Write-AudioSetupManualInstructions -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath
-                    $result.Error = 'Optional download is unavailable; select an existing pair or follow the manual/offline instructions.'
-                    return [pscustomobject]$result
+                    if (-not $AllowManagedDownload) {
+                        $setupCommand = "& '" + ([IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'Setup-AudioFileForPhone.ps1')).Replace("'", "''") + "'"
+                        if ($ConfigPath) { $setupCommand += " -ConfigPath '" + $ConfigPath.Replace("'", "''") + "'" }
+                        Write-Host 'Conversion never downloads tools. Run separate setup and choose D to review the optional download:'
+                        Write-Host $setupCommand
+                        $result.Error = 'Optional download requires separate setup. No files were downloaded or installed.'
+                        return [pscustomobject]$result
+                    }
+                    $downloadRequested = $true
                 }
                 'S' {
                     $picked = Select-AudioSetupDirectory
@@ -547,6 +563,48 @@ function Invoke-AudioToolSetup {
                 default { throw 'Invalid setup selection. Run setup again and choose S, M, D or Q; no selection was changed.' }
             }
         }
+        if ($downloadRequested) {
+            $managedHelper = [IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'AudioFileForPhone.ManagedSetup.ps1')
+            if (-not (Test-Path -LiteralPath $managedHelper -PathType Leaf)) { throw 'Managed setup helper is missing. Restore the complete application package or select an existing pair.' }
+            . $managedHelper
+            $manifest = Get-AudioManagedDownloadManifest -ManifestPath ([IO.Path]::Combine($ScriptDirectory, 'tools', 'ffmpeg-download.json'))
+            $storage = $ManagedRoot
+            if ([string]::IsNullOrWhiteSpace($storage)) { $storage = [IO.Path]::Combine([IO.Path]::GetDirectoryName((Get-AudioConfigPath -ConfigPath $ConfigPath)), 'managed') }
+            $storage = Get-AudioSelectionPath -Path $storage
+            Write-Host ('Optional download: ' + $manifest.provider + ' / ' + $manifest.build)
+            Write-Host ('Publisher URL: ' + $manifest.url)
+            Write-Host ('Transfer: ' + $manifest.archive_size_bytes + ' bytes; destination: ' + $storage)
+            Write-Host ('SHA256: ' + $manifest.sha256)
+            Write-Host ('Vendor license/notices: ' + $manifest.license_url + '; source: ' + $manifest.source_url)
+            Write-Host 'Downloads executable code directly from this publisher. The pin verifies the reviewed bytes; review the publisher and its GPL terms. All vendor files/notices are retained. No global install or automatic updates.'
+            if (-not $Consent) {
+                $answer = Read-AudioSetupResponse -Prompt 'Download and install this exact build? Y = consent | N/Enter/Q = cancel'
+                if ($null -eq $answer -or $answer.Trim() -ine 'Y') {
+                    $result.Status = 'Cancelled'; $result.Error = 'Download consent was not granted. No files were downloaded or installed.'
+                    return [pscustomobject]$result
+                }
+            }
+            Assert-AudioNotCancelled
+            # Polling console capture owns keys only during work, never while a
+            # menu/consent/remember ReadLine owns input. Reuse injected caller
+            # cancellation where present; standalone setup creates a scoped owner.
+            $priorCancellation = Get-AudioCancellationContext
+            $managedCancellation = $null
+            try {
+                if ($null -eq $priorCancellation) {
+                    $managedCancellation = New-AudioCancellationContext -CaptureConsole
+                    $script:AudioCancellationContext = $managedCancellation
+                }
+                $installed = Invoke-AudioManagedToolInstall -Manifest $manifest -ConfigPath $ConfigPath -ManagedRoot $storage -Consent -CancellationState (Get-AudioCancellationContext)
+            }
+            finally {
+                if ($null -ne $managedCancellation) {
+                    $managedCancellation.Dispose()
+                    $script:AudioCancellationContext = $priorCancellation
+                }
+            }
+            $FfmpegDirectory = $installed.ToolSelection.Directory
+        }
         Assert-AudioNotCancelled
         # The exact explicitly selected directory is accepted; no recursive search
         # or automatic installation-root/bin guessing grants execution authority.
@@ -565,7 +623,7 @@ function Invoke-AudioToolSetup {
             Write-Host ('SHA256 ' + $tool.Path + ': ' + $hash)
         }
         Write-Host 'Capability checks and these hashes identify the selected files; they do not prove publisher authenticity.'
-        if (-not $explicit) {
+        if (-not $explicit -and -not $Download) {
             $answer = Read-AudioSetupResponse -Prompt 'Remember this directory for future launches? Y = yes | N/Enter = this launch only | Q = cancel'
             if ($null -eq $answer -or $answer.Trim() -ieq 'Q') {
                 $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled before remembering or using the selection.'
@@ -1724,12 +1782,14 @@ function Get-AudioExecutableArchitecture {
 
 function Assert-ToolPrerequisites {
     param([string]$FfmpegPath, [string]$FfprobePath,
-          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
+          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
     $tools = [ordered]@{}
     foreach ($tool in @(@{ Name = 'ffmpeg'; Path = $FfmpegPath }, @{ Name = 'ffprobe'; Path = $FfprobePath })) {
         try {
             $arguments = if ($tool.Name -eq 'ffmpeg') { @('-nostdin', '-version') } else { @('-version') }
-            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments -Operation ($tool.Name + ' version check') -TimeoutMilliseconds $TimeoutMilliseconds
+            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments -Operation ($tool.Name + ' version check') -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+            Assert-AudioNotCancelled -Cancellation $Cancellation
             $version = ($native.Stdout -split '\r?\n' | Select-Object -First 1)
             if ($native.Status -ne 'Completed') { throw "$($native.Status): $($native.Error)" }
             if ($native.ExitCode -ne 0 -or -not $native.ProcessReleased -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
@@ -1739,9 +1799,11 @@ function Assert-ToolPrerequisites {
             $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version; Architecture = $architecture }
             Write-Host ("[INFO] {0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
         }
+        catch [OperationCanceledException] { throw }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
-    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders') -Operation 'ffmpeg encoder capability check' -TimeoutMilliseconds $TimeoutMilliseconds
+    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders') -Operation 'ffmpeg encoder capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+    Assert-AudioNotCancelled -Cancellation $Cancellation
     if ($encoders.Status -ne 'Completed') { throw "ffmpeg encoder capability check failed ($($encoders.Status)): $($encoders.Error)" }
     if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or -not $encoders.ProcessReleased -or $encoders.StdoutTruncated -or
         ($encoders.Stdout + "`n" + $encoders.Stderr) -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {

@@ -107,8 +107,10 @@ If the trusted FFmpeg build is already extracted, no internet connection or PATH
 edit is needed. Run setup and choose **S**, then select the exact folder containing
 both `ffmpeg.exe` and `ffprobe.exe`. If the picker is unavailable, type that folder
 without surrounding quotes. Cancel exits 130; an invalid pair exits 1 without
-replacing a saved selection. **M** prints manual instructions, while the download
-choice explains that it is unavailable and performs no network operation.
+replacing a saved selection. **M** prints manual instructions. In separate setup,
+**D** presents the pinned vendor/build, bytes, destination, SHA-256 and source/license
+references, then requires **Y** before downloading. In conversion, **D** only prints
+the separate setup route; conversion itself never downloads tools.
 
 For a command that never prompts, replace the example directory with your reviewed
 installation and run from the application folder:
@@ -144,6 +146,18 @@ Interactive setup requires a readable console. Redirected input and PowerShell's
 they never assume consent. Ordinary conversion without `-Interactive` returns
 the repair action instead of opening setup. `-DryRun` skips setup and dependency
 checks entirely.
+
+Optional managed setup uses the exact reviewed Gyan 9.0.2 essentials Windows x64
+ZIP in [tools/ffmpeg-download.json](tools/ffmpeg-download.json). Review that manifest
+before using `Setup-AudioFileForPhone.ps1 -Download -Consent -Remember -NonInteractive`.
+Both switches are required for unattended download; `-Remember` separately permits
+saving. `-ManagedRoot` overrides private storage, otherwise `managed` sits beside
+the selected config. No global install, user-managed tool replacement or automatic
+update occurs. Keep the installed vendor files, GPLv3 notices and AudioFileForPhone-provenance.json
+together. The publisher's license/source terms apply independently of this app's MIT
+license. Hash mismatch, invalid ZIP, offline/timeout and cancellation stop without
+changing the previous config. Retry separate setup or use **S** with an existing
+trusted offline build; do not disable verification to accept changed bytes.
 
 ## Common problems
 

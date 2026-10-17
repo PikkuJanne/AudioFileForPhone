@@ -1,7 +1,8 @@
 # Dependency and package security
 
 AudioFileForPhone runs locally with the permissions of the user who starts it.
-It has no telemetry, account, automatic upload, production downloader or updater.
+It has no telemetry, account, automatic upload or updater. Only the separate
+user-invoked setup helper offers a pinned download after affirmative consent.
 FFmpeg and ffprobe run as external processes. Review the application source and
 the origin of those executables before running them; media parsing is performed
 by the supplied FFmpeg build. Logs and run manifests contain local paths,
@@ -37,8 +38,19 @@ sharing diagnostics.
    current-directory lookup. An absolute PATH entry still works when it is the
    working directory. Inspect both actual resolved paths and the printed origin.
 
-The separate `Setup-AudioFileForPhone.ps1` and BAT use existing tools only in this
-step. Setup's download choice is unavailable; it makes no network request.
+The separate `Setup-AudioFileForPhone.ps1` and BAT can select existing tools or
+offer optional managed setup. Conversion never downloads tools. Its download choice points to separate
+setup, where the reviewed provider/build, size, destination, hash and license/source
+references are displayed before affirmative consent. Unattended setup requires
+both `-Download` and `-Consent`; remembering is a separate deliberate choice.
+The exact ZIP is pinned in `tools/ffmpeg-download.json`; HTTPS uses normal
+certificate validation, scoped redirects and transfer deadlines/size limits.
+Integrity is checked before archive inspection, extraction or execution. Owned
+staging rejects unsafe/colliding paths, links and excessive entries/expanded sizes.
+All vendor files/notices and provenance are retained. Startup/capability checks
+and a synthetic encode/probe/decode must pass before selection. Failure preserves
+the previous selection; setup never replaces a user-managed installation. Future
+runs never update the pinned build automatically.
 Selecting a directory validates and executes only that explicitly chosen pair,
 then prints their SHA-256 hashes. Hashes identify bytes, and version/capability
 responses show what those programs report; neither establishes vendor
@@ -123,8 +135,8 @@ their tests. Approved exact asset bytes must be verified separately under the
 release runbook.
 
 Repository CI downloads dependencies only into its isolated test environment,
-using reviewed fixed archives and complete hashed inventories. It adds no app
-downloader or machine-wide tool setup. See the repository's
+using reviewed fixed archives and complete hashed inventories. This CI provisioning
+is separate from consent-based user setup and makes no machine-wide install. See the repository's
 [CI security boundary](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/CI_SECURITY.md)
 for its read-only permissions, dependency pins and JSON-only uploads. CI is
 supplementary to recorded local Windows acceptance.

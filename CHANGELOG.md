@@ -1,5 +1,11 @@
 # Changelog
 
+Unreleased v1.0.1 work: separate consent-based managed setup now pins the exact
+Gyan 9.0.2 Windows x64 ZIP. It verifies transfer/integrity/extraction bounds, retains
+vendor notices/provenance and validates a synthetic encode/probe/decode before
+selection. Conversion never downloads tools. Existing-tool setup and deliberate
+remembering remain available offline; no automatic update or global install.
+
 ## Unreleased v1.0.1 work
 
 - Add separate existing-tool setup PS1/BAT entries and interactive dependency

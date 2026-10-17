@@ -71,3 +71,23 @@ Draft preparation and --verify-tag; verify actual available CLI behavior in S17.
 P8 — GitHub CLI release download:
 https://cli.github.com/manual/gh_release_download
 Asset retrieval; separate authenticated draft checks from public anonymous checks.
+
+## S06 verified pin (2026-10-17)
+
+P9 - Exact Gyan vendor ZIP and checksum (direct HTTPS, no runtime latest lookup):
+https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip
+https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-9.0.2-essentials_build.zip.sha256
+Publisher release: https://github.com/GyanD/codexffmpeg/releases/tag/9.0.2
+Observed vendor current release 9.0.2 (2026-09-19), x64 static essentials GPLv3.
+The independent downloaded ZIP is 114768076 bytes, SHA256
+60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba.
+Published checksum and publisher GitHub asset digest agree. Actual ZIP inventory:
+49 entries (45 regular files), 329221735 expanded bytes. LICENSE and README.txt
+are retained with every vendor file. The runtime manifest records reviewed safety
+bounds, distinct from actual sizes. No vendor binaries are redistributed.
+
+P10 - Exact source and dependency terms identified in the vendor README:
+https://github.com/FFmpeg/FFmpeg/commit/946fcce07b6dcd0331c8cc609192aeff5e1924f8
+https://www.gnu.org/licenses/gpl-3.0.html
+Vendor source availability/license review is separate from capability validation.
+The application's MIT license does not replace the downloaded build's GPLv3 terms.

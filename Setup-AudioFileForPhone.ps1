@@ -1,14 +1,15 @@
 <#
 .SYNOPSIS
-Selects and optionally remembers an existing FFmpeg/ffprobe installation.
+Selects an existing FFmpeg/ffprobe pair or installs a reviewed pinned vendor build.
 
 .DESCRIPTION
 With no directory, shows bounded interactive choices for an existing installation,
-manual/offline guidance, unavailable future download support or cancellation.
+manual/offline guidance, optional consent-based managed download or cancellation.
 Accepts the exact folder containing both ffmpeg.exe and ffprobe.exe. Validates
 startup/libmp3lame and displays paths, versions, architecture and SHA256 hashes.
-Interactive setup asks whether to remember the pair. No downloads are implemented
-in this step; no PATH, registry, profile or persistent execution-policy changes.
+Interactive setup asks whether to remember the pair. Downloads occur only after
+affirmative consent in this separate helper. No PATH, registry, profile or
+persistent execution-policy changes.
 
 .PARAMETER FfmpegDirectory
 Exact existing directory containing both executables. This explicit selection is
@@ -16,7 +17,19 @@ validated without prompts. It is not saved unless Remember is also supplied.
 
 .PARAMETER Remember
 Deliberately save the explicit directory in the schema-1 user JSON config. Without
-FfmpegDirectory, interactive setup asks separately and this switch is rejected.
+FfmpegDirectory or Download, interactive setup asks separately.
+
+.PARAMETER Download
+Request the exact reviewed Windows x64 ZIP in tools/ffmpeg-download.json. Requires
+Consent; cannot be combined with FfmpegDirectory. No automatic updates.
+
+.PARAMETER Consent
+Affirmative consent for explicit Download. Review provider, bytes, destination,
+license and source details in the manifest before unattended use.
+
+.PARAMETER ManagedRoot
+Optional private dependency storage for portable/isolated use. Default: managed
+beside the selected ConfigPath. Each install uses a new owned versioned directory.
 
 .PARAMETER ConfigPath
 Optional config file for portable or isolated use. Relative paths use the current
@@ -24,7 +37,8 @@ PowerShell location. Default: Windows LocalApplicationData\AudioFileForPhone\con
 Corrupt/unknown-schema settings are preserved; choose another ConfigPath to save.
 
 .PARAMETER NonInteractive
-Never ask for input. Requires FfmpegDirectory; Remember remains explicit consent.
+Never ask for input. Requires FfmpegDirectory or Download plus Consent.
+Remember remains a separate explicit choice to persist the selection.
 
 .EXAMPLE
 .\Setup-AudioFileForPhone.ps1
@@ -50,7 +64,11 @@ param(
     [switch]$Remember,
     [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
     [string]$ConfigPath,
-    [switch]$NonInteractive
+    [switch]$NonInteractive,
+    [switch]$Download,
+    [switch]$Consent,
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$ManagedRoot
 )
 
 $ErrorActionPreference = 'Stop'
@@ -61,10 +79,11 @@ try {
         throw "Required setup helper is missing: '$helperPath'. Restore the complete application package."
     }
     . $helperPath
-    Write-Host ('AudioFileForPhone ' + (Get-AudioAppVersion) + ' existing-tool setup')
-    $setupArguments = @{ ScriptDirectory = $setupDirectory; Remember = $Remember; NonInteractive = $NonInteractive }
+    Write-Host ('AudioFileForPhone ' + (Get-AudioAppVersion) + ' dependency setup')
+    $setupArguments = @{ ScriptDirectory = $setupDirectory; Remember = $Remember; NonInteractive = $NonInteractive; AllowManagedDownload = $true; Download = $Download; Consent = $Consent }
     if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $setupArguments.FfmpegDirectory = $FfmpegDirectory }
     if ($PSBoundParameters.ContainsKey('ConfigPath')) { $setupArguments.ConfigPath = $ConfigPath }
+    if ($PSBoundParameters.ContainsKey('ManagedRoot')) { $setupArguments.ManagedRoot = $ManagedRoot }
     $setup = Invoke-AudioToolSetup @setupArguments
     if ($setup.Status -eq 'Cancelled') {
         Write-Host ('Cancelled: ' + $setup.Error)
