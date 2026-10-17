@@ -39,3 +39,9 @@ D14 - 2026-10-17, checkpoint identity: store unchanged tested baseline/runtime
       hashes and the prior verified checkpoint. Observe final containing HEAD,
       live equality and its CI in the post-push handover, avoiding self-hashes.
       Main integration remains separate/deferred to ordinary S14 PR policy.
+
+D15 - 2026-10-17, S01 checkpoint: preparation 91635bbcd7ac74ea135be1fbdd95fb9c543ca88a
+      is pushed/live-equal and both exact-head push/PR CI matrices pass. Record
+      S01 complete and S02 eligible but NOT_STARTED. Draft PR #29 stays unmerged;
+      preserve existing owner-approval default for main integration. Final
+      containing record is freshly checked after push without a self-hash.

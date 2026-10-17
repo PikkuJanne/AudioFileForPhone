@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "step": "S01",
-  "status": "IN_PROGRESS",
-  "started_utc": "2026-10-17T17:11:40.135501+02:00",
+  "status": "COMPLETED",
+  "started_utc": "2026-10-17T15:16:16.486141+00:00",
   "started_scope": "This local contract audit; repository/session discovery preceded it.",
-  "checked_utc": "2026-10-17T17:11:43.6853+02:00",
+  "checked_utc": "2026-10-17T15:16:20.519220+00:00",
   "external_audit": {
     "path": "$env:TEMP\\AudioFileForPhone-S01-e252daf937d543deb98da690433a666c\\check_s01.py",
-    "sha256": "ad0904b4ef90d4a024fbdc856f9625fd7ecc8ac8800c6d0641debe51620bc756"
+    "sha256": "4c0ae1510ea256af6621256fd10a148ca7b09852c1962a35f682d50939019699"
   },
   "source_commit": "28f53b10529495754273d55654c7b29e78848c83",
   "runtime_version": "1.0.0",
@@ -116,7 +116,7 @@
         "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
       }
     ],
-    "preservation": "No release/tag writes; live metadata, immutable tag/source identities and ZIP digest equal BASELINE. All three live server asset digests are captured and checked against the initial S01 live inventory. No new independent asset download in S01."
+    "preservation": "No release/tag writes; live metadata, immutable tag/source identities and ZIP digest equal BASELINE. All three live server asset digests equal docs/codex-v1/RELEASE_CANDIDATE.json and the initial S01 live inventory. No new independent asset download in S01."
   },
   "cases": [
     {
@@ -151,6 +151,13 @@
       "expected": "Only AGENTS and active plan differ; old evidence/runtime/tests/tools/CI/artwork/README unchanged",
       "observed": "PASS; 39 immutable imported files byte-equal; four mutable ledgers updated; source Git blobs unchanged",
       "scope": "Local planning/source integrity checks; no conversion claim. Initial audit asserted Git hash-object normalization for tracked CRLF files and failed; corrected to literal Git-byte equality or the exact clean CRLF checkout representation, without changing source."
+    },
+    {
+      "id": "read-only-sync",
+      "command": "& $ps51 -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File docs/codex-v1/tools/Test-GitSync.ps1 -RepoPath C:\\projects\\AudioFileForPhone-main -AsJson; & $ps7 -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File docs/codex-v1/tools/Test-GitSync.ps1 -RepoPath C:\\projects\\AudioFileForPhone-main -AsJson",
+      "expected": "Both hosts PASS, clean local HEAD equals fresh live branch; main separate",
+      "observed": "PASS on both at 91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+      "scope": "First PS5.1 attempt omitted established per-process RemoteSigned flag and was blocked by default script policy. Established invocation passed. No persistent policy or machine setting changed."
     }
   ],
   "test_entry_points": {
@@ -192,7 +199,7 @@
   "required_acceptance_results": {
     "S01-A1": "PASSED",
     "S01-A2": "PASSED",
-    "S01-A3": "PENDING_COMMIT_PUSH_LIVE_COMPARISON_CI"
+    "S01-A3": "PASSED"
   },
   "human_observations": [],
   "package_sha256": null,
@@ -202,8 +209,96 @@
     "Helpers has LF Git bytes and CRLF clean checkout bytes; both hashes are recorded, with Git-normalized blob equality verified.",
     "No Windows 10, new candidate/exact ZIP, consolidated kit or new phone evidence; these belong to later scoped steps.",
     "Published v1.0.0 asset digests are read from live GitHub; no independent fresh download is claimed.",
-    "First preparation push and exact-commit CI remain pending; final containing checkpoint identity belongs in post-push handover."
+    "Preparation checkpoint push/live equality and both CI matrices passed. The containing completion-record commit is verified after push in the final response, avoiding self-reference."
   ],
+  "checkpoint_verification": {
+    "preparation_head": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+    "observed_live_comparisons": [
+      {
+        "status": "pass",
+        "repository": "PikkuJanne/AudioFileForPhone",
+        "branch": "codex/audiofileforphone-v1.0.1",
+        "local_head": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "live_branch": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+        "active_branch_synchronized": true,
+        "active_head_equals_main": false,
+        "clean": true,
+        "verified_at_utc": "2026-10-17T15:12:27.9155443Z",
+        "note": "Observed live refs only; main integration/CI/manual acceptance are separate."
+      },
+      {
+        "status": "pass",
+        "repository": "PikkuJanne/AudioFileForPhone",
+        "branch": "codex/audiofileforphone-v1.0.1",
+        "local_head": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "live_branch": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+        "active_branch_synchronized": true,
+        "active_head_equals_main": false,
+        "clean": true,
+        "verified_at_utc": "2026-10-17T15:12:30.3166503Z",
+        "note": "Observed live refs only; main integration/CI/manual acceptance are separate."
+      }
+    ],
+    "pull_request": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "pull_request_state": "DRAFT_UNMERGED",
+    "final_record_commit": "Its final HEAD/live equality and CI are observed after push in the session handover; no self-hash."
+  },
+  "ci": {
+    "observed_utc": "2026-10-17T15:16:16.386298+00:00",
+    "preparation_runs": [
+      {
+        "databaseId": 39043987462,
+        "headSha": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "push",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39043987462",
+        "jobs": [
+          {
+            "name": "windows (powershell, ps51)",
+            "status": "completed",
+            "conclusion": "success",
+            "startedAt": "2026-10-17T15:12:00Z",
+            "completedAt": "2026-10-17T15:15:11Z"
+          },
+          {
+            "name": "windows (pwsh, ps7)",
+            "status": "completed",
+            "conclusion": "success",
+            "startedAt": "2026-10-17T15:12:00Z",
+            "completedAt": "2026-10-17T15:15:10Z"
+          }
+        ]
+      },
+      {
+        "databaseId": 39044003403,
+        "headSha": "91635bbcd7ac74ea135be1fbdd95fb9c543ca88a",
+        "status": "completed",
+        "conclusion": "success",
+        "event": "pull_request",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/39044003403",
+        "jobs": [
+          {
+            "name": "windows (pwsh, ps7)",
+            "status": "completed",
+            "conclusion": "success",
+            "startedAt": "2026-10-17T15:12:13Z",
+            "completedAt": "2026-10-17T15:15:17Z"
+          },
+          {
+            "name": "windows (powershell, ps51)",
+            "status": "completed",
+            "conclusion": "success",
+            "startedAt": "2026-10-17T15:12:12Z",
+            "completedAt": "2026-10-17T15:14:44Z"
+          }
+        ]
+      }
+    ],
+    "scope": "Exact preparation push plus PR checks for that head. Server runners are supplementary; not Windows 10/11 client acceptance. Final docs-only record CI belongs in post-push handover."
+  },
   "review": {
     "status": "PASSED_AFTER_CORRECTIONS",
     "scope": "Independent read-only staged import, routing, authority, privacy and preservation review",
