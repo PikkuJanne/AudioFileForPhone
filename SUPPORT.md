@@ -94,7 +94,8 @@ enforced policy.
 | Symptom | What to check |
 | --- | --- |
 | Script cannot run or window closes | Run from an existing PowerShell window to keep diagnostics visible; inspect execution policy as above. Keep the helper beside the entry script. |
-| FFmpeg/ffprobe missing or capability check fails | Provide both trusted executables beside the app or in `PATH`. An app-adjacent executable takes precedence over a PATH copy. Check the printed actual versions/paths and `libmp3lame` error. |
+| FFmpeg/ffprobe missing or capability check fails | Add `-FfmpegDirectory 'D:\Trusted tools\bin'` with both trusted executables to the conversion command. Selection order is explicit, saved config, complete app-local pair, then PATH. Check the printed origin, versions/paths and `libmp3lame` error. |
+| Saved tool folder is stale, config is corrupt/newer, or saving fails | Use `-FfmpegDirectory` for the current run without changing config. See README for `-ConfigPath` and the deliberate save helper. Move a reviewed bad config aside to restore ordinary discovery; the app will not silently overwrite it or fall back. Read-only storage leaves the previous file intact and means the choice was not remembered. |
 | Invalid/unreadable input or no supported files | Select an existing folder below the drive/share root, not a file, shortcut or generated output. Only MP3/M4A/OGG extensions are scanned. |
 | Permission, junction or scan error | Choose accessible ordinary filesystem paths. Selected paths with reparse-point ancestors are rejected; descendant reparse points are excluded. An inaccessible subtree stops the scan. Preview does not test destination writability. |
 | Long/incompatible preserved path | Use a shallower input selection or shorter OutputParent. Folder names are kept; MaxBaseLength cannot shorten folders. File/working paths must be under 260 UTF-16 units and created directories under 248. |

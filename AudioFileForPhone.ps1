@@ -12,7 +12,8 @@ NFC title with a bounded, collision-safe suffix. Folder names are preserved.
 Conversion changes bitrate, names and supported metadata. It performs no loudness
 normalization, noise reduction or EQ. .opus, .wav, .flac and .m4b are not scanned.
 OGG supports Vorbis and Opus in .ogg files. FFmpeg and ffprobe are external tools,
-resolved beside the script first, then PATH. Conversion requires libmp3lame.
+selected by FfmpegDirectory, saved config, a pair beside the script, then PATH.
+Conversion requires libmp3lame. An invalid explicit/saved choice stops preflight.
 
 Source title and supported tags are copied; a missing/empty title uses the planned
 output basename. Nonblank Artist/Album override source tags. Source artwork is
@@ -68,6 +69,18 @@ success. Remove this switch to convert with the same naming/metadata options.
 Advanced media-probe deadline in seconds (default 60, range 1-2147483). Increase
 for large files or slow storage after a probe Timeout. Applies to source and output
 probes. Encoding and full audio decode have no short fixed runtime ceiling.
+
+.PARAMETER FfmpegDirectory
+Optional filesystem directory containing both ffmpeg.exe and ffprobe.exe. Overrides
+saved/app-local/PATH selection for this run only; never saves or changes PATH.
+Invalid explicit choices fail preflight without falling back to another build.
+
+.PARAMETER ConfigPath
+Optional JSON config file location for portable use or isolated environments.
+Overrides the default Windows LocalApplicationData\AudioFileForPhone\config.json.
+Relative paths use the current PowerShell location. Conversion only reads config;
+preview does not read it. Stale/corrupt saved selections require repair or an
+explicit FfmpegDirectory override. No settings are written by conversion.
 
 .EXAMPLE
 .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
@@ -150,7 +163,13 @@ param(
     [switch]$DryRun,
 
     [ValidateRange(1, 2147483)]
-    [int]$ProbeTimeoutSeconds = 60
+    [int]$ProbeTimeoutSeconds = 60,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$FfmpegDirectory,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$ConfigPath
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -229,9 +248,11 @@ try {
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
-        $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
-        $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
-        $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+        $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir }
+        if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $selectionOptions.FfmpegDirectory = $FfmpegDirectory }
+        $toolInfo = Resolve-AudioToolSelection @selectionOptions
+        $ffmpeg = $toolInfo.Ffmpeg.Path
+        $ffprobe = $toolInfo.Ffprobe.Path
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
             $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
             $CoverPath = $coverValidation.Path
@@ -455,6 +476,7 @@ try {
     "FFmpeg version: $($toolInfo.Ffmpeg.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe path  : $($toolInfo.Ffprobe.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe version: $($toolInfo.Ffprobe.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Tool selection: $($toolInfo.Origin)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "App version   : $($manifest.Data.app_version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Entry SHA256  : $($manifest.Data.build.entry_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Helper SHA256 : $($manifest.Data.build.helper_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop

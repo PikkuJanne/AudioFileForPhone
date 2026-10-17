@@ -163,7 +163,7 @@ function Invoke-App {
         '$ProgressPreference = ''SilentlyContinue''',
         '$found = @(''ffmpeg.exe'', ''ffprobe.exe'' | ForEach-Object { [bool](Get-Command $_ -CommandType Application -ErrorAction SilentlyContinue) })',
         'Write-Host (''[S02_DISCOVERY] '' + ($found | ConvertTo-Json -Compress))',
-        ('& ' + (Get-Literal (Join-Path $caseRoot 'AudioFileForPhone.ps1')) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $outputParent) + $(if ($DefaultRate) { '' } else { ' -BitrateKbps ' + $Rate })),
+        ('& ' + (Get-Literal (Join-Path $caseRoot 'AudioFileForPhone.ps1')) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $outputParent) + ' -ConfigPath ' + (Get-Literal (Join-Path $caseRoot 'missing-config.json')) + $(if ($DefaultRate) { '' } else { ' -BitrateKbps ' + $Rate })),
         'exit $LASTEXITCODE'
     )
     Write-NewText $wrapper ($lines -join [Environment]::NewLine)

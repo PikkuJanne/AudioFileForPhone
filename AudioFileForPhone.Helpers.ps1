@@ -117,6 +117,306 @@ function Get-ToolPath {
     return $command.Source
 }
 
+function Get-AudioSelectionPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    if ([string]::IsNullOrWhiteSpace($Path)) { throw 'A non-empty filesystem path is required.' }
+    # Check the original spelling before Windows canonicalization can trim it.
+    Assert-AudioOutputParentSpelling -Path $Path
+    $full = Get-AudioPath -Path $Path
+    Assert-AudioPathComponents -Path $full
+    Assert-AudioNoReparseAncestor -Path $full
+    return $full
+}
+
+function Get-AudioConfigPath {
+    param([string]$ConfigPath)
+    if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
+        $local = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,
+            [Environment+SpecialFolderOption]::DoNotVerify)
+        if ([string]::IsNullOrWhiteSpace($local)) { throw 'Windows could not resolve the current user LocalApplicationData folder. Specify -ConfigPath.' }
+        $ConfigPath = [IO.Path]::Combine($local, 'AudioFileForPhone', 'config.json')
+    }
+    $full = Get-AudioSelectionPath -Path $ConfigPath
+    if (Test-Path -LiteralPath $full -ErrorAction Stop) {
+        $item = Get-Item -LiteralPath $full -Force -ErrorAction Stop
+        if ($item.PSIsContainer) { throw "ConfigPath must name a regular JSON file, not a directory: '$full'." }
+    }
+    return $full
+}
+
+function Read-AudioToolConfig {
+    param([string]$ConfigPath)
+    $path = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $reader = $null
+    try {
+        if (-not (Test-Path -LiteralPath $path -ErrorAction Stop)) { return $null }
+        # FileShare.Read prevents modification/deletion while bounded bytes are read.
+        $reader = New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+        if ($reader.Length -gt 65536) { throw 'Configuration exceeds the 64 KiB limit.' }
+        $bytes = New-Object byte[] ([int]$reader.Length)
+        $offset = 0
+        while ($offset -lt $bytes.Length) {
+            $count = $reader.Read($bytes, $offset, $bytes.Length - $offset)
+            if ($count -eq 0) { throw 'Configuration changed or ended during its read.' }
+            $offset += $count
+        }
+        $encoding = New-Object Text.UTF8Encoding($false, $true)
+        $json = $encoding.GetString($bytes).TrimStart([char]0xfeff)
+        if (-not $json.TrimStart().StartsWith('{')) { throw 'Configuration must be a JSON object.' }
+        Assert-AudioConfigJsonNames -Json $json
+        $config = ConvertFrom-Json -InputObject $json -ErrorAction Stop
+        if ($null -eq $config -or $config -is [array] -or $config -isnot [pscustomobject]) { throw 'Configuration must be a JSON object.' }
+        $names = @($config.PSObject.Properties.Name)
+        if ($names -cnotcontains 'schema_version' -or
+            ($config.schema_version -isnot [int] -and $config.schema_version -isnot [long]) -or
+            $config.schema_version -ne 1) {
+            throw 'Unsupported schema_version. The file is preserved; choose another -ConfigPath or use a compatible application.'
+        }
+        if ($names -cnotcontains 'ffmpeg_directory' -or $config.ffmpeg_directory -isnot [string] -or
+            [string]::IsNullOrWhiteSpace($config.ffmpeg_directory) -or
+            $config.ffmpeg_directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') {
+            throw 'ffmpeg_directory must be an absolute Windows directory string.'
+        }
+        # Validate spelling without requiring saved tools still to exist.
+        Assert-AudioOutputParentSpelling -Path $config.ffmpeg_directory
+        Assert-AudioPathComponents -Path $config.ffmpeg_directory
+        return $config
+    }
+    catch { throw "Invalid tool configuration '$path': $($_.Exception.Message) The file was not changed. Use -FfmpegDirectory for this run or choose another -ConfigPath to repair the selection." }
+    finally { if ($null -ne $reader) { $reader.Dispose() } }
+}
+
+function Assert-AudioConfigJsonNames {
+    param([Parameter(Mandatory = $true)][string]$Json, [switch]$PassThruDirectoryToken)
+    # PowerShell 5.1 silently collapses duplicate JSON properties, while newer
+    # shells reject some case collisions. Reject both consistently before parsing
+    # so unrelated settings cannot be lost on a later save.
+    $objects = New-Object 'Collections.Generic.Stack[object]'
+    $directoryToken = $null
+    for ($index = 0; $index -lt $Json.Length; $index++) {
+        $character = $Json[$index]
+        if ($character -eq '{') {
+            $objects.Push((New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)))
+        }
+        elseif ($character -eq '}') { if ($objects.Count -gt 0) { $null = $objects.Pop() } }
+        elseif ($character -eq '/') { throw 'JSON comments are not supported in configuration.' }
+        elseif ($character -eq ',') {
+            $next = $index + 1
+            while ($next -lt $Json.Length -and [char]::IsWhiteSpace($Json[$next])) { $next++ }
+            if ($next -lt $Json.Length -and ($Json[$next] -eq '}' -or $Json[$next] -eq ']')) {
+                throw 'Trailing JSON commas are not supported in configuration.'
+            }
+        }
+        elseif ($character -eq '"') {
+            $start = $index; $index++
+            while ($index -lt $Json.Length) {
+                if ($Json[$index] -eq '\') { $index += 2; continue }
+                if ($Json[$index] -eq '"') { break }
+                $index++
+            }
+            if ($index -ge $Json.Length) { throw 'Configuration has an unterminated JSON string.' }
+            $next = $index + 1
+            while ($next -lt $Json.Length -and [char]::IsWhiteSpace($Json[$next])) { $next++ }
+            if ($next -lt $Json.Length -and $Json[$next] -eq ':' -and $objects.Count -gt 0) {
+                $token = $Json.Substring($start, $index - $start + 1)
+                $name = ConvertFrom-Json -InputObject ('[' + $token + ']') -ErrorAction Stop
+                if (-not $objects.Peek().Add([string]$name)) { throw "Duplicate or case-colliding JSON property '$name'." }
+                if ($PassThruDirectoryToken -and $objects.Count -eq 1 -and $name -ceq 'ffmpeg_directory') {
+                    $valueStart = $next + 1
+                    while ($valueStart -lt $Json.Length -and [char]::IsWhiteSpace($Json[$valueStart])) { $valueStart++ }
+                    if ($valueStart -ge $Json.Length -or $Json[$valueStart] -ne '"') { throw 'ffmpeg_directory must contain a JSON string.' }
+                    $valueEnd = $valueStart + 1
+                    while ($valueEnd -lt $Json.Length) {
+                        if ($Json[$valueEnd] -eq '\') { $valueEnd += 2; continue }
+                        if ($Json[$valueEnd] -eq '"') { break }
+                        $valueEnd++
+                    }
+                    if ($valueEnd -ge $Json.Length) { throw 'ffmpeg_directory has an unterminated JSON string.' }
+                    $directoryToken = [pscustomobject]@{ Start = $valueStart; Length = $valueEnd - $valueStart + 1 }
+                }
+            }
+        }
+    }
+    if ($PassThruDirectoryToken) {
+        if ($null -eq $directoryToken) { throw 'Configuration has no ffmpeg_directory property.' }
+        return $directoryToken
+    }
+}
+
+function Get-AudioToolPairPaths {
+    param([Parameter(Mandatory = $true)][string]$Directory)
+    $full = Get-AudioSelectionPath -Path $Directory
+    $folder = Get-Item -LiteralPath $full -Force -ErrorAction Stop
+    if (-not $folder.PSIsContainer) { throw "FFmpeg selection must be a filesystem directory: '$full'." }
+    $paths = @{}
+    foreach ($name in @('ffmpeg.exe', 'ffprobe.exe')) {
+        $path = [IO.Path]::Combine($full, $name)
+        $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
+        if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "The selected pair must contain regular executable files: '$path'."
+        }
+        $paths[$name] = $item.FullName
+    }
+    return [pscustomobject]@{ Directory = $full; FfmpegPath = $paths['ffmpeg.exe']; FfprobePath = $paths['ffprobe.exe'] }
+}
+
+function Get-AudioPathTool {
+    param([Parameter(Mandatory = $true)][ValidateSet('ffmpeg.exe', 'ffprobe.exe')][string]$ExeName)
+    # Resolve only exact .exe files under absolute PATH entries. Get-Command also
+    # searches the process working directory on Windows; source folders never gain
+    # executable-selection authority through that implicit search (or PATH '.').
+    $currentDirectories = New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+    $null = $currentDirectories.Add((Get-AudioPath -Path ([Environment]::CurrentDirectory)))
+    $location = Get-Location
+    if ($location.Provider.Name -eq 'FileSystem') { $null = $currentDirectories.Add((Get-AudioPath -Path $location.Path)) }
+    foreach ($entry in @($env:PATH -split ';')) {
+        $directory = $entry.Trim().Trim('"')
+        if ($directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { continue }
+        try { $full = Get-AudioSelectionPath -Path $directory }
+        catch { continue }
+        if ($currentDirectories.Contains($full)) { continue }
+        $candidate = [IO.Path]::Combine($full, $ExeName)
+        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) { continue }
+        $item = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop
+        if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "PATH candidate is not a regular executable file: '$candidate'."
+        }
+        return $item.FullName
+    }
+    throw "Could not find $ExeName in absolute PATH directories. Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe>."
+}
+
+function Resolve-AudioToolSelection {
+    param([string]$FfmpegDirectory, [string]$ConfigPath,
+          [Parameter(Mandatory = $true)][string]$ScriptDirectory)
+    $configFile = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $origin = $null; $pair = $null
+    if ($PSBoundParameters.ContainsKey('FfmpegDirectory') -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+        throw 'Invalid explicit FFmpeg selection: -FfmpegDirectory must be a non-empty directory.'
+    }
+    if (-not [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+        $origin = 'Explicit'
+        try { $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory }
+        catch { throw "Invalid explicit FFmpeg selection '$FfmpegDirectory': $($_.Exception.Message) No fallback was attempted." }
+    }
+    else {
+        $config = Read-AudioToolConfig -ConfigPath $configFile
+        if ($null -ne $config) {
+            $origin = 'Saved'
+            try { $pair = Get-AudioToolPairPaths -Directory $config.ffmpeg_directory }
+            catch { throw "Saved FFmpeg selection is unavailable '$($config.ffmpeg_directory)': $($_.Exception.Message) Use -FfmpegDirectory for this run or deliberately save a repaired selection. No fallback was attempted." }
+        }
+        else {
+            $scriptPath = Get-AudioSelectionPath -Path $ScriptDirectory
+            $localFfmpeg = [IO.Path]::Combine($scriptPath, 'ffmpeg.exe')
+            $localFfprobe = [IO.Path]::Combine($scriptPath, 'ffprobe.exe')
+            if ((Test-Path -LiteralPath $localFfmpeg -ErrorAction Stop) -or (Test-Path -LiteralPath $localFfprobe -ErrorAction Stop)) {
+                $origin = 'AppLocal'
+                try { $pair = Get-AudioToolPairPaths -Directory $scriptPath }
+                catch { throw "Incomplete or invalid application-local FFmpeg pair '$scriptPath': $($_.Exception.Message) A local/PATH pair will not be mixed." }
+            }
+            else {
+                $origin = 'PATH'
+                $ffmpeg = Get-AudioPathTool -ExeName 'ffmpeg.exe'
+                $ffprobe = Get-AudioPathTool -ExeName 'ffprobe.exe'
+                $directory = [IO.Path]::GetDirectoryName($ffmpeg)
+                if (-not [StringComparer]::OrdinalIgnoreCase.Equals($directory, [IO.Path]::GetDirectoryName($ffprobe))) { $directory = $null }
+                $pair = [pscustomobject]@{ Directory = $directory; FfmpegPath = $ffmpeg; FfprobePath = $ffprobe }
+            }
+        }
+    }
+    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath }
+    catch { throw "$origin FFmpeg selection failed validation: $($_.Exception.Message) Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted." }
+    Write-Host ("[INFO] FFmpeg selection origin: {0}" -f $origin)
+    return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = $origin; ConfigPath = $configFile; Directory = $pair.Directory }
+}
+
+function Save-AudioToolSelection {
+    param([Parameter(Mandatory = $true)][string]$FfmpegDirectory, [string]$ConfigPath)
+    # This is the only persistence API. Conversion, preview and default load never
+    # call it. Validation completes before creating any config storage.
+    $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+    $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath
+    $path = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $parent = [IO.Path]::GetDirectoryName($path)
+    $lock = $null; $existingGuard = $null; $temporaryGuard = $null
+    $temporary = $null; $temporaryIdentity = $null
+    try {
+        Assert-AudioNoReparseAncestor -Path $parent
+        [IO.Directory]::CreateDirectory($parent) | Out-Null
+        Assert-AudioNoReparseAncestor -Path $parent
+        # Exclusive creation + DeleteOnClose serializes cooperating writers and
+        # does not delete/reclaim an unrelated pre-existing lock file.
+        $lockPath = $path + '.lock'
+        $lock = New-Object IO.FileStream($lockPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite,
+            [IO.FileShare]::None, 4096, [IO.FileOptions]::DeleteOnClose)
+        $config = $null
+        $existingIdentity = $null
+        if (Test-Path -LiteralPath $path -ErrorAction Stop) {
+            $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
+            if (($item.Attributes -band [IO.FileAttributes]::ReadOnly) -ne 0) { throw 'Configuration is read-only. Choose a writable -ConfigPath.' }
+            $existingGuard = New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, ([IO.FileShare]::Read -bor [IO.FileShare]::Delete))
+            $existingIdentity = Get-AudioWorkingFileIdentity -Stream $existingGuard
+            $config = Read-AudioToolConfig -ConfigPath $path
+            if ($existingGuard.Length -gt 65536) { throw 'Configuration exceeds the 64 KiB limit.' }
+            $existingBytes = New-Object byte[] ([int]$existingGuard.Length)
+            $offset = 0
+            while ($offset -lt $existingBytes.Length) {
+                $count = $existingGuard.Read($existingBytes, $offset, $existingBytes.Length - $offset)
+                if ($count -eq 0) { throw 'Configuration ended during its guarded read.' }
+                $offset += $count
+            }
+            $existingJson = (New-Object Text.UTF8Encoding($false, $true)).GetString($existingBytes)
+            $existingHash = (Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash
+            if ((Get-AudioWorkingFileIdentity -Path $path) -cne $existingIdentity) { throw 'Configuration identity changed during its read; selection was not saved.' }
+        }
+        if ($null -ne $existingIdentity) {
+            # Preserve unknown JSON values exactly, including numeric precision,
+            # date-like strings, whitespace and any UTF-8 BOM. Round-tripping the
+            # whole object through PowerShell would normalize these differently
+            # between 5.1 and 7. Only the deliberately owned string token changes.
+            $token = Assert-AudioConfigJsonNames -Json $existingJson -PassThruDirectoryToken
+            $directoryJson = ConvertTo-Json -InputObject $pair.Directory -Compress -ErrorAction Stop
+            $json = $existingJson.Substring(0, $token.Start) + $directoryJson + $existingJson.Substring($token.Start + $token.Length)
+        }
+        else { $json = (ConvertTo-Json -InputObject ([ordered]@{ schema_version = 1; ffmpeg_directory = $pair.Directory })) + "`r`n" }
+        $bytes = (New-Object Text.UTF8Encoding($false, $true)).GetBytes($json)
+        if ($bytes.Length -gt 65536) { throw 'Resulting configuration exceeds the 64 KiB limit.' }
+        $temporary = [IO.Path]::Combine($parent, '.AudioFileForPhone-config-' + [guid]::NewGuid().ToString('N') + '.tmp')
+        $temporaryGuard = New-Object IO.FileStream($temporary, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, ([IO.FileShare]::Read -bor [IO.FileShare]::Delete))
+        $temporaryIdentity = Get-AudioWorkingFileIdentity -Stream $temporaryGuard
+        $temporaryGuard.Write($bytes, 0, $bytes.Length)
+        $temporaryGuard.Flush($true)
+        # Windows ReplaceFile requires closed writer/target guards. Keep them
+        # through serialization, then recheck identities and bytes immediately
+        # before the atomic publication under the cooperating-writer lock.
+        $temporaryGuard.Dispose(); $temporaryGuard = $null
+        if ($null -ne $existingGuard) { $existingGuard.Dispose(); $existingGuard = $null }
+        Assert-AudioNoReparseAncestor -Path $path
+        if ((Get-AudioWorkingFileIdentity -Path $temporary) -cne $temporaryIdentity) { throw 'Temporary configuration identity changed; preserving that path.' }
+        if ($null -ne $existingIdentity) {
+            if ((Get-AudioWorkingFileIdentity -Path $path) -cne $existingIdentity) { throw 'Configuration identity changed concurrently; selection was not saved.' }
+            if ((Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash -cne $existingHash) { throw 'Configuration content changed concurrently; selection was not saved.' }
+            [IO.File]::Replace($temporary, $path, [NullString]::Value)
+        }
+        else { [IO.File]::Move($temporary, $path) }
+        if ((Get-AudioWorkingFileIdentity -Path $path) -cne $temporaryIdentity) { throw 'Published configuration identity changed concurrently. Verify -ConfigPath before using it.' }
+        $temporary = $null
+    }
+    catch { throw "FFmpeg selection was not remembered in '$path': $($_.Exception.Message) The validated pair can still be used for this run with -FfmpegDirectory." }
+    finally {
+        if ($null -ne $temporaryGuard) { $temporaryGuard.Dispose() }
+        if ($null -ne $existingGuard) { $existingGuard.Dispose() }
+        if ($null -ne $temporary -and [IO.File]::Exists($temporary)) {
+            try { if ((Get-AudioWorkingFileIdentity -Path $temporary) -ceq $temporaryIdentity) { [IO.File]::Delete($temporary) } }
+            catch { Write-Warning "Could not remove owned incomplete config '$temporary': $($_.Exception.Message)" }
+        }
+        if ($null -ne $lock) { $lock.Dispose() }
+    }
+    Write-Host ("[INFO] Remembered FFmpeg directory in {0}" -f $path)
+    return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = 'Saved'; ConfigPath = $path; Directory = $pair.Directory }
+}
+
 function New-AudioCancellationContext {
     param([switch]$CaptureConsole)
     if (-not ('AudioFileForPhone.CancellationContext' -as [type])) {
@@ -1213,6 +1513,30 @@ function Invoke-AudioOutputTransaction {
     return [pscustomobject]$result
 }
 
+function Get-AudioExecutableArchitecture {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $reader = $null
+    try {
+        # Read only the DOS/PE headers, never load the executable as an assembly.
+        $reader = New-Object IO.BinaryReader([IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read))
+        if ($reader.BaseStream.Length -lt 64 -or $reader.ReadUInt16() -ne 0x5a4d) { return 'Unknown' }
+        $reader.BaseStream.Position = 60
+        $offset = $reader.ReadUInt32()
+        if ($offset -gt 1048576 -or $offset + 6 -gt $reader.BaseStream.Length) { return 'Unknown' }
+        $reader.BaseStream.Position = $offset
+        if ($reader.ReadUInt32() -ne 0x00004550) { return 'Unknown' }
+        switch ($reader.ReadUInt16()) {
+            0x8664 { return 'x64' }
+            0x014c { return 'x86' }
+            0xaa64 { return 'ARM64' }
+            0x01c4 { return 'ARM' }
+            default { return 'Unknown' }
+        }
+    }
+    catch { return 'Unknown' }
+    finally { if ($null -ne $reader) { $reader.Dispose() } }
+}
+
 function Assert-ToolPrerequisites {
     param([string]$FfmpegPath, [string]$FfprobePath,
           [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
@@ -1226,8 +1550,9 @@ function Assert-ToolPrerequisites {
             if ($native.ExitCode -ne 0 -or -not $native.ProcessReleased -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
                 throw 'Expected a successful tool version response.'
             }
-            $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version }
-            Write-Host ("[INFO] {0}: {1}" -f $tool.Path, $version)
+            $architecture = Get-AudioExecutableArchitecture -Path $tool.Path
+            $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version; Architecture = $architecture }
+            Write-Host ("[INFO] {0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
         }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
@@ -1236,6 +1561,15 @@ function Assert-ToolPrerequisites {
     if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or -not $encoders.ProcessReleased -or $encoders.StdoutTruncated -or
         ($encoders.Stdout + "`n" + $encoders.Stderr) -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {
         throw "ffmpeg does not provide the required libmp3lame encoder: $FfmpegPath"
+    }
+    $ffmpegBuild = [regex]::Match($tools['ffmpeg'].Version, '^ffmpeg version (\S+)').Groups[1].Value
+    $ffprobeBuild = [regex]::Match($tools['ffprobe'].Version, '^ffprobe version (\S+)').Groups[1].Value
+    if ($ffmpegBuild -cne $ffprobeBuild) {
+        Write-Warning ("FFmpeg/ffprobe build IDs differ ('{0}' and '{1}'). Capabilities passed; both selected paths are disclosed above." -f $ffmpegBuild, $ffprobeBuild)
+    }
+    if ($tools['ffmpeg'].Architecture -ne 'Unknown' -and $tools['ffprobe'].Architecture -ne 'Unknown' -and
+        $tools['ffmpeg'].Architecture -cne $tools['ffprobe'].Architecture) {
+        Write-Warning ("FFmpeg/ffprobe PE architectures differ ('{0}' and '{1}'). Both selected executables passed startup validation." -f $tools['ffmpeg'].Architecture, $tools['ffprobe'].Architecture)
     }
     return [pscustomobject]@{ Ffmpeg = $tools['ffmpeg']; Ffprobe = $tools['ffprobe'] }
 }
@@ -1549,6 +1883,7 @@ function New-AudioRunManifest {
             helper_sha256 = (Get-FileHash -LiteralPath (Join-Path ([IO.Path]::GetDirectoryName($ScriptPath)) 'AudioFileForPhone.Helpers.ps1') -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
         }
         tools = [ordered]@{
+            selection_origin = $(if ($null -ne $ToolInfo.PSObject.Properties['Origin']) { $ToolInfo.Origin } else { $null })
             ffmpeg = [ordered]@{ path = $ToolInfo.Ffmpeg.Path; version = $ToolInfo.Ffmpeg.Version }
             ffprobe = [ordered]@{ path = $ToolInfo.Ffprobe.Path; version = $ToolInfo.Ffprobe.Version }
         }

@@ -1,6 +1,6 @@
 # Dependency resolution and setup contract
 
-## Public interface (proposed, freeze spelling by S04)
+## Public interface (selection spelling frozen at S04)
 
 Add `-FfmpegDirectory <directory>` to the existing script. It selects a pair of
 executables and does not save anything unless explicitly requested by setup.
@@ -8,6 +8,23 @@ Keep existing invocations valid. Add a separate Setup-AudioFileForPhone.ps1 plus
 simple BAT entry point. Keep a single resolver and validator shared by setup,
 conversion, environment check and self-test; do not build parallel incompatible
 implementations. Names may be adjusted once with documentation and test updates.
+
+S04 freezes `-FfmpegDirectory` and `-ConfigPath <JSON file>` on conversion.
+ConfigPath overrides the Windows LocalApplicationData API default; relative
+explicit paths use the current PowerShell location. The shared functions-only
+helper exposes Get-AudioConfigPath, Read-AudioToolConfig,
+Resolve-AudioToolSelection and deliberate Save-AudioToolSelection. S04 adds no
+setup entry point or prompts; those remain S05. Conversion never saves choices.
+Config input/output is limited to 64 KiB and schema 1; other schema-1 fields are
+preserved on a deliberate save, while corrupt/unknown schemas are refused.
+An explicit directory bypasses config contents for that run, allowing recovery
+without rewriting the bad file. A failed save throws with not-remembered guidance.
+
+The retained app-local convention is a complete pair directly beside the script;
+an incomplete pair fails rather than mixing local and PATH tools. The nested
+tools/ffmpeg/bin layout is deliberately unsupported. PATH uses absolute entries
+only and excludes current-directory candidates, blank/relative entries, aliases,
+functions and wrappers; separate installed PATH directories remain supported.
 
 ## Deterministic resolution
 

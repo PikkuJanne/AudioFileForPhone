@@ -165,7 +165,7 @@ function New-EntryDriver {
     $text = @('$ErrorActionPreference=''Stop''', '$ProgressPreference=''SilentlyContinue''',
         ('$env:PATH=' + (Get-Literal (Split-Path -Parent $ffmpeg)) + '+'';''+$env:PATH'),
         '$previousMode=[Console]::TreatControlCAsInput', '$global:LASTEXITCODE=$null',
-        ('& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $OutputParent) + ' -BitrateKbps 64 *>&1 | ForEach-Object {'),
+        ('& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $OutputParent) + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'missing-config.json')) + ' -BitrateKbps 64 *>&1 | ForEach-Object {'),
         ('  [IO.File]::AppendAllText(' + (Get-Literal $RawPath) + ', [string]$_+[Environment]::NewLine)'), '}',
         ('[IO.File]::WriteAllText(' + (Get-Literal $ExitPath) + ', [string]$global:LASTEXITCODE)'),
         ('[IO.File]::WriteAllText(' + (Get-Literal $ModePath) + ', ([ordered]@{ before=$previousMode; after=[Console]::TreatControlCAsInput } | ConvertTo-Json))'),
@@ -423,7 +423,7 @@ try {
             Write-Host 'T11 manual fixture: wait for READY, then press Ctrl+C once during the second encoder.'
             $oldPath=$env:PATH; $env:PATH=(Split-Path -Parent $ffmpeg)+';'+$oldPath
             $script:descendantReleaseProved=$false
-            try { & $entry -InputFolder $inputRoot -OutputParent $parent -BitrateKbps 64 *>&1 | ForEach-Object { [IO.File]::AppendAllText($raw,[string]$_+[Environment]::NewLine) } }
+            try { & $entry -InputFolder $inputRoot -OutputParent $parent -ConfigPath (Join-Path $testRoot 'missing-config.json') -BitrateKbps 64 *>&1 | ForEach-Object { [IO.File]::AppendAllText($raw,[string]$_+[Environment]::NewLine) } }
             finally { $env:PATH=$oldPath }
             Write-NewText $codeFile ([string]$global:LASTEXITCODE); Write-NewText $modeFile (([ordered]@{before=$previousMode;after=[Console]::TreatControlCAsInput}) | ConvertTo-Json)
             Assert-True (Test-Path -LiteralPath $ready) 'Manual Ctrl+C must occur after READY during real conversion.'

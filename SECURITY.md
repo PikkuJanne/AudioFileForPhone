@@ -28,21 +28,24 @@ sharing diagnostics.
    The app requires `libmp3lame`; actual inputs and covers must also be supported
    by the chosen build. Review the publisher's update/security information when
    replacing it, then test a short nonprivate sample yourself.
-4. Place trusted executables beside the application scripts, or use a trusted
-   installation already in your shell's `PATH`. For shared builds retain their
-   required DLLs according to the publisher's instructions. The app checks beside
-   the script first, then resolves the first matching native application in
-   `PATH`. An adjacent copy takes precedence, so inspect the actual resolved
-   paths, not just the version of a different installation.
+4. Select a trusted installation with `-FfmpegDirectory`, deliberately save a
+   choice using the README helper, place a complete pair beside the application,
+   or use a trusted installation already in your shell's `PATH`, in that order.
+   For shared builds retain their required DLLs according to the publisher's
+   instructions. Invalid explicit/saved choices and incomplete app-local pairs
+   stop preflight. PATH searches absolute directories only, excluding the current
+   directory. Inspect both actual resolved paths and the printed origin.
 
 After reviewing the app/helper and trusting the chosen vendor files, run these
-commands from the application folder to inspect the exact selected files. The
-last three commands execute the selected tools' version/capability queries:
+commands from the application folder to inspect the exact selected files.
+Resolution executes bounded version/capability queries; the final three commands
+also execute the selected tools directly:
 
 ```powershell
 . .\AudioFileForPhone.Helpers.ps1
-$ffmpegPath = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $PWD.Path
-$ffprobePath = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $PWD.Path
+$selection = Resolve-AudioToolSelection -ScriptDirectory $PWD.Path
+$ffmpegPath = $selection.Ffmpeg.Path
+$ffprobePath = $selection.Ffprobe.Path
 $ffmpegPath
 $ffprobePath
 Get-FileHash -LiteralPath $ffmpegPath -Algorithm SHA256

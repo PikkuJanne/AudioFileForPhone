@@ -529,7 +529,7 @@ try {
             '  process { if ([string]$Value -match ''\[OK\]'') { throw ''controlled postpublication log write failure'' }',
             '    Microsoft.PowerShell.Management\Add-Content -LiteralPath $LiteralPath -Value $Value -ErrorAction Stop }',
             '}',
-            ('& ' + $literalScript + ' -InputFolder ' + $literalInput + ' -OutputParent ' + $literalParent),
+            ('& ' + $literalScript + ' -InputFolder ' + $literalInput + ' -OutputParent ' + $literalParent + ' -ConfigPath ' + ("'" + (Join-Path $appRoot 'missing-config.json').Replace("'", "''") + "'")),
             'exit $LASTEXITCODE') -join "`n"
         $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
         $shellPath = Join-Path $PSHOME $shellName

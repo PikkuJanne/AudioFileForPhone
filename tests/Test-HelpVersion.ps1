@@ -153,6 +153,7 @@ $guardLoader = @'
 . $global:T18ExpectedHelper
 $script:T18OriginalOutputParent=(Get-Item -LiteralPath Function:Get-OutputParent).ScriptBlock
 $script:T18OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
+function Get-AudioConfigPath { param([string]$ConfigPath); return Microsoft.PowerShell.Management\Join-Path $global:T18OwnedRoot 'missing-config.json' }
 function Get-OutputParent {
     param([string]$OutputParent,[scriptblock]$MusicResolver)
     $parameters=@{OutputParent=$OutputParent}
@@ -178,6 +179,7 @@ function Invoke-AudioNativeProcess {
 }
 if($global:T18Preview) {
     function Get-ToolPath { param($ExeName,$ScriptDirectory); $global:T18Forbidden.Add('tool lookup'); throw 'T18 preview tool lookup.' }
+    function Resolve-AudioToolSelection { param($FfmpegDirectory,$ConfigPath,$ScriptDirectory); $global:T18Forbidden.Add('tool selection/config read'); throw 'T18 preview tool selection/config read.' }
     function Assert-ToolPrerequisites { param($FfmpegPath,$FfprobePath); $global:T18Forbidden.Add('tool preflight'); throw 'T18 preview tool preflight.' }
     function Get-ValidatedCoverPath { param($Path,$FfmpegPath); $global:T18Forbidden.Add('cover'); throw 'T18 preview cover validation.' }
     function Test-OutputWritable { param($Path,[switch]$SkipWriteProbe); $global:T18Forbidden.Add('writability'); throw 'T18 preview write probe.' }
@@ -314,7 +316,7 @@ try {
         $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
-        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds')
+        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
         $actual = @($help.parameters.parameter.name)
         Assert-True ($help.Synopsis -match 'MP3.*M4A.*OGG' -and $examples.Count -eq 5) 'Proper comment help must contain synopsis and five examples.'
         foreach ($name in $expected) {

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased v1.0.1 work
+
+- Add explicit `-FfmpegDirectory` and portable `-ConfigPath` tool selection with
+  deterministic explicit/saved/app-local/PATH precedence and bounded validation.
+- Add deliberate atomic user-selection persistence through
+  `Save-AudioToolSelection`; conversion and preview never save settings.
+- Preserve short-operation deadlines and unlimited normal encode/full-decode
+  runtime. Runtime version remains 1.0.0 until the planned package step.
+
 ## 1.0.0
 
 Changes for app version 1.0.0. Publication and exact package verification are

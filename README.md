@@ -23,9 +23,12 @@ together:
 - `AudioFileForPhone.Helpers.ps1` (required)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
 
-For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe` either beside the
-scripts or in `PATH`. Each executable is found beside the script first, then in
-`PATH`. Startup checks that both run and that FFmpeg provides `libmp3lame`.
+For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe`. Selection order is
+`-FfmpegDirectory`, a deliberately saved user selection, a complete pair beside
+the scripts, then `PATH`. Explicit, saved and app-local choices require both
+regular executables in that directory. An incomplete local pair or an invalid
+explicit/saved choice stops preflight with repair guidance. Startup checks that
+both run and that FFmpeg provides `libmp3lame`, and prints the origin and paths.
 FFmpeg stays external: the app does not download, install or update tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
@@ -103,6 +106,38 @@ before returning the child exit code. See the security note above before using i
 | `-Interactive` | Optional cover and tag prompts before conversion; cover picker needs STA. Ignored during preview. |
 | `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
 | `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
+| `-FfmpegDirectory` | Directory containing both trusted executables; overrides saved/app-local/PATH selection for this run without saving or changing PATH. |
+| `-ConfigPath` | Optional config file location; overrides the Windows user-local default. Relative paths use the current PowerShell location. Conversion only reads it; preview does not read config. |
+
+To use an existing external installation, add `-FfmpegDirectory 'D:\Trusted tools\bin'`
+to the conversion command. No PATH edit is required. The default config file is
+`%LOCALAPPDATA%\AudioFileForPhone\config.json`, resolved using the Windows user-folder
+API. `-ConfigPath '.\portable-config.json'` selects a different file. A missing file
+allows app-local/PATH discovery; stale, corrupt or unsupported config stops it.
+An explicit directory can override that file for the current run without changing
+it. Move the problematic config aside to return to ordinary discovery, or use
+the deliberately invoked save helper below after reviewing the existing file.
+
+Remember a trusted existing pair only when you deliberately run this helper:
+
+```powershell
+. .\AudioFileForPhone.Helpers.ps1
+Save-AudioToolSelection -FfmpegDirectory 'D:\Trusted tools\bin'
+```
+
+The helper accepts the same `-ConfigPath` override, validates the pair before an
+atomic UTF-8 JSON write, and stores `schema_version: 1` and `ffmpeg_directory`.
+It preserves other schema-1 settings and refuses corrupt/newer config or read-only
+storage. A failed save means the choice was not remembered; use the explicit
+directory for the current conversion. Conversion, preview and helper load never
+save settings. Setup interaction and downloading are separate planned work.
+
+Only the app directory itself is an app-local layout; `tools\ffmpeg\bin` is not
+searched. PATH discovery uses the first regular `.exe` under absolute PATH
+directories, excluding the current directory and blank/relative entries. It never
+executes aliases, functions or shell wrappers. Separate PATH directories remain
+supported; differing tool build IDs produce a warning. No source folders or whole
+drives are searched for tools.
 
 Version and encoder capability checks each have a 15-second deadline. A timeout
 reports the operation, executable, elapsed time and whether process release was
