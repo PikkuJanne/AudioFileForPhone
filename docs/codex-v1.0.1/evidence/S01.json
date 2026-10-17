@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "step": "S01",
+  "status": "IN_PROGRESS",
+  "started_utc": "2026-10-17T17:11:40.135501+02:00",
+  "started_scope": "This local contract audit; repository/session discovery preceded it.",
+  "checked_utc": "2026-10-17T17:11:43.6853+02:00",
+  "external_audit": {
+    "path": "$env:TEMP\\AudioFileForPhone-S01-e252daf937d543deb98da690433a666c\\check_s01.py",
+    "sha256": "ad0904b4ef90d4a024fbdc856f9625fd7ecc8ac8800c6d0641debe51620bc756"
+  },
+  "source_commit": "28f53b10529495754273d55654c7b29e78848c83",
+  "runtime_version": "1.0.0",
+  "runtime_hashes": {
+    "AudioFileForPhone.ps1": {
+      "git_blob": "d6bcdbdb3a4a180e4e9ef142e601c28cb4e40d49",
+      "git_bytes_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec",
+      "working_tree_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    "AudioFileForPhone.Helpers.ps1": {
+      "git_blob": "b59cbea5497f428b4b063929f06b924fc9e4424c",
+      "git_bytes_sha256": "d5e9f03a69f084a148245a36567e7d6460363624c229301f8a807f07d9a5ff7c",
+      "working_tree_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    "AudioFileForPhone.bat": {
+      "git_blob": "8bec7664cca0b27a484023daeddd4fab46294805",
+      "git_bytes_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0",
+      "working_tree_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  },
+  "artwork_sha256": {
+    "AudioFileForPhone.ico": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+    "AudioFileForPhone.png": "5336cbcbbf351fb39534d7a387d479925c123452ef940d1e1cfe6a76b7713ebb",
+    "AudioFileForPhone_poster.png": "0735c4dfef64efe622e180d767f76d947d8fc455415d13e48c1c058b7bab8b81"
+  },
+  "environment": {
+    "os_product": "Microsoft Windows 11 Pro",
+    "display_version": "26H2",
+    "os_build": "26300.9711",
+    "architecture": "x64",
+    "powershell_hosts": [
+      {
+        "executable": "$env:SystemRoot\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "version": "5.1.26100.9711",
+        "edition": "Desktop"
+      },
+      {
+        "executable": "$env:USERPROFILE\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "version": "7.6.5",
+        "edition": "Core"
+      }
+    ],
+    "ffmpeg_identity": "PRESENT_NOT_EXECUTED: C:\\ffmpeg\\bin\\ffmpeg.exe",
+    "ffprobe_identity": "PRESENT_NOT_EXECUTED: C:\\ffmpeg\\bin\\ffprobe.exe",
+    "windows_10": "NOT_RUN: no Windows 10 environment inspected or available in this session"
+  },
+  "bundle": {
+    "zip_sha256": "cd8421b3a2e4d0b7ba10d96323d00544b8fc97a5af140f56938e8d2b3b805028",
+    "files": 52,
+    "imported_files": 43,
+    "steps": 18,
+    "acceptance_criteria": 54,
+    "validator": "PASS",
+    "validator_tests": {
+      "passed": 22,
+      "failed": 0
+    },
+    "independent_inventory_audit": "PASS: all 51 inventory entries, lengths/hashes and safe ZIP member paths"
+  },
+  "repository": {
+    "identity": {
+      "defaultBranchRef": {
+        "name": "main"
+      },
+      "nameWithOwner": "PikkuJanne/AudioFileForPhone",
+      "visibility": "PUBLIC"
+    },
+    "initial_local_main": "74992b2ca74e77538b21314bbdf53f89432e709a",
+    "reconciled_local_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "active_branch": "codex/audiofileforphone-v1.0.1",
+    "main_integration": "NOT_INTEGRATED: S01 feature work; ordinary integration deferred to S14",
+    "historical_docs_tree": "90db5d018fae700c1f57627372a1c24e81cd465e",
+    "initial_worktree": "CLEAN; main behind live by four owner artwork commits",
+    "reconciliation": "Normal fetch and fast-forward; no reset/clean/stash/force; no previous 18-step plan found locally or live"
+  },
+  "release": {
+    "target": "v1.0.1",
+    "target_tag": "UNUSED",
+    "target_release": "UNUSED",
+    "publication": "PENDING_S17",
+    "existing_id": 410779813,
+    "existing_tag": "v1.0.0",
+    "existing_published_at": "2026-10-12T16:47:31Z",
+    "existing_tag_refs": {
+      "refs/tags/v1.0.0": "279945f7d5a4b887b7bd44eae5244b03060f76cc",
+      "refs/tags/v1.0.0^{}": "2092a405c1d06eca336e771a0ed5d1881acd015a"
+    },
+    "existing_assets": [
+      {
+        "id": 634242834,
+        "name": "AudioFileForPhone-v1.0.0.zip",
+        "size": 53958,
+        "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+      },
+      {
+        "id": 634242836,
+        "name": "release-manifest.json",
+        "size": 4162,
+        "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+      },
+      {
+        "id": 634242837,
+        "name": "SHA256SUMS.txt",
+        "size": 183,
+        "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+      }
+    ],
+    "preservation": "No release/tag writes; live metadata, immutable tag/source identities and ZIP digest equal BASELINE. All three live server asset digests are captured and checked against the initial S01 live inventory. No new independent asset download in S01."
+  },
+  "cases": [
+    {
+      "id": "bundle-validation",
+      "command": "& $py -B $bundle/tools/validate_bundle.py $bundle; & $py -B $bundle/tools/test_validate_bundle.py",
+      "expected": "PASS, 18 steps, 54 criteria, 22 tests",
+      "observed": "PASS; 52 distribution files, 43 payload docs, all 22 tests passed",
+      "scope": "Planning/integrity only; external bundled standard-library tooling; no production Python dependency"
+    },
+    {
+      "id": "checkout-reconciliation",
+      "command": "git fetch --prune origin; git status --porcelain=v1 --untracked-files=all; git merge --ff-only origin/main; git switch -c codex/audiofileforphone-v1.0.1",
+      "expected": "Clean fast-forward; preserve owner commits",
+      "observed": "PASS: 74992b2..28f53b1 fast-forward, four artwork commits preserved"
+    },
+    {
+      "id": "live-identities",
+      "command": "gh repo view PikkuJanne/AudioFileForPhone --json nameWithOwner,defaultBranchRef,visibility; gh pr list --repo PikkuJanne/AudioFileForPhone --state open --json number,title,headRefName,baseRefName,isDraft,url; gh api repos/PikkuJanne/AudioFileForPhone/releases; git ls-remote --heads origin; git ls-remote --tags origin v1.0.0 v1.0.0^{} v1.0.1 v1.0.1^{}",
+      "expected": "Correct public repository/main; new target unused; existing release fixed",
+      "observed": "PASS; no pre-existing open PR or new plan branch; original tag and all three asset digests preserved"
+    },
+    {
+      "id": "host-inventory",
+      "command": "Get-CimInstance Win32_OperatingSystem; Get-ItemProperty -LiteralPath HKLM:\\SOFTWARE\\Microsoft\\Windows` NT\\CurrentVersion; & $ps51 -NoProfile -NonInteractive -Command '[pscustomobject]@{version=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition} | ConvertTo-Json -Compress'; & $ps7 -NoProfile -NonInteractive -Command '[pscustomobject]@{version=$PSVersionTable.PSVersion.ToString();edition=$PSVersionTable.PSEdition} | ConvertTo-Json -Compress'",
+      "expected": "Actual local host/build inventory; no owner diagnostic",
+      "observed": "Windows 11 Pro 26H2 26300.9711 x64; PS5.1 5.1.26100.9711 and PS7 7.6.5",
+      "scope": "Inventory only. Initial PS5.1 Select-Object on hashtable emitted null fields; corrected explicit property capture above provides actual values."
+    },
+    {
+      "id": "import-and-scope-contracts",
+      "command": "External check_s01.py: compare static imports to BUNDLE_MANIFEST.json, parse all plan JSON, check 18/54 mappings and remaining NOT_STARTED steps, compare allowed paths/Git blobs/artwork; git diff --check",
+      "expected": "Only AGENTS and active plan differ; old evidence/runtime/tests/tools/CI/artwork/README unchanged",
+      "observed": "PASS; 39 immutable imported files byte-equal; four mutable ledgers updated; source Git blobs unchanged",
+      "scope": "Local planning/source integrity checks; no conversion claim. Initial audit asserted Git hash-object normalization for tracked CRLF files and failed; corrected to literal Git-byte equality or the exact clean CRLF checkout representation, without changing source."
+    }
+  ],
+  "test_entry_points": {
+    "inventory_only": true,
+    "retained_test_scripts": [
+      "tests/Invoke-IsolatedBaseline.ps1",
+      "tests/Test-AudioFileForPhone.ps1",
+      "tests/Test-BaselineCharacterization.ps1",
+      "tests/Test-Cancellation.ps1",
+      "tests/Test-CleanupSafety.ps1",
+      "tests/Test-Diagnostics.ps1",
+      "tests/Test-Discovery.ps1",
+      "tests/Test-HelpVersion.ps1",
+      "tests/Test-LauncherResults.ps1",
+      "tests/Test-Metadata.ps1",
+      "tests/Test-NamingPlan.ps1",
+      "tests/Test-NativeProcess.ps1",
+      "tests/Test-OutputParent.ps1",
+      "tests/Test-Package.ps1",
+      "tests/Test-Preflight.ps1",
+      "tests/Test-Preview.ps1",
+      "tests/Test-Progress.ps1",
+      "tests/Test-RegressionEdges.ps1",
+      "tests/Test-RunReservation.ps1",
+      "tests/Test-ScriptResults.ps1",
+      "tests/Test-TransactionalOutput.ps1",
+      "tests/ci/Test-CiContracts.ps1",
+      "tests/ci/Test-CiDependencies.ps1"
+    ],
+    "safe_baseline": "tests/Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath <fresh approved evidence path>",
+    "routine_driver": ".github/scripts/Invoke-CiChecks.ps1 -DependenciesPath <validated shell/label-bound dependency record> -RunLabel <fresh accepted label>",
+    "verified_command_reference": "docs/codex-v1/evidence/T22-routine-commands.json",
+    "cautions": [
+      "Existing baseline/CI evidence destinations and T03..T17/T17 filename contracts must be preserved or explicitly adapted in S02.",
+      "Inherit UTF-8 CP65001 for future isolated media runs; keep child-only module environment handling.",
+      "No direct baseline-characterization invocation; no ordinary Music or personal media scan; no DefaultSmoke for S01."
+    ]
+  },
+  "required_acceptance_results": {
+    "S01-A1": "PASSED",
+    "S01-A2": "PASSED",
+    "S01-A3": "PENDING_COMMIT_PUSH_LIVE_COMPARISON_CI"
+  },
+  "human_observations": [],
+  "package_sha256": null,
+  "redaction_reviewed": true,
+  "limitations": [
+    "S01 executes no local application/audio tests or owner diagnostics; unchanged runtime remains 1.0.0.",
+    "Helpers has LF Git bytes and CRLF clean checkout bytes; both hashes are recorded, with Git-normalized blob equality verified.",
+    "No Windows 10, new candidate/exact ZIP, consolidated kit or new phone evidence; these belong to later scoped steps.",
+    "Published v1.0.0 asset digests are read from live GitHub; no independent fresh download is claimed.",
+    "First preparation push and exact-commit CI remain pending; final containing checkpoint identity belongs in post-push handover."
+  ],
+  "review": {
+    "status": "PASSED_AFTER_CORRECTIONS",
+    "scope": "Independent read-only staged import, routing, authority, privacy and preservation review",
+    "observed_utc": "2026-10-17T15:11:53.1655309Z",
+    "static_files_compared": 39,
+    "findings_resolved": [
+      "Explicit existing owner-approval default retained for main integration.",
+      "BASELINE comparison limited to ZIP; all three initial/current live asset digests captured separately."
+    ],
+    "reviewer_mutations": "NONE"
+  }
+}

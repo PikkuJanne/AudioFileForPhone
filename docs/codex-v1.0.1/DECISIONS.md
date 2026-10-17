@@ -1,0 +1,41 @@
+# Decisions
+
+D01 — Owner-mandated public release v1.0.1. The owner corrected the earlier
+      target on 17 October 2026. Preserve the entire accepted scope; published
+      v1.0.0 and its assets remain unchanged. No alternative version without a
+      new explicit owner instruction. RELEASE_TARGET.json fixes all release names.
+D02 — One numbered step per thread, including hard STOP on blocked evidence.
+D03 — No application rewrite; preserve default audio and source/output protections.
+D04 — FFmpeg selection is application-specific; no persistent PATH mutation.
+D05 — Managed download is optional, explicit, pinned and separate from conversion.
+D06 — Missing dependency versions are tested by capability; do not require one
+      exact patch number just because CI uses it. Reject known unsafe builds only
+      with current sourced reasoning and an actionable replacement route.
+D07 — Owner work is consolidated in S15; developer/CI matrices stay with Codex.
+D08 — Full Windows 10/11 and candidate-byte verification cannot be waived by Codex.
+D09 — Reference build pinning is for repeatable testing, not a claim that a release
+      build is inherently better than every Git-master build.
+D10 — Support export is local and opt-in; raw paths/media/metadata stay private.
+D11 — Context-specific updates to the old AGENTS routing/download/release scope are
+      intentional and narrow; preserve historical evidence and unrelated rules.
+
+Append dated decisions with: problem, evidence, options considered, decision,
+affected tests/steps, and whether user authorization is actually needed.
+Do not relitigate these defaults in every new thread.
+
+D12 - 2026-10-17, S01 routing: local/live paths and branches contain only the
+      completed historical v1.0.0 plan, with no earlier 18-step import/progress.
+      Apply S01 rather than the correction checkpoint. Fast-forward clean local
+      main from 74992b2 to live 28f53b10529495754273d55654c7b29e78848c83;
+      preserve owner artwork and create codex/audiofileforphone-v1.0.1. Import
+      only 43 explicitly inventoried payload docs. No new authorization needed:
+      the current owner request covers S01 edits/tests/commit/feature push.
+D13 - 2026-10-17, S01 evidence: inventory actual Windows hosts and retained test
+      entry points without rerunning owner diagnostics or audio tests for a
+      documentation-only import. Existing wrappers have historical T-prefixed
+      output contracts; S02 must preserve old evidence and explicitly bind new
+      scope. Retain inherited UTF-8 console handling in future media runs.
+D14 - 2026-10-17, checkpoint identity: store unchanged tested baseline/runtime
+      hashes and the prior verified checkpoint. Observe final containing HEAD,
+      live equality and its CI in the post-push handover, avoiding self-hashes.
+      Main integration remains separate/deferred to ordinary S14 PR policy.
