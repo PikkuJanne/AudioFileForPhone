@@ -328,8 +328,9 @@ function Resolve-AudioToolSelection {
 
 function Save-AudioToolSelection {
     param([Parameter(Mandatory = $true)][string]$FfmpegDirectory, [string]$ConfigPath)
-    # This is the only persistence API. Conversion, preview and default load never
-    # call it. Validation completes before creating any config storage.
+    # This is the only persistence API. Only deliberate setup calls it; ordinary
+    # conversion, preview and default load never save a choice. Validation completes
+    # before creating any config storage.
     $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
     $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath
     $path = Get-AudioConfigPath -ConfigPath $ConfigPath
@@ -410,6 +411,195 @@ function Save-AudioToolSelection {
     }
     Write-Host ("[INFO] Remembered FFmpeg directory in {0}" -f $path)
     return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = 'Saved'; ConfigPath = $path; Directory = $pair.Directory }
+}
+
+function Get-AudioSetupRepairCommand {
+    param([Parameter(Mandatory = $true)][string]$ScriptDirectory, [string]$ConfigPath)
+    # Single-quoted PowerShell arguments are display text, never evaluated here.
+    $setupPath = [IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'Setup-AudioFileForPhone.ps1')
+    $command = "& '" + $setupPath.Replace("'", "''") + "' -FfmpegDirectory '<directory containing ffmpeg.exe and ffprobe.exe>' -Remember"
+    if (-not [string]::IsNullOrWhiteSpace($ConfigPath)) {
+        $command += " -ConfigPath '" + $ConfigPath.Replace("'", "''") + "'"
+    }
+    return $command
+}
+
+function Test-AudioSetupInteractionAvailable {
+    # Read-Host can conceal EOF/redirected-input loops. Interactive setup supports
+    # an ordinary console only; explicit-directory setup needs no console.
+    try {
+        return ($Host.Name -eq 'ConsoleHost' -and [Environment]::UserInteractive -and
+            -not [Console]::IsInputRedirected)
+    }
+    catch { return $false }
+}
+
+function Read-AudioSetupResponse {
+    param([Parameter(Mandatory = $true)][string]$Prompt)
+    if (-not (Test-AudioSetupInteractionAvailable)) {
+        throw 'Interactive setup requires console input. Use the explicit -FfmpegDirectory setup command instead.'
+    }
+    Write-Host ($Prompt + ': ') -NoNewline
+    # Use host input rather than Console.ReadLine so PowerShell -NonInteractive
+    # retains authority even with an attached console. Preserve null at EOF.
+    # Each stage reads once: invalid input/cancellation never create retry loops.
+    return $Host.UI.ReadLine()
+}
+
+function Select-AudioSetupDirectory {
+    # Keep GUI interaction behind a small adapter. A cancelled dialog is distinct
+    # from an unavailable dialog and must never trigger another surprise prompt.
+    $dialog = $null
+    try {
+        if ([Threading.Thread]::CurrentThread.GetApartmentState() -ne [Threading.ApartmentState]::STA) {
+            throw 'The current host is not STA.'
+        }
+        if (-not [Environment]::UserInteractive) { throw 'A Windows desktop is unavailable.' }
+        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
+        $dialog = New-Object System.Windows.Forms.FolderBrowserDialog
+        $dialog.Description = 'Choose the existing bin folder containing ffmpeg.exe and ffprobe.exe.'
+        $dialog.ShowNewFolderButton = $false
+        $answer = $dialog.ShowDialog()
+        if ($answer -ne [Windows.Forms.DialogResult]::OK) {
+            return [pscustomobject]@{ Status = 'Cancelled'; Directory = $null; Error = $null }
+        }
+        return [pscustomobject]@{ Status = 'Selected'; Directory = $dialog.SelectedPath; Error = $null }
+    }
+    catch {
+        return [pscustomobject]@{ Status = 'Unavailable'; Directory = $null; Error = $_.Exception.Message }
+    }
+    finally { if ($null -ne $dialog) { $dialog.Dispose() } }
+}
+
+function Write-AudioSetupManualInstructions {
+    param([Parameter(Mandatory = $true)][string]$ScriptDirectory, [string]$ConfigPath)
+    Write-Host 'Manual/offline setup: obtain a Windows FFmpeg build with libmp3lame from a source you trust.'
+    Write-Host 'Extract it using your normal tools. Keep its vendor notices and choose the exact bin folder containing both ffmpeg.exe and ffprobe.exe.'
+    Write-Host 'An existing offline copy is sufficient. No download, administrator access or PATH change is required.'
+    Write-Host 'Run this command after replacing the directory placeholder:'
+    Write-Host (Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath)
+}
+
+function Invoke-AudioToolSetup {
+    param(
+        [Parameter(Mandatory = $true)][string]$ScriptDirectory,
+        [string]$ConfigPath,
+        [string]$Reason,
+        [string]$FfmpegDirectory,
+        [switch]$Remember,
+        [switch]$NonInteractive
+    )
+    $result = [ordered]@{ Status = 'NotConfigured'; Selection = $null; Remembered = $false; SaveError = $null; Error = $null }
+    $guards = New-Object 'Collections.Generic.List[IDisposable]'
+    try {
+        Assert-AudioNotCancelled
+        $explicit = $PSBoundParameters.ContainsKey('FfmpegDirectory')
+        if ($explicit -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+            throw '-FfmpegDirectory must be a non-empty directory containing ffmpeg.exe and ffprobe.exe.'
+        }
+        if (-not $explicit) {
+            if ($Remember) { throw '-Remember requires an explicit -FfmpegDirectory. Interactive setup asks whether to remember the selected pair.' }
+            if ($NonInteractive -or -not (Test-AudioSetupInteractionAvailable)) {
+                throw ('Setup requires an explicit existing-tool directory when console input is unavailable. Repair action: ' +
+                    (Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath))
+            }
+            if (-not [string]::IsNullOrWhiteSpace($Reason)) { Write-Host ('FFmpeg setup is needed: ' + $Reason) }
+            Write-Host 'No conversion has started. Select an existing FFmpeg pair to continue this launch.'
+            Write-Host 'S = select existing folder | M = manual/offline instructions | D = download (unavailable until S06) | Q = cancel'
+            $answer = Read-AudioSetupResponse -Prompt 'Setup selection'
+            if ($null -eq $answer -or [string]::IsNullOrWhiteSpace($answer) -or $answer.Trim() -ieq 'Q') {
+                $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled; no selection was changed.'
+                return [pscustomobject]$result
+            }
+            switch ($answer.Trim().ToUpperInvariant()) {
+                'M' {
+                    Write-AudioSetupManualInstructions -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath
+                    $result.Error = 'Manual/offline instructions displayed; FFmpeg has not been configured. Run setup again when the pair is available.'
+                    return [pscustomobject]$result
+                }
+                'D' {
+                    Write-Host 'Optional setup download is unavailable until S06. No files were downloaded or installed.'
+                    Write-AudioSetupManualInstructions -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath
+                    $result.Error = 'Optional download is unavailable; select an existing pair or follow the manual/offline instructions.'
+                    return [pscustomobject]$result
+                }
+                'S' {
+                    $picked = Select-AudioSetupDirectory
+                    if ($picked.Status -eq 'Cancelled') {
+                        $result.Status = 'Cancelled'; $result.Error = 'FFmpeg folder selection was cancelled; no selection was changed.'
+                        return [pscustomobject]$result
+                    }
+                    if ($picked.Status -eq 'Unavailable') {
+                        Write-Warning ('Folder dialog is unavailable; use the typed path instead. ' + $picked.Error)
+                        $FfmpegDirectory = Read-AudioSetupResponse -Prompt 'Type the exact bin folder containing both executables (empty = cancel)'
+                        if ($null -eq $FfmpegDirectory -or [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+                            $result.Status = 'Cancelled'; $result.Error = 'FFmpeg typed-path selection was cancelled; no selection was changed.'
+                            return [pscustomobject]$result
+                        }
+                        $FfmpegDirectory = $FfmpegDirectory.Trim()
+                        if ($FfmpegDirectory.Length -ge 2 -and $FfmpegDirectory.StartsWith('"') -and $FfmpegDirectory.EndsWith('"')) {
+                            $FfmpegDirectory = $FfmpegDirectory.Substring(1, $FfmpegDirectory.Length - 2)
+                        }
+                    }
+                    elseif ($picked.Status -eq 'Selected') { $FfmpegDirectory = $picked.Directory }
+                    else { throw 'Folder selection returned an unsupported result; no selection was changed.' }
+                }
+                default { throw 'Invalid setup selection. Run setup again and choose S, M, D or Q; no selection was changed.' }
+            }
+        }
+        Assert-AudioNotCancelled
+        # The exact explicitly selected directory is accepted; no recursive search
+        # or automatic installation-root/bin guessing grants execution authority.
+        $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+        foreach ($path in @($pair.FfmpegPath, $pair.FfprobePath)) {
+            # Hold read guards through validation/hash/consent/save so the displayed
+            # selected bytes cannot be replaced by cooperating filesystem writes.
+            $guards.Add((New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)))
+        }
+        $selection = Resolve-AudioToolSelection -FfmpegDirectory $pair.Directory -ConfigPath $ConfigPath -ScriptDirectory $ScriptDirectory
+        Write-Host ('Accepted FFmpeg directory: ' + $selection.Directory)
+        foreach ($tool in @($selection.Ffmpeg, $selection.Ffprobe)) {
+            Assert-AudioNotCancelled
+            $hash = (Get-FileHash -LiteralPath $tool.Path -Algorithm SHA256 -ErrorAction Stop).Hash
+            $tool | Add-Member -NotePropertyName SHA256 -NotePropertyValue $hash -Force
+            Write-Host ('SHA256 ' + $tool.Path + ': ' + $hash)
+        }
+        Write-Host 'Capability checks and these hashes identify the selected files; they do not prove publisher authenticity.'
+        if (-not $explicit) {
+            $answer = Read-AudioSetupResponse -Prompt 'Remember this directory for future launches? Y = yes | N/Enter = this launch only | Q = cancel'
+            if ($null -eq $answer -or $answer.Trim() -ieq 'Q') {
+                $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled before remembering or using the selection.'
+                return [pscustomobject]$result
+            }
+            if ($answer.Trim() -ieq 'Y') { $Remember = $true }
+            elseif (-not [string]::IsNullOrWhiteSpace($answer) -and $answer.Trim() -ine 'N') {
+                throw 'Invalid remember selection. Run setup again and choose Y, N/Enter or Q; no selection was changed.'
+            }
+        }
+        Assert-AudioNotCancelled
+        if ($Remember) {
+            try {
+                $saved = Save-AudioToolSelection -FfmpegDirectory $selection.Directory -ConfigPath $ConfigPath
+                $result.Remembered = $true
+                $selection.Origin = $saved.Origin
+            }
+            catch [OperationCanceledException] { throw }
+            catch {
+                $result.SaveError = $_.Exception.Message
+                Write-Warning ('This directory was NOT remembered. The validated pair can continue in the current launch only. ' + $result.SaveError)
+            }
+        }
+        if (-not $result.Remembered -and -not $result.SaveError) {
+            Write-Host 'This directory was not remembered. The validated pair is available for this launch only.'
+        }
+        $result.Status = 'Ready'; $result.Selection = $selection
+    }
+    catch [OperationCanceledException] {
+        $result.Status = 'Cancelled'; $result.Error = $_.Exception.Message
+    }
+    catch { $result.Error = $_.Exception.Message }
+    finally { foreach ($guard in $guards) { $guard.Dispose() } }
+    return [pscustomobject]$result
 }
 
 function New-AudioCancellationContext {

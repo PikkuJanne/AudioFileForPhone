@@ -13,7 +13,8 @@ Conversion changes bitrate, names and supported metadata. It performs no loudnes
 normalization, noise reduction or EQ. .opus, .wav, .flac and .m4b are not scanned.
 OGG supports Vorbis and Opus in .ogg files. FFmpeg and ffprobe are external tools,
 selected by FfmpegDirectory, saved config, a pair beside the script, then PATH.
-Conversion requires libmp3lame. An invalid explicit/saved choice stops preflight.
+Conversion requires libmp3lame. Interactive launches offer deliberate setup repair
+when tool selection fails; other launches stop with an exact setup command.
 
 Source title and supported tags are copied; a missing/empty title uses the planned
 output basename. Nonblank Artist/Album override source tags. Source artwork is
@@ -38,7 +39,8 @@ Full file/working paths must be below 260 units; created directories below 248.
 These limits do not guarantee acceptance by every phone or MTP implementation.
 
 .PARAMETER Interactive
-Prompts once for optional batch metadata and a Windows cover picker after preflight.
+Offers dependency repair when needed, then optional batch metadata and a Windows
+cover picker after preflight. Setup asks before remembering a selected tool pair.
 Use an STA console for the picker. Without this switch there are no prompts.
 DryRun explicitly ignores Interactive.
 
@@ -78,9 +80,10 @@ Invalid explicit choices fail preflight without falling back to another build.
 .PARAMETER ConfigPath
 Optional JSON config file location for portable use or isolated environments.
 Overrides the default Windows LocalApplicationData\AudioFileForPhone\config.json.
-Relative paths use the current PowerShell location. Conversion only reads config;
-preview does not read it. Stale/corrupt saved selections require repair or an
-explicit FfmpegDirectory override. No settings are written by conversion.
+Relative paths use the current PowerShell location. Normal conversion only reads
+config; preview does not read it. Interactive dependency repair can remember a
+selection only after affirmative consent. Corrupt/new-schema config is preserved;
+use an explicit FfmpegDirectory override or another writable ConfigPath.
 
 .EXAMPLE
 .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
@@ -250,7 +253,18 @@ try {
     if (-not $DryRun) {
         $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir }
         if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $selectionOptions.FfmpegDirectory = $FfmpegDirectory }
-        $toolInfo = Resolve-AudioToolSelection @selectionOptions
+        try { $toolInfo = Resolve-AudioToolSelection @selectionOptions }
+        catch [OperationCanceledException] { throw }
+        catch {
+            $selectionError = $_.Exception.Message
+            $repairCommand = Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath
+            if (-not $Interactive) { throw "$selectionError Existing-tool repair: $repairCommand" }
+            $setup = Invoke-AudioToolSetup -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath -Reason $selectionError
+            if ($setup.Status -eq 'Cancelled') { throw (New-Object OperationCanceledException('Dependency setup cancelled before conversion.')) }
+            if ($setup.Status -ne 'Ready' -or $null -eq $setup.Selection) { throw "$($setup.Error) Existing-tool repair: $repairCommand" }
+            $toolInfo = $setup.Selection
+            Write-Host '[SETUP] Continuing this launch with the validated selected tools.'
+        }
         $ffmpeg = $toolInfo.Ffmpeg.Path
         $ffprobe = $toolInfo.Ffprobe.Path
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
@@ -260,6 +274,7 @@ try {
         Test-OutputWritable -Path $outputParentPath
     }
 }
+catch [OperationCanceledException] { throw }
 catch {
     throw "Preflight failed: $($_.Exception.Message)"
 }
@@ -710,7 +725,7 @@ $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
 }
 catch [OperationCanceledException] {
     $runStatus = 'Cancelled'; $batchExitCode = 130
-    Set-ActiveAudioRecordCancelled
+    if ($manifest) { Set-ActiveAudioRecordCancelled }
     Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
     $cancelProcessNote = $null
     if ($null -ne $script:AudioCancellationContext -and $script:AudioCancellationContext.ActiveProcessId -ne 0) {

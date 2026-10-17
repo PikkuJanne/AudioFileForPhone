@@ -22,6 +22,7 @@ together:
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
+- `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (existing-tool setup)
 
 For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe`. Selection order is
 `-FfmpegDirectory`, a deliberately saved user selection, a complete pair beside
@@ -29,9 +30,47 @@ the scripts, then `PATH`. Explicit, saved and app-local choices require both
 regular executables in that directory. An incomplete local pair or an invalid
 explicit/saved choice stops preflight with repair guidance. Startup checks that
 both run and that FFmpeg provides `libmp3lame`, and prints the origin and paths.
-FFmpeg stays external: the app does not download, install or update tools.
+FFmpeg stays external. Existing-tool setup needs no network access; its download
+choice is unavailable until optional download support is implemented. Conversion
+never downloads tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
+
+After reviewing a trusted existing build, run setup from the application folder:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1
+```
+
+Choose **S** to select the directory containing both executables. A Windows folder
+picker is used when available; otherwise type the exact directory path without
+surrounding quotes. Only that directory is checked. Setup shows both paths,
+versions, detected architecture and SHA-256 hashes, then asks whether to remember
+the choice. **N** keeps it for this launch only; **Q** cancels. **M** gives manual
+instructions. **D** explains that downloading is unavailable and returns without
+network access. An invalid pair stops setup without replacing a saved choice.
+
+`Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
+STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
+arguments; use the PS1 entry for explicit options. A console with readable input
+is needed for interactive setup. To select and remember a reviewed pair directly,
+without prompts or a PATH edit:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -FfmpegDirectory 'D:\Trusted tools\bin' -Remember -NonInteractive
+```
+
+Omit `-Remember` to validate and display the pair without saving. Setup returns 0
+when the selected pair is ready, 1 when configuration or an explicitly requested
+save fails, and 130 on cancel. A failed settings write clearly says the choice
+was **not remembered** and gives an explicit `-FfmpegDirectory` conversion command.
+The valid pair can still be used for the current interactive conversion.
+
+When an `-Interactive` conversion cannot resolve its tools, it offers the same
+setup before metadata prompts and resumes that launch with the validated pair.
+Ordinary conversion never prompts, downloads or saves settings; it reports the
+exact setup repair command. Preview never starts setup, reads config or calls
+tools, including when `-Interactive` is supplied.
 
 For manual download sources, tested build identities, license differences and
 checks of the exact resolved executables, read
@@ -40,7 +79,7 @@ trusted build and retain the publisher's notices. Startup capability/version
 responses do not authenticate a vendor binary.
 
 The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
-before running downloaded files. The included BAT requests process-scoped
+before running downloaded files. The conversion BAT requests process-scoped
 `-ExecutionPolicy Bypass`; use direct PowerShell invocation when you need to keep
 policy checks. Never work around an enforced organization policy.
 
@@ -103,11 +142,11 @@ before returning the child exit code. See the security note above before using i
 | `-MaxBaseLength` | Default 60, range 24-180 UTF-16 units; includes date/separator/collision suffix, excludes `.mp3`. |
 | `-CoverPath` | Optional readable `.jpg`, `.jpeg` or `.png`; replaces source artwork with one attached JPEG cover. |
 | `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
-| `-Interactive` | Optional cover and tag prompts before conversion; cover picker needs STA. Ignored during preview. |
+| `-Interactive` | Offers tool repair when needed, then optional cover and tag prompts; pickers use STA. Ignored during preview. |
 | `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
 | `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
 | `-FfmpegDirectory` | Directory containing both trusted executables; overrides saved/app-local/PATH selection for this run without saving or changing PATH. |
-| `-ConfigPath` | Optional config file location; overrides the Windows user-local default. Relative paths use the current PowerShell location. Conversion only reads it; preview does not read config. |
+| `-ConfigPath` | Optional config file location; overrides the Windows user-local default. Relative paths use the current PowerShell location. Only deliberate interactive setup can save it; preview does not read config. |
 
 To use an existing external installation, add `-FfmpegDirectory 'D:\Trusted tools\bin'`
 to the conversion command. No PATH edit is required. The default config file is
@@ -115,8 +154,10 @@ to the conversion command. No PATH edit is required. The default config file is
 API. `-ConfigPath '.\portable-config.json'` selects a different file. A missing file
 allows app-local/PATH discovery; stale, corrupt or unsupported config stops it.
 An explicit directory can override that file for the current run without changing
-it. Move the problematic config aside to return to ordinary discovery, or use
-the deliberately invoked save helper below after reviewing the existing file.
+it. Setup also accepts `-ConfigPath '.\portable-config.json'`; use that same option
+for conversion to read a portable selection. Corrupt or newer config is preserved.
+Use another writable ConfigPath or move only the reviewed problematic file aside
+before deliberately saving again.
 
 Remember a trusted existing pair only when you deliberately run this helper:
 
@@ -129,8 +170,9 @@ The helper accepts the same `-ConfigPath` override, validates the pair before an
 atomic UTF-8 JSON write, and stores `schema_version: 1` and `ffmpeg_directory`.
 It preserves other schema-1 settings and refuses corrupt/newer config or read-only
 storage. A failed save means the choice was not remembered; use the explicit
-directory for the current conversion. Conversion, preview and helper load never
-save settings. Setup interaction and downloading are separate planned work.
+directory for the current conversion. Normal conversion, preview and helper load
+never save settings; interactive setup saves only after affirmative consent.
+Setup is the simpler user-facing route to the same shared resolver and save API.
 
 Only the app directory itself is an app-local layout; `tools\ffmpeg\bin` is not
 searched. PATH discovery uses the first regular `.exe` under absolute PATH

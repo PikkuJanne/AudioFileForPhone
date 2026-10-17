@@ -241,7 +241,7 @@ try {
     $allowlist = ($allowlistText.Lines -join "`n") | ConvertFrom-Json -ErrorAction Stop
     if ($allowlist.schema_version -ne 1) { throw 'Package allowlist requires schema_version 1.' }
     $members = @($allowlist.files)
-    $required = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'README.md', 'SUPPORT.md', 'CHANGELOG.md', 'SECURITY.md', 'LICENSE')
+    $required = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'README.md', 'SUPPORT.md', 'CHANGELOG.md', 'SECURITY.md', 'LICENSE')
     $unique = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
     foreach ($member in $members) {
         if ($member -isnot [string]) { throw 'Package allowlist files must be strings.' }

@@ -101,7 +101,7 @@ function Invoke-CiHarness {
     } else {
         $resultRow.required_checks = @($child.cases).Count
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
-        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
+        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
         }
     }
@@ -210,7 +210,7 @@ try {
         throw 'Exact pinned analyzer module/version must be loaded from the verified extraction.'
     }
     $report.analysis.analyzer_version = $analyzer[0].Version.ToString()
-    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
+    $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -236,6 +236,7 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-SetupEncodingRegressions.ps1' -Family 'setupencoding' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ShortOperations.ps1' -Family 'shortoperations' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ToolSelection.ps1' -Family 'toolselection' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-FirstRunSetup.ps1' -Family 'firstrunsetup' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)
