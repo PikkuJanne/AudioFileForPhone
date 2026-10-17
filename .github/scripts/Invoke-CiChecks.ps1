@@ -232,6 +232,8 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Invoke-IsolatedBaseline.ps1' -Family 'baseline' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-HelpVersion.ps1' -Family 'help' -RealMedia
+    # Characterization records known safe failures; pending future APIs are separate.
+    Invoke-CiHarness -RelativePath 'tests/Test-SetupEncodingRegressions.ps1' -Family 'setupencoding' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)

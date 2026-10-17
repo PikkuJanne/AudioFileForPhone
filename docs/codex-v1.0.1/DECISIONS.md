@@ -45,3 +45,17 @@ D15 - 2026-10-17, S01 checkpoint: preparation 91635bbcd7ac74ea135be1fbdd95fb9c54
       S01 complete and S02 eligible but NOT_STARTED. Draft PR #29 stays unmerged;
       preserve existing owner-approval default for main integration. Final
       containing record is freshly checked after push without a self-hash.
+
+D16 - 2026-10-17, S02 reproduction: retain all existing suites and their fresh
+      T-prefixed evidence contracts. Run them with inherited UTF8 CP65001 and
+      child-only environment changes; keep raw retained reports outside Git and
+      bind redacted summaries by digest. Add one focused real-tool family to the
+      existing CI runner without changing workflow permissions/pins or order of
+      its final native-process check. Owner's bounded step authority suffices.
+D17 - 2026-10-17, S02 classification: Windows 11 26300.9711 with the local
+      2026-10-08 Git FFmpeg pair reproduces all three bitrate-clamping leads for
+      mono/stereo. Preserve exact bitrate rejection and zero published bad files;
+      record these as known late failures, not fixed compatibility. Stale saved
+      selection and external-selection success stay PENDING_API; an owned JSON
+      fixture is not a production config pass. Windows 10/other build/full matrix
+      evidence remains open for later acceptance. No owner diagnostics needed.

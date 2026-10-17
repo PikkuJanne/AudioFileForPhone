@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "task": "S02",
+  "mode": "real_windows_s02_characterization",
+  "started_utc": "2026-10-17T15:27:52.5930247Z",
+  "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+  "shell": "7.6.5",
+  "shell_edition": "Core",
+  "os": "10.0.26300.0",
+  "windows_build": "26300.9711",
+  "windows_edition": "Professional",
+  "display_version": "26H2",
+  "process_64bit": true,
+  "inherited_console_output_codepage": 65001,
+  "ordinary_music_access": false,
+  "owner_media_access": false,
+  "physical_manual_evidence": false,
+  "source_before": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-SetupEncodingRegressions.ps1",
+      "sha256": "ab9ab9b2a3258384319b7724efea06124e0761489a49580d5235d27063e6184c"
+    }
+  ],
+  "source_after": [
+    {
+      "relative_path": "AudioFileForPhone.ps1",
+      "sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "relative_path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "relative_path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "relative_path": "tests/Test-SetupEncodingRegressions.ps1",
+      "sha256": "ab9ab9b2a3258384319b7724efea06124e0761489a49580d5235d27063e6184c"
+    }
+  ],
+  "source_unchanged": true,
+  "synthetic_before": [
+    {
+      "relative_path": "8000Hz-1ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "6b496bc86a4d3b747299be0b98f325838af375731b4f6712412f781bee940dd0"
+    },
+    {
+      "relative_path": "8000Hz-2ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "91150097bcdd51bbd40e0897b2aa3873993698515a62a31ff9e2cef8fac70f7b"
+    },
+    {
+      "relative_path": "48000Hz-1ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "cd0e7c859f56e90aa0a05a09a1d13e2fa8c775d57d55e9814ea9ae1782d3160b"
+    },
+    {
+      "relative_path": "48000Hz-2ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "44a74f20ea08d677f8ff04b3ab0056ea8667ad5327847d110b87c2956a5ce2ee"
+    },
+    {
+      "relative_path": "stale-config.json",
+      "sha256": "eca9a577900263abfda5ed6319165ce2e52fc1ca83b7c9ea613ddf30f901776b"
+    }
+  ],
+  "synthetic_after": [
+    {
+      "relative_path": "8000Hz-1ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "6b496bc86a4d3b747299be0b98f325838af375731b4f6712412f781bee940dd0"
+    },
+    {
+      "relative_path": "8000Hz-2ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "91150097bcdd51bbd40e0897b2aa3873993698515a62a31ff9e2cef8fac70f7b"
+    },
+    {
+      "relative_path": "48000Hz-1ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "cd0e7c859f56e90aa0a05a09a1d13e2fa8c775d57d55e9814ea9ae1782d3160b"
+    },
+    {
+      "relative_path": "48000Hz-2ch/2026-10-17 - Synthetic.m4a",
+      "sha256": "44a74f20ea08d677f8ff04b3ab0056ea8667ad5327847d110b87c2956a5ce2ee"
+    },
+    {
+      "relative_path": "stale-config.json",
+      "sha256": "eca9a577900263abfda5ed6319165ce2e52fc1ca83b7c9ea613ddf30f901776b"
+    }
+  ],
+  "synthetic_unchanged": true,
+  "parent_path_unchanged": true,
+  "persistent_environment_writes": false,
+  "copied_bytes_unchanged": true,
+  "cleanup_verified": true,
+  "tools": [
+    {
+      "name": "ffmpeg.exe",
+      "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+      "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+    },
+    {
+      "name": "ffprobe.exe",
+      "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+      "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+    }
+  ],
+  "cases": [
+    {
+      "id": "both_tools_missing",
+      "status": "pass",
+      "classification": "REPRODUCED_EXISTING_MISSING_TOOL_FAILURE",
+      "expected": "Exit 1 before conversion, both commands unresolved, no output parent.",
+      "observed_exit": 1,
+      "commands_found": [
+        false,
+        false
+      ],
+      "output_parent_created": false,
+      "external_pair_exists": null,
+      "child_path": "owned empty directory",
+      "profile_loaded": false
+    },
+    {
+      "id": "external_pair_outside_path",
+      "status": "pass",
+      "classification": "REPRODUCED_EXISTING_MISSING_TOOL_FAILURE",
+      "expected": "Exit 1 before conversion, both commands unresolved, no output parent.",
+      "observed_exit": 1,
+      "commands_found": [
+        false,
+        false
+      ],
+      "output_parent_created": false,
+      "external_pair_exists": true,
+      "child_path": "empty",
+      "profile_loaded": false
+    },
+    {
+      "id": "8000Hz-1ch-64kbps",
+      "status": "pass",
+      "classification": "EXACT_RATE_SUCCESS",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 8000,
+      "source_channels": 1,
+      "requested_kbps": 64,
+      "default_parameter_omitted": true,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 8000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 0,
+      "app_code": "Success",
+      "published_count": 1,
+      "published_bps": 64000,
+      "published_rate_hz": 8000,
+      "published_full_decode": true,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "8000Hz-1ch-192kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 8000,
+      "source_channels": 1,
+      "requested_kbps": 192,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 8000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "8000Hz-2ch-64kbps",
+      "status": "pass",
+      "classification": "EXACT_RATE_SUCCESS",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 8000,
+      "source_channels": 2,
+      "requested_kbps": 64,
+      "default_parameter_omitted": true,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 8000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 0,
+      "app_code": "Success",
+      "published_count": 1,
+      "published_bps": 64000,
+      "published_rate_hz": 8000,
+      "published_full_decode": true,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "8000Hz-2ch-192kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 8000,
+      "source_channels": 2,
+      "requested_kbps": 192,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 8000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-1ch-64kbps",
+      "status": "pass",
+      "classification": "EXACT_RATE_SUCCESS",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 1,
+      "requested_kbps": 64,
+      "default_parameter_omitted": true,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 0,
+      "app_code": "Success",
+      "published_count": 1,
+      "published_bps": 64000,
+      "published_rate_hz": 48000,
+      "published_full_decode": true,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-1ch-8kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 1,
+      "requested_kbps": 8,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 32000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-1ch-144kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 1,
+      "requested_kbps": 144,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 128000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-2ch-64kbps",
+      "status": "pass",
+      "classification": "EXACT_RATE_SUCCESS",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 2,
+      "requested_kbps": 64,
+      "default_parameter_omitted": true,
+      "encoder_comparison_bps": 64000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 0,
+      "app_code": "Success",
+      "published_count": 1,
+      "published_bps": 64000,
+      "published_rate_hz": 48000,
+      "published_full_decode": true,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-2ch-8kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 2,
+      "requested_kbps": 8,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 32000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    },
+    {
+      "id": "48000Hz-2ch-144kbps",
+      "status": "pass",
+      "classification": "REPRODUCED_LATE_BITRATE_REJECTION",
+      "expected": "Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.",
+      "source_codec": "alac",
+      "source_rate_hz": 48000,
+      "source_channels": 2,
+      "requested_kbps": 144,
+      "default_parameter_omitted": false,
+      "encoder_comparison_bps": 128000,
+      "encoder_comparison_rate_hz": 48000,
+      "encoder_comparison_full_decode": true,
+      "app_exit": 2,
+      "app_code": "ValidationFailed",
+      "published_count": 0,
+      "published_bps": null,
+      "published_rate_hz": null,
+      "published_full_decode": false,
+      "partial_count": 0,
+      "dependency_route": "legacy child-only PATH; not external-selection acceptance"
+    }
+  ],
+  "pending_contracts": [
+    {
+      "id": "stale_saved_selection",
+      "status": "PENDING_API",
+      "fixture": "stale-config.json",
+      "fixture_validated": true,
+      "production_executed": false,
+      "expected": "Fresh noninteractive process rejects stale selection with repair guidance, without PATH fallback.",
+      "reason": "Baseline has no saved config or config-location API. Fixture is not evidence of a production regression or pass."
+    },
+    {
+      "id": "external_selected_directory",
+      "status": "PENDING_API",
+      "production_executed": false,
+      "expected": "Actual explicit/saved production route uses external pair without PATH changes.",
+      "reason": "Baseline has no FfmpegDirectory or saved-selection API; configured child PATH below is labelled legacy baseline only."
+    }
+  ],
+  "status": "pass",
+  "error": null,
+  "finished_utc": "2026-10-17T15:28:40.4880260Z"
+}

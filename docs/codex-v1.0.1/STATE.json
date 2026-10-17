@@ -4,7 +4,7 @@
   "project_status": "IN_PROGRESS",
   "current_step": "S02",
   "active_branch": "codex/audiofileforphone-v1.0.1",
-  "tested_source_commit": "28f53b10529495754273d55654c7b29e78848c83",
+  "tested_source_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
   "frozen_release_commit": null,
   "runtime_zip_sha256": null,
   "acceptance_kit_sha256": null,
@@ -18,9 +18,11 @@
       "blockers": []
     },
     "S02": {
-      "status": "NOT_STARTED",
-      "evidence": null,
-      "remaining_work": [],
+      "status": "IN_PROGRESS",
+      "evidence": "evidence/S02.json",
+      "remaining_work": [
+        "Push reviewed checkpoint, independently verify fresh live equality and exact-head CI; finalize S02 handover and stop."
+      ],
       "blockers": []
     },
     "S03": {
