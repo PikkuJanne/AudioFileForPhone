@@ -39,8 +39,9 @@ Full file/working paths must be below 260 units; created directories below 248.
 These limits do not guarantee acceptance by every phone or MTP implementation.
 
 .PARAMETER Interactive
-Offers dependency repair when needed, then optional batch metadata and a Windows
-cover picker after preflight. Setup asks before remembering a selected tool pair.
+Offers dependency repair when needed, then Enter to start, M to customize batch
+metadata or Q to cancel after preflight. Metadata is never saved between batches.
+Setup asks before remembering a selected tool pair.
 Use an STA console for the picker. Without this switch there are no prompts.
 DryRun explicitly ignores Interactive.
 
@@ -231,6 +232,7 @@ Write-Host "[INFO] Interactive : $Interactive"
 Write-Host ""
 
 # --- Preflight: reject prerequisites before optional prompts or run creation ---
+Write-Host '[STATE] Preflight: checking input, destination and prerequisites.'
 try {
     . (Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1')
     Write-Host ("==== AudioFileForPhone v{0} ====" -f (Get-AudioAppVersion))
@@ -310,116 +312,97 @@ if ($DryRun) {
 }
 else {
 
-function Read-YesNo {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$Prompt,
-
-        [bool]$DefaultYes = $false
-    )
-
-    $defaultHint = if ($DefaultYes) { "Y/n" } else { "y/N" }
-
-    while ($true) {
-        $ans = Read-Host "$Prompt ($defaultHint)"
-        if ([string]::IsNullOrWhiteSpace($ans)) { return $DefaultYes }
-
-        switch ($ans.Trim().ToLowerInvariant()) {
-            'y' { return $true }
-            'yes' { return $true }
-            'n' { return $false }
-            'no' { return $false }
-            default { Write-Host "[WARN] Please answer y or n." }
-        }
+function Read-MetadataResponse {
+    param([string]$Prompt)
+    $answer = Read-AudioMetadataResponse -Prompt $Prompt
+    if ($null -eq $answer) {
+        throw (New-Object OperationCanceledException('Metadata input ended; no conversion has started.'))
     }
+    return $answer.Trim()
 }
 
-function Select-CoverFileDialog {
-    param(
-        [string]$Title = "Select album cover image",
-        [string]$Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*"
-    )
-
-    $ofd = $null
-    try {
-        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
-        $ofd = New-Object System.Windows.Forms.OpenFileDialog
-        $ofd.Title = $Title
-        $ofd.Filter = $Filter
-        $ofd.Multiselect = $false
-
-        $result = $ofd.ShowDialog()
-        if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
-            return $ofd.FileName
-        }
-        return $null
+function Read-MetadataYesNo {
+    param([string]$Prompt)
+    switch ((Read-MetadataResponse -Prompt ($Prompt + ' (y/N; Q = cancel)')).ToUpperInvariant()) {
+        'Y' { return $true }
+        'YES' { return $true }
+        '' { return $false }
+        'N' { return $false }
+        'NO' { return $false }
+        'Q' { throw (New-Object OperationCanceledException('Metadata customization cancelled before conversion.')) }
+        default { throw 'Invalid metadata choice. Use Y, N or Q; no conversion has started.' }
     }
-    catch {
-        Write-Warning "[WARN] Could not open file picker. (Tip: wrapper should launch PowerShell in STA mode.)"
-        Write-Warning "[WARN] Error: $_"
-        return $null
-    }
-    finally { if ($null -ne $ofd) { $ofd.Dispose() } }
 }
 
 # --- Optional: interactive metadata step, only if requested ---
 if ($Interactive) {
-    Write-Host "==== Optional metadata step ===="
-    Write-Host "This run can optionally embed an album cover and set Artist/Album tags for all output files."
-    Write-Host ""
+    Write-Host ('Ready: {0} supported files -> {1} kbps CBR MP3' -f $total, $BitrateKbps)
+    Write-Host 'Enter = start with defaults | M = customize metadata | Q = cancel'
+    Write-Host 'Waiting for your selection (no conversion has started).'
+    $customizeMetadata = $false
+    switch ((Read-MetadataResponse -Prompt 'Selection').ToUpperInvariant()) {
+        '' { }
+        'M' { $customizeMetadata = $true }
+        'Q' { throw (New-Object OperationCanceledException('Conversion cancelled at the ready menu.')) }
+        default { throw 'Invalid selection. Use Enter, M or Q; no conversion has started.' }
+    }
+    if ($customizeMetadata) {
+        Write-Host 'Customize this batch: source tags remain unless overridden; source artwork is dropped unless a cover is supplied.'
+        Write-Host 'Explicit parameters are retained. Enter skips an optional value; conversion starts after these choices. Nothing is saved for the next batch.'
 
-    # Cover
-    if ([string]::IsNullOrWhiteSpace($CoverPath)) {
-        $doCover = Read-YesNo -Prompt "Add album cover to output MP3 metadata?" -DefaultYes:$false
-        if ($doCover) {
-            $picked = Select-CoverFileDialog
-            if ($picked) {
-                try {
-                    $coverValidation = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg -PassThru
-                    $CoverPath = $coverValidation.Path
-                }
-                catch {
-                    throw "Selected cover failed validation: $($_.Exception.Message)"
-                }
-                Write-Host "[INFO] Cover selected: $CoverPath"
+        # Cover
+        if ([string]::IsNullOrWhiteSpace($CoverPath)) {
+            $doCover = Read-MetadataYesNo -Prompt 'Add album cover to output MP3 metadata?'
+            if ($doCover) {
+                $picked = Select-AudioMetadataCover
+                if ($picked) {
+                    try {
+                        $coverValidation = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg -PassThru
+                        $CoverPath = $coverValidation.Path
+                    }
+                    catch {
+                        throw "Selected cover failed validation: $($_.Exception.Message)"
+                    }
+                    Write-Host "[INFO] Cover selected: $CoverPath"
 
-                $coverDiag = $coverValidation.Diagnostics
-                if ($coverDiag.SizeMB -ne $null) {
-                    Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                    $coverDiag = $coverValidation.Diagnostics
+                    if ($coverDiag.SizeMB -ne $null) {
+                        Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                    }
+                    if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
+                        Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
+                    }
+                    foreach ($w in $coverDiag.Warnings) {
+                        Write-Warning "[WARN] $w"
+                    }
                 }
-                if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
-                    Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
-                }
-                foreach ($w in $coverDiag.Warnings) {
-                    Write-Warning "[WARN] $w"
+                else {
+                    Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
+                    $CoverPath = $null
                 }
             }
-            else {
-                Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
-                $CoverPath = $null
+        }
+
+        # Artist
+        if (-not $PSBoundParameters.ContainsKey('Artist')) {
+            $doArtist = Read-MetadataYesNo -Prompt 'Set Artist tag manually for all output files?'
+            if ($doArtist) {
+                $Artist = Read-MetadataResponse -Prompt 'Artist (Enter = retain source tag)'
+                if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
             }
         }
-    }
 
-    # Artist
-    if ([string]::IsNullOrWhiteSpace($Artist)) {
-        $doArtist = Read-YesNo -Prompt "Set Artist tag manually for all output files?" -DefaultYes:$false
-        if ($doArtist) {
-            $Artist = (Read-Host "Artist").Trim()
-            if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
+        # Album
+        if (-not $PSBoundParameters.ContainsKey('Album')) {
+            $doAlbum = Read-MetadataYesNo -Prompt 'Set Album tag manually for all output files?'
+            if ($doAlbum) {
+                $Album = Read-MetadataResponse -Prompt 'Album (Enter = retain source tag)'
+                if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
+            }
         }
-    }
 
-    # Album
-    if ([string]::IsNullOrWhiteSpace($Album)) {
-        $doAlbum = Read-YesNo -Prompt "Set Album tag manually for all output files?" -DefaultYes:$false
-        if ($doAlbum) {
-            $Album = (Read-Host "Album").Trim()
-            if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
-        }
     }
-
-    Write-Host ""
+    Write-Host '[STATE] Starting conversion with this batch metadata.'
 }
 
 # Console input belongs to this invocation only after interactive prompts finish.
@@ -568,10 +551,22 @@ foreach ($plan in $plans) {
     Write-Host "------------------------------------------------------------"
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
-    Write-AudioBatchProgress -Detail ("Inspecting file {0} / {1}: {2}" -f $index, $total, $file.Name)
-    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status 'Inspecting source; duration unknown' -PercentComplete -1
+    Write-Log '[STATE] Probing source; duration unknown.'
+    Write-AudioBatchProgress -Detail ("Probing file {0} / {1}: {2}" -f $index, $total, $file.Name)
+    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status 'Probing source; duration unknown' -PercentComplete -1
+    $script:AudioLastDisplayedPhase = ''
     $fileProgressCallback = {
         param($progress)
+        if ($script:AudioLastDisplayedPhase -cne $progress.Phase) {
+            $phaseDetail = switch ($progress.Phase) {
+                'Encoding' { 'Encoding audio; output is not yet validated.' }
+                'Validating' { 'Validating output and fully decoding audio; output is not yet published.' }
+                'Promoting' { 'Publishing validated output.' }
+                default { $progress.Phase }
+            }
+            Write-Log ('[STATE] ' + $phaseDetail)
+            $script:AudioLastDisplayedPhase = $progress.Phase
+        }
         $detail = if ($progress.Phase -eq 'Encoding') {
             if ($progress.PercentComplete -ge 0) { 'Encoding ({0}%)' -f $progress.PercentComplete }
             else { 'Encoding (indeterminate)' }

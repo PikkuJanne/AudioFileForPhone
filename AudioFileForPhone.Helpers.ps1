@@ -448,6 +448,43 @@ function Read-AudioSetupResponse {
     return $Host.UI.ReadLine()
 }
 
+function Test-AudioMetadataInteractionAvailable {
+    return (Test-AudioSetupInteractionAvailable)
+}
+
+function Read-AudioMetadataResponse {
+    param([Parameter(Mandatory = $true)][string]$Prompt)
+    if (-not (Test-AudioMetadataInteractionAvailable)) {
+        throw 'Interactive metadata requires console input. Run without -Interactive and pass any metadata parameters directly.'
+    }
+    Write-Host ($Prompt + ': ') -NoNewline
+    # Preserve EOF and the host's -NonInteractive authority. Never turn missing
+    # input into Enter, and never poll or retry a redirected input stream.
+    return $Host.UI.ReadLine()
+}
+
+function Select-AudioMetadataCover {
+    $dialog = $null
+    try {
+        if ([Threading.Thread]::CurrentThread.GetApartmentState() -ne [Threading.ApartmentState]::STA) {
+            throw 'The current host is not STA.'
+        }
+        if (-not [Environment]::UserInteractive) { throw 'A Windows desktop is unavailable.' }
+        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
+        $dialog = New-Object System.Windows.Forms.OpenFileDialog
+        $dialog.Title = 'Select album cover image'
+        $dialog.Filter = 'Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*'
+        $dialog.Multiselect = $false
+        if ($dialog.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) { return $dialog.FileName }
+        return $null
+    }
+    catch {
+        Write-Warning ('Could not open cover picker. Use an STA console or -CoverPath. ' + $_.Exception.Message)
+        return $null
+    }
+    finally { if ($null -ne $dialog) { $dialog.Dispose() } }
+}
+
 function Select-AudioSetupDirectory {
     # Keep GUI interaction behind a small adapter. A cancelled dialog is distinct
     # from an unavailable dialog and must never trigger another surprise prompt.

@@ -101,7 +101,7 @@ function Invoke-CiHarness {
     } else {
         $resultRow.required_checks = @($child.cases).Count
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
-        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
+        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
         }
     }
@@ -237,6 +237,7 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-ShortOperations.ps1' -Family 'shortoperations' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ToolSelection.ps1' -Family 'toolselection' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-FirstRunSetup.ps1' -Family 'firstrunsetup' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-MetadataInteraction.ps1' -Family 'metadatainteraction' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ManagedSetup.ps1' -Family 'managedsetup' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia

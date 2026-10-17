@@ -42,7 +42,7 @@ $report = [ordered]@{
     windows_edition = $windows.EditionID; display_version = $windows.DisplayVersion; process_64bit = [Environment]::Is64BitProcess
     inherited_console_output_codepage = [Console]::OutputEncoding.CodePage
     ordinary_music_access = $false; owner_media_access = $false; user_config_read_or_written = $false
-    physical_manual_evidence = $false; physical_dialog_evidence = 'NOT_RUN'; UI_interaction = 'simulated through three named production UI adapters and metadata Read-Host only'
+    physical_manual_evidence = $false; physical_dialog_evidence = 'NOT_RUN'; UI_interaction = 'scripted setup availability/read/directory adapters plus metadata ready defaults adapter; no physical dialog or owner interaction'
     source_before = @(); source_after = @(); source_unchanged = $false
     synthetic_before = @(); synthetic_after = @(); synthetic_unchanged = $false
     temp_exclusively_reserved = $false; marker_create_new = $false; copied_bytes_unchanged = $false
@@ -133,6 +133,13 @@ function Invoke-AudioNativeProcess {
     return $native
 }
 if ($global:S05ScriptedUI) {
+    function Test-AudioMetadataInteractionAvailable { return $true }
+    function Read-AudioMetadataResponse {
+        param([string]$Prompt)
+        # S07 adds an explicit ready menu after setup. Keep the retained S05
+        # setup-response queue and assertions unchanged by choosing defaults.
+        return ''
+    }
     function Test-AudioSetupInteractionAvailable { return $true }
     function Read-AudioSetupResponse {
         param([string]$Prompt)
@@ -223,6 +230,9 @@ exit $LASTEXITCODE
     Assert-True (@($audit.native_proofs | Where-Object { -not $_.process_released -or -not $_.pipe_drain_completed }).Count -eq 0) 'Every production native invocation must prove release and pipe completion.'
     $script:releaseProved = $previousRelease
     Assert-True ($audit.helper_loads -eq 1 -and @($audit.forbidden_calls).Count -eq 0) ('Production helper load or forbidden-call guard failed: ' + $text.Replace($testRoot,'<OWNED_TEMP>'))
+    if ($native.ExitCode -ne 0) {
+        Assert-True ($text -notmatch 'Ready:|Waiting for your selection') 'Setup failure or cancellation must stop before the S07 ready menu.'
+    }
     return [pscustomobject]@{ ExitCode=$native.ExitCode; Text=$text; Audit=$audit }
 }
 function Get-AppCommand {

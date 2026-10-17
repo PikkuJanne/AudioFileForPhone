@@ -57,6 +57,25 @@ Open PowerShell in the application folder. The example input `'.\Podcasts'` must
 already contain supported audio; paths resolve from the current PowerShell
 location. Without `-Interactive`, there are no metadata prompts.
 
+With `-Interactive` (including drag and drop), dependency repair finishes before
+the ready menu shows the supported-file count and selected bitrate:
+
+```text
+Ready: 3 supported files -> 64 kbps CBR MP3
+Enter = start with defaults | M = customize metadata | Q = cancel
+Waiting for your selection (no conversion has started).
+```
+
+Press Enter to convert using the normal source-tag/artwork policy and any supplied
+parameters. M offers cover, Artist and Album choices for this batch; supplied
+parameters remain in effect, including blank Artist/Album values that retain
+source tags. Conversion starts after the last metadata choice. Q cancels before
+batch output. Metadata choices are never saved for later batches. Invalid input
+stops with guidance; EOF cancels. Redirected or unavailable console input stops
+without starting a batch. For automation, omit `-Interactive` and pass parameters.
+The console distinguishes preflight, waiting, probing, encoding, validation and
+publication; encoding at 100% still needs validation before the file is complete.
+
 Convert with the defaults, using Music as the destination:
 
 ```powershell
@@ -175,7 +194,7 @@ binaries. A newer pin requires a reviewed application change.
 | `-MaxBaseLength` | Default 60, range 24-180 UTF-16 units; includes date/separator/collision suffix, excludes `.mp3`. |
 | `-CoverPath` | Optional readable `.jpg`, `.jpeg` or `.png`; replaces source artwork with one attached JPEG cover. |
 | `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
-| `-Interactive` | Offers tool repair when needed, then optional cover and tag prompts; pickers use STA. Ignored during preview. |
+| `-Interactive` | Offers tool repair when needed, then Enter to start, M for batch metadata, Q to cancel; pickers use STA. Ignored during preview. |
 | `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
 | `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
 | `-FfmpegDirectory` | Directory containing both trusted executables; overrides saved/app-local/PATH selection for this run without saving or changing PATH. |
@@ -290,7 +309,7 @@ after ordinary failures; completed outputs and sources remain available.
 | `0` | `Completed`: all supported inputs converted, or `Previewed`: planning succeeded with no conversion. |
 | `1` | `FailedBeforeConversion` or `Failed`: invalid setup, no supported files, scan/fatal error, or a required record-write failure. |
 | `2` | `CompletedWithFailures`: batch finished with at least one per-file failure. |
-| `130` | `Cancelled`: controlled Ctrl+C cancellation after metadata prompts in a supported Windows console. |
+| `130` | `Cancelled`: Q or EOF during interactive choices, or controlled Ctrl+C after metadata prompts in a supported Windows console. |
 
 The summary reports actual counts and output/log/manifest paths. Processed means
 converted plus failed; 100 percent processed can include failures. Unsupported

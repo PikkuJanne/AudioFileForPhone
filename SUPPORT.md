@@ -147,6 +147,15 @@ they never assume consent. Ordinary conversion without `-Interactive` returns
 the repair action instead of opening setup. `-DryRun` skips setup and dependency
 checks entirely.
 
+After successful conversion preflight, the interactive ready menu waits for
+Enter (start), M (this batch's metadata) or Q (cancel). Invalid input stops; EOF
+cancels, and unavailable/redirected input cannot start a batch. M preserves
+explicit parameters and starts conversion after the last choice without another
+confirmation. No batch metadata is saved. Use ordinary parameter-based conversion
+without `-Interactive` when a console is unavailable. Probing, encoding and
+validating are separate states: a 100% encode is still awaiting validation and
+publication. Read the final converted/failed counts and exit status.
+
 Optional managed setup uses the exact reviewed Gyan 9.0.2 essentials Windows x64
 ZIP in [tools/ffmpeg-download.json](tools/ffmpeg-download.json). Review that manifest
 before using `Setup-AudioFileForPhone.ps1 -Download -Consent -Remember -NonInteractive`.

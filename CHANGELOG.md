@@ -8,6 +8,10 @@ remembering remain available offline; no automatic update or global install.
 
 ## Unreleased v1.0.1 work
 
+- Add an Enter/M/Q ready menu after successful preflight/setup: Enter starts with
+  defaults, M customizes this batch and Q cancels. Preserve explicit metadata,
+  stop safely on invalid/unavailable input or EOF, and label probing, encoding,
+  validation and publication separately. Batch metadata is never saved.
 - Add separate existing-tool setup PS1/BAT entries and interactive dependency
   repair that resumes the same conversion after validating a selected pair.
   Show tool identities/hashes, ask before remembering, retain typed-path and
