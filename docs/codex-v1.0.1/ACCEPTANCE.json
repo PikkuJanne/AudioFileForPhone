@@ -1,0 +1,384 @@
+{
+  "schema_version": 1,
+  "criteria": [
+    {
+      "id": "S01-A1",
+      "owner_step": "S01",
+      "required": true,
+      "requirement": "Recorded live repository/release identities and preserved unrelated work; new target confirmed unused or step blocked.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S01-A2",
+      "owner_step": "S01",
+      "required": true,
+      "requirement": "New active routing is unambiguous; old v1.0.0 evidence and published bytes remain untouched.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S01-A3",
+      "owner_step": "S01",
+      "required": true,
+      "requirement": "First plan checkpoint is committed/pushed with fresh remote branch comparison and truthful environment inventory.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S02-A1",
+      "owner_step": "S02",
+      "required": true,
+      "requirement": "A controlled no-profile child reproduces the existing missing-tool failure without modifying persistent PATH.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S02-A2",
+      "owner_step": "S02",
+      "required": true,
+      "requirement": "Normal 64 kbps behavior and reported bitrate/sample-rate outcomes are recorded against actual tested builds.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S02-A3",
+      "owner_step": "S02",
+      "required": true,
+      "requirement": "Regression fixtures are synthetic/owned, sources unchanged, old suites retained and remaining failures accurately classified.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S03-A1",
+      "owner_step": "S03",
+      "required": true,
+      "requirement": "Hung startup/probe/pipe cases terminate within the configured bound and report Timeout distinctly.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S03-A2",
+      "owner_step": "S03",
+      "required": true,
+      "requirement": "Only the owned child is terminated; partial cleanup and cancellation safety tests still pass.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S03-A3",
+      "owner_step": "S03",
+      "required": true,
+      "requirement": "A long progressing encode/decode is not killed by the startup timeout and legacy successful calls still work.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S04-A1",
+      "owner_step": "S04",
+      "required": true,
+      "requirement": "Explicit/saved/app-local/PATH precedence is deterministic, tested, and never silently replaces an invalid explicit selection.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S04-A2",
+      "owner_step": "S04",
+      "required": true,
+      "requirement": "Valid selected external tools work without PATH changes; a fresh process can load the deliberately saved choice.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S04-A3",
+      "owner_step": "S04",
+      "required": true,
+      "requirement": "Config schema, corruption, read-only storage and path edge cases fail/recover safely without changing unrelated settings.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S05-A1",
+      "owner_step": "S05",
+      "required": true,
+      "requirement": "A clean configuration with existing tools outside PATH can be repaired through the production selection flow and continue.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S05-A2",
+      "owner_step": "S05",
+      "required": true,
+      "requirement": "Cancel, unavailable dialogs, invalid pair and failed settings save all have clear bounded behavior.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S05-A3",
+      "owner_step": "S05",
+      "required": true,
+      "requirement": "Noninteractive/preview paths never prompt, download or persist setup and provide an exact repair action when appropriate.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S06-A1",
+      "owner_step": "S06",
+      "required": true,
+      "requirement": "Download requires explicit consent and uses a pinned verified artifact; conversion never installs or updates tools.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S06-A2",
+      "owner_step": "S06",
+      "required": true,
+      "requirement": "Tampered/traversing/oversized/duplicate archives, offline errors and cancellation cannot execute files or destroy the previous setup.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S06-A3",
+      "owner_step": "S06",
+      "required": true,
+      "requirement": "A real owned vendor-install smoke test succeeds with retained notices/provenance, or the step remains blocked.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S07-A1",
+      "owner_step": "S07",
+      "required": true,
+      "requirement": "Enter starts defaults; M exposes metadata; Q cancels without output, all with preserved parameter precedence.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S07-A2",
+      "owner_step": "S07",
+      "required": true,
+      "requirement": "EOF/unavailable console cannot hang or accidentally start a batch; noninteractive calls remain prompt-free.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S07-A3",
+      "owner_step": "S07",
+      "required": true,
+      "requirement": "Default sound/tag/artwork and source-preservation regressions pass; no auto-saving metadata between batches.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S08-A1",
+      "owner_step": "S08",
+      "required": true,
+      "requirement": "Usable PS7/PS5.1 and Store-alias startup paths are tested with exact host identity and STA.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S08-A2",
+      "owner_step": "S08",
+      "required": true,
+      "requirement": "Broken preferred startup can safely fall back before app entry; an application failure never launches a second conversion.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S08-A3",
+      "owner_step": "S08",
+      "required": true,
+      "requirement": "Argument edge cases and 0/1/2/130 propagation pass, including redirected input/no endless pause and missing runtime files.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S09-A1",
+      "owner_step": "S09",
+      "required": true,
+      "requirement": "Each advertised setting has tested valid output planning or an explicit pre-encode incompatibility result, not a late arbitrary mismatch.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S09-A2",
+      "owner_step": "S09",
+      "required": true,
+      "requirement": "Actual output bitrate/sample-rate/channels match the plan; current default and metadata regressions pass.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S09-A3",
+      "owner_step": "S09",
+      "required": true,
+      "requirement": "Cross-build Windows evidence covers reported bitrate leads and the required matrix without weakening decode/duration/transaction checks.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S10-A1",
+      "owner_step": "S10",
+      "required": true,
+      "requirement": "Missing dependency/helper/host/config startup failures produce useful bounded evidence or preserve the original console cause if storage fails.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S10-A2",
+      "owner_step": "S10",
+      "required": true,
+      "requirement": "Environment check and explicit self-test have distinct side-effect contracts and use production resolution/encoding.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S10-A3",
+      "owner_step": "S10",
+      "required": true,
+      "requirement": "Redaction/no-auto-upload and dry-run no-write tests pass, with stable codes and actionable diagnostics.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S11-A1",
+      "owner_step": "S11",
+      "required": true,
+      "requirement": "Retained/new full suites pass on available required hosts, including source immutability, concurrent runs, cancellation and output ownership.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S11-A2",
+      "owner_step": "S11",
+      "required": true,
+      "requirement": "Long/short/irregular duration cases and truncated media demonstrate retained validation safety; any policy change has positive and negative regressions.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S11-A3",
+      "owner_step": "S11",
+      "required": true,
+      "requirement": "Filesystem/cloud/UNC evidence is accurately scoped; no blanket reparse bypass or hidden unsupported-case claim.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S12-A1",
+      "owner_step": "S12",
+      "required": true,
+      "requirement": "CI uses recorded pins/minimal permissions and checks the intended pushed commit without releasing on ordinary pushes.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S12-A2",
+      "owner_step": "S12",
+      "required": true,
+      "requirement": "Fresh-process/config/no-tool tests independently verify first-run behavior rather than inheriting harness provisioning.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S12-A3",
+      "owner_step": "S12",
+      "required": true,
+      "requirement": "Release gates reject required NOT_RUN/FAILED/stale identity evidence and do not substitute Server/Linux for client Windows acceptance.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S13-A1",
+      "owner_step": "S13",
+      "required": true,
+      "requirement": "The kit runs without developer dependencies, admin privileges, PATH edits or manual FFmpeg commands.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S13-A2",
+      "owner_step": "S13",
+      "required": true,
+      "requirement": "Automated one-file/full-batch/package/source checks use the real production paths and collect one report; human observations are not prefilled.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S13-A3",
+      "owner_step": "S13",
+      "required": true,
+      "requirement": "Owner instructions are short, kit faults are handled, and Windows/client evidence is generated with accurate launch/observation scope.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S14-A1",
+      "owner_step": "S14",
+      "required": true,
+      "requirement": "Frozen source C is recorded, integrated, clean and passes required automated checks; feature/main relationship is explicit.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S14-A2",
+      "owner_step": "S14",
+      "required": true,
+      "requirement": "Runtime ZIP/manifest/kit hashes and contents are verified and private data/development/runtime-vendor binaries excluded.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S14-A3",
+      "owner_step": "S14",
+      "required": true,
+      "requirement": "Exact extracted runtime works in automated checks; one prepared minimal owner kit is delivered with missing client evidence clearly marked.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S15-A1",
+      "owner_step": "S15",
+      "required": true,
+      "requirement": "Required client OS/host results refer to the frozen package; the external-tool/no-PATH configuration and fresh launch genuinely work.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S15-A2",
+      "owner_step": "S15",
+      "required": true,
+      "requirement": "One-file and normal full collection pass with correct counts/media/exit, unchanged sources and actual shortcut behavior recorded.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S15-A3",
+      "owner_step": "S15",
+      "required": true,
+      "requirement": "One simple phone play/seek observation and report are recorded without fabricated passes, or acceptance remains BLOCKED.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S16-A1",
+      "owner_step": "S16",
+      "required": true,
+      "requirement": "All required acceptance now passes on final candidate identities; source/config/dependency changes triggered appropriate retests.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S16-A2",
+      "owner_step": "S16",
+      "required": true,
+      "requirement": "Final release record contains exact source/tag/assets/digests, evidence and original v1.0.0 preservation checks.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S16-A3",
+      "owner_step": "S16",
+      "required": true,
+      "requirement": "S16 handover includes the explicit publish authorization prompt with real hashes and no unresolved release blockers.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S17-A1",
+      "owner_step": "S17",
+      "required": true,
+      "requirement": "Exact incoming authorization, accepted C/assets, live tag and draft validations agree before publication.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S17-A2",
+      "owner_step": "S17",
+      "required": true,
+      "requirement": "Codex has published public v1.0.1, non-draft/non-prerelease, with the exact title, tag/peeled commit, runtime version, ZIP filename and independently matching downloaded assets.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S17-A3",
+      "owner_step": "S17",
+      "required": true,
+      "requirement": "Public-byte Windows smoke and original v1.0.0 preservation are verified; any publication/verification error is reported as incomplete.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S18-A1",
+      "owner_step": "S18",
+      "required": true,
+      "requirement": "Final local main equals fresh live main with intended changes committed and no hidden dirty/unpushed project work.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S18-A2",
+      "owner_step": "S18",
+      "required": true,
+      "requirement": "Public v1.0.1 and its exact named assets remain verified, release C is unchanged and closure-only commits are distinguished.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    },
+    {
+      "id": "S18-A3",
+      "owner_step": "S18",
+      "required": true,
+      "requirement": "State and final handover accurately record complete scope, tests/support limits and publication; no unresolved mandatory gates.",
+      "evidence_rule": "Actual result and identity-bound evidence; NOT_RUN/BLOCKED/FAILED is not a pass."
+    }
+  ],
+  "target_version": "1.0.1"
+}

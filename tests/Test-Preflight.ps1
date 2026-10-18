@@ -204,7 +204,7 @@ function Invoke-NegativeCase {
         Assert-True ($diagnostic -match $Expected) "$Name must report its expected diagnostic ($Expected)."
         # A path-budget rejection can quote the planned run path. Filesystem
         # emptiness below proves that this diagnostic did not create that run.
-        Assert-True ($result.text -notmatch 'Optional metadata step|Processing file|\[INFO\] Output root') "$Name must stop before optional metadata prompts and run output."
+        Assert-True ($result.text -notmatch 'Optional metadata step|Ready:|Waiting for your selection|Processing file|\[INFO\] Output root') "$Name must stop before optional metadata prompts and run output."
         if ($RootSpelling) {
             $rootDiagnostic = @($diagnostic -split '\[FATAL\] (?:The run stopped: )?Preflight failed: ', 2)
             Assert-True ($rootDiagnostic.Count -eq 2 -and

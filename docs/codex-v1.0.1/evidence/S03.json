@@ -1,0 +1,1781 @@
+{
+  "schema_version": 1,
+  "step": "S03",
+  "status": "COMPLETED",
+  "scope": "Add bounded short-operation execution only",
+  "entry_commit": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
+  "tested_source_commit": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+  "runtime_implementation_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "84b4b70ef17df0bbceba2f1f8292028a6affe6a8bf804a82dd0524ba10be2434"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "dfec8e2f9190e9823c8f217f5d6ee1f17c95de774bda7f59d330499508e3ce52"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    }
+  ],
+  "recorded_utc": "2026-10-17T16:15:53.1628683Z",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "inherited_console_output_codepage": 65001,
+    "execution_policy": "RemoteSigned in owned child process only",
+    "child_environment": "Remove PSModulePath case-insensitively in owned child only; inherit console (CreateNoWindow false) and UTF8 CP65001; select C:/ffmpeg/bin executables explicitly.",
+    "parent_path_unchanged": true,
+    "persistent_path_registry_policy_changes": false,
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "physical_manual_evidence": false
+  },
+  "commands": {
+    "root": "C:\\projects\\AudioFileForPhone-main",
+    "shell_resolution": "PS5.1: (Get-Command powershell.exe).Source; PS7: (Get-Command pwsh.exe).Source",
+    "common_flags": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned",
+    "focused": "<shell> <common_flags> -File tests/Test-ShortOperations.ps1 -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe -EvidencePath docs/codex-v1.0.1/evidence/S03-shortoperations-<edition>-final3.json",
+    "retained": "See each original_contract_path below. Harness tests/Invoke-IsolatedBaseline.ps1 with/without -ValidateOnly; tests/ci/Test-CiContracts.ps1; tests/Test-TransactionalOutput.ps1; tests/Test-Cancellation.ps1; tests/Test-CleanupSafety.ps1; tests/Test-HelpVersion.ps1; tests/Test-SetupEncodingRegressions.ps1; tests/Test-NativeProcess.ps1. Explicit FFmpeg/ffprobe paths and common flags; no Manual flag.",
+    "fixture": "Independent compiled C# child with never-exit/version/encoder/probe hangs and selected inherited writer; real synthetic 2s 44.1kHz PCM source, paced 64kbps MP3 encode and full decode.",
+    "outer_watchdog": "Owned test shell WaitForExit 300000ms; never global process termination; raw stdout/stderr retained privately.",
+    "feature_sync": "git rev-parse HEAD; git ls-remote origin refs/heads/codex/audiofileforphone-v1.0.1 refs/heads/main",
+    "ci": "gh run view <run> --repo PikkuJanne/AudioFileForPhone --json headSha,status,conclusion,jobs; gh run download <run> into exact owned local record directory"
+  },
+  "acceptance": [
+    {
+      "id": "S03-A1",
+      "evidence": "15 focused cases per actual shell; startup/probe Timeout distinct; held stdout/stderr and independent drain bound; media override 1s/3s/default 60s.",
+      "status": "PASSED"
+    },
+    {
+      "id": "S03-A2",
+      "evidence": "Independent sentinel/held descendant survive runtime Timeout; exact child termination, cancellation distinction, transaction released partial cleanup and unproved-release retention; retained 27 transaction/9 cancellation/181 cleanup cases per shell.",
+      "status": "PASSED"
+    },
+    {
+      "id": "S03-A3",
+      "evidence": "Paced real encode/full decode exceed 1s test startup bound; production media calls have TimeoutMilliseconds 0; legacy argv, Unicode, caps, resource handles and real baseline pass.",
+      "status": "PASSED"
+    }
+  ],
+  "accepted_local_reports": [
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps51-final3.json",
+      "raw_local_only": true,
+      "sha256": "d9b9a347048ade0f9fc7f5703530818ea3f57caa180239dfd1c8a5fbbe900128",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "mode": "real_windows_short_operations",
+      "cases": 15,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:12:14.9181535Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:12:45.6127867Z",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S03-shortoperations-ps51-final3.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "inherited_console_output_codepage": 65001,
+      "cases_detail": [
+        {
+          "name": "never-exiting-child-times-out-with-owned-release",
+          "status": "pass",
+          "fixture_ready_marker_created": true,
+          "native_status": "Timeout",
+          "elapsed_ms": 2066,
+          "unrelated_process_survived": true
+        },
+        {
+          "name": "exited-parent-with-held-stdout-reports-timeout",
+          "status": "pass",
+          "held_stream": "stdout",
+          "owned_parent_exit": 0,
+          "conservative_process_release": false,
+          "descendant_survived_runtime": true,
+          "descendant_exact_cleanup": true,
+          "elapsed_ms": 1466
+        },
+        {
+          "name": "exited-parent-with-held-stderr-reports-timeout",
+          "status": "pass",
+          "held_stream": "stderr",
+          "owned_parent_exit": 0,
+          "conservative_process_release": false,
+          "descendant_survived_runtime": true,
+          "descendant_exact_cleanup": true,
+          "elapsed_ms": 1472
+        },
+        {
+          "name": "pipe-drain-has-separate-bound-without-operation-deadline",
+          "status": "pass",
+          "native_status": "Timeout",
+          "deadline_ms": 0,
+          "drain_bound_ms": 300,
+          "descendant_exact_cleanup": true
+        },
+        {
+          "name": "bounded-startup-version-hang-ffmpeg",
+          "status": "pass",
+          "diagnostic": "Invalid ffmpeg executable '<OWNED_TEMP>\\version-hang-ffmpeg\\ffmpeg.exe': Timeout: Timeout during ffmpeg version check using '<OWNED_TEMP>\\version-hang-ffmpeg\\ffmpeg.exe' after 2080 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2101,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "bounded-startup-version-hang-ffprobe",
+          "status": "pass",
+          "diagnostic": "Invalid ffprobe executable '<OWNED_TEMP>\\version-hang-ffprobe\\ffprobe.exe': Timeout: Timeout during ffprobe version check using '<OWNED_TEMP>\\version-hang-ffprobe\\ffprobe.exe' after 2070 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2218,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "bounded-startup-encoder-hang",
+          "status": "pass",
+          "diagnostic": "ffmpeg encoder capability check failed (Timeout): Timeout during ffmpeg encoder capability check using '<OWNED_TEMP>\\encoder-hang\\ffmpeg.exe' after 2064 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2378,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "media-probe-timeout-is-distinct-and-actionable",
+          "status": "pass",
+          "probe_status": "Timeout",
+          "diagnostic": "Timeout during Source media probe using '<OWNED_TEMP>\\probe-hang\\ffprobe.exe' after 1041 ms (operation limit 1000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "deadline_ms": 1000
+        },
+        {
+          "name": "media-probe-deadline-override-allows-slow-valid-probe",
+          "status": "pass",
+          "short_status": "Timeout",
+          "overridden_status": "Success",
+          "overridden_elapsed_ms": 1580,
+          "default_deadline_ms": 60000
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-hang",
+          "status": "pass",
+          "transaction_status": "Timeout",
+          "probe_timeout_ms": 1000,
+          "no_final_publication": true,
+          "working_partial_retained": false,
+          "probe_process_released": true
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-held",
+          "status": "pass",
+          "transaction_status": "Timeout",
+          "probe_timeout_ms": 1000,
+          "no_final_publication": true,
+          "working_partial_retained": true,
+          "probe_process_released": false
+        },
+        {
+          "name": "pre-requested-cancellation-precedes-tiny-deadline",
+          "status": "pass",
+          "native_status": "Cancelled",
+          "active_child_pid": 0
+        },
+        {
+          "name": "active-cancellation-remains-distinct-before-deadline",
+          "status": "pass",
+          "native_status": "Cancelled",
+          "elapsed_ms": 288,
+          "unrelated_process_survived": true
+        },
+        {
+          "name": "normal-argv-output-size-and-legacy-unlimited-default",
+          "status": "pass",
+          "argv_exact": true,
+          "legacy_deadline_ms": 0,
+          "stdout_total": 400000,
+          "stderr_total": 200000
+        },
+        {
+          "name": "real-progressing-encode-and-complete-decode-exceed-short-bound",
+          "status": "pass",
+          "startup_deadline_ms": 1000,
+          "encode_elapsed_ms": 1721,
+          "encoding_progress_observations": 3,
+          "production_validation_status": "Success",
+          "complete_decode_elapsed_ms": 1562,
+          "complete_decode_deadline_ms": 0
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "84b4b70ef17df0bbceba2f1f8292028a6affe6a8bf804a82dd0524ba10be2434"
+        },
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "dfec8e2f9190e9823c8f217f5d6ee1f17c95de774bda7f59d330499508e3ce52"
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+        }
+      ],
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "unproved_native_operations": []
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-isolation-ps51-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "83a9ebdf62a5da24b34442bbf37da59187f0d50a3499e88e41de8587066a330c",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "isolation_validation",
+      "cases": 1,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:07.3144847Z",
+      "finished_utc": "2026-10-17T16:07:08.307279Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-isolation-ps51-attempt6.json",
+        "-ValidateOnly"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "44f87f9c4fa7d9f32ee26582397337f22947607cfad058b36314ec610baee741",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": null,
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "pure_runtime_and_ci_contracts",
+      "cases": 31,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:09.0070374Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:07:12.5301788Z",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps51-attempt6.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-baseline-ps51-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "02088969e81e01c4947f9a5ac8c80317d30a9cd3c1c374d85f84e3970536a52a",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "real_ffmpeg_baseline",
+      "cases": 1,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:04:40.4429861Z",
+      "finished_utc": "2026-10-17T16:05:39.8580676Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-baseline-ps51-attempt5.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_checks": 7,
+      "observations": 3,
+      "isolation": {
+        "verified": true,
+        "copied_bytes_unchanged": true
+      }
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-transaction-ps51-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "da71bdd680bb3b719d5fd662ac6c769d0f2aeab589f0c6fb81d382963fd63de9",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "transactional_output_real_and_faults",
+      "cases": 27,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:05:40.5188091Z",
+      "finished_utc": "2026-10-17T16:06:39.5287431Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-transaction-ps51-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cancellation-ps51-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "872449f3a802479b4f1333bb4febf6cad36a4e494eb75ff712c7ee6cf9201201",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "cases": 9,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:06:40.1155098Z",
+      "finished_utc": "2026-10-17T16:07:03.6309888Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cancellation-ps51-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps51-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "a825dd0e4f26918629288a8beb00e047903268e91e380c5b472658b26cc7929a",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "retained_cleanup_guard_faults",
+      "cases": 181,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:04.1309207Z",
+      "finished_utc": "2026-10-17T16:07:19.9423094Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps51-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "d8f32e597a337b70dbeffe942bf96c11cc7429fff29ccce5b046275699e551be",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "cases": 7,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:05:51.2628801Z",
+      "finished_utc": "2026-10-17T16:06:29.6888888Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps51-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S02-regressions-ps51-final6.json",
+      "raw_local_only": true,
+      "sha256": "d3f5854b642e7cbe99f6d9c88924a2d801d8ee04ba40896b4f8b64271bd9c629",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "real_windows_s02_characterization",
+      "cases": 12,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:30.8281024Z",
+      "finished_utc": "2026-10-17T16:08:20.565479Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S02-regressions-ps51-final6.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-native-ps51-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "44c7b208368d7855b64b813ceec8df1d6181d63e1a78952d9e29ff3727058a36",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "native_process_and_probe",
+      "cases": 35,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:08:37.7452405Z",
+      "finished_utc": "2026-10-17T16:09:03.6913392Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-native-ps51-attempt6.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps7-final3.json",
+      "raw_local_only": true,
+      "sha256": "a2f46d0b1bc8e075b04097f3f74d7b65c31b329ef1318a9389acba26f15583cc",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "mode": "real_windows_short_operations",
+      "cases": 15,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:12:14.9685633Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:12:45.1878909Z",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-ShortOperations.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S03-shortoperations-ps7-final3.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "inherited_console_output_codepage": 65001,
+      "cases_detail": [
+        {
+          "name": "never-exiting-child-times-out-with-owned-release",
+          "status": "pass",
+          "fixture_ready_marker_created": true,
+          "native_status": "Timeout",
+          "elapsed_ms": 2071,
+          "unrelated_process_survived": true
+        },
+        {
+          "name": "exited-parent-with-held-stdout-reports-timeout",
+          "status": "pass",
+          "held_stream": "stdout",
+          "owned_parent_exit": 0,
+          "conservative_process_release": false,
+          "descendant_survived_runtime": true,
+          "descendant_exact_cleanup": true,
+          "elapsed_ms": 1451
+        },
+        {
+          "name": "exited-parent-with-held-stderr-reports-timeout",
+          "status": "pass",
+          "held_stream": "stderr",
+          "owned_parent_exit": 0,
+          "conservative_process_release": false,
+          "descendant_survived_runtime": true,
+          "descendant_exact_cleanup": true,
+          "elapsed_ms": 1488
+        },
+        {
+          "name": "pipe-drain-has-separate-bound-without-operation-deadline",
+          "status": "pass",
+          "native_status": "Timeout",
+          "deadline_ms": 0,
+          "drain_bound_ms": 300,
+          "descendant_exact_cleanup": true
+        },
+        {
+          "name": "bounded-startup-version-hang-ffmpeg",
+          "status": "pass",
+          "diagnostic": "Invalid ffmpeg executable '<OWNED_TEMP>\\version-hang-ffmpeg\\ffmpeg.exe': Timeout: Timeout during ffmpeg version check using '<OWNED_TEMP>\\version-hang-ffmpeg\\ffmpeg.exe' after 2074 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2092,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "bounded-startup-version-hang-ffprobe",
+          "status": "pass",
+          "diagnostic": "Invalid ffprobe executable '<OWNED_TEMP>\\version-hang-ffprobe\\ffprobe.exe': Timeout: Timeout during ffprobe version check using '<OWNED_TEMP>\\version-hang-ffprobe\\ffprobe.exe' after 2075 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2253,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "bounded-startup-encoder-hang",
+          "status": "pass",
+          "diagnostic": "ffmpeg encoder capability check failed (Timeout): Timeout during ffmpeg encoder capability check using '<OWNED_TEMP>\\encoder-hang\\ffmpeg.exe' after 2065 ms (operation limit 2000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "elapsed_ms": 2365,
+          "configured_deadline_ms": 2000
+        },
+        {
+          "name": "media-probe-timeout-is-distinct-and-actionable",
+          "status": "pass",
+          "probe_status": "Timeout",
+          "diagnostic": "Timeout during Source media probe using '<OWNED_TEMP>\\probe-hang\\ffprobe.exe' after 1047 ms (operation limit 1000 ms; pipe limit 5000 ms; process released=True). Native process exceeded its operation deadline. Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds.",
+          "deadline_ms": 1000
+        },
+        {
+          "name": "media-probe-deadline-override-allows-slow-valid-probe",
+          "status": "pass",
+          "short_status": "Timeout",
+          "overridden_status": "Success",
+          "overridden_elapsed_ms": 1589,
+          "default_deadline_ms": 60000
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-hang",
+          "status": "pass",
+          "transaction_status": "Timeout",
+          "probe_timeout_ms": 1000,
+          "no_final_publication": true,
+          "working_partial_retained": false,
+          "probe_process_released": true
+        },
+        {
+          "name": "output-probe-timeout-transaction-probe-held",
+          "status": "pass",
+          "transaction_status": "Timeout",
+          "probe_timeout_ms": 1000,
+          "no_final_publication": true,
+          "working_partial_retained": true,
+          "probe_process_released": false
+        },
+        {
+          "name": "pre-requested-cancellation-precedes-tiny-deadline",
+          "status": "pass",
+          "native_status": "Cancelled",
+          "active_child_pid": 0
+        },
+        {
+          "name": "active-cancellation-remains-distinct-before-deadline",
+          "status": "pass",
+          "native_status": "Cancelled",
+          "elapsed_ms": 279,
+          "unrelated_process_survived": true
+        },
+        {
+          "name": "normal-argv-output-size-and-legacy-unlimited-default",
+          "status": "pass",
+          "argv_exact": true,
+          "legacy_deadline_ms": 0,
+          "stdout_total": 400000,
+          "stderr_total": 200000
+        },
+        {
+          "name": "real-progressing-encode-and-complete-decode-exceed-short-bound",
+          "status": "pass",
+          "startup_deadline_ms": 1000,
+          "encode_elapsed_ms": 1649,
+          "encoding_progress_observations": 3,
+          "production_validation_status": "Success",
+          "complete_decode_elapsed_ms": 1560,
+          "complete_decode_deadline_ms": 0
+        }
+      ],
+      "runtime_hashes": [
+        {
+          "relative_path": "AudioFileForPhone.ps1",
+          "sha256": "84b4b70ef17df0bbceba2f1f8292028a6affe6a8bf804a82dd0524ba10be2434"
+        },
+        {
+          "relative_path": "AudioFileForPhone.Helpers.ps1",
+          "sha256": "dfec8e2f9190e9823c8f217f5d6ee1f17c95de774bda7f59d330499508e3ce52"
+        },
+        {
+          "relative_path": "AudioFileForPhone.bat",
+          "sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+        }
+      ],
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "unproved_native_operations": []
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-isolation-ps7-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "fe1dd50c0580b33b736302b3f55619f78d8eafdc829fda45f01dfcdd5f12aec8",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "isolation_validation",
+      "cases": 1,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:07.520637Z",
+      "finished_utc": "2026-10-17T16:07:08.3253Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-isolation-ps7-attempt6.json",
+        "-ValidateOnly"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "384909c048588b8e4b126c42ec169380b387e179309602a7ded15c6ed0fe8ec2",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": null,
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "pure_runtime_and_ci_contracts",
+      "cases": 31,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:09.2527079Z",
+      "finished_utc": null,
+      "completed_utc": "2026-10-17T16:07:13.2750085Z",
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/ci/Test-CiContracts.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-unit-ps7-attempt6.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-baseline-ps7-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "65f514a4b0bef212710988c975c4e63ecca9374fd1d9287fa40b4bd821a97c4e",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "real_ffmpeg_baseline",
+      "cases": 1,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:04:40.5498097Z",
+      "finished_utc": "2026-10-17T16:05:44.9960441Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Invoke-IsolatedBaseline.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-baseline-ps7-attempt5.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ],
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_checks": 7,
+      "observations": 3,
+      "isolation": {
+        "verified": true,
+        "copied_bytes_unchanged": true
+      }
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-transaction-ps7-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "6878b5e78566a6e186d2b51f80e1df5f82fbca0cff8d116aba6618b072b33642",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "transactional_output_real_and_faults",
+      "cases": 27,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:05:45.8296226Z",
+      "finished_utc": "2026-10-17T16:06:48.5351974Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-TransactionalOutput.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-transaction-ps7-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cancellation-ps7-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "ca89cc51a5ce7083c96c242c4aa9768fa37eec98aea323051697c4935467a522",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "controlled_native_console_input_and_forced_host",
+      "cases": 9,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:06:49.1998097Z",
+      "finished_utc": "2026-10-17T16:07:14.9323025Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-Cancellation.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cancellation-ps7-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T16-cleanup-ps7-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "b1b8a90ef891b6dec16857d85858bf8d2392726471f32d7f6f01f8e3744de961",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "retained_cleanup_guard_faults",
+      "cases": 181,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:15.6289505Z",
+      "finished_utc": "2026-10-17T16:07:30.1623632Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-CleanupSafety.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T16-cleanup-ps7-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps7-attempt5.json",
+      "raw_local_only": true,
+      "sha256": "923d3ea522faf3d9e06e64eaed76d705c0818a80fecb499906767634831ec609",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "mode": "comment_help_exact_examples_and_single_version",
+      "cases": 7,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:05:51.4332201Z",
+      "finished_utc": "2026-10-17T16:06:29.6884262Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-HelpVersion.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-help-ps7-attempt5.json"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S02-regressions-ps7-final6.json",
+      "raw_local_only": true,
+      "sha256": "6cef4793fc472a91881beb3c9868e8cec8e3fcd26354832a663fed1d9ace1846",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "real_windows_s02_characterization",
+      "cases": 12,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "started_utc": "2026-10-17T16:07:30.8771989Z",
+      "finished_utc": "2026-10-17T16:08:23.9550908Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-SetupEncodingRegressions.ps1",
+        "-EvidencePath",
+        "docs/codex-v1.0.1/evidence/S02-regressions-ps7-final6.json",
+        "-FfmpegPath",
+        "C:/ffmpeg/bin/ffmpeg.exe",
+        "-FfprobePath",
+        "C:/ffmpeg/bin/ffprobe.exe"
+      ]
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s03-native-ps7-attempt6.json",
+      "raw_local_only": true,
+      "sha256": "be7e638919b633ee2a40ff40eccfe03eae7f3e93e0d7adb1d7008860477f0b81",
+      "status": "pass",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "tested_commit": "709370abfea1f28309032d64863ee92d776155b5",
+      "mode": "native_process_and_probe",
+      "cases": 35,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "started_utc": "2026-10-17T16:08:37.8542993Z",
+      "finished_utc": "2026-10-17T16:09:07.2729976Z",
+      "completed_utc": null,
+      "command_arguments": [
+        "-NoLogo",
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "RemoteSigned",
+        "-File",
+        "tests/Test-NativeProcess.ps1",
+        "-EvidencePath",
+        "docs/codex-v1/evidence/T17-s03-native-ps7-attempt6.json"
+      ]
+    }
+  ],
+  "invalid_preparation_reports": [
+    {
+      "report": "S03-shortoperations-ps51-attempt1.json",
+      "sha256": "3d98b7619a6ecda2d6ede9410cf4dba2602a209bd350bb24c79267ab7dad5e33",
+      "observed_status": "pass",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": null
+    },
+    {
+      "report": "S03-shortoperations-ps7-attempt1.json",
+      "sha256": "5c36eb82f13a8b20649790c7c4212222fb86f518b86f02bae1ac30fe3dc4b2b6",
+      "observed_status": "pass",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": null
+    },
+    {
+      "report": "S03-shortoperations-ps51-final1.json",
+      "sha256": "21c5bde5c4b6a9a75d760450bafbac5f44aee038477cde3fb82e16353fd870dc",
+      "observed_status": "fail",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": "Version/capability hang must report executable/Timeout within bounded startup time."
+    },
+    {
+      "report": "S03-shortoperations-ps7-final1.json",
+      "sha256": "ca6d354751c8812fccda9a47b037e404d52bd2ef97bf660701312a91665dfbcd",
+      "observed_status": "pass",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": null
+    },
+    {
+      "report": "T17-s03-baseline-ps51-attempt4.json",
+      "sha256": "759c1017ff8d681444a9482032a4c88bd12d960c62500883a25bf033f79fde7f",
+      "observed_status": "fail",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": "Baseline checks failed (legacy=0, characterization=1)."
+    },
+    {
+      "report": "T17-s03-baseline-ps7-attempt4.json",
+      "sha256": "d752d4ff587bfdd5e9630c9e43b0e6ae7f114b2c106963a76899d452e85c3e60",
+      "observed_status": "fail",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": "Baseline checks failed (legacy=0, characterization=1)."
+    },
+    {
+      "report": "T16-progress-ps51-attempt4.json",
+      "sha256": "040eecb5d387d919b39a1fd71402730b45f8a91b62073b455443117b08d071fb",
+      "observed_status": "pass",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": null
+    },
+    {
+      "report": "T16-progress-ps7-attempt4.json",
+      "sha256": "4179d788e471db3f3bfee4b925156f78587b12cc0015c834add8dc70d151b858",
+      "observed_status": "pass",
+      "accepted": false,
+      "reason": "Outer test host used CP437 rather than inherited CP65001. Preserved privately, replaced for acceptance by corrected runs.",
+      "error": null
+    }
+  ],
+  "preparation_notes": [
+    "Initial pure-unit invocation used a nonmatching historical report leaf and was refused before tests; corrected without changing the evidence contract.",
+    "Initial setup-regression invocations omitted mandatory explicit tool parameters and were refused before media; final6 passes with explicit tools.",
+    "PS5.1 final1 CP437 run also failed startup hang expectation at version-hang-ffprobe; raw assertion did not retain caught message. Cause not claimed; final3 CP65001 and exact-head CI run the full family successfully.",
+    "Supplementary retained progress attempt4 passed 17 cases per shell including its existing long synthetic fixture, but CP437 run is not final S03 acceptance. S03 A3 uses the new short 2s real paced fixture."
+  ],
+  "preparation_ci_failure": {
+    "head": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+    "pr_run": 39047703714,
+    "reason": "Retained exact help parameter list lacked newly authorized ProbeTimeoutSeconds",
+    "push_run": 39047699943,
+    "fix": "Add exactly that parameter name; preserve every other assertion and repeat CI."
+  },
+  "fixture_ci_failure": {
+    "head": "709370abfea1f28309032d64863ee92d776155b5",
+    "pr_run": 39047955727,
+    "fix": "Increase deliberate fixture operation deadlines from 500 to 2000 ms; retain exact diagnostics/EOF/ownership checks, require readiness marker and persist startup diagnostics pre-assert. Runtime unchanged.",
+    "push_run": 39047952851,
+    "observed": "Both PS7 jobs: never-exit child Timeout at 533-534 ms, ProcessReleased/PipeDrainCompleted true, zero stdout/stderr before cold .NET fixture readiness. Both PS5.1 complete CI jobs pass."
+  },
+  "failed_preparation_ci_reports": [
+    {
+      "run_id": 39047699943,
+      "report": "T17-ci-ps51-run39047699943_1.json",
+      "sha256": "bf2300bc417261c1e8c6263d2335fee2097c4df9fca2ed2cc5de2d5147bc2494",
+      "status": "fail",
+      "error": "help requires exit zero, pass status and unchanged source bytes.",
+      "tested_checkout": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "c17b5dd01d3e710e3401bfb42a184174f92a67b7a6df0786eade8560d65ae46f"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "6012f56eb96e86bc46a89ace0b6e493877e9262a8e7d85bfb046bb32445d9a02"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "6bf80f714055f5b37da1a4c19deeb11bb181b5d038436095f1f4ad708be9d2c4"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "6bc9bd25efd2308f1355ff4cc46fa01ad0eeafd8d211e18572e85ba6d713847b"
+        },
+        {
+          "family": "help",
+          "status": "fail",
+          "report_sha256": "47abea595bc1ca81e361fea898d9d1edbeb68666f6152452509900f61e83925f"
+        }
+      ]
+    },
+    {
+      "run_id": 39047699943,
+      "report": "T17-ci-ps7-run39047699943_1.json",
+      "sha256": "996c486eaeb7d63dc144fd1896f41dcae5dc2c3212300248ef03c17daf82dd71",
+      "status": "fail",
+      "error": "help requires exit zero, pass status and unchanged source bytes.",
+      "tested_checkout": "0d2d8ff6d9636f313d775b7b0d90aa513d8e7831",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "cac8baf22011aa31b64d01a0ff61b467ca30ab399f1fdac40d38a64dd2bdbbf6"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "607ab83811e1f3a873f1dc405c26008c97cc4dfaccddc80ec55501bc4eb7530c"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "fb0717b1dbdf45d50cc2ec22c3103f82eaf59c457e4416588bdb9a466b1ab15b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "6dc5cd8fb0171d0609a05b6e3bcd108344023c571178b0543bd09f27a0fc25dc"
+        },
+        {
+          "family": "help",
+          "status": "fail",
+          "report_sha256": "bf7f64b66b6929ea915598ba497b5733f396d6cdc2633ca17f3c13e5b274a01e"
+        }
+      ]
+    },
+    {
+      "run_id": 39047952851,
+      "report": "T17-ci-ps51-run39047952851_1.json",
+      "sha256": "01b84fbcc62af3f5a7985035b4023f383aaaf08c5f6e3a71297408454e030f1c",
+      "status": "pass",
+      "error": null,
+      "tested_checkout": "709370abfea1f28309032d64863ee92d776155b5",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "b118272755a68ce79e78d8390b0d07a9787e44339f49e3c48e533a280c2b0ac0"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "317d074d084d614a7362ee7d8d6f27c348a21e2a8b4ac8a6e178cd451142d5f7"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "28edf845400f736cd5dd0b24c799dd013d1d2c956ed1fcae741ab878976b2a4c"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "c8ca0576cf1e08a5a9038886b929ddef3acab22c7fb637061cba31b1fca0c5da"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "report_sha256": "58fc371a7584362a627ee8762b1d1c388546143971f088ecdd2e574a92883a43"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "report_sha256": "ea14bd039589e575cc3c23d132185fdc99f0f51aafdc0ad6bd1f5d27156bbef1"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "report_sha256": "66d5badaa671c99bb7f47f30f9ca46aee4f7534436210a0a379bf71b8edbe60e"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "report_sha256": "5e8c443f0cc7c30b1cede7afd0632c970a94babb259a435f4e687d0c853de434"
+        }
+      ]
+    },
+    {
+      "run_id": 39047952851,
+      "report": "T17-ci-ps7-run39047952851_1.json",
+      "sha256": "28560669fb766800a8b0e728e138e3d0a8469863bbf1d4a44de9cb45a0d591a6",
+      "status": "fail",
+      "error": "shortoperations requires exit zero, pass status and unchanged source bytes.",
+      "tested_checkout": "709370abfea1f28309032d64863ee92d776155b5",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "ba9b5789781669700fa4c58fed86dfde6dc36a11f6155e785801b392e211626c"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "603430ab8bf901485931baed38d8d4e055983ace87888c441c09c3d40ffb9f6e"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "5fef7979f5977b1322a205844159999d97d0727eb084723f6b037404d8ad570b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "115aca7dfbbb5d31d71251f4911c2eadef71d346ea6544b8d3ac4567860812ae"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "report_sha256": "8cce75066676d92202fa05412bc8d00c1c57370f54c80fb4fd42bb0b40d3d4f1"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "report_sha256": "93f53548eeef914e384f59071fd5f9274afa0d2d2489760ba772bd7d2c10288a"
+        },
+        {
+          "family": "shortoperations",
+          "status": "fail",
+          "report_sha256": "e51862fab53f9be6872feab9ac3822db4adef7589cd45daab73e337a3901ea13"
+        }
+      ]
+    },
+    {
+      "run_id": 39047955727,
+      "report": "T17-ci-ps51-run39047955727_1.json",
+      "sha256": "69060c855f60930f6c202ef657b101fd9d6c920cdd5f2e00d6d5ff5752b781f3",
+      "status": "pass",
+      "error": null,
+      "tested_checkout": "f549c9791c101027304a3ebebc67145e8f55bd64",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "c1601fa11f53aba82265a10ae44bebdc6a946f79c539adab087003753cb1a4bb"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "8237a27bf97bea7716d1f9f6b27cfa98d15ae22c231c4f79e693546d3be8fbf6"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "2a9bf8c931d905d2d60fd9cb7fabcaa0e19f5c408dd9d7e4c975817cd2e07b8c"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "f0fdf7dd278157e8017e2352846b11c1a2a435ec2e679c6b978f87c8d2393c1b"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "report_sha256": "5b4a35807c83d3d245b679ba911165cf4ea1d8a38612eaecfa55b023aa29fe52"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "report_sha256": "7d2edd337b19a85acaa1b0039b8b7cfd8fd3f82cf0b8b097c11371af1a1f1955"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "report_sha256": "2838a7a83672daf57123a496c64c171392cf6eaef4ce5f1f9e04e657ff719126"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "report_sha256": "4b38577b613026707ebc8c4b7fe40abe2ad6655f42a1d8cffcf354d289875f98"
+        }
+      ]
+    },
+    {
+      "run_id": 39047955727,
+      "report": "T17-ci-ps7-run39047955727_1.json",
+      "sha256": "7cfe83d207924451cbc7925c3294ce1ccb45dfab609b02bd7f920fa39311ee92",
+      "status": "fail",
+      "error": "shortoperations requires exit zero, pass status and unchanged source bytes.",
+      "tested_checkout": "f549c9791c101027304a3ebebc67145e8f55bd64",
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "report_sha256": "c67844e9ce4a475a10574c45dbb6037cba22147213c0d4e1e87fb70426475aba"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "report_sha256": "2ac2793a50aded1c0a28661a84eaa8d7d1a0d9156df2d1c5b78654c5c7b98a04"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "report_sha256": "f98b4a391f03afb51320fe42c87fac1d5ff9e458804c9803d1e81ef8f47c06d0"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "report_sha256": "be0413de057cb2dffb24581be28ce1533b454f13de287bf43cb4336350344511"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "report_sha256": "b2f6cba7b34a2f95800ce54f07380c5238e02ef566db6f2c5a0fa582120a0cac"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "report_sha256": "d3e26e937c359e9a2c25607b582eb107e8a18e0bb66cc4649e0eca200da4d2bd"
+        },
+        {
+          "family": "shortoperations",
+          "status": "fail",
+          "report_sha256": "e0972a13608e73e9cf5cfa0246da6a6138480040d6a4eafdad236ff41fea51b2"
+        }
+      ]
+    }
+  ],
+  "ci": [
+    {
+      "run_id": 39048368905,
+      "event": "push",
+      "head_sha": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "tested_checkout": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39048368905_1.json",
+      "report_sha256": "e5674e9181fb1a4f25b052fa732338b1f7adead7cea5e65668406f94fcc9c7e1",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 180,
+      "observations": 3,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps51-run39048368905_1.json",
+          "report_sha256": "f1f827487b0c18b19357c185f4792733015d3b3d8347285f3b7af3220355f02e"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps51-run39048368905_1.json",
+          "report_sha256": "2136540f7afc094b704fe7d02c083cf4b3c46d5f9df4c7409fb63d573328119b"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps51-run39048368905_1.json",
+          "report_sha256": "6ad141bcb45635284aa649744b6949320058baa8148e0f250224de1f23e72676"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps51-run39048368905_1.json",
+          "report_sha256": "1289df9c6283aa83dbfc7f9b65f3e92377b3eb9f2b1ad411970fab36150c879c"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps51-run39048368905_1.json",
+          "report_sha256": "1dce4cfc1ee7d2c0d57be9d292522173dc72f596af484b6aeb05bbda11717192"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps51-run39048368905_1.json",
+          "report_sha256": "f115f6590ba250f59ea83e5722b097e9de702a13b2db7cf5dedfaf804aa096d1"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps51-run39048368905_1.json",
+          "report_sha256": "9bf827283b8d3840d039c032c169815a94642a723622c70756256739457540bc"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps51-run39048368905_1.json",
+          "report_sha256": "5d807977fd7dec5166e4882eeb70f45bdc6c79b168b79f331a390fa367b0d683"
+        }
+      ],
+      "focused_cases": 15,
+      "focused_report_sha256": "9bf827283b8d3840d039c032c169815a94642a723622c70756256739457540bc",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T16:12:26.3256554Z",
+      "completed_utc": "2026-10-17T16:15:21.073993Z"
+    },
+    {
+      "run_id": 39048368905,
+      "event": "push",
+      "head_sha": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "tested_checkout": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39048368905_1.json",
+      "report_sha256": "dd128a4c4d2efe8b05cca9e24e4f8d4e25bc6eb7f70ef6deed2a2b74a6a607b0",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 180,
+      "observations": 3,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps7-run39048368905_1.json",
+          "report_sha256": "bc8467945f629b0f04df5a0e5bbe0d10b91e8a57ed15f6d365a79852f1e48bc7"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps7-run39048368905_1.json",
+          "report_sha256": "7a3ba0e87737f700e753d81315c6bb2b23643fb44ae8922a71e2b41c805755fe"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps7-run39048368905_1.json",
+          "report_sha256": "e0d32c898df0651278089795e74b5960d8693b56f79997479a09c92cb889fbe0"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps7-run39048368905_1.json",
+          "report_sha256": "722cf2712fea59fe6fbaf8fc413645686467238094e7effcc71e1e9b59f0bb8a"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps7-run39048368905_1.json",
+          "report_sha256": "c85a056480ba8d54c0df5955d4098fe285bed78a6d4de6b093077a32566f203e"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps7-run39048368905_1.json",
+          "report_sha256": "eab611a8cdd011af6f00e22d4968b5a8962473b884162a57b2f7c449edd88b24"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps7-run39048368905_1.json",
+          "report_sha256": "644f407864272f5fa4b4d4581924e783ea315e76521133584f33ff122dbd288d"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps7-run39048368905_1.json",
+          "report_sha256": "0eec18b535c12d42f5a5f5b2f80409afad86fdd32351ebd3fd054c94c3c70234"
+        }
+      ],
+      "focused_cases": 15,
+      "focused_report_sha256": "644f407864272f5fa4b4d4581924e783ea315e76521133584f33ff122dbd288d",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T16:12:21.4242999Z",
+      "completed_utc": "2026-10-17T16:15:09.4799653Z"
+    },
+    {
+      "run_id": 39048372292,
+      "event": "pull_request",
+      "head_sha": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "tested_checkout": "b60cce519c514eedc06cd68418cd05247cb5e32d",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39048372292_1.json",
+      "report_sha256": "617b98c46a48c245cf8a362da774e0d885a7d7aa2d463568b14bca4a41851568",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 180,
+      "observations": 3,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps51-run39048372292_1.json",
+          "report_sha256": "0606588033c28f38c93d3a059da6770380260028aa3fbceddf50211aaf8fc677"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps51-run39048372292_1.json",
+          "report_sha256": "6357c2bb21dcc38dd534f5a5ec9fd35538f65ead64aead115b5a1b810a0e315b"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps51-run39048372292_1.json",
+          "report_sha256": "b36123fd5bd3ca0e074e6f23314fe205680b8955e97077e36a3b2f2d4a949997"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps51-run39048372292_1.json",
+          "report_sha256": "902a8a4caddb6d430e8d80558082e385b3071c1b3ca25cc5a2637afb502e61e0"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps51-run39048372292_1.json",
+          "report_sha256": "69cc1d44f286a80018d5254b1cdeb3592758b0285b46e2f9857006ffdfd6e15e"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps51-run39048372292_1.json",
+          "report_sha256": "666a87a37f33f8f3090efdf40aa05f73be47823fea92c677e2f0946b9c8870d5"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps51-run39048372292_1.json",
+          "report_sha256": "a66a07a10ebf66ed356ecc5de8bb1d0db24de84b9bd4333de2777fb4b4db971a"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps51-run39048372292_1.json",
+          "report_sha256": "38a3da6668664534ba7a029308f98f80e0bcba45a923c6fb50eeeee76debd567"
+        }
+      ],
+      "focused_cases": 15,
+      "focused_report_sha256": "a66a07a10ebf66ed356ecc5de8bb1d0db24de84b9bd4333de2777fb4b4db971a",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T16:12:31.6973985Z",
+      "completed_utc": "2026-10-17T16:15:28.8494516Z"
+    },
+    {
+      "run_id": 39048372292,
+      "event": "pull_request",
+      "head_sha": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "tested_checkout": "b60cce519c514eedc06cd68418cd05247cb5e32d",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39048372292_1.json",
+      "report_sha256": "41cbc3318ab2985799bdd9eb3f2405a23bf8a2216677d3a6daad584c2a82bb66",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 180,
+      "observations": 3,
+      "tests": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "required_checks": 31,
+          "report": "T17-unit-ps7-run39048372292_1.json",
+          "report_sha256": "b5bae8c7c4aef95f2b00ff437e77a6258cc4c09c7896dbfe557a1c89834597bc"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "required_checks": 22,
+          "report": "T17-ci-dependencyguards-ps7-run39048372292_1.json",
+          "report_sha256": "35db7e6d7e11b52c2c96cf825c6099849bf63754dd80122d347e13c4994ded4f"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "required_checks": 51,
+          "report": "T17-package-ps7-run39048372292_1.json",
+          "report_sha256": "e1e718f3cf055546ef1a75cfa625eddde74b6293ea461e6e22ca80779e87733e"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-baseline-ps7-run39048372292_1.json",
+          "report_sha256": "f880698391f9ec276fa34e1c7162396c371db9c7adade957a844a701a551e6a3"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "required_checks": 7,
+          "report": "T17-help-ps7-run39048372292_1.json",
+          "report_sha256": "d8520767a4da88d4bd53dc3b3ec8350494a7e281d51dca0445199e860c1341fa"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "required_checks": 12,
+          "report": "T17-setupencoding-ps7-run39048372292_1.json",
+          "report_sha256": "981b08cdee64d584e58ce61d67134b891c6ae832cf2b9772f95e1dd0f0c21382"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "required_checks": 15,
+          "report": "T17-shortoperations-ps7-run39048372292_1.json",
+          "report_sha256": "06590bb397bc2d52be170cb4730e37f880ba7fb7446b1f70ce36f4fc9128d646"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "required_checks": 35,
+          "report": "T17-native-ps7-run39048372292_1.json",
+          "report_sha256": "8720df8ce4c0de9c29199a40fc7c63dfed74af2ff13101c80ccd1f31d7ba3bdb"
+        }
+      ],
+      "focused_cases": 15,
+      "focused_report_sha256": "06590bb397bc2d52be170cb4730e37f880ba7fb7446b1f70ce36f4fc9128d646",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T16:12:26.5159335Z",
+      "completed_utc": "2026-10-17T16:15:30.6946952Z"
+    }
+  ],
+  "review": {
+    "independent_agent": "Read-only runtime/fixture audit plus additive retained wrapper adaptation; final 9b30f96 diff has no blocker.",
+    "primary_api_reference": "https://learn.microsoft.com/windows/win32/api/namedpipeapi/nf-namedpipeapi-peeknamedpipe",
+    "intended_diff": "Bounded native helper, source/output probe transport, one documented advanced option, independent fixtures/CI family and retained proxy compatibility only.",
+    "whitespace_command": "git -c core.whitespace=cr-at-eol diff --check 6f1ef9f..HEAD",
+    "privacy": "No binaries, synthetic media, raw reports/private logs or credentials committed."
+  },
+  "preparation_sync": [
+    {
+      "status": "pass",
+      "repository": "PikkuJanne/AudioFileForPhone",
+      "branch": "codex/audiofileforphone-v1.0.1",
+      "local_head": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "live_branch": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+      "active_branch_synchronized": true,
+      "active_head_equals_main": false,
+      "clean": true,
+      "verified_at_utc": "2026-10-17T16:12:38.7873372Z",
+      "note": "Observed live refs only; main integration/CI/manual acceptance are separate."
+    },
+    {
+      "status": "pass",
+      "repository": "PikkuJanne/AudioFileForPhone",
+      "branch": "codex/audiofileforphone-v1.0.1",
+      "local_head": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "live_branch": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+      "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+      "active_branch_synchronized": true,
+      "active_head_equals_main": false,
+      "clean": true,
+      "verified_at_utc": "2026-10-17T16:12:41.3085191Z",
+      "note": "Observed live refs only; main integration/CI/manual acceptance are separate."
+    }
+  ],
+  "checkpoint_verification": {
+    "draft": true,
+    "feature_live_equality": "Independently verified after ordinary push using fresh ls-remote; final containing docs commit observed after push in final response, refreshed next thread.",
+    "verified_prior_checkpoint": "9b30f96f3f280e6c9e04b33285ee9f40ee3c0d8a",
+    "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "local_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED; S14 ordinary reviewed policy, existing owner-approval default",
+    "entry_feature": "6f1ef9fa098e680ef611f373feab0533d4976b1d",
+    "pr": 29
+  },
+  "remaining_work": [],
+  "blockers": [],
+  "human_action": "None for S03",
+  "next_step": "S04 - Implement explicit and remembered tool selection",
+  "next_step_status": "NOT_STARTED",
+  "not_established": [
+    "Windows10 22H2 client acceptance",
+    "Another locally tested FFmpeg build",
+    "Exact releaseZIP/acceptance kit",
+    "New physical phone observations"
+  ],
+  "fixed_release": {
+    "publication": "PENDING_S17",
+    "zip_sha256": null,
+    "frozen_source": null,
+    "preserve": "Published v1.0.0 tag/assets and current artwork unchanged",
+    "version": "1.0.1",
+    "authority": "Only separately started S17 publishes S16 exact accepted source/assets"
+  },
+  "raw_records_store_name": "AFP-S03-records-718408e2f9074a01a84a7bb57f3e1937"
+}

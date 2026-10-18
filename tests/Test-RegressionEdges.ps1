@@ -161,7 +161,8 @@ function New-AppCopy {
 $script:T16OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $encoder=$Arguments -contains 'libmp3lame'
     $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;encoder=$encoder;output_path=if($encoder){$Arguments[-1]}else{$null};validation_fault=$false}
     $global:T16NativeProofs.Add($proof)

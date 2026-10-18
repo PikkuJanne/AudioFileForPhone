@@ -256,8 +256,12 @@ function Assert-CiPolicy {
     Assert-CiMapKeys $steps[2] @('name', 'if', 'uses', 'with') 'artifact step'
     if ($steps[2].if -cne 'always()' -or $steps[2].uses -cne 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9') { throw 'Evidence upload must use the reviewed official full SHA and run after failed checks.' }
     Assert-CiMapKeys $steps[2].with @('name', 'path', 'retention-days', 'if-no-files-found', 'include-hidden-files') 'artifact inputs'
+    $approvedArtifactPaths = [string]::Join("`n", @(
+        'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+    ))
     if ($steps[2].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
-        $steps[2].with.path -cne 'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json' -or
+        $steps[2].with.path -cne $approvedArtifactPaths -or
         $steps[2].with['retention-days'] -ne 14 -or $steps[2].with['if-no-files-found'] -cne 'warn' -or
         $steps[2].with['include-hidden-files'] -isnot [bool] -or $steps[2].with['include-hidden-files']) { throw 'Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.' }
     $lock = Assert-CiLock $ManifestText

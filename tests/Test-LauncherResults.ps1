@@ -1,6 +1,6 @@
 <#
 T10 real cmd.exe tests of the byte-identical BAT and an inert capture/exit child.
-Both installed PowerShell branches run with a process-local isolated PATH. No
+Both installed PowerShell branches run with an explicit process-local host choice. No
 application script, FFmpeg, Music resolver or personal media is executed/read.
 Percent paths are supplied through one caller environment expansion; this tests
 what BAT receives, not recovery of paths already expanded by an earlier caller.
@@ -11,11 +11,15 @@ param([Parameter(Mandatory = $true)][string]$EvidencePath)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $productionBat = Join-Path $projectRoot 'AudioFileForPhone.bat'
-$evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
-if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
+$evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
+$activeEvidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1.0.1/evidence')).TrimEnd('\', '/')
+$isActiveEvidence = (Split-Path -Parent $evidenceFullPath) -ieq $activeEvidenceParent -and
+    (Split-Path -Leaf $evidenceFullPath) -match '^S08-launcherresults-(ps51|ps7)-((attempt|final)[1-9][0-9]*|run[1-9][0-9]*_[1-9][0-9]*)\.json$'
+if ($isActiveEvidence) { $evidenceParent = $activeEvidenceParent }
+elseif ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
     (Split-Path -Leaf $evidenceFullPath) -notmatch '^(T10|T11|T15|T16)-launcher-(ps51|ps7)-(attempt|final)[0-9]+\.json$') {
-    throw 'EvidencePath must name fresh T10/T11/T15/T16-launcher-ps51/ps7-attempt/finalN.json directly in docs/codex-v1/evidence.'
+    throw 'EvidencePath must name fresh historical T10/T11/T15/T16-launcher-ps51/ps7-attempt/finalN.json or active S08-launcherresults-ps51/ps7-attemptN/finalN/runID_attempt.json in the corresponding evidence parent.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'EvidencePath already exists; use a fresh label.' }
 $tempParent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
@@ -77,7 +81,7 @@ function Write-NewText {
     try { $bytes = (New-Object Text.UTF8Encoding($true)).GetBytes($Text); $stream.Write($bytes, 0, $bytes.Length) } finally { $stream.Dispose() }
 }
 function Get-SourceInventory {
-    return @('AudioFileForPhone.bat', 'tests/Test-LauncherResults.ps1' | ForEach-Object {
+    return @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'tests/Test-LauncherResults.ps1' | ForEach-Object {
         [pscustomobject]@{ relative_path = $_; sha256 = (Get-FileHash -LiteralPath (Join-Path $projectRoot $_) -Algorithm SHA256).Hash.ToLowerInvariant() }
     })
 }
@@ -102,6 +106,8 @@ $record = [ordered]@{
     input_folder = $InputFolder; interactive = [bool]$Interactive
     extra_arguments = @($args | Where-Object { $null -ne $_ })
     shell_version = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
+    host_path = [Diagnostics.Process]::GetCurrentProcess().MainModule.FileName
+    host_is_64_bit = [Environment]::Is64BitProcess; os_is_64_bit = [Environment]::Is64BitOperatingSystem
     apartment_state = [Threading.Thread]::CurrentThread.ApartmentState.ToString()
     requested_exit = [int]$env:AUDIOPHONE_T10_EXIT
 }
@@ -137,6 +143,7 @@ function Invoke-LauncherCase {
         $startInfo.UseShellExecute = $false; $startInfo.CreateNoWindow = $true
         $startInfo.RedirectStandardInput = $true; $startInfo.RedirectStandardOutput = $true; $startInfo.RedirectStandardError = $true
         $startInfo.EnvironmentVariables['PATH'] = $Shell.path
+        $startInfo.EnvironmentVariables['AUDIOFILEFORPHONE_HOST'] = $Shell.host_path
         $startInfo.EnvironmentVariables['PATHEXT'] = '.COM;.EXE;.BAT;.CMD'
         $startInfo.EnvironmentVariables['AUDIOPHONE_T10_BAT'] = $Bat
         $startInfo.EnvironmentVariables['AUDIOPHONE_T10_CAPTURE'] = $capturePath
@@ -161,20 +168,21 @@ function Invoke-LauncherCase {
         }
         $case.bat_exit = $process.ExitCode
         $case.stdout = $stdoutTask.GetAwaiter().GetResult().Trim(); $case.stderr = $stderrTask.GetAwaiter().GetResult().Trim()
-        $case.pause_seen = $case.stdout.Contains('Press any key to continue')
-        Assert-True $case.pause_seen 'Every BAT path must reach pause in this English test environment.'
+        $case.pause_seen = $case.stdout.Contains('Press any key')
+        Assert-True (-not $case.pause_seen) 'Redirected input must return without an endless mandatory pause.'
         Assert-True ([string]::IsNullOrWhiteSpace($case.stderr)) ('Unexpected launcher stderr: ' + $case.stderr)
         if (Test-Path -LiteralPath $capturePath) { $case.capture = Get-Content -LiteralPath $capturePath -Raw -Encoding UTF8 | ConvertFrom-Json }
         if ($Invalid) {
-            Assert-True ($case.bat_exit -eq 1 -and $null -eq $case.capture -and $case.stdout.Contains('Drag exactly one folder')) 'Invalid arguments must clearly reject before launching a PowerShell child and exit 1 after pause.'
+            Assert-True ($case.bat_exit -eq 1 -and $null -eq $case.capture -and $case.stdout.Contains('Drag exactly one folder')) 'Invalid arguments must clearly reject before application entry and exit 1.'
         }
         else {
             if ([string]::IsNullOrEmpty($ExpectedInput)) { $ExpectedInput = $Folders[0] }
             $case.expected_input_relative_path = $ExpectedInput.Substring($testRoot.Length + 1)
             Assert-True ($null -ne $case.capture) 'Inert capture child did not run.'
-            Assert-True ($case.bat_exit -eq $ChildExit) 'Child exit must survive BAT reporting and pause exactly.'
+            Assert-True ($case.bat_exit -eq $ChildExit) 'Child exit must survive BAT reporting exactly.'
             Assert-True ($case.capture.input_folder -ceq $ExpectedInput -and $case.capture.interactive -and @($case.capture.extra_arguments).Count -eq 0) 'BAT must forward exactly the received folder plus Interactive without changing spelling.'
-            Assert-True ($case.capture.apartment_state -ceq 'STA' -and $case.capture.shell_edition -ceq $Shell.edition -and $case.capture.requested_exit -eq $ChildExit) 'The intended real PowerShell branch must run STA and return the requested code.'
+            Assert-True ($case.capture.apartment_state -ceq 'STA' -and $case.capture.shell_edition -ceq $Shell.edition -and $case.capture.requested_exit -eq $ChildExit -and
+                $case.capture.host_path -ieq $Shell.host_path -and $case.capture.host_is_64_bit -and $case.capture.os_is_64_bit) 'The intended exact x64 PowerShell host must run STA and return the requested code.'
             $message = switch ($ChildExit) {
                 0 { 'Completed. Check the output and log paths printed above.' }
                 1 { 'Failed. Review the error and any output or log paths printed above.' }
@@ -211,7 +219,7 @@ namespace AudioFileForPhoneT10Launcher {
     $ownedRootCreated = $true; $report.temp_exclusively_reserved = $true
     Write-NewText $ownerFile $ownerToken; $report.marker_create_new = $true
     $report.source_before = Get-SourceInventory
-    $locationNames = @('normal', 'space location', 'bang! location', 'percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location', 'ampersand & location', 'caret ^ location', "apostrophe's location", "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% & ^ apostrophe's space")
+    $locationNames = @('normal', 'space location', 'bang! location', 'percent %AUDIOPHONE_T10_PERCENT_SENTINEL% location', 'ampersand & location', 'caret ^ location', "apostrophe's location", "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% & ^ apostrophe's space", 'brackets [literal] (parentheses)', ('Suomi ' + [char]0xE4 + ' Deutsch ' + [char]0xFC), ('decomposed e' + [char]0x301))
     $batCopies = @()
     foreach ($location in $locationNames) {
         $directory = Join-Path $testRoot $location
@@ -221,15 +229,20 @@ namespace AudioFileForPhoneT10Launcher {
         $child = Join-Path $directory 'AudioFileForPhone.ps1'
         Write-NewText $child $stub
         $fixtures.Add($bat); $fixtures.Add($child); $batCopies += $bat
+        foreach ($runtimeName in @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+            $runtimeCopy = Join-Path $directory $runtimeName
+            Copy-Item -LiteralPath (Join-Path $projectRoot $runtimeName) -Destination $runtimeCopy
+            $fixtures.Add($runtimeCopy)
+        }
         Assert-True ((Get-FileHash -LiteralPath $bat).Hash -ceq (Get-FileHash -LiteralPath $productionBat).Hash) 'Every exercised BAT must be byte-identical to production.'
     }
     $report.copied_bats_byte_identical = $true
-    $inputNames = @('folder with spaces', 'bang! folder', 'percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder', 'ampersand & folder', 'caret ^ folder', "apostrophe's folder", "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% & ^ apostrophe's space")
+    $inputNames = @('folder with spaces', 'bang! folder', 'percent %AUDIOPHONE_T10_PERCENT_SENTINEL% folder', 'ampersand & folder', 'caret ^ folder', "apostrophe's folder", "all ! %AUDIOPHONE_T10_PERCENT_SENTINEL% & ^ apostrophe's space", 'brackets [literal] (parentheses)', ('Suomi ' + [char]0xE4 + ' Deutsch ' + [char]0xFC), ('decomposed e' + [char]0x301))
     $inputFolders = @($inputNames | ForEach-Object { $directory = Join-Path $testRoot $_; [IO.Directory]::CreateDirectory($directory) | Out-Null; $directory })
     $report.fixtures_before = Get-FixtureInventory
     $shells = @(
-        @{ name = 'pwsh'; edition = 'Core'; path = (Split-Path -Parent $pwshPath) + ';' + $systemDirectory + ';' + (Split-Path -Parent $windowsPsPath) },
-        @{ name = 'ps51-fallback'; edition = 'Desktop'; path = $systemDirectory + ';' + (Split-Path -Parent $windowsPsPath) }
+        @{ name = 'pwsh'; edition = 'Core'; host_path = $pwshPath; path = (Split-Path -Parent $pwshPath) + ';' + $systemDirectory + ';' + (Split-Path -Parent $windowsPsPath) },
+        @{ name = 'ps51-explicit'; edition = 'Desktop'; host_path = $windowsPsPath; path = $systemDirectory + ';' + (Split-Path -Parent $windowsPsPath) }
     )
     foreach ($shell in $shells) {
         Invoke-LauncherCase 'no-argument' $shell $batCopies[0] @() -Invalid $true
@@ -240,6 +253,7 @@ namespace AudioFileForPhoneT10Launcher {
         Invoke-LauncherCase 'empty-second-third-extra' $shell $batCopies[0] @($inputFolders[0], '', $inputFolders[1]) -Invalid $true
         foreach ($code in @(0, 1, 2, 130, 37)) { Invoke-LauncherCase ('exit-' + $code) $shell $batCopies[0] @($inputFolders[0]) -ChildExit $code }
         for ($i = 0; $i -lt $inputFolders.Count; $i++) { Invoke-LauncherCase ('input-form-' + $i) $shell $batCopies[0] @($inputFolders[$i]) }
+        Invoke-LauncherCase 'input-trailing-separator' $shell $batCopies[0] @($inputFolders[0] + '\')
         for ($i = 1; $i -lt $batCopies.Count; $i++) { Invoke-LauncherCase ('script-location-form-' + $i) $shell $batCopies[$i] @($inputFolders[6]) }
         $expandedInput = $inputFolders[2].Replace('%AUDIOPHONE_T10_PERCENT_SENTINEL%', 'CALLER_EXPANDED')
         Invoke-LauncherCase 'caller-percent-expansion-characterized' $shell $batCopies[0] @($inputFolders[2]) -Transport 'direct-literal-caller-expansion' -ExpectedInput $expandedInput
@@ -271,5 +285,5 @@ finally {
     Assert-NoReparse $evidenceParent
     Write-NewText $evidenceFullPath ($report | ConvertTo-Json -Depth 18)
 }
-if ($report.status -eq 'pass') { Write-Host ('T10 launcher: ' + $report.cases.Count + ' cmd cases passed across real PS7 and PS5.1 fallback.'); exit 0 }
+if ($report.status -eq 'pass') { Write-Host ('Launcher results: ' + $report.cases.Count + ' cmd cases passed across explicitly selected real PS7 and PS5.1.'); exit 0 }
 exit 1

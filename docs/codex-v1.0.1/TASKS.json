@@ -1,0 +1,350 @@
+{
+  "schema_version": 1,
+  "project": "AudioFileForPhone",
+  "target_version": "1.0.1",
+  "step_policy": "Exactly one step per thread; STOP after success, block or partial checkpoint.",
+  "steps": [
+    {
+      "id": "S01",
+      "title": "Reconcile baseline and activate the new plan",
+      "depends_on": [],
+      "task_file": "tasks/S01.md",
+      "read": [
+        "CHARTER.md",
+        "BASELINE.md",
+        "ACTIVE_AGENT_RULES.md",
+        "specs/SYNC_AND_RELEASE.md",
+        "RELEASE_TARGET.json"
+      ],
+      "acceptance_ids": [
+        "S01-A1",
+        "S01-A2",
+        "S01-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S02",
+      "title": "Capture regressions before fixing them",
+      "depends_on": [
+        "S01"
+      ],
+      "task_file": "tasks/S02.md",
+      "read": [
+        "BASELINE.md",
+        "specs/AUTOMATED_ACCEPTANCE.md",
+        "specs/ENCODING_COMPATIBILITY.md"
+      ],
+      "acceptance_ids": [
+        "S02-A1",
+        "S02-A2",
+        "S02-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S03",
+      "title": "Add bounded short-operation execution",
+      "depends_on": [
+        "S02"
+      ],
+      "task_file": "tasks/S03.md",
+      "read": [
+        "specs/DIAGNOSTICS_AND_TIMEOUTS.md"
+      ],
+      "acceptance_ids": [
+        "S03-A1",
+        "S03-A2",
+        "S03-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S04",
+      "title": "Implement explicit and remembered tool selection",
+      "depends_on": [
+        "S03"
+      ],
+      "task_file": "tasks/S04.md",
+      "read": [
+        "specs/DEPENDENCIES_AND_SETUP.md"
+      ],
+      "acceptance_ids": [
+        "S04-A1",
+        "S04-A2",
+        "S04-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S05",
+      "title": "Add first-run setup and manual recovery",
+      "depends_on": [
+        "S04"
+      ],
+      "task_file": "tasks/S05.md",
+      "read": [
+        "specs/DEPENDENCIES_AND_SETUP.md",
+        "specs/LAUNCH_AND_INTERACTION.md"
+      ],
+      "acceptance_ids": [
+        "S05-A1",
+        "S05-A2",
+        "S05-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S06",
+      "title": "Implement consent-based managed dependency setup",
+      "depends_on": [
+        "S05"
+      ],
+      "task_file": "tasks/S06.md",
+      "read": [
+        "specs/DEPENDENCIES_AND_SETUP.md",
+        "SOURCES.md"
+      ],
+      "acceptance_ids": [
+        "S06-A1",
+        "S06-A2",
+        "S06-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S07",
+      "title": "Simplify metadata interaction",
+      "depends_on": [
+        "S06"
+      ],
+      "task_file": "tasks/S07.md",
+      "read": [
+        "specs/LAUNCH_AND_INTERACTION.md"
+      ],
+      "acceptance_ids": [
+        "S07-A1",
+        "S07-A2",
+        "S07-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S08",
+      "title": "Harden the BAT and PowerShell startup route",
+      "depends_on": [
+        "S07"
+      ],
+      "task_file": "tasks/S08.md",
+      "read": [
+        "specs/LAUNCH_AND_INTERACTION.md",
+        "specs/DIAGNOSTICS_AND_TIMEOUTS.md"
+      ],
+      "acceptance_ids": [
+        "S08-A1",
+        "S08-A2",
+        "S08-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S09",
+      "title": "Plan valid bitrate and sample-rate combinations",
+      "depends_on": [
+        "S08"
+      ],
+      "task_file": "tasks/S09.md",
+      "read": [
+        "specs/ENCODING_COMPATIBILITY.md"
+      ],
+      "acceptance_ids": [
+        "S09-A1",
+        "S09-A2",
+        "S09-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S10",
+      "title": "Ship diagnostics, early failure reports and self-test",
+      "depends_on": [
+        "S09"
+      ],
+      "task_file": "tasks/S10.md",
+      "read": [
+        "specs/DIAGNOSTICS_AND_TIMEOUTS.md"
+      ],
+      "acceptance_ids": [
+        "S10-A1",
+        "S10-A2",
+        "S10-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S11",
+      "title": "Run compatibility and failure regression campaign",
+      "depends_on": [
+        "S10"
+      ],
+      "task_file": "tasks/S11.md",
+      "read": [
+        "specs/AUTOMATED_ACCEPTANCE.md",
+        "specs/ENCODING_COMPATIBILITY.md"
+      ],
+      "acceptance_ids": [
+        "S11-A1",
+        "S11-A2",
+        "S11-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S12",
+      "title": "Add clean-environment CI and release gates",
+      "depends_on": [
+        "S11"
+      ],
+      "task_file": "tasks/S12.md",
+      "read": [
+        "specs/AUTOMATED_ACCEPTANCE.md",
+        "specs/SYNC_AND_RELEASE.md"
+      ],
+      "acceptance_ids": [
+        "S12-A1",
+        "S12-A2",
+        "S12-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S13",
+      "title": "Build the one-click acceptance kit",
+      "depends_on": [
+        "S12"
+      ],
+      "task_file": "tasks/S13.md",
+      "read": [
+        "specs/MINIMAL_HUMAN_ACCEPTANCE.md",
+        "specs/AUTOMATED_ACCEPTANCE.md"
+      ],
+      "acceptance_ids": [
+        "S13-A1",
+        "S13-A2",
+        "S13-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S14",
+      "title": "Integrate and freeze the exact release candidate",
+      "depends_on": [
+        "S13"
+      ],
+      "task_file": "tasks/S14.md",
+      "read": [
+        "specs/SYNC_AND_RELEASE.md",
+        "specs/MINIMAL_HUMAN_ACCEPTANCE.md",
+        "RELEASE_TARGET.json"
+      ],
+      "acceptance_ids": [
+        "S14-A1",
+        "S14-A2",
+        "S14-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S15",
+      "title": "Collect the single owner acceptance session",
+      "depends_on": [
+        "S14"
+      ],
+      "task_file": "tasks/S15.md",
+      "read": [
+        "specs/MINIMAL_HUMAN_ACCEPTANCE.md",
+        "specs/SYNC_AND_RELEASE.md"
+      ],
+      "acceptance_ids": [
+        "S15-A1",
+        "S15-A2",
+        "S15-A3"
+      ],
+      "human_testing": "Consolidated owner kit; no repeat commands.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S16",
+      "title": "Resolve acceptance and prepare exact release authorization",
+      "depends_on": [
+        "S15"
+      ],
+      "task_file": "tasks/S16.md",
+      "read": [
+        "specs/SYNC_AND_RELEASE.md",
+        "specs/MINIMAL_HUMAN_ACCEPTANCE.md",
+        "RELEASE_TARGET.json"
+      ],
+      "acceptance_ids": [
+        "S16-A1",
+        "S16-A2",
+        "S16-A3"
+      ],
+      "human_testing": "Only a necessary tiny affected-path retest after a runtime fix.",
+      "stop_after_step": true,
+      "recovery_exception": "May repair a diagnosed S15 failure when explicitly recorded; S15 must pass final candidate before S16 completion."
+    },
+    {
+      "id": "S17",
+      "title": "Codex publishes and verifies public v1.0.1",
+      "depends_on": [
+        "S16"
+      ],
+      "task_file": "tasks/S17.md",
+      "read": [
+        "specs/SYNC_AND_RELEASE.md",
+        "RELEASE_TARGET.json"
+      ],
+      "acceptance_ids": [
+        "S17-A1",
+        "S17-A2",
+        "S17-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    },
+    {
+      "id": "S18",
+      "title": "Close with final main synchronization",
+      "depends_on": [
+        "S17"
+      ],
+      "task_file": "tasks/S18.md",
+      "read": [
+        "specs/SYNC_AND_RELEASE.md",
+        "RELEASE_TARGET.json"
+      ],
+      "acceptance_ids": [
+        "S18-A1",
+        "S18-A2",
+        "S18-A3"
+      ],
+      "human_testing": "None normally; automate.",
+      "stop_after_step": true
+    }
+  ]
+}

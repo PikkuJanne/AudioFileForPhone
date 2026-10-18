@@ -1,7 +1,8 @@
 # Dependency and package security
 
 AudioFileForPhone runs locally with the permissions of the user who starts it.
-It has no telemetry, account, automatic upload, production downloader or updater.
+It has no telemetry, account, automatic upload or updater. Only the separate
+user-invoked setup helper offers a pinned download after affirmative consent.
 FFmpeg and ffprobe run as external processes. Review the application source and
 the origin of those executables before running them; media parsing is performed
 by the supplied FFmpeg build. Logs and run manifests contain local paths,
@@ -28,21 +29,52 @@ sharing diagnostics.
    The app requires `libmp3lame`; actual inputs and covers must also be supported
    by the chosen build. Review the publisher's update/security information when
    replacing it, then test a short nonprivate sample yourself.
-4. Place trusted executables beside the application scripts, or use a trusted
-   installation already in your shell's `PATH`. For shared builds retain their
-   required DLLs according to the publisher's instructions. The app checks beside
-   the script first, then resolves the first matching native application in
-   `PATH`. An adjacent copy takes precedence, so inspect the actual resolved
-   paths, not just the version of a different installation.
+4. Select a trusted installation with `-FfmpegDirectory`, deliberately save a
+   choice using the separate setup entry, place a complete pair beside the application,
+   or use a trusted installation already in your shell's `PATH`, in that order.
+   For shared builds retain their required DLLs according to the publisher's
+   instructions. Invalid explicit/saved choices and incomplete app-local pairs
+   stop preflight. PATH searches absolute directories only, without implicit
+   current-directory lookup. An absolute PATH entry still works when it is the
+   working directory. Inspect both actual resolved paths and the printed origin.
+
+The separate `Setup-AudioFileForPhone.ps1` and BAT can select existing tools or
+offer optional managed setup. Conversion never downloads tools. Its download choice points to separate
+setup, where the reviewed provider/build, size, destination, hash and license/source
+references are displayed before affirmative consent. Unattended setup requires
+both `-Download` and `-Consent`; remembering is a separate deliberate choice.
+The exact ZIP is pinned in `tools/ffmpeg-download.json`; HTTPS uses normal
+certificate validation, scoped redirects and transfer deadlines/size limits.
+Integrity is checked before archive inspection, extraction or execution. Owned
+staging rejects unsafe/colliding paths, links and excessive entries/expanded sizes.
+All vendor files/notices and provenance are retained. Startup/capability checks
+and a synthetic encode/probe/decode must pass before selection. Failure preserves
+the previous selection; setup never replaces a user-managed installation. Future
+runs never update the pinned build automatically.
+Selecting a directory validates and executes only that explicitly chosen pair,
+then prints their SHA-256 hashes. Hashes identify bytes, and version/capability
+responses show what those programs report; neither establishes vendor
+authenticity. Review the build before selecting it. Selecting an untrusted audio
+source folder never authorizes executing programs found there.
+
+Saving requires affirmative interactive consent or explicit `-Remember` on the
+setup command. Config holds only the deliberate tool location, uses the shared
+bounded atomic writer, and preserves corrupt/newer settings on failure. It never
+changes PATH, registry, profiles or persistent execution policy. The setup BAT
+uses Windows PowerShell 5.1 with process-scoped `RemoteSigned`; an enforced policy
+failure is reported without switching hosts to work around it. Ordinary
+noninteractive conversion and preview never run setup or save settings.
 
 After reviewing the app/helper and trusting the chosen vendor files, run these
-commands from the application folder to inspect the exact selected files. The
-last three commands execute the selected tools' version/capability queries:
+commands from the application folder to inspect the exact selected files.
+Resolution executes bounded version/capability queries; the final three commands
+also execute the selected tools directly:
 
 ```powershell
 . .\AudioFileForPhone.Helpers.ps1
-$ffmpegPath = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $PWD.Path
-$ffprobePath = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $PWD.Path
+$selection = Resolve-AudioToolSelection -ScriptDirectory $PWD.Path
+$ffmpegPath = $selection.Ffmpeg.Path
+$ffprobePath = $selection.Ffprobe.Path
 $ffmpegPath
 $ffprobePath
 Get-FileHash -LiteralPath $ffmpegPath -Algorithm SHA256
@@ -81,9 +113,10 @@ Do not weaken an enforced organization policy to run the app.
 
 ## Package provenance
 
-The developer builder uses the explicit repository allowlist. It packages only
-the entry script, runtime helper, BAT, README, SUPPORT, SECURITY, CHANGELOG and MIT
-license at the ZIP root. FFmpeg/ffprobe binaries, vendor DLLs, tests, generated
+The developer builder uses the explicit ten-file repository allowlist. It packages
+the conversion script, runtime helper, conversion BAT, setup PS1/BAT, README,
+SUPPORT, SECURITY, CHANGELOG and MIT license at the ZIP root. FFmpeg/ffprobe
+binaries, vendor DLLs, tests, generated
 audio, logs, caches, posters, Git data and Codex handoff/evidence are excluded.
 
 The ZIP is built from a supplied clean detached source commit. The external
@@ -102,8 +135,8 @@ their tests. Approved exact asset bytes must be verified separately under the
 release runbook.
 
 Repository CI downloads dependencies only into its isolated test environment,
-using reviewed fixed archives and complete hashed inventories. It adds no app
-downloader or machine-wide tool setup. See the repository's
+using reviewed fixed archives and complete hashed inventories. This CI provisioning
+is separate from consent-based user setup and makes no machine-wide install. See the repository's
 [CI security boundary](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/CI_SECURITY.md)
 for its read-only permissions, dependency pins and JSON-only uploads. CI is
 supplementary to recorded local Windows acceptance.

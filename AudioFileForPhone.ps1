@@ -12,7 +12,9 @@ NFC title with a bounded, collision-safe suffix. Folder names are preserved.
 Conversion changes bitrate, names and supported metadata. It performs no loudness
 normalization, noise reduction or EQ. .opus, .wav, .flac and .m4b are not scanned.
 OGG supports Vorbis and Opus in .ogg files. FFmpeg and ffprobe are external tools,
-resolved beside the script first, then PATH. Conversion requires libmp3lame.
+selected by FfmpegDirectory, saved config, a pair beside the script, then PATH.
+Conversion requires libmp3lame. Interactive launches offer deliberate setup repair
+when tool selection fails; other launches stop with an exact setup command.
 
 Source title and supported tags are copied; a missing/empty title uses the planned
 output basename. Nonblank Artist/Album override source tags. Source artwork is
@@ -37,7 +39,9 @@ Full file/working paths must be below 260 units; created directories below 248.
 These limits do not guarantee acceptance by every phone or MTP implementation.
 
 .PARAMETER Interactive
-Prompts once for optional batch metadata and a Windows cover picker after preflight.
+Offers dependency repair when needed, then Enter to start, M to customize batch
+metadata or Q to cancel after preflight. Metadata is never saved between batches.
+Setup asks before remembering a selected tool pair.
 Use an STA console for the picker. Without this switch there are no prompts.
 DryRun explicitly ignores Interactive.
 
@@ -63,6 +67,24 @@ Plans source-to-output names without writing directories, audio, logs or manifes
 calling tools, checking cover/media or prompting. Root is provisional; durations,
 writability and dependency availability remain unverified. Returns Previewed/0 on
 success. Remove this switch to convert with the same naming/metadata options.
+
+.PARAMETER ProbeTimeoutSeconds
+Advanced media-probe deadline in seconds (default 60, range 1-2147483). Increase
+for large files or slow storage after a probe Timeout. Applies to source and output
+probes. Encoding and full audio decode have no short fixed runtime ceiling.
+
+.PARAMETER FfmpegDirectory
+Optional filesystem directory containing both ffmpeg.exe and ffprobe.exe. Overrides
+saved/app-local/PATH selection for this run only; never saves or changes PATH.
+Invalid explicit choices fail preflight without falling back to another build.
+
+.PARAMETER ConfigPath
+Optional JSON config file location for portable use or isolated environments.
+Overrides the default Windows LocalApplicationData\AudioFileForPhone\config.json.
+Relative paths use the current PowerShell location. Normal conversion only reads
+config; preview does not read it. Interactive dependency repair can remember a
+selection only after affirmative consent. Corrupt/new-schema config is preserved;
+use an explicit FfmpegDirectory override or another writable ConfigPath.
 
 .EXAMPLE
 .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts'
@@ -142,7 +164,16 @@ param(
     [string]$OutputParent,
 
     # Read-only preview using the same discovery and naming planner as conversion
-    [switch]$DryRun
+    [switch]$DryRun,
+
+    [ValidateRange(1, 2147483)]
+    [int]$ProbeTimeoutSeconds = 60,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$FfmpegDirectory,
+
+    [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
+    [string]$ConfigPath
 )
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
@@ -201,8 +232,11 @@ Write-Host "[INFO] Interactive : $Interactive"
 Write-Host ""
 
 # --- Preflight: reject prerequisites before optional prompts or run creation ---
+Write-Host '[STATE] Preflight: checking input, destination and prerequisites.'
 try {
-    . (Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1')
+    $helperPath = Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1'
+    if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
+    . $helperPath
     Write-Host ("==== AudioFileForPhone v{0} ====" -f (Get-AudioAppVersion))
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $InputFolder = Get-InputDirectory -InputFolder $InputFolder
@@ -221,9 +255,25 @@ try {
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
-        $ffmpeg = Get-ToolPath -ExeName 'ffmpeg.exe' -ScriptDirectory $ScriptDir
-        $ffprobe = Get-ToolPath -ExeName 'ffprobe.exe' -ScriptDirectory $ScriptDir
-        $toolInfo = Assert-ToolPrerequisites -FfmpegPath $ffmpeg -FfprobePath $ffprobe
+        $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir }
+        if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $selectionOptions.FfmpegDirectory = $FfmpegDirectory }
+        try { $toolInfo = Resolve-AudioToolSelection @selectionOptions }
+        catch [OperationCanceledException] { throw }
+        catch {
+            $selectionError = $_.Exception.Message
+            $repairCommand = Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath
+            # Keep the copyable action outside formatted error records, which can
+            # wrap long commands in Windows PowerShell 5.1.
+            Write-Host ('[SETUP] Existing-tool repair: ' + $repairCommand)
+            if (-not $Interactive) { throw "$selectionError Existing-tool repair: $repairCommand" }
+            $setup = Invoke-AudioToolSetup -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath -Reason $selectionError
+            if ($setup.Status -eq 'Cancelled') { throw (New-Object OperationCanceledException('Dependency setup cancelled before conversion.')) }
+            if ($setup.Status -ne 'Ready' -or $null -eq $setup.Selection) { throw "$($setup.Error) Existing-tool repair: $repairCommand" }
+            $toolInfo = $setup.Selection
+            Write-Host '[SETUP] Continuing this launch with the validated selected tools.'
+        }
+        $ffmpeg = $toolInfo.Ffmpeg.Path
+        $ffprobe = $toolInfo.Ffprobe.Path
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
             $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
             $CoverPath = $coverValidation.Path
@@ -231,6 +281,7 @@ try {
         Test-OutputWritable -Path $outputParentPath
     }
 }
+catch [OperationCanceledException] { throw }
 catch {
     throw "Preflight failed: $($_.Exception.Message)"
 }
@@ -263,116 +314,97 @@ if ($DryRun) {
 }
 else {
 
-function Read-YesNo {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$Prompt,
-
-        [bool]$DefaultYes = $false
-    )
-
-    $defaultHint = if ($DefaultYes) { "Y/n" } else { "y/N" }
-
-    while ($true) {
-        $ans = Read-Host "$Prompt ($defaultHint)"
-        if ([string]::IsNullOrWhiteSpace($ans)) { return $DefaultYes }
-
-        switch ($ans.Trim().ToLowerInvariant()) {
-            'y' { return $true }
-            'yes' { return $true }
-            'n' { return $false }
-            'no' { return $false }
-            default { Write-Host "[WARN] Please answer y or n." }
-        }
+function Read-MetadataResponse {
+    param([string]$Prompt)
+    $answer = Read-AudioMetadataResponse -Prompt $Prompt
+    if ($null -eq $answer) {
+        throw (New-Object OperationCanceledException('Metadata input ended; no conversion has started.'))
     }
+    return $answer.Trim()
 }
 
-function Select-CoverFileDialog {
-    param(
-        [string]$Title = "Select album cover image",
-        [string]$Filter = "Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*"
-    )
-
-    $ofd = $null
-    try {
-        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
-        $ofd = New-Object System.Windows.Forms.OpenFileDialog
-        $ofd.Title = $Title
-        $ofd.Filter = $Filter
-        $ofd.Multiselect = $false
-
-        $result = $ofd.ShowDialog()
-        if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
-            return $ofd.FileName
-        }
-        return $null
+function Read-MetadataYesNo {
+    param([string]$Prompt)
+    switch ((Read-MetadataResponse -Prompt ($Prompt + ' (y/N; Q = cancel)')).ToUpperInvariant()) {
+        'Y' { return $true }
+        'YES' { return $true }
+        '' { return $false }
+        'N' { return $false }
+        'NO' { return $false }
+        'Q' { throw (New-Object OperationCanceledException('Metadata customization cancelled before conversion.')) }
+        default { throw 'Invalid metadata choice. Use Y, N or Q; no conversion has started.' }
     }
-    catch {
-        Write-Warning "[WARN] Could not open file picker. (Tip: wrapper should launch PowerShell in STA mode.)"
-        Write-Warning "[WARN] Error: $_"
-        return $null
-    }
-    finally { if ($null -ne $ofd) { $ofd.Dispose() } }
 }
 
 # --- Optional: interactive metadata step, only if requested ---
 if ($Interactive) {
-    Write-Host "==== Optional metadata step ===="
-    Write-Host "This run can optionally embed an album cover and set Artist/Album tags for all output files."
-    Write-Host ""
+    Write-Host ('Ready: {0} supported files -> {1} kbps CBR MP3' -f $total, $BitrateKbps)
+    Write-Host 'Enter = start with defaults | M = customize metadata | Q = cancel'
+    Write-Host 'Waiting for your selection (no conversion has started).'
+    $customizeMetadata = $false
+    switch ((Read-MetadataResponse -Prompt 'Selection').ToUpperInvariant()) {
+        '' { }
+        'M' { $customizeMetadata = $true }
+        'Q' { throw (New-Object OperationCanceledException('Conversion cancelled at the ready menu.')) }
+        default { throw 'Invalid selection. Use Enter, M or Q; no conversion has started.' }
+    }
+    if ($customizeMetadata) {
+        Write-Host 'Customize this batch: source tags remain unless overridden; source artwork is dropped unless a cover is supplied.'
+        Write-Host 'Explicit parameters are retained. Enter skips an optional value; conversion starts after these choices. Nothing is saved for the next batch.'
 
-    # Cover
-    if ([string]::IsNullOrWhiteSpace($CoverPath)) {
-        $doCover = Read-YesNo -Prompt "Add album cover to output MP3 metadata?" -DefaultYes:$false
-        if ($doCover) {
-            $picked = Select-CoverFileDialog
-            if ($picked) {
-                try {
-                    $coverValidation = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg -PassThru
-                    $CoverPath = $coverValidation.Path
-                }
-                catch {
-                    throw "Selected cover failed validation: $($_.Exception.Message)"
-                }
-                Write-Host "[INFO] Cover selected: $CoverPath"
+        # Cover
+        if ([string]::IsNullOrWhiteSpace($CoverPath)) {
+            $doCover = Read-MetadataYesNo -Prompt 'Add album cover to output MP3 metadata?'
+            if ($doCover) {
+                $picked = Select-AudioMetadataCover
+                if ($picked) {
+                    try {
+                        $coverValidation = Get-ValidatedCoverPath -Path $picked -FfmpegPath $ffmpeg -PassThru
+                        $CoverPath = $coverValidation.Path
+                    }
+                    catch {
+                        throw "Selected cover failed validation: $($_.Exception.Message)"
+                    }
+                    Write-Host "[INFO] Cover selected: $CoverPath"
 
-                $coverDiag = $coverValidation.Diagnostics
-                if ($coverDiag.SizeMB -ne $null) {
-                    Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                    $coverDiag = $coverValidation.Diagnostics
+                    if ($coverDiag.SizeMB -ne $null) {
+                        Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                    }
+                    if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
+                        Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
+                    }
+                    foreach ($w in $coverDiag.Warnings) {
+                        Write-Warning "[WARN] $w"
+                    }
                 }
-                if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
-                    Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
-                }
-                foreach ($w in $coverDiag.Warnings) {
-                    Write-Warning "[WARN] $w"
+                else {
+                    Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
+                    $CoverPath = $null
                 }
             }
-            else {
-                Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
-                $CoverPath = $null
+        }
+
+        # Artist
+        if (-not $PSBoundParameters.ContainsKey('Artist')) {
+            $doArtist = Read-MetadataYesNo -Prompt 'Set Artist tag manually for all output files?'
+            if ($doArtist) {
+                $Artist = Read-MetadataResponse -Prompt 'Artist (Enter = retain source tag)'
+                if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
             }
         }
-    }
 
-    # Artist
-    if ([string]::IsNullOrWhiteSpace($Artist)) {
-        $doArtist = Read-YesNo -Prompt "Set Artist tag manually for all output files?" -DefaultYes:$false
-        if ($doArtist) {
-            $Artist = (Read-Host "Artist").Trim()
-            if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
+        # Album
+        if (-not $PSBoundParameters.ContainsKey('Album')) {
+            $doAlbum = Read-MetadataYesNo -Prompt 'Set Album tag manually for all output files?'
+            if ($doAlbum) {
+                $Album = Read-MetadataResponse -Prompt 'Album (Enter = retain source tag)'
+                if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
+            }
         }
-    }
 
-    # Album
-    if ([string]::IsNullOrWhiteSpace($Album)) {
-        $doAlbum = Read-YesNo -Prompt "Set Album tag manually for all output files?" -DefaultYes:$false
-        if ($doAlbum) {
-            $Album = (Read-Host "Album").Trim()
-            if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
-        }
     }
-
-    Write-Host ""
+    Write-Host '[STATE] Starting conversion with this batch metadata.'
 }
 
 # Console input belongs to this invocation only after interactive prompts finish.
@@ -447,6 +479,7 @@ try {
     "FFmpeg version: $($toolInfo.Ffmpeg.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe path  : $($toolInfo.Ffprobe.Path)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "FFprobe version: $($toolInfo.Ffprobe.Version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
+    "Tool selection: $($toolInfo.Origin)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "App version   : $($manifest.Data.app_version)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Entry SHA256  : $($manifest.Data.build.entry_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
     "Helper SHA256 : $($manifest.Data.build.helper_sha256)" | Add-Content -LiteralPath $logPath -ErrorAction Stop
@@ -520,10 +553,22 @@ foreach ($plan in $plans) {
     Write-Host "------------------------------------------------------------"
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
-    Write-AudioBatchProgress -Detail ("Inspecting file {0} / {1}: {2}" -f $index, $total, $file.Name)
-    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status 'Inspecting source; duration unknown' -PercentComplete -1
+    Write-Log '[STATE] Probing source; duration unknown.'
+    Write-AudioBatchProgress -Detail ("Probing file {0} / {1}: {2}" -f $index, $total, $file.Name)
+    Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status 'Probing source; duration unknown' -PercentComplete -1
+    $script:AudioLastDisplayedPhase = ''
     $fileProgressCallback = {
         param($progress)
+        if ($script:AudioLastDisplayedPhase -cne $progress.Phase) {
+            $phaseDetail = switch ($progress.Phase) {
+                'Encoding' { 'Encoding audio; output is not yet validated.' }
+                'Validating' { 'Validating output and fully decoding audio; output is not yet published.' }
+                'Promoting' { 'Publishing validated output.' }
+                default { $progress.Phase }
+            }
+            Write-Log ('[STATE] ' + $phaseDetail)
+            $script:AudioLastDisplayedPhase = $progress.Phase
+        }
         $detail = if ($progress.Phase -eq 'Encoding') {
             if ($progress.PercentComplete -ge 0) { 'Encoding ({0}%)' -f $progress.PercentComplete }
             else { 'Encoding (indeterminate)' }
@@ -546,8 +591,9 @@ foreach ($plan in $plans) {
     $fileStatus = 'ProbeFailed'; $fileReason = ''
     try {
     Write-Host "       [DEBUG] Running ffprobe..."
-    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe
+    $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
+    if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
     if ($media.Status -ne 'Success') {
         throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
@@ -615,7 +661,7 @@ foreach ($plan in $plans) {
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
-            -ProgressCallback $fileProgressCallback
+            -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -679,7 +725,7 @@ $batchExitCode = if ($failed -gt 0) { 2 } else { 0 }
 }
 catch [OperationCanceledException] {
     $runStatus = 'Cancelled'; $batchExitCode = 130
-    Set-ActiveAudioRecordCancelled
+    if ($manifest) { Set-ActiveAudioRecordCancelled }
     Write-Host '[CANCELLED] This run stopped. Completed outputs are preserved.'
     $cancelProcessNote = $null
     if ($null -ne $script:AudioCancellationContext -and $script:AudioCancellationContext.ActiveProcessId -ne 0) {

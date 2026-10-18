@@ -1,5 +1,35 @@
 # Changelog
 
+Unreleased v1.0.1 work: separate consent-based managed setup now pins the exact
+Gyan 9.0.2 Windows x64 ZIP. It verifies transfer/integrity/extraction bounds, retains
+vendor notices/provenance and validates a synthetic encode/probe/decode before
+selection. Conversion never downloads tools. Existing-tool setup and deliberate
+remembering remain available offline; no automatic update or global install.
+
+## Unreleased v1.0.1 work
+
+- Harden the one-folder BAT route with bounded, policy-respecting host checks,
+  exact executable/version/architecture/STA reporting and an explicit host
+  override. Prefer usable PowerShell 7, allow pre-entry fallback to Windows
+  PowerShell 5.1, and never retry conversion after application entry. Preserve
+  literal supplied folder spelling and application exit codes; redirected input
+  returns without a mandatory pause. Use process-scoped RemoteSigned.
+- Add an Enter/M/Q ready menu after successful preflight/setup: Enter starts with
+  defaults, M customizes this batch and Q cancels. Preserve explicit metadata,
+  stop safely on invalid/unavailable input or EOF, and label probing, encoding,
+  validation and publication separately. Batch metadata is never saved.
+- Add separate existing-tool setup PS1/BAT entries and interactive dependency
+  repair that resumes the same conversion after validating a selected pair.
+  Show tool identities/hashes, ask before remembering, retain typed-path and
+  offline recovery, and give exact repair commands on noninteractive failures.
+  Optional downloading is available in separate setup after affirmative consent.
+- Add explicit `-FfmpegDirectory` and portable `-ConfigPath` tool selection with
+  deterministic explicit/saved/app-local/PATH precedence and bounded validation.
+- Add deliberate atomic user-selection persistence through
+  `Save-AudioToolSelection`; ordinary conversion and preview never save settings.
+- Preserve short-operation deadlines and unlimited normal encode/full-decode
+  runtime. Runtime version remains 1.0.0 until the planned package step.
+
 ## 1.0.0
 
 Changes for app version 1.0.0. Publication and exact package verification are

@@ -110,7 +110,8 @@ function Invoke-Conversion {
     Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $productionHelpers).Hash) 'Runtime helper copy must be byte-identical.'
     $sourceBefore = ConvertTo-Json -InputObject @(Get-SourceInventory $InputPath) -Compress
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
-        '-File', $scriptCopy, '-InputFolder', $InputPath, '-OutputParent', $outputParent) + $Options
+        '-File', $scriptCopy, '-InputFolder', $InputPath, '-OutputParent', $outputParent,
+        '-ConfigPath', (Join-Path $runDir 'missing-config.json')) + $Options
     $ErrorActionPreference = 'Continue'
     $nativeOutput = @(& $shellPath @nativeArgs 2>&1)
     $nativeExitCode = $LASTEXITCODE

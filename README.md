@@ -22,13 +22,24 @@ together:
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
+- `AudioFileForPhone.Launcher.ps1` and `AudioFileForPhone.HostProbe.ps1` (required by the BAT)
+- `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (dependency setup)
+- `AudioFileForPhone.ManagedSetup.ps1` and `tools/ffmpeg-download.json` (optional pinned download)
 
-For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe` either beside the
-scripts or in `PATH`. Each executable is found beside the script first, then in
-`PATH`. Startup checks that both run and that FFmpeg provides `libmp3lame`.
-FFmpeg stays external: the app does not download, install or update tools.
+For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe`. Selection order is
+`-FfmpegDirectory`, a deliberately saved user selection, a complete pair beside
+the scripts, then `PATH`. Explicit, saved and app-local choices require both
+regular executables in that directory. An incomplete local pair or an invalid
+explicit/saved choice stops preflight with repair guidance. Startup checks that
+both run and that FFmpeg provides `libmp3lame`, and prints the origin and paths.
+FFmpeg stays external. Existing-tool setup needs no network access. Separate setup
+also offers an optional pinned vendor download after affirmative consent. Conversion
+never downloads tools.
 Vendor binaries have their own licenses and provenance. Preview needs neither
 executable.
+
+For the setup walkthrough and offline recovery, see
+[Existing-tool setup and recovery](#existing-tool-setup-and-recovery).
 
 For manual download sources, tested build identities, license differences and
 checks of the exact resolved executables, read
@@ -37,15 +48,34 @@ trusted build and retain the publisher's notices. Startup capability/version
 responses do not authenticate a vendor binary.
 
 The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
-before running downloaded files. The included BAT requests process-scoped
-`-ExecutionPolicy Bypass`; use direct PowerShell invocation when you need to keep
-policy checks. Never work around an enforced organization policy.
+before running downloaded files. The conversion BAT requests process-scoped
+`-ExecutionPolicy RemoteSigned`, preserving policy checks without changing saved
+policy. Never work around an enforced organization policy.
 
 ## Usage
 
 Open PowerShell in the application folder. The example input `'.\Podcasts'` must
 already contain supported audio; paths resolve from the current PowerShell
 location. Without `-Interactive`, there are no metadata prompts.
+
+With `-Interactive` (including drag and drop), dependency repair finishes before
+the ready menu shows the supported-file count and selected bitrate:
+
+```text
+Ready: 3 supported files -> 64 kbps CBR MP3
+Enter = start with defaults | M = customize metadata | Q = cancel
+Waiting for your selection (no conversion has started).
+```
+
+Press Enter to convert using the normal source-tag/artwork policy and any supplied
+parameters. M offers cover, Artist and Album choices for this batch; supplied
+parameters remain in effect, including blank Artist/Album values that retain
+source tags. Conversion starts after the last metadata choice. Q cancels before
+batch output. Metadata choices are never saved for later batches. Invalid input
+stops with guidance; EOF cancels. Redirected or unavailable console input stops
+without starting a batch. For automation, omit `-Interactive` and pass parameters.
+The console distinguishes preflight, waiting, probing, encoding, validation and
+publication; encoding at 100% still needs validation before the file is complete.
 
 Convert with the defaults, using Music as the destination:
 
@@ -86,9 +116,101 @@ Get-Help .\AudioFileForPhone.ps1 -Examples
 ```
 
 For drag and drop, drop **exactly one folder** onto `AudioFileForPhone.bat`.
-It uses `pwsh` when available, otherwise Windows PowerShell, starts in STA mode
-for the optional cover picker and supplies `-Interactive`. The wrapper pauses
-before returning the child exit code. See the security note above before using it.
+The launcher prefers a healthy PowerShell 7, including an available Store execution
+alias, then Windows PowerShell 5.1. It prints the selected full executable path,
+version, process/OS architecture and STA state, and supplies `-Interactive`.
+The side-effect-free host check uses `-NoProfile` and a 15-second deadline.
+Fallback ends before application entry: an application failure or cancellation
+returns its exit code without starting a second conversion. An explicit policy
+refusal stops startup. Redirected input returns without a mandatory pause; an
+interactive console can keep the outcome visible. See the security note above.
+
+Choose an exact host for this PowerShell session and its BAT launches when needed:
+
+```powershell
+$env:AUDIOFILEFORPHONE_HOST = 'C:\Program Files\PowerShell\7\pwsh.exe'
+.\AudioFileForPhone.bat '.\Podcasts'
+Remove-Item Env:\AUDIOFILEFORPHONE_HOST
+```
+
+Use your installed executable's absolute path. This override never falls back.
+The alternate launcher route accepts an explicit host and a startup deadline of
+1–60 seconds; this deadline applies to the host check, not audio conversion:
+
+```powershell
+.\AudioFileForPhone.Launcher.ps1 -InputFolder '.\Podcasts' -HostPath 'C:\Program Files\PowerShell\7\pwsh.exe' -StartupTimeoutSeconds 15
+```
+
+The launcher is the interactive one-folder route. Continue using
+`AudioFileForPhone.ps1` directly for the existing parameter-based, prompt-free
+conversion or preview options, including `-FfmpegDirectory` and `-ConfigPath`.
+Quoting protects arguments received by the launcher; it cannot recover text that
+the calling CMD shell already expanded.
+
+## Existing-tool setup and recovery
+
+After reviewing a trusted existing build, run setup from the application folder:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1
+```
+
+Choose **S** to select the directory containing both executables. A Windows folder
+picker is used when available; otherwise type the exact directory path without
+surrounding quotes. Only that directory is checked. Setup shows both paths,
+versions, detected architecture and SHA-256 hashes, then asks whether to remember
+the choice. **N** keeps it for this launch only; **Q** cancels. **M** gives manual
+instructions. In the separate setup entry, **D** displays the pinned provider,
+build, transfer size, destination, SHA-256, source and license before asking **Y**
+to download. Any other answer cancels. An invalid pair stops setup without
+replacing a saved choice.
+
+`Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
+STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
+arguments; use the PS1 entry for explicit options. A console with readable input
+is needed for interactive setup. To select and remember a reviewed pair directly,
+without prompts or a PATH edit:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -FfmpegDirectory 'D:\Trusted tools\bin' -Remember -NonInteractive
+```
+
+Omit `-Remember` to validate and display the pair without saving. Setup returns 0
+when the selected pair is ready, 1 when configuration or an explicitly requested
+save fails, and 130 on cancel. A failed settings write clearly says the choice
+was **not remembered** and gives an explicit `-FfmpegDirectory` conversion command.
+The valid pair can still be used for the current interactive conversion.
+
+When an `-Interactive` conversion cannot resolve its tools, it offers the same
+existing-tool setup before metadata prompts and resumes that launch with the validated pair.
+Its **D** choice gives the separate setup command and stops without downloading.
+Ordinary conversion never prompts, downloads or saves settings; it reports the
+exact setup repair command. Preview never starts setup, reads config or calls
+tools, including when `-Interactive` is supplied.
+
+For optional managed setup, review [the pinned manifest](tools/ffmpeg-download.json)
+and its vendor/license references. It selects the exact Gyan Windows x64 static
+9.0.2 essentials ZIP, downloaded directly from the publisher. All extracted vendor
+files, GPLv3 notices and provenance are retained in a new private versioned
+directory. Tools are checked and a tiny synthetic MP3 is encoded, probed and fully
+decoded before the install is offered for selection. Existing installations stay
+in place; future launches never update them automatically.
+
+To consent explicitly without prompts:
+
+```powershell
+.\Setup-AudioFileForPhone.ps1 -Download -Consent -Remember -NonInteractive
+```
+
+`-Download` without `-Consent` refuses. Omit `-Remember` to install/validate and
+display a current-run command without changing config. Default managed storage is
+`managed` beside the selected config file; `-ManagedRoot` chooses a private portable
+storage directory. `-ConfigPath` still selects the same config for setup/conversion.
+HTTPS certificate checks, pinned SHA-256, transfer/time limits and safe extraction
+bounds must pass. Ctrl+C cancels owned work; offline/errors preserve the previous
+selection and leave manual setup available. No admin access or persistent PATH,
+registry or policy change is needed. The repository/package contains no FFmpeg
+binaries. A newer pin requires a reviewed application change.
 
 ## Inputs and options
 
@@ -100,8 +222,52 @@ before returning the child exit code. See the security note above before using i
 | `-MaxBaseLength` | Default 60, range 24-180 UTF-16 units; includes date/separator/collision suffix, excludes `.mp3`. |
 | `-CoverPath` | Optional readable `.jpg`, `.jpeg` or `.png`; replaces source artwork with one attached JPEG cover. |
 | `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
-| `-Interactive` | Optional cover and tag prompts before conversion; cover picker needs STA. Ignored during preview. |
+| `-Interactive` | Offers tool repair when needed, then Enter to start, M for batch metadata, Q to cancel; pickers use STA. Ignored during preview. |
 | `-DryRun` | Read-only scan and filename plan; no output folders, audio, markers, cover cache, logs or manifest. |
+| `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
+| `-FfmpegDirectory` | Directory containing both trusted executables; overrides saved/app-local/PATH selection for this run without saving or changing PATH. |
+| `-ConfigPath` | Optional config file location; overrides the Windows user-local default. Relative paths use the current PowerShell location. Only deliberate interactive setup can save it; preview does not read config. |
+
+To use an existing external installation, add `-FfmpegDirectory 'D:\Trusted tools\bin'`
+to the conversion command. No PATH edit is required. The default config file is
+`%LOCALAPPDATA%\AudioFileForPhone\config.json`, resolved using the Windows user-folder
+API. `-ConfigPath '.\portable-config.json'` selects a different file. A missing file
+allows app-local/PATH discovery; stale, corrupt or unsupported config stops it.
+An explicit directory can override that file for the current run without changing
+it. Setup also accepts `-ConfigPath '.\portable-config.json'`; use that same option
+for conversion to read a portable selection. Corrupt or newer config is preserved.
+Use another writable ConfigPath or move only the reviewed problematic file aside
+before deliberately saving again.
+
+Remember a trusted existing pair only when you deliberately run this helper:
+
+```powershell
+. .\AudioFileForPhone.Helpers.ps1
+Save-AudioToolSelection -FfmpegDirectory 'D:\Trusted tools\bin'
+```
+
+The helper accepts the same `-ConfigPath` override, validates the pair before an
+atomic UTF-8 JSON write, and stores `schema_version: 1` and `ffmpeg_directory`.
+It preserves other schema-1 settings and refuses corrupt/newer config or read-only
+storage. A failed save means the choice was not remembered; use the explicit
+directory for the current conversion. Normal conversion, preview and helper load
+never save settings; interactive setup saves only after affirmative consent.
+Setup is the simpler user-facing route to the same shared resolver and save API.
+
+Only the app directory itself is an app-local layout; `tools\ffmpeg\bin` is not
+searched. PATH discovery uses the first regular `.exe` under absolute PATH
+directories, excluding implicit current-directory lookup and blank/relative entries.
+An absolute PATH entry remains valid when it is also the working directory. It never
+executes aliases, functions or shell wrappers. Separate PATH directories remain
+supported; differing tool build IDs produce a warning. No source folders or whole
+drives are searched for tools.
+
+Version and encoder capability checks each have a 15-second deadline. A timeout
+reports the operation, executable, elapsed time and whether process release was
+proved. Media probes use the deadline above; encoding and full audio decode have
+no short fixed runtime ceiling. Pipe completion after child exit is bounded
+separately at five seconds, with bounded teardown. An unproved release retains
+the clearly incomplete working file and reports why.
 
 Inputs are `.mp3`, `.m4a` and `.ogg`, case-insensitively. OGG supports Vorbis and
 Opus audio. **`.opus`, `.wav`, `.flac` and `.m4b` are not scanned.** An unsupported
@@ -171,7 +337,7 @@ after ordinary failures; completed outputs and sources remain available.
 | `0` | `Completed`: all supported inputs converted, or `Previewed`: planning succeeded with no conversion. |
 | `1` | `FailedBeforeConversion` or `Failed`: invalid setup, no supported files, scan/fatal error, or a required record-write failure. |
 | `2` | `CompletedWithFailures`: batch finished with at least one per-file failure. |
-| `130` | `Cancelled`: controlled Ctrl+C cancellation after metadata prompts in a supported Windows console. |
+| `130` | `Cancelled`: Q or EOF during interactive choices, or controlled Ctrl+C after metadata prompts in a supported Windows console. |
 
 The summary reports actual counts and output/log/manifest paths. Processed means
 converted plus failed; 100 percent processed can include failures. Unsupported

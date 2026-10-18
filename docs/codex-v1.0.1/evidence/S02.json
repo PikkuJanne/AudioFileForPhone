@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "step": "S02",
+  "status": "COMPLETED",
+  "scope": "Capture regressions before fixing them; no runtime implementation",
+  "tested_source_commit": "76339f97211868b3bd23bb1557cc91469d287270",
+  "runtime_matches_main_commit": "28f53b10529495754273d55654c7b29e78848c83",
+  "started_utc": "2026-10-17T15:26:04.6191447Z",
+  "recorded_utc": "2026-10-17T15:36:17.7968848Z",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "inherited_console_output_codepage": 65001,
+    "execution_policy": "RemoteSigned in child process only",
+    "child_environment": "PSModulePath removed case-insensitively only from owned child; sanitized PATH for missing tools; exact selected tool directories only for configured legacy conversion.",
+    "parent_path_unchanged": true,
+    "persistent_path_registry_policy_changes": false,
+    "dependency_location": "C:\\ffmpeg\\bin"
+  },
+  "commands": {
+    "shell_resolution": "PS5.1: (Get-Command powershell.exe).Source; PS7: (Get-Command pwsh.exe).Source",
+    "baseline_isolation": "<shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Invoke-IsolatedBaseline.ps1 -ValidateOnly -EvidencePath <repo>/docs/codex-v1/evidence/T17-s02-isolation-<edition>-attempt1.json",
+    "retained_baseline": "<shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Invoke-IsolatedBaseline.ps1 -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe -EvidencePath <repo>/docs/codex-v1/evidence/T17-s02-baseline-<edition>-attempt1.json",
+    "regressions": "<shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-SetupEncodingRegressions.ps1 -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe -EvidencePath <repo>/docs/codex-v1.0.1/evidence/S02-regressions-<edition>-final1.json",
+    "ci_contracts": "<shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/ci/Test-CiContracts.ps1 -EvidencePath <repo>/docs/codex-v1/evidence/T17-unit-<edition>-attempt20261017.json",
+    "fixture": "ffmpeg -nostdin -v error -f lavfi -i sine=frequency=440:sample_rate=<8000|48000>:duration=0.75 -ac <1|2> -c:a alac -metadata title=Synthetic <owned-source>.m4a",
+    "encoder_comparison": "ffmpeg -nostdin -v error -i <owned-source>.m4a -map 0:a:0 -vn -c:a libmp3lame -b:a <requested>k <owned-comparison>.mp3",
+    "independent_probe": "ffprobe -v error -show_streams -show_format -of json <owned-media>",
+    "independent_full_decode": "ffmpeg -nostdin -v error -xerror -i <owned-media> -map 0:a:0 -f null NUL",
+    "app_child": "<same shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <owned-wrapper>.ps1; wrapper invokes unchanged app with -InputFolder <owned-source-folder> -OutputParent <owned-output>; -BitrateKbps omitted for 64 controls, explicit for other rates.",
+    "root": "C:\\projects\\AudioFileForPhone-main",
+    "editions": [
+      "ps51",
+      "ps7"
+    ]
+  },
+  "regression_reports": [
+    {
+      "path": "docs/codex-v1.0.1/evidence/S02-regressions-ps51-final1.json",
+      "sha256": "1c8b9537d92091c506fde8c388190a85b4408fa82e615c9528a4ebccefaa9c60",
+      "status": "pass",
+      "cases": 12,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:27:52.5167512Z",
+      "finished_utc": "2026-10-17T15:28:37.3417646Z"
+    },
+    {
+      "path": "docs/codex-v1.0.1/evidence/S02-regressions-ps7-final1.json",
+      "sha256": "f01be08a477d2b7261b29760603e73fede83bb05c72b96390d2ed8e20c3e97ae",
+      "status": "pass",
+      "cases": 12,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+          "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+          "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:27:52.5930247Z",
+      "finished_utc": "2026-10-17T15:28:40.488026Z"
+    }
+  ],
+  "retained_suites": [
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s02-isolation-ps51-attempt1.json",
+      "raw_local_only": true,
+      "sha256": "4d41bea0bd626a6f16e932575b4647f3cda7da6b4df8847f5723dd6bad854703",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "isolation_validation",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "not_run",
+        "exit_code": null
+      },
+      "characterization_status": null,
+      "required_characterization_checks": 0,
+      "characterization_observations": 0,
+      "unit_cases": 0,
+      "started_utc": "2026-10-17T15:26:56.4808572Z",
+      "finished_utc": "2026-10-17T15:26:57.1326659Z"
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s02-isolation-ps7-attempt1.json",
+      "raw_local_only": true,
+      "sha256": "a331251282fe294103b5ba8b3c362b1cb7fb231cc2daec0360cb8fc34bccdae8",
+      "status": "pass",
+      "shell": "7.6.5",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "isolation_validation",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "not_run",
+        "exit_code": null
+      },
+      "characterization_status": null,
+      "required_characterization_checks": 0,
+      "characterization_observations": 0,
+      "unit_cases": 0,
+      "started_utc": "2026-10-17T15:26:57.6205125Z",
+      "finished_utc": "2026-10-17T15:26:58.2628753Z"
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s02-baseline-ps51-attempt1.json",
+      "raw_local_only": true,
+      "sha256": "ac7cc809b1a1941bf908ad2b2cc1ef88d2a7ca860244920a602b70a797507f4b",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "real_ffmpeg_baseline",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_characterization_checks": 7,
+      "characterization_observations": 3,
+      "unit_cases": 0,
+      "started_utc": "2026-10-17T15:27:11.2010326Z",
+      "finished_utc": "2026-10-17T15:27:53.1483262Z"
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-s02-baseline-ps7-attempt1.json",
+      "raw_local_only": true,
+      "sha256": "11942dc36725e4a8a9969d5073fdef756fa68a75fbb59d72afa7c0f61131368b",
+      "status": "pass",
+      "shell": "7.6.5",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "real_ffmpeg_baseline",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_characterization_checks": 7,
+      "characterization_observations": 3,
+      "unit_cases": 0,
+      "started_utc": "2026-10-17T15:27:11.2771837Z",
+      "finished_utc": "2026-10-17T15:27:58.1924229Z"
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-attempt20261017.json",
+      "raw_local_only": true,
+      "sha256": "51ce3ab358d3f001104f4c1a8b60038b23c76eae051945e287abe0598ef2b584",
+      "status": "pass",
+      "shell": "5.1.26100.9711",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "pure_runtime_and_ci_contracts",
+      "source_unchanged": true,
+      "cleanup_verified": null,
+      "legacy": null,
+      "characterization_status": null,
+      "required_characterization_checks": 0,
+      "characterization_observations": 0,
+      "unit_cases": 31,
+      "started_utc": "2026-10-17T15:28:59.7763096Z",
+      "finished_utc": "2026-10-17T15:29:01.5419163Z"
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-attempt20261017.json",
+      "raw_local_only": true,
+      "sha256": "8e9b98060056f16264c1b4ad9bc7a2d2ab4e4e129d95e12ef1329f059fdfd866",
+      "status": "pass",
+      "shell": "7.6.5",
+      "tested_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+      "mode": "pure_runtime_and_ci_contracts",
+      "source_unchanged": true,
+      "cleanup_verified": null,
+      "legacy": null,
+      "characterization_status": null,
+      "required_characterization_checks": 0,
+      "characterization_observations": 0,
+      "unit_cases": 31,
+      "started_utc": "2026-10-17T15:28:59.9050993Z",
+      "finished_utc": "2026-10-17T15:29:01.8322528Z"
+    }
+  ],
+  "preparation_attempts": [
+    {
+      "report": "S02-regressions-ps51-attempt1.json",
+      "raw_local_only": true,
+      "sha256": "161e58bb5c1e9df7353b7426c9e5386cac8282d5bd29eef979e8cef281169fce",
+      "status": "fail",
+      "cases": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "classification": "HARNESS_PREPARATION_FAILURE",
+      "reason": "Harness PS5.1 root-JSON-array pipeline wrapping; corrected by assignment before array wrapping. Not an application failure."
+    },
+    {
+      "report": "S02-regressions-ps51-attempt2.json",
+      "raw_local_only": true,
+      "sha256": "bef13f8fdfa72d552d72ccc4424d35b1cbeffdb69861614406d49e021a31b199",
+      "status": "fail",
+      "cases": 12,
+      "source_unchanged": false,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "classification": "HARNESS_PREPARATION_FAILURE",
+      "reason": "Source hash guard failed because root applied bounded-pipe review fix while this attempt was running; all 12 cases captured but attempt invalid as an unchanged-harness run. Final1 reran frozen bytes successfully."
+    }
+  ],
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "checkout_sha256": "c44462d0746cbacfc6f37ae7fe98780bbf196cc99d48f66e066de0508f4545ec"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "checkout_sha256": "a1b3bb83492a47941fa0d070a064dbfd615b0d2d3355bcf0b414379610efa79a"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "checkout_sha256": "03e7489dba12aae68f3c47e1364ad9ff15cc17dc8ed773d9e4cb2aeec264d7d0"
+    },
+    {
+      "path": ".github/scripts/Invoke-CiChecks.ps1",
+      "checkout_sha256": "51aeaed235e02da602d049f596346ecd86d61891849676c799666bb9876bafdb"
+    },
+    {
+      "path": "tests/Test-SetupEncodingRegressions.ps1",
+      "checkout_sha256": "ab9ab9b2a3258384319b7724efea06124e0761489a49580d5235d27063e6184c"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "S02-A1",
+      "status": "PASSED",
+      "expected": "No-profile sanitized child fails before conversion with no persistent PATH changes.",
+      "observed": "Both tools unresolved, exit1, converted0, no output parent in both shells. External existing pair remains outside search."
+    },
+    {
+      "id": "S02-A2",
+      "status": "PASSED",
+      "expected": "Actual Windows build normal64 and reported bitrate/rate outcomes recorded.",
+      "observed": "Per shell: four 64kbps controls succeed; all six mono/stereo reported lead rows safely fail late with exit2. See actual bps/rates in shell reports."
+    },
+    {
+      "id": "S02-A3",
+      "status": "PASSED",
+      "expected": "Owned synthetic media, source preservation, old suites retained, honest classifications.",
+      "observed": "Source/config inventories equal before/after; exact owned cleanup true; both old suites and CI contracts pass in both shells; future APIs explicitly pending."
+    }
+  ],
+  "evidence_overwrite_guard": {
+    "command": "Repeat PS5.1 final1 regression command with the existing EvidencePath",
+    "expected": "Reject without replacing report or running conversion",
+    "observed_exit": 1,
+    "report_sha256_unchanged": true,
+    "status": "PASSED"
+  },
+  "isolation": {
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "synthetic_duration_seconds": 0.75,
+    "formats": "ALAC in supported .m4a plus retained MP3/M4A/Vorbis/Opus/cover fixtures",
+    "production_copies_byte_identical": true,
+    "source_hashes_preserved": true,
+    "cleanup_verified": true,
+    "raw_reports": "Retained locally outside Git; structured summaries and relative-name regression reports only are public."
+  },
+  "pending_contracts": [
+    {
+      "id": "stale_saved_selection",
+      "status": "PENDING_API",
+      "application_regression": false,
+      "fixture": "Owned schema1 UTF8 JSON with ffmpeg_directory pointing at absent owned directory; hash preserved",
+      "required_future_observation": "Actual fresh-process config route rejects stale selection with repair guidance and no fallback."
+    },
+    {
+      "id": "external_selected_directory",
+      "status": "PENDING_API",
+      "application_regression": false,
+      "required_future_observation": "Actual explicit/saved production selection works outside PATH; configured legacy baseline is not this evidence."
+    }
+  ],
+  "evidence_gaps": [
+    "Windows 10 22H2 not available/executed in this step; owner historical diagnostic is not a new pass.",
+    "One FFmpeg build executed on the local client (2026-10-08 Git); supplementary hosted Server CI additionally uses locked 9.0.2. Owner-observed 2026-10-15 build is not available here.",
+    "Full advertised encoding matrix belongs to S09; no broad compatibility claim.",
+    "No exact v1.0.1 ZIP, final acceptance kit or new phone observation exists yet.",
+    "Hosted Windows Server CI is supplementary; final exact pushed-head results must be observed after push."
+  ],
+  "review": {
+    "mode": "Independent subagent read-only review plus root diff review",
+    "result": "No material blockers",
+    "resolved": "Bounded redirected pipe tasks to 10s after parent exit; withhold cleanup on unproved release."
+  },
+  "repository_start": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "local_head": "888b4f12da31af417b4f03c050147440fe0cf27c",
+    "live_feature": "888b4f12da31af417b4f03c050147440fe0cf27c",
+    "local_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "live_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "clean": true,
+    "exact_head_ci": [
+      {
+        "run": 39044347056,
+        "event": "push",
+        "conclusion": "success",
+        "jobs": "PS5.1 and PS7"
+      },
+      {
+        "run": 39044349551,
+        "event": "pull_request",
+        "conclusion": "success",
+        "jobs": "PS5.1 and PS7"
+      }
+    ],
+    "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29"
+  },
+  "checkpoint_verification": {
+    "status": "PREPARATION_VERIFIED",
+    "preparation_commit": "76339f97211868b3bd23bb1557cc91469d287270",
+    "local_live_equal": true,
+    "clean": true,
+    "main_unchanged": "28f53b10529495754273d55654c7b29e78848c83",
+    "sync_command": "<each shell> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File docs/codex-v1/tools/Test-GitSync.ps1 -RepoPath C:/projects/AudioFileForPhone-main -AsJson",
+    "ps51_verified_utc": "2026-10-17T15:32:02.7656208Z",
+    "ps7_verified_utc": "2026-10-17T15:32:05.3191008Z",
+    "push_ci": 39045431885,
+    "pr_ci": 39045437165,
+    "all_four_jobs": "success",
+    "pr_tested_integration_commit": "ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf",
+    "final_observation": "Final docs-only containing commit cannot record its own SHA; post-push final response records fresh HEAD/live equality, cleanliness and exact-commit CI. Next thread refreshes."
+  },
+  "main_integration": "NOT_INTEGRATED; main remains 28f53b10529495754273d55654c7b29e78848c83; S14 ordinary reviewed policy and owner-approval default preserved.",
+  "release": {
+    "target": "v1.0.1",
+    "publication": "PENDING_S17",
+    "frozen_source": null,
+    "zip_sha256": null,
+    "existing_v1_0_0": "No writes to runtime, artwork, tags, releases or assets."
+  },
+  "local_execution_source_commit": "888b4f12da31af417b4f03c050147440fe0cf27c",
+  "ci": [
+    {
+      "run_id": 39045431885,
+      "event": "push",
+      "head_sha": "76339f97211868b3bd23bb1557cc91469d287270",
+      "tested_checkout": "76339f97211868b3bd23bb1557cc91469d287270",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39045431885_1.json",
+      "report_sha256": "3489bd62bb39260b4e9d41aa1b67a41d704a32ec14127e9dcf9ea14db83fa62a",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 165,
+      "observations": 3,
+      "focused_cases": 12,
+      "focused_report_sha256": "a491c2f4b9ad7cacfc19960adcb4fd8d853cf7f786752b99d915321d9f83ee8d",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "focused_tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:31:59.5628434Z",
+      "completed_utc": "2026-10-17T15:34:25.5485364Z",
+      "raw_report_location": "Local private artifact download only",
+      "focused_classifications": {
+        "exact_rate_success": 4,
+        "late_bitrate_rejection": 6,
+        "missing_tool_failure": 2
+      }
+    },
+    {
+      "run_id": 39045431885,
+      "event": "push",
+      "head_sha": "76339f97211868b3bd23bb1557cc91469d287270",
+      "tested_checkout": "76339f97211868b3bd23bb1557cc91469d287270",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39045431885_1.json",
+      "report_sha256": "3f4c846e75d5c1f1f3b8ee3d6fb166cdcc5fcdc08f3a268ab47d5d56aaeddf0f",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 165,
+      "observations": 3,
+      "focused_cases": 12,
+      "focused_report_sha256": "08c97056870e932d56929023b34b877724065edca0b1a68b8635a5c80c2e23d4",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "focused_tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:31:53.8641962Z",
+      "completed_utc": "2026-10-17T15:34:33.1137639Z",
+      "raw_report_location": "Local private artifact download only",
+      "focused_classifications": {
+        "exact_rate_success": 4,
+        "late_bitrate_rejection": 6,
+        "missing_tool_failure": 2
+      }
+    },
+    {
+      "run_id": 39045437165,
+      "event": "pull_request",
+      "head_sha": "76339f97211868b3bd23bb1557cc91469d287270",
+      "tested_checkout": "ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps51-run39045437165_1.json",
+      "report_sha256": "14c5bd5f685e7a1c7881d9f583786574f3a953e87445b78efca340187738bbc3",
+      "status": "pass",
+      "shell": "5.1.26100.33438",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 165,
+      "observations": 3,
+      "focused_cases": 12,
+      "focused_report_sha256": "e40434b9ab76d034c68e27e14bf8ab5e0768dec04f1c592a1ecf47d6c4557fff",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "focused_tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:32:05.8336228Z",
+      "completed_utc": "2026-10-17T15:35:05.154625Z",
+      "raw_report_location": "Local private artifact download only",
+      "focused_classifications": {
+        "exact_rate_success": 4,
+        "late_bitrate_rejection": 6,
+        "missing_tool_failure": 2
+      }
+    },
+    {
+      "run_id": 39045437165,
+      "event": "pull_request",
+      "head_sha": "76339f97211868b3bd23bb1557cc91469d287270",
+      "tested_checkout": "ac3eed99df04d021a8d7ee60d7ab230c4e14b6cf",
+      "checkout_matches_github_sha": true,
+      "report": "T17-ci-ps7-run39045437165_1.json",
+      "report_sha256": "abfd7e494ab248f3ebe475b1c400501995a690a4638c816792482d2145ef2fbd",
+      "status": "pass",
+      "shell": "7.6.6",
+      "os": "10.0.26100.0",
+      "execution_environment": "github_hosted_windows",
+      "required_checks": 165,
+      "observations": 3,
+      "focused_cases": 12,
+      "focused_report_sha256": "c1391bfc80cf45f4cdd03e79cc80d7c342d2db3377b8abf3826fc8717b34be11",
+      "focused_source_unchanged": true,
+      "focused_synthetic_unchanged": true,
+      "focused_cleanup_verified": true,
+      "focused_tools": [
+        {
+          "name": "ffmpeg.exe",
+          "sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+          "version": "ffmpeg version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+        },
+        {
+          "name": "ffprobe.exe",
+          "sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+          "version": "ffprobe version 9.0.2-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+        }
+      ],
+      "started_utc": "2026-10-17T15:31:59.7602273Z",
+      "completed_utc": "2026-10-17T15:35:07.1601301Z",
+      "raw_report_location": "Local private artifact download only",
+      "focused_classifications": {
+        "exact_rate_success": 4,
+        "late_bitrate_rejection": 6,
+        "missing_tool_failure": 2
+      }
+    }
+  ]
+}

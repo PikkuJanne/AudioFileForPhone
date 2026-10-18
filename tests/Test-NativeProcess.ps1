@@ -135,7 +135,10 @@ function Invoke-OwnedNative {
         [AllowNull()][scriptblock]$ProgressCallback,
         [AllowNull()][object]$ProgressDurationSeconds,
         [AllowNull()][object]$ProgressParser,
-        [AllowNull()][object]$ProgressCallbackState
+        [AllowNull()][object]$ProgressCallbackState,
+        [int]$TimeoutMilliseconds = 0,
+        [string]$Operation = 'Native operation',
+        [int]$PipeDrainTimeoutMilliseconds = 5000
     )
     # Intercept nested prerequisite/probe/cover calls as well as direct fixtures.
     # Keep only scalar evidence; never retain a live Process or capture handle.
@@ -475,7 +478,7 @@ class NativeChild {
         $env:PATH = (Split-Path -Parent $ffmpeg) + ';' + (Split-Path -Parent $ffprobe) + ';' + $originalPath
         $code = '$ErrorActionPreference = ''Stop''; & ' + (ConvertTo-PowerShellLiteral $scriptCopy) + ' -InputFolder ' + (ConvertTo-PowerShellLiteral $inputRoot) +
             ' -OutputParent ' + (ConvertTo-PowerShellLiteral $outputRoot) + ' -Artist ' + (ConvertTo-PowerShellLiteral $artist) + ' -Album ' + (ConvertTo-PowerShellLiteral $album) +
-            ' -CoverPath ' + (ConvertTo-PowerShellLiteral $cover)
+            ' -CoverPath ' + (ConvertTo-PowerShellLiteral $cover) + ' -ConfigPath ' + (ConvertTo-PowerShellLiteral (Join-Path $appRoot 'missing-config.json'))
         $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($code))
         $run = Invoke-AudioNativeProcess -ExecutablePath $shell -Arguments @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-EncodedCommand', $encoded)
         [IO.File]::WriteAllText((Join-Path $testRoot 'application.log'), $run.Stdout + "`n" + $run.Stderr)

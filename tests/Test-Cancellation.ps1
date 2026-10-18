@@ -133,7 +133,8 @@ $script:T11OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativePr
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536,
           [object]$Cancellation = (Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds,
-          [object]$ProgressParser, [object]$ProgressCallbackState)
+          [object]$ProgressParser, [object]$ProgressCallbackState,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
     $watcher = $null
     if ([IO.Path]::GetFileName($ExecutablePath) -ieq 'ffmpeg.exe' -and
         @($Arguments | Where-Object { $_ -match '2024-01-02 Second\.m4a$' }).Count -eq 1 -and
@@ -148,7 +149,7 @@ function Invoke-AudioNativeProcess {
         $watcher = New-Object T11Controller.Readiness($Cancellation, $Arguments[$Arguments.Length-1], __READY__, __PID__)
     }
     try {
-        $nativeResult = & $script:T11OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState
+        $nativeResult = & $script:T11OriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
         if ($null -ne $watcher) { [IO.File]::WriteAllText(__READY__+'.released', ([ordered]@{status=$nativeResult.Status;process_released=$nativeResult.ProcessReleased} | ConvertTo-Json)) }
         return $nativeResult
     }
@@ -164,7 +165,7 @@ function New-EntryDriver {
     $text = @('$ErrorActionPreference=''Stop''', '$ProgressPreference=''SilentlyContinue''',
         ('$env:PATH=' + (Get-Literal (Split-Path -Parent $ffmpeg)) + '+'';''+$env:PATH'),
         '$previousMode=[Console]::TreatControlCAsInput', '$global:LASTEXITCODE=$null',
-        ('& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $OutputParent) + ' -BitrateKbps 64 *>&1 | ForEach-Object {'),
+        ('& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $OutputParent) + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'missing-config.json')) + ' -BitrateKbps 64 *>&1 | ForEach-Object {'),
         ('  [IO.File]::AppendAllText(' + (Get-Literal $RawPath) + ', [string]$_+[Environment]::NewLine)'), '}',
         ('[IO.File]::WriteAllText(' + (Get-Literal $ExitPath) + ', [string]$global:LASTEXITCODE)'),
         ('[IO.File]::WriteAllText(' + (Get-Literal $ModePath) + ', ([ordered]@{ before=$previousMode; after=[Console]::TreatControlCAsInput } | ConvertTo-Json))'),
@@ -363,13 +364,14 @@ try {
         $script:T11TestOriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
         $script:T11TestOriginalPublish=(Get-Item -LiteralPath Function:Publish-AudioWorkingOutput).ScriptBlock
         $phaseNative={
-            param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,[object]$Cancellation=(Get-AudioCancellationContext),[scriptblock]$ProgressCallback,[object]$ProgressDurationSeconds,[object]$ProgressParser,[object]$ProgressCallbackState)
+            param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,[object]$Cancellation=(Get-AudioCancellationContext),[scriptblock]$ProgressCallback,[object]$ProgressDurationSeconds,[object]$ProgressParser,[object]$ProgressCallbackState,
+                  [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
             $working=@($Arguments|Where-Object{[IO.Path]::GetExtension($_) -ceq '.partial'})
             if($script:T11Phase -ceq 'unproved-release' -and $working.Count -gt 0 -and $Arguments -contains '-y') {
                 $Cancellation.Request()
                 return [pscustomobject]@{Status='Cancelled';ExitCode=$null;ProcessReleased=$false;Error='controlled unproved-release cancellation result; no child launched by this fault';Stdout='';Stderr='';StdoutTruncated=$false;StderrTruncated=$false}
             }
-            $result=& $script:T11TestOriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState
+            $result=& $script:T11TestOriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
             if($working.Count -gt 0 -and (($script:T11Phase -ceq 'validation-probe' -and $Arguments -contains '-show_entries') -or ($script:T11Phase -ceq 'full-decode' -and $Arguments -contains '-progress' -and $Arguments -contains 'null'))) {
                 Assert-True ($result.Status -ceq 'Completed' -and $result.ProcessReleased) 'Phase cancellation requests follow a real successful native release.'
                 $Cancellation.Request();$script:T11PhaseReached=$true
@@ -421,7 +423,7 @@ try {
             Write-Host 'T11 manual fixture: wait for READY, then press Ctrl+C once during the second encoder.'
             $oldPath=$env:PATH; $env:PATH=(Split-Path -Parent $ffmpeg)+';'+$oldPath
             $script:descendantReleaseProved=$false
-            try { & $entry -InputFolder $inputRoot -OutputParent $parent -BitrateKbps 64 *>&1 | ForEach-Object { [IO.File]::AppendAllText($raw,[string]$_+[Environment]::NewLine) } }
+            try { & $entry -InputFolder $inputRoot -OutputParent $parent -ConfigPath (Join-Path $testRoot 'missing-config.json') -BitrateKbps 64 *>&1 | ForEach-Object { [IO.File]::AppendAllText($raw,[string]$_+[Environment]::NewLine) } }
             finally { $env:PATH=$oldPath }
             Write-NewText $codeFile ([string]$global:LASTEXITCODE); Write-NewText $modeFile (([ordered]@{before=$previousMode;after=[Console]::TreatControlCAsInput}) | ConvertTo-Json)
             Assert-True (Test-Path -LiteralPath $ready) 'Manual Ctrl+C must occur after READY during real conversion.'
