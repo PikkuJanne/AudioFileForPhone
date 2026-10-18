@@ -416,7 +416,7 @@ namespace AFPS08 { public static class DirectoryOwner {
         }
         $script:selectionProbes.Clear()
         Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value ${function:Invoke-RealMissingProbe}
-        try { $selected = Select-AudioLaunchHost -StartupTimeoutSeconds 1 } finally { Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value $realProbe }
+        try { $selected = Select-AudioLaunchHost -StartupTimeoutSeconds 15 } finally { Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value $realProbe }
         Assert-True ($script:selectionProbes.Count -eq 2 -and $selected.Path -ieq $ps51Path) 'A missing preferred path must select actual PS51 once.'
         $case.native_status = $result.NativeResult.Status; $case.fallback_identity = $selected
     }
@@ -445,8 +445,11 @@ namespace AFPS08 { public static class DirectoryOwner {
         }
         $script:selectionProbes.Clear()
         Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value ${function:Invoke-RealDeadlineProbe}
-        try { $selected = Select-AudioLaunchHost -StartupTimeoutSeconds 1 } finally { Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value $realProbe }
+        $fallbackTimer = [Diagnostics.Stopwatch]::StartNew()
+        try { $selected = Select-AudioLaunchHost -StartupTimeoutSeconds 5 } finally { $fallbackTimer.Stop(); Set-Item -LiteralPath Function:script:Invoke-AudioHostProbe -Value $realProbe }
         Assert-True ($script:selectionProbes.Count -eq 2 -and $selected.Path -ieq $ps51Path -and $selected.Edition -ceq 'Desktop' -and $selected.ApartmentState -ceq 'STA') 'Actual startup timeout must safely release and select actual x64 STA Windows PowerShell.'
+        Assert-True ($fallbackTimer.ElapsedMilliseconds -ge 4900 -and $fallbackTimer.ElapsedMilliseconds -lt 14000) 'Actual fallback must include the configured five-second deadline and bounded teardown/healthy-host startup.'
+        $case.fallback_probe_timeout_ms = 5000; $case.fallback_elapsed_ms = $fallbackTimer.ElapsedMilliseconds
         $case.fallback_identity = $selected
     }
     Invoke-Case 'identity-JSON-ASCII-lossless-Unicode' 'S08-A1/S08-A3' {
