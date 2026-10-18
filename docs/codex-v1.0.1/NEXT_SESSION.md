@@ -1,5 +1,70 @@
 # Next session
 
+S01-S08 COMPLETED. S09 - Plan valid bitrate and sample-rate combinations is
+NOT_STARTED and next eligible only in a separate thread. Do not restart earlier
+steps or begin S09 in the S08 thread.
+
+Tested source 64628f05a86957e2381e5bf1041ce5ecd49da4f3 has final focused76,
+package57 and native35 groups per shell, plus isolated PS51 short-operations15.
+All22 accepted local suite reports pass (694 groups); actual earlier source IDs
+and matching runtime hashes remain distinct. Runtime is unchanged from d5db9cb.
+S08.json and S08-HANDOVER.md preserve commands, digests, nonpasses and limits.
+Refresh the containing checkpoint/live refs and exact-head CI recorded after push
+in the previous final response. There is no self-containing SHA or standalone
+unpushed source CI claim. No S08 owner action is required.
+
+Use this filled next-thread prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+    docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+    Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+    Tested source: 64628f05a86957e2381e5bf1041ce5ecd49da4f3; packaged runtime
+    is unchanged from d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c.
+    Refresh the containing checkpoint from the previous final response,
+    fresh local/live feature and main identities, and exact-head CI.
+    Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+    RELEASE_TARGET.json, evidence/S08.json and evidence/S08-HANDOVER.md.
+    Complete ONLY S09 - Plan valid bitrate and sample-rate combinations.
+    S01-S08 are complete; do not restart them. Read tasks/S09.md,
+    specs/ENCODING_COMPATIBILITY.md and specs/SYNC_AND_RELEASE.md.
+    Available client: Windows 11 Pro 26H2 26300.9711 x64,
+    PS5.1 5.1.26100.9711, portable PS7 7.6.5 and Store PS7 7.6.7;
+    existing FFmpeg/ffprobe C:\ffmpeg\bin (Gyan Git ec420ba161).
+    Use actual Windows reproduction/capabilities for a shared output audio
+    plan. Each advertised bitrate must yield a valid planned result or an
+    explicit pre-encode incompatibility. Never accept clamped wrong bitrate.
+    Preserve ordinary 64 kbps sound, mono/stereo and metadata; handle
+    multi-channel limits explicitly, extend manifest/validation and run the
+    required bitrate/sample-rate/channel matrix in both supported shells.
+    Retain the bounded pre-entry launcher/host override, exact x64/STA and
+    literal arguments/CWD, policy refusal and no retry after application exit.
+    Preserve Enter/M/Q, explicit metadata precedence, EOF/input safety,
+    prompt-free normal calls and no batch metadata saving. Retain resolver/
+    save/setup APIs, FfmpegDirectory/ConfigPath and absolute PATH=CWD.
+    Conversion never downloads. Separate managed setup remains consent-based;
+    preserve reviewed pin/notices/provenance, bounded owned staging/cleanup,
+    guarded publication retry, validation/smoke before selection and pending
+    cancellation before Remember. Case50 is engine-result injection; S06 real
+    vendor acceptance remains separate. Keep CP65001 and explicit UTF8 owned
+    hidden PS/CMD drivers, historical evidence contracts, isolated fixtures/
+    config, S03 deadlines and cancellation/release guards. Normal encode/full
+    decode have no short runtime ceiling. Keep all S08 nonpasses/evidence
+    limitations; do not disable a safeguard to make a test pass.
+    Do not repeat owner diagnostics or scan ordinary Music/personal media.
+    Preserve defaults, sources, artwork and published v1.0.0. Keep main
+    integration separate under S14 reviewed policy and existing owner approval.
+    Update evidence/state/status/next-session/decisions and full handover.
+    Test/review/commit/push; verify fresh advertised equality and exact-commit CI.
+    Give the filled next-thread prompt, then STOP. Do not start S10.
+    Fixed deliverable: public v1.0.1. Only separately started S17 publishes
+    S16's exact accepted source/assets.
+
+## Preserved S07 next-session checkpoint
+
+Historical context only; current routing is above.
+
+# Next session
+
 S01-S07 COMPLETED. S08 - Harden the BAT and PowerShell startup route is
 NOT_STARTED and next eligible only in a separate thread. Do not restart earlier
 steps or begin S08 in the S07 thread.

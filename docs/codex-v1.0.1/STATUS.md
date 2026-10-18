@@ -1,5 +1,76 @@
 # Status
 
+Project IN_PROGRESS. S01-S08 are COMPLETED. S08-A1/A2/A3 pass on the available
+Windows 11 client. Next eligible: S09 - Plan valid bitrate and sample-rate
+combinations, in a separate thread. S09 remains NOT_STARTED.
+
+The BAT now uses a small bounded startup launcher, preferring a healthy PS7 and
+falling back to native PS5.1 only before application entry. It prints exact host
+path/version, separate OS/process architecture and STA. Store aliases resolve to
+their actual executable and repeat verification. HostPath or process-local
+AUDIOFILEFORPHONE_HOST selects one exact host without fallback. Known missing
+hosts and proved released timeouts can fall back; ambiguous refusal, managed
+language/signing policy and uncertain release stop selection. RemoteSigned
+replaces Bypass without saved policy changes. One application start preserves
+0/1/2/130 and never retries conversion after failure. Literal folder spelling and
+caller CWD survive; redirected input never waits for a mandatory pause. Ordinary
+parameter-based application calls remain direct and prompt-free.
+
+Tested source 64628f05a86957e2381e5bf1041ce5ecd49da4f3 adds only a test budget
+repair after runtime source d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c. All 22
+accepted local suite reports pass, covering 694 groups: focused76, retained66,
+package57, native35, metadata23, first-run15, short-operations15, selection14,
+preview8, help7 and pure31 per shell. Native runs last and sequentially. Seven
+reports identify exact64628f0; fourteen retain d5db9cb; one first-run PS51 report
+retains entry73bb303 and actual matching final runtime hashes. Two analyzer1.25.0
+reports pass10 files with zero diagnostics. No source identities are relabeled.
+
+Actual Windows 11 Pro26H2 build26300.9711 x64; PS5.1.26100.9711, portable
+PS7.6.5 and Store PS7.6.7, all x64/STA. Existing conversion tools C:\ffmpeg\bin
+remain Gyan Git ec420ba161. Package policy uses the separately provisioned CI pin
+9.0.2 in owned development storage, not a managed application installation. CP65001,
+explicit UTF8 owned hidden PS/CMD drivers, historical report contracts and isolated
+synthetic/config scopes remain. Raw reports/fixtures/config stay outside Git.
+
+Preparation nonpasses remain honest: null-array/aggregation and inherited module
+lookup issues; integrity guards rejecting edits during early runs; overly tight
+healthy-fallback test budgets; wrong dependency provenance for package tests and
+a malformed private package driver before cases. The strict real1-second hung
+startup test remains. S03 PS51's independent held-pipe fixture failed before its
+identity/output with unknown original stderr; its release guard withheld proof
+and retained the original scope. A narrow byte-identical diagnostic and unchanged
+isolated final15-group suite pass. No safeguard or assertion was disabled.
+
+Shared resolver/save/setup APIs, FfmpegDirectory/ConfigPath, absolute PATH=CWD,
+Enter/M/Q and metadata/input safeguards remain. Helpers, managed engine, reviewed
+pin and setup entries are unchanged from entry. Consent, notices/provenance,
+bounded owned staging/cleanup, guarded retry, validation/smoke and pending
+cancellation before Remember remain. Case50 is engine-result injection; S06's
+real vendor installation acceptance stays separate. Conversion never downloads.
+Normal encode/decode runtime remains unlimited. Defaults, sources/artwork and
+published v1.0.0 are preserved.
+
+Entry73bb303 was live-equal with successful push39080221388 and PR39080224509
+CI, all4 jobs. The containing documentation checkpoint's fresh advertised equality
+and exact-head CI are observed after push in the final response and refreshed next
+entry; no self-containing SHA or standalone unpushed source CI is claimed. Main
+remains separately NOT_INTEGRATED at entry local/live28f53b10529495754273d55654c7b29e78848c83.
+PR29 stays OPEN draft/unmerged; S14 reviewed policy and existing owner approval
+still apply. Full evidence/handover: evidence/S08.json and S08-HANDOVER.md.
+
+Windows10, classic MSI PS7, physical UI/console Ctrl+C, exact future ZIP/kit and
+new phone observations remain later evidence. Real owned .lnk ShellExecute and
+Store alias run automatically; physical Desktop input is unclaimed. No ordinary
+Music/personal media/owner config or owner action. Runtime remains1.0.0; fixed
+public v1.0.1 is PENDING_S17, published only by separately started S17 using S16's
+exact accepted source/assets. No frozen candidate/accepted ZIP/authority exists.
+
+## Preserved checkpoints through S07
+
+Historical context follows; current routing and results are above.
+
+# Status
+
 Project IN_PROGRESS. S01-S07 are COMPLETED. S07-A1/A2/A3 pass on the available
 Windows 11 client in both shells. Next eligible: S08 - Harden the BAT and
 PowerShell startup route, in a separate thread. S08 remains NOT_STARTED.

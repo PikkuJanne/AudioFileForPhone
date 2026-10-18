@@ -1,0 +1,1143 @@
+{
+  "schema_version": 1,
+  "step": "S08",
+  "status": "COMPLETED",
+  "scope": "Harden existing BAT/PowerShell startup only. No S09 implementation or release action.",
+  "entry_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+  "tested_source_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+  "production_runtime_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+  "runtime_unchanged_since": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+  "source_identity": "64628f0 changes only focused-test budgets relative to d5db9cb; production/runtime and package text bytes are identical. Earlier retained reports preserve their actual checkout identities and matching runtime hashes.",
+  "recorded_utc": "2026-10-18T15:31:13.4759144Z",
+  "client_date": "2026-10-18",
+  "client_timezone": "Europe/Berlin",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "ps7": "7.6.5",
+    "store_ps7": "7.6.7",
+    "process_64bit": true,
+    "output_codepage": 65001,
+    "hosts": [
+      {
+        "path": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "version": "5.1.26100.9711",
+        "edition": "Desktop",
+        "process_64bit": true,
+        "apartment": "STA"
+      },
+      {
+        "path": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+        "version": "7.6.5",
+        "edition": "Core",
+        "process_64bit": true,
+        "apartment": "STA"
+      },
+      {
+        "path": "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.7.0_x64__8wekyb3d8bbwe\\pwsh.exe",
+        "version": "7.6.7",
+        "edition": "Core",
+        "process_64bit": true,
+        "apartment": "STA"
+      }
+    ],
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "owner_config_access": false,
+    "persistent_environment_writes": false,
+    "physical_manual_evidence": false
+  },
+  "acceptance": [
+    {
+      "id": "S08-A1",
+      "status": "PASSED",
+      "observed": "Focused final83 passes76 groups per client shell, including actual direct PS7/PS5.1 and Store-alias routes, exact resolved executable/version/x64/STA, unrelated working directory and an actual owned .lnk via shell execution. Physical Desktop/Explorer interaction is not claimed."
+    },
+    {
+      "id": "S08-A2",
+      "status": "PASSED",
+      "observed": "Real missing and owned hung preferred hosts can select PS5.1 before application entry; direct hung probe retains its 1-second deadline. Injected unclassified/policy/managed-language/truncated/architecture/release failures refuse unsafe fallback. Every actual application exit0/1/2/130 records one entry; no second conversion."
+    },
+    {
+      "id": "S08-A3",
+      "status": "PASSED",
+      "observed": "Focused76 plus retained66 groups per parent shell cover exact supplied arguments, 0/1/2/130 and retained37, count rejection, redirected no-pause, missing runtime files and explicit host selection. All required retained regression reports below pass."
+    }
+  ],
+  "interface": {
+    "bat": "Exactly one folder; delayed expansion off; one process-local AUDIOFILEFORPHONE_INPUT transport; absolute Windows PowerShell bootstrap and absolute -File entries.",
+    "host_override": "Process-local AUDIOFILEFORPHONE_HOST or direct launcher -HostPath absolute local .exe. Explicit choice never falls back.",
+    "health": "Side-effect-free -NoProfile -NonInteractive -STA check, default15 seconds, -StartupTimeoutSeconds1..60. Alias resolves to actual executable and that target is reprobed.",
+    "policy": "Process-scoped RemoteSigned; no saved execution-policy/PATH/registry changes. Managed signing/language or unclassified refusal stops selection. No policy bypass.",
+    "application": "One start site; inherited caller filesystem working directory; literal CRT quoting; preserve child exit immediately. No fallback after application entry. Normal encoding and full decode have no startup deadline.",
+    "close": "Useful zero-argument instructions; pause only when both input/output are real console streams; redirected input returns."
+  },
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "7119d8df3418b74967243116c21e769242878420b76d222776504b7cda1cde7d"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "deb1db983b45edcfaee3d47a7849d3182761820238df59baa52c658b842b0e3a"
+    },
+    {
+      "path": "AudioFileForPhone.ManagedSetup.ps1",
+      "sha256": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538"
+    },
+    {
+      "path": "tools/ffmpeg-download.json",
+      "sha256": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "e5e26a3b82cc78c287073395cbf69a29c06fab9d2163225a90114ba25a5768fe"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "20b2e31de62a0ee20159f463631baa55f004d7fa3b502ba784223bc2f119fc00"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "cbe30faa97f7bec1ce94a46cf1db606e53dcf6c196e1c10d42d1b83329b6d08e"
+    },
+    {
+      "path": "AudioFileForPhone.Launcher.ps1",
+      "sha256": "9b55bf71b93da3264e25ea15252138a8f8bacdc751baaf983d2ec6232cf958f1"
+    },
+    {
+      "path": "AudioFileForPhone.HostProbe.ps1",
+      "sha256": "043ccfe7199f1cbdcbc98e27339e7fd7c6a1ec57307a6352dab24f8ad2829996"
+    },
+    {
+      "path": "README.md",
+      "sha256": "b0a3ff547760fa6c7fd3e05e67254d3b872eb05c53e9aca5434de919208056f4"
+    },
+    {
+      "path": "SUPPORT.md",
+      "sha256": "ebd2ea4b120097fa9da3a1eb35e4159d87113cc293e808ab6ea9f0ec29edf9df"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "b5c36bb491f4b8045fe419112b09ca30d59acbec6053a08f6a62864edf106abd"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "03cc54cb0848285ee1861dd1538ba487dc61e1109d530a85799e01871a36dda7"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477"
+    }
+  ],
+  "accepted_local_reports": [
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps7-attempt81.json",
+      "report_sha256": "fdb56873c541e2748ffcbf49498a262a7d454032ccf821408c1947e2e58b2083",
+      "harness": "tests/Test-ShortOperations.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-ShortOperations.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S03-shortoperations-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 15,
+      "passed_groups": 15,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S04-toolselection-ps51-attempt81.json",
+      "report_sha256": "ecfa7e8e203b7894a2adce6bf51ab4b3ec8b4ed6b52100e26bc0f5781376354e",
+      "harness": "tests/Test-ToolSelection.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-ToolSelection.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S04-toolselection-ps51-attempt81.json\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 14,
+      "passed_groups": 14,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S04-toolselection-ps7-attempt81.json",
+      "report_sha256": "3d2bc993201afd7e2f17ba6fdb94cbd34d648c90fbbcb371df12c979ae6ba278",
+      "harness": "tests/Test-ToolSelection.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-ToolSelection.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S04-toolselection-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 14,
+      "passed_groups": 14,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-attempt81.json",
+      "report_sha256": "b6adc79389974f49d6aa476b2a6350ad917d774d3084863d320d9e53b340a286",
+      "harness": "tests/Test-FirstRunSetup.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-FirstRunSetup.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S05-firstrunsetup-ps51-attempt81.json\"",
+      "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 15,
+      "passed_groups": 15,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-attempt81.json",
+      "report_sha256": "8aaf9420f8eb6bf5f867f4c644696b0860d9ad52af5ecf5e2cf570f9123a4265",
+      "harness": "tests/Test-FirstRunSetup.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-FirstRunSetup.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S05-firstrunsetup-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 15,
+      "passed_groups": 15,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S07-metadatainteraction-ps51-final82.json",
+      "report_sha256": "4d0b77c131af9960d076f5b3a431e4f9b0ec628105f606ec01b90ffe7b3e7dba",
+      "harness": "tests/Test-MetadataInteraction.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-MetadataInteraction.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S07-metadatainteraction-ps51-final82.json\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 23,
+      "passed_groups": 23,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S07-metadatainteraction-ps7-final82.json",
+      "report_sha256": "51301cd1258460f1506e8aee7e7377c81776cfbe8d87ff60dcf1e82d361277ad",
+      "harness": "tests/Test-MetadataInteraction.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-MetadataInteraction.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S07-metadatainteraction-ps7-final82.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 23,
+      "passed_groups": 23,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps51-attempt81.json",
+      "report_sha256": "d54a69810472401a470884a7f983ae8576da82340b861758e9f5c3a04690d6ad",
+      "harness": "tests/Test-Preview.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-Preview.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T12-preview-ps51-attempt81.json\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 8,
+      "passed_groups": 8,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T12-preview-ps7-attempt81.json",
+      "report_sha256": "d596621420c0856aa8bc4cbb74780b58fd942d4ba1421f74667346d78a0689c1",
+      "harness": "tests/Test-Preview.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-Preview.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T12-preview-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 8,
+      "passed_groups": 8,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps51-attempt81.json",
+      "report_sha256": "35adc6c8a7b147e5cf4e6f868a022c06f25845dda71ae124bfb75296253a979e",
+      "harness": "tests/Test-HelpVersion.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-HelpVersion.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-help-ps51-attempt81.json\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 7,
+      "passed_groups": 7,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "README.md",
+        "SUPPORT.md",
+        "CHANGELOG.md"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-help-ps7-attempt81.json",
+      "report_sha256": "a95bff92217657ceaaf90d5fa533e937f0d770d9f3e5248d98ccc9b857a22e5d",
+      "harness": "tests/Test-HelpVersion.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-HelpVersion.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-help-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 7,
+      "passed_groups": 7,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat",
+        "README.md",
+        "SUPPORT.md",
+        "CHANGELOG.md"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps51-attempt81.json",
+      "report_sha256": "8a83189420996cfcfe0c7a8a830b569d44054a725f924dbe009226ce507680b8",
+      "harness": "tests/ci/Test-CiContracts.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/ci/Test-CiContracts.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-unit-ps51-attempt81.json\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 31,
+      "passed_groups": 31,
+      "shell": "5.1.26100.9711",
+      "windows_build": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "fixtures_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true,
+      "fixture_tree_created": false,
+      "media_or_test_processes_started": false
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-unit-ps7-attempt81.json",
+      "report_sha256": "39dc474570a738919208c46d756708382b386d3540abfb3c548c7358b8ba9426",
+      "harness": "tests/ci/Test-CiContracts.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/ci/Test-CiContracts.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-unit-ps7-attempt81.json",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 31,
+      "passed_groups": 31,
+      "shell": "7.6.5",
+      "windows_build": null,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "fixtures_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true,
+      "fixture_tree_created": false,
+      "media_or_test_processes_started": false
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S08-launcher-ps51-final83.json",
+      "report_sha256": "8b912dd5fe9a984199f0d5d72a3f3cfe8d364ba8f78b56e1cc016f8e31f63af5",
+      "harness": "tests/Test-Launcher.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-Launcher.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S08-launcher-ps51-final83.json\"",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 76,
+      "passed_groups": 76,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S08-launcher-ps7-final83.json",
+      "report_sha256": "77ac629e408f1a76e9dd1b970b4e91d3c10006035ef87841b3fff1cccce33883",
+      "harness": "tests/Test-Launcher.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-Launcher.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S08-launcher-ps7-final83.json",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 76,
+      "passed_groups": 76,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps51-final83.json",
+      "report_sha256": "3bb109a8b65a28bb2520a57084d57fcbe62d73b124057e3bb9362ed0b0f2b481",
+      "harness": "tests/Test-Package.ps1",
+      "actual_outer_command_redacted": "\"<SHELL_ROOT>\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver-pinned.ps1\" -Suite \"tests/Test-Package.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-package-ps51-final83.json\" -FfmpegPath \"<PRIVATE_TEMP>/ci-dependencies\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe\" -FfprobePath \"<PRIVATE_TEMP>/ci-dependencies\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe\" ",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 57,
+      "passed_groups": 57,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ps1",
+        "CHANGELOG.md",
+        "LICENSE",
+        "README.md",
+        "SECURITY.md",
+        "SUPPORT.md",
+        "Setup-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "observed_runtime_matches_final": true,
+      "release_candidate_acceptance": false,
+      "media_conversion": false
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-package-ps7-final83.json",
+      "report_sha256": "650d93650d8a90c3a2684c87b74be7567e21930dda99d75584537a71cc51d170",
+      "harness": "tests/Test-Package.ps1",
+      "actual_outer_command_redacted": "<SHELL_ROOT>\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver-pinned.ps1 -Suite tests/Test-Package.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-package-ps7-final83.json -FfmpegPath <PRIVATE_TEMP>/ci-dependencies\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath <PRIVATE_TEMP>/ci-dependencies\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 57,
+      "passed_groups": 57,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ps1",
+        "CHANGELOG.md",
+        "LICENSE",
+        "README.md",
+        "SECURITY.md",
+        "SUPPORT.md",
+        "Setup-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "observed_runtime_matches_final": true,
+      "release_candidate_acceptance": false,
+      "media_conversion": false
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S03-shortoperations-ps51-final84.json",
+      "report_sha256": "d769e2333ca665cc574c69ce0fbbb4f77a86edc03a56355cb07cca78a38c5c71",
+      "harness": "tests/Test-ShortOperations.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-ShortOperations.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S03-shortoperations-ps51-final84.json\"",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 15,
+      "passed_groups": 15,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps51-final84.json",
+      "report_sha256": "687ae7923ddd2945ba37a7519841a37eeeb48980917c2e9ca0eebb44dcea377e",
+      "harness": "tests/Test-NativeProcess.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\driver.ps1\" -Suite \"tests/Test-NativeProcess.ps1\" -Evidence \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-native-ps51-final84.json\"",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 35,
+      "passed_groups": 35,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1/evidence/T17-native-ps7-final84.json",
+      "report_sha256": "6544ceb79d5ef0f64788a9631bfb7107d14ee7473a019063be0d6958af2350e2",
+      "harness": "tests/Test-NativeProcess.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\driver.ps1 -Suite tests/Test-NativeProcess.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-native-ps7-final84.json",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_relation": "Exact source checkout.",
+      "status": "pass",
+      "required_groups": 35,
+      "passed_groups": 35,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "fixtures_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "children_disposed": null,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "observed_runtime_matches_final": true
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S08-launcherresults-ps51-final82.json",
+      "report_sha256": "4aed4d9595d3fd0e96a1639fc34f86123aa559cda698715b5d5c34af23a825c7",
+      "harness": "tests/Test-LauncherResults.ps1",
+      "actual_outer_command_redacted": "\"C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/integration\\ps51-final82.ps1\"",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 66,
+      "passed_groups": 66,
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "fixtures_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true,
+      "effective_invocation": "& tests/Test-LauncherResults.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S08-launcherresults-ps51-final82.json",
+      "coverage": "66 real CMD cases per parent shell across explicit direct PS7 and PS5.1, including 0/1/2/130/37, argument count, literal metacharacters, Unicode, trailing separator and unrelated working directory; no redirected pause."
+    },
+    {
+      "original_contract_path": "docs/codex-v1.0.1/evidence/S08-launcherresults-ps7-final82.json",
+      "report_sha256": "d86a6d270a2d2e8ed602a46453c2ed2dc92cbec67a41b84fa142cec6cfbaa2a9",
+      "harness": "tests/Test-LauncherResults.ps1",
+      "actual_outer_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/integration\\ps7-final82.ps1",
+      "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+      "source_relation": "Earlier checkout; all observed runtime bytes match the final hash set.",
+      "status": "pass",
+      "required_groups": 66,
+      "passed_groups": 66,
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "fixtures_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "children_disposed": true,
+      "runtime_paths_observed": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "observed_runtime_matches_final": true,
+      "effective_invocation": "& tests/Test-LauncherResults.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S08-launcherresults-ps7-final82.json",
+      "coverage": "66 real CMD cases per parent shell across explicit direct PS7 and PS5.1, including 0/1/2/130/37, argument count, literal metacharacters, Unicode, trailing separator and unrelated working directory; no redirected pause."
+    }
+  ],
+  "local_report_identity": {
+    "count": 22,
+    "required_groups": 694,
+    "checkout_report_counts": [
+      {
+        "commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+        "reports": 7
+      },
+      {
+        "commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "reports": 14
+      },
+      {
+        "commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "reports": 1
+      }
+    ],
+    "earlier_runtime_hashes_match": true,
+    "raw_reports_committed": false,
+    "shared_helper_setup_managed_pin_bytes_unchanged_since": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+    "historical_contract_paths_preserved": true,
+    "no_false_exact_source_claim": "Reports retain actual tested_commit values. d5db9cb runtime equals64628f0 runtime; PS5.1 FirstRun records73bb with actual final runtime hashes."
+  },
+  "pending_reports": [],
+  "preparation": {
+    "nonpasses": [
+      {
+        "report": "S03-shortoperations-ps51-attempt81.json",
+        "report_sha256": "b0e39a84fe576b3181a5e1bb6445d60a8df55963f47fd6e525b0493178e34a43",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 2,
+        "passed_groups": 1,
+        "source_unchanged": true,
+        "cleanup_verified": false,
+        "descendant_release_proved": false,
+        "explanation": "Real held-stdout fixture failed before its identity record. Original cause is unconfirmed because full stderr was not retained. Native result was Timeout with release/drain unproved, so the original private scope remains retained and cleanup was refused."
+      },
+      {
+        "report": "S07-metadatainteraction-ps51-attempt81.json",
+        "report_sha256": "64f630ce79d5f7481ae704ce3f5261b5ebdec09505fa34e400ff12f9b1489421",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 23,
+        "passed_groups": 23,
+        "source_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "23 groups passed, but source and copied-source inventory changed during preparation; integrity guards correctly made the report fail. Superseded by unchanged final82."
+      },
+      {
+        "report": "S07-metadatainteraction-ps7-attempt81.json",
+        "report_sha256": "589fb2249905552b9c172675f9d119d21fe91f49832cffe5371bebd52c51a49d",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 23,
+        "passed_groups": 23,
+        "source_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "23 groups passed, but source and copied-source inventory changed during preparation; integrity guards correctly made the report fail. Superseded by unchanged final82."
+      },
+      {
+        "report": "S08-launcher-ps51-final82.json",
+        "report_sha256": "a3f2fb2cd530ceb931dc02ca5d0a57fe7f74a00c002b2b160fb9e1738bcc82d1",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 74,
+        "passed_groups": 73,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "73/74 groups passed. The same artificial 1-second healthy fallback budget expired; test-only budget correction was committed in source64628f0. Direct hung-child 1-second deadline remains tested."
+      },
+      {
+        "report": "S08-launcher-ps7-attempt1.json",
+        "report_sha256": "735fa18486cf91adaf7d8d830fb7820ceb8e5719ccffdbeef5d98e28a6148ef0",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 1,
+        "passed_groups": 0,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "Harness-only PS5.1 empty $args serialized as null; the literal-argument assertion incorrectly counted it. Corrected by filtering null extras, without changing production argument handling."
+      },
+      {
+        "report": "S08-launcher-ps7-attempt2.json",
+        "report_sha256": "644fcd816c3087f3da69da4146116d21072b44c3f10d31ee65de149d679e4cd6",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 1,
+        "passed_groups": 0,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "Diagnostic repetition confirmed the same harness-only null extra-argument serialization; supplied folder and Interactive were actually preserved. No raw embedded capture is published."
+      },
+      {
+        "report": "S08-launcher-ps7-attempt3.json",
+        "report_sha256": "5811ff9bf3bac6f277e9fc1e7a050007033ca8e29ce6b10e2a95f931dab46ada",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 50,
+        "passed_groups": 50,
+        "source_unchanged": false,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "All50 groups passed, then a harness aggregate incorrectly called Contains on PSCustomObject. Concurrent runtime/test edits also made source_unchanged false; finally recorded that source-integrity failure over the aggregate error. Cleanup/release passed. Corrected property lookup before d5db9cb; no production behavior fix."
+      },
+      {
+        "report": "S08-launcher-ps7-attempt4.json",
+        "report_sha256": "e9f3194b4fac04c44961070afd410fa4ae7a0ddb8e8dc5f3cf1f7794720c7628",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 74,
+        "passed_groups": 73,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "73/74 groups passed. The test gave the healthy fallback PS5.1 host an artificial 1-second budget; real startup exceeded it under load. Production stayed at its 15-second default."
+      },
+      {
+        "report": "S08-launcher-ps7-final82.json",
+        "report_sha256": "3c89a34aaf01bcb1e298be67a2204a27f1a9a95c1ec6533a73c7aa0dc5c8f7c7",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 74,
+        "passed_groups": 73,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "73/74 groups passed. The same artificial 1-second healthy fallback budget expired; test-only budget correction was committed in source64628f0. Direct hung-child 1-second deadline remains tested."
+      },
+      {
+        "report": "T17-package-ps51-attempt81.json",
+        "report_sha256": "c022e06dd8be976caa4355f855f3c301cec39b763560d00aac8ee37213d519b9",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 1,
+        "passed_groups": 1,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "Preparation supplied the existing October FFmpeg build instead of the retained CI-pinned 9.0.2 vendor build. The provenance guard correctly refused it before package-policy cases."
+      },
+      {
+        "report": "T17-package-ps7-attempt81.json",
+        "report_sha256": "e8616ea04c244d7dd5ff156a4a174a2b329f2b8287e5fa8b4bbe9dca24bd03d1",
+        "tested_commit": "d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c",
+        "status": "fail",
+        "groups": 1,
+        "passed_groups": 1,
+        "source_unchanged": true,
+        "cleanup_verified": true,
+        "descendant_release_proved": true,
+        "explanation": "Preparation supplied the existing October FFmpeg build instead of the retained CI-pinned 9.0.2 vendor build. The provenance guard correctly refused it before package-policy cases."
+      },
+      {
+        "report": "S08-launcherresults-ps51-attempt1.json",
+        "report_sha256": "98860f408182289768c9fdb8f4194794332cb683c07fac3ac2b1f72091d37353",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 66,
+        "passed_groups": 66,
+        "source_unchanged": false,
+        "cleanup_verified": true,
+        "children_disposed": true,
+        "explanation": "All66 cases passed, but BAT and launcher bytes changed during preparation. Source guard correctly rejected the report; unchanged final82 passes."
+      },
+      {
+        "report": "S08-launcherresults-ps7-attempt1.json",
+        "report_sha256": "f98e9ee4ac4ddf9075e2e0fc525b56c83c22d196e34518a8224597fda1437c76",
+        "tested_commit": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+        "status": "fail",
+        "groups": 66,
+        "passed_groups": 66,
+        "source_unchanged": false,
+        "cleanup_verified": true,
+        "children_disposed": true,
+        "explanation": "All66 cases passed, but BAT and launcher bytes changed during preparation. Source guard correctly rejected the report; unchanged final82 passes."
+      }
+    ],
+    "no_report_events": [
+      {
+        "category": "PS51DriverModulePreparation",
+        "status": "FAILED_PREPARATION",
+        "report_sha256": null,
+        "explanation": "Standalone focused PS5.1 attempt4 was initially invoked without its private driver. Inherited PS7 PSModulePath prevented Get-FileHash auto-import before first case/source inventory, then final inventory/report writing also failed. No JSON/hash or cleanup pass exists for this invocation. Using the existing owned driver with this host PSHOME Modules prepended corrected invocation; no source/runtime fix or policy weakening."
+      },
+      {
+        "category": "PackageCmdDriverParse",
+        "status": "FAILED_PREPARATION",
+        "report_sha256": null,
+        "explanation": "Initial owned CMD construction parsed incorrectly: no application or package harness report was produced; FFmpeg/ffprobe were launched without arguments. Corrected explicit UTF8 owned CMD/PS drivers were used for final83. No product conversion pass is claimed."
+      }
+    ],
+    "held_stdout_diagnostic": {
+      "report": "diagnostic-report.json",
+      "report_sha256": "2fdea2fcbee46036c83ccb0c58465ab431b2c85e62637a332c4981a1a0971a41",
+      "shell": "5.1.26100.9711",
+      "helper_sha256": "deb1db983b45edcfaee3d47a7849d3182761820238df59baa52c658b842b0e3a",
+      "child_sha256": "ecc09125d69ccd031bbf5e9c5e55e08522e3cb6985422b3c5b1ffd73d65bae13",
+      "observed_status": "Timeout",
+      "elapsed_ms": 2626,
+      "timeout_ms": 2000,
+      "process_released": false,
+      "pipe_drain_completed": false,
+      "identity_created": true,
+      "descendant_exact_stopped": true,
+      "private_scope_intentionally_retained": true,
+      "meaning": "Narrow identical fixture clone gives the expected held-pipe timeout and safely stops its exact descendant. It does not retroactively turn the failed original suite into a pass; original scope remains untouched."
+    },
+    "safeguards": "No assertion, timeout implementation, provenance check or cleanup guard was disabled. Focused healthy-fallback tests now use15 seconds for missing preferred and5 seconds for hung-selection, while the actual direct never-exiting probe still uses1 second."
+  },
+  "tooling": {
+    "ordinary_regression_tools": "Existing C:\\ffmpeg\\bin October8 build; synthetic fixtures only, no downloads during conversion.",
+    "ordinary_tool_identities": [
+      {
+        "name": "ffmpeg.exe",
+        "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+        "version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers"
+      },
+      {
+        "name": "ffprobe.exe",
+        "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20",
+        "version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers"
+      }
+    ],
+    "ci_pinned_provisioning": {
+      "report": "T17-dependencies-ps7-final83.json",
+      "report_sha256": "830d0ab33b9ae2fc4bacbf79623344f5cdb16a5fccf048d17f7d48a078d9b745",
+      "status": "pass",
+      "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+      "source_unchanged": true,
+      "ffmpeg_version": "9.0.2-essentials_build-www.gyan.dev",
+      "archive_sha256": "60f467265b1e312373dbcd92200c2618a74850f98d3d078e94296bb3fa2047ba",
+      "ffmpeg_sha256": "3256173f3f8bffd7df12227c68adf68025edb1832273a9530688a7bb1ed8edec",
+      "ffprobe_sha256": "f0d36ecbbdd3bcfac3efa078c96c7271c2e68b3810595552ac3b7f17e9a65c52",
+      "file_count": 45,
+      "inventory_sha256": "b8f58fcec6dfdff852e65404198bde4b4dcdb31e8865e99bfffe42d87b331bb5",
+      "analyzer_version": "1.25.0",
+      "analyzer_archive_sha256": "14e634c828eb98efb9f40b2918ba90f139ed5eccdf663a2a747736d996995d60",
+      "analyzer_manifest_sha256": "2b219f688bcdd67101040f845e530b22907d39bbf49089b4b5b2afaba7996791",
+      "scope": "Explicit CI dependency helper in owned private TEMP; separate from conversion and managed end-user setup acceptance."
+    },
+    "analysis": [
+      {
+        "report": "analysis-ps51.json",
+        "report_sha256": "8a88b829e7fa2df5628fa334ae546ed63c57696e0d0057cdda4008f95126eb38",
+        "status": "pass",
+        "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+        "shell": "5.1.26100.9711",
+        "analyzer": "1.25.0",
+        "files": [
+          "AudioFileForPhone.ps1",
+          "AudioFileForPhone.Helpers.ps1",
+          "AudioFileForPhone.ManagedSetup.ps1",
+          "Setup-AudioFileForPhone.ps1",
+          "AudioFileForPhone.Launcher.ps1",
+          "AudioFileForPhone.HostProbe.ps1",
+          ".github/scripts/Invoke-CiChecks.ps1",
+          ".github/scripts/Test-CiPolicy.ps1",
+          "tools/Build-Package.ps1",
+          "tests/Test-Package.ps1"
+        ],
+        "diagnostic_count": 0,
+        "actual_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\"  -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File \"<PRIVATE_TEMP>/root-session\\analysis.ps1\" -Label ps51 "
+      },
+      {
+        "report": "analysis-ps7.json",
+        "report_sha256": "30d9c2ff4d75b6649fe88f82cd0563fd29331a060ac68383e3463f2b1c8fb160",
+        "status": "pass",
+        "tested_commit": "64628f05a86957e2381e5bf1041ce5ecd49da4f3",
+        "shell": "7.6.5",
+        "analyzer": "1.25.0",
+        "files": [
+          "AudioFileForPhone.ps1",
+          "AudioFileForPhone.Helpers.ps1",
+          "AudioFileForPhone.ManagedSetup.ps1",
+          "Setup-AudioFileForPhone.ps1",
+          "AudioFileForPhone.Launcher.ps1",
+          "AudioFileForPhone.HostProbe.ps1",
+          ".github/scripts/Invoke-CiChecks.ps1",
+          ".github/scripts/Test-CiPolicy.ps1",
+          "tools/Build-Package.ps1",
+          "tests/Test-Package.ps1"
+        ],
+        "diagnostic_count": 0,
+        "actual_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_TEMP>/root-session\\analysis.ps1 -Label ps7"
+      }
+    ],
+    "ci_policy": "Both existing pure suites pass31 groups, including20 policy mutation refusals; contents:read, no release credentials/protections changes. Upload permits only the exact existing and active S08 current-run JSON patterns.",
+    "packaging": "New launcher/probe are in explicit allowlist, required-member tests, builder policy and analyzer. These tests are synthetic packaging-policy validation, not a frozen v1.0.1 candidate or release acceptance."
+  },
+  "preserved_setup": {
+    "unchanged": [
+      "AudioFileForPhone.Helpers.ps1",
+      "AudioFileForPhone.ManagedSetup.ps1",
+      "tools/ffmpeg-download.json",
+      "Setup-AudioFileForPhone.ps1",
+      "Setup-AudioFileForPhone.bat"
+    ],
+    "APIs": "Shared resolver/save/setup APIs, FfmpegDirectory/ConfigPath, absolute PATH=CWD compatibility, optional managed consent and Remember cancellation boundary are retained.",
+    "managed": "Reviewed vendor pin, notices/provenance, bounded owned staging/cleanup, guarded publication retry and validation/smoke before selection remain unchanged. Conversion never downloads.",
+    "evidence": "Managed case50 is engine-result injection, not vendor installation. S06 real vendor-installation acceptance on69bce4a remains separate and is not repeated or substituted here.",
+    "interaction": "Enter/M/Q, explicit metadata precedence, EOF/unavailable-input refusal, prompt-free normal calls and no batch metadata saving are retained by actual focused/FirstRun/preview/help regressions.",
+    "defaults": "64kbps CBR, MP3/M4A/OGG, Music destination, relative layout, date-first names, metadata/source/artwork behavior and existing icons/posters preserved."
+  },
+  "review": {
+    "local_gates": "PASSED",
+    "production_diff": "BAT transport/bootstrap; new Launcher/HostProbe; clear direct-app missing-helper diagnostic. No unrelated runtime refactor.",
+    "integration": "Necessary tests/docs/CI/analyzer/package allowlist changes only.",
+    "checkpoint_review": "All required local reports pass. Root records the final intended diff, whitespace and privacy check with the containing checkpoint handover."
+  },
+  "git": {
+    "repository": "PikkuJanne/AudioFileForPhone",
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "feature_local_at_entry": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+    "feature_live_at_entry": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+    "main_local_at_entry": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_live_at_entry": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED; S14 reviewed policy and existing owner-approval default remain.",
+    "checkpoint_identity": "Containing evidence commit/live equality are verified after push in the final handover, then refreshed next thread. No self-containing SHA is invented."
+  },
+  "ci": {
+    "entry_head": "73bb303972da55e6f0c160467e7dd8c9b1ec0a4b",
+    "entry_push_run": 39080221388,
+    "entry_pr_run": 39080224509,
+    "entry_status": "Both success; all4 jobs independently inspected at entry.",
+    "checkpoint_protocol": "Only the containing checkpoint is pushed after evidence finalization. Fresh advertised equality and exact containing-checkpoint push/PR checks are reported after push in the final response. No standalone source-commit CI claim.",
+    "hosted_os": "Windows Server supplementary; not Windows10/11 client acceptance."
+  },
+  "evidence_storage": {
+    "raw_reports": "<PRIVATE_TEMP>/root-session and <PRIVATE_TEMP>/integration",
+    "private_diagnostic": "<PRIVATE_TEMP>/S03-diagnostic intentionally retained",
+    "drivers": "Owned explicit UTF8 PS/CMD drivers, CP65001, hidden processes, PSHOME Modules prepended per child. Per-report commands preserve -NoLogo/-NoProfile/-NonInteractive/-ExecutionPolicy RemoteSigned and actual helper entry.",
+    "driver_hashes": [
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/driver.ps1",
+        "sha256": "32a6ae3f6bc68a3879d4013f1ce03017aef307629421cde6fcd68dc263ffe3dd"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/driver-pinned.ps1",
+        "sha256": "407c88f7dda6307cd208ad00bbfc74d3a98ef685c2c1dac36c5d2bca7220e5e6"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/analysis.ps1",
+        "sha256": "9cb0d5d8b9df9e5c62e74bcb4f4b74120e407836f8e3d936a8db72e47579251f"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/analysis.cmd",
+        "sha256": "1733eb4548e8d3d7b4c2584f317706938e419c87a4a73aa8eee7e672d39c3997"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/ps51.cmd",
+        "sha256": "f6826f12032d0c6e3da6797741f4da817ce52aebcc749afaa66bc19e6cacd74c"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/root-session/ps7.cmd",
+        "sha256": "8db4d363a5fb4694c008959b9bdde061764d8e36b532571cae7afda2525936c1"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/integration/ps51-final82.ps1",
+        "sha256": "514b3c1f28b3f354ba12f0cf81dba76234f419360de3e3e74fcb7e573ca4ccbf"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/integration/ps51-final82.cmd",
+        "sha256": "fc07457be52da2b2503150b2e2a9032fd2d88284ff81f7cb786be660154fa727"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/integration/ps7-final82.ps1",
+        "sha256": "4c5b19b7cf952b7ca760e976f532fabb8d90dd2c3ab232bb0549366fd71a64cb"
+      },
+      {
+        "private_reference": "<PRIVATE_TEMP>/integration/ps7-final82.cmd",
+        "sha256": "ca1cf08571bee0fabca4c7538d7838d3f44ae2e07c31e8ee0aa862380adaf1ce"
+      }
+    ],
+    "privacy": "Whitelisted summaries and hashes only. No raw console/native lines, personal fixture names, private usernames, media/config, owner tokens or complete PATH dumps are committed."
+  },
+  "limitations": [
+    "Windows10 22H2 x64, exact v1.0.1 ZIP/kit, new phone and physical console/Explorer observations remain later gates.",
+    "Actual owned .lnk shell execution is automated; no physical desktop input is claimed.",
+    "Enterprise-policy/unsupported architecture decisions are injected; no actual managed policy is changed.",
+    "Exit130 in launcher tests is inert child result forwarding; existing controlled cancellation remains separate.",
+    "Retained launcher-results harness uses a direct first PS7 GetCommand candidate on this host; Store aliases are independently covered by focused tests.",
+    "Caller-expanded text cannot be recovered; supplied percent spellings use one explicit caller environment expansion.",
+    "Original S03 PS5.1 held-stdout fixture remains private because release was unproved; its exact initial cause is not asserted."
+  ],
+  "release": {
+    "runtime_version": "1.0.0",
+    "fixed_target": "v1.0.1",
+    "status": "PENDING_S17",
+    "frozen_source": null,
+    "accepted_zip": null,
+    "publication_authority": null,
+    "rule": "Only separately started S17 publishes S16 exact accepted source/assets; S18 verifies closure. S08 performs no publication or tag/asset mutation.",
+    "preserve": "Published v1.0.0 remains untouched."
+  },
+  "human_action": "None for S08; do not repeat owner diagnostics. Later Windows10/phone work stays consolidated in S15.",
+  "next_eligible_step": "S09",
+  "next_eligible_step_status": "NOT_STARTED",
+  "next_step": "S09 only in a separately started owner thread after this checkpoint is synchronized and its exact-commit CI is verified."
+}

@@ -308,3 +308,64 @@ D40 - 2026-10-18, S07 checkpoint: sourcec08d97571bd70d140acc89c1de86e2fc0f4c6583
       remains engine-result injection; S06 real vendor installs remain separate.
       No owner action, tag/release operation or changed frozen/public bytes.
       Public v1.0.1 remains PENDING_S17.
+
+D41 - 2026-10-18, S08 startup: keep the one-folder BAT thin and delayed expansion
+      disabled. Transport the received input through process-local environment,
+      anchor the bootstrap to native x64 Windows PowerShell, and invoke a small
+      launcher with -NoProfile/-STA/-File/RemoteSigned. HostPath (or process-only
+      AUDIOFILEFORPHONE_HOST for BAT) is an exact absolute local .exe choice with
+      no fallback. Preserve the direct application parameter route and existing
+      FfmpegDirectory/ConfigPath APIs. No persistent environment/policy change.
+
+D42 - 2026-10-18, S08 selection: probe at most three absolute-PATH PS7 candidates,
+      a conventional installed PS7 path and native PS5.1. Implicit CWD/relative
+      PATH entries confer no selection authority; explicit absolute PATH=CWD is
+      preserved. Use the existing bounded native helper with a default15-second
+      per-probe deadline (advanced1..60), bounded capture/drain/owned teardown.
+      A known missing executable creates no pipes; record that safe absence
+      separately from the raw native no-pipe field. Only unavailable identities
+      or safely released timeouts allow pre-entry fallback. Unknown startup
+      refusal, managed language/signing policy and unproved release stop it.
+      Store aliases resolve to a full actual executable and repeat the probe;
+      require unchanged path/version/edition/architectures/STA/language/policy.
+      After one application start there is no retry, including nonzero exits.
+      Normal conversion and full-decode runtime remain unlimited.
+
+D43 - 2026-10-18, S08 identity/privacy: keep the host probe application-independent
+      and side-effect-free. Import only its own built-in Security module before
+      reading policies, avoiding inherited cross-host module autoload. ASCII-
+      escape JSON without changing console encoding so Unicode executable paths
+      survive PS5.1 capture. Prepend the selected host's Modules only in the child
+      environment. Retain an interactive console outcome with guarded ReadKey;
+      redirected/unavailable input never waits. Missing launcher has a fixed
+      console-only diagnostic wait; absent bootstrap prints the direct route.
+      Required helper checks precede stack traces. No network, settings, Music
+      lookup or media work occurs during host selection.
+D44 - 2026-10-18, S08 verification: separate actual host runs from injected
+      policy/architecture/release decisions and physical UI observations. Real
+      portable PS7 7.6.5, Store PS7 7.6.7 and PS5.1 pass x64/STA; classic MSI
+      is not installed. An owned hidden .lnk route passes without Desktop writes.
+      Retained characterization uses explicit direct hosts, while focused Store
+      tests independently resolve the expected actual path. Keep raw reports and
+      every nonpass private, bound by redacted summaries/digests. Healthy fallback
+      tests use 15s for a missing candidate and 5s for a hanging candidate plus
+      actual PS5.1; the separate strict 1s hanging-child deadline remains unchanged.
+      Package provenance checks require the CI-pinned9.0.2 tools, provisioned only
+      through the existing explicit development helper. Conversion keeps the
+      existing local Git build and performs no download. Preserve original S03
+      PS51 held-pipe fixture failure with unknown stderr and retained scope;
+      unchanged isolated final15 and narrow identical-fixture diagnostic pass.
+      No timeout/release/cleanup safeguard or assertion is suppressed.
+
+D45 - 2026-10-18, S08 checkpoint: tested source
+      64628f05a86957e2381e5bf1041ce5ecd49da4f3 changes only fallback-test budgets
+      after production source d5db9cb6a6e20373dbb599fc5d4e79164ef7e99c. All22
+      accepted local suite reports pass694 groups; seven identify64628f0,
+      fourteen d5db9cb and one first-run entry73bb303 with matching final runtime
+      hashes. Native35 runs last/sequentially. Static analyzer1.25 passes10 files
+      with zero diagnostics in both shells. Commit one containing evidence/docs
+      checkpoint, push, then observe fresh advertised equality and exact-head
+      push/PR CI in the final response without a self-containing SHA. S08 complete;
+      S09 eligible/NOT_STARTED in a separate thread only. Main stays unmerged under
+      S14/owner approval. No owner action, tag/release operation or changed frozen
+      bytes. Fixed public v1.0.1 remains PENDING_S17.
