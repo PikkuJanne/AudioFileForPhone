@@ -69,7 +69,11 @@ function Assert-CiDependencyRecord {
 function Invoke-CiHarness {
     param([string]$RelativePath, [string]$Family, [switch]$RealMedia)
     $path = Join-Path $projectRoot $RelativePath
-    $evidence = Join-Path $evidenceParent ("T17-$Family-$edition-$RunLabel.json")
+    # Keep historical suite/report paths intact. New launcher evidence belongs
+    # to the active S08 plan, including hosted run<ID>_<attempt> labels.
+    $childTask = if ($Family -ceq 'launcher') { 'S08' } else { 'T17' }
+    $childParent = if ($Family -ceq 'launcher') { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
+    $evidence = Join-Path $childParent ("$childTask-$Family-$edition-$RunLabel.json")
     if (Test-Path -LiteralPath $evidence) { throw "Existing $Family report cannot be replaced." }
     $arguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-File', $path, '-EvidencePath', $evidence)
     if ($RealMedia) { $arguments += @('-FfmpegPath', $dependencies.ffmpeg_path, '-FfprobePath', $dependencies.ffprobe_path) }
@@ -86,10 +90,10 @@ function Invoke-CiHarness {
     $resultRow = [pscustomobject]$row
     $report.tests += $resultRow
     if ($childExit -ne 0 -or $child.status -cne 'pass' -or $child.source_unchanged -ne $true -or
-        $child.task -cne 'T17' -or $child.tested_commit -cne $report.tested_commit -or $child.shell -cne $report.shell) {
+        $child.task -cne $childTask -or $child.tested_commit -cne $report.tested_commit -or $child.shell -cne $report.shell) {
         throw "$Family requires exit zero, pass status and unchanged source bytes."
     }
-    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
+    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package', 'launcher')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
     if ($Family -ceq 'baseline') {
         if ($child.mode -cne 'real_ffmpeg_baseline' -or $child.legacy.exit_code -ne 0 -or $child.legacy.status -cne 'pass' -or
             $child.characterization.status -cne 'pass' -or $child.isolation.verified -ne $true -or $child.isolation.copied_bytes_unchanged -ne $true) {
@@ -211,6 +215,7 @@ try {
     }
     $report.analysis.analyzer_version = $analyzer[0].Version.ToString()
     $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
+    $analysisFiles += @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1')
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -228,6 +233,7 @@ try {
     $report.analysis.status = 'pass'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiContracts.ps1' -Family 'unit'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiDependencies.ps1' -Family 'ci-dependencyguards'
+    Invoke-CiHarness -RelativePath 'tests/Test-Launcher.ps1' -Family 'launcher'
     # Package tests inspect the verified external tool identity; they do not convert media.
     Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Invoke-IsolatedBaseline.ps1' -Family 'baseline' -RealMedia

@@ -234,7 +234,9 @@ Write-Host ""
 # --- Preflight: reject prerequisites before optional prompts or run creation ---
 Write-Host '[STATE] Preflight: checking input, destination and prerequisites.'
 try {
-    . (Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1')
+    $helperPath = Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1'
+    if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
+    . $helperPath
     Write-Host ("==== AudioFileForPhone v{0} ====" -f (Get-AudioAppVersion))
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $InputFolder = Get-InputDirectory -InputFolder $InputFolder

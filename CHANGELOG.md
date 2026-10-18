@@ -8,6 +8,12 @@ remembering remain available offline; no automatic update or global install.
 
 ## Unreleased v1.0.1 work
 
+- Harden the one-folder BAT route with bounded, policy-respecting host checks,
+  exact executable/version/architecture/STA reporting and an explicit host
+  override. Prefer usable PowerShell 7, allow pre-entry fallback to Windows
+  PowerShell 5.1, and never retry conversion after application entry. Preserve
+  literal supplied folder spelling and application exit codes; redirected input
+  returns without a mandatory pause. Use process-scoped RemoteSigned.
 - Add an Enter/M/Q ready menu after successful preflight/setup: Enter starts with
   defaults, M customizes this batch and Q cancels. Preserve explicit metadata,
   stop safely on invalid/unavailable input or EOF, and label probing, encoding,

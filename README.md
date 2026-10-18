@@ -22,6 +22,7 @@ together:
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
+- `AudioFileForPhone.Launcher.ps1` and `AudioFileForPhone.HostProbe.ps1` (required by the BAT)
 - `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (dependency setup)
 - `AudioFileForPhone.ManagedSetup.ps1` and `tools/ffmpeg-download.json` (optional pinned download)
 
@@ -48,8 +49,8 @@ responses do not authenticate a vendor binary.
 
 The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
 before running downloaded files. The conversion BAT requests process-scoped
-`-ExecutionPolicy Bypass`; use direct PowerShell invocation when you need to keep
-policy checks. Never work around an enforced organization policy.
+`-ExecutionPolicy RemoteSigned`, preserving policy checks without changing saved
+policy. Never work around an enforced organization policy.
 
 ## Usage
 
@@ -115,9 +116,36 @@ Get-Help .\AudioFileForPhone.ps1 -Examples
 ```
 
 For drag and drop, drop **exactly one folder** onto `AudioFileForPhone.bat`.
-It uses `pwsh` when available, otherwise Windows PowerShell, starts in STA mode
-for the optional cover picker and supplies `-Interactive`. The wrapper pauses
-before returning the child exit code. See the security note above before using it.
+The launcher prefers a healthy PowerShell 7, including an available Store execution
+alias, then Windows PowerShell 5.1. It prints the selected full executable path,
+version, process/OS architecture and STA state, and supplies `-Interactive`.
+The side-effect-free host check uses `-NoProfile` and a 15-second deadline.
+Fallback ends before application entry: an application failure or cancellation
+returns its exit code without starting a second conversion. An explicit policy
+refusal stops startup. Redirected input returns without a mandatory pause; an
+interactive console can keep the outcome visible. See the security note above.
+
+Choose an exact host for this PowerShell session and its BAT launches when needed:
+
+```powershell
+$env:AUDIOFILEFORPHONE_HOST = 'C:\Program Files\PowerShell\7\pwsh.exe'
+.\AudioFileForPhone.bat '.\Podcasts'
+Remove-Item Env:\AUDIOFILEFORPHONE_HOST
+```
+
+Use your installed executable's absolute path. This override never falls back.
+The alternate launcher route accepts an explicit host and a startup deadline of
+1–60 seconds; this deadline applies to the host check, not audio conversion:
+
+```powershell
+.\AudioFileForPhone.Launcher.ps1 -InputFolder '.\Podcasts' -HostPath 'C:\Program Files\PowerShell\7\pwsh.exe' -StartupTimeoutSeconds 15
+```
+
+The launcher is the interactive one-folder route. Continue using
+`AudioFileForPhone.ps1` directly for the existing parameter-based, prompt-free
+conversion or preview options, including `-FfmpegDirectory` and `-ConfigPath`.
+Quoting protects arguments received by the launcher; it cannot recover text that
+the calling CMD shell already expanded.
 
 ## Existing-tool setup and recovery
 

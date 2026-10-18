@@ -86,11 +86,14 @@ This removes each file's download mark; it does not sign the file or change
 execution policy. Do not recursively unblock a download directory. See
 [Microsoft's Unblock-File documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/unblock-file).
 
-The existing conversion BAT launcher explicitly supplies process-scoped
-`-ExecutionPolicy Bypass`, suppressing ordinary policy blocking/warnings in that
-child session. It does not override Group Policy. Choose the direct invocation
-above when you want policy checks; the BAT is not an approved way around an
-enforced policy.
+The conversion BAT and its selected child request process-scoped
+`-ExecutionPolicy RemoteSigned`. They do not change saved execution policy or
+override Group Policy. The bootstrap also stops on detected managed signing or
+language restrictions before considering an alternate host. An unclassified
+health-check refusal is treated as policy blocking and never triggers fallback.
+Use the direct application command above for
+the ordinary parameter route; ask an administrator for an approved route when
+an organization blocks these unsigned scripts.
 
 The separate setup BAT uses process-scoped `RemoteSigned` in Windows PowerShell
 5.1 and does not retry another shell if policy or startup fails. For a direct
@@ -192,10 +195,30 @@ powershell.exe -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\AudioFileFo
 pwsh -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -Interactive
 ```
 
-The BAT accepts exactly one folder, forwards the child code and pauses. When
-calling it from a shell, quote the path and account for the caller's expansion
-rules. The wrapper cannot restore `%NAME%`, `!NAME!` or other characters already
-changed by the caller or an extra `CALL` expansion pass.
+The BAT accepts exactly one folder and preserves the application exit code,
+including 0, 1, 2 and 130. Redirected input does not wait on a mandatory pause.
+When calling it from a shell, quote the path and account for the caller's
+expansion rules. The wrapper cannot restore `%NAME%`, `!NAME!` or other characters
+already changed by the caller or an extra `CALL` expansion pass.
+
+The launcher checks candidate hosts before application entry, preferring a
+usable PowerShell 7 and otherwise Windows PowerShell 5.1. Both installed hosts
+and available Store execution aliases are candidates; the printed executable is
+the process that actually passed the check. The displayed process architecture
+is separate from OS architecture. This route requires x64 Windows and an x64
+host, and verifies STA for the optional metadata picker. Checks use `-NoProfile`
+and a 15-second default deadline. A failed host can fall back before application
+entry; once the application is entered, every result returns without retrying
+conversion in another host.
+
+Set process-local `AUDIOFILEFORPHONE_HOST` to the exact absolute executable path
+to require one host, or invoke `AudioFileForPhone.Launcher.ps1` with `-HostPath`.
+An explicit choice is checked and never replaced with another host. Use that
+launcher's `-StartupTimeoutSeconds` (1–60) for slow startup. This bound does not
+limit normal encode or full-decode time. Keep both launcher files beside the BAT,
+and keep `AudioFileForPhone.Helpers.ps1` beside the application. Startup failures
+identify missing runtime files. This startup work does not provide the later
+planned diagnostic/export entry point.
 
 ## Cancellation and incomplete outputs
 
