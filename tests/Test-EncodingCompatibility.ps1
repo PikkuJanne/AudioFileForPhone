@@ -431,7 +431,10 @@ try {
             $report.cleanup_phase = 'VerifyNoReparseTree'
             Assert-SafeTree $resolved
             $report.cleanup_phase = 'RemoveExactOwnedTree'
-            Remove-Item -LiteralPath $resolved -Recurse -Force
+            # Use the same exact-path cleanup API as the retained transaction,
+            # metadata, progress and diagnostics suites. All guards above still
+            # apply; do not enumerate or delete through the TEMP parent.
+            [IO.Directory]::Delete($resolved, $true)
             $report.cleanup_phase = 'VerifyRemoved'
             $report.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
         }
