@@ -133,7 +133,7 @@ function global:Write-Progress {
 }
 function global:Read-Host { param($Prompt); throw 'T13 unexpected interactive prompt' }
 '@
-    $command = '& ' + (Get-Literal $entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $Output) + ' -BitrateKbps 64 -MaxBaseLength 40'
+    $command = '& ' + (Get-Literal $entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $Output) + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'absent-config.json')) + ' -BitrateKbps 64 -MaxBaseLength 40'
     $text = (@($prefix) + @($capture, '$global:LASTEXITCODE=$null', ($command + ' *>&1 | ForEach-Object { [Console]::Out.WriteLine([string]$_) }'),
         'foreach($row in $global:T13Rows){[Console]::Out.WriteLine(''[DISPLAY] ''+($row|ConvertTo-Json -Compress))}',
         'foreach($proof in $global:T13NativeProofs){[Console]::Out.WriteLine(''[NATIVEPROOF] ''+($proof|ConvertTo-Json -Compress))}',
@@ -407,6 +407,26 @@ function Invoke-AudioNativeProcess {
         $published=Get-Published $out;Assert-True ($published.Count -eq 1) 'Hour-plus run must publish exactly one output.';$case['decoded_output']=Assert-Decoded $published[0].FullName 3605
         Assert-True ((Get-FileHash -LiteralPath $long).Hash -ceq $before) 'Actual long synthetic source must remain byte-identical.'
         $case['synthetic_source_duration_seconds']=3605;$case['realtime_throttling_used']=$false;$case['source_sha256_unchanged']=$true;$case['live_encoding_distinct_percentages']=@($encoding.percent|Select-Object -Unique)
+    }
+    Invoke-Case 'actual hour-plus VBR source retains the fixed duration bound and fully decodes' 'S09-A2,S09-A3' {
+        param($case)
+        $folder=Join-Path $testRoot 'LongVbr';[IO.Directory]::CreateDirectory($folder)|Out-Null
+        $source=Join-Path $folder '2024-01-01 Synthetic VBR.mp3'
+        Invoke-OwnedNative $ffmpeg @('-nostdin','-v','error','-f','lavfi','-i','sine=frequency=440:sample_rate=22050:duration=3605','-c:a','libmp3lame','-q:a','4',$source)|Out-Null
+        Add-Fixture $source
+        $priorRelease=$script:descendantReleaseProved;$script:descendantReleaseProved=$false
+        $media=Get-AudioMediaInfo -Path $source -FfprobePath $ffprobe
+        if($null -ne $media.NativeResult -and $media.NativeResult.ProcessReleased -and $media.NativeResult.PipeDrainCompleted){$script:descendantReleaseProved=$priorRelease}
+        Assert-True ($media.Status -ceq 'Success' -and $media.DurationStatus -ceq 'Valid' -and $script:descendantReleaseProved) 'Long VBR source needs a valid duration and actual probe release proof.'
+        $packets=Invoke-OwnedNative $ffprobe @('-v','error','-select_streams','a:0','-read_intervals','%+2','-show_entries','packet=size','-of','csv=p=0',$source)
+        $sizes=@($packets.Stdout -split '\r?\n'|Where-Object{$_ -match '^\d+$'}|Sort-Object -Unique)
+        Assert-True ($sizes.Count -gt 1) 'Independent source packets must have variable encoded sizes.'
+        $out=Join-Path $testRoot 'LongVbrOut';$result=Invoke-Entry 'long-vbr' $folder $out
+        Assert-True ($result.exit_code -eq 0) 'Actual hour-plus VBR source must convert without widening duration policy.'
+        $published=Get-Published $out;Assert-True ($published.Count -eq 1) 'Long VBR must publish one validated output.'
+        $case['decoded_output']=Assert-Decoded $published[0].FullName $media.DurationSeconds
+        $case['source_duration_seconds']=$media.DurationSeconds;$case['independent_packet_sizes']=$sizes
+        $case['duration_tolerance_seconds']=0.35;$case['source_duration_policy_changed']=$false
     }
     $report.status='pass';$exitCode=0
 }

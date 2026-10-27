@@ -146,7 +146,7 @@ function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
           [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
           [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
-    $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;cancelled_encoder=$false;owned_partial_seen=$false};$global:T14NativeProofs.Add($proof)
+    $proof=[pscustomobject]@{process_released=$false;pipe_drain_completed=$false;status='not returned';exit_code=$null;operation=$Operation;encoding_requested=($Arguments -contains '-y');cancelled_encoder=$false;owned_partial_seen=$false;capability_release_refusal_injected=$false;reported_process_released=$null};$global:T14NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     $working=@($Arguments|Where-Object{$_.EndsWith('.partial',[StringComparison]::Ordinal)})
     if($global:T14Mode -ceq 'encoder-fail' -and $Arguments -contains '-y'){$nativeParameters.Arguments=@($Arguments[0..($Arguments.Length-2)])+@('-af','T14_NoSuchAudioFilter',$Arguments[-1])}
@@ -160,7 +160,14 @@ function Invoke-AudioNativeProcess {
             $timer=New-Object T14Support.Deadline($Cancellation,500)
         }
         $result=& $script:T14OriginalNative @nativeParameters
-        $proof.process_released=[bool]$result.ProcessReleased;$proof.status=$result.Status;$proof.exit_code=$result.ExitCode
+        # The cleanup authority always records the real runner's release proof,
+        # before any explicitly labelled returned-result substitution below.
+        $proof.process_released=[bool]$result.ProcessReleased;$proof.pipe_drain_completed=[bool]$result.PipeDrainCompleted;$proof.status=$result.Status;$proof.exit_code=$result.ExitCode;$proof.reported_process_released=$result.ProcessReleased
+        if($global:T14Mode -ceq 'capability-release-refusal' -and $Operation -ceq 'MP3 sample-rate capability check'){
+            if($result.Status -cne 'Completed' -or $result.ExitCode -ne 0 -or -not $result.ProcessReleased -or -not $result.PipeDrainCompleted){throw 'Capability refusal injection requires actual native completion, release and drained pipes.'}
+            $proof.capability_release_refusal_injected=$true;$proof.reported_process_released=$false
+            $result.ProcessReleased=$false;$result.Error='T14 injected capability release refusal after real child release'
+        }
         return $result
     }finally{if($null -ne $timer){$timer.Dispose()}}
 }
@@ -219,7 +226,7 @@ function global:New-Object {
     Microsoft.PowerShell.Utility\New-Object @PSBoundParameters
 }
 '@
-    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -BitrateKbps 64 -MaxBaseLength 40'
+    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -ConfigPath '+(Get-Literal (Join-Path $testRoot 'absent-config.json'))+' -BitrateKbps 64 -MaxBaseLength 40'
     if($Artist){$command+=' -Artist '+(Get-Literal $Artist)};if($Album){$command+=' -Album '+(Get-Literal $Album)}
     $text=(@($prefix)+@($logFault,'$global:LASTEXITCODE=$null',($command+' *>&1 | ForEach-Object {[Console]::Out.WriteLine([string]$_)}'),
         'foreach($proof in $global:T14NativeProofs){[Console]::Out.WriteLine(''[NATIVEPROOF] ''+($proof|ConvertTo-Json -Compress))}',
@@ -381,7 +388,23 @@ try {
         Assert-True ($artifacts.data.app_version -ceq (Get-AudioAppVersion) -and $artifacts.data.build.entry_sha256 -ceq (Get-FileHash -LiteralPath $result.entry).Hash.ToLowerInvariant() -and $artifacts.data.build.helper_sha256 -ceq (Get-FileHash -LiteralPath (Join-Path (Split-Path -Parent $result.entry) 'AudioFileForPhone.Helpers.ps1')).Hash.ToLowerInvariant()) 'App version and build fingerprint must identify actual executed entry/helper bytes.'
         foreach($name in @('ffmpeg','ffprobe')){Assert-True ($artifacts.data.tools.$name.path -ceq (Get-Variable $name -ValueOnly) -and $artifacts.data.tools.$name.version -ceq $toolInfo.$name.Version) 'Actual tool path and full version line must persist.'}
         Assert-True ($artifacts.data.policies.metadata.artist -ceq $exactArtist -and $artifacts.data.policies.metadata.album -ceq $exactAlbum -and @($artifacts.data.records|Where-Object{$_.status -ceq 'Converted' -and $_.source_title -cne $exactTitle}).Count -eq 0) 'Actual metadata policy and source titles must retain exact JSON strings.'
-        $summaries=Get-NativeSummaries $artifacts.log;Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and @($summaries.stage|Select-Object -Unique).Count -eq 4) 'Local log must retain actual source failure and all probe/encoder/validation stages.';$case['native_stage_summaries']=$summaries
+        $summaries=Get-NativeSummaries $artifacts.log;$actualStages=(@($summaries.stage|Sort-Object -Unique) -join ',')
+        Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and $actualStages -ceq 'Encoder,EncoderCapabilities,OutputDecode,OutputProbe,SourceProbe') 'Local log must retain exactly the five actual source/capability/encoder/validation stages and the one source failure.';$case['native_stage_summaries']=$summaries
+    }
+    Invoke-Case 'injected capability release refusal stops before a second source probe or encoding' 'S09-A1,A35,A37' {
+        param($case);$inputPath=New-InputFixture 'capability-release-refusal' @('mp3','m4a');$parent=New-OutputParent 'capability-release-refusal'
+        $result=Invoke-Entry 'capability-release-refusal' $inputPath $parent -Mode capability-release-refusal;$artifacts=Get-RunArtifacts $parent;Save-CaseRun $case $result $artifacts
+        Assert-True ($result.exit_code -eq 1 -and $artifacts.data.run.status -ceq 'Failed' -and $artifacts.data.run.exit_code -eq 1 -and $artifacts.outputs.Count -eq 0) 'A capability release refusal must stop the actual batch with Failed/exit1 and no publication.'
+        $records=@($artifacts.data.records)
+        Assert-True ($records.Count -eq 2 -and $records[0].status -ceq 'Failed' -and $records[0].code -ceq 'IncompatibleAudioPlan' -and $records[0].audio_plan.status -ceq 'Incompatible' -and $records[0].audio_plan.code -ceq 'EncoderCapabilitiesUnavailable' -and $records[0].reason.Contains('T14 injected capability release refusal after real child release') -and $records[1].status -ceq 'NotProcessed' -and $records[1].code -ceq 'NotProcessed') 'The first source must retain explicit pre-encode incompatibility and the second must remain unprocessed.'
+        $proofs=@($result.native_release_proofs);$operations=(@($proofs|ForEach-Object{$_.operation}) -join ',')
+        Assert-True ($proofs.Count -eq 5 -and $operations -ceq 'ffmpeg version check,ffprobe version check,ffmpeg encoder capability check,Source media probe,MP3 sample-rate capability check' -and @($proofs|Where-Object{$_.encoding_requested}).Count -eq 0) 'After standard preflight exactly one source probe and one capability query may run; no encoder or second source probe is allowed.'
+        $injected=@($proofs|Where-Object{$_.capability_release_refusal_injected})
+        Assert-True ($injected.Count -eq 1 -and $injected[0].process_released -and $injected[0].pipe_drain_completed -and $injected[0].status -ceq 'Completed' -and $injected[0].exit_code -eq 0 -and $injected[0].reported_process_released -eq $false -and @($proofs|Where-Object{-not $_.process_released -or -not $_.pipe_drain_completed}).Count -eq 0) 'The substituted refusal must follow a genuinely completed/released/drained child; every cleanup proof must retain the actual runner result.'
+        Assert-True ($result.text.Contains('Stopping this batch before any further native operation.')) 'The actual application must explain its refusal to continue after unproved reported release.'
+        Assert-ConsoleCounts $result 2 0 1 1;$case['reconciled']=Assert-ManifestTotals $artifacts $inputPath 2 0 1 -NotProcessed 1
+        $case['fixture_kind']='Explicit returned-result release-refusal injection after actual FFmpeg capability child completed, released and drained; no genuinely unproved child was created'
+        $case['reported_release_refusal_injected']=$true;$case['actual_original_release_and_pipe_drain_proved']=$true;$case['native_operations']=$operations;$case['encoding_calls']=0;$case['source_probe_calls']=1;$case['capability_query_calls']=1
     }
     foreach($mode in @('encoder-fail','output-probe-fail','output-decode-fail','large-probe-fail')){
         Invoke-Case ('bounded persistent actual native failure '+$mode) 'A35,A37' {

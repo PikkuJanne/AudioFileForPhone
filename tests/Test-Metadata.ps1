@@ -182,7 +182,7 @@ function Invoke-Entry {
         ('$env:PATH='+(Get-Literal (Split-Path -Parent $ffmpeg))+'+'';''+$env:PATH'),('$global:T15Mode='+(Get-Literal $Mode)),('$global:T15CoverPath='+(Get-Literal $CoverPath)),
         '$global:T15NativeProofs=New-Object ''System.Collections.Generic.List[object]''','$global:T15CoverCalls=0;$global:T15Prompts=0',
         'function global:Read-Host {param($Prompt);$global:T15Prompts++;throw ''T15 unexpected metadata prompt''}')
-    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -BitrateKbps 64 -MaxBaseLength 40'
+    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -ConfigPath '+(Get-Literal (Join-Path $testRoot 'absent-config.json'))+' -BitrateKbps 64 -MaxBaseLength 40'
     foreach($parameter in @('CoverPath','Artist','Album')){if($PSBoundParameters.ContainsKey($parameter)){$command+=' -'+$parameter+' '+(Get-Literal (Get-Variable $parameter -ValueOnly))}}
     if($Interactive){$command+=' -Interactive'}
     $text=(@($prefix)+@('$global:LASTEXITCODE=$null',($command+' *>&1 | ForEach-Object {[Console]::Out.WriteLine([string]$_)}'),
