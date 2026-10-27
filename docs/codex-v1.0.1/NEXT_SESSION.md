@@ -1,5 +1,73 @@
 # Next session
 
+S01-S09 COMPLETED. S10 - Ship diagnostics, early failure reports and self-test is
+NOT_STARTED and next eligible only in a separate thread. Do not restart earlier
+steps or begin S10 in the S09 thread.
+
+Tested source 1dcf1b398d610dd478922d5dba672992ca4d5d0f has four exact-source final
+matrices, 495 planned+32 actual app conversions each, startup 76/package 57/native 35
+per shell and zero-diagnostic required static analysis. All 26 accepted local reports
+pass 666 groups, 1,980 matrix and 128 actual application conversions;92 default PCM
+comparisons match. Earlier reports retain their actual 57f90c4/5e513e4 identities and
+matching runtime hashes. Production/runtime is unchanged after 57f90c4. Source push
+40525113343 and PR 40525121428 pass all 4 jobs; downloaded reports each bind 857
+required checks and 3 observations. S09 evidence preserves commands, digests,
+nonpasses, limitations and full handover. Refresh the containing checkpoint/live
+refs and exact-head CI recorded after push in the previous final response. No
+self-containing SHA is claimed. No S09 owner action is required.
+
+Use this filled next-thread prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+    docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+    Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+    Tested source: 1dcf1b398d610dd478922d5dba672992ca4d5d0f; runtime is
+    unchanged from 57f90c4f73c385b0b0e562f487b8cf945a60de2a.
+    Refresh the containing checkpoint from the previous final response,
+    fresh local/live feature and main identities, and exact-head CI.
+    Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+    RELEASE_TARGET.json, evidence/S09.json, evidence/S09-HANDOVER.md,
+    evidence/S09-CODEC-RESEARCH.md and evidence/S09-REVIEW.md.
+    Complete ONLY S10 - Ship diagnostics, early failure reports and self-test.
+    S01-S09 are complete; do not restart them. Read tasks/S10.md and its
+    referenced specs, including specs/DIAGNOSTICS_AND_TIMEOUTS.md and
+    specs/SYNC_AND_RELEASE.md. Follow the S10 task, without starting S11.
+    Available client: Windows 11 Pro 26H2 26300.9711 x64,
+    PS5.1 5.1.26100.9711, portable PS7 7.6.5 and Store PS7 7.6.7;
+    existing FFmpeg/ffprobe C:\ffmpeg\bin is Gyan Git ec420ba161.
+    Reference Gyan 9.0.2 development tools are separate from managed setup.
+    Preserve S09 shared output planning and exact stream bitrate/rate/channels,
+    compatible 64 kbps sound, explicit multichannel downmix/rejection, first-audio
+    selection/metadata/artwork and manifest plan/observed fields. Stop before
+    another native operation if capability release is unproved. Preserve fixed
+    duration/truncation/full-decode validation, owned staged outputs and no
+    overwrite, cancellation/release guards and unlimited normal encode/decode.
+    Retain S08 bounded pre-entry startup/override/policy refusal, exact host/x64/
+    STA, literal arguments/CWD and no retry after application exit. Keep Enter/M/Q,
+    metadata precedence, EOF/input safety, prompt-free ordinary calls and no
+    batch metadata persistence. Preserve shared resolver/save/setup APIs,
+    FfmpegDirectory/ConfigPath, absolute PATH=CWD and separate consent-based
+    setup with reviewed pin/provenance, bounded owned staging/cleanup, guarded
+    publication, smoke checks and pending cancellation before Remember.
+    Conversion never downloads. Retain CP65001, explicit UTF8 owned hidden PS/CMD
+    drivers, own-host module precedence, historical evidence contracts, isolated
+    synthetic fixtures and explicit owned ConfigPath. Preserve all preparation
+    nonpasses/limitations; never disable a safeguard to make a test pass.
+    Do not repeat owner diagnostics or scan ordinary Music/personal media.
+    Preserve defaults, sources, icons/artwork and published v1.0.0. Main integration
+    remains separate under S14 reviewed policy and existing owner approval.
+    Update evidence/state/status/next-session/decisions and full handover.
+    Test/review/commit/push; verify fresh advertised equality and exact-head CI.
+    Give the filled next-thread prompt, then STOP. Do not start S11.
+    Fixed deliverable: public v1.0.1. Only separately started S17 publishes
+    S16's exact accepted source/assets.
+
+## Preserved S08 next-session checkpoint
+
+Historical context only; current routing is above.
+
+# Next session
+
 S01-S08 COMPLETED. S09 - Plan valid bitrate and sample-rate combinations is
 NOT_STARTED and next eligible only in a separate thread. Do not restart earlier
 steps or begin S09 in the S08 thread.

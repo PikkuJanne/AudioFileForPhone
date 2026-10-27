@@ -1,5 +1,77 @@
 # Status
 
+Project IN_PROGRESS. S01-S09 are COMPLETED. S09-A1/A2/A3 pass on the available
+Windows 11 client. S10 - Ship diagnostics, early failure reports and self-test
+is next eligible in a separate thread and remains NOT_STARTED.
+
+The selected first audio stream now has one shared output plan. Intersect actual
+libmp3lame sample rates with Windows-tested MPEG bitrate tables; preserve a valid
+source rate, otherwise use the nearest compatible rate (ties lower). All eighteen
+advertised rates remain. Mono/stereo and ordinary compatible 64 kbps decoded sound
+are preserved. Ten known standard multichannel layouts explicitly downmix to
+stereo; unknown/inconsistent layouts and unavailable compatible capabilities fail
+before encoding. Cover/no-cover paths share output-scoped arguments. The manifest
+records source/target decisions and observed stream bitrate/sample-rate/channels.
+Exact bitrate, fixed 0.35-second duration, strict full decode and transaction guards
+remain; normal encode/full decode have no runtime ceiling. An unproved capability
+release stops the batch before another native operation can replace its identity.
+
+Tested source 1dcf1b398d610dd478922d5dba672992ca4d5d0f has final four real matrices:
+495 planned conversions and 32 actual application conversions each, both shells
+and both Gyan ec420ba161/9.0.2 builds. All 26 accepted local reports pass 666 groups,
+plus 1,980 planned and 128 application conversions. Ninety-two compatible 64 kbps
+cases have equal old/planned decoded PCM hashes. Metadata 15, transactions 27,
+progress 18 including 3605-second CBR silence and VBR, diagnostics 20, original
+leads 12, menu 23, startup 76, package 57, pure 33, native 35 and isolated baseline pass
+in both shells. Native runs last and sequentially. Six reports retain actual 57f90c4,
+ten 5e513e4 and ten exact 1dcf1b3; all observed runtime bytes match. Production/runtime
+and package text are unchanged after 57f90c4f73c385b0b0e562f487b8cf945a60de2a.
+Required analyzer 1.25.0 checks 12 files with zero diagnostics in each shell.
+
+Independent raw encoder research reproduces 648 combinations: 432 exact and 216
+clamped despite successful decode. Twenty old-argument leads/controls and twenty
+production transactions cover all ten explicit downmix layouts. Actual Windows 11
+Pro 26H2 build 26300.9711 x64; PS5.1.26100.9711 and portable PS7.6.5. Store 7.6.7
+is covered through focused startup. Tests retain CP65001, UTF8 owned hidden drivers,
+own-host module precedence, synthetic fixtures and explicit owned config scopes.
+No ordinary Music/personal media scan, persistent setting change or owner action.
+
+Preparation nonpasses remain separate: six matrix attempts passed their media
+assertions but failed guarded Remove-Item cleanup before deletion; final matrices
+use the established exact Directory.Delete API with unchanged ownership/release/
+reparse guards and prove cleanup. Initial diagnostics had a stale four-stage count;
+the exact five-stage assertion and released-result refusal injection now pass.
+Menu attempts correctly failed integrity during CI edits; unchanged final runs
+pass. Earlier legacy metadata/progress/diagnostic runs omitted ConfigPath and are
+not config-isolation acceptance. Private launcher parameter-binding and exploratory
+old test-variable analyzer diagnostics remain preparation evidence. No safeguard
+or assertion was disabled. HE-AAC fixture generation is unavailable on these builds;
+that is not a valid-input converter-rejection claim. Full details: evidence/S09.json,
+S09-HANDOVER.md, S09-CODEC-RESEARCH.md and S09-REVIEW.md.
+
+Exact-source push 40525113343 and PR 40525121428 pass all 4 jobs. Downloaded reports
+each bind 857 required checks, 3 observations and every retained/new family; PR
+integration checkout 0303ea678cc90399cf939eff6147b98c8b4d8322 is distinct from feature
+head 1dcf1b3. The containing documentation checkpoint's fresh advertised equality
+and exact-head CI are observed after push in the final response and refreshed next
+entry, without a self-containing SHA. Main remains separately NOT_INTEGRATED at
+local/live 28f53b10529495754273d55654c7b29e78848c83; PR 29 stays OPEN draft/unmerged.
+S14 ordinary reviewed PR policy and existing owner approval remain.
+
+Startup/override/policy/literal arguments, shared resolver/save/setup APIs,
+Enter/M/Q, metadata/input safeguards, reviewed setup pin/provenance and cancellation
+remain. Conversion never downloads. Published v1.0.0, icons and artwork are
+untouched. Windows 10, physical UI/console/phone and exact future ZIP/kit remain later
+acceptance gates. Runtime remains 1.0.0; fixed public v1.0.1 is PENDING_S17. No frozen
+candidate, accepted ZIP or publication authority exists. Only separately started
+S17 publishes S16's exact accepted source/assets. Do not start S10 in this thread.
+
+## Preserved checkpoints through S08
+
+Historical context follows; current routing and results are above.
+
+# Status
+
 Project IN_PROGRESS. S01-S08 are COMPLETED. S08-A1/A2/A3 pass on the available
 Windows 11 client. Next eligible: S09 - Plan valid bitrate and sample-rate
 combinations, in a separate thread. S09 remains NOT_STARTED.

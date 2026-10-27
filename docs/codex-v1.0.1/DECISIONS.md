@@ -369,3 +369,58 @@ D45 - 2026-10-18, S08 checkpoint: tested source
       S09 eligible/NOT_STARTED in a separate thread only. Main stays unmerged under
       S14/owner approval. No owner action, tag/release operation or changed frozen
       bytes. Fixed public v1.0.1 remains PENDING_S17.
+
+D46 - 2026-10-27, S09 measured MPEG planning: both selected Windows FFmpeg builds
+      report nine libmp3lame sample rates. Independent 648-case encode/probe/full
+      decode research proves MPEG 2.5 below 16 kHz stops at 64 kbps; MPEG 2 up to 24 kHz
+      permits 8..160 including 144; MPEG 1 at 32/44.1/48 kHz excludes8/16/24/144.
+      Intersect these tested tables with actual selected capabilities. Preserve a
+      compatible source rate, otherwise choose nearest Hz, ties lower. Keep all 18
+      advertised values and validate exact stream bitrate; decode alone accepted
+      all 216 clamped research outputs and cannot replace that check.
+
+D47 - 2026-10-27, S09 shape and stream selection: extend first-audio probing with
+      codec/rate/channels/layout while keeping metadata and duration inspection
+      independent. Preserve mono/stereo. Explicitly use standard FFmpeg stereo
+      rematrix for ten known layouts with matching counts, reject others before
+      encoding. All ten have actual source-shape and production full-decode
+      evidence on both builds, including valid Ogg-coded side-layout fixtures.
+      Share one builder for both cover paths with output-scoped-ar/-ac and existing
+      audio/metadata maps. Manifest adds plan and observed shape; validator retains
+      exact bitrate, fixed 0.35-second duration, strict full decode and transaction
+      guards. No normalization, trimming, padding or runtime ceiling is introduced.
+
+D48 - 2026-10-27, S09 capability release: query selected encoder help once after
+      interactive input, never trial-encode user sources. If capability release
+      is unproved, record the first incompatibility and stop before another native
+      operation can overwrite its retained identity. Independent review caught
+      this continuation risk; a real-app test substitutes refusal only after the
+      real capability child completed/released/drained, retaining actual cleanup
+      authority. Injection is not a genuinely unproved child acceptance claim.
+
+D49 - 2026-10-27, S09 test repairs: initial matrices passed 495 + 4 media groups but
+      failed Remove-Item cleanup before deleting owned trees. Enhanced diagnostics,
+      exact ACL/marker/no-reparse and exclusive-read checks found intact trees;
+      parent enumeration was denied. Reuse the exact Directory.Delete API already
+      used by retained suites, with every original release/boundary/token/reparse
+      guard; separately owned two-file and final full-matrix cleanup pass. Do not
+      change ACLs/processes/policy or add a broad retry. Preserve failed reports.
+      Strengthen stale diagnostics to the exact five-stage set, give legacy
+      regression drivers an owned absent ConfigPath, retain integrity rejection
+      of concurrent CI edits and correct private argument binding without changing
+      runtime APIs. Required analyzer rules remain intact; exploratory old test
+      variable warnings are not silently suppressed or called a pass.
+
+D50 - 2026-10-27, S09 checkpoint: tested source 1dcf1b398d610dd478922d5dba672992ca4d5d0f
+      changes tests/CI after production/runtime 57f90c4f73c385b0b0e562f487b8cf945a60de2a.
+      All 26 accepted local reports pass 666 groups, 1,980 matrix + 128 actual app
+      conversions and 92 default PCM equalities; preserve actual 6/10/10 report
+      checkout counts at 57f90c4/5e513e4/1dcf1b3 and matching runtime hashes. Native 35
+      runs last/sequentially. Exact-source push 40525113343 and PR 40525121428 pass
+      all 4 jobs; downloaded wrappers each bind 857 checks, 3 observations and all
+      families; PR integration 0303ea678cc90399cf939eff6147b98c8b4d8322 stays distinct.
+      Commit containing evidence/docs, push and observe fresh equality/exact-head
+      CI in the final response, without a self-containing SHA. S09 complete; S10
+      eligible/NOT_STARTED in a separate thread only. Main remains unmerged under
+      S14/owner approval. No human action, tag/release operation or changed frozen
+      bytes. Fixed public v1.0.1 remains PENDING_S17; runtime remains 1.0.0.
