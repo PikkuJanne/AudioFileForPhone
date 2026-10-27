@@ -338,7 +338,7 @@ try {
     Invoke-Case 'encoder end followed by validation rejection never displays success or leaves a final' 'A33' {
         param($case);$outRoot=Join-Path $testRoot 'Reject';[IO.Directory]::CreateDirectory($outRoot)|Out-Null;$target=Join-Path $outRoot 'result.mp3'
         $originalValidation=(Get-Item -LiteralPath Function:Get-AudioOutputValidation).ScriptBlock;$events=New-Object 'System.Collections.Generic.List[object]'
-        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation,[int]$ProbeTimeoutSeconds=60)
+        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation,[int]$ProbeTimeoutSeconds=60,[AllowNull()][object]$OutputPlan)
             $result=& $originalValidation @PSBoundParameters;$result.Status='ControlledRejectedAfterRealValidation';$result.Error='controlled T13 validation rejection';return $result}.GetNewClosure()
         try{Set-Item -LiteralPath Function:Get-AudioOutputValidation -Value $wrapper;$script:descendantReleaseProved=$false
             $transaction=Invoke-AudioOutputTransaction -OutputPath $target -OutputRoot $outRoot -SourcePath $short -SourceDurationSeconds 0.25 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments @('-nostdin','-v','error','-i',$short,'-vn','-c:a','libmp3lame','-b:a','64k') -Cancellation $null -ProgressCallback {param($event);$events.Add($event)}

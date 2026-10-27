@@ -1,9 +1,9 @@
 <#
-S02 characterization, not a claim that the future setup/encoding contract passes.
+Retained S02 regression leads after the S09 output audio plan correction.
 Real tools and unchanged app copies; all media/config/output is synthetic and owned.
-Known late bitrate rejection is recorded as a reproduced regression. A corrected
-build must instead publish independently validated output at the requested rate.
-Saved-selection API cases remain explicitly pending until that API exists.
+Independent unplanned encoder calls retain the original clamping reproduction;
+the application must publish exact-rate output using the explicit tested plan.
+Historical setup observations retain their original context and report contract.
 #>
 [CmdletBinding()]
 param(
@@ -38,7 +38,7 @@ $sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'Audi
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1; task = $(if ($ciReport) { 'T17' } else { 'S02' })
-    mode = 'real_windows_s02_characterization'; started_utc = [DateTime]::UtcNow.ToString('o')
+    mode = 'real_windows_s09_retained_encoding_regressions'; started_utc = [DateTime]::UtcNow.ToString('o')
     tested_commit = (& git -C $projectRoot rev-parse HEAD | Out-String).Trim()
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString(); windows_build = $windows.CurrentBuildNumber + '.' + $windows.UBR
@@ -217,14 +217,14 @@ try {
     $saved = Get-Content -LiteralPath $staleConfig -Raw -Encoding UTF8 | ConvertFrom-Json
     Assert-True ($saved.schema_version -eq 1 -and -not (Test-Path -LiteralPath $saved.ffmpeg_directory)) 'Stale saved-state fixture must refer to an absent owned directory.'
     $report.pending_contracts += [pscustomobject]@{
-        id = 'stale_saved_selection'; status = 'PENDING_API'; fixture = 'stale-config.json'; fixture_validated = $true
+        id = 'stale_saved_selection'; status = 'HISTORICAL_BASELINE_OBSERVATION'; fixture = 'stale-config.json'; fixture_validated = $true
         production_executed = $false; expected = 'Fresh noninteractive process rejects stale selection with repair guidance, without PATH fallback.'
-        reason = 'Baseline has no saved config or config-location API. Fixture is not evidence of a production regression or pass.'
+        reason = 'The S02 baseline lacked saved config/config-location APIs. This retained fixture is historical context only; current resolver/setup acceptance is exercised by the dedicated S04/S05 suites.'
     }
     $report.pending_contracts += [pscustomobject]@{
-        id = 'external_selected_directory'; status = 'PENDING_API'; production_executed = $false
+        id = 'external_selected_directory'; status = 'HISTORICAL_BASELINE_OBSERVATION'; production_executed = $false
         expected = 'Actual explicit/saved production route uses external pair without PATH changes.'
-        reason = 'Baseline has no FfmpegDirectory or saved-selection API; configured child PATH below is labelled legacy baseline only.'
+        reason = 'The S02 baseline lacked FfmpegDirectory/saved-selection APIs. Current explicit/saved API acceptance remains in the dedicated S04/S05 suites; configured child PATH below retains its legacy baseline scope.'
     }
     $report.synthetic_before = Get-Inventory $fixtures.ToArray() $testRoot
     $emptySearch = Join-Path $testRoot 'Empty tool search'
@@ -267,23 +267,29 @@ try {
                 Assert-True ($partials.Count -eq 0) 'Production left incomplete working files.'
                 $exact = [int]$encoded.bit_rate -eq $bitrate * 1000
                 if ($bitrate -eq 64) { Assert-True $exact 'Normal default must encode at exactly 64 kbps.' }
-                $published = $null
-                if ($exact) {
-                    Assert-True ($child.exit_code -eq 0 -and $outputs.Count -eq 1 -and $record[0].status -ceq 'Converted' -and [int]$manifest.totals.converted -eq 1) 'Exact-rate conversion must succeed and publish one output.'
-                    $published = Read-Audio $outputs[0].FullName
-                    Assert-True ($published.codec_name -ceq 'mp3' -and [int]$published.bit_rate -eq $bitrate * 1000 -and [int]$published.channels -eq $channels -and [int]$published.sample_rate -eq $rate) 'Published output bitrate/codec/channel/sample-rate assertion failed.'
-                    Invoke-Tool $ffmpeg @('-nostdin', '-v', 'error', '-xerror', '-i', $outputs[0].FullName, '-map', '0:a:0', '-f', 'null', 'NUL') | Out-Null
-                    $classification = 'EXACT_RATE_SUCCESS'
-                } else {
-                    Assert-True ($child.exit_code -eq 2 -and $outputs.Count -eq 0 -and $record[0].code -ceq 'ValidationFailed' -and $record[0].reason -match 'bitrate does not match' -and [int]$manifest.totals.failed -eq 1) 'Clamped encoder rate must be rejected without final-looking output.'
-                    $classification = 'REPRODUCED_LATE_BITRATE_REJECTION'
-                }
+                $expectedRate = if ($rate -eq 48000 -and $bitrate -in @(8, 144)) { 24000 }
+                    elseif ($rate -eq 8000 -and $bitrate -eq 192) { 32000 }
+                    else { $rate }
+                Assert-True ($child.exit_code -eq 0 -and $outputs.Count -eq 1 -and $record[0].status -ceq 'Converted' -and [int]$manifest.totals.converted -eq 1 -and [int]$manifest.totals.failed -eq 0) 'Planned exact-rate conversion must succeed and publish one output; late bitrate rejection is no longer accepted.'
+                $published = Read-Audio $outputs[0].FullName
+                Assert-True ($published.codec_name -ceq 'mp3' -and [int]$published.bit_rate -eq $bitrate * 1000 -and [int]$published.channels -eq $channels -and [int]$published.sample_rate -eq $expectedRate) 'Published output bitrate/codec/channel/sample-rate must match the independently expected plan.'
+                $audioPlan = $record[0].audio_plan
+                Assert-True ($null -ne $audioPlan -and $audioPlan.status -ceq 'Success' -and $audioPlan.code -ceq 'Compatible' -and -not [string]::IsNullOrWhiteSpace([string]$audioPlan.reason)) 'Manifest must retain the actual compatible audio plan and explanation.'
+                Assert-True ($audioPlan.source_codec -ceq 'alac' -and [int]$audioPlan.source_sample_rate -eq $rate -and [int]$audioPlan.source_channels -eq $channels -and [int]$audioPlan.bitrate_kbps -eq $bitrate -and [int]$audioPlan.output_sample_rate -eq $expectedRate -and [int]$audioPlan.output_channels -eq $channels -and $audioPlan.resample -eq ($expectedRate -ne $rate) -and $audioPlan.downmix -eq $false) 'Manifest source-to-output sample-rate/channel decision must match the independent expectation.'
+                $expectedLayout = if ($channels -eq 1) { 'mono' } else { 'stereo' }
+                Assert-True ($audioPlan.source_channel_layout -ceq $expectedLayout) 'Manifest must retain the independently known source channel layout.'
+                $observedAudio = $record[0].observed_audio
+                Assert-True ($null -ne $observedAudio -and [int]$observedAudio.bitrate_bps -eq $bitrate * 1000 -and [int]$observedAudio.sample_rate -eq $expectedRate -and [int]$observedAudio.channels -eq $channels) 'Manifest observed audio must match the independently probed published stream.'
+                Invoke-Tool $ffmpeg @('-nostdin', '-v', 'error', '-xerror', '-i', $outputs[0].FullName, '-map', '0:a:0', '-f', 'null', 'NUL') | Out-Null
+                $classification = if ($exact) { 'EXACT_RATE_SUCCESS' } else { 'REPRODUCED_RAW_CLAMP_FIXED_BY_PLAN' }
                 $report.cases += [pscustomobject]@{
                     id = $id; status = 'pass'; classification = $classification
-                    expected = 'Default exact 64 kbps; reported leads record exact success or safe late bitrate rejection from actual build.'
+                    expected = 'Exact requested bitrate, preserved mono/stereo, explicit expected sample rate and full decode; no late rejection allowance.'
                     source_codec = 'alac'; source_rate_hz = $rate; source_channels = $channels; requested_kbps = $bitrate
                     default_parameter_omitted = ($bitrate -eq 64); encoder_comparison_bps = [int]$encoded.bit_rate
                     encoder_comparison_rate_hz = [int]$encoded.sample_rate; encoder_comparison_full_decode = $true
+                    raw_encoder_clamped = (-not $exact); expected_output_rate_hz = $expectedRate
+                    manifest_audio_plan = $audioPlan; manifest_observed_audio = $observedAudio
                     app_exit = $child.exit_code; app_code = $record[0].code; published_count = $outputs.Count
                     published_bps = $(if ($null -ne $published) { [int]$published.bit_rate } else { $null })
                     published_rate_hz = $(if ($null -ne $published) { [int]$published.sample_rate } else { $null })
@@ -319,6 +325,6 @@ try {
     $report['finished_utc'] = [DateTime]::UtcNow.ToString('o')
     Write-NewText $evidenceFullPath ($report | ConvertTo-Json -Depth 20)
 }
-Write-Host "S02 characterization: $($report.status); shell=$edition; cases=$($report.cases.Count); pending APIs=$($report.pending_contracts.Count); cleanup=$($report.cleanup_verified)"
+Write-Host "Retained setup/encoding regressions: $($report.status); shell=$edition; cases=$($report.cases.Count); historical API observations=$($report.pending_contracts.Count); cleanup=$($report.cleanup_verified)"
 if ($report.error) { Write-Host $report.error }
 exit $exitCode

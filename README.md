@@ -218,7 +218,7 @@ binaries. A newer pin requires a reviewed application change.
 | --- | --- |
 | `-InputFolder` | Required existing filesystem directory below a drive/share root; scanning is recursive. |
 | `-OutputParent` | Optional destination parent; defaults to configured Music. Conversion creates a missing parent. |
-| `-BitrateKbps` | Default 64; accepted rates are 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320. Some rates require a compatible source sample rate. |
+| `-BitrateKbps` | Default 64; accepted rates are 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 192, 224, 256, 320. The audio plan chooses a compatible sample rate before encoding. |
 | `-MaxBaseLength` | Default 60, range 24-180 UTF-16 units; includes date/separator/collision suffix, excludes `.mp3`. |
 | `-CoverPath` | Optional readable `.jpg`, `.jpeg` or `.png`; replaces source artwork with one attached JPEG cover. |
 | `-Artist`, `-Album` | Nonblank values override source tags for the whole batch; omitted/whitespace-only values keep source tags. |
@@ -227,6 +227,21 @@ binaries. A newer pin requires a reviewed application change.
 | `-ProbeTimeoutSeconds` | Advanced source/output probe deadline, default 60 seconds (1-2147483). Increase for large files or slow storage after a probe Timeout. |
 | `-FfmpegDirectory` | Directory containing both trusted executables; overrides saved/app-local/PATH selection for this run without saving or changing PATH. |
 | `-ConfigPath` | Optional config file location; overrides the Windows user-local default. Relative paths use the current PowerShell location. Only deliberate interactive setup can save it; preview does not read config. |
+
+Before each source is encoded, the log and run manifest record its audio plan.
+Mono/stereo and a compatible source sample rate are preserved. Other rates use
+the nearest compatible rate supported by the selected libmp3lame (ties lower):
+8/16/24 kbps require at most 24 kHz; 144 kbps requires 16/22.05/24 kHz;
+80/96/112/128/160 kbps require at least 16 kHz; 192/224/256/320 kbps require
+32/44.1/48 kHz. Ordinary 64 kbps at an MP3-supported rate keeps its audio shape.
+The exact promised stream bitrate, sample rate and channels are checked before
+publication, along with duration and full decoding.
+
+MP3 has at most two channels. Standard 2.1, 3.0, quad, 4.0, 5.0, 5.0(side),
+5.1, 5.1(side), 6.1 and 7.1 layouts explicitly use FFmpeg's stereo downmix.
+Other multichannel layouts, missing audio shape, or a build without a compatible
+sample rate get an actionable error before encoding that source. These choices
+do not add loudness normalization or change the source file.
 
 To use an existing external installation, add `-FfmpegDirectory 'D:\Trusted tools\bin'`
 to the conversion command. No PATH edit is required. The default config file is

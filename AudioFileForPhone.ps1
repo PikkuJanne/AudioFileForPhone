@@ -190,6 +190,8 @@ $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
 $manifest = $null; $manifestPath = $null; $activeRecordIndex = -1; $fileWatch = $null
 $media = $null; $transaction = $null; $diagnosticError = ''
+$outputAudioPlan = $null; $encoderCapabilities = $null
+$encoderReleaseUnproved = $false
 $coverValidation = $null
 $script:AudioCancellationContext = $null
 $script:AudioProgressDisplayEnabled = $true
@@ -430,6 +432,7 @@ function Save-AudioManifest {
 function Write-FileNativeDiagnostics {
     foreach ($entry in @(
         @{ Stage = 'SourceProbe'; Result = if ($media) { $media.NativeResult } else { $null } },
+        @{ Stage = 'EncoderCapabilities'; Result = if ($encoderCapabilities) { $encoderCapabilities.NativeResult } else { $null } },
         @{ Stage = 'Encoder'; Result = if ($transaction) { $transaction.EncoderResult } else { $null } },
         @{ Stage = 'OutputProbe'; Result = if ($transaction -and $transaction.ValidationResult) { $transaction.ValidationResult.ProbeResult } else { $null } },
         @{ Stage = 'OutputDecode'; Result = if ($transaction -and $transaction.ValidationResult) { $transaction.ValidationResult.DecodeResult } else { $null } }
@@ -445,7 +448,7 @@ function Set-ActiveAudioRecordCancelled {
     if ($fileWatch) { $fileWatch.Stop() }
     $elapsed = if ($fileWatch) { $fileWatch.Elapsed.TotalSeconds } else { 0 }
     Set-AudioManifestRecord -Record $record -Status Cancelled -Code Cancelled -Reason 'User requested cancellation.' `
-        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $elapsed
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $elapsed -OutputPlan $outputAudioPlan
 }
 
 $script:AudioCancellationContext = New-AudioCancellationContext -CaptureConsole
@@ -547,7 +550,7 @@ foreach ($plan in $plans) {
     $index++
     $activeRecordIndex = $index - 1
     $fileWatch = [Diagnostics.Stopwatch]::StartNew()
-    $media = $null; $transaction = $null
+    $media = $null; $transaction = $null; $outputAudioPlan = $null
     $outPath = $plan.OutputPath
 
     Write-Host "------------------------------------------------------------"
@@ -601,6 +604,19 @@ foreach ($plan in $plans) {
     if ($media.DurationStatus -ne 'Valid') {
         throw "Source duration $($media.DurationStatus); a finite positive source duration is required before conversion."
     }
+    $fileStatus = 'IncompatibleAudioPlan'
+    # Query the selected encoder once per started batch, after interactive input.
+    # No trial encoding of user sources and no change to the startup/setup route.
+    if ($null -eq $encoderCapabilities) { $encoderCapabilities = Get-AudioEncoderSampleRates -FfmpegPath $ffmpeg }
+    if ($encoderCapabilities.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
+    $outputAudioPlan = Get-AudioOutputPlan -Media $media -BitrateKbps $BitrateKbps -SupportedSampleRates $encoderCapabilities.SampleRates
+    if ($encoderCapabilities.Status -ne 'Success') {
+        $outputAudioPlan.Status = 'Incompatible'; $outputAudioPlan.Code = 'EncoderCapabilitiesUnavailable'
+        $outputAudioPlan.Reason = 'Cannot plan this selected encoder before encoding: ' + $encoderCapabilities.Error
+        $encoderReleaseUnproved = $null -eq $encoderCapabilities.NativeResult -or -not $encoderCapabilities.NativeResult.ProcessReleased
+    }
+    if ($outputAudioPlan.Status -ne 'Success') { throw ($outputAudioPlan.Code + ': ' + $outputAudioPlan.Reason) }
+    Write-Log ('Audio plan: ' + $outputAudioPlan.Reason)
     $fileStatus = 'Exception'
     $metadataPlan = Get-AudioMetadataPlan -Media $media -FallbackTitle $newBase -Artist $Artist -Album $Album
     $hasTitle = $metadataPlan.HasSourceTitle
@@ -626,34 +642,11 @@ foreach ($plan in $plans) {
         Write-Host "       [INFO] Setting album tag: $Album"
     }
 
-    # ffmpeg re-encode
+    # One output-scoped audio argument builder supplies both cover paths.
     if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
         Write-Host "       [INFO] Embedding cover: $CoverPath"
-
-        $ffArgs = @(
-            "-nostdin",
-            "-i", $file.FullName,
-            "-i", $CoverPath,
-            "-map", ("0:{0}" -f $media.StreamIndex),
-            "-c:a", "libmp3lame",
-            "-b:a", ("{0}k" -f $BitrateKbps),
-            "-map", "1:0",
-            "-c:v", "mjpeg",
-            "-disposition:v", "attached_pic",
-            "-metadata:s:v", "title=Album cover",
-            "-metadata:s:v", "comment=Cover (front)"
-        ) + $metadataArgs
     }
-    else {
-        $ffArgs = @(
-            "-nostdin",
-            "-i", $file.FullName,
-            "-map", ("0:{0}" -f $media.StreamIndex),
-            "-vn",
-            "-acodec", "libmp3lame",
-            "-b:a", ("{0}k" -f $BitrateKbps)
-        ) + $metadataArgs
-    }
+    $ffArgs = @(New-AudioEncodeArguments -InputPath $file.FullName -Media $media -OutputPlan $outputAudioPlan -MetadataArguments $metadataArgs -CoverPath $CoverPath)
 
     Write-Host "       [DEBUG] ffmpeg encoding arguments (working path added by transaction):"
     Write-Host "              $ffmpeg " + ($ffArgs -join " ")
@@ -661,7 +654,7 @@ foreach ($plan in $plans) {
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
-            -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds
+            -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds -OutputPlan $outputAudioPlan
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -684,7 +677,7 @@ foreach ($plan in $plans) {
     $fileWatch.Stop()
     $recordStatus = if ($fileStatus -eq 'Success') { 'Converted' } else { 'Failed' }
     Set-AudioManifestRecord -Record $manifest.Data.records[$activeRecordIndex] -Status $recordStatus -Code $fileStatus -Reason $fileReason `
-        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $fileWatch.Elapsed.TotalSeconds
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $fileWatch.Elapsed.TotalSeconds -OutputPlan $outputAudioPlan
     $activeRecordIndex = -1
     Save-AudioManifest -Checkpoint FileBoundary
     $displayOutcome = if ($fileStatus -eq 'Success') { 'Converted; validated output published' } else { "Failed: $fileStatus" }
@@ -692,6 +685,9 @@ foreach ($plan in $plans) {
     Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $displayOutcome -PercentComplete $filePercent -Completed
     Write-AudioBatchProgress -Detail $displayOutcome
     Write-FileNativeDiagnostics
+    if ($encoderReleaseUnproved) {
+        throw 'Encoder capability process release was not proved. Stopping this batch before any further native operation.'
+    }
     if ($null -ne $transaction) {
         $conversion = $transaction.EncoderResult
         if ($null -ne $conversion -and $conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }

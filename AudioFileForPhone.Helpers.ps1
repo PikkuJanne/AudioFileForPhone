@@ -1353,6 +1353,7 @@ function Get-AudioMediaInfo {
         Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
         StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
         DurationSeconds = $null; DurationStatus = 'Missing'; DurationOrigin = $null
+        CodecName = $null; SampleRate = $null; Channels = $null; ChannelLayout = $null
     }
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
@@ -1368,7 +1369,7 @@ function Get-AudioMediaInfo {
         $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
-            'stream=index,codec_type,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
+            'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
         ) -Cancellation $Cancellation -Operation 'Source media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
@@ -1434,6 +1435,13 @@ function Get-AudioMediaInfo {
             }
         }
         $result.StreamIndex = [int]$audio.index
+        # Keep shape separate from metadata/duration so an unavailable shape gets
+        # an explicit planning rejection before any encoder or working file.
+        if ($audio.codec_name -is [string]) { $result.CodecName = $audio.codec_name }
+        $sampleRate = 0; $channels = 0
+        if ([int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
+        if ([int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
+        if ($audio.channel_layout -is [string]) { $result.ChannelLayout = $audio.channel_layout }
         # Keep metadata inspection independent from duration policy. The caller
         # rejects a missing/invalid duration before it starts a transaction.
         $durationValue = $audio.duration
@@ -1465,6 +1473,114 @@ function Get-AudioMediaInfo {
         $result.Error = $_.Exception.Message
     }
     return [pscustomobject]$result
+}
+
+function Get-AudioEncoderSampleRates {
+    param([Parameter(Mandatory = $true)][string]$FfmpegPath,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
+    $result = [ordered]@{ Status = 'Failed'; SampleRates = @(); NativeResult = $null; Error = '' }
+    try {
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-hide_banner', '-h', 'encoder=libmp3lame'
+        ) -Operation 'MP3 sample-rate capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+        $result.NativeResult = $native
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $native.ProcessReleased -or
+            $native.StdoutTruncated -or $native.StderrTruncated) { throw "Encoder capability query failed ($($native.Status)): $($native.Error)" }
+        $text = $native.Stdout + "`n" + $native.Stderr
+        $rateMatches = [regex]::Matches($text, '(?m)^\s*Supported sample rates:\s*([0-9 ]+)\r?$')
+        if ($rateMatches.Count -ne 1) { throw 'Selected libmp3lame did not report an unambiguous sample-rate list.' }
+        $result.SampleRates = @($rateMatches[0].Groups[1].Value.Trim() -split ' +' | ForEach-Object { [int]$_ } | Sort-Object -Unique)
+        if ($result.SampleRates.Count -eq 0) { throw 'Selected libmp3lame reported no sample rates.' }
+        $result.Status = 'Success'
+    }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
+    return [pscustomobject]$result
+}
+
+function Get-AudioOutputPlan {
+    param([Parameter(Mandatory = $true)][object]$Media, [int]$BitrateKbps = 64,
+          [Parameter(Mandatory = $true)][AllowEmptyCollection()][int[]]$SupportedSampleRates)
+    Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength 120
+    $plan = [ordered]@{
+        Status = 'Incompatible'; Code = 'InvalidSourceAudioShape'; Reason = ''
+        SourceCodec = $Media.CodecName; SourceSampleRate = $Media.SampleRate
+        SourceChannels = $Media.Channels; SourceChannelLayout = $Media.ChannelLayout
+        BitrateKbps = $BitrateKbps; OutputSampleRate = $null; OutputChannels = $null
+        Resample = $false; Downmix = $false
+    }
+    if ([string]::IsNullOrWhiteSpace([string]$Media.CodecName) -or
+        $null -eq $Media.SampleRate -or $Media.SampleRate -le 0 -or
+        $null -eq $Media.Channels -or $Media.Channels -lt 1) {
+        $plan.Reason = 'Selected audio needs a codec, positive sample rate and channel count before encoding.'
+        return [pscustomobject]$plan
+    }
+    if ($Media.Channels -le 2) { $plan.OutputChannels = [int]$Media.Channels }
+    else {
+        # Explicit standard FFmpeg stereo rematrix, only for these known layouts.
+        # Unknown/ambisonic/other layouts must not rely on an inferred downmix.
+        $layouts = @{ '2.1' = 3; '3.0' = 3; 'quad' = 4; '4.0' = 4; '5.0' = 5; '5.0(side)' = 5
+            '5.1' = 6; '5.1(side)' = 6; '6.1' = 7; '7.1' = 8 }
+        if (-not $layouts.ContainsKey([string]$Media.ChannelLayout) -or $layouts[[string]$Media.ChannelLayout] -ne $Media.Channels) {
+            $plan.Code = 'UnsupportedChannelLayout'
+            $plan.Reason = 'MP3 supports mono/stereo. This multichannel layout has no supported stereo downmix; supply a mono/stereo source or a documented standard layout.'
+            return [pscustomobject]$plan
+        }
+        $plan.OutputChannels = 2; $plan.Downmix = $true
+    }
+    # LAME tables.c bitrate_table and util.c FindNearestBitrate: MPEG2.5
+    # (<16 kHz) stops at64, MPEG2 at160; MPEG1 excludes8/16/24/144.
+    # Intersect those tested tables with this selected encoder's capabilities.
+    $candidates = @()
+    foreach ($rate in @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000)) {
+        if ($SupportedSampleRates -notcontains $rate) { continue }
+        $bitrates = if ($rate -lt 16000) { @(8, 16, 24, 32, 40, 48, 56, 64) }
+            elseif ($rate -lt 32000) { @(8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160) }
+            else { @(32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320) }
+        if ($bitrates -contains $BitrateKbps) { $candidates += $rate }
+    }
+    if ($candidates.Count -eq 0) {
+        $plan.Code = 'NoCompatibleSampleRate'
+        $plan.Reason = "Selected libmp3lame has no tested sample rate for $BitrateKbps kbps CBR. Select a capability-compatible FFmpeg build or another bitrate."
+        return [pscustomobject]$plan
+    }
+    # Preserve a valid source rate. Otherwise nearest Hz, ties toward the lower
+    # rate, gives one deterministic resampling decision without a trial encode.
+    $plan.OutputSampleRate = [int]($candidates | Sort-Object @{ Expression = { [math]::Abs($_ - [double]$Media.SampleRate) } }, @{ Expression = { $_ } } | Select-Object -First 1)
+    $plan.Resample = $plan.OutputSampleRate -ne $Media.SampleRate
+    $plan.Status = 'Success'; $plan.Code = 'Compatible'
+    $plan.Reason = '{0} Hz/{1} ch -> {2} Hz/{3} ch, {4} kbps CBR; resample={5}, stereo downmix={6}.' -f
+        $Media.SampleRate, $Media.Channels, $plan.OutputSampleRate, $plan.OutputChannels, $BitrateKbps, $plan.Resample, $plan.Downmix
+    return [pscustomobject]$plan
+}
+
+function New-AudioEncodeArguments {
+    param([Parameter(Mandatory = $true)][string]$InputPath,
+          [Parameter(Mandatory = $true)][object]$Media,
+          [Parameter(Mandatory = $true)][object]$OutputPlan,
+          [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$MetadataArguments,
+          [AllowNull()][string]$CoverPath)
+    if ($OutputPlan.Status -cne 'Success' -or $null -eq $Media.StreamIndex -or $Media.StreamIndex -lt 0) {
+        throw 'A compatible audio plan and selected source stream are required before encoding.'
+    }
+    $arguments = @('-nostdin', '-i', $InputPath)
+    $hasCover = -not [string]::IsNullOrWhiteSpace($CoverPath)
+    if ($hasCover) { $arguments += @('-i', $CoverPath) }
+    # Output options follow every input for both paths. No input -ar/-ac, and
+    # no implicit stream choice when an attached picture or other audio exists.
+    $arguments += @('-map', ('0:{0}' -f $Media.StreamIndex), '-c:a', 'libmp3lame',
+        '-b:a', ('{0}k' -f $OutputPlan.BitrateKbps), '-ar', [string]$OutputPlan.OutputSampleRate,
+        '-ac', [string]$OutputPlan.OutputChannels)
+    if ($hasCover) {
+        $arguments += @('-map', '1:0', '-c:v', 'mjpeg', '-disposition:v', 'attached_pic',
+            '-metadata:s:v', 'title=Album cover', '-metadata:s:v', 'comment=Cover (front)')
+    }
+    else { $arguments += '-vn' }
+    return $arguments + $MetadataArguments
 }
 
 function Get-AudioMetadataPlan {
@@ -1557,16 +1673,21 @@ function Get-AudioOutputValidation {
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
         [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
-        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60,
+        [AllowNull()][object]$OutputPlan = $null
     )
     $result = [ordered]@{
         Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
         DurationSeconds = $null; DecodedDurationSeconds = $null; DurationToleranceSeconds = 0.35
         ProcessReleased = $true
+        Bitrate = $null; SampleRate = $null; Channels = $null
     }
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        if ($null -ne $OutputPlan -and ($OutputPlan.Status -cne 'Success' -or $OutputPlan.BitrateKbps -ne $BitrateKbps -or
+            $OutputPlan.OutputSampleRate -notin @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000) -or
+            $OutputPlan.OutputChannels -notin @(1, 2))) { throw 'Output validation requires a compatible plan matching the selected bitrate.' }
         Assert-AudioNoReparseAncestor -Path $Path
         $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
         if ($item.PSIsContainer -or $item.Length -le 0) { throw 'Working output is not a nonempty regular file.' }
@@ -1575,7 +1696,7 @@ function Get-AudioOutputValidation {
         $result.ProcessReleased = $false
         $probe = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-show_entries',
-            'stream=index,codec_type,codec_name,bit_rate,duration:stream_disposition=attached_pic:format=format_name',
+            'stream=index,codec_type,codec_name,bit_rate,sample_rate,channels,duration:stream_disposition=attached_pic:format=format_name',
             '-of', 'json', '-i', $Path
         ) -Cancellation $Cancellation -Operation 'Output media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.ProbeResult = $probe
@@ -1617,6 +1738,14 @@ function Get-AudioOutputValidation {
         if (-not [long]::TryParse([string]$audio.bit_rate, [Globalization.NumberStyles]::None,
                 [Globalization.CultureInfo]::InvariantCulture, [ref]$audioRate) -or
             $audioRate -ne ([long]$BitrateKbps * 1000)) { throw 'Output audio-stream bitrate does not match the selected bitrate.' }
+        $result.Bitrate = $audioRate
+        $sampleRate = 0; $channels = 0
+        if ([int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
+        if ([int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
+        if ($null -ne $OutputPlan) {
+            if ($result.SampleRate -ne $OutputPlan.OutputSampleRate) { throw 'Output audio-stream sample rate does not match the audio plan.' }
+            if ($result.Channels -ne $OutputPlan.OutputChannels) { throw 'Output audio-stream channels do not match the audio plan.' }
+        }
         $result.DurationSeconds = ConvertTo-AudioPositiveSeconds -Value $audio.duration
         # A fixed bound avoids permitting minutes of loss in a multi-hour source.
         # 350ms covers low-sample-rate MP3 encoder padding as well as AAC/Opus
@@ -1688,7 +1817,8 @@ function Invoke-AudioOutputTransaction {
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments,
         [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
         [AllowNull()][scriptblock]$ProgressCallback,
-        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60,
+        [AllowNull()][object]$OutputPlan = $null
     )
     $result = [ordered]@{
         Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
@@ -1699,6 +1829,12 @@ function Invoke-AudioOutputTransaction {
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        if ($null -ne $OutputPlan -and ($OutputPlan.Status -cne 'Success' -or $OutputPlan.BitrateKbps -ne $BitrateKbps -or
+            $OutputPlan.OutputSampleRate -notin @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000) -or
+            $OutputPlan.OutputChannels -notin @(1, 2))) {
+            $result.Status = 'IncompatibleAudioPlan'
+            throw 'A compatible audio plan matching the selected bitrate is required before encoding.'
+        }
         $result.Status = 'StageFailed'
         $OutputPath = Get-AudioPath -Path $OutputPath
         $OutputRoot = Get-AudioPath -Path $OutputRoot
@@ -1756,8 +1892,10 @@ function Invoke-AudioOutputTransaction {
         Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState `
             -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Validating') | Out-Null
         $canCleanup = $false
+        $planParameters = @{}
+        if ($null -ne $OutputPlan) { $planParameters.OutputPlan = $OutputPlan }
         $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
-            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation -ProbeTimeoutSeconds $ProbeTimeoutSeconds
+            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation -ProbeTimeoutSeconds $ProbeTimeoutSeconds @planParameters
         $result.ValidationResult = $validation
         $canCleanup = $validation.ProcessReleased
         if ($validation.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $validation.Error }
@@ -2163,6 +2301,7 @@ function New-AudioRunManifest {
             input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
             input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
             source_title = $null; measurement_error = $measurementError
+            audio_plan = $null; observed_audio = $null
         }
     })
     $data = [pscustomobject][ordered]@{
@@ -2181,6 +2320,7 @@ function New-AudioRunManifest {
             supported_extensions = @('.mp3', '.m4a', '.ogg'); recursive_relative_layout = $true
             source_duration_policy = 'finite positive selected audio duration required'
             output_duration_tolerance_seconds = 0.35; full_output_decode_required = $true
+            audio_plan_policy = 'preserve compatible source rate and mono/stereo; otherwise nearest encoder-supported MPEG CBR rate (ties lower); known standard multichannel layouts explicitly downmix to stereo; other layouts reject before encoding'
             overwrite_policy = 'publish validated output without overwriting an occupied final path'
             metadata = [ordered]@{ artist = $Artist; album = $Album; cover_path = $CoverPath; title_policy = 'preserve existing title; otherwise use planned base name' }
         }
@@ -2202,12 +2342,22 @@ function New-AudioRunManifest {
 function Set-AudioManifestRecord {
     param([object]$Record, [string]$Status, [string]$Code, [AllowNull()][string]$Reason,
           [string]$SourcePath, [string]$OutputPath, [AllowNull()][object]$Media,
-          [AllowNull()][object]$Transaction, [double]$ElapsedSeconds)
+          [AllowNull()][object]$Transaction, [double]$ElapsedSeconds,
+          [AllowNull()][object]$OutputPlan = $null)
     # Commit the outcome before optional measurements, which cannot reclassify
     # an already published output. Missing measurements are explicit nulls.
     $Record.status = $Status; $Record.code = $Code
     $Record.reason = Get-AudioBoundedText -Value $Reason
     $Record.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
+    if ($null -ne $OutputPlan) {
+        $Record.audio_plan = [pscustomobject][ordered]@{
+            status = $OutputPlan.Status; code = $OutputPlan.Code; reason = $OutputPlan.Reason
+            source_codec = $OutputPlan.SourceCodec; source_sample_rate = $OutputPlan.SourceSampleRate
+            source_channels = $OutputPlan.SourceChannels; source_channel_layout = $OutputPlan.SourceChannelLayout
+            bitrate_kbps = $OutputPlan.BitrateKbps; output_sample_rate = $OutputPlan.OutputSampleRate
+            output_channels = $OutputPlan.OutputChannels; resample = $OutputPlan.Resample; downmix = $OutputPlan.Downmix
+        }
+    }
     $Record.measurement_error = ''; $Record.input_bytes = $null
     try {
         Assert-AudioNoReparseAncestor -Path $SourcePath
@@ -2230,6 +2380,10 @@ function Set-AudioManifestRecord {
             $Record.output_bytes = [long]$output.Length
             $Record.output_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DurationSeconds
             $Record.decoded_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DecodedDurationSeconds
+            $Record.observed_audio = [pscustomobject]@{
+                bitrate_bps = $Transaction.ValidationResult.Bitrate; sample_rate = $Transaction.ValidationResult.SampleRate
+                channels = $Transaction.ValidationResult.Channels
+            }
         }
         catch {
             $Record.measurement_error = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512

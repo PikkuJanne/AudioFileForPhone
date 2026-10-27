@@ -8,6 +8,11 @@ remembering remain available offline; no automatic update or global install.
 
 ## Unreleased v1.0.1 work
 
+- Plan an exact CBR bitrate and compatible sample rate before encoding, preserving
+  ordinary 64 kbps mono/stereo sound. Explicitly downmix supported standard
+  multichannel layouts to stereo and reject unknown layouts before encoding.
+  Share cover/no-cover audio arguments; record the plan and independently
+  validated stream bitrate, sample rate and channels in the run manifest.
 - Harden the one-folder BAT route with bounded, policy-respecting host checks,
   exact executable/version/architecture/STA reporting and an explicit host
   override. Prefer usable PowerShell 7, allow pre-entry fallback to Windows
