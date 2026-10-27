@@ -52,6 +52,7 @@ jobs:
           path: |
             docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S09-encoding-ci-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
           retention-days: 14
           if-no-files-found: warn
           include-hidden-files: false

@@ -17,9 +17,11 @@ $edition = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'ps51' } else { 'ps7' 
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = Split-Path -Parent $evidenceFullPath
 $leaf = Split-Path -Leaf $evidenceFullPath
+$localReport = $leaf -cmatch "^S09-encoding-[a-z0-9]+-$edition-(attempt|final)[1-9][0-9]*\.json$"
+$ciReport = $leaf -cmatch "^S09-encoding-ci-$edition-run[1-9][0-9]*_[1-9][0-9]*\.json$"
 if ($evidenceParent -ine (Join-Path $projectRoot 'docs/codex-v1.0.1/evidence') -or
-    $leaf -cnotmatch "^S09-encoding-[a-z0-9]+-$edition-(attempt|final)[1-9][0-9]*\.json$") {
-    throw 'Use a fresh active S09-encoding-BUILD-ps51/ps7-attempt/finalN.json report.'
+    -not ($localReport -or $ciReport)) {
+    throw 'Use a fresh active S09-encoding-BUILD-ps51/ps7-attempt/finalN.json or narrow encoding-ci run<ID>_<attempt> report.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'Evidence exists; select a fresh label.' }
 $tempCandidates = @([IO.Path]::GetTempPath(), [Environment]::GetEnvironmentVariable('TEMP', 'Machine')) |
@@ -53,6 +55,7 @@ $report = [ordered]@{
     source_before = @(); source_after = @(); source_unchanged = $false
     synthetic_before = @(); synthetic_after = @(); synthetic_unchanged = $false
     temp_exclusively_reserved = $false; marker_create_new = $false; copied_bytes_unchanged = $false
+    owned_temp_root = $testRoot; cleanup_phase = 'NotStarted'
     cleanup_verified = $false; descendant_release_proved = $false; parent_path_unchanged = $false
     advertised_bitrates_kbps = $bitrates; required_sample_rates_hz = $matrixRates; extra_sample_rates_hz = $extraRates
     native_runs = @(); tools = @(); encoder_sample_rates = @(); cases = @(); matrix = @(); app_runs = @(); fixture_limitations = @()
@@ -416,17 +419,32 @@ try {
         Assert-True $report.parent_path_unchanged 'Process PATH changed.'
     } catch { $report.status='fail'; $exitCode=1; $report['hash_verification_error']=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>') }
     try {
+        $report.cleanup_phase = 'NativeReleaseCheck'
         Assert-True $releaseProved 'Cleanup refused because exact native process/pipe release is unproved.'
         if ($created -and (Test-Path -LiteralPath $testRoot)) {
+            $report.cleanup_phase = 'ResolveOwnedRoot'
             $resolved = (Resolve-Path -LiteralPath $testRoot).ProviderPath.TrimEnd('\','/')
+            $report.cleanup_phase = 'VerifyExactBoundary'
             Assert-True ($resolved -ceq $testRoot -and (Split-Path -Parent $resolved) -ieq $tempParent -and (Split-Path -Leaf $resolved) -ceq $testName) 'Cleanup must stay in exact directly owned TEMP tree.'
+            $report.cleanup_phase = 'VerifyOwnerMarker'
             Assert-True ([IO.File]::ReadAllText($ownerFile) -ceq $ownerToken) 'Cleanup requires unchanged create-new owner marker.'
+            $report.cleanup_phase = 'VerifyNoReparseTree'
             Assert-SafeTree $resolved
+            $report.cleanup_phase = 'RemoveExactOwnedTree'
             Remove-Item -LiteralPath $resolved -Recurse -Force
+            $report.cleanup_phase = 'VerifyRemoved'
             $report.cleanup_verified = -not (Test-Path -LiteralPath $resolved)
         }
         Assert-True $report.cleanup_verified 'Exact owned cleanup not verified.'
-    } catch { $report.status='fail'; $exitCode=1; $report['cleanup_error']=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>') }
+        $report.cleanup_phase = 'Completed'
+    } catch {
+        $report.status='fail'; $exitCode=1
+        $report['cleanup_error']=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>')
+        $report['cleanup_error_type']=$_.Exception.GetType().FullName
+        $report['cleanup_error_target']=([string]$_.TargetObject).Replace($testRoot,'<OWNED_TEMP>')
+        $report['cleanup_error_location']=$_.ScriptStackTrace.Replace($testRoot,'<OWNED_TEMP>')
+        $report['cleanup_error_position']=$_.InvocationInfo.PositionMessage.Replace($testRoot,'<OWNED_TEMP>')
+    }
     $report['completed_utc'] = [DateTime]::UtcNow.ToString('o'); Assert-NoReparse $evidenceParent
     Write-NewText $evidenceFullPath ($report | ConvertTo-Json -Depth 22)
 }

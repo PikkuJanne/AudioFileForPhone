@@ -66,13 +66,50 @@ function Assert-CiDependencyRecord {
     if ($Record.ffmpeg.ffmpeg_sha256 -cne $Lock.ffmpeg.ffmpeg_sha256 -or $Record.ffmpeg.ffprobe_sha256 -cne $Lock.ffmpeg.ffprobe_sha256 -or
         $Record.analyzer.module_manifest_sha256 -cne $Lock.analyzer.module_manifest_sha256) { throw 'Dependency selected file hashes differ from checked-in lock.' }
 }
+function Assert-CiEncodingReport {
+    param([object]$Record)
+    if ($Record.schema_version -ne 1 -or $Record.task -cne 'S09' -or $Record.status -cne 'pass' -or
+        $Record.mode -cne 'real_windows_encoding_compatibility') { throw 'Encoding matrix requires a passing actual S09/schema1 report.' }
+    foreach ($flag in @('source_unchanged', 'synthetic_unchanged', 'descendant_release_proved', 'cleanup_verified',
+        'copied_bytes_unchanged', 'parent_path_unchanged', 'temp_exclusively_reserved', 'marker_create_new')) {
+        if ($Record.$flag -isnot [bool] -or -not $Record.$flag) { throw "Encoding matrix did not prove $flag." }
+    }
+    $matrix = @($Record.matrix); $apps = @($Record.app_runs)
+    if ($matrix.Count -lt 495 -or $apps.Count -ne 4) { throw 'Encoding matrix requires at least495 planned conversions and exactly4 actual application groups.' }
+    $rates = @(8,16,24,32,40,48,56,64,80,96,112,128,144,160,192,224,256,320)
+    $sampleRates = @(8000,11025,12000,16000,22050,24000,32000,44100,48000)
+    $identities = New-Object 'Collections.Generic.HashSet[string]'
+    foreach ($row in $matrix) {
+        if ([string]::IsNullOrWhiteSpace([string]$row.id) -or -not $identities.Add([string]$row.id) -or
+            $row.status -cne 'pass' -or $row.full_decode -ne $true -or $rates -notcontains $row.requested_bitrate_kbps -or
+            $sampleRates -notcontains $row.planned_sample_rate -or $row.planned_channels -notin @(1,2) -or
+            $row.observed_bitrate_bps -ne ([long]$row.requested_bitrate_kbps * 1000) -or
+            $row.observed_sample_rate -ne $row.planned_sample_rate -or $row.observed_channels -ne $row.planned_channels) {
+            throw 'Every unique encoding matrix result must fully decode with the exact planned bitrate/sample-rate/channel shape.'
+        }
+    }
+    if (@($matrix | Where-Object { $_.group -ceq 'required' }).Count -ne 252 -or
+        @($matrix | Where-Object { $_.group -ceq 'extra' }).Count -ne 180 -or
+        @($matrix | Where-Object { $_.group -ceq 'multichannel' }).Count -ne 36 -or
+        @($matrix | Where-Object { $_.group -ceq 'codec' }).Count -ne 25 -or
+        @($matrix | Where-Object { $_.group -ceq 'artwork' }).Count -ne 2) {
+        throw 'Encoding matrix lost required, low/odd/high, multichannel, codec or artwork coverage.'
+    }
+    $appRates = @($apps | ForEach-Object { $_.rate } | Sort-Object)
+    if (($appRates -join ',') -cne '8,64,144,192') { throw 'Encoding application groups must retain8/64/144/192 kbps coverage.' }
+    foreach ($app in $apps) {
+        if ($app.status -cne 'pass' -or $app.converted -lt 1 -or $app.manifest_audio_plans_verified -ne $true -or
+            $app.observed_audio_verified -ne $true -or $app.full_decode -ne $true -or $app.PATH -cne 'empty' -or
+            $app.config_created -ne $false) { throw 'Every actual encoding application group must prove conversion, manifest/audio-plan validation, full decode and isolated empty-PATH/config behavior.' }
+    }
+}
 function Invoke-CiHarness {
     param([string]$RelativePath, [string]$Family, [switch]$RealMedia)
     $path = Join-Path $projectRoot $RelativePath
-    # Keep historical suite/report paths intact. New launcher evidence belongs
-    # to the active S08 plan, including hosted run<ID>_<attempt> labels.
-    $childTask = if ($Family -ceq 'launcher') { 'S08' } else { 'T17' }
-    $childParent = if ($Family -ceq 'launcher') { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
+    # Keep every historical suite/report path intact. Current launcher and
+    # encoding evidence retain their active-plan step and narrow family names.
+    $childTask = if ($Family -ceq 'launcher') { 'S08' } elseif ($Family -ceq 'encoding-ci') { 'S09' } else { 'T17' }
+    $childParent = if ($Family -in @('launcher', 'encoding-ci')) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
     $evidence = Join-Path $childParent ("$childTask-$Family-$edition-$RunLabel.json")
     if (Test-Path -LiteralPath $evidence) { throw "Existing $Family report cannot be replaced." }
     $arguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-File', $path, '-EvidencePath', $evidence)
@@ -107,6 +144,10 @@ function Invoke-CiHarness {
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
         if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
+        }
+        if ($Family -ceq 'encoding-ci') {
+            Assert-CiEncodingReport -Record $child
+            $resultRow.required_checks += @($child.matrix).Count + @($child.app_runs).Count
         }
     }
 }
@@ -238,8 +279,9 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Invoke-IsolatedBaseline.ps1' -Family 'baseline' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-HelpVersion.ps1' -Family 'help' -RealMedia
-    # Characterization records known safe failures; pending future APIs are separate.
+    # Retained original leads now require corrected exact-rate output.
     Invoke-CiHarness -RelativePath 'tests/Test-SetupEncodingRegressions.ps1' -Family 'setupencoding' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-EncodingCompatibility.ps1' -Family 'encoding-ci' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ShortOperations.ps1' -Family 'shortoperations' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ToolSelection.ps1' -Family 'toolselection' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-FirstRunSetup.ps1' -Family 'firstrunsetup' -RealMedia
