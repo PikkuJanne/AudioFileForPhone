@@ -1,5 +1,54 @@
 # Status
 
+Project IN_PROGRESS. S01-S12 are COMPLETED in the recorded available-host scope.
+S12-A1/A2/A3 pass. S13 — Build the one-click acceptance kit is next eligible only
+in a separate owner thread and remains NOT_STARTED. Containing-checkpoint fresh
+advertised equality and exact-head push/PR CI are observed after push in the final
+response and refreshed next entry; pending/failed gates require S12 continuation.
+
+Source375adcdfdbc9d70001b21d8d495efb1384b1201d adds clean-first-run CI and actual
+evidence gates; production13 runtime hashes still match b05b581dc6372cecd99471c53ee2cac72b8267ba.
+All70 selected suites/two analyses pass1856 groups/6observations:1010 direct planned
+conversions,64 actual app matrix conversions and66 default64 PCM matches. Clean7
+per shell executes7 fresh production processes and3 independently validated real
+conversions; gate50 per shell supplies contract tests plus actual current refusal.
+Retained30 families per shell, corpus4, filesystem5 and real online3 pass. Quiet
+shortops15 PS51 thenPS7, native35 PS51 thenPS7 run last/sequential at375adcd.
+Analyzer1.25.0 checks24 files with zero diagnostics; both parsers62 files.
+
+Current source push40759426470 and PR40759435259 pass all four supplementary
+Windows Server jobs. Four downloaded wrappers each bind974 required checks,
+3observations and20 child digests. PR actual checkout3e0c53855399b06e2bb950653049a8a7819e78e2
+is distinct from feature head. Actual Server2025 build26100.33650/ProductType3,
+PS5.1.26100.33648 andPS7.6.7 never fill client Windows10 acceptance.
+
+Initial570ed71 and diagnostic76dab1f source CI failures remain separately recorded.
+Captures established Windows AI inheritance conversion. The owned fixture now
+initializes before the immutable denial baseline, preserving full ACL bytes/order,
+owner/group and other descriptor state; exact full-SDDL restoration remains.
+All four new Server reports prove two exact restorations and cleanup each.
+No AI flag stripping, effective-permission comparison, retroactive cleanup claim
+or assertion/deadline weakening. Locale/PS5 path/quiet timing/preparation nonpasses
+and all actual earlier checkout/harness identities remain in S12 evidence.
+
+Actual client Windows11 Pro26H2 26300.9711 x64, PS5.1.26100.9711 and portablePS7.6.5.
+Windows10 required acceptance remains BLOCKED_UNAVAILABLE_CLIENT. Store7.6.7
+remains startup-only locally. Genuine cloud/UNC/full-disk/physical/phone and the
+future exact ZIP/kit remain unproved. No ordinary Music/personal media/owner config
+access or repeated owner diagnostics. Raw reports/descriptor data stay private.
+
+S08 startup/setup, S09 exact audio/metadata/artwork/default64/full-decode and S10
+no-write/privacy/self-test/local-only/cancellation/release refusals remain.
+Conversion/check never download; separate setup requires consent; normal encode/
+decode remain unlimited. Fixed duration bound stays0.35seconds. Runtime1.0.0;
+publicv1.0.1 PENDING_S17 with no frozen source/accepted ZIP/authority.
+Main remains separately NOT_INTEGRATED at local/live28f53b10529495754273d55654c7b29e78848c83.
+PR29 stays OPEN draft/unmerged under S14 reviewed policy and owner approval.
+Only separately started S17 publishes S16's exact accepted source/assets.
+Publishedv1.0.0, icons and posters remain preserved. No S12 human action.
+## Preserved S11 checkpoint
+# Status
+
 Project IN_PROGRESS. S01-S11 are COMPLETED on the available client scope.
 S11-A1/A2/A3 pass as scoped in evidence/S11.json. S12 — Add clean-environment CI
 and release gates is next eligible only in a separately started owner thread;

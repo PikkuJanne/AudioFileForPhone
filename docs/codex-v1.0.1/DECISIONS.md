@@ -485,3 +485,41 @@ D56 - 2026-10-28, S11 checkpoint: test source8145006 changes only three test fil
       pending/failure requires S11 continuation. Windows10 stays blocked for S15;
       S12 remains unstarted until a new owner thread. Main/S14 approval and fixed
       publicv1.0.1 S16/S17 exact-byte publication authority remain unchanged.
+
+D57 - 2026-10-28, S12 clean CI: retain reviewed exact Action/dependency pins and
+      contents:read/exact-event checkout. Explicitly label hosted jobs Server and
+      capture actual ProductType/build/shell. Add separate fresh-process clean
+      child PATH/config evidence, retained first-run tests, S11 corpus/filesystem,
+      gate contracts and actual separately invoked online setup. CI provisioning
+      is never user setup acceptance. Keep narrow report paths, historical report
+      forms, no push release and native checks last. No runtime/default change.
+
+D58 - 2026-10-28, S12 evidence gates: freeze identity uses actual Git C and its
+      tracked allowlist/control/member content. Binary Git blobs preserve package
+      bytes across checkout EOLs. Require actual asset/report digests, fixed target,
+      manifest/checksum consistency, unique meaningful checks, strict boolean/count
+      evidence and four recorded client core cells. Server/Linux/startup-only do
+      not substitute. Human observations never invent phone/Explorer raw exits.
+      Publication authority binds C, ZIP and all three exact public assets, only
+      from separately owner-started S17. A gate pass grants no authority; trusted
+      execution captures and S17 live/draft/public checks remain mandatory.
+
+D59 - 2026-10-28, S12 verification: final source375adcd retains runtime b05b581.
+      Seventy selected reports/two analyses pass1856groups/6observations,1010
+      planned conversions,64app matrix conversions and66default PCM matches.
+      Preserve actual57entry0a9417e/7at570ed71/6at375adcd suite identities and
+      two375adcd analyses; all506 recorded source entries match current bytes.
+      Quiet308 shortops15 PS51 thenPS7, native35 PS51 thenPS7 run last. Keep305
+      timing nonpass and locale/PS5 path/preparation failures without weakening.
+      Initial570ed and76dab1f source CI failed full ACL restoration;76 captures
+      proved AI addition. Construct the owned inherited fixture BEFORE saving
+      its denial baseline, strictly preserving ACL bytes/order/identity/control
+      except AI0-to1; keep full subsequent SDDL equality. Old failed scopes stay
+      unproved. Source push40759426470/PR40759435259 pass4 Server jobs; all4
+      downloaded wrappers bind974checks/3observations/20 child digests and exact
+      ACL restoration/cleanup. PR checkout3e0c5385 remains distinct from feature.
+      Commit checkpoint docs, then observe fresh equality/exact-head CI in final
+      response without self-containing SHA. Pending/failure requires S12 resume.
+      S13 only in a new owner thread. No human action; main/S14 owner approval,
+      Windows10/physical/phone/exactZIP gates and fixedv1.0.1 S16/S17 authority
+      remain separate. Publishedv1.0.0/icons/posters remain preserved.

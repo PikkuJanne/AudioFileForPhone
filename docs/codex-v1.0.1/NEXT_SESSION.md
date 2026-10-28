@@ -1,3 +1,78 @@
+# Next session — S12 checkpoint
+
+S01-S12 COMPLETED within available-client and developer-CI scope. S13 — Build the
+one-click acceptance kit is NOT_STARTED and next eligible only in a separate owner
+thread. If the containing checkpoint's fresh equality/exact-head CI is unverified
+or failed, resume S12. Do not restart earlier steps or start S13 in S12.
+
+Test/CI source375adcdfdbc9d70001b21d8d495efb1384b1201d; production runtime unchanged
+from b05b581dc6372cecd99471c53ee2cac72b8267ba. Seventy selected reports/two analyses
+pass1856 groups/6observations,1010 planned conversions/64app matrix conversions/
+66default PCM comparisons. Keep actual57entry0a9417e,7at570ed71,6at375adcd report
+identities and2analysis at375adcd with matching source bytes; no relabeling.
+Both shell analyzers check24 files and parsers62 files. All506 recorded source
+entries match current local files. Code-current source push40759426470 and
+PR40759435259 pass all4 jobs; four downloaded wrappers each bind974 checks,
+3observations and20 child digests. PR integration3e0c5385 stays distinct.
+
+S12 adds clean child/config evidence and strict frozen C/blob/ZIP/kit/report/client/
+human/asset-authority gates. Initial Server ACL failures are preserved: Windows
+adds AI on initial DACL write. The owned fixture now initializes before capturing
+its immutable denial baseline, with strict descriptor preservation. Exact later
+SDDL restoration remains; no stripping or weaker permission check. Latest source
+Server reports verify it. No kit/frozen candidate/owner/phone acceptance is created.
+Windows10 remains unavailable, Server supplementary, owner work consolidated at
+S15. No S12 owner diagnostic action. S12 evidence/handover/review/nonpasses contain
+commands, actual identities/digests, preparation failures and all release gaps.
+
+Refresh the containing checkpoint reported after push in the previous final
+response; no commit contains its own SHA. Use this filled next-thread prompt:
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Tested test/CI source: 375adcdfdbc9d70001b21d8d495efb1384b1201d.
+Production runtime remains b05b581dc6372cecd99471c53ee2cac72b8267ba.
+Refresh the containing checkpoint from the previous final response,
+fresh advertised feature/main refs and exact-head push/PR CI.
+Read AGENTS.md and active CHARTER.md, STATE.json, STATUS.md,
+NEXT_SESSION.md, RELEASE_TARGET.json, evidence/S12.json,
+S12-HANDOVER.md, S12-REVIEW.md and S12-NONPASSES.md.
+Complete ONLY S13 — Build the one-click acceptance kit.
+S01-S12 are complete only if the S12 checkpoint gates are verified;
+if unverified/failed, resume S12 instead. Do not restart earlier steps.
+Read tasks/S13.md, specs/MINIMAL_HUMAN_ACCEPTANCE.md,
+specs/RELEASE_GATES.md, specs/AUTOMATED_ACCEPTANCE.md and
+specs/SYNC_AND_RELEASE.md. Do not start S14 in S13.
+Available client: Windows11 Pro26H2 26300.9711 x64,
+PS5.1.26100.9711 and portablePS7.6.5. Store7.6.7 is startup-only.
+C:\ffmpeg\bin is Gyan Git ec420ba161; pinned9.0.2 remains separate.
+Windows10 is unavailable; Server CI cannot substitute client acceptance.
+Retain S12 seven-case clean child PATH/config tests, exact pins/minimal
+permissions, narrow artifacts, actual OS labels, real separate online setup,
+and strict source/runtime/ZIP/kit/report/client/human/authority gates.
+Keep exact Git blob package hashes distinct from checkout EOL hashes.
+Preserve S11 corpus/filesystem, exact original-SDDL ACL restoration,
+canonical owned CWD/exact assertions, historical reports and all nonpasses.
+Keep UTF8 CP65001 owned hidden drivers and isolated fixtures/config.
+Do not invent cloud/UNC/full-disk/physical/phone/exact-ZIP evidence.
+Preserve S10 no-write/privacy/self-test/local-only/cancellation130 and
+prerequisite/capability release refusals; S09 exact audio/default64,
+metadata/artwork/downmix/rejection, fixed duration and unlimited encode/decode;
+S08 startup/override/policy/literal arguments and shared resolver/save/setup.
+Separate setup requires consent; conversion/check never download.
+Do not scan ordinary Music/personal media or repeat owner diagnostics.
+Preserve defaults, sources, icons/posters and published v1.0.0.
+Main integration remains separate under S14 reviewed policy and owner approval.
+Update evidence/state/status/decisions/full handover; test/review/commit/push,
+verify fresh advertised equality and exact-head CI, give the filled prompt,
+then STOP. Do not start S14.
+Fixed deliverable: publicv1.0.1. Only separately started S17 publishes
+S16's exact accepted source/assets; S18 verifies closure.
+```
+
+## Preserved S11 next-session checkpoint
+
 # Next session — S11 checkpoint
 
 S01-S11 COMPLETED within the available Windows11 campaign scope. S12 — Add
