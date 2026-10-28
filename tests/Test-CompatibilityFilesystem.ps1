@@ -179,10 +179,45 @@ function Set-OwnedDirectoryAccess {
     if($PSVersionTable.PSEdition -ceq 'Desktop'){$directory.SetAccessControl($accessOnly)}
     else{[IO.FileSystemAclExtensions]::SetAccessControl($directory,$accessOnly)}
 }
+function Get-OwnedAclBinaryKey {
+    param([Security.AccessControl.GenericAcl]$Acl)
+    if($null -eq $Acl){return '<NULL>'}
+    $bytes=New-Object byte[] $Acl.BinaryLength
+    $Acl.GetBinaryForm($bytes,0)
+    return [Convert]::ToBase64String($bytes)
+}
+function Initialize-OwnedDirectoryAclFixture {
+    param([string]$Path)
+    Assert-NoReparse $Path
+    Assert-True ($Path.StartsWith($testRoot+'\',[StringComparison]::OrdinalIgnoreCase)) 'ACL fixture must be an owned descendant.'
+    # Construct the inherited fixture BEFORE taking its immutable pre-deny
+    # baseline. Windows can add AI on its first SetNamedSecurityInfo write.
+    # No permission, ACE/order, owner/group, protection or other bit may change.
+    $before=Get-Acl -LiteralPath $Path
+    $beforeRaw=[Security.AccessControl.RawSecurityDescriptor]::new($before.GetSecurityDescriptorBinaryForm(),0)
+    Set-OwnedDirectoryAccess $Path $before
+    $after=Get-Acl -LiteralPath $Path
+    $afterRaw=[Security.AccessControl.RawSecurityDescriptor]::new($after.GetSecurityDescriptorBinaryForm(),0)
+    $beforeFlags=[long]$beforeRaw.ControlFlags;$afterFlags=[long]$afterRaw.ControlFlags
+    $delta=$beforeFlags -bxor $afterFlags
+    $daclEqual=(Get-OwnedAclBinaryKey $beforeRaw.DiscretionaryAcl) -ceq (Get-OwnedAclBinaryKey $afterRaw.DiscretionaryAcl)
+    $saclEqual=(Get-OwnedAclBinaryKey $beforeRaw.SystemAcl) -ceq (Get-OwnedAclBinaryKey $afterRaw.SystemAcl)
+    $identityEqual=$beforeRaw.Owner.Value -ceq $afterRaw.Owner.Value -and $beforeRaw.Group.Value -ceq $afterRaw.Group.Value
+    $controlAllowed=($delta -eq 0 -or ($delta -eq 0x0400 -and ($beforeFlags -band 0x0400) -eq 0 -and ($afterFlags -band 0x0400) -eq 0x0400))
+    if(-not $report.Contains('acl_fixture_initializations')){$report['acl_fixture_initializations']=@()}
+    $report.acl_fixture_initializations += [pscustomobject]@{
+        fixture=$Path.Substring($testRoot.Length+1);before_sddl=$before.Sddl;initialized_sddl=$after.Sddl
+        dacl_binary_unchanged=$daclEqual;captured_sacl_binary_unchanged=$saclEqual;owner_group_unchanged=$identityEqual
+        before_control_flags=$beforeFlags;initialized_control_flags=$afterFlags;allowed_ai_addition_only=$controlAllowed
+        before_denial_baseline=$true
+    }
+    Assert-True ($daclEqual -and $saclEqual -and $identityEqual -and $controlAllowed -and $beforeRaw.ResourceManagerControl -eq $afterRaw.ResourceManagerControl -and ($afterFlags -band 0x0400) -eq 0x0400) 'Owned fixture initialization changed descriptor state beyond adding AI, or did not establish the inherited fixture.'
+}
 function Set-OwnedDeny {
     param([string]$Path,[Security.AccessControl.FileSystemRights]$Rights)
     Assert-NoReparse $Path
     Assert-True ($Path.StartsWith($testRoot+'\',[StringComparison]::OrdinalIgnoreCase)) 'ACL scope must be an owned descendant.'
+    Initialize-OwnedDirectoryAclFixture $Path
     $original=Get-Acl -LiteralPath $Path
     $record=[pscustomobject]@{path=$Path;acl=$original;sddl=$original.Sddl;restored=$false}
     $savedAcls.Add($record)
