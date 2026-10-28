@@ -6,6 +6,7 @@ function Import-AudioDiagnosticRecord {
     $full = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path, [ref]$provider, [ref]$drive)
     if ($provider.Name -ne 'FileSystem') { throw 'DiagnosticPath must name one regular filesystem report.' }
     $full = [IO.Path]::GetFullPath($full)
+    $full = Assert-AudioLocalDiagnosticPath -Path $full
     Assert-AudioDiagnosticStoragePath -Path $full
     $stream = $null
     try {
@@ -77,6 +78,7 @@ function New-AudioSelfTestScope {
     # Reserve the exact tree exclusively. No pre-existing path grants ownership.
     $parent = [IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\', '/')
     if ($parent -cmatch '^[A-Za-z]:$') { $parent += '\' }
+    $null = Assert-AudioLocalToolPath -Path $parent
     Assert-AudioNoReparseAncestor -Path $parent
     $root = [IO.Path]::Combine($parent, 'AFP-SelfTest-' + [guid]::NewGuid().ToString('N'))
     Assert-AudioPathBudget -Path ([IO.Path]::Combine($root, 'output', '.AudioFileForPhone-' + ('0' * 32) + '.partial')) -Kind File

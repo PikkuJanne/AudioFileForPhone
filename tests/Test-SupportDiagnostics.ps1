@@ -427,6 +427,42 @@ Write-Host '[LOCAL_ONLY_RESULT] five UNC origins refused before filesystem/nativ
         Assert-True ($result.stdout -match '\[LOCAL_ONLY_RESULT\]' -and (Get-TreeState @($childTemp, $localData, $configRoot)) -ceq $before) 'UNC guard instrumentation must show zero remote/native access and no writes.'
         $case.instrumented_filesystem_guards = $true; $case.native_calls = 0; $case.remote_access_calls = 0; $case.origins = @('config', 'explicit', 'saved', 'app-local', 'PATH')
     }
+    Invoke-Case 'no-network-private-report-import-and-selftest-temp-reject-UNC-before-access' 'S10-A2/S10-A3' {
+        param($case)
+        $code = @(
+            ('. ' + (Get-Literal (Join-Path $appRoot 'AudioFileForPhone.Diagnostics.ps1'))),
+            ('. ' + (Get-Literal (Join-Path $appRoot 'AudioFileForPhone.Checks.ps1'))),
+            @'
+$remote='\\AFP-S10-not-contacted.invalid\share\support'
+$script:storageChecks=0;$script:ancestryChecks=0;$script:createChecks=0;$script:nativeCalls=0
+function Assert-AudioDiagnosticStoragePath {$script:storageChecks++;throw 'S10 forbidden diagnostic filesystem access'}
+function Invoke-AudioNativeProcess {$script:nativeCalls++;throw 'S10 forbidden native operation'}
+# Import must refuse UNC without requiring any production converter helper.
+if(Get-Command Get-AudioAppVersion -CommandType Function -ErrorAction SilentlyContinue){throw 'S10 import isolation unexpectedly loaded the converter helper'}
+$cause=$null;try{Import-AudioDiagnosticRecord -Path ($remote+'\failure.json')|Out-Null}catch{$cause=$_.Exception.Message}
+if($cause -notmatch 'local filesystem path' -or $script:storageChecks -ne 0 -or $script:nativeCalls -ne 0){throw ('UNC support import did not refuse before storage/native access: '+$cause)}
+'@,
+            ('. ' + (Get-Literal (Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'))),
+            @'
+function Assert-AudioNoReparseAncestor {$script:ancestryChecks++;throw 'S10 forbidden TEMP filesystem access'}
+function Initialize-AudioDirectoryInterop {$script:createChecks++;throw 'S10 forbidden TEMP creation'}
+$savedTemp=$env:TEMP;$savedTmp=$env:TMP
+try {
+    $env:TEMP=$remote;$env:TMP=$remote
+    # GetTempPath reads process configuration only; it does not open the share.
+    if(-not [IO.Path]::GetTempPath().StartsWith($remote,[StringComparison]::OrdinalIgnoreCase)){throw 'S10 TEMP fixture did not select the intended UNC spelling'}
+    $cause=$null;try{New-AudioSelfTestScope|Out-Null}catch{$cause=$_.Exception.Message}
+    if($cause -notmatch 'local filesystem path' -or $script:ancestryChecks -ne 0 -or $script:createChecks -ne 0 -or $script:nativeCalls -ne 0){throw ('UNC self-test TEMP did not refuse before ancestry/create/native access: '+$cause)}
+}finally{$env:TEMP=$savedTemp;$env:TMP=$savedTmp}
+Write-Host '[LOCAL_SUPPORT_RESULT] UNC import and self-test TEMP refused before filesystem/create/native access; instrumentation only'
+'@
+        ) -join "`r`n"
+        $before = Get-TreeState @($childTemp, $localData, $configRoot)
+        $result = Invoke-Child 'local-only-support-and-temp' $code; Assert-ChildExit $result 0
+        Assert-True ($result.stdout -match '\[LOCAL_SUPPORT_RESULT\]' -and (Get-TreeState @($childTemp, $localData, $configRoot)) -ceq $before) 'UNC import and TEMP instrumentation must prove refusal before access and leave no application files.'
+        $case.instrumented_filesystem_guards = $true; $case.converter_helper_independent_import = $true
+        $case.storage_checks = 0; $case.ancestry_checks = 0; $case.creation_checks = 0; $case.native_calls = 0; $case.actual_remote_access = $false
+    }
     Invoke-Case 'interactive-prerequisite-release-refusal-stops-before-setup-or-new-native-work' 'S10-A1/S10-A2' {
         param($case)
         $loader = Join-Path $testRoot 'repair-refusal-loader.ps1'
