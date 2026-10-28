@@ -26,7 +26,7 @@ $originalPath = $env:PATH
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shell = Join-Path $PSHOME $shellName
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-NativeProcess.ps1', 'tests/Test-Preflight.ps1', 'tests/Test-AudioFileForPhone.ps1',
     'tests/Test-BaselineCharacterization.ps1', 'tests/Invoke-IsolatedBaseline.ps1', 'tests/Test-OutputParent.ps1')
 $exitCode = 1
@@ -194,7 +194,7 @@ try {
     $inputRoot = Join-Path $testRoot "Input [literal] O'Brien & Unicode"
     $outputRoot = Join-Path $testRoot "Output [literal] O'Brien & Unicode"
     foreach ($dir in @($appRoot, $inputRoot, $outputRoot)) { [IO.Directory]::CreateDirectory($dir) | Out-Null }
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $source = Join-Path $projectRoot $name
         $copy = Join-Path $appRoot $name
         Copy-Item -LiteralPath $source -Destination $copy

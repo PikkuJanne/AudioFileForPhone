@@ -29,7 +29,7 @@ $ownerFile = Join-Path $testRoot '.s05-owner'; $ownerToken = [guid]::NewGuid().T
 $created = $false; $releaseProved = $true; $exitCode = 1
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'tests/Test-FirstRunSetup.ps1', '.github/scripts/Invoke-CiChecks.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'tests/Test-FirstRunSetup.ps1', '.github/scripts/Invoke-CiChecks.ps1')
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $shellPath = Join-Path $PSHOME $(if ($edition -ceq 'ps51') { 'powershell.exe' } else { 'pwsh.exe' })
@@ -267,7 +267,7 @@ try {
     $created = $true; $report.temp_exclusively_reserved = $true
     Write-NewText $ownerFile $ownerToken; Add-Fixture $ownerFile; $report.marker_create_new = $true
     $appRoot = New-Directory ("App [literal] O'Brien " + [char]0xE4)
-    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1','Setup-AudioFileForPhone.ps1','Setup-AudioFileForPhone.bat')) {
+    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1','Setup-AudioFileForPhone.ps1','Setup-AudioFileForPhone.bat')) {
         $copy = Join-Path $appRoot $name; Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Production copies must preserve exact repository bytes.'
         Add-Fixture $copy

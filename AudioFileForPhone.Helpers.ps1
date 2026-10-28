@@ -260,22 +260,67 @@ function Get-AudioToolPairPaths {
     return [pscustomobject]@{ Directory = $full; FfmpegPath = $paths['ffmpeg.exe']; FfprobePath = $paths['ffprobe.exe'] }
 }
 
+function Add-AudioSelectionDiagnosticAttempt {
+    param([AllowNull()][hashtable]$Context, [string]$Origin, [string]$Candidate, [string]$Status, [string]$Reason)
+    if ($null -eq $Context) { return }
+    if ($null -eq $Context.Attempts) { $Context.Attempts = @() }
+    if (@($Context.Attempts).Count -ge 24) { return }
+    $Context.Attempts = @($Context.Attempts) + [pscustomobject]@{ Origin = $Origin; Candidate = $Candidate; Status = $Status; Reason = $Reason }
+}
+
+function Assert-AudioLocalToolPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    # Resolve spelling/provider only, before any candidate/config existence check.
+    # GetDriveType through DriveInfo classifies mapped drives without opening a
+    # selected file or probing its remote share.
+    $provider = $null; $drive = $null
+    $full = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path, [ref]$provider, [ref]$drive)
+    if ($provider.Name -ne 'FileSystem' -or $full -notmatch '^[A-Za-z]:[\\/]' -or $full.StartsWith('\\?\') -or $full.StartsWith('\\.\')) {
+        throw 'The no-network check requires a local filesystem path; UNC and non-filesystem paths are refused before access.'
+    }
+    $volume = New-Object IO.DriveInfo([IO.Path]::GetPathRoot($full))
+    if ($volume.DriveType -eq [IO.DriveType]::Network) { throw 'The no-network check refuses mapped network drives before access.' }
+    return $full
+}
+
 function Get-AudioPathTool {
-    param([Parameter(Mandatory = $true)][ValidateSet('ffmpeg.exe', 'ffprobe.exe')][string]$ExeName)
+    param([Parameter(Mandatory = $true)][ValidateSet('ffmpeg.exe', 'ffprobe.exe')][string]$ExeName,
+        [AllowNull()][hashtable]$DiagnosticContext, [switch]$LocalOnly)
     # Resolve only exact .exe files under absolute PATH entries. Get-Command also
     # searches the process working directory on Windows; source folders never gain
     # executable-selection authority through that implicit search (or PATH '.').
     foreach ($entry in @($env:PATH -split ';')) {
         $directory = $entry.Trim().Trim('"')
         if ($directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { continue }
+        if ($LocalOnly) {
+            try { $null = Assert-AudioLocalToolPath -Path $directory }
+            catch {
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $directory -Status Rejected -Reason $_.Exception.Message
+                continue
+            }
+        }
         try { $full = Get-AudioSelectionPath -Path $directory }
         catch { continue }
         $candidate = [IO.Path]::Combine($full, $ExeName)
-        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) { continue }
+        if ($LocalOnly) {
+            try { Assert-AudioNoReparseAncestor -Path $candidate }
+            catch {
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason $_.Exception.Message
+                throw
+            }
+        }
+        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Missing -Reason 'Exact executable is absent.'
+            continue
+        }
         $item = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop
         if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason 'Not a regular executable file.'
             throw "PATH candidate is not a regular executable file: '$candidate'."
         }
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Selected -Reason 'First exact executable in absolute PATH directories.'
         return $item.FullName
     }
     throw "Could not find $ExeName in absolute PATH directories. Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe>."
@@ -284,7 +329,21 @@ function Get-AudioPathTool {
 function Resolve-AudioToolSelection {
     param([string]$FfmpegDirectory, [string]$ConfigPath,
           [Parameter(Mandatory = $true)][string]$ScriptDirectory,
-          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [AllowNull()][hashtable]$DiagnosticContext, [switch]$LocalOnly)
+    if ($null -ne $DiagnosticContext) { $DiagnosticContext.Stage = 'ToolSelection'; $DiagnosticContext.Code = 'ConfigInvalid' }
+    if ($LocalOnly) {
+        $candidateConfig = $ConfigPath
+        if ([string]::IsNullOrWhiteSpace($candidateConfig)) {
+            $candidateConfig = [IO.Path]::Combine([Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,
+                [Environment+SpecialFolderOption]::DoNotVerify), 'AudioFileForPhone', 'config.json')
+        }
+        try { $null = Assert-AudioLocalToolPath -Path $candidateConfig }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $candidateConfig -Status Rejected -Reason $_.Exception.Message
+            throw
+        }
+    }
     $configFile = Get-AudioConfigPath -ConfigPath $ConfigPath
     $origin = $null; $pair = $null
     if ($PSBoundParameters.ContainsKey('FfmpegDirectory') -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
@@ -292,40 +351,88 @@ function Resolve-AudioToolSelection {
     }
     if (-not [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
         $origin = 'Explicit'
-        try { $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory }
-        catch { throw "Invalid explicit FFmpeg selection '$FfmpegDirectory': $($_.Exception.Message) No fallback was attempted." }
+        if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $FfmpegDirectory -Status Checking -Reason 'Explicit choice suppresses fallback.'
+        try {
+            if ($LocalOnly) { $null = Assert-AudioLocalToolPath -Path $FfmpegDirectory }
+            $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+        }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $FfmpegDirectory -Status Rejected -Reason $_.Exception.Message
+            throw "Invalid explicit FFmpeg selection '$FfmpegDirectory': $($_.Exception.Message) No fallback was attempted."
+        }
     }
     else {
-        $config = Read-AudioToolConfig -ConfigPath $configFile
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $configFile -Status Checking -Reason 'Read-only configuration lookup.'
+        try { $config = Read-AudioToolConfig -ConfigPath $configFile }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $configFile -Status Rejected -Reason $_.Exception.Message
+            throw
+        }
         if ($null -ne $config) {
             $origin = 'Saved'
-            try { $pair = Get-AudioToolPairPaths -Directory $config.ffmpeg_directory }
-            catch { throw "Saved FFmpeg selection is unavailable '$($config.ffmpeg_directory)': $($_.Exception.Message) Use -FfmpegDirectory for this run or deliberately save a repaired selection. No fallback was attempted." }
+            if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $config.ffmpeg_directory -Status Checking -Reason 'Saved choice suppresses fallback.'
+            try {
+                if ($LocalOnly) { $null = Assert-AudioLocalToolPath -Path $config.ffmpeg_directory }
+                $pair = Get-AudioToolPairPaths -Directory $config.ffmpeg_directory
+            }
+            catch {
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $config.ffmpeg_directory -Status Rejected -Reason $_.Exception.Message
+                throw "Saved FFmpeg selection is unavailable '$($config.ffmpeg_directory)': $($_.Exception.Message) Use -FfmpegDirectory for this run or deliberately save a repaired selection. No fallback was attempted."
+            }
         }
         else {
+            if ($LocalOnly) {
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                try { $null = Assert-AudioLocalToolPath -Path $ScriptDirectory }
+                catch {
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin AppLocal -Candidate $ScriptDirectory -Status Rejected -Reason $_.Exception.Message
+                    throw
+                }
+            }
             $scriptPath = Get-AudioSelectionPath -Path $ScriptDirectory
             $localFfmpeg = [IO.Path]::Combine($scriptPath, 'ffmpeg.exe')
             $localFfprobe = [IO.Path]::Combine($scriptPath, 'ffprobe.exe')
+            if ($LocalOnly) {
+                Assert-AudioNoReparseAncestor -Path $localFfmpeg
+                Assert-AudioNoReparseAncestor -Path $localFfprobe
+            }
             if ((Test-Path -LiteralPath $localFfmpeg -ErrorAction Stop) -or (Test-Path -LiteralPath $localFfprobe -ErrorAction Stop)) {
                 $origin = 'AppLocal'
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $scriptPath -Status Checking -Reason 'An application-local pair suppresses PATH fallback.'
                 try { $pair = Get-AudioToolPairPaths -Directory $scriptPath }
-                catch { throw "Incomplete or invalid application-local FFmpeg pair '$scriptPath': $($_.Exception.Message) A local/PATH pair will not be mixed." }
+                catch {
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $scriptPath -Status Rejected -Reason $_.Exception.Message
+                    throw "Incomplete or invalid application-local FFmpeg pair '$scriptPath': $($_.Exception.Message) A local/PATH pair will not be mixed."
+                }
             }
             else {
                 $origin = 'PATH'
-                $ffmpeg = Get-AudioPathTool -ExeName 'ffmpeg.exe'
-                $ffprobe = Get-AudioPathTool -ExeName 'ffprobe.exe'
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyMissing' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin AppLocal -Candidate $scriptPath -Status Missing -Reason 'No application-local executable is present.'
+                $ffmpeg = Get-AudioPathTool -ExeName 'ffmpeg.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
+                $ffprobe = Get-AudioPathTool -ExeName 'ffprobe.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
                 $directory = [IO.Path]::GetDirectoryName($ffmpeg)
                 if (-not [StringComparer]::OrdinalIgnoreCase.Equals($directory, [IO.Path]::GetDirectoryName($ffprobe))) { $directory = $null }
                 $pair = [pscustomobject]@{ Directory = $directory; FfmpegPath = $ffmpeg; FfprobePath = $ffprobe }
             }
         }
     }
-    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation }
+    if ($null -ne $DiagnosticContext) {
+        $DiagnosticContext.Code = 'DependencyInvalid'
+        $DiagnosticContext.Selection = [pscustomobject]@{ Origin = $origin
+            Ffmpeg = [pscustomobject]@{ Path = $pair.FfmpegPath; Version = ''; Architecture = '' }
+            Ffprobe = [pscustomobject]@{ Path = $pair.FfprobePath; Version = ''; Architecture = '' } }
+    }
+    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation -DiagnosticContext $DiagnosticContext }
     catch [OperationCanceledException] { throw }
     catch { throw "$origin FFmpeg selection failed validation: $($_.Exception.Message) Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted." }
     Write-Host ("[INFO] FFmpeg selection origin: {0}" -f $origin)
-    return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = $origin; ConfigPath = $configFile; Directory = $pair.Directory }
+    $selection = [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = $origin; ConfigPath = $configFile; Directory = $pair.Directory }
+    if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'Completed'; $DiagnosticContext.Selection = $selection }
+    return $selection
 }
 
 function Save-AudioToolSelection {
@@ -1963,12 +2070,18 @@ function Get-AudioExecutableArchitecture {
 function Assert-ToolPrerequisites {
     param([string]$FfmpegPath, [string]$FfprobePath,
           [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000,
-          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [AllowNull()][hashtable]$DiagnosticContext)
     $tools = [ordered]@{}
     foreach ($tool in @(@{ Name = 'ffmpeg'; Path = $FfmpegPath }, @{ Name = 'ffprobe'; Path = $FfprobePath })) {
         try {
             $arguments = if ($tool.Name -eq 'ffmpeg') { @('-nostdin', '-version') } else { @('-version') }
             $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments -Operation ($tool.Name + ' version check') -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+            if ($null -ne $DiagnosticContext) {
+                $DiagnosticContext.NativeResult = $native
+                $DiagnosticContext.Code = if ($native.Status -eq 'Timeout') { 'StartupTimeout' } else { 'DependencyInvalid' }
+            }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin VersionCheck -Candidate $tool.Path -Status $native.Status -Reason $native.Error
             Assert-AudioNotCancelled -Cancellation $Cancellation
             $version = ($native.Stdout -split '\r?\n' | Select-Object -First 1)
             if ($native.Status -ne 'Completed') { throw "$($native.Status): $($native.Error)" }
@@ -1977,12 +2090,18 @@ function Assert-ToolPrerequisites {
             }
             $architecture = Get-AudioExecutableArchitecture -Path $tool.Path
             $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version; Architecture = $architecture }
+            if ($null -ne $DiagnosticContext -and $null -ne $DiagnosticContext.Selection) { $DiagnosticContext.Selection.($tool.Name) = $tools[$tool.Name] }
             Write-Host ("[INFO] {0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
         }
         catch [OperationCanceledException] { throw }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
     $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders') -Operation 'ffmpeg encoder capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+    if ($null -ne $DiagnosticContext) {
+        $DiagnosticContext.NativeResult = $encoders
+        $DiagnosticContext.Code = if ($encoders.Status -eq 'Timeout') { 'StartupTimeout' } else { 'CapabilityMissing' }
+    }
+    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin CapabilityCheck -Candidate $FfmpegPath -Status $encoders.Status -Reason $encoders.Error
     Assert-AudioNotCancelled -Cancellation $Cancellation
     if ($encoders.Status -ne 'Completed') { throw "ffmpeg encoder capability check failed ($($encoders.Status)): $($encoders.Error)" }
     if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or -not $encoders.ProcessReleased -or $encoders.StdoutTruncated -or

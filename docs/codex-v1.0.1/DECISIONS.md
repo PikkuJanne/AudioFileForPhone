@@ -424,3 +424,24 @@ D50 - 2026-10-27, S09 checkpoint: tested source 1dcf1b398d610dd478922d5dba672992
       eligible/NOT_STARTED in a separate thread only. Main remains unmerged under
       S14/owner approval. No human action, tag/release operation or changed frozen
       bytes. Fixed public v1.0.1 remains PENDING_S17; runtime remains 1.0.0.
+
+D51 - 2026-10-28, S10 diagnostics contracts: use an independent functions-only
+      bootstrap before the converter helper, with explicit stage/code boundaries
+      and optional production resolver traces. Keep private bounded local reports
+      separate from whitelist-only support review/export. Startup logging first
+      tries LOCALAPPDATA then unique TEMP and never replaces the console cause.
+      Default Check and converter DryRun failures remain console-only. Support
+      imports are bounded UTF8/schema checked and need no converter helper.
+      No upload, downloader or settings persistence is added to conversion/check.
+
+D52 - 2026-10-28, S10 self-test/release review: reuse production resolution/audio
+      planning/transaction/full-decode functions, with one uniquely reserved TEMP
+      scope, held marker identity, fixed deletion inventory and release proof.
+      Missing fixture support is SELF_TEST_UNAVAILABLE, timeouts stay distinct,
+      and final cancellation preserves130. Default checks reject remote config/
+      tools before access and skip remote PATH entries without changing normal
+      conversion selection. Review found/fixed interactive setup continuation
+      after unproved prerequisite release; it now stops before another native
+      operation. Returned-result refusal tests are explicitly labelled injection.
+      Full S10 evidence and checkpoint gates remain in S10.json; no main/release
+      authority or new human diagnostic work is inferred.

@@ -81,7 +81,7 @@ function Write-NewText {
     try { $bytes = (New-Object Text.UTF8Encoding($true)).GetBytes($Text); $stream.Write($bytes, 0, $bytes.Length) } finally { $stream.Dispose() }
 }
 function Get-SourceInventory {
-    return @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'tests/Test-LauncherResults.ps1' | ForEach-Object {
+    return @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'tests/Test-LauncherResults.ps1' | ForEach-Object {
         [pscustomobject]@{ relative_path = $_; sha256 = (Get-FileHash -LiteralPath (Join-Path $projectRoot $_) -Algorithm SHA256).Hash.ToLowerInvariant() }
     })
 }
@@ -229,7 +229,7 @@ namespace AudioFileForPhoneT10Launcher {
         $child = Join-Path $directory 'AudioFileForPhone.ps1'
         Write-NewText $child $stub
         $fixtures.Add($bat); $fixtures.Add($child); $batCopies += $bat
-        foreach ($runtimeName in @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+        foreach ($runtimeName in @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $runtimeCopy = Join-Path $directory $runtimeName
             Copy-Item -LiteralPath (Join-Path $projectRoot $runtimeName) -Destination $runtimeCopy
             $fixtures.Add($runtimeCopy)

@@ -23,6 +23,7 @@ if (-not [IO.Path]::GetDirectoryName($evidence).Equals($evidenceParent, [StringC
 }
 if (Test-Path -LiteralPath $evidence) { throw 'Package evidence already exists; choose a fresh label.' }
 $required = @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'tools/ffmpeg-download.json', 'AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat',
+    'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.Checks.ps1', 'Check-AudioFileForPhone.ps1', 'Check-AudioFileForPhone.bat',
     'CHANGELOG.md', 'LICENSE', 'README.md', 'SECURITY.md', 'SUPPORT.md')
 [Array]::Sort($required, [StringComparer]::Ordinal)
 $buildFiles = @('tools/Build-Package.ps1', 'tools/package-files.json')

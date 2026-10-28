@@ -26,7 +26,7 @@ $created = $false; $releaseProved = $true; $exitCode = 1
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1',
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.ManagedSetup.ps1',
     'Setup-AudioFileForPhone.ps1', 'tools/ffmpeg-download.json', 'tests/Test-ManagedSetupReal.ps1')
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $shellPath = Join-Path $PSHOME $(if ($edition -ceq 'ps51') { 'powershell.exe' } else { 'pwsh.exe' })
@@ -194,7 +194,7 @@ try {
     Write-NewText $ownerFile $ownerToken; Add-Fixture $ownerFile; $report.marker_create_new = $true
     $appRoot = New-Directory ("App [literal] O'Brien " + [char]0xE4)
     [IO.Directory]::CreateDirectory((Join-Path $appRoot 'tools')) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1','tools/ffmpeg-download.json')) {
+    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1','tools/ffmpeg-download.json')) {
         $copy = Join-Path $appRoot $name; Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Production app/manifest copies must preserve exact repository bytes.'
         Add-Fixture $copy

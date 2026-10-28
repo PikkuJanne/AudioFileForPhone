@@ -260,6 +260,7 @@ function Assert-CiPolicy {
         'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S09-encoding-ci-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S10-support-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
     ))
     if ($steps[2].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
         $steps[2].with.path -cne $approvedArtifactPaths -or
@@ -293,6 +294,7 @@ function Test-CiPolicyMutations {
         @{ name = 'self-hosted execution refused'; needle = 'runs-on: windows-2025'; replacement = 'runs-on: self-hosted' }
         @{ name = 'hidden artifact upload refused'; needle = 'include-hidden-files: false'; replacement = 'include-hidden-files: true' }
         @{ name = 'broad active-plan artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S09-encoding-ci-'; replacement = 'docs/codex-v1.0.1/evidence/S09-*-' }
+        @{ name = 'broad support artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S10-support-'; replacement = 'docs/codex-v1.0.1/evidence/S10-*-' }
         @{ name = 'artifact overwrite capability refused'; needle = '          retention-days: 14'; replacement = "          overwrite: true`n          retention-days: 14" }
         @{ name = 'release command injection refused'; needle = "          `$ErrorActionPreference = 'Stop'"; replacement = "          gh release create v1.0.0`n          `$ErrorActionPreference = 'Stop'" }
         @{ name = 'duplicate YAML permission key refused'; needle = 'permissions:'; replacement = "permissions:`n  contents: write`npermissions:" }

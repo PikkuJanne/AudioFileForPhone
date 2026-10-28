@@ -26,7 +26,7 @@ $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
 $events = New-Object 'System.Collections.Generic.List[object]'
 $savedAcls = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-TransactionalOutput.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-TransactionalOutput.ps1')
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
@@ -203,6 +203,7 @@ try {
     $helpersCopy = Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'
     $scriptCopy = Join-Path $appRoot 'AudioFileForPhone.ps1'
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1') -Destination $helpersCopy
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') -Destination (Join-Path $appRoot 'AudioFileForPhone.Diagnostics.ps1')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Destination $scriptCopy
     Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1')).Hash) 'Copied runtime must be byte-identical.'
     Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1')).Hash) 'Copied entry must be byte-identical.'

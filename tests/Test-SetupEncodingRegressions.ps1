@@ -34,7 +34,7 @@ $created = $false
 $script:allChildrenExited = $true
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-SetupEncodingRegressions.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-SetupEncodingRegressions.ps1')
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1; task = $(if ($ciReport) { 'T17' } else { 'S02' })
@@ -151,7 +151,7 @@ function Invoke-App {
     param([string]$Id, [string]$InputPath, [AllowEmptyString()][string]$PathValue, [int]$Rate = 64, [switch]$DefaultRate)
     $caseRoot = Join-Path $testRoot $Id
     New-Item -ItemType Directory -Path $caseRoot | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $copy = Join-Path $caseRoot $name
         Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Application copy bytes changed.'

@@ -21,7 +21,7 @@ $ownerFile = Join-Path $testRoot '.t14-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Diagnostics.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Diagnostics.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -129,7 +129,7 @@ function Assert-Decoded {
 function New-AppCopy {
     param([string]$Label)
     $app=Join-Path $testRoot ('A-'+$Label);[IO.Directory]::CreateDirectory($app)|Out-Null
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must start byte-identical.'}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must start byte-identical.'}
     # All substitutions are confined to an append-only helper copy. The actual
     # entry bytes and native ownership/disposal behavior remain intact.
     $audit=@'
@@ -189,7 +189,7 @@ function Write-AudioRunManifest {
 '@
 
     [IO.File]::AppendAllText((Join-Path $app 'AudioFileForPhone.Helpers.ps1'),"`r`n"+$audit,[Text.Encoding]::UTF8)
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){Add-Fixture (Join-Path $app $name)}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){Add-Fixture (Join-Path $app $name)}
     return Join-Path $app 'AudioFileForPhone.ps1'
 }
 function Invoke-Entry {

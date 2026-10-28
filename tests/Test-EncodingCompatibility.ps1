@@ -37,7 +37,7 @@ $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
 $matrix = New-Object 'System.Collections.Generic.List[object]'
 $appRuns = New-Object 'System.Collections.Generic.List[object]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-EncodingCompatibility.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-EncodingCompatibility.ps1')
 $bitrates = @(8,16,24,32,40,48,56,64,80,96,112,128,144,160,192,224,256,320)
 $matrixRates = @(8000,16000,22050,24000,32000,44100,48000)
 $extraRates = @(4000,11025,12000,12345,96000)
@@ -267,7 +267,7 @@ try {
     $created = $true; $report.temp_exclusively_reserved = $true
     Write-NewText $ownerFile $ownerToken; Add-Fixture $ownerFile; $report.marker_create_new = $true
     $appRoot = New-Directory 'App'; $inputRoot = New-Directory 'Sources'; $outputRoot = New-Directory 'Outputs'; $appInput = New-Directory 'AppSources'
-    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $copy = Join-Path $appRoot $name; Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies changed bytes.'
         Add-Fixture $copy

@@ -25,7 +25,7 @@ $ownedRootCreated = $false
 $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Cancellation.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Cancellation.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -124,7 +124,8 @@ function New-AppCopy {
     $entry = Join-Path $root 'AudioFileForPhone.ps1'; $helper = Join-Path $root 'AudioFileForPhone.Helpers.ps1'
     [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.ps1'), $entry, $false)
     [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'), $helper, $false)
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1'), (Join-Path $root 'AudioFileForPhone.Diagnostics.ps1'), $false)
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         Assert-True ((Get-FileHash -LiteralPath (Join-Path $root $name)).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App copies must start byte-identical.'
     }
     $append = @'
@@ -468,7 +469,7 @@ try {
             # Run byte-identical production helpers without test pacing. The old
             # run is nested beneath input; discovery must exclude its identity.
             $plainRoot=Join-Path $testRoot 'A-next';[IO.Directory]::CreateDirectory($plainRoot)|Out-Null
-            foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')) { $copy=Join-Path $plainRoot $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Add-Fixture $copy }
+            foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) { $copy=Join-Path $plainRoot $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Add-Fixture $copy }
             $nextDriver=New-EntryDriver 'next' (Join-Path $plainRoot 'AudioFileForPhone.ps1') $inputRoot $nextParent $nextRaw $nextCode $nextMode
             # Console mode is unavailable to redirected hosts; capture this
             # normal driver using the same fresh console controller is unsuitable

@@ -32,7 +32,7 @@ $retainedProcesses = New-Object 'System.Collections.Generic.List[object]'
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
 $uncertainOperations = New-Object 'System.Collections.Generic.HashSet[string]'
 $originalNative = $null
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-ShortOperations.ps1', '.github/scripts/Invoke-CiChecks.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-ShortOperations.ps1', '.github/scripts/Invoke-CiChecks.ps1')
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1; task = $(if ($ciReport) { 'T17' } else { 'S03' }); mode = 'real_windows_short_operations'
@@ -181,7 +181,7 @@ namespace AudioFileForPhoneS03 {
     Write-NewText $ownerFile $ownerToken; $report.marker_create_new = $true
     $appRoot = Join-Path $testRoot 'App [literal]'
     [IO.Directory]::CreateDirectory($appRoot) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $copy = Join-Path $appRoot $name
         Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must preserve source bytes.'

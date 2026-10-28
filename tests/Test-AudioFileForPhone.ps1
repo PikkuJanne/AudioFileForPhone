@@ -107,6 +107,7 @@ function Invoke-Conversion {
     Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -eq (Get-FileHash -LiteralPath $productionScript).Hash) 'Application copy must be byte-identical.'
     $helpersCopy = Join-Path $runDir 'AudioFileForPhone.Helpers.ps1'
     Copy-Item -LiteralPath $productionHelpers -Destination $helpersCopy
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') -Destination (Join-Path $runDir 'AudioFileForPhone.Diagnostics.ps1')
     Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $productionHelpers).Hash) 'Runtime helper copy must be byte-identical.'
     $sourceBefore = ConvertTo-Json -InputObject @(Get-SourceInventory $InputPath) -Compress
     $nativeArgs = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',

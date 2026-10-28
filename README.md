@@ -21,6 +21,8 @@ together:
 
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
+- `AudioFileForPhone.Diagnostics.ps1` (startup evidence and local support export)
+- `Check-AudioFileForPhone.ps1`, `Check-AudioFileForPhone.bat` and `AudioFileForPhone.Checks.ps1` (environment check and explicit synthetic self-test)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
 - `AudioFileForPhone.Launcher.ps1` and `AudioFileForPhone.HostProbe.ps1` (required by the BAT)
 - `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (dependency setup)
@@ -374,8 +376,37 @@ They contain exact paths, metadata, app/tool versions, script hashes, per-file
 outcomes, timings, available durations/bytes and bounded native errors. The app
 does not upload them. Redact private paths, filenames and metadata before sharing.
 Records may be incomplete after a persistence failure or forced shutdown; use
-the console's final result too. Preflight-before-reservation and preview have no
-run records.
+the console's final result too. Preview has no records, including on failure.
+Before a conversion run exists, startup failures attempt a bounded PRIVATE JSON
+record under `%LOCALAPPDATA%\AudioFileForPhone\Diagnostics`, then a unique TEMP
+fallback. If storage fails, the original console cause remains visible.
+
+Double-click `Check-AudioFileForPhone.bat` for an environment check, or use an
+allowed PowerShell host in the application folder:
+
+```powershell
+.\Check-AudioFileForPhone.ps1 -FfmpegDirectory 'C:\ffmpeg\bin'
+.\Check-AudioFileForPhone.ps1 -FfmpegDirectory 'C:\ffmpeg\bin' -SelfTest
+.\Check-AudioFileForPhone.ps1 -DiagnosticPath 'C:\Reports\failure.json' -ExportPath 'C:\Reports\support.txt'
+```
+
+The default check reads app/config identity and executes the selected trusted
+tools for bounded version/capability checks. It reads no audio, creates no
+persistent application files even on failure, and uses no network. Remote
+config/tool paths are refused; remote PATH entries are skipped. PowerShell/.NET
+may use transient compiler files. `-ConfigPath` selects a portable config.
+`-SelfTest` explicitly creates a short synthetic fixture in a uniquely owned TEMP
+tree, then uses production planning, conversion and validation. It verifies the
+source hash and cleans only that tree after ownership and process-release proof.
+`SELF_TEST_UNAVAILABLE` means fixture support is unavailable; ordinary conversion
+may still work. Uncertain release or cleanup retains the exact named tiny tree.
+
+`-DiagnosticPath` reviews an existing bounded private startup record without
+executing tools. The displayed support report uses a field whitelist and path
+tokens; native free text, source names/tags, arguments and PATH are omitted.
+`-ExportPath` explicitly saves that reviewable text to a new file in an existing
+directory. It never overwrites or uploads. Review it before sharing: redaction
+does not guarantee anonymity. See [diagnostic stages and repair guidance](SUPPORT.md#environment-check-and-support-export).
 
 See [SUPPORT.md](SUPPORT.md) for troubleshooting, tested limits and a bug-report
 template. Maintainers should use the recorded isolated commands in the

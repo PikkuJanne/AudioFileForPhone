@@ -16,6 +16,8 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+$launchDiagnosticsReady = $false
+$script:AudioLaunchDiagnosticContext = @{ Code = 'HelperMissing'; Stage = 'Bootstrap'; Attempts = @() }
 
 function ConvertTo-AudioLaunchArgument {
     param([AllowEmptyString()][string]$Value)
@@ -108,16 +110,22 @@ function Invoke-AudioHostProbe {
 
 function Select-AudioLaunchHost {
     param([string]$HostPath, [int]$StartupTimeoutSeconds = 15)
+    if ($null -eq $script:AudioLaunchDiagnosticContext) { $script:AudioLaunchDiagnosticContext = @{ Code = 'HostStartFailed'; Stage = 'HostSelection'; Attempts = @() } }
     $explicitHost = -not [string]::IsNullOrEmpty($HostPath)
     $candidates = if ($explicitHost) { @($HostPath) } else { @(Get-AudioHostCandidates) }
     foreach ($candidate in $candidates) {
         $probe = Invoke-AudioHostProbe -HostPath $candidate -StartupTimeoutSeconds $StartupTimeoutSeconds
+        $script:AudioLaunchDiagnosticContext.NativeResult = $probe.NativeResult
+        $script:AudioLaunchDiagnosticContext.Code = if ($probe.Status -eq 'Timeout') { 'StartupTimeout' } else { 'HostStartFailed' }
+        Add-AudioSelectionDiagnosticAttempt -Context $script:AudioLaunchDiagnosticContext -Origin Host -Candidate $candidate -Status $probe.Status -Reason $probe.Error
         if ($probe.Status -eq 'Ready') {
             # Pin aliases to their real executable and verify that exact target.
             if ($probe.Identity.Path -ine $candidate) {
                 $aliasIdentity = $probe.Identity
                 $resolvedPath = $aliasIdentity.Path
                 $probe = Invoke-AudioHostProbe -HostPath $resolvedPath -StartupTimeoutSeconds $StartupTimeoutSeconds
+                $script:AudioLaunchDiagnosticContext.NativeResult = $probe.NativeResult
+                Add-AudioSelectionDiagnosticAttempt -Context $script:AudioLaunchDiagnosticContext -Origin ResolvedHost -Candidate $resolvedPath -Status $probe.Status -Reason $probe.Error
                 if ($probe.Status -ne 'Ready' -or $probe.Identity.Path -ine $resolvedPath) { throw ('Resolved host verification failed. ' + $probe.Error) }
                 foreach ($field in @('Version', 'Edition', 'ProcessArchitecture', 'OSArchitecture', 'ApartmentState', 'LanguageMode', 'MachinePolicy', 'UserPolicy')) {
                     if ($probe.Identity.$field -cne $aliasIdentity.$field) { throw ('Resolved host identity changed: ' + $field + '. No application was started.') }
@@ -149,18 +157,30 @@ try {
         Write-Host 'Zero, empty or multiple folder arguments are not accepted.'
     }
     else {
+        $diagnosticsPath = Join-Path $PSScriptRoot 'AudioFileForPhone.Diagnostics.ps1'
+        if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
+        . $diagnosticsPath
+        $launchDiagnosticsReady = $true
         if (-not $PSBoundParameters.ContainsKey('InputFolder')) { $InputFolder = $env:AUDIOFILEFORPHONE_INPUT }
-        if ([string]::IsNullOrWhiteSpace($InputFolder)) { throw 'Supply exactly one nonempty input folder.' }
-        if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') { throw 'Managed language policy prevents this launcher. Use an allowed direct route; no fallback.' }
+        if ([string]::IsNullOrWhiteSpace($InputFolder)) {
+            $script:AudioLaunchDiagnosticContext.Stage = 'Parameters'; $script:AudioLaunchDiagnosticContext.Code = 'InputInvalid'
+            throw 'Supply exactly one nonempty input folder.'
+        }
+        if ($ExecutionContext.SessionState.LanguageMode -ne 'FullLanguage') {
+            $script:AudioLaunchDiagnosticContext.Stage = 'HostSelection'; $script:AudioLaunchDiagnosticContext.Code = 'HostStartFailed'
+            throw 'Managed language policy prevents this launcher. Use an allowed direct route; no fallback.'
+        }
         foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.HostProbe.ps1')) {
             if (-not (Test-Path -LiteralPath (Join-Path $PSScriptRoot $name) -PathType Leaf)) { throw ('Required runtime file is missing: ' + $name + '. Restore the complete application package.') }
         }
         . (Join-Path $PSScriptRoot 'AudioFileForPhone.Helpers.ps1')
+        $script:AudioLaunchDiagnosticContext.Stage = 'HostSelection'; $script:AudioLaunchDiagnosticContext.Code = 'HostStartFailed'
         if (-not $PSBoundParameters.ContainsKey('HostPath')) { $HostPath = $env:AUDIOFILEFORPHONE_HOST }
         if ($PSBoundParameters.ContainsKey('HostPath') -and [string]::IsNullOrWhiteSpace($HostPath)) { throw 'HostPath cannot be empty.' }
         $identity = Select-AudioLaunchHost -HostPath $HostPath -StartupTimeoutSeconds $StartupTimeoutSeconds
         Write-Host ('[HOST] Selected: ' + $identity.Path)
         Write-Host ('[HOST] PowerShell ' + $identity.Version + ' (' + $identity.Edition + '); OS=' + $identity.OSArchitecture + '; process=' + $identity.ProcessArchitecture + '; apartment=' + $identity.ApartmentState)
+        $script:AudioLaunchDiagnosticContext.Stage = 'ApplicationStart'; $script:AudioLaunchDiagnosticContext.Code = 'HostStartFailed'
         $start = New-Object Diagnostics.ProcessStartInfo
         $start.FileName = $identity.Path
         $start.UseShellExecute = $false
@@ -187,6 +207,18 @@ try {
         }
     }
 }
-catch { Write-Host ('Startup failed: ' + $_.Exception.Message) }
+catch {
+    $startupCause = $_.Exception.Message
+    Write-Host ('Startup failed: ' + $startupCause)
+    if ($launchDiagnosticsReady) {
+        try {
+            $record = New-AudioDiagnosticRecord -ScriptDirectory $PSScriptRoot -Stage $script:AudioLaunchDiagnosticContext.Stage `
+                -Code $script:AudioLaunchDiagnosticContext.Code -Message $startupCause -Context $script:AudioLaunchDiagnosticContext
+            $null = Write-AudioStartupFailure -Record $record
+        }
+        catch { Write-Warning ('Startup diagnostics unavailable; original failure above is unchanged. ' + $_.Exception.Message) -ErrorAction Continue }
+    }
+    else { Write-Host '[DIAGNOSTIC] stage=Bootstrap; code=HelperMissing; restore the complete application package. Original failure is shown above.' }
+}
 Wait-AudioLaunchClose
 exit $childExit

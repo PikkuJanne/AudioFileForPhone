@@ -195,6 +195,10 @@ $encoderReleaseUnproved = $false
 $coverValidation = $null
 $script:AudioCancellationContext = $null
 $script:AudioProgressDisplayEnabled = $true
+$diagnosticsReady = $false
+$diagnosticStage = 'Bootstrap'; $diagnosticCode = 'HelperMissing'
+$toolDiagnosticContext = @{}
+$toolInfo = $null
 
 function Write-AudioProgress {
     param([string]$Status, [int]$PercentComplete, [switch]$Completed,
@@ -225,6 +229,10 @@ function Get-AudioResultSummary {
 }
 
 try {
+    $diagnosticsPath = Join-Path $ScriptDir 'AudioFileForPhone.Diagnostics.ps1'
+    if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
+    . $diagnosticsPath
+    $diagnosticsReady = $true
 Write-Host "[INFO] Script path : $ScriptPath"
 Write-Host "[INFO] Script dir  : $ScriptDir"
 Write-Host "[INFO] Raw input   : '$InputFolder'"
@@ -240,13 +248,17 @@ try {
     if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
     . $helperPath
     Write-Host ("==== AudioFileForPhone v{0} ====" -f (Get-AudioAppVersion))
+    $diagnosticStage = 'Parameters'; $diagnosticCode = 'StartupFailed'
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
+    $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
     $InputFolder = Get-InputDirectory -InputFolder $InputFolder
+    $diagnosticStage = 'OutputPreflight'; $diagnosticCode = 'OutputUnwritable'
     if (-not [string]::IsNullOrWhiteSpace($OutputParent)) { Assert-AudioOutputParentSpelling -Path $OutputParent }
     $outputParentPath = Get-OutputParent -OutputParent $OutputParent
     $timestamp = [datetime]::Now.ToString('yyyyMMdd_HHmmss', [Globalization.CultureInfo]::InvariantCulture)
     $provisionalRun = Get-AudioAvailableRunCandidate -OutputParent $outputParentPath -InputFolder $InputFolder -BitrateKbps $BitrateKbps -Timestamp $timestamp
     $outputRoot = $provisionalRun.OutputRoot
+    $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
     Write-Host "[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
     $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
@@ -257,12 +269,17 @@ try {
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
-        $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir }
+        $diagnosticStage = 'ToolSelection'; $diagnosticCode = 'DependencyInvalid'
+        $selectionOptions = @{ ConfigPath = $ConfigPath; ScriptDirectory = $ScriptDir; DiagnosticContext = $toolDiagnosticContext }
         if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $selectionOptions.FfmpegDirectory = $FfmpegDirectory }
         try { $toolInfo = Resolve-AudioToolSelection @selectionOptions }
         catch [OperationCanceledException] { throw }
         catch {
             $selectionError = $_.Exception.Message
+            if ($null -ne $toolDiagnosticContext.NativeResult -and
+                (-not $toolDiagnosticContext.NativeResult.ProcessReleased -or -not $toolDiagnosticContext.NativeResult.PipeDrainCompleted)) {
+                throw "$selectionError Native prerequisite release/pipe completion is unproved. No setup or further native operation was started; review the retained local diagnostic."
+            }
             $repairCommand = Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDir -ConfigPath $ConfigPath
             # Keep the copyable action outside formatted error records, which can
             # wrap long commands in Windows PowerShell 5.1.
@@ -276,10 +293,12 @@ try {
         }
         $ffmpeg = $toolInfo.Ffmpeg.Path
         $ffprobe = $toolInfo.Ffprobe.Path
+        $diagnosticStage = 'CoverValidation'; $diagnosticCode = 'CoverInvalid'
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
             $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
             $CoverPath = $coverValidation.Path
         }
+        $diagnosticStage = 'OutputPreflight'; $diagnosticCode = 'OutputUnwritable'
         Test-OutputWritable -Path $outputParentPath
     }
 }
@@ -315,6 +334,7 @@ if ($DryRun) {
     $batchExitCode = 0
 }
 else {
+$diagnosticStage = 'Conversion'; $diagnosticCode = 'StartupFailed'
 
 function Read-MetadataResponse {
     param([string]$Prompt)
@@ -456,6 +476,7 @@ $consoleCaptureNotice = $script:AudioCancellationContext.ConsoleCaptureError
 Assert-AudioNotCancelled
 
 # --- Output root + log setup ---
+$diagnosticStage = 'OutputInitialization'; $diagnosticCode = 'OutputUnwritable'
 try {
     $run = New-AudioRunReservation -OutputParent $outputParentPath -InputFolder $InputFolder -Files $files -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength -Timestamp $timestamp -StartCounter $provisionalRun.Counter
     $outputRoot = $run.OutputRoot
@@ -493,6 +514,7 @@ try {
 catch {
     throw "Could not initialize output root, log or manifest '$outputRoot': $($_.Exception.Message)"
 }
+$diagnosticStage = 'Conversion'; $diagnosticCode = 'StartupFailed'
 
 if ($script:AudioCancellationContext.ConsoleCaptureEnabled) {
     Write-Log 'Press Ctrl+C during conversion to cancel this run safely.'
@@ -765,6 +787,20 @@ catch {
     } else { "The run stopped: $rootCause" }
     Write-Error "[FATAL] $fatal" -ErrorAction Continue
     # Keep the primary error on the console even when the same log is unavailable.
+    if (-not $run) {
+        if ($diagnosticsReady) {
+            try {
+                $failureCode = $diagnosticCode
+                if ($diagnosticStage -eq 'ToolSelection' -and $toolDiagnosticContext.Code) { $failureCode = $toolDiagnosticContext.Code }
+                $record = New-AudioDiagnosticRecord -ScriptDirectory $ScriptDir -Stage $diagnosticStage -Code $failureCode -Message $rootCause `
+                    -ConfigPath $ConfigPath -Selection $toolInfo -Context $toolDiagnosticContext `
+                    -Counts @{ total = $total; converted = $ok; failed = $failed; exit_code = $batchExitCode; status = $runStatus }
+                $null = Write-AudioStartupFailure -Record $record -DryRun:$DryRun
+            }
+            catch { Write-Warning ('Startup diagnostics unavailable; original failure above is unchanged. ' + $_.Exception.Message) -ErrorAction Continue }
+        }
+        else { Write-Host '[DIAGNOSTIC] stage=Bootstrap; code=HelperMissing; restore the complete application package. Original failure is shown above.' }
+    }
     if ($logPath) {
         try {
             Write-FileNativeDiagnostics

@@ -23,11 +23,14 @@ goto finish
 
 :missing_script
 echo Required Setup-AudioFileForPhone.ps1 is missing. Restore the complete application package.
+echo [DIAGNOSTIC] stage=Bootstrap; code=HelperMissing.
+if exist "%SETUP_HOST%" "%SETUP_HOST%" -NoProfile -ExecutionPolicy RemoteSigned -Command "try { $dir = [IO.Path]::GetDirectoryName($env:SETUP_SCRIPT); $diag = [IO.Path]::Combine($dir, 'AudioFileForPhone.Diagnostics.ps1'); if (Test-Path -LiteralPath $diag -PathType Leaf) { . $diag; $r = New-AudioDiagnosticRecord -ScriptDirectory $dir -Stage Bootstrap -Code HelperMissing -Message 'Required Setup-AudioFileForPhone.ps1 is missing. Restore the complete application package.'; $null = Write-AudioStartupFailure -Record $r } } catch { Write-Warning 'Setup diagnostics unavailable; original failure above is unchanged.' }"
 set "CHILD_EXIT=1"
 goto finish
 
 :missing_host
 echo Windows PowerShell could not be found. Open an allowed PowerShell host and run Setup-AudioFileForPhone.ps1.
+echo [DIAGNOSTIC] stage=Bootstrap; code=HostStartFailed. Console only: the bootstrap host could not start a logger.
 set "CHILD_EXIT=1"
 
 :finish

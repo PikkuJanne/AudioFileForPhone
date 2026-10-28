@@ -107,13 +107,36 @@ function Assert-CiEncodingReport {
             $app.config_created -ne $false) { throw 'Every actual encoding application group must prove conversion, manifest/audio-plan validation, full decode and isolated empty-PATH/config behavior.' }
     }
 }
+function Assert-CiSupportReport {
+    param([object]$Record)
+    if ($Record.schema_version -ne 1 -or $Record.task -cne 'S10' -or $Record.status -cne 'pass' -or
+        $Record.mode -cne 'real_windows_environment_check_selftest_early_failure_and_support_export') { throw 'Support diagnostics requires a passing actual S10/schema1 report.' }
+    foreach ($flag in @('source_unchanged', 'synthetic_unchanged', 'descendant_release_proved', 'cleanup_verified',
+        'copied_bytes_unchanged', 'parent_path_unchanged', 'temp_exclusively_reserved', 'marker_create_new')) {
+        if ($Record.$flag -isnot [bool] -or -not $Record.$flag) { throw "Support diagnostics did not prove $flag." }
+    }
+    foreach ($flag in @('ordinary_music_access', 'owner_media_access', 'user_config_read_or_written', 'persistent_environment_writes', 'automatic_uploads')) {
+        if ($Record.$flag -isnot [bool] -or $Record.$flag) { throw "Support diagnostics violated $flag isolation." }
+    }
+    $cases = @($Record.cases)
+    if ($cases.Count -lt 25 -or @($cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw 'Support diagnostics requires every executed group to pass.' }
+    foreach ($required in @('check-default-success-executes-selected-tools-without-writes',
+        'explicit-synthetic-selftest-converts-validates-hashes-and-cleans',
+        'both-startup-storage-locations-fail-with-original-cause-intact',
+        'dryrun-invalid-input-and-missing-helper-fail-with-no-writes',
+        'support-redaction-rejects-adversarial-free-text-and-unknown-properties',
+        'private-startup-record-review-and-explicit-export-work-with-missing-converter-helper')) {
+        if (@($cases | Where-Object { $_.name -ceq $required }).Count -ne 1) { throw 'Support diagnostics lost a required no-write, self-test, failure or privacy group.' }
+    }
+}
+
 function Invoke-CiHarness {
     param([string]$RelativePath, [string]$Family, [switch]$RealMedia)
     $path = Join-Path $projectRoot $RelativePath
     # Keep every historical suite/report path intact. Current launcher and
     # encoding evidence retain their active-plan step and narrow family names.
-    $childTask = if ($Family -ceq 'launcher') { 'S08' } elseif ($Family -ceq 'encoding-ci') { 'S09' } else { 'T17' }
-    $childParent = if ($Family -in @('launcher', 'encoding-ci')) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
+    $childTask = if ($Family -ceq 'launcher') { 'S08' } elseif ($Family -ceq 'encoding-ci') { 'S09' } elseif ($Family -ceq 'support') { 'S10' } else { 'T17' }
+    $childParent = if ($Family -in @('launcher', 'encoding-ci', 'support')) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
     $evidence = Join-Path $childParent ("$childTask-$Family-$edition-$RunLabel.json")
     if (Test-Path -LiteralPath $evidence) { throw "Existing $Family report cannot be replaced." }
     $arguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-File', $path, '-EvidencePath', $evidence)
@@ -146,13 +169,14 @@ function Invoke-CiHarness {
     } else {
         $resultRow.required_checks = @($child.cases).Count
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
-        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
+        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction', 'support') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
         }
         if ($Family -ceq 'encoding-ci') {
             Assert-CiEncodingReport -Record $child
             $resultRow.required_checks += @($child.matrix).Count + @($child.app_runs).Count
         }
+        if ($Family -ceq 'support') { Assert-CiSupportReport -Record $child }
     }
 }
 
@@ -261,6 +285,7 @@ try {
     $report.analysis.analyzer_version = $analyzer[0].Version.ToString()
     $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
     $analysisFiles += @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1')
+    $analysisFiles += @('AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.Checks.ps1', 'Check-AudioFileForPhone.ps1', 'tests/Test-SupportDiagnostics.ps1')
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -291,6 +316,7 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-FirstRunSetup.ps1' -Family 'firstrunsetup' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-MetadataInteraction.ps1' -Family 'metadatainteraction' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ManagedSetup.ps1' -Family 'managedsetup' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-SupportDiagnostics.ps1' -Family 'support' -RealMedia
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)

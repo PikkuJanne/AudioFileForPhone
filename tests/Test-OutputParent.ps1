@@ -326,6 +326,7 @@ try {
         Copy-Item -LiteralPath $application -Destination $scriptCopy
         $helpersCopy = Join-Path $testRoot 'AudioFileForPhone.Helpers.ps1'
         Copy-Item -LiteralPath $helpers -Destination $helpersCopy
+        Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') -Destination (Join-Path $testRoot 'AudioFileForPhone.Diagnostics.ps1')
         Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -ceq (Get-FileHash -LiteralPath $application).Hash) 'Smoke application copy must preserve all source bytes.'
         Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath $helpers).Hash) 'Smoke runtime helper copy must preserve all source bytes.'
         $report.default_smoke.byte_identical_copies = $true

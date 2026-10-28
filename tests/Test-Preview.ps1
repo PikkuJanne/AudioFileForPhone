@@ -22,7 +22,7 @@ $ownerFile = Join-Path $testRoot '.t12-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preview.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preview.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -120,7 +120,7 @@ function Invoke-RealSuccess {
 function New-AppCopy {
     param([string]$Label, [switch]$Guards)
     $root = Join-Path $testRoot ('A-' + $Label); [IO.Directory]::CreateDirectory($root) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         [IO.File]::Copy((Join-Path $projectRoot $name), (Join-Path $root $name), $false)
         Assert-True ((Get-FileHash -LiteralPath (Join-Path $root $name)).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Every app copy must start byte-identical.'
     }
@@ -148,7 +148,7 @@ function Get-OutputParent {
 '@
         [IO.File]::AppendAllText((Join-Path $root 'AudioFileForPhone.Helpers.ps1'), "`r`n" + $append, [Text.Encoding]::UTF8)
     }
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) { Add-Fixture (Join-Path $root $name) }
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) { Add-Fixture (Join-Path $root $name) }
     return Join-Path $root 'AudioFileForPhone.ps1'
 }
 function New-Driver {

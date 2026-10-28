@@ -8,6 +8,10 @@ remembering remain available offline; no automatic update or global install.
 
 ## Unreleased v1.0.1 work
 
+- Add a no-write environment-check PS1/BAT, explicit owned synthetic self-test,
+  bounded early startup failure records with storage fallback, stable stage/error
+  codes and actionable repairs. Offer local whitelist-based support review/export
+  without uploads; converter DryRun remains no-write even on failures.
 - Plan an exact CBR bitrate and compatible sample rate before encoding, preserving
   ordinary 64 kbps mono/stereo sound. Explicitly downmix supported standard
   multichannel layouts to stereo and reject unknown layouts before encoding.

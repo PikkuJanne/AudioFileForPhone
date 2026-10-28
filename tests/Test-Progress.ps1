@@ -21,7 +21,7 @@ $ownerFile = Join-Path $testRoot '.t13-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Progress.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Progress.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -357,7 +357,7 @@ try {
         Add-Fixture $target;$case['phases']=@($events.Phase);$case['actual_status']=$transaction.Status;$case['existing_final_preserved']=$true
     }
     $app=Join-Path $testRoot 'App';[IO.Directory]::CreateDirectory($app)|Out-Null
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Application copies must start byte-identical.'}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Application copies must start byte-identical.'}
     # Test-only audit after byte-identical copy: every native result has a
     # positive exit proof before the host can authorize recursive fixture cleanup.
     $nativeAudit=@'
@@ -375,7 +375,7 @@ function Invoke-AudioNativeProcess {
 }
 '@
     [IO.File]::AppendAllText((Join-Path $app 'AudioFileForPhone.Helpers.ps1'),"`r`n"+$nativeAudit,[Text.Encoding]::UTF8)
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){Add-Fixture (Join-Path $app $name)}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){Add-Fixture (Join-Path $app $name)}
     $entry=Join-Path $app 'AudioFileForPhone.ps1';$report.copied_entry_bytes_unchanged=$true
     Invoke-Case '100 percent processed retains file failure and never precedes final-file completion' 'A33' {
         param($case);$fixtureInput=Join-Path $testRoot 'Mixed';[IO.Directory]::CreateDirectory($fixtureInput)|Out-Null;$good=Join-Path $fixtureInput '2024-01-01 Good.mp3';[IO.File]::Copy($short,$good,$false);Add-Fixture $good

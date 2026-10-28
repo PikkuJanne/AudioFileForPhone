@@ -49,7 +49,7 @@ $report = [ordered]@{
     status = $(if ($ValidateOnly) { 'fail' } else { 'blocked' })
     error = $null
 }
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-AudioFileForPhone.ps1',
     'tests/Invoke-IsolatedBaseline.ps1', 'tests/Test-BaselineCharacterization.ps1')
 
 function Get-SourceInventory {
@@ -169,9 +169,11 @@ try {
     $characterScript = Join-Path $characterRoot 'AudioFileForPhone.ps1'
     Copy-UnchangedScript $application $legacyScript
     Copy-UnchangedScript $helpers (Join-Path $legacyRoot 'AudioFileForPhone.Helpers.ps1')
+    Copy-UnchangedScript (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') (Join-Path $legacyRoot 'AudioFileForPhone.Diagnostics.ps1')
     Copy-UnchangedScript (Join-Path $PSScriptRoot 'Test-AudioFileForPhone.ps1') $legacySuite
     Copy-UnchangedScript $application $characterScript
     Copy-UnchangedScript $helpers (Join-Path $characterRoot 'AudioFileForPhone.Helpers.ps1')
+    Copy-UnchangedScript (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') (Join-Path $characterRoot 'AudioFileForPhone.Diagnostics.ps1')
     $appTokens = $null; $appErrors = $null
     $appAst = [Management.Automation.Language.Parser]::ParseFile($characterScript, [ref]$appTokens, [ref]$appErrors)
     if (@($appAst.ParamBlock.Parameters | Where-Object { $_.Name.VariablePath.UserPath -eq 'OutputParent' }).Count -ne 1) {

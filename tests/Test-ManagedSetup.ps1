@@ -31,7 +31,7 @@ $originalPath = $env:PATH
 $originalSentinel = [Environment]::GetEnvironmentVariable('AFP_S06_EXECUTION_SENTINEL', 'Process')
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
-$sourcePaths = @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1','tools/ffmpeg-download.json','tests/Test-ManagedSetup.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1','tools/ffmpeg-download.json','tests/Test-ManagedSetup.ps1')
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1; task = $(if ($ciReport) { 'T17' } else { 'S06' }); mode = 'managed_installer_failure_boundaries_and_production_stream_bounds'
@@ -217,7 +217,7 @@ namespace AudioFileForPhoneS06 {
     $created=$true; $report.temp_exclusively_reserved=$true
     Write-NewText $ownerFile $ownerToken; $report.marker_create_new=$true
     $appRoot=Join-Path $testRoot 'App [literal]'; [IO.Directory]::CreateDirectory($appRoot) | Out-Null
-    foreach ($name in @('AudioFileForPhone.Helpers.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1')) {
+    foreach ($name in @('AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1','AudioFileForPhone.ManagedSetup.ps1','Setup-AudioFileForPhone.ps1')) {
         $copy=Join-Path $appRoot $name
         Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must retain source bytes.'

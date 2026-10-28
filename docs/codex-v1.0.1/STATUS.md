@@ -1,3 +1,12 @@
+# S10 in progress
+
+S01-S09 remain completed. S10 implementation adds the no-network environment check,
+explicit synthetic self-test, bounded early startup evidence and opt-in local
+redacted support export. S10 acceptance, frozen source verification and checkpoint
+CI are still IN_PROGRESS. No S11 work, main integration or release action began.
+Runtime remains 1.0.0; the fixed public v1.0.1 target remains PENDING_S17.
+
+## Preserved S09 checkpoint
 # Status
 
 Project IN_PROGRESS. S01-S09 are COMPLETED. S09-A1/A2/A3 pass on the available

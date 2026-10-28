@@ -29,7 +29,7 @@ $ownerFile = Join-Path $testRoot '.s07-owner'; $ownerToken = [guid]::NewGuid().T
 $created = $false; $releaseProved = $true; $exitCode = 1
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'AudioFileForPhone.ManagedSetup.ps1', 'tools/ffmpeg-download.json', 'tests/Test-MetadataInteraction.ps1', '.github/scripts/Invoke-CiChecks.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'AudioFileForPhone.ManagedSetup.ps1', 'tools/ffmpeg-download.json', 'tests/Test-MetadataInteraction.ps1', '.github/scripts/Invoke-CiChecks.ps1')
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $shellPath = Join-Path $PSHOME $(if ($edition -ceq 'ps51') { 'powershell.exe' } else { 'pwsh.exe' })
@@ -270,7 +270,7 @@ try {
     $created=$true; $report.temp_exclusively_reserved=$true
     Write-NewText $ownerFile $ownerToken; Add-Fixture $ownerFile; $report.marker_create_new=$true
     $appRoot=New-Directory ("App [literal] O'Brien "+[char]0xE4)
-    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $copy=Join-Path $appRoot $name; Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must preserve repository bytes.'
         Add-Fixture $copy

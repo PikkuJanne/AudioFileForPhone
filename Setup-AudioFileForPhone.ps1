@@ -74,11 +74,18 @@ param(
 $ErrorActionPreference = 'Stop'
 $setupDirectory = Split-Path -Parent $MyInvocation.MyCommand.Path
 $helperPath = Join-Path $setupDirectory 'AudioFileForPhone.Helpers.ps1'
+$setupDiagnosticsReady = $false
+$setupDiagnosticCode = 'HelperMissing'
 try {
+    $diagnosticsPath = Join-Path $setupDirectory 'AudioFileForPhone.Diagnostics.ps1'
+    if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf -ErrorAction Stop)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
+    . $diagnosticsPath
+    $setupDiagnosticsReady = $true
     if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf -ErrorAction Stop)) {
         throw "Required setup helper is missing: '$helperPath'. Restore the complete application package."
     }
     . $helperPath
+    $setupDiagnosticCode = 'DependencyInvalid'
     Write-Host ('AudioFileForPhone ' + (Get-AudioAppVersion) + ' dependency setup')
     $setupArguments = @{ ScriptDirectory = $setupDirectory; Remember = $Remember; NonInteractive = $NonInteractive; AllowManagedDownload = $true; Download = $Download; Consent = $Consent }
     if ($PSBoundParameters.ContainsKey('FfmpegDirectory')) { $setupArguments.FfmpegDirectory = $FfmpegDirectory }
@@ -92,6 +99,11 @@ try {
     if ($setup.Status -ne 'Ready') {
         Write-Host ('Setup did not configure FFmpeg: ' + $setup.Error)
         Write-Host ('Existing-tool repair: ' + (Get-AudioSetupRepairCommand -ScriptDirectory $setupDirectory -ConfigPath $ConfigPath))
+        try {
+            $record = New-AudioDiagnosticRecord -ScriptDirectory $setupDirectory -Stage Setup -Code $setupDiagnosticCode -Message $setup.Error -ConfigPath $ConfigPath -Selection $setup.Selection
+            $null = Write-AudioStartupFailure -Record $record
+        }
+        catch { Write-Warning ('Setup diagnostics unavailable; original failure above is unchanged. ' + $_.Exception.Message) -ErrorAction Continue }
         exit 1
     }
     if ($setup.Remembered) {
@@ -111,6 +123,15 @@ catch [OperationCanceledException] {
     exit 130
 }
 catch {
-    Write-Host ('Setup failed: ' + $_.Exception.Message)
+    $setupCause = $_.Exception.Message
+    Write-Host ('Setup failed: ' + $setupCause)
+    if ($setupDiagnosticsReady) {
+        try {
+            $record = New-AudioDiagnosticRecord -ScriptDirectory $setupDirectory -Stage Setup -Code $setupDiagnosticCode -Message $setupCause -ConfigPath $ConfigPath
+            $null = Write-AudioStartupFailure -Record $record
+        }
+        catch { Write-Warning ('Setup diagnostics unavailable; original failure above is unchanged. ' + $_.Exception.Message) -ErrorAction Continue }
+    }
+    else { Write-Host '[DIAGNOSTIC] stage=Bootstrap; code=HelperMissing; restore the complete application package. Original failure is shown above.' }
     exit 1
 }

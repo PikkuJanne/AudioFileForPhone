@@ -67,6 +67,7 @@ try {
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiRunLabel')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiDependencyRecord')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiEncodingReport')
+    . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiSupportReport')
     $policyPath = Join-Path $projectRoot '.github/scripts/Test-CiPolicy.ps1'
     $tokens = $null; $errors = $null
     $policyAst = [Management.Automation.Language.Parser]::ParseFile($policyPath, [ref]$tokens, [ref]$errors)
@@ -155,6 +156,29 @@ try {
             $changed = $valid | ConvertTo-Json -Depth 8 | ConvertFrom-Json
             & $mutation $changed
             Assert-CiThrows { Assert-CiEncodingReport -Record $changed } 'Encoding|encoding'
+        }
+    }
+    Invoke-CiPureCase 'support CI rejects missing real selftest privacy and isolation evidence' {
+        $names = @('check-default-success-executes-selected-tools-without-writes',
+            'explicit-synthetic-selftest-converts-validates-hashes-and-cleans',
+            'both-startup-storage-locations-fail-with-original-cause-intact',
+            'dryrun-invalid-input-and-missing-helper-fail-with-no-writes',
+            'support-redaction-rejects-adversarial-free-text-and-unknown-properties',
+            'private-startup-record-review-and-explicit-export-work-with-missing-converter-helper')
+        $names += @(1..19 | ForEach-Object { 'pure-gate-fixture-' + $_ })
+        $valid = [pscustomobject]@{
+            schema_version=1; task='S10'; status='pass'; mode='real_windows_environment_check_selftest_early_failure_and_support_export'
+            source_unchanged=$true; synthetic_unchanged=$true; descendant_release_proved=$true; cleanup_verified=$true
+            copied_bytes_unchanged=$true; parent_path_unchanged=$true; temp_exclusively_reserved=$true; marker_create_new=$true
+            ordinary_music_access=$false; owner_media_access=$false; user_config_read_or_written=$false; persistent_environment_writes=$false; automatic_uploads=$false
+            cases=@($names | ForEach-Object { [pscustomobject]@{name=$_;status='pass'} })
+        }
+        Assert-CiSupportReport $valid
+        foreach ($mutation in @({param($r) $r.cases[1].name='missing-self-test'}, {param($r) $r.cases[0].status='fail'},
+            {param($r) $r.automatic_uploads=$true}, {param($r) $r.user_config_read_or_written=$true},
+            {param($r) $r.cleanup_verified=$false}, {param($r) $r.descendant_release_proved=$false})) {
+            $changed=$valid|ConvertTo-Json -Depth 8|ConvertFrom-Json; & $mutation $changed
+            Assert-CiThrows { Assert-CiSupportReport $changed } 'Support|support'
         }
     }
     Invoke-CiPureCase 'real calendar dates and fallback remain invariant across cultures' {

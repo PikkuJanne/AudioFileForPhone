@@ -28,7 +28,7 @@ $testRoot = Join-Path $tempParent $testName
 $ownerFile = Join-Path $testRoot '.t18-owner'; $ownerToken = [guid]::NewGuid().ToString('N')
 $ownedRootCreated = $false; $descendantReleaseProved = $true; $exitCode = 1
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-HelpVersion.ps1', 'README.md', 'SUPPORT.md', 'CHANGELOG.md',
     'docs/codex-v1/templates/release-manifest.example.json', 'docs/codex-v1/templates/RELEASE_CANDIDATE.example.json')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
@@ -192,7 +192,7 @@ if($global:T18Preview) {
 function New-ExampleFixture {
     param([int]$Number, [string]$Code)
     $app = Join-Path $testRoot ('E' + $Number); [IO.Directory]::CreateDirectory($app) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $target = Join-Path $app $name; [IO.File]::Copy((Join-Path $projectRoot $name), $target, $false)
         Assert-True ((Get-FileHash -LiteralPath $target).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must be byte-identical.'
         Add-Fixture $target
@@ -353,7 +353,7 @@ try {
         param($case)
         Assert-True ($appVersion -cmatch '^1\.0\.0$') 'Authoritative semantic app version must be 1.0.0.'
         $literals = @()
-        foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+        foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
             $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.0' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })

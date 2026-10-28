@@ -25,7 +25,7 @@ $ownerToken = [guid]::NewGuid().ToString('N'); $ownerFile = Join-Path $testRoot 
 $created = $false; $releaseProved = $true
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourcePaths = @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'tests/Test-Launcher.ps1')
+$sourcePaths = @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'tests/Test-Launcher.ps1')
 $systemDirectory = [Environment]::GetFolderPath([Environment+SpecialFolder]::System)
 $cmdPath = Join-Path $systemDirectory 'cmd.exe'
 $ps51Path = Join-Path $systemDirectory 'WindowsPowerShell\v1.0\powershell.exe'
@@ -147,7 +147,7 @@ exit ([int]$env:AFP_S08_EXIT)
 function New-LaunchCopy {
     param([string]$Name, [string]$Missing = '')
     $directory = New-Directory $Name
-    foreach ($file in @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($file in @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         if ($file -ceq $Missing) { continue }
         $destination = Join-Path $directory $file
         Copy-Item -LiteralPath (Join-Path $projectRoot $file) -Destination $destination
@@ -322,7 +322,7 @@ namespace AFPS08 { public static class DirectoryOwner {
             if ($null -ne $shell) { [Runtime.InteropServices.Marshal]::FinalReleaseComObject($shell) | Out-Null }
         }
     }
-    foreach ($missing in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Launcher.ps1')) {
+    foreach ($missing in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Launcher.ps1')) {
         $missingCopy = New-LaunchCopy ('missing-' + $missing.Replace('.', '-')) $missing
         Invoke-Case ('missing-' + $missing) 'S08-A3' {
             param($case)

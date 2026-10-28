@@ -216,9 +216,65 @@ to require one host, or invoke `AudioFileForPhone.Launcher.ps1` with `-HostPath`
 An explicit choice is checked and never replaced with another host. Use that
 launcher's `-StartupTimeoutSeconds` (1–60) for slow startup. This bound does not
 limit normal encode or full-decode time. Keep both launcher files beside the BAT,
-and keep `AudioFileForPhone.Helpers.ps1` beside the application. Startup failures
-identify missing runtime files. This startup work does not provide the later
-planned diagnostic/export entry point.
+and keep `AudioFileForPhone.Helpers.ps1` and `AudioFileForPhone.Diagnostics.ps1`
+beside the application. Startup failures identify missing runtime files.
+
+## Environment check and support export
+
+Use `Check-AudioFileForPhone.bat` for the default environment check. It accepts no
+arguments. In an allowed PowerShell host, the PS1 offers explicit options:
+
+```powershell
+.\Check-AudioFileForPhone.ps1 -FfmpegDirectory 'C:\ffmpeg\bin' -ConfigPath '.\portable-config.json'
+.\Check-AudioFileForPhone.ps1 -FfmpegDirectory 'C:\ffmpeg\bin' -SelfTest
+.\Check-AudioFileForPhone.ps1 -DiagnosticPath 'C:\Reports\failure.json'
+.\Check-AudioFileForPhone.ps1 -DiagnosticPath 'C:\Reports\failure.json' -ExportPath 'C:\Reports\support.txt'
+```
+
+| Operation | Reads and execution | Writes |
+| --- | --- | --- |
+| Default check | App/OS/host/config identity; production resolver executes selected trusted binaries for bounded version and encoder queries | None, including failures |
+| `-SelfTest` | Production resolver, synthetic MP3 planning/encoding, complete decode and source-hash verification | Only its uniquely owned TEMP fixture tree; cleans after ownership/release proof |
+| `-DiagnosticPath` | One bounded existing private record; no tool execution, config lookup or audio access | None |
+| `-ExportPath` | Whitelisted support text displayed for review | One new explicit file in an existing directory; no overwrite |
+| Converter `-DryRun` | Existing naming/discovery preview; no tool execution or config read | None, including failures |
+
+The check requires local config/tool paths and skips remote PATH entries.
+PowerShell/.NET can use transient compiler TEMP files while loading native
+interop; the no-write contract covers persistent application data and settings.
+
+No check, self-test or support export downloads or uploads anything. A self-test
+fixture limitation is `SELF_TEST_UNAVAILABLE`; it does not establish a broken
+ordinary conversion. A timeout stays distinct. Encoding and complete decode
+retain their unlimited normal runtime. If release or ownership is uncertain,
+the self-test reports the exact retained scope; do not remove unrelated files.
+Check/self-test exits are 0 (passed), 1 (failed/unavailable), or 130 (cancelled).
+Physical console/phone behavior and Windows 10 acceptance remain separate gates.
+
+Real converter/launcher/setup startup failures attempt a PRIVATE JSON report
+before an ordinary run exists. The first location is
+`%LOCALAPPDATA%\AudioFileForPhone\Diagnostics`; a unique TEMP location is the
+fallback. Records are capped at 64 KiB and disclose exact local paths/native
+errors. Logging failure never replaces the original console cause. Missing
+bootstrap files/hosts can leave console-only evidence when no safe logger can
+run. DryRun and the default check never create these records.
+
+| Stable code | Next action |
+| --- | --- |
+| `HelperMissing` | Restore the complete application package and keep its helpers together. |
+| `DependencyMissing` / `DependencyInvalid` | Select a trusted directory containing both tools with the separate setup command. |
+| `ConfigInvalid` | Preserve the file; use an explicit `-FfmpegDirectory` or deliberately select another `-ConfigPath` in setup. |
+| `HostStartFailed` | Select an allowed x64 PowerShell 7 or Windows PowerShell 5.1 host; respect managed policy. |
+| `StartupTimeout` | Retry responsive trusted tools/host; adjust the advanced probe deadline only for slow media probes. |
+| `CapabilityMissing` / `IncompatibleAudioSettings` | Review the selected build, requested bitrate and supported channel layout. |
+| `OutputUnwritable` | Repair storage/permissions or choose a shorter writable destination. |
+
+The report records a stable stage separately from its code. Export copies a
+strict whitelist, replaces paths with tokens and omits raw errors, command
+arguments, PATH, source names and metadata. It can review startup records even
+when the main converter helper is missing. Review the displayed text before
+sharing; redaction reduces identifying content and cannot guarantee anonymity.
+Private records are never uploaded or committed automatically.
 
 ## Cancellation and incomplete outputs
 

@@ -31,7 +31,7 @@ $children = New-Object 'System.Collections.Generic.List[object]'
 $events = New-Object 'System.Collections.Generic.List[object]'
 $ownedRuns = New-Object 'System.Collections.Generic.List[object]'
 $savedAcls = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-RunReservation.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-RunReservation.ps1')
 $exitCode = 1
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
@@ -246,6 +246,7 @@ namespace AudioFileForPhoneT08 {
     $scriptCopy = Join-Path $appRoot 'AudioFileForPhone.ps1'; $helpersCopy = Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Destination $scriptCopy
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1') -Destination $helpersCopy
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') -Destination (Join-Path $appRoot 'AudioFileForPhone.Diagnostics.ps1')
     foreach ($copy in @($scriptCopy, $helpersCopy)) {
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot (Split-Path -Leaf $copy))).Hash) 'Application/helper copies must preserve exact source bytes.'
     }

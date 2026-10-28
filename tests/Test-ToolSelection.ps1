@@ -28,7 +28,7 @@ $ownerFile = Join-Path $testRoot '.s04-owner'; $ownerToken = [guid]::NewGuid().T
 $created = $false; $releaseProved = $true; $exitCode = 1
 $originalPath = $env:PATH
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-ToolSelection.ps1', '.github/scripts/Invoke-CiChecks.ps1')
+$sourcePaths = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-ToolSelection.ps1', '.github/scripts/Invoke-CiChecks.ps1')
 $nativeRuns = New-Object 'System.Collections.Generic.List[object]'
 $originalNative = $null
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -165,7 +165,7 @@ try {
     $created = $true; $report.temp_exclusively_reserved = $true
     Write-NewText $ownerFile $ownerToken; Add-Fixture $ownerFile; $report.marker_create_new = $true
     $appRoot = New-Directory 'App [literal]'; $emptyApp = New-Directory 'EmptyApp'; $configRoot = New-Directory 'Config [literal]'
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $copy = Join-Path $appRoot $name; Copy-Item -LiteralPath (Join-Path $projectRoot $name) -Destination $copy
         Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must preserve source bytes.'
         Add-Fixture $copy
