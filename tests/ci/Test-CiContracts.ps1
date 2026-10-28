@@ -68,6 +68,7 @@ try {
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiDependencyRecord')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiEncodingReport')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiSupportReport')
+    . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiCleanFirstReport')
     $policyPath = Join-Path $projectRoot '.github/scripts/Test-CiPolicy.ps1'
     $tokens = $null; $errors = $null
     $policyAst = [Management.Automation.Language.Parser]::ParseFile($policyPath, [ref]$tokens, [ref]$errors)
@@ -115,6 +116,25 @@ try {
             $changed = $valid | ConvertTo-Json -Depth 10 | ConvertFrom-Json
             & $mutation $changed
             Assert-CiThrows { Assert-CiDependencyRecord -Record $changed -Lock $lock } 'contract|lock'
+        }
+    }
+    Invoke-CiPureCase 'clean first-run CI rejects inherited tools missing processes and unverified conversion evidence' {
+        $missing=@('empty','stale','malformed' | ForEach-Object { [pscustomobject]@{name=('fresh-no-tools-'+$_+'-PATH-refuses-with-repair');status='pass';fresh_process=$true;PATH=$_;exit_code=1;config_initially_absent=$true;app_local_pair_absent=$true;output_absent=$true} })
+        $conversions=@('Explicit','Saved','AppLocal' | ForEach-Object { [pscustomobject]@{name=('pure-gate-'+$_);status='pass';fresh_process=$true;PATH=$(if($_ -ceq 'AppLocal'){'malformed'}else{'empty'});config_created=$false;config_unchanged=$true;conversion=[pscustomobject]@{selection_origin=$_;converted=1;bitrate_kbps=64;independently_probed=$true;full_decode=$true}} })
+        $valid=[pscustomobject]@{schema_version=1;task='S12';mode='real_windows_clean_first_run_fresh_process';status='pass';fresh_process_count=7;source_unchanged=$true;synthetic_unchanged=$true;descendant_release_proved=$true;cleanup_verified=$true;copied_bytes_unchanged=$true;parent_path_unchanged=$true;temp_exclusively_reserved=$true;marker_create_new=$true;fixture_tools_used_by_absolute_path_only=$true;child_environment_sanitized=$true;ordinary_music_access=$false;owner_media_access=$false;user_config_read_or_written=$false;persistent_environment_writes=$false;automatic_uploads=$false;cases=@($missing)+@($conversions)+@([pscustomobject]@{name='pure-deliberate-save';status='pass';fresh_process=$true;production_saved_selection=$true;exit_code=0;PATH='empty'})}
+        Assert-CiCleanFirstReport $valid
+        foreach($mutation in @(
+            {param($r)$r.status='NOT_RUN'}, {param($r)$r.fresh_process_count=6},
+            {param($r)$r.child_environment_sanitized=$false}, {param($r)$r.fixture_tools_used_by_absolute_path_only=$false},
+            {param($r)$r.cases[0].exit_code=0}, {param($r)$r.cases[1].config_initially_absent=$false},
+            {param($r)$r.cases[2].PATH='developer inherited'}, {param($r)$r.cases[3].conversion.bitrate_kbps=32},
+            {param($r)$r.cases[4].conversion.full_decode=$false}, {param($r)$r.cases[5].config_created=$true},
+            {param($r)$r.cases[6].production_saved_selection=$false}, {param($r)$r.cases=@($r.cases|Select-Object -First 6)},
+            {param($r)$r.cleanup_verified=$false}
+        )) {
+            $changed=$valid|ConvertTo-Json -Depth 8|ConvertFrom-Json
+            & $mutation $changed
+            Assert-CiThrows { Assert-CiCleanFirstReport $changed } 'Clean|clean'
         }
     }
     Invoke-CiPureCase 'encoding CI reports require complete exact planned results actual app groups and release integrity' {

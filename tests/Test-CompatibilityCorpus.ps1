@@ -17,7 +17,7 @@ $edition = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'ps51' } else { 'ps7' 
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = Split-Path -Parent $evidenceFullPath
 $leaf = Split-Path -Leaf $evidenceFullPath
-$localReport = $leaf -cmatch "^S11-corpus-$edition-(attempt|final)[1-9][0-9]*\.json$"
+$localReport = $leaf -cmatch "^S11-corpus-$edition-((attempt|final)[1-9][0-9]*|run[1-9][0-9]*_[1-9][0-9]*)\.json$"
 if ($evidenceParent -ine (Join-Path $projectRoot 'docs/codex-v1.0.1/evidence') -or -not $localReport) {
     throw 'Use a fresh active S11-corpus-ps51/ps7-attempt/finalN.json report.'
 }

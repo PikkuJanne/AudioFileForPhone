@@ -49,6 +49,12 @@ active branch and frozen release source; they need not all be the same commit.
 
 ## S14 — freeze candidate
 
+S12 supplies the read-only local gate described in RELEASE_GATES.md. At acceptance
+use tools/Test-ReleaseGates.ps1 with the actual candidate record; before publication
+use its Publication phase. A refusal is a missing/failed/stale evidence result,
+never permission to waive client, package or human gates. A pass grants no release
+authority and does not replace the live/draft/public checks below.
+
 Recheck target v1.0.1 is unused; preserve the original v1.0.0 tag and asset digests.
 Integrate code normally, require a clean commit, run full tests, then freeze source C.
 Build by an explicit runtime-file allowlist from C, never `zip the working tree`.

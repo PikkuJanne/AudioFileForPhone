@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   windows:
+    name: Supplementary Windows Server 2025 / ${{ matrix.edition }}
     runs-on: windows-2025
     timeout-minutes: 20
     strategy:
@@ -54,6 +55,11 @@ jobs:
             docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S09-encoding-ci-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S10-support-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S06-managedreal-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S11-corpus-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S11-filesystem-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
           retention-days: 14
           if-no-files-found: warn
           include-hidden-files: false

@@ -130,13 +130,38 @@ function Assert-CiSupportReport {
     }
 }
 
+function Assert-CiCleanFirstReport {
+    param([object]$Record)
+    if ($Record.schema_version -ne 1 -or $Record.task -cne 'S12' -or $Record.status -cne 'pass' -or $Record.mode -cne 'real_windows_clean_first_run_fresh_process') { throw 'Clean first-run needs actual passing S12/schema1 report.' }
+    foreach ($flag in @('source_unchanged','synthetic_unchanged','descendant_release_proved','cleanup_verified','copied_bytes_unchanged','parent_path_unchanged','temp_exclusively_reserved','marker_create_new','fixture_tools_used_by_absolute_path_only','child_environment_sanitized')) {
+        if ($Record.$flag -isnot [bool] -or -not $Record.$flag) { throw "Clean first-run did not prove $flag." }
+    }
+    foreach ($flag in @('ordinary_music_access','owner_media_access','user_config_read_or_written','persistent_environment_writes','automatic_uploads')) {
+        if ($Record.$flag -isnot [bool] -or $Record.$flag) { throw "Clean first-run violated $flag isolation." }
+    }
+    $cases = @($Record.cases)
+    if ($cases.Count -ne 7 -or $Record.fresh_process_count -ne 7 -or @($cases | Where-Object { $_.status -cne 'pass' -or $_.fresh_process -ne $true }).Count -ne 0) { throw 'Clean first-run requires seven fresh passing production process cases.' }
+    foreach ($label in @('empty','stale','malformed')) {
+        $rows = @($cases | Where-Object { $_.name -ceq ('fresh-no-tools-'+$label+'-PATH-refuses-with-repair') })
+        if ($rows.Count -ne 1 -or $rows[0].PATH -cne $label -or $rows[0].exit_code -ne 1 -or $rows[0].config_initially_absent -ne $true -or $rows[0].app_local_pair_absent -ne $true -or $rows[0].output_absent -ne $true) { throw 'Clean first-run lost no-tool PATH/config refusal evidence.' }
+    }
+    foreach ($origin in @('Explicit','Saved','AppLocal')) {
+        $rows = @($cases | Where-Object { $_.conversion.selection_origin -ceq $origin })
+        if ($rows.Count -ne 1 -or $rows[0].conversion.converted -ne 1 -or $rows[0].conversion.bitrate_kbps -ne 64 -or $rows[0].conversion.independently_probed -ne $true -or $rows[0].conversion.full_decode -ne $true) { throw 'Clean first-run lost independently verified production conversion.' }
+        if ($origin -ceq 'Saved') {
+            if ($rows[0].config_unchanged -ne $true -or $rows[0].PATH -cne 'empty') { throw 'Clean first-run saved process lost config integrity or empty PATH.' }
+        } elseif ($rows[0].config_created -isnot [bool] -or $rows[0].config_created -or $rows[0].PATH -cne $(if ($origin -ceq 'AppLocal') { 'malformed' } else { 'empty' })) { throw 'Clean first-run explicit/app-local process changed config or PATH isolation.' }
+    }
+    if (@($cases | Where-Object { $_.production_saved_selection -eq $true -and $_.exit_code -eq 0 -and $_.PATH -ceq 'empty' }).Count -ne 1) { throw 'Clean first-run lost deliberately saved production setup.' }
+}
 function Invoke-CiHarness {
     param([string]$RelativePath, [string]$Family, [switch]$RealMedia)
     $path = Join-Path $projectRoot $RelativePath
     # Keep every historical suite/report path intact. Current launcher and
     # encoding evidence retain their active-plan step and narrow family names.
-    $childTask = if ($Family -ceq 'launcher') { 'S08' } elseif ($Family -ceq 'encoding-ci') { 'S09' } elseif ($Family -ceq 'support') { 'S10' } else { 'T17' }
-    $childParent = if ($Family -in @('launcher', 'encoding-ci', 'support')) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
+    $activeFamilies = @{ launcher='S08'; 'encoding-ci'='S09'; support='S10'; managedreal='S06'; corpus='S11'; filesystem='S11'; cleanfirst='S12'; releasegates='S12' }
+    $childTask = if ($activeFamilies.ContainsKey($Family)) { $activeFamilies[$Family] } else { 'T17' }
+    $childParent = if ($activeFamilies.ContainsKey($Family)) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
     $evidence = Join-Path $childParent ("$childTask-$Family-$edition-$RunLabel.json")
     if (Test-Path -LiteralPath $evidence) { throw "Existing $Family report cannot be replaced." }
     $arguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-File', $path, '-EvidencePath', $evidence)
@@ -157,7 +182,7 @@ function Invoke-CiHarness {
         $child.task -cne $childTask -or $child.tested_commit -cne $report.tested_commit -or $child.shell -cne $report.shell) {
         throw "$Family requires exit zero, pass status and unchanged source bytes."
     }
-    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package', 'launcher')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
+    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package', 'launcher', 'managedreal')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
     if ($Family -ceq 'baseline') {
         if ($child.mode -cne 'real_ffmpeg_baseline' -or $child.legacy.exit_code -ne 0 -or $child.legacy.status -cne 'pass' -or
             $child.characterization.status -cne 'pass' -or $child.isolation.verified -ne $true -or $child.isolation.copied_bytes_unchanged -ne $true) {
@@ -169,7 +194,7 @@ function Invoke-CiHarness {
     } else {
         $resultRow.required_checks = @($child.cases).Count
         if ($resultRow.required_checks -lt 1 -or @($child.cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw "$Family must contain passing actual cases." }
-        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction', 'support') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
+        if ($Family -in @('native', 'help', 'shortoperations', 'toolselection', 'firstrunsetup', 'metadatainteraction', 'support', 'managedreal', 'corpus', 'filesystem', 'cleanfirst') -and ($child.synthetic_unchanged -ne $true -or $child.descendant_release_proved -ne $true)) {
             throw 'Media suites must preserve fixture bytes and prove every descendant release before cleanup.'
         }
         if ($Family -ceq 'encoding-ci') {
@@ -177,6 +202,14 @@ function Invoke-CiHarness {
             $resultRow.required_checks += @($child.matrix).Count + @($child.app_runs).Count
         }
         if ($Family -ceq 'support') { Assert-CiSupportReport -Record $child }
+        if ($Family -ceq 'cleanfirst') { Assert-CiCleanFirstReport -Record $child }
+        if ($Family -ceq 'corpus') {
+            if ($child.mode -cne 'real_windows_complementary_short_irregular_codec_corpus' -or @($child.matrix).Count -ne 10 -or
+                @($child.matrix | Where-Object { $_.status -cne 'pass' -or $_.full_decode -ne $true -or $_.observed_bitrate_bps -ne ([long]$_.requested_bitrate_kbps * 1000) -or $_.observed_sample_rate -ne $_.planned_sample_rate -or $_.observed_channels -ne $_.planned_channels }).Count -ne 0) { throw 'Complementary corpus lost exact planned real conversion/decode evidence.' }
+            $resultRow.required_checks += @($child.matrix).Count
+        }
+        if ($Family -ceq 'filesystem' -and ($child.acls_restored -isnot [bool] -or -not $child.acls_restored)) { throw 'Filesystem campaign did not restore actual owned ACLs.' }
+        if ($Family -ceq 'managedreal' -and ($child.mode -cne 'real_windows_pinned_vendor_network' -or $child.mocked_network -ne $false -or @($child.cases).Count -ne 3)) { throw 'Online installer requires three actual pinned vendor setup cases.' }
     }
 }
 
@@ -185,11 +218,17 @@ $reportPath = Join-Path $evidenceParent ("T17-ci-$edition-$RunLabel.json")
 if (Test-Path -LiteralPath $reportPath) { throw 'CI report already exists; select a fresh label.' }
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
+$ciOperatingSystem = Get-CimInstance Win32_OperatingSystem
+$ciWindowsRegistry = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
     schema_version = 1; task = 'T17'; mode = 'syntax_analysis_unit_real_ffmpeg'
     command = [Environment]::CommandLine; started_utc = [DateTime]::UtcNow.ToString('o')
     shell = $PSVersionTable.PSVersion.ToString(); shell_edition = $PSVersionTable.PSEdition
     os = [Environment]::OSVersion.Version.ToString()
+    windows_caption = $ciOperatingSystem.Caption; windows_product_type = [int]$ciOperatingSystem.ProductType
+    windows_build = $ciWindowsRegistry.CurrentBuildNumber + '.' + $ciWindowsRegistry.UBR
+    windows_display_version = $ciWindowsRegistry.DisplayVersion; process_64bit = [Environment]::Is64BitProcess
+    acceptance_class = $(if ($env:GITHUB_ACTIONS -ceq 'true') { 'supplementary_windows_server_ci' } elseif ($ciOperatingSystem.ProductType -eq 1) { 'windows_client_local' } else { 'supplementary_windows_server_local' })
     tested_commit = (& git -C $projectRoot rev-parse HEAD | Out-String).Trim()
     github_sha = $env:GITHUB_SHA; github_event = $env:GITHUB_EVENT_NAME; github_run_id = $env:GITHUB_RUN_ID; github_run_attempt = $env:GITHUB_RUN_ATTEMPT
     github_ref = $env:GITHUB_REF; github_head_ref = $env:GITHUB_HEAD_REF; github_base_ref = $env:GITHUB_BASE_REF
@@ -286,6 +325,7 @@ try {
     $analysisFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'Setup-AudioFileForPhone.ps1') + @($sourcePaths | Where-Object { $_ -match '^\.github/scripts/.*\.ps1$|^tests/ci/.*\.ps1$|^tools/.*\.ps1$|^tests/Test-Package\.ps1$' })
     $analysisFiles += @('AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1')
     $analysisFiles += @('AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.Checks.ps1', 'Check-AudioFileForPhone.ps1', 'tests/Test-SupportDiagnostics.ps1')
+    $analysisFiles += @('tests/Test-CleanFirstRun.ps1', 'tests/Test-CompatibilityCorpus.ps1', 'tests/Test-CompatibilityFilesystem.ps1', 'tests/Test-ManagedSetupReal.ps1')
     $settingsPath = Join-Path $projectRoot '.github/scripts/PSScriptAnalyzerSettings.psd1'
     $settings = Import-PowerShellDataFile -LiteralPath $settingsPath
     $report.analysis.rules = @($settings.IncludeRules); $report.analysis.files = $analysisFiles
@@ -303,6 +343,8 @@ try {
     $report.analysis.status = 'pass'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiContracts.ps1' -Family 'unit'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiDependencies.ps1' -Family 'ci-dependencyguards'
+    Invoke-CiHarness -RelativePath 'tests/ci/Test-ReleaseGates.ps1' -Family 'releasegates'
+    Invoke-CiHarness -RelativePath 'tests/Test-CleanFirstRun.ps1' -Family 'cleanfirst' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-Launcher.ps1' -Family 'launcher'
     # Package tests inspect the verified external tool identity; they do not convert media.
     Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
@@ -317,6 +359,9 @@ try {
     Invoke-CiHarness -RelativePath 'tests/Test-MetadataInteraction.ps1' -Family 'metadatainteraction' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-ManagedSetup.ps1' -Family 'managedsetup' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Test-SupportDiagnostics.ps1' -Family 'support' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-CompatibilityCorpus.ps1' -Family 'corpus' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-CompatibilityFilesystem.ps1' -Family 'filesystem' -RealMedia
+    Invoke-CiHarness -RelativePath 'tests/Test-ManagedSetupReal.ps1' -Family 'managedreal'
     # Last and sequential: the retained resource-handle check has an unchanged quiet allowance.
     Invoke-CiHarness -RelativePath 'tests/Test-NativeProcess.ps1' -Family 'native' -RealMedia
     $report.required_checks = [int](($report.tests | Measure-Object -Property required_checks -Sum).Sum)

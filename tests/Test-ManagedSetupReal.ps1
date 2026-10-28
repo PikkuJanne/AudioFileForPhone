@@ -2,7 +2,8 @@
 S06 opt-in real-network Windows acceptance. Downloads the reviewed runtime pin
 through the production setup API into one marker-owned TEMP scope, retains every
 vendor file, then converts a tiny synthetic input in a fresh process using only
-the remembered owned config. This suite is deliberately outside mandatory CI.
+the remembered owned config. CI invokes this separately named explicit online
+acceptance; dependency provisioning never supplies its setup result.
 #>
 [CmdletBinding()]
 param([Parameter(Mandatory = $true)][string]$EvidencePath)
@@ -13,7 +14,7 @@ $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = Split-Path -Parent $evidenceFullPath
 $leaf = Split-Path -Leaf $evidenceFullPath
 if ($evidenceParent -ine (Join-Path $projectRoot 'docs/codex-v1.0.1/evidence') -or
-    $leaf -cnotmatch "^S06-managedreal-$edition-(attempt|final)[1-9][0-9]*\.json$") {
+    $leaf -cnotmatch "^S06-managedreal-$edition-((attempt|final)[1-9][0-9]*|run[1-9][0-9]*_[1-9][0-9]*)\.json$") {
     throw 'Use a fresh S06-managedreal-ps51/ps7-attempt/final report in the active evidence directory.'
 }
 if (Test-Path -LiteralPath $evidenceFullPath) { throw 'Evidence already exists; select a fresh label.' }
