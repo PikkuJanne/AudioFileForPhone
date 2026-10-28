@@ -1,3 +1,65 @@
+# Next session — S10 checkpoint
+
+S01-S10 COMPLETED. S11 - Run compatibility and failure regression campaign is next
+eligible only in a separate owner thread; it remains NOT_STARTED. Do not restart
+earlier steps or begin S11 in the S10 thread. If the containing checkpoint's
+advertised equality or exact-head CI is unverified/failed, resume S10 instead.
+
+Tested source/runtime b05b581dc6372cecd99471c53ee2cac72b8267ba has final support27,
+package61 and native35 per shell plus required17-file zero-diagnostic analyzer.
+All24 accepted local reports pass644 groups/6historical observations;16older
+reports retain their true ec82803/35cc0a7 IDs and matching runtime hashes. Native
+runs last/sequentially. S10.json, S10-HANDOVER.md, S10-REVIEW.md and
+S10-NONPASSES.md retain commands/hashes, actual and injected distinctions,
+preparation nonpasses/limits, CI and full handover. No S10 owner action is needed.
+Refresh the containing checkpoint from the previous final response; no
+self-containing SHA or pending-CI pass is claimed.
+
+Use this filled next-thread prompt:
+
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Tested source: b05b581dc6372cecd99471c53ee2cac72b8267ba.
+Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+RELEASE_TARGET.json, evidence/S10.json, evidence/S10-HANDOVER.md,
+evidence/S10-REVIEW.md and evidence/S10-NONPASSES.md.
+Refresh the containing checkpoint recorded in the previous final response,
+fresh local/live feature and main refs, and exact-head push/PR CI.
+Complete ONLY S11 - Run compatibility and failure regression campaign.
+S01-S10 are complete; do not restart them. Read tasks/S11.md and its
+referenced specs, including specs/SYNC_AND_RELEASE.md. Do not start S12.
+Available client: Windows11 Pro26H2 26300.9711 x64,
+PS5.1 5.1.26100.9711, portablePS7 7.6.5 and StorePS7 7.6.7.
+C:\ffmpeg\bin is Gyan Git ec420ba161; reference9.0.2 development tools
+remain separate from managed end-user setup acceptance.
+Retain S10 no-write environment check/support review and DryRun errors,
+explicit production synthetic self-test with exact owned cleanup,
+bounded private startup reports/fallback, strict whitelist local export,
+local-only check/import/TEMP guards and late cancellation130.
+Preserve prerequisite/capability release refusal before another native
+operation or interactive repair. Keep S09 exact audio planning/validation,
+compatible64kbps sound, metadata/artwork, downmix/rejection, full decode,
+owned partials/no-overwrite and unlimited normal encode/decode.
+Retain S08 startup/override/policy/literal arguments and no retry after
+application entry, shared resolver/save/setup APIs, Enter/M/Q/input guards
+and separate consent-based setup. Conversion/check never download.
+Keep UTF8 CP65001, owned hidden drivers, own-host module precedence,
+historical report contracts, isolated synthetic fixtures and ConfigPath.
+Preserve preparation nonpasses/uncertain scopes; do not disable safeguards.
+No ordinary Music/personal media scan or repeated owner diagnostics.
+Preserve defaults, sources, icons/posters and published v1.0.0.
+Main integration remains separate under S14 reviewed policy and owner approval.
+Update evidence/state/status/next-session/decisions and full handover.
+Test/review/commit/push; verify fresh advertised equality and exact-head CI.
+Give the filled next-thread prompt, then STOP.
+Fixed deliverable: public v1.0.1. Only separately started S17 publishes
+S16's exact accepted source/assets.
+```
+
+## Preserved S09 next-session checkpoint
+
 # Next session
 
 S01-S09 COMPLETED. S10 - Ship diagnostics, early failure reports and self-test is

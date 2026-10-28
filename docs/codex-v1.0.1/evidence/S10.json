@@ -1,28 +1,729 @@
 {
   "schema_version": 1,
   "step": "S10",
-  "status": "IN_PROGRESS",
+  "status": "COMPLETED",
+  "scope": "Environment check, early failure records, explicit synthetic self-test and opt-in local redacted export only. S11 not started.",
   "entry_commit": "ec828036cda843f9fadff2bc932125d84d241218",
-  "scope": "Environment check, explicit synthetic self-test, early failure records and local redacted export only.",
+  "tested_source_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+  "production_runtime_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+  "client_date": "2026-10-28",
+  "client_timezone": "Europe/Berlin",
   "entry_sync": {
-    "local_feature": "ec828036cda843f9fadff2bc932125d84d241218",
-    "advertised_feature": "ec828036cda843f9fadff2bc932125d84d241218",
-    "local_main": "28f53b10529495754273d55654c7b29e78848c83",
-    "advertised_main": "28f53b10529495754273d55654c7b29e78848c83",
+    "feature": "ec828036cda843f9fadff2bc932125d84d241218",
+    "advertised_feature_equal": true,
+    "main": "28f53b10529495754273d55654c7b29e78848c83",
+    "advertised_main_equal": true,
     "push_ci": 40528272820,
     "pr_ci": 40528284950,
     "all_four_jobs": "success",
     "pr": "OPEN draft unmerged"
   },
-  "client_date": "2026-10-28",
-  "client_timezone": "Europe/Berlin",
-  "acceptance": "IN_PROGRESS; final exact-source tests, review and feature sync/CI remain",
+  "environment": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "ps51": "5.1.26100.9711",
+    "portable_ps7": "7.6.5",
+    "store_ps7": "7.6.7 (retained startup route only)",
+    "process_64bit": true,
+    "output_codepage": 65001,
+    "ordinary_music_access": false,
+    "personal_media_access": false,
+    "owner_config_read_or_written": false,
+    "persistent_environment_changes": false,
+    "physical_manual_evidence": false,
+    "config_scope": "Explicit owned absent ConfigPath or owned setup config. Child LOCALAPPDATA/TEMP/PATH changes are process-only."
+  },
+  "acceptance": [
+    {
+      "id": "S10-A1",
+      "status": "PASSED",
+      "observed": "Actual missing helper/dependency/config/host failures produce bounded private records with stable code/stage, actual host/build/hashes/config-source/attempts and repair. Local storage failure uses unique TEMP fallback; both blocked locations preserve original cause and exit1 without a run. Bootstrap-unavailable paths preserve console cause."
+    },
+    {
+      "id": "S10-A2",
+      "status": "PASSED",
+      "observed": "Default check/support review create no persistent application files, read no audio and change no settings. Production resolver/version/encoder/sample-rate checks execute selected trusted binaries. Explicit self-test uses production probe/plan/builder/transaction/full decode, exact64kbps shape, source hashes and owned cleanup. Unavailable fixtures, timeout, cancellation and cleanup-retention remain distinct; actual late cleanup-cancellation preserves130."
+    },
+    {
+      "id": "S10-A3",
+      "status": "PASSED",
+      "observed": "Both shells pass whitelist redaction, adversarial fields, bounded import, helper-independent support review, explicit create-new export/reparse refusal, DryRun success/failure no-write, local-only refusal and actionable codes. No upload/download. Refusal injections are labelled separately from real self-test/media evidence."
+    }
+  ],
+  "contracts": {
+    "check": "No InputFolder, no media/settings/automatic diagnostic writes including errors. Local-only selection, no application network requests; trusted binaries execute. PowerShell/.NET may use transient compiler/runtime TEMP files.",
+    "selftest": "Explicit, uniquely reserved TEMP tree; held token marker identity, fixed deletion inventory, no-reparse and native release/pipe proof. No ordinary Music/source scan; unlimited production encode/full decode.",
+    "support": "DiagnosticPath imports <=64KiB strict UTF8/schema1 private record without main helper/native execution. Console whitelist review. ExportPath creates one new explicit local file, no overwrite/upload. No anonymity guarantee.",
+    "startup": "<=64KiB private JSON under process LOCALAPPDATA/AudioFileForPhone/Diagnostics then unique local TEMP fallback. Original console cause survives storage/logger failure. DryRun errors console-only.",
+    "release_refusal": "Unproved prerequisite native release/pipe completion cannot continue into interactive setup or another native operation."
+  },
+  "preserved": {
+    "default_bitrate_kbps": 64,
+    "source_formats": [
+      "MP3",
+      "M4A",
+      "OGG"
+    ],
+    "normal_encode_full_decode_timeout_ms": 0,
+    "core_function_extents_equal_to_entry": 11,
+    "comparison_limit": "LF-normalized source-only AST equality is not media evidence. Retained baseline/menu/diagnostic/native/short-operation media regressions pass; CI retains the full S09 matrix.",
+    "setup": "Separate consent-based setup, shared save APIs and vendor pin remain. Conversion/check never download.",
+    "assets": "No icon/poster or published release/tag/asset mutation."
+  },
+  "runtime_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "2bfbe066420c76f00391f2c38963c2d97510b2bd7863181812a645e5b732d28c"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a0aff73af92f73817b1b4341be6ec81d3326caca5ea37a6a71cc70fe38239b36"
+    },
+    {
+      "path": "AudioFileForPhone.Diagnostics.ps1",
+      "sha256": "078196abc845bd8651ac047f0d5c6ddf283e0a8965d121223123e851c6b9915e"
+    },
+    {
+      "path": "AudioFileForPhone.Checks.ps1",
+      "sha256": "72f1ca6593ae861eda0bf137378e9e4305e74176048b19a3ccfc47cec5e62c46"
+    },
+    {
+      "path": "AudioFileForPhone.ManagedSetup.ps1",
+      "sha256": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538"
+    },
+    {
+      "path": "AudioFileForPhone.Launcher.ps1",
+      "sha256": "47ff967cdef0392f6d937a73a09763fa5f0952b68ddf47de237974062fbc1732"
+    },
+    {
+      "path": "AudioFileForPhone.HostProbe.ps1",
+      "sha256": "043ccfe7199f1cbdcbc98e27339e7fd7c6a1ec57307a6352dab24f8ad2829996"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "85123393a4a903e628f748004de9f51cf7a6f15159a29576abb9f5214121b338"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "881f23c652eed61ddb074174403a2f225aca8aa8d84c0574ab6dba121f5eb630"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "3d877f10816e65ec062c3a3c2788207cc4504e7829bdd6f994c03dd4525c3553"
+    },
+    {
+      "path": "Check-AudioFileForPhone.ps1",
+      "sha256": "ebd667882c3144b181caa7b1d8aff770f994e1c71b49b38bcc48d544deb6d1f4"
+    },
+    {
+      "path": "Check-AudioFileForPhone.bat",
+      "sha256": "b67202151d87e585cef1517917f9cb25dcd8cf2e327c1d4ec46f67e5cd521580"
+    },
+    {
+      "path": "tools/ffmpeg-download.json",
+      "sha256": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a"
+    }
+  ],
+  "local_reports": [
+    {
+      "report": "S10-support-ps51-final106.json",
+      "sha256": "8c404f88470c3bde171e4d82e254288897561b5766b1ce8ca4406d1e471e55ea",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 27,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.Checks.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.bat",
+        "Check-AudioFileForPhone.ps1",
+        "Check-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-SupportDiagnostics.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S10-support-ps51-final106.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-package-ps51-final106.json",
+      "sha256": "020d7c36a5855643308c276a80e96576b593e73d54b7ddb6bc164a167547e3b1",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 61,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.Checks.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ps1",
+        "Check-AudioFileForPhone.bat",
+        "Check-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "command_redacted": "\"<SHELL_ROOT>\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<USER_PROFILE>\\AppData\\Local\\Temp\\AFP-S10-session-26b8355b8ed34608bbc1a43fcef3c933\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-Package.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-package-ps51-final106.json\" \"-FfmpegPath\" \"<USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-d9a2ef3e9c0c44cca6082dba14df30f2\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"<USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-d9a2ef3e9c0c44cca6082dba14df30f2\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-native-ps51-final107.json",
+      "sha256": "c69ffa5dfd22aedb844ea3a05bcf06ce8b888268e7ed2ffb0f34dea10236c404",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 35,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-NativeProcess.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-native-ps51-final107.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-baseline-ps51-attempt103.json",
+      "sha256": "175459694a820019a8ea1aed6426452b2590e929753f68498a56e98cd97f3b7a",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 7,
+      "observations": 3,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": ""
+    },
+    {
+      "report": "T18-diagnostics-ps51-attempt102.json",
+      "sha256": "c80ab192b6a70a3fdd8a2aaa8f4b67451a41f96945cd679dd729559e86dd59fd",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 20,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-Diagnostics.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T18-diagnostics-ps51-attempt102.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-toolselection-ps51-attempt103.json",
+      "sha256": "b4c606103292ec08605a279e07d9bcc50c3461675706ebef54effe83570e10b1",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 14,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-ToolSelection.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-toolselection-ps51-attempt103.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T16-preview-ps51-final104.json",
+      "sha256": "5eb53be5c8bd52256706cea2c473d3b17bde9b9c9d2fc8a20b9fe9be532121c9",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 8,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-Preview.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T16-preview-ps51-final104.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-metadatainteraction-ps51-final104.json",
+      "sha256": "3036ae9066115fd43a00495a77bff6349dc339af82ea5bba51308fd6a9f094c2",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 23,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-MetadataInteraction.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-metadatainteraction-ps51-final104.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "T17-unit-ps51-final104.json",
+      "sha256": "414c199e0c97e59295b1f893da664a856b01875491ce782f121f0320c98cc9b1",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "5.1.26100.9711",
+      "windows_build": null,
+      "required_groups": 35,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\ci\\Test-CiContracts.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-unit-ps51-final104.json\""
+    },
+    {
+      "report": "S08-launcher-ps51-attempt102.json",
+      "sha256": "9aceaaf7aeea474d88a44dfc321acdbce311f97f1c5aa2fed8df277307f18f51",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 77,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-Launcher.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S08-launcher-ps51-attempt102.json\""
+    },
+    {
+      "report": "T17-shortoperations-ps51-attempt103.json",
+      "sha256": "34ad0ee29390176c40d48c5dbc77a0721218145accc36cb58e517b5dfb9a6d89",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "required_groups": 15,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" \"-NoLogo\" \"-NoProfile\" \"-NonInteractive\" \"-ExecutionPolicy\" \"RemoteSigned\" \"-File\" \"<PRIVATE_SESSION>\\driver.ps1\" \"-Suite\" \"<REPOSITORY>\\tests\\Test-ShortOperations.ps1\" \"-Evidence\" \"<REPOSITORY>\\docs\\codex-v1\\evidence\\T17-shortoperations-ps51-attempt103.json\" \"-FfmpegPath\" \"C:\\ffmpeg\\bin\\ffmpeg.exe\" \"-FfprobePath\" \"C:\\ffmpeg\\bin\\ffprobe.exe\""
+    },
+    {
+      "report": "S10-support-ps7-final106.json",
+      "sha256": "5ebeab6089c3f81c6a9086a689e5a58726d51c0b9b35544eef2c38d2b2c8c29f",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 27,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.Checks.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.bat",
+        "Check-AudioFileForPhone.ps1",
+        "Check-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-SupportDiagnostics.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S10-support-ps7-final106.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-package-ps7-final106.json",
+      "sha256": "482116ce87e77bc06554519e7cb7a262f247ff38c5eace4b7a2e570f35f111d2",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 61,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.Checks.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ps1",
+        "Check-AudioFileForPhone.bat",
+        "Check-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "command_redacted": "<SHELL_ROOT>\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-S10-session-26b8355b8ed34608bbc1a43fcef3c933\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-Package.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-package-ps7-final106.json -FfmpegPath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-d9a2ef3e9c0c44cca6082dba14df30f2\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe -FfprobePath <USER_PROFILE>\\AppData\\Local\\Temp\\AFP-CI-d9a2ef3e9c0c44cca6082dba14df30f2\\ffmpeg\\ffmpeg-9.0.2-essentials_build\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-native-ps7-final107.json",
+      "sha256": "d46320448783a4a082c46e17096d1f4554a3b9b6e9d60f87a3679980c8b3a5b1",
+      "status": "pass",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 35,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-NativeProcess.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-native-ps7-final107.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-baseline-ps7-attempt103.json",
+      "sha256": "2eb56e49b8ec6de9a214d1b0d753c1ae2bba71ea778927cc28d6661e217519d9",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 7,
+      "observations": 3,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": ""
+    },
+    {
+      "report": "T18-diagnostics-ps7-attempt102.json",
+      "sha256": "55b5fc83d1d6d3d11f0816213ce7581515bcd64835d522c377963f531ecc57a6",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 20,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-Diagnostics.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T18-diagnostics-ps7-attempt102.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-toolselection-ps7-attempt103.json",
+      "sha256": "95b57ff51b8c4a23d587342d9e6904b37888eda20562d4707cf4f287cfc39ab2",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 14,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-ToolSelection.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-toolselection-ps7-attempt103.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T16-preview-ps7-final104.json",
+      "sha256": "b56e5fb75942f86f2eb71a797f6d3ad4fa094c92927c4c31cbdc1e8e2f0c4152",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 8,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-Preview.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T16-preview-ps7-final104.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-metadatainteraction-ps7-final104.json",
+      "sha256": "143bfbb086ce2674e0d3f20db42114df07991e197bbbc4d072bb3e06e0ba052f",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 23,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat",
+        "Setup-AudioFileForPhone.ps1",
+        "Setup-AudioFileForPhone.bat",
+        "AudioFileForPhone.ManagedSetup.ps1",
+        "tools/ffmpeg-download.json"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-MetadataInteraction.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-metadatainteraction-ps7-final104.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    },
+    {
+      "report": "T17-unit-ps7-final104.json",
+      "sha256": "1a2304e560b0fed7892ca35838497687d1dc84b907ef8fedb32c1dc39b1fbe86",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "7.6.5",
+      "windows_build": null,
+      "required_groups": 35,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": null,
+      "cleanup_verified": null,
+      "descendant_release_proved": null,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.Helpers.ps1"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\ci\\Test-CiContracts.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-unit-ps7-final104.json"
+    },
+    {
+      "report": "S08-launcher-ps7-attempt102.json",
+      "sha256": "1e486770cf89a7eb1e0980d456c5e0598b7028139c76a1894d94a42ba774177d",
+      "status": "pass",
+      "tested_commit": "ec828036cda843f9fadff2bc932125d84d241218",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 77,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.Launcher.ps1",
+        "AudioFileForPhone.HostProbe.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-Launcher.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1.0.1\\evidence\\S08-launcher-ps7-attempt102.json"
+    },
+    {
+      "report": "T17-shortoperations-ps7-final105.json",
+      "sha256": "8868480ad7e39c87713129d1e5a5708b29c90c0700d6d41c61eadb4a33feb253",
+      "status": "pass",
+      "tested_commit": "35cc0a74a2fa4ac59bb9e22d09da61ad5d7cef44",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "required_groups": 15,
+      "observations": 0,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "matching_final_runtime_files": [
+        "AudioFileForPhone.ps1",
+        "AudioFileForPhone.Helpers.ps1",
+        "AudioFileForPhone.Diagnostics.ps1",
+        "AudioFileForPhone.bat"
+      ],
+      "command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File <PRIVATE_SESSION>\\driver.ps1 -Suite <REPOSITORY>\\tests\\Test-ShortOperations.ps1 -Evidence <REPOSITORY>\\docs\\codex-v1\\evidence\\T17-shortoperations-ps7-final105.json -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe"
+    }
+  ],
+  "analysis": [
+    {
+      "report": "analysis-ps51-final2.json",
+      "sha256": "1cb86e067ce7a5cc10713ae70d09326cf50e388997964eb207f73c99351a40c1",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "5.1.26100.9711",
+      "analyzer": "1.25.0",
+      "files": 17,
+      "diagnostics": 0,
+      "source_unchanged": true
+    },
+    {
+      "report": "analysis-ps7-final2.json",
+      "sha256": "c9f7e623371928dda7d8a1cc412f124941f8ae4c86e68f318d838d83aa2724c5",
+      "tested_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+      "shell": "7.6.5",
+      "analyzer": "1.25.0",
+      "files": 17,
+      "diagnostics": 0,
+      "source_unchanged": true
+    }
+  ],
+  "local_totals": {
+    "accepted_reports": 24,
+    "required_groups": 644,
+    "observations": 6,
+    "final_exact_source_reports": "8: support2, package2, native2, analyzer2 at b05b581.",
+    "earlier_reports": "16 retain actual checkout IDs:9 ec82803 and7 35cc0a7. Every recorded relevant runtime hash matches final bytes; no relabeling.",
+    "native_sequence": "PS51 then PS7, last and sequential; both35 groups with release/cleanup proof."
+  },
+  "review": {
+    "document": "S10-REVIEW.md",
+    "nonpasses": "S10-NONPASSES.md",
+    "scope": "Peer reviews between bootstrap/check implementers, labelled author readbacks, root intended-diff review; not an external audit.",
+    "corrected_findings": [
+      "Unproved prerequisite release cannot continue into interactive setup.",
+      "Late self-test/check cancellation preserves130.",
+      "TEMP drive-root spelling preserved.",
+      "Local-only config/tool discovery and private import/TEMP guards before access.",
+      "PS51 wrapped-console assertion normalization keeps exact recorded cause; automatic variable renamed."
+    ]
+  },
+  "ci": {
+    "tested_source": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+    "push_run": 40730767545,
+    "pr_run": 40730776625,
+    "status": "SOURCE_SNAPSHOT_BEFORE_CONTAINING_CHECKPOINT",
+    "pr_initial_ps7_nonpass": {
+      "job_id": 122966169262,
+      "error": "Owned host fixture compilation failed before S10 tests; source integrity, descendant release and cleanup true.",
+      "report_sha256": "83431cbf8209c5c4bdf50926263867e915f89f833659aa8be01e6eaff1d7888e",
+      "retry": "Specific rerun waits for workflow completion; connector lacks Actions-write scope and CLI rejects rerun while workflow active."
+    },
+    "supplementary_server_only": true,
+    "final_checkpoint": "Observe containing checkpoint advertised equality and exact-head push/PR jobs after push in final response; refresh next thread. No self-containing SHA. If final CI cannot be verified, resume S10.",
+    "observed_utc": "2026-10-28T17:08:33.7874907Z",
+    "source_push_ps7": {
+      "status": "success",
+      "required_checks": 891,
+      "observations": 3,
+      "wrapper_sha256": "1a8f4e287efc27b4244ca04e73694fa352b2fe7fe785987adf92aba90089fc1c",
+      "matrix_status": "pass",
+      "planned_conversions": 495,
+      "app_converted": 32,
+      "matrix_sha256": "030fc8ba524d2374303e49b87125cf40b374eb0e9c9a0e40eaaf7c19564f3c1b",
+      "support_groups": 27,
+      "support_status": "pass",
+      "support_sha256": "ba3b734b3e8e3d87670b32b3c79505ede2db4f47955cca500f4abf14e0f73a16"
+    },
+    "remaining_at_snapshot": "PS51 source push/PR still running. Initial PR PS7 fixture compilation assertion failed. Mandatory containing checkpoint push/PR checks are observed after its push; they validate unchanged tested runtime without relabeling this source nonpass."
+  },
+  "git": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "source_push_advertised_equal": true,
+    "main_local": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_live": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED",
+    "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/29",
+    "merge_authority": "S14 ordinary reviewed PR policy and existing owner-approval default."
+  },
+  "limitations": [
+    "Windows10 22H2 x64, physical UI/console/phone and exact future v1.0.1 ZIP/kit remain later acceptance gates.",
+    "No mapped-network share or real unproved native orphan was created for new refusal cases; instrumentation/returned-result injections are explicit. Retained native/pipe tests provide separate actual release evidence.",
+    "Default no-write concerns persistent application files/settings/media/automatic diagnostics; no OS network sandbox claim for trusted tools or denial of transient runtime/compiler files.",
+    "Private reports/logs/fixtures stay outside public Git. Failed uncertain scopes remain retained; later passes do not prove their cleanup. S10-NONPASSES.md retains actual identities/digests."
+  ],
+  "human_action": "None for S10. Necessary owner Windows/phone observations remain consolidated in S15.",
   "release": {
     "fixed_target": "v1.0.1",
     "runtime_version": "1.0.0",
     "status": "PENDING_S17",
     "frozen_source": null,
     "accepted_zip": null,
-    "publication_authority": null
-  }
+    "publication_authority": null,
+    "preserved": "Published v1.0.0 and icons/posters unchanged by this step."
+  },
+  "next_eligible_step": "S11",
+  "next_eligible_step_title": "Run compatibility and failure regression campaign",
+  "next_eligible_step_status": "NOT_STARTED",
+  "stop": "No S11 in this thread. Only separately started S17 publishes S16 exact accepted source/assets."
 }

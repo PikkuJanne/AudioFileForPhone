@@ -1,10 +1,52 @@
-# S10 in progress
+# Status
 
-S01-S09 remain completed. S10 implementation adds the no-network environment check,
-explicit synthetic self-test, bounded early startup evidence and opt-in local
-redacted support export. S10 acceptance, frozen source verification and checkpoint
-CI are still IN_PROGRESS. No S11 work, main integration or release action began.
-Runtime remains 1.0.0; the fixed public v1.0.1 target remains PENDING_S17.
+Project IN_PROGRESS. S01-S10 are COMPLETED. S10-A1/A2/A3 pass on the available
+Windows11 client; S11 - Run compatibility and failure regression campaign is
+next eligible only in a separate thread and remains NOT_STARTED. Containing
+checkpoint fresh advertised equality and exact-head CI must be observed after
+push in the final response; pending/failure cannot be promoted to success.
+
+Added Check PS1/BAT, independent diagnostics/bootstrap and functions-only checks.
+Default check/support review and converter DryRun errors create no persistent
+application files. Explicit self-test uses production resolution, audio plan,
+transaction/full decode and source hashes, with held-marker/no-reparse/release
+guards and fixed owned cleanup. Stable startup codes/stages and bounded private
+records use local/TEMP fallbacks; original console cause survives logging failure.
+Opt-in local support review/export uses a strict whitelist without native free
+text, arguments, PATH, source names/tags or uploads. Local-only guards precede
+config/tool/import/TEMP access. Late cancellation preserves130; unproved
+prerequisite release refuses interactive repair before another native operation.
+
+Tested source/runtime b05b581dc6372cecd99471c53ee2cac72b8267ba passes both final
+27-group support suites, 61-group package suites, last/sequential35-group native
+suites and required17-file analyzer1.25.0 checks with zero diagnostics. All24
+accepted local reports pass644 required groups and6 historical observations.
+Sixteen retained reports keep actual older checkout IDs (9ec82803,7at35cc0a7)
+with matching recorded relevant runtime hashes; no relabeling. Real retained
+baseline, diagnostics20, launcher77, resolver14, shortops15, preview8, menu23 and
+pure35 pass per shell. Windows11 Pro26H2 build26300.9711 x64, PS5.1.26100.9711
+and portablePS7.6.5; Store7.6.7 remains startup-route evidence only. Owned hidden
+UTF8/CP65001 drivers, host-local module precedence and isolated fixture/config
+scopes remain. No ordinary Music/personal media or owner configuration accessed.
+
+S10-REVIEW.md records peer reviews, exact11core-function preservation and repaired
+release/cancellation/local-path gaps. S10-NONPASSES.md preserves all preparation
+failures and uncertain scopes. Exact failing assertions remain; no safeguard was
+disabled. SourceCI push40730767545 and PR40730776625 are recorded separately in
+S10.json, including an initial PR/PS7 startup-fixture compilation nonpass. Server
+CI is supplementary. Final exact-head checkpoint results belong in the final
+response and must be refreshed next entry; a commit cannot contain its own SHA.
+
+Main remains separately NOT_INTEGRATED at local/live28f53b10529495754273d55654c7b29e78848c83.
+PR29 stays OPEN draft/unmerged under S14 ordinary reviewed policy and existing
+owner approval. S09 exact audio planning/validation, compatible64kbps sound,
+metadata/artwork, explicit downmix/rejection, owned partials/no-overwrite and
+unlimited normal encode/full decode remain. S08 startup/override/policy/literal
+arguments, shared resolver/save/setup APIs, Enter/M/Q and separate consent-based
+setup remain. Conversion/check never download. Published v1.0.0/icons/posters
+remain preserved. Windows10/physical/phone/exact ZIP acceptance remain later
+gates; no S10 owner action. Runtime1.0.0; fixed publicv1.0.1 PENDING_S17. Only
+separately started S17 publishes S16 exact accepted source/assets. Stop here.
 
 ## Preserved S09 checkpoint
 # Status
