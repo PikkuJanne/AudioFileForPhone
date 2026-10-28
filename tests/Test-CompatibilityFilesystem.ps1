@@ -166,6 +166,19 @@ function Invoke-Child {
         return $result
     } finally { $timer.Stop(); $process.Dispose() }
 }
+function Set-OwnedDirectoryAccess {
+    param([string]$Path,[Security.AccessControl.DirectorySecurity]$Acl)
+    Assert-NoReparse $Path
+    Assert-True ($Path.StartsWith($testRoot+'\',[StringComparison]::OrdinalIgnoreCase)) 'ACL scope must be an owned descendant.'
+    # Persist only the DACL we intentionally change. Set-Acl can also copy owner,
+    # group and audit sections on privileged hosts. The full original SDDL still
+    # has to match after restoration; no inheritance/control flag is ignored.
+    $accessOnly=New-Object Security.AccessControl.DirectorySecurity
+    $accessOnly.SetSecurityDescriptorBinaryForm($Acl.GetSecurityDescriptorBinaryForm(),[Security.AccessControl.AccessControlSections]::Access)
+    $directory=New-Object IO.DirectoryInfo($Path)
+    if($PSVersionTable.PSEdition -ceq 'Desktop'){$directory.SetAccessControl($accessOnly)}
+    else{[IO.FileSystemAclExtensions]::SetAccessControl($directory,$accessOnly)}
+}
 function Set-OwnedDeny {
     param([string]$Path,[Security.AccessControl.FileSystemRights]$Rights)
     Assert-NoReparse $Path
@@ -176,13 +189,22 @@ function Set-OwnedDeny {
     $changed=Get-Acl -LiteralPath $Path
     $identity=[Security.Principal.WindowsIdentity]::GetCurrent().User
     $rule=New-Object Security.AccessControl.FileSystemAccessRule($identity,$Rights,[Security.AccessControl.InheritanceFlags]::None,[Security.AccessControl.PropagationFlags]::None,[Security.AccessControl.AccessControlType]::Deny)
-    $null=$changed.AddAccessRule($rule);Set-Acl -LiteralPath $Path -AclObject $changed
+    $null=$changed.AddAccessRule($rule);Set-OwnedDirectoryAccess $Path $changed
+    $record | Add-Member -NotePropertyName denied_sddl -NotePropertyValue (Get-Acl -LiteralPath $Path).Sddl
     return $record
 }
 function Restore-OwnedAcl {
     param([object]$Record)
-    Set-Acl -LiteralPath $Record.path -AclObject $Record.acl
-    Assert-True ((Get-Acl -LiteralPath $Record.path).Sddl -ceq $Record.sddl) 'Owned ACL restoration failed.'
+    Set-OwnedDirectoryAccess $Record.path $Record.acl
+    $observed=Get-Acl -LiteralPath $Record.path
+    if(-not $report.Contains('acl_restoration_observations')){$report['acl_restoration_observations']=@()}
+    $report.acl_restoration_observations += [pscustomobject]@{
+        fixture=$Record.path.Substring($testRoot.Length+1)
+        expected_sddl=$Record.sddl; denied_sddl=$Record.denied_sddl; observed_sddl=$observed.Sddl
+        original_are_access_rules_protected=$Record.acl.AreAccessRulesProtected
+        observed_are_access_rules_protected=$observed.AreAccessRulesProtected
+    }
+    Assert-True ($observed.Sddl -ceq $Record.sddl) 'Owned ACL restoration failed.'
     $Record.restored=$true
 }
 function Invoke-Real {
