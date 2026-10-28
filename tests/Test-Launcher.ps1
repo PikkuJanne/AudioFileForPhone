@@ -182,7 +182,8 @@ function Assert-Launch {
     Assert-True ($Result.capture.input_folder -ceq $ExpectedFolder -and $Result.capture.interactive -and @($Result.capture.extra_arguments | Where-Object { $null -ne $_ }).Count -eq 0) ('Literal folder and Interactive must survive exactly. Expected=' + $ExpectedFolder + '; observed=' + ($Result.capture | ConvertTo-Json -Compress))
     Assert-True ($Result.capture.edition -ceq $ExpectedEdition -and $Result.capture.apartment -ceq 'STA' -and $Result.capture.process_64bit) 'Selected edition must execute in exact x64 STA host.'
     Assert-True ($Result.capture.path -ieq $ExpectedActualHost) ('Executed host must match independently observed exact expected executable: ' + $ExpectedActualHost + '; actual=' + $Result.capture.path)
-    Assert-True ($Result.capture.cwd -ceq $workingDirectory -and $Result.capture.process_cwd -ceq $workingDirectory) 'Unrelated caller working directory must be preserved.'
+    $report['last_launch_observation'] = [pscustomobject]@{ expected_working_directory = $workingDirectory; capture = $Result.capture }
+    Assert-True ($Result.capture.cwd -ceq $workingDirectory -and $Result.capture.process_cwd -ceq $workingDirectory) ('Unrelated caller working directory must be preserved. Expected=' + $workingDirectory + '; observed PowerShell=' + $Result.capture.cwd + '; observed process=' + $Result.capture.process_cwd)
     Assert-True ($Result.capture.output_codepage -eq 65001) 'Explicit UTF8 CMD driver must preserve CP65001.'
     Assert-True (-not $Result.native.stdout.Contains('Press any key')) 'Redirected stdin must not reach a mandatory pause.'
     Assert-True ($Result.native.stdout.Contains($Result.capture.path) -and $Result.native.stdout.Contains($Result.capture.version) -and $Result.native.stdout.Contains('STA')) 'Selection banner must display exact executed host/version/STA.'
@@ -216,16 +217,38 @@ try {
     Assert-NoReparse $tempParent; Assert-NoReparse $evidenceParent
     Assert-True ([Environment]::Is64BitProcess -and [Environment]::Is64BitOperatingSystem) 'S08 real client tests require x64.'
     Add-Type -TypeDefinition @'
-using System; using System.Runtime.InteropServices;
+using System; using System.IO; using System.Text; using System.Runtime.InteropServices; using Microsoft.Win32.SafeHandles;
 namespace AFPS08 { public static class DirectoryOwner {
  [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)]
  [return:MarshalAs(UnmanagedType.Bool)] public static extern bool CreateDirectoryW(string path,IntPtr security);
+ [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)]
+ private static extern SafeFileHandle CreateFileW(string path,uint access,uint share,IntPtr security,uint mode,uint flags,IntPtr template);
+ [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)]
+ private static extern uint GetFinalPathNameByHandleW(SafeFileHandle file,StringBuilder path,uint capacity,uint flags);
+ public static string FinalDirectoryPath(string path) {
+  using(SafeFileHandle handle=CreateFileW(path,0,7,IntPtr.Zero,3,0x02000000,IntPtr.Zero)) {
+   if(handle.IsInvalid)throw new IOException("Owned CWD identity open failed",Marshal.GetLastWin32Error());
+   StringBuilder result=new StringBuilder(32768);
+   uint length=GetFinalPathNameByHandleW(handle,result,(uint)result.Capacity,0);
+   if(length==0 || length>=result.Capacity)throw new IOException("Owned CWD final path failed",Marshal.GetLastWin32Error());
+   string final=result.ToString();
+   if(!final.StartsWith(@"\\?\",StringComparison.Ordinal) || final.StartsWith(@"\\?\UNC\",StringComparison.OrdinalIgnoreCase))throw new IOException("Owned CWD must resolve to a local drive path");
+   return final.Substring(4);
+  }
+ }
 }}
 '@
     Assert-True ([AFPS08.DirectoryOwner]::CreateDirectoryW($testRoot, [IntPtr]::Zero)) 'TEMP root must be exclusively reserved.'
     $created = $true; $report.temp_exclusively_reserved = $true
     Write-NewText $ownerFile $ownerToken; $report.marker_create_new = $true
     $localData = New-Directory 'localdata'; $workingDirectory = New-Directory 'unrelated working directory'
+    # The OS may canonicalize ancestor casing (TEMP -> Temp) when starting a process.
+    # Use the opened owned directory's native spelling; keep exact child CWD assertions.
+    Assert-NoReparse $workingDirectory
+    $requestedWorkingDirectory = $workingDirectory
+    $workingDirectory = [AFPS08.DirectoryOwner]::FinalDirectoryPath($workingDirectory)
+    Assert-True ($workingDirectory.Equals($requestedWorkingDirectory, [StringComparison]::OrdinalIgnoreCase)) 'Native CWD canonicalization must change casing only.'
+    $report['working_directory_fixture'] = [pscustomobject]@{ requested = $requestedWorkingDirectory; native_final_path = $workingDirectory; case_only_canonicalization = $true }
     $report.source_before = Get-Inventory $sourcePaths $projectRoot
     $normalCopy = New-LaunchCopy 'normal'
     $edgeCopy = New-LaunchCopy "launch ! & [brackets] (round) apostrophe's %AFP_S08_PERCENT_SENTINEL% äö"
