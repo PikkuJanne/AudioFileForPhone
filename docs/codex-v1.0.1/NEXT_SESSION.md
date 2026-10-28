@@ -1,3 +1,64 @@
+# Next session — S11 checkpoint
+
+S01-S11 COMPLETED within the available Windows11 campaign scope. S12 — Add
+clean-environment CI and release gates is NOT_STARTED and next eligible only in
+a separate owner thread. If this checkpoint's fresh advertised equality or
+exact-head CI is unverified/failed, resume S11. Do not start S12 in S11.
+
+Test source81450069bfd695817ce5fdbcd2365010cc91c42a; production runtime unchanged
+from b05b581dc6372cecd99471c53ee2cac72b8267ba. All70 suite reports +2analysis pass,
+1,752 groups/6observations, 1,980 retained+40 complementary conversions and128
+application matrix conversions;132 default PCM comparisons match. Earlier
+53c6c63bf reports keep actual IDs and matching runtime hashes. New19-file analyzer
+and58-file parser checks pass both shells. S11 evidence/review/nonpasses/handover
+record commands/digests, actual versus injected distinctions and missing cells.
+Windows10/physical/phone/exact ZIP remain separate later gates. No owner action.
+
+Use this filled next-thread prompt. Refresh the containing checkpoint reported
+after push in the previous final response; this commit cannot contain its own SHA.
+
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Tested test source: 81450069bfd695817ce5fdbcd2365010cc91c42a.
+Production runtime remains b05b581dc6372cecd99471c53ee2cac72b8267ba.
+Read AGENTS.md, CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+RELEASE_TARGET.json, evidence/S11.json, evidence/S11-HANDOVER.md,
+evidence/S11-REVIEW.md and evidence/S11-NONPASSES.md.
+Refresh the containing checkpoint from the previous final response,
+fresh advertised feature/main identities and exact-head push/PR CI.
+Complete ONLY S12 — Add clean-environment CI and release gates.
+S01-S11 are complete; do not restart them. Read tasks/S12.md,
+specs/AUTOMATED_ACCEPTANCE.md and specs/SYNC_AND_RELEASE.md.
+If the S11 checkpoint sync/CI is unverified or failed, resume S11 instead.
+Available client: Windows 11 Pro 26H2 26300.9711 x64,
+PS5.1 5.1.26100.9711, portable PS7 7.6.5; Store PS7 7.6.7 is startup-only.
+C:\ffmpeg\bin is Gyan Git ec420ba161; pinned reference 9.0.2 is separate.
+Retain S11 corpus/filesystem suites, native canonical CWD fixture and exact
+CWD assertions, historical report contracts, UTF8 CP65001 owned hidden
+drivers, isolated synthetic/config scopes and recorded nonpasses.
+Windows 10 remains unavailable; Server CI cannot fill client acceptance.
+Keep cloud/UNC/full-disk injections and physical/phone/ZIP gaps explicit.
+Preserve S10 no-write checks/DryRun failures, bounded private diagnostics,
+whitelist local export, owned production self-test, local-only guards,
+cancellation130 and prerequisite/capability release-refusal boundaries.
+Keep S09 exact audio planning/validation, default64 sound, metadata/artwork,
+explicit downmix/rejection, fixed duration bound and unlimited encode/decode.
+Retain S08 startup/override/policy/literal arguments and shared resolver/save/
+setup APIs. Separate setup requires consent; conversion/check never download.
+Do not scan ordinary Music/personal media or repeat owner diagnostics.
+Preserve defaults, sources, icons/posters and published v1.0.0.
+Main integration stays separate under S14 reviewed policy and owner approval.
+Update evidence/state/status/decisions and full handover; test/review/commit/
+push, verify fresh advertised equality and exact-head CI, give the filled
+next-thread prompt, then STOP. Do not start S13.
+Fixed deliverable: public v1.0.1. Only separately started S17 publishes
+S16's exact accepted source/assets.
+```
+
+## Preserved S10 next-session checkpoint
+
 # Next session — S10 checkpoint
 
 S01-S10 COMPLETED. S11 - Run compatibility and failure regression campaign is next

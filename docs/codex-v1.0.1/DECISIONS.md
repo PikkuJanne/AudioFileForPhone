@@ -459,3 +459,29 @@ D53 - 2026-10-28, S10 verification checkpoint: exact source/runtime b05b581 has
       push without self-hashing. If that gate fails or remains unobserved, resume
       S10. S11 stays unstarted in this thread; main integration/owner acceptance/
       fixed v1.0.1 publication remain separate later gates.
+D54 - 2026-10-28, S11 duration/audio campaign: retain production runtime b05b581
+      and fixed0.35second validation; no genuine valid-media mismatch justified
+      changing policy. Four495-case matrices and four10-conversion complementary
+      corpora pass both shells/builds, alongside actual3605second CBR/VBR media.
+      Plausible3.137007second truncated header decodes1.072086seconds and rejects
+      despite decoder exit0. Preserve unknown-duration/refusal injections as such.
+
+D55 - 2026-10-28, S11 fixture and filesystem evidence: native opened-directory
+      spelling repairs TEMP/Temp test-fixture casing while exact CWD assertions
+      remain. Opus fixture explicitly48000; atomic owned reservation and source/
+      fixture/native-release/cleanup gates remain. Actual ACL/readonly/locked/
+      moved-source cases are distinct from labeled ENOSPC prefix/result injection.
+      Keep original nonpasses and interrupted cleanup uncertainty; no broad cleanup
+      or reparse bypass and no invented physical/full-disk/cloud/UNC acceptance.
+
+D56 - 2026-10-28, S11 checkpoint: test source8145006 changes only three test files;
+      runtime13 hashes still b05b581.70 suite reports+2analysis pass1752groups and
+      6observations,2020 direct planned/validated conversions and128 application
+      matrix conversions;132 default PCM equalities. Keep actual53c6c63bf/17at
+      8145006 suite identities and2analysis at8145006 with runtime hash ties.
+      Fresh pinned development dependencies replace a refused pruned cache, not
+      an application download. Native runs last/sequentially. Observe containing
+      checkpoint advertised equality/exact-head CI after push without self-hashing;
+      pending/failure requires S11 continuation. Windows10 stays blocked for S15;
+      S12 remains unstarted until a new owner thread. Main/S14 approval and fixed
+      publicv1.0.1 S16/S17 exact-byte publication authority remain unchanged.

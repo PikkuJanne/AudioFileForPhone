@@ -1,5 +1,54 @@
 # Status
 
+Project IN_PROGRESS. S01-S11 are COMPLETED on the available client scope.
+S11-A1/A2/A3 pass as scoped in evidence/S11.json. S12 — Add clean-environment CI
+and release gates is next eligible only in a separately started owner thread;
+it remains NOT_STARTED. Containing-checkpoint advertised equality and exact-head
+push/PR CI must be observed after push in the final response and refreshed next
+entry. Pending/failed checks are never PASSED and require S11 continuation.
+
+S11 passes 70 local suite reports and two analysis reports: 1,752 required groups,
+six historical observations, 1,980 retained matrix conversions, 40 complementary
+corpus conversions and 128 actual application matrix conversions. All 132
+compatible default64 decoded-PCM comparisons match. Quiet short-operations15
+runs PS5.1 then PS7; native35 runs last, sequentially PS5.1 then PS7. Required
+PSScriptAnalyzer1.25.0 checks 19 files with zero diagnostics; both parsers check
+all 58 PowerShell files. Actual client Windows11 Pro26H2 26300.9711 x64,
+PS5.1.26100.9711 and portablePS7.6.5. Store7.6.7 remains startup-only evidence.
+
+Test source 81450069bfd695817ce5fdbcd2365010cc91c42a adds the short/irregular
+codec and owned filesystem campaigns plus a native canonical-CWD fixture repair.
+The exact launcher CWD assertions remain. Production runtime stays byte-identical
+to b05b581dc6372cecd99471c53ee2cac72b8267ba across all 13 recorded files.
+Of 70 suite reports, 53 retain actual entry c6c63bf and 17 retain actual8145006;
+the two analyzer reports are8145006. Matching runtime hashes accompany earlier
+identities; no relabeling. S11-REVIEW.md and S11-NONPASSES.md retain review,
+fixture/nonpass causes and interrupted cleanup uncertainty. Raw reports remain
+private. No duration/audio policy, runtime default, CI workflow or release change.
+
+Actual 3,605-second CBR/VBR and tiny AAC-LC/ALAC/MP3/Vorbis/Opus, AAC edit lists,
+skip samples and no-Xing cases pass. A plausible 3.137007-second truncated header
+decodes only1.072086 seconds and fails validation despite decoder exit0. Real
+readonly-app conversion, owned ACL denial, busy/disappearing inputs, concurrent
+runs and path boundaries pass. ENOSPC remains labeled prefix/result injection.
+Real consent-based setup/saved-config conversion passes three groups per shell.
+Windows10 acceptance remains BLOCKED_UNAVAILABLE_CLIENT for the later S15 kit;
+genuine cloud/UNC, physical interaction/phone and exact future ZIP are unproved.
+No ordinary Music/personal media/owner config access or repeated owner diagnostics.
+
+Main remains separately NOT_INTEGRATED at local/live
+28f53b10529495754273d55654c7b29e78848c83. PR29 remains OPEN draft/unmerged under
+S14 reviewed policy and owner approval. S08 startup/setup, S09 exact planning/
+full decode and S10 no-write/privacy/self-test/release/cancellation safeguards
+remain. Conversion/check never download. Runtime1.0.0; fixed publicv1.0.1
+PENDING_S17. No frozen source/accepted ZIP/publication authority exists.
+Only separately started S17 publishes S16's exact accepted source/assets.
+Published v1.0.0, icons and posters remain preserved. No S11 owner action.
+
+## Preserved S10 checkpoint
+
+# Status
+
 Project IN_PROGRESS. S01-S10 are COMPLETED. S10-A1/A2/A3 pass on the available
 Windows11 client; S11 - Run compatibility and failure regression campaign is
 next eligible only in a separate thread and remains NOT_STARTED. Containing
