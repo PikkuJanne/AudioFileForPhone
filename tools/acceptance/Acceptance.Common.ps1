@@ -63,6 +63,22 @@ function Get-AcceptanceSourceInventory {
     $result = New-Object 'Collections.Generic.List[object]'
     $productionSnapshot = $null
     if (Get-Command Get-AudioInputSnapshot -CommandType Function -ErrorAction SilentlyContinue) {
+        # Windows PS5.1 can return no object and no ItemNotFound exception for an
+        # absent literal child below a bracket/Unicode path. The unchanged
+        # production identity reader runs without StrictMode in the application.
+        # This local adapter preserves its missing-file meaning under the kit's
+        # StrictMode, including the existing literal/error/reparse guards. It
+        # disappears with this inventory call; production conversion is separate.
+        function Get-AudioIdentityFile {
+            param([string]$Path)
+            try { $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop }
+            catch [Management.Automation.ItemNotFoundException] { return $null }
+            if ($null -eq $item) { return $null }
+            if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+                return $null
+            }
+            return $item
+        }
         $productionSnapshot = Get-AudioInputSnapshot -InputFolder $rootPath -OutputRoot (Join-Path $rootPath ('.acceptance-plan-' + [guid]::NewGuid().ToString('N')))
         if (@($productionSnapshot.Skipped | Where-Object { $_.Reason -match 'reparse' }).Count -gt 0) {
             throw 'Selected source has reparse exclusions; this storage evidence remains untested.'

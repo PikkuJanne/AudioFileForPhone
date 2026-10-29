@@ -35,14 +35,37 @@ function New-CommonZip {
 try {
     $null = [IO.Directory]::CreateDirectory($scope)
     [IO.File]::WriteAllText((Join-Path $scope '.owner'), 'S13 focused common test')
-    $source = Join-Path $scope 'source'; $export = Join-Path $scope 'export'
+    $source = Join-Path $scope ('source [' + [char]0x00E4 + ']'); $export = Join-Path $scope 'export'
     $null = [IO.Directory]::CreateDirectory($source); $null = [IO.Directory]::CreateDirectory($export)
     Assert-CommonRefused { Assert-AcceptanceLocalPath '\\server\share\file' } 'unc_refused'
     Assert-CommonRefused { Assert-AcceptanceLocalPath 'C:\folder\..\alias' } 'dot_alias_refused'
     Assert-CommonRefused { Assert-AcceptanceLocalPath 'C:\file:stream' } 'stream_refused'
     Assert-CommonRefused { Get-AcceptanceMemberPath $scope '../escape' } 'relative_escape_refused'
     [IO.File]::WriteAllText((Join-Path $source 'fixture.mp3'), 'inert source hashing fixture')
+    $identityReaderBefore = (Get-Command Get-AudioIdentityFile -CommandType Function).ScriptBlock.ToString()
     $before = @(Get-AcceptanceSourceInventory -Root $source -IncludeUnsupported)
+    Assert-Common ($before.Count -eq 1 -and -not [IO.File]::Exists((Join-Path $source '.AudioFileForPhone-output.json'))) 'Missing-marker bracket/Unicode source was not inventoried.'
+    Assert-Common ((Get-Command Get-AudioIdentityFile -CommandType Function).ScriptBlock.ToString() -ceq $identityReaderBefore) 'Inventory adapter escaped its local scope.'
+    Add-CommonCase 'bracket_unicode_missing_marker'
+    $generated = Join-Path $source 'marked-output'; $null = [IO.Directory]::CreateDirectory($generated)
+    Write-AudioOutputMarker -OutputRoot $generated
+    [IO.File]::WriteAllText((Join-Path $generated 'generated.mp3'), 'inert excluded output fixture')
+    $excluded = @(Get-AcceptanceSourceInventory -Root $source -IncludeUnsupported)
+    Assert-Common ($excluded.Count -eq 1 -and $excluded[0].relative_path -ceq 'fixture.mp3') 'Actual production output marker was not excluded.'
+    Add-CommonCase 'production_marker_exclusion_preserved'
+    $markerLock = [IO.File]::Open((Join-Path $generated '.AudioFileForPhone-output.json'), [IO.FileMode]::Open, [IO.FileAccess]::ReadWrite, [IO.FileShare]::None)
+    try { Assert-CommonRefused { Get-AcceptanceSourceInventory -Root $source -IncludeUnsupported } 'unreadable_marker_refused' }
+    finally { $markerLock.Dispose() }
+    $junctionTarget = Join-Path $scope 'junction-target'; $null = [IO.Directory]::CreateDirectory($junctionTarget)
+    $junction = Join-Path $source 'reparse-source'
+    $null = New-Item -ItemType Junction -Path $junction -Target $junctionTarget -ErrorAction Stop
+    try { Assert-CommonRefused { Get-AcceptanceSourceInventory -Root $source -IncludeUnsupported } 'source_reparse_refused' }
+    finally {
+        $junctionItem = Get-Item -LiteralPath $junction -Force -ErrorAction Stop
+        if (($junctionItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -eq 0 -or
+            -not (Test-AcceptanceWithin ([IO.Path]::GetFullPath($junction)) $scope)) { throw 'Owned junction identity changed; retained for inspection.' }
+        [IO.Directory]::Delete($junction, $false)
+    }
     Assert-Common (Test-AcceptanceSourceInventory -Root $source -Before $before) 'Unchanged source comparison failed.'
     Add-CommonCase 'source_unchanged'
     [IO.File]::WriteAllText((Join-Path $source 'extra.txt'), 'new file')
