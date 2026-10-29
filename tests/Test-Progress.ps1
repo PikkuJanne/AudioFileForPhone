@@ -21,7 +21,7 @@ $ownerFile = Join-Path $testRoot '.t13-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Progress.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Progress.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -133,7 +133,7 @@ function global:Write-Progress {
 }
 function global:Read-Host { param($Prompt); throw 'T13 unexpected interactive prompt' }
 '@
-    $command = '& ' + (Get-Literal $entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $Output) + ' -BitrateKbps 64 -MaxBaseLength 40'
+    $command = '& ' + (Get-Literal $entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $Output) + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'absent-config.json')) + ' -BitrateKbps 64 -MaxBaseLength 40'
     $text = (@($prefix) + @($capture, '$global:LASTEXITCODE=$null', ($command + ' *>&1 | ForEach-Object { [Console]::Out.WriteLine([string]$_) }'),
         'foreach($row in $global:T13Rows){[Console]::Out.WriteLine(''[DISPLAY] ''+($row|ConvertTo-Json -Compress))}',
         'foreach($proof in $global:T13NativeProofs){[Console]::Out.WriteLine(''[NATIVEPROOF] ''+($proof|ConvertTo-Json -Compress))}',
@@ -338,7 +338,7 @@ try {
     Invoke-Case 'encoder end followed by validation rejection never displays success or leaves a final' 'A33' {
         param($case);$outRoot=Join-Path $testRoot 'Reject';[IO.Directory]::CreateDirectory($outRoot)|Out-Null;$target=Join-Path $outRoot 'result.mp3'
         $originalValidation=(Get-Item -LiteralPath Function:Get-AudioOutputValidation).ScriptBlock;$events=New-Object 'System.Collections.Generic.List[object]'
-        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation)
+        $wrapper={param($Path,$SourceDurationSeconds,$BitrateKbps,$HasCover,$FfprobePath,$FfmpegPath,$Cancellation,[int]$ProbeTimeoutSeconds=60,[AllowNull()][object]$OutputPlan)
             $result=& $originalValidation @PSBoundParameters;$result.Status='ControlledRejectedAfterRealValidation';$result.Error='controlled T13 validation rejection';return $result}.GetNewClosure()
         try{Set-Item -LiteralPath Function:Get-AudioOutputValidation -Value $wrapper;$script:descendantReleaseProved=$false
             $transaction=Invoke-AudioOutputTransaction -OutputPath $target -OutputRoot $outRoot -SourcePath $short -SourceDurationSeconds 0.25 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments @('-nostdin','-v','error','-i',$short,'-vn','-c:a','libmp3lame','-b:a','64k') -Cancellation $null -ProgressCallback {param($event);$events.Add($event)}
@@ -357,14 +357,15 @@ try {
         Add-Fixture $target;$case['phases']=@($events.Phase);$case['actual_status']=$transaction.Status;$case['existing_final_preserved']=$true
     }
     $app=Join-Path $testRoot 'App';[IO.Directory]::CreateDirectory($app)|Out-Null
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Application copies must start byte-identical.'}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Application copies must start byte-identical.'}
     # Test-only audit after byte-identical copy: every native result has a
     # positive exit proof before the host can authorize recursive fixture cleanup.
     $nativeAudit=@'
 $script:T13OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $proof=[pscustomobject]@{process_released=$false;status='not returned'};$global:T13NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     if($null -ne $ProgressCallback){$originalCallback=$ProgressCallback;$nativeParameters.ProgressCallback={param($progress);$global:T13Machine=$progress;try{& $originalCallback $progress}finally{$global:T13Machine=$null}}.GetNewClosure()}
@@ -374,7 +375,7 @@ function Invoke-AudioNativeProcess {
 }
 '@
     [IO.File]::AppendAllText((Join-Path $app 'AudioFileForPhone.Helpers.ps1'),"`r`n"+$nativeAudit,[Text.Encoding]::UTF8)
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){Add-Fixture (Join-Path $app $name)}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){Add-Fixture (Join-Path $app $name)}
     $entry=Join-Path $app 'AudioFileForPhone.ps1';$report.copied_entry_bytes_unchanged=$true
     Invoke-Case '100 percent processed retains file failure and never precedes final-file completion' 'A33' {
         param($case);$fixtureInput=Join-Path $testRoot 'Mixed';[IO.Directory]::CreateDirectory($fixtureInput)|Out-Null;$good=Join-Path $fixtureInput '2024-01-01 Good.mp3';[IO.File]::Copy($short,$good,$false);Add-Fixture $good
@@ -406,6 +407,26 @@ function Invoke-AudioNativeProcess {
         $published=Get-Published $out;Assert-True ($published.Count -eq 1) 'Hour-plus run must publish exactly one output.';$case['decoded_output']=Assert-Decoded $published[0].FullName 3605
         Assert-True ((Get-FileHash -LiteralPath $long).Hash -ceq $before) 'Actual long synthetic source must remain byte-identical.'
         $case['synthetic_source_duration_seconds']=3605;$case['realtime_throttling_used']=$false;$case['source_sha256_unchanged']=$true;$case['live_encoding_distinct_percentages']=@($encoding.percent|Select-Object -Unique)
+    }
+    Invoke-Case 'actual hour-plus VBR source retains the fixed duration bound and fully decodes' 'S09-A2,S09-A3' {
+        param($case)
+        $folder=Join-Path $testRoot 'LongVbr';[IO.Directory]::CreateDirectory($folder)|Out-Null
+        $source=Join-Path $folder '2024-01-01 Synthetic VBR.mp3'
+        Invoke-OwnedNative $ffmpeg @('-nostdin','-v','error','-f','lavfi','-i','sine=frequency=440:sample_rate=22050:duration=3605','-c:a','libmp3lame','-q:a','4',$source)|Out-Null
+        Add-Fixture $source
+        $priorRelease=$script:descendantReleaseProved;$script:descendantReleaseProved=$false
+        $media=Get-AudioMediaInfo -Path $source -FfprobePath $ffprobe
+        if($null -ne $media.NativeResult -and $media.NativeResult.ProcessReleased -and $media.NativeResult.PipeDrainCompleted){$script:descendantReleaseProved=$priorRelease}
+        Assert-True ($media.Status -ceq 'Success' -and $media.DurationStatus -ceq 'Valid' -and $script:descendantReleaseProved) 'Long VBR source needs a valid duration and actual probe release proof.'
+        $packets=Invoke-OwnedNative $ffprobe @('-v','error','-select_streams','a:0','-read_intervals','%+2','-show_entries','packet=size','-of','csv=p=0',$source)
+        $sizes=@($packets.Stdout -split '\r?\n'|Where-Object{$_ -match '^\d+$'}|Sort-Object -Unique)
+        Assert-True ($sizes.Count -gt 1) 'Independent source packets must have variable encoded sizes.'
+        $out=Join-Path $testRoot 'LongVbrOut';$result=Invoke-Entry 'long-vbr' $folder $out
+        Assert-True ($result.exit_code -eq 0) 'Actual hour-plus VBR source must convert without widening duration policy.'
+        $published=Get-Published $out;Assert-True ($published.Count -eq 1) 'Long VBR must publish one validated output.'
+        $case['decoded_output']=Assert-Decoded $published[0].FullName $media.DurationSeconds
+        $case['source_duration_seconds']=$media.DurationSeconds;$case['independent_packet_sizes']=$sizes
+        $case['duration_tolerance_seconds']=0.35;$case['source_duration_policy_changed']=$false
     }
     $report.status='pass';$exitCode=0
 }

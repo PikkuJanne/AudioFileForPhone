@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.0'
+    return '1.0.1'
 }
 
 function Assert-AudioParameters {
@@ -115,6 +115,698 @@ function Get-ToolPath {
         throw "Could not find $ExeName. Put it next to this script or add it to PATH."
     }
     return $command.Source
+}
+
+function Get-AudioSelectionPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    if ([string]::IsNullOrWhiteSpace($Path)) { throw 'A non-empty filesystem path is required.' }
+    # Check the original spelling before Windows canonicalization can trim it.
+    Assert-AudioOutputParentSpelling -Path $Path
+    $full = Get-AudioPath -Path $Path
+    Assert-AudioPathComponents -Path $full
+    Assert-AudioNoReparseAncestor -Path $full
+    return $full
+}
+
+function Get-AudioConfigPath {
+    param([string]$ConfigPath)
+    if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
+        $local = [Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,
+            [Environment+SpecialFolderOption]::DoNotVerify)
+        if ([string]::IsNullOrWhiteSpace($local)) { throw 'Windows could not resolve the current user LocalApplicationData folder. Specify -ConfigPath.' }
+        $ConfigPath = [IO.Path]::Combine($local, 'AudioFileForPhone', 'config.json')
+    }
+    $full = Get-AudioSelectionPath -Path $ConfigPath
+    if (Test-Path -LiteralPath $full -ErrorAction Stop) {
+        $item = Get-Item -LiteralPath $full -Force -ErrorAction Stop
+        if ($item.PSIsContainer) { throw "ConfigPath must name a regular JSON file, not a directory: '$full'." }
+    }
+    return $full
+}
+
+function Read-AudioToolConfig {
+    param([string]$ConfigPath)
+    $path = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $reader = $null
+    try {
+        if (-not (Test-Path -LiteralPath $path -ErrorAction Stop)) { return $null }
+        # FileShare.Read prevents modification/deletion while bounded bytes are read.
+        $reader = New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+        if ($reader.Length -gt 65536) { throw 'Configuration exceeds the 64 KiB limit.' }
+        $bytes = New-Object byte[] ([int]$reader.Length)
+        $offset = 0
+        while ($offset -lt $bytes.Length) {
+            $count = $reader.Read($bytes, $offset, $bytes.Length - $offset)
+            if ($count -eq 0) { throw 'Configuration changed or ended during its read.' }
+            $offset += $count
+        }
+        $encoding = New-Object Text.UTF8Encoding($false, $true)
+        $json = $encoding.GetString($bytes).TrimStart([char]0xfeff)
+        if (-not $json.TrimStart().StartsWith('{')) { throw 'Configuration must be a JSON object.' }
+        Assert-AudioConfigJsonNames -Json $json
+        $config = ConvertFrom-Json -InputObject $json -ErrorAction Stop
+        if ($null -eq $config -or $config -is [array] -or $config -isnot [pscustomobject]) { throw 'Configuration must be a JSON object.' }
+        $names = @($config.PSObject.Properties.Name)
+        if ($names -cnotcontains 'schema_version' -or
+            ($config.schema_version -isnot [int] -and $config.schema_version -isnot [long]) -or
+            $config.schema_version -ne 1) {
+            throw 'Unsupported schema_version. The file is preserved; choose another -ConfigPath or use a compatible application.'
+        }
+        if ($names -cnotcontains 'ffmpeg_directory' -or $config.ffmpeg_directory -isnot [string] -or
+            [string]::IsNullOrWhiteSpace($config.ffmpeg_directory) -or
+            $config.ffmpeg_directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') {
+            throw 'ffmpeg_directory must be an absolute Windows directory string.'
+        }
+        # Validate spelling without requiring saved tools still to exist.
+        Assert-AudioOutputParentSpelling -Path $config.ffmpeg_directory
+        Assert-AudioPathComponents -Path $config.ffmpeg_directory
+        return $config
+    }
+    catch { throw "Invalid tool configuration '$path': $($_.Exception.Message) The file was not changed. Use -FfmpegDirectory for this run or choose another -ConfigPath to repair the selection." }
+    finally { if ($null -ne $reader) { $reader.Dispose() } }
+}
+
+function Assert-AudioConfigJsonNames {
+    param([Parameter(Mandatory = $true)][string]$Json, [switch]$PassThruDirectoryToken)
+    # PowerShell 5.1 silently collapses duplicate JSON properties, while newer
+    # shells reject some case collisions. Reject both consistently before parsing
+    # so unrelated settings cannot be lost on a later save.
+    $objects = New-Object 'Collections.Generic.Stack[object]'
+    $directoryToken = $null
+    for ($index = 0; $index -lt $Json.Length; $index++) {
+        $character = $Json[$index]
+        if ($character -eq '{') {
+            $objects.Push((New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)))
+        }
+        elseif ($character -eq '}') { if ($objects.Count -gt 0) { $null = $objects.Pop() } }
+        elseif ($character -eq '/') { throw 'JSON comments are not supported in configuration.' }
+        elseif ($character -eq ',') {
+            $next = $index + 1
+            while ($next -lt $Json.Length -and [char]::IsWhiteSpace($Json[$next])) { $next++ }
+            if ($next -lt $Json.Length -and ($Json[$next] -eq '}' -or $Json[$next] -eq ']')) {
+                throw 'Trailing JSON commas are not supported in configuration.'
+            }
+        }
+        elseif ($character -eq '"') {
+            $start = $index; $index++
+            while ($index -lt $Json.Length) {
+                if ($Json[$index] -eq '\') { $index += 2; continue }
+                if ($Json[$index] -eq '"') { break }
+                $index++
+            }
+            if ($index -ge $Json.Length) { throw 'Configuration has an unterminated JSON string.' }
+            $next = $index + 1
+            while ($next -lt $Json.Length -and [char]::IsWhiteSpace($Json[$next])) { $next++ }
+            if ($next -lt $Json.Length -and $Json[$next] -eq ':' -and $objects.Count -gt 0) {
+                $token = $Json.Substring($start, $index - $start + 1)
+                $name = ConvertFrom-Json -InputObject ('[' + $token + ']') -ErrorAction Stop
+                if (-not $objects.Peek().Add([string]$name)) { throw "Duplicate or case-colliding JSON property '$name'." }
+                if ($PassThruDirectoryToken -and $objects.Count -eq 1 -and $name -ceq 'ffmpeg_directory') {
+                    $valueStart = $next + 1
+                    while ($valueStart -lt $Json.Length -and [char]::IsWhiteSpace($Json[$valueStart])) { $valueStart++ }
+                    if ($valueStart -ge $Json.Length -or $Json[$valueStart] -ne '"') { throw 'ffmpeg_directory must contain a JSON string.' }
+                    $valueEnd = $valueStart + 1
+                    while ($valueEnd -lt $Json.Length) {
+                        if ($Json[$valueEnd] -eq '\') { $valueEnd += 2; continue }
+                        if ($Json[$valueEnd] -eq '"') { break }
+                        $valueEnd++
+                    }
+                    if ($valueEnd -ge $Json.Length) { throw 'ffmpeg_directory has an unterminated JSON string.' }
+                    $directoryToken = [pscustomobject]@{ Start = $valueStart; Length = $valueEnd - $valueStart + 1 }
+                }
+            }
+        }
+    }
+    if ($PassThruDirectoryToken) {
+        if ($null -eq $directoryToken) { throw 'Configuration has no ffmpeg_directory property.' }
+        return $directoryToken
+    }
+}
+
+function Get-AudioToolPairPaths {
+    param([Parameter(Mandatory = $true)][string]$Directory)
+    $full = Get-AudioSelectionPath -Path $Directory
+    $folder = Get-Item -LiteralPath $full -Force -ErrorAction Stop
+    if (-not $folder.PSIsContainer) { throw "FFmpeg selection must be a filesystem directory: '$full'." }
+    $paths = @{}
+    foreach ($name in @('ffmpeg.exe', 'ffprobe.exe')) {
+        $path = [IO.Path]::Combine($full, $name)
+        $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
+        if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "The selected pair must contain regular executable files: '$path'."
+        }
+        $paths[$name] = $item.FullName
+    }
+    return [pscustomobject]@{ Directory = $full; FfmpegPath = $paths['ffmpeg.exe']; FfprobePath = $paths['ffprobe.exe'] }
+}
+
+function Add-AudioSelectionDiagnosticAttempt {
+    param([AllowNull()][hashtable]$Context, [string]$Origin, [string]$Candidate, [string]$Status, [string]$Reason)
+    if ($null -eq $Context) { return }
+    if ($null -eq $Context.Attempts) { $Context.Attempts = @() }
+    if (@($Context.Attempts).Count -ge 24) { return }
+    $Context.Attempts = @($Context.Attempts) + [pscustomobject]@{ Origin = $Origin; Candidate = $Candidate; Status = $Status; Reason = $Reason }
+}
+
+function Assert-AudioLocalToolPath {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    # Resolve spelling/provider only, before any candidate/config existence check.
+    # GetDriveType through DriveInfo classifies mapped drives without opening a
+    # selected file or probing its remote share.
+    $provider = $null; $drive = $null
+    $full = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($Path, [ref]$provider, [ref]$drive)
+    if ($provider.Name -ne 'FileSystem' -or $full -notmatch '^[A-Za-z]:[\\/]' -or $full.StartsWith('\\?\') -or $full.StartsWith('\\.\')) {
+        throw 'The no-network check requires a local filesystem path; UNC and non-filesystem paths are refused before access.'
+    }
+    $volume = New-Object IO.DriveInfo([IO.Path]::GetPathRoot($full))
+    if ($volume.DriveType -eq [IO.DriveType]::Network) { throw 'The no-network check refuses mapped network drives before access.' }
+    return $full
+}
+
+function Get-AudioPathTool {
+    param([Parameter(Mandatory = $true)][ValidateSet('ffmpeg.exe', 'ffprobe.exe')][string]$ExeName,
+        [AllowNull()][hashtable]$DiagnosticContext, [switch]$LocalOnly)
+    # Resolve only exact .exe files under absolute PATH entries. Get-Command also
+    # searches the process working directory on Windows; source folders never gain
+    # executable-selection authority through that implicit search (or PATH '.').
+    foreach ($entry in @($env:PATH -split ';')) {
+        $directory = $entry.Trim().Trim('"')
+        if ($directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { continue }
+        if ($LocalOnly) {
+            try { $null = Assert-AudioLocalToolPath -Path $directory }
+            catch {
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $directory -Status Rejected -Reason $_.Exception.Message
+                continue
+            }
+        }
+        try { $full = Get-AudioSelectionPath -Path $directory }
+        catch { continue }
+        $candidate = [IO.Path]::Combine($full, $ExeName)
+        if ($LocalOnly) {
+            try { Assert-AudioNoReparseAncestor -Path $candidate }
+            catch {
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason $_.Exception.Message
+                throw
+            }
+        }
+        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Missing -Reason 'Exact executable is absent.'
+            continue
+        }
+        $item = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop
+        if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason 'Not a regular executable file.'
+            throw "PATH candidate is not a regular executable file: '$candidate'."
+        }
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Selected -Reason 'First exact executable in absolute PATH directories.'
+        return $item.FullName
+    }
+    throw "Could not find $ExeName in absolute PATH directories. Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe>."
+}
+
+function Resolve-AudioToolSelection {
+    param([string]$FfmpegDirectory, [string]$ConfigPath,
+          [Parameter(Mandatory = $true)][string]$ScriptDirectory,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [AllowNull()][hashtable]$DiagnosticContext, [switch]$LocalOnly)
+    if ($null -ne $DiagnosticContext) { $DiagnosticContext.Stage = 'ToolSelection'; $DiagnosticContext.Code = 'ConfigInvalid' }
+    if ($LocalOnly) {
+        $candidateConfig = $ConfigPath
+        if ([string]::IsNullOrWhiteSpace($candidateConfig)) {
+            $candidateConfig = [IO.Path]::Combine([Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,
+                [Environment+SpecialFolderOption]::DoNotVerify), 'AudioFileForPhone', 'config.json')
+        }
+        try { $null = Assert-AudioLocalToolPath -Path $candidateConfig }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $candidateConfig -Status Rejected -Reason $_.Exception.Message
+            throw
+        }
+    }
+    $configFile = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $origin = $null; $pair = $null
+    if ($PSBoundParameters.ContainsKey('FfmpegDirectory') -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+        throw 'Invalid explicit FFmpeg selection: -FfmpegDirectory must be a non-empty directory.'
+    }
+    if (-not [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+        $origin = 'Explicit'
+        if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $FfmpegDirectory -Status Checking -Reason 'Explicit choice suppresses fallback.'
+        try {
+            if ($LocalOnly) { $null = Assert-AudioLocalToolPath -Path $FfmpegDirectory }
+            $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+        }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $FfmpegDirectory -Status Rejected -Reason $_.Exception.Message
+            throw "Invalid explicit FFmpeg selection '$FfmpegDirectory': $($_.Exception.Message) No fallback was attempted."
+        }
+    }
+    else {
+        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $configFile -Status Checking -Reason 'Read-only configuration lookup.'
+        try { $config = Read-AudioToolConfig -ConfigPath $configFile }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin Config -Candidate $configFile -Status Rejected -Reason $_.Exception.Message
+            throw
+        }
+        if ($null -ne $config) {
+            $origin = 'Saved'
+            if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $config.ffmpeg_directory -Status Checking -Reason 'Saved choice suppresses fallback.'
+            try {
+                if ($LocalOnly) { $null = Assert-AudioLocalToolPath -Path $config.ffmpeg_directory }
+                $pair = Get-AudioToolPairPaths -Directory $config.ffmpeg_directory
+            }
+            catch {
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $config.ffmpeg_directory -Status Rejected -Reason $_.Exception.Message
+                throw "Saved FFmpeg selection is unavailable '$($config.ffmpeg_directory)': $($_.Exception.Message) Use -FfmpegDirectory for this run or deliberately save a repaired selection. No fallback was attempted."
+            }
+        }
+        else {
+            if ($LocalOnly) {
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                try { $null = Assert-AudioLocalToolPath -Path $ScriptDirectory }
+                catch {
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin AppLocal -Candidate $ScriptDirectory -Status Rejected -Reason $_.Exception.Message
+                    throw
+                }
+            }
+            $scriptPath = Get-AudioSelectionPath -Path $ScriptDirectory
+            $localFfmpeg = [IO.Path]::Combine($scriptPath, 'ffmpeg.exe')
+            $localFfprobe = [IO.Path]::Combine($scriptPath, 'ffprobe.exe')
+            if ($LocalOnly) {
+                Assert-AudioNoReparseAncestor -Path $localFfmpeg
+                Assert-AudioNoReparseAncestor -Path $localFfprobe
+            }
+            if ((Test-Path -LiteralPath $localFfmpeg -ErrorAction Stop) -or (Test-Path -LiteralPath $localFfprobe -ErrorAction Stop)) {
+                $origin = 'AppLocal'
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $scriptPath -Status Checking -Reason 'An application-local pair suppresses PATH fallback.'
+                try { $pair = Get-AudioToolPairPaths -Directory $scriptPath }
+                catch {
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $origin -Candidate $scriptPath -Status Rejected -Reason $_.Exception.Message
+                    throw "Incomplete or invalid application-local FFmpeg pair '$scriptPath': $($_.Exception.Message) A local/PATH pair will not be mixed."
+                }
+            }
+            else {
+                $origin = 'PATH'
+                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyMissing' }
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin AppLocal -Candidate $scriptPath -Status Missing -Reason 'No application-local executable is present.'
+                $ffmpeg = Get-AudioPathTool -ExeName 'ffmpeg.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
+                $ffprobe = Get-AudioPathTool -ExeName 'ffprobe.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
+                $directory = [IO.Path]::GetDirectoryName($ffmpeg)
+                if (-not [StringComparer]::OrdinalIgnoreCase.Equals($directory, [IO.Path]::GetDirectoryName($ffprobe))) { $directory = $null }
+                $pair = [pscustomobject]@{ Directory = $directory; FfmpegPath = $ffmpeg; FfprobePath = $ffprobe }
+            }
+        }
+    }
+    if ($null -ne $DiagnosticContext) {
+        $DiagnosticContext.Code = 'DependencyInvalid'
+        $DiagnosticContext.Selection = [pscustomobject]@{ Origin = $origin
+            Ffmpeg = [pscustomobject]@{ Path = $pair.FfmpegPath; Version = ''; Architecture = '' }
+            Ffprobe = [pscustomobject]@{ Path = $pair.FfprobePath; Version = ''; Architecture = '' } }
+    }
+    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation -DiagnosticContext $DiagnosticContext }
+    catch [OperationCanceledException] { throw }
+    catch { throw "$origin FFmpeg selection failed validation: $($_.Exception.Message) Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted." }
+    Write-Host ("[INFO] FFmpeg selection origin: {0}" -f $origin)
+    $selection = [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = $origin; ConfigPath = $configFile; Directory = $pair.Directory }
+    if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'Completed'; $DiagnosticContext.Selection = $selection }
+    return $selection
+}
+
+function Save-AudioToolSelection {
+    param([Parameter(Mandatory = $true)][string]$FfmpegDirectory, [string]$ConfigPath)
+    # This is the only persistence API. Only deliberate setup calls it; ordinary
+    # conversion, preview and default load never save a choice. Validation completes
+    # before creating any config storage.
+    $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+    $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath
+    $path = Get-AudioConfigPath -ConfigPath $ConfigPath
+    $parent = [IO.Path]::GetDirectoryName($path)
+    $lock = $null; $existingGuard = $null; $temporaryGuard = $null
+    $temporary = $null; $temporaryIdentity = $null
+    try {
+        Assert-AudioNoReparseAncestor -Path $parent
+        [IO.Directory]::CreateDirectory($parent) | Out-Null
+        Assert-AudioNoReparseAncestor -Path $parent
+        # Exclusive creation + DeleteOnClose serializes cooperating writers and
+        # does not delete/reclaim an unrelated pre-existing lock file.
+        $lockPath = $path + '.lock'
+        $lock = New-Object IO.FileStream($lockPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite,
+            [IO.FileShare]::None, 4096, [IO.FileOptions]::DeleteOnClose)
+        $config = $null
+        $existingIdentity = $null
+        if (Test-Path -LiteralPath $path -ErrorAction Stop) {
+            $item = Get-Item -LiteralPath $path -Force -ErrorAction Stop
+            if (($item.Attributes -band [IO.FileAttributes]::ReadOnly) -ne 0) { throw 'Configuration is read-only. Choose a writable -ConfigPath.' }
+            $existingGuard = New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, ([IO.FileShare]::Read -bor [IO.FileShare]::Delete))
+            $existingIdentity = Get-AudioWorkingFileIdentity -Stream $existingGuard
+            $config = Read-AudioToolConfig -ConfigPath $path
+            if ($existingGuard.Length -gt 65536) { throw 'Configuration exceeds the 64 KiB limit.' }
+            $existingBytes = New-Object byte[] ([int]$existingGuard.Length)
+            $offset = 0
+            while ($offset -lt $existingBytes.Length) {
+                $count = $existingGuard.Read($existingBytes, $offset, $existingBytes.Length - $offset)
+                if ($count -eq 0) { throw 'Configuration ended during its guarded read.' }
+                $offset += $count
+            }
+            $existingJson = (New-Object Text.UTF8Encoding($false, $true)).GetString($existingBytes)
+            $existingHash = (Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash
+            if ((Get-AudioWorkingFileIdentity -Path $path) -cne $existingIdentity) { throw 'Configuration identity changed during its read; selection was not saved.' }
+        }
+        if ($null -ne $existingIdentity) {
+            # Preserve unknown JSON values exactly, including numeric precision,
+            # date-like strings, whitespace and any UTF-8 BOM. Round-tripping the
+            # whole object through PowerShell would normalize these differently
+            # between 5.1 and 7. Only the deliberately owned string token changes.
+            $token = Assert-AudioConfigJsonNames -Json $existingJson -PassThruDirectoryToken
+            $directoryJson = ConvertTo-Json -InputObject $pair.Directory -Compress -ErrorAction Stop
+            $json = $existingJson.Substring(0, $token.Start) + $directoryJson + $existingJson.Substring($token.Start + $token.Length)
+        }
+        else { $json = (ConvertTo-Json -InputObject ([ordered]@{ schema_version = 1; ffmpeg_directory = $pair.Directory })) + "`r`n" }
+        $bytes = (New-Object Text.UTF8Encoding($false, $true)).GetBytes($json)
+        if ($bytes.Length -gt 65536) { throw 'Resulting configuration exceeds the 64 KiB limit.' }
+        $temporary = [IO.Path]::Combine($parent, '.AudioFileForPhone-config-' + [guid]::NewGuid().ToString('N') + '.tmp')
+        $temporaryGuard = New-Object IO.FileStream($temporary, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, ([IO.FileShare]::Read -bor [IO.FileShare]::Delete))
+        $temporaryIdentity = Get-AudioWorkingFileIdentity -Stream $temporaryGuard
+        $temporaryGuard.Write($bytes, 0, $bytes.Length)
+        $temporaryGuard.Flush($true)
+        # Windows ReplaceFile requires closed writer/target guards. Keep them
+        # through serialization, then recheck identities and bytes immediately
+        # before the atomic publication under the cooperating-writer lock.
+        $temporaryGuard.Dispose(); $temporaryGuard = $null
+        if ($null -ne $existingGuard) { $existingGuard.Dispose(); $existingGuard = $null }
+        Assert-AudioNoReparseAncestor -Path $path
+        if ((Get-AudioWorkingFileIdentity -Path $temporary) -cne $temporaryIdentity) { throw 'Temporary configuration identity changed; preserving that path.' }
+        if ($null -ne $existingIdentity) {
+            if ((Get-AudioWorkingFileIdentity -Path $path) -cne $existingIdentity) { throw 'Configuration identity changed concurrently; selection was not saved.' }
+            if ((Get-FileHash -LiteralPath $path -Algorithm SHA256 -ErrorAction Stop).Hash -cne $existingHash) { throw 'Configuration content changed concurrently; selection was not saved.' }
+            [IO.File]::Replace($temporary, $path, [NullString]::Value)
+        }
+        else { [IO.File]::Move($temporary, $path) }
+        if ((Get-AudioWorkingFileIdentity -Path $path) -cne $temporaryIdentity) { throw 'Published configuration identity changed concurrently. Verify -ConfigPath before using it.' }
+        $temporary = $null
+    }
+    catch { throw "FFmpeg selection was not remembered in '$path': $($_.Exception.Message) The validated pair can still be used for this run with -FfmpegDirectory." }
+    finally {
+        if ($null -ne $temporaryGuard) { $temporaryGuard.Dispose() }
+        if ($null -ne $existingGuard) { $existingGuard.Dispose() }
+        if ($null -ne $temporary -and [IO.File]::Exists($temporary)) {
+            try { if ((Get-AudioWorkingFileIdentity -Path $temporary) -ceq $temporaryIdentity) { [IO.File]::Delete($temporary) } }
+            catch { Write-Warning "Could not remove owned incomplete config '$temporary': $($_.Exception.Message)" }
+        }
+        if ($null -ne $lock) { $lock.Dispose() }
+    }
+    Write-Host ("[INFO] Remembered FFmpeg directory in {0}" -f $path)
+    return [pscustomobject]@{ Ffmpeg = $tools.Ffmpeg; Ffprobe = $tools.Ffprobe; Origin = 'Saved'; ConfigPath = $path; Directory = $pair.Directory }
+}
+
+function Get-AudioSetupRepairCommand {
+    param([Parameter(Mandatory = $true)][string]$ScriptDirectory, [string]$ConfigPath)
+    # Single-quoted PowerShell arguments are display text, never evaluated here.
+    $setupPath = [IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'Setup-AudioFileForPhone.ps1')
+    $command = "& '" + $setupPath.Replace("'", "''") + "' -FfmpegDirectory '<directory containing ffmpeg.exe and ffprobe.exe>' -Remember"
+    if (-not [string]::IsNullOrWhiteSpace($ConfigPath)) {
+        $command += " -ConfigPath '" + $ConfigPath.Replace("'", "''") + "'"
+    }
+    return $command
+}
+
+function Test-AudioSetupInteractionAvailable {
+    # Read-Host can conceal EOF/redirected-input loops. Interactive setup supports
+    # an ordinary console only; explicit-directory setup needs no console.
+    try {
+        return ($Host.Name -eq 'ConsoleHost' -and [Environment]::UserInteractive -and
+            -not [Console]::IsInputRedirected)
+    }
+    catch { return $false }
+}
+
+function Read-AudioSetupResponse {
+    param([Parameter(Mandatory = $true)][string]$Prompt)
+    if (-not (Test-AudioSetupInteractionAvailable)) {
+        throw 'Interactive setup requires console input. Use the explicit -FfmpegDirectory setup command instead.'
+    }
+    Write-Host ($Prompt + ': ') -NoNewline
+    # Use host input rather than Console.ReadLine so PowerShell -NonInteractive
+    # retains authority even with an attached console. Preserve null at EOF.
+    # Each stage reads once: invalid input/cancellation never create retry loops.
+    return $Host.UI.ReadLine()
+}
+
+function Test-AudioMetadataInteractionAvailable {
+    return (Test-AudioSetupInteractionAvailable)
+}
+
+function Read-AudioMetadataResponse {
+    param([Parameter(Mandatory = $true)][string]$Prompt)
+    if (-not (Test-AudioMetadataInteractionAvailable)) {
+        throw 'Interactive metadata requires console input. Run without -Interactive and pass any metadata parameters directly.'
+    }
+    Write-Host ($Prompt + ': ') -NoNewline
+    # Preserve EOF and the host's -NonInteractive authority. Never turn missing
+    # input into Enter, and never poll or retry a redirected input stream.
+    return $Host.UI.ReadLine()
+}
+
+function Select-AudioMetadataCover {
+    $dialog = $null
+    try {
+        if ([Threading.Thread]::CurrentThread.GetApartmentState() -ne [Threading.ApartmentState]::STA) {
+            throw 'The current host is not STA.'
+        }
+        if (-not [Environment]::UserInteractive) { throw 'A Windows desktop is unavailable.' }
+        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
+        $dialog = New-Object System.Windows.Forms.OpenFileDialog
+        $dialog.Title = 'Select album cover image'
+        $dialog.Filter = 'Image Files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png|All Files (*.*)|*.*'
+        $dialog.Multiselect = $false
+        if ($dialog.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) { return $dialog.FileName }
+        return $null
+    }
+    catch {
+        Write-Warning ('Could not open cover picker. Use an STA console or -CoverPath. ' + $_.Exception.Message)
+        return $null
+    }
+    finally { if ($null -ne $dialog) { $dialog.Dispose() } }
+}
+
+function Select-AudioSetupDirectory {
+    # Keep GUI interaction behind a small adapter. A cancelled dialog is distinct
+    # from an unavailable dialog and must never trigger another surprise prompt.
+    $dialog = $null
+    try {
+        if ([Threading.Thread]::CurrentThread.GetApartmentState() -ne [Threading.ApartmentState]::STA) {
+            throw 'The current host is not STA.'
+        }
+        if (-not [Environment]::UserInteractive) { throw 'A Windows desktop is unavailable.' }
+        Add-Type -AssemblyName System.Windows.Forms -ErrorAction Stop | Out-Null
+        $dialog = New-Object System.Windows.Forms.FolderBrowserDialog
+        $dialog.Description = 'Choose the existing bin folder containing ffmpeg.exe and ffprobe.exe.'
+        $dialog.ShowNewFolderButton = $false
+        $answer = $dialog.ShowDialog()
+        if ($answer -ne [Windows.Forms.DialogResult]::OK) {
+            return [pscustomobject]@{ Status = 'Cancelled'; Directory = $null; Error = $null }
+        }
+        return [pscustomobject]@{ Status = 'Selected'; Directory = $dialog.SelectedPath; Error = $null }
+    }
+    catch {
+        return [pscustomobject]@{ Status = 'Unavailable'; Directory = $null; Error = $_.Exception.Message }
+    }
+    finally { if ($null -ne $dialog) { $dialog.Dispose() } }
+}
+
+function Write-AudioSetupManualInstructions {
+    param([Parameter(Mandatory = $true)][string]$ScriptDirectory, [string]$ConfigPath)
+    Write-Host 'Manual/offline setup: obtain a Windows FFmpeg build with libmp3lame from a source you trust.'
+    Write-Host 'Extract it using your normal tools. Keep its vendor notices and choose the exact bin folder containing both ffmpeg.exe and ffprobe.exe.'
+    Write-Host 'An existing offline copy is sufficient. No download, administrator access or PATH change is required.'
+    Write-Host 'Run this command after replacing the directory placeholder:'
+    Write-Host (Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath)
+}
+
+function Invoke-AudioToolSetup {
+    param(
+        [Parameter(Mandatory = $true)][string]$ScriptDirectory,
+        [string]$ConfigPath,
+        [string]$Reason,
+        [string]$FfmpegDirectory,
+        [switch]$Remember,
+        [switch]$NonInteractive,
+        [switch]$AllowManagedDownload,
+        [switch]$Download,
+        [switch]$Consent,
+        [string]$ManagedRoot
+    )
+    $result = [ordered]@{ Status = 'NotConfigured'; Selection = $null; Remembered = $false; SaveError = $null; Error = $null }
+    $guards = New-Object 'Collections.Generic.List[IDisposable]'
+    try {
+        Assert-AudioNotCancelled
+        $explicit = $PSBoundParameters.ContainsKey('FfmpegDirectory')
+        $downloadRequested = [bool]$Download
+        if ($Download -and (-not $AllowManagedDownload -or $explicit)) { throw '-Download is available only in the separate setup entry and cannot be combined with -FfmpegDirectory.' }
+        if ($Consent -and -not $Download) { throw '-Consent requires explicit -Download.' }
+        if ($Download -and -not $Consent) { throw 'Download refused: explicit -Download requires -Consent. No files were downloaded or installed.' }
+        if ($ManagedRoot -and -not $AllowManagedDownload) { throw '-ManagedRoot is available only in the separate setup entry.' }
+        if ($explicit -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+            throw '-FfmpegDirectory must be a non-empty directory containing ffmpeg.exe and ffprobe.exe.'
+        }
+        if (-not $explicit -and -not $Download) {
+            if ($Remember) { throw '-Remember requires an explicit -FfmpegDirectory. Interactive setup asks whether to remember the selected pair.' }
+            if ($NonInteractive -or -not (Test-AudioSetupInteractionAvailable)) {
+                throw ('Setup requires an explicit existing-tool directory when console input is unavailable. Repair action: ' +
+                    (Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath))
+            }
+            if (-not [string]::IsNullOrWhiteSpace($Reason)) { Write-Host ('FFmpeg setup is needed: ' + $Reason) }
+            Write-Host 'No conversion has started. Select an existing FFmpeg pair to continue this launch.'
+            Write-Host 'S = select existing folder | M = manual/offline instructions | D = optional managed setup | Q = cancel'
+            $answer = Read-AudioSetupResponse -Prompt 'Setup selection'
+            if ($null -eq $answer -or [string]::IsNullOrWhiteSpace($answer) -or $answer.Trim() -ieq 'Q') {
+                $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled; no selection was changed.'
+                return [pscustomobject]$result
+            }
+            switch ($answer.Trim().ToUpperInvariant()) {
+                'M' {
+                    Write-AudioSetupManualInstructions -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath
+                    $result.Error = 'Manual/offline instructions displayed; FFmpeg has not been configured. Run setup again when the pair is available.'
+                    return [pscustomobject]$result
+                }
+                'D' {
+                    if (-not $AllowManagedDownload) {
+                        $setupCommand = "& '" + ([IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'Setup-AudioFileForPhone.ps1')).Replace("'", "''") + "'"
+                        if ($ConfigPath) { $setupCommand += " -ConfigPath '" + $ConfigPath.Replace("'", "''") + "'" }
+                        Write-Host 'Conversion never downloads tools. Run separate setup and choose D to review the optional download:'
+                        Write-Host $setupCommand
+                        Write-Host 'No files were downloaded or installed.'
+                        $result.Error = 'Optional download requires separate setup. No files were downloaded or installed.'
+                        return [pscustomobject]$result
+                    }
+                    $downloadRequested = $true
+                }
+                'S' {
+                    $picked = Select-AudioSetupDirectory
+                    if ($picked.Status -eq 'Cancelled') {
+                        $result.Status = 'Cancelled'; $result.Error = 'FFmpeg folder selection was cancelled; no selection was changed.'
+                        return [pscustomobject]$result
+                    }
+                    if ($picked.Status -eq 'Unavailable') {
+                        Write-Warning ('Folder dialog is unavailable; use the typed path instead. ' + $picked.Error)
+                        $FfmpegDirectory = Read-AudioSetupResponse -Prompt 'Type the exact bin folder containing both executables (empty = cancel)'
+                        if ($null -eq $FfmpegDirectory -or [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
+                            $result.Status = 'Cancelled'; $result.Error = 'FFmpeg typed-path selection was cancelled; no selection was changed.'
+                            return [pscustomobject]$result
+                        }
+                        $FfmpegDirectory = $FfmpegDirectory.Trim()
+                        if ($FfmpegDirectory.Length -ge 2 -and $FfmpegDirectory.StartsWith('"') -and $FfmpegDirectory.EndsWith('"')) {
+                            $FfmpegDirectory = $FfmpegDirectory.Substring(1, $FfmpegDirectory.Length - 2)
+                        }
+                    }
+                    elseif ($picked.Status -eq 'Selected') { $FfmpegDirectory = $picked.Directory }
+                    else { throw 'Folder selection returned an unsupported result; no selection was changed.' }
+                }
+                default { throw 'Invalid setup selection. Run setup again and choose S, M, D or Q; no selection was changed.' }
+            }
+        }
+        if ($downloadRequested) {
+            $managedHelper = [IO.Path]::Combine((Get-AudioSelectionPath -Path $ScriptDirectory), 'AudioFileForPhone.ManagedSetup.ps1')
+            if (-not (Test-Path -LiteralPath $managedHelper -PathType Leaf)) { throw 'Managed setup helper is missing. Restore the complete application package or select an existing pair.' }
+            . $managedHelper
+            $manifest = Get-AudioManagedDownloadManifest -ManifestPath ([IO.Path]::Combine($ScriptDirectory, 'tools', 'ffmpeg-download.json'))
+            $storage = $ManagedRoot
+            if ([string]::IsNullOrWhiteSpace($storage)) { $storage = [IO.Path]::Combine([IO.Path]::GetDirectoryName((Get-AudioConfigPath -ConfigPath $ConfigPath)), 'managed') }
+            $storage = Get-AudioSelectionPath -Path $storage
+            Write-Host ('Optional download: ' + $manifest.provider + ' / ' + $manifest.build)
+            Write-Host ('Publisher URL: ' + $manifest.url)
+            Write-Host ('Transfer: ' + $manifest.archive_size_bytes + ' bytes; destination: ' + $storage)
+            Write-Host ('SHA256: ' + $manifest.sha256)
+            Write-Host ('Vendor license/notices: ' + $manifest.license_url + '; source: ' + $manifest.source_url)
+            Write-Host 'Downloads executable code directly from this publisher. The pin verifies the reviewed bytes; review the publisher and its GPL terms. All vendor files/notices are retained. No global install or automatic updates.'
+            if (-not $Consent) {
+                $answer = Read-AudioSetupResponse -Prompt 'Download and install this exact build? Y = consent | N/Enter/Q = cancel'
+                if ($null -eq $answer -or $answer.Trim() -ine 'Y') {
+                    $result.Status = 'Cancelled'; $result.Error = 'Download consent was not granted. No files were downloaded or installed.'
+                    return [pscustomobject]$result
+                }
+            }
+            Assert-AudioNotCancelled
+            # Polling console capture owns keys only during work, never while a
+            # menu/consent/remember ReadLine owns input. Reuse injected caller
+            # cancellation where present; standalone setup creates a scoped owner.
+            $priorCancellation = Get-AudioCancellationContext
+            $managedCancellation = $null
+            try {
+                if ($null -eq $priorCancellation) {
+                    $managedCancellation = New-AudioCancellationContext -CaptureConsole
+                    $script:AudioCancellationContext = $managedCancellation
+                }
+                $installed = Invoke-AudioManagedToolInstall -Manifest $manifest -ConfigPath $ConfigPath -ManagedRoot $storage -Consent -CancellationState (Get-AudioCancellationContext)
+                Assert-AudioNotCancelled -Cancellation (Get-AudioCancellationContext)
+            }
+            finally {
+                if ($null -ne $managedCancellation) {
+                    $managedCancellation.Dispose()
+                    $script:AudioCancellationContext = $priorCancellation
+                }
+            }
+            if ($null -ne $managedCancellation -and $managedCancellation.IsCancellationRequested) {
+                throw (New-Object OperationCanceledException('Managed setup was cancelled before remembering the completed installation.'))
+            }
+            $FfmpegDirectory = $installed.ToolSelection.Directory
+        }
+        Assert-AudioNotCancelled
+        # The exact explicitly selected directory is accepted; no recursive search
+        # or automatic installation-root/bin guessing grants execution authority.
+        $pair = Get-AudioToolPairPaths -Directory $FfmpegDirectory
+        foreach ($path in @($pair.FfmpegPath, $pair.FfprobePath)) {
+            # Hold read guards through validation/hash/consent/save so the displayed
+            # selected bytes cannot be replaced by cooperating filesystem writes.
+            $guards.Add((New-Object IO.FileStream($path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)))
+        }
+        $selection = Resolve-AudioToolSelection -FfmpegDirectory $pair.Directory -ConfigPath $ConfigPath -ScriptDirectory $ScriptDirectory
+        Write-Host ('Accepted FFmpeg directory: ' + $selection.Directory)
+        foreach ($tool in @($selection.Ffmpeg, $selection.Ffprobe)) {
+            Assert-AudioNotCancelled
+            $hash = (Get-FileHash -LiteralPath $tool.Path -Algorithm SHA256 -ErrorAction Stop).Hash
+            $tool | Add-Member -NotePropertyName SHA256 -NotePropertyValue $hash -Force
+            Write-Host ('SHA256 ' + $tool.Path + ': ' + $hash)
+        }
+        Write-Host 'Capability checks and these hashes identify the selected files; they do not prove publisher authenticity.'
+        if (-not $explicit -and -not $Download) {
+            $answer = Read-AudioSetupResponse -Prompt 'Remember this directory for future launches? Y = yes | N/Enter = this launch only | Q = cancel'
+            if ($null -eq $answer -or $answer.Trim() -ieq 'Q') {
+                $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled before remembering or using the selection.'
+                return [pscustomobject]$result
+            }
+            if ($answer.Trim() -ieq 'Y') { $Remember = $true }
+            elseif (-not [string]::IsNullOrWhiteSpace($answer) -and $answer.Trim() -ine 'N') {
+                throw 'Invalid remember selection. Run setup again and choose Y, N/Enter or Q; no selection was changed.'
+            }
+        }
+        Assert-AudioNotCancelled
+        if ($Remember) {
+            try {
+                $saved = Save-AudioToolSelection -FfmpegDirectory $selection.Directory -ConfigPath $ConfigPath
+                $result.Remembered = $true
+                $selection.Origin = $saved.Origin
+            }
+            catch [OperationCanceledException] { throw }
+            catch {
+                $result.SaveError = $_.Exception.Message
+                Write-Warning ('This directory was NOT remembered. The validated pair can continue in the current launch only. ' + $result.SaveError)
+            }
+        }
+        if (-not $result.Remembered -and -not $result.SaveError) {
+            Write-Host 'This directory was not remembered. The validated pair is available for this launch only.'
+        }
+        $result.Status = 'Ready'; $result.Selection = $selection
+    }
+    catch [OperationCanceledException] {
+        $result.Status = 'Cancelled'; $result.Error = $_.Exception.Message
+    }
+    catch { $result.Error = $_.Exception.Message }
+    finally { foreach ($guard in $guards) { $guard.Dispose() } }
+    return [pscustomobject]$result
 }
 
 function New-AudioCancellationContext {
@@ -414,14 +1106,18 @@ function Invoke-AudioNativeProcess {
         [AllowNull()][scriptblock]$ProgressCallback,
         [AllowNull()][object]$ProgressDurationSeconds,
         [AllowNull()][object]$ProgressParser,
-        [AllowNull()][object]$ProgressCallbackState
+        [AllowNull()][object]$ProgressCallbackState,
+        [ValidateRange(0, 2147483647)][int]$TimeoutMilliseconds = 0,
+        [ValidateNotNullOrEmpty()][string]$Operation = 'Native operation',
+        [ValidateRange(1, 2147483647)][int]$PipeDrainTimeoutMilliseconds = 5000
     )
 
     $result = [ordered]@{
         Status = 'StartFailed'; ExecutablePath = $ExecutablePath; Arguments = [string[]]$Arguments.Clone()
         ExitCode = $null; Stdout = ''; Stderr = ''; StdoutTruncated = $false; StderrTruncated = $false
         StdoutTotalChars = [long]0; StderrTotalChars = [long]0; DurationMilliseconds = [long]0; Error = ''
-        ProcessReleased = $true; ProgressError = ''
+        ProcessReleased = $true; ProgressError = ''; Operation = $Operation
+        TimeoutMilliseconds = $TimeoutMilliseconds; ElapsedMilliseconds = [long]0; PipeDrainCompleted = $false
     }
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
@@ -460,20 +1156,35 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using Microsoft.Win32.SafeHandles;
 namespace AudioFileForPhone {
     public sealed class NativeCapture : IDisposable {
         private sealed class DrainResult {
-            public string Text;
+            public readonly object Gate = new object();
+            public readonly StringBuilder Text = new StringBuilder();
             public long TotalChars;
-            public string ConsumerError;
+            public string ConsumerError = "";
+            public bool EndOfPipe;
         }
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool PeekNamedPipe(SafeFileHandle pipe, IntPtr buffer, uint size, IntPtr read, out uint available, IntPtr left);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ReadFile(SafeFileHandle pipe, byte[] buffer, uint size, out uint read, IntPtr overlapped);
         private Process process;
         private Task<DrainResult> stdoutTask;
         private Task<DrainResult> stderrTask;
+        private readonly DrainResult stdoutState = new DrainResult();
+        private readonly DrainResult stderrState = new DrainResult();
+        private volatile bool stopDrains;
         private bool completed;
         private bool started;
         public bool Released { get; private set; }
+        public bool PipeDrainCompleted { get; private set; }
         public int ExitCode { get; private set; }
         public string Stdout { get; private set; }
         public string Stderr { get; private set; }
@@ -507,41 +1218,55 @@ namespace AudioFileForPhone {
             quoted.Append('"');
             return quoted.ToString();
         }
-        private static DrainResult Drain(StreamReader reader, int limit, Action<char[], int> consumer) {
-            StringBuilder retained = new StringBuilder(Math.Min(limit, 4096));
-            char[] buffer = new char[4096];
-            long total = 0;
-            string consumerError = "";
-            while (true) {
-                int count = 0;
-                if (consumer == null) { count = reader.Read(buffer, 0, buffer.Length); }
-                else {
-                    // StreamReader.Read(buffer,...) may wait to fill the buffer.
-                    // Feed progress at line boundaries so sparse records are
-                    // visible promptly while keeping worker buffers bounded.
-                    while (count < buffer.Length) {
-                        int character = reader.Read();
-                        if (character == -1) break;
-                        buffer[count++] = (char)character;
-                        if (character == '\n') break;
-                    }
+        private DrainResult Drain(StreamReader reader, int limit, Action<char[], int> consumer, DrainResult state) {
+            // One worker owns each anonymous read handle. Peek and ReadFile use
+            // that handle sequentially, and read only bytes already available.
+            // No worker blocks in StreamReader.Read/Dispose waiting for a writer
+            // inherited by another process. Use a decoder across UTF-8 fragments.
+            SafeFileHandle pipe = ((FileStream)reader.BaseStream).SafeFileHandle;
+            byte[] bytes = new byte[4096];
+            char[] chars = new char[4097];
+            Decoder decoder = new UTF8Encoding(false, false).GetDecoder();
+            bool first = true;
+            while (!stopDrains) {
+                uint available;
+                bool eof = false;
+                if (!PeekNamedPipe(pipe, IntPtr.Zero, 0, IntPtr.Zero, out available, IntPtr.Zero)) {
+                    int error = Marshal.GetLastWin32Error();
+                    if (error != 109) throw new IOException("Native pipe peek failed (Win32 " + error + ").");
+                    eof = true;
                 }
-                if (count == 0) break;
-                total += count;
-                int keep = Math.Min(count, limit - retained.Length);
-                if (keep > 0) retained.Append(buffer, 0, keep);
+                uint read = 0;
+                if (!eof && available == 0) { Thread.Sleep(10); continue; }
+                if (!eof && !ReadFile(pipe, bytes, Math.Min((uint)bytes.Length, available), out read, IntPtr.Zero)) {
+                    int error = Marshal.GetLastWin32Error();
+                    if (error != 109) throw new IOException("Native pipe read failed (Win32 " + error + ").");
+                    eof = true;
+                }
+                int count = decoder.GetChars(bytes, 0, (int)read, chars, 0, eof);
+                if (first && count > 0) {
+                    first = false;
+                    if (chars[0] == '\uFEFF') { Array.Copy(chars, 1, chars, 0, --count); }
+                }
+                lock (state.Gate) {
+                    state.TotalChars += count;
+                    int keep = Math.Min(count, limit - state.Text.Length);
+                    if (keep > 0) state.Text.Append(chars, 0, keep);
+                    if (eof) state.EndOfPipe = true;
+                }
                 if (consumer != null) {
-                    try { consumer(buffer, count); }
+                    try { consumer(chars, count); }
                     catch (Exception error) {
-                        consumerError = error.GetType().Name + ": " + error.Message;
-                        if (consumerError.Length > 1024) consumerError = consumerError.Substring(0, 1024);
+                        string consumerError = error.GetType().Name + ": " + error.Message;
+                        lock (state.Gate) { state.ConsumerError = consumerError.Substring(0, Math.Min(1024, consumerError.Length)); }
                         // A failed optional observer cannot stop pipe drainage
                         // and leave the owned child blocked on its stdout pipe.
                         consumer = null;
                     }
                 }
+                if (eof) break;
             }
-            return new DrainResult { Text = retained.ToString(), TotalChars = total, ConsumerError = consumerError };
+            return state;
         }
         public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit)
             : this(executablePath, arguments, stdoutLimit, stderrLimit, null) { }
@@ -570,8 +1295,8 @@ namespace AudioFileForPhone {
                 StreamReader stderrReader = process.StandardError;
                 // Reuse pool workers rather than allocate two CLR threads and
                 // their native handles for every media item in a long batch.
-                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null), System.Threading.CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer, stdoutState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null, stderrState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
                 // Observe faults even if an interrupted caller cannot join a drain.
                 stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
@@ -584,15 +1309,19 @@ namespace AudioFileForPhone {
         }
         public bool WaitForExit(int milliseconds) { return process.WaitForExit(milliseconds); }
         public int CaptureExitCode() { ExitCode = process.ExitCode; return ExitCode; }
-        public bool Complete(int milliseconds) {
-            if (!Task.WaitAll(new Task[] { stdoutTask, stderrTask }, milliseconds)) return false;
-            Stdout = stdoutTask.Result.Text;
-            Stderr = stderrTask.Result.Text;
-            StdoutTotalChars = stdoutTask.Result.TotalChars;
-            StderrTotalChars = stderrTask.Result.TotalChars;
+        private void Snapshot() {
+            lock (stdoutState.Gate) {
+                Stdout = stdoutState.Text.ToString(); StdoutTotalChars = stdoutState.TotalChars;
+                ProgressConsumerError = stdoutState.ConsumerError;
+            }
+            lock (stderrState.Gate) { Stderr = stderrState.Text.ToString(); StderrTotalChars = stderrState.TotalChars; }
             StdoutTruncated = StdoutTotalChars > Stdout.Length;
             StderrTruncated = StderrTotalChars > Stderr.Length;
-            ProgressConsumerError = stdoutTask.Result.ConsumerError;
+            PipeDrainCompleted = stdoutState.EndOfPipe && stderrState.EndOfPipe;
+        }
+        public bool Complete(int milliseconds) {
+            if (!Task.WaitAll(new Task[] { stdoutTask, stderrTask }, milliseconds)) return false;
+            Snapshot();
             completed = true;
             return true;
         }
@@ -612,29 +1341,40 @@ namespace AudioFileForPhone {
                 // wait is separate from the unlimited normal conversion wait.
                 try { exited = process.WaitForExit(5000); } catch { }
             }
-            // Process.Dispose closes its process handle; explicitly own each pipe
-            // reader/writer on successful completion and on abnormal unwind.
-            try { process.StandardInput.Dispose(); } catch { }
-            try { process.StandardOutput.Dispose(); } catch { }
-            try { process.StandardError.Dispose(); } catch { }
-            // This bounded teardown join is separate from process runtime: normal
-            // conversions have no timeout. Killed/closed pipes should promptly end.
+            // Allow EOF after killing our child; a surviving inherited writer
+            // cannot extend teardown indefinitely. Stop polling before disposing
+            // readers, so stream closure never races a blocked managed read.
+            try {
+                if (stdoutTask != null && stderrTask != null) Task.WaitAll(new Task[] { stdoutTask, stderrTask }, 1000);
+            } catch { }
+            stopDrains = true;
             try {
                 if (stdoutTask != null && stderrTask != null) Task.WaitAll(new Task[] { stdoutTask, stderrTask }, 1000);
                 else if (stdoutTask != null) stdoutTask.Wait(1000);
                 else if (stderrTask != null) stderrTask.Wait(1000);
             } catch { }
+            bool joined = (stdoutTask == null || stdoutTask.IsCompleted) && (stderrTask == null || stderrTask.IsCompleted);
+            Snapshot();
+            bool closed = true;
+            if (started) {
+                try { process.StandardInput.Dispose(); } catch { closed = false; }
+                try { process.StandardOutput.Dispose(); } catch { closed = false; }
+                try { process.StandardError.Dispose(); } catch { closed = false; }
+            }
             if (stdoutTask != null && stdoutTask.IsCompleted) stdoutTask.Dispose();
             if (stderrTask != null && stderrTask.IsCompleted) stderrTask.Dispose();
             process.Dispose();
             process = null;
-            Released = exited;
+            Released = exited && joined && closed && (!started || PipeDrainCompleted);
         }
     }
 }
 '@ -ErrorAction Stop
         }
         Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) {
+            throw (New-Object TimeoutException('Operation deadline expired before native start.'))
+        }
         $result.ProcessReleased = $false
         if ($null -eq $ProgressParser) {
             $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
@@ -643,16 +1383,26 @@ namespace AudioFileForPhone {
             $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars, $ProgressParser.Consumer)
         }
         if ($null -ne $Cancellation) { $Cancellation.SetActiveProcessId($capture.ProcessId) }
-        # Short polls allow controlled cancellation without a conversion timeout.
-        while (-not $capture.WaitForExit(100)) {
+        # Zero means unlimited process runtime (encoding/full decode). Only
+        # callers for short operations opt into an operation-wide deadline.
+        while (-not $capture.WaitForExit(50)) {
             Assert-AudioNotCancelled -Cancellation $Cancellation
+            if ($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) {
+                throw (New-Object TimeoutException('Native process exceeded its operation deadline.'))
+            }
             Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
         }
         $result.ExitCode = $capture.CaptureExitCode()
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'CaptureFailed'
-        while (-not $capture.Complete(100)) {
+        $drainTimer = [Diagnostics.Stopwatch]::StartNew()
+        while ($true) {
             Assert-AudioNotCancelled -Cancellation $Cancellation
+            if (($TimeoutMilliseconds -gt 0 -and $timer.ElapsedMilliseconds -ge $TimeoutMilliseconds) -or
+                $drainTimer.ElapsedMilliseconds -ge $PipeDrainTimeoutMilliseconds) {
+                throw (New-Object TimeoutException('Native output pipes did not finish within the operation/drain deadline.'))
+            }
+            if ($capture.Complete(50)) { break }
             Send-AudioNativeProgress -Parser $ProgressParser -Callback $ProgressCallback -State $ProgressCallbackState -DurationSeconds $ProgressDurationSeconds
         }
         if ($null -ne $ProgressParser) {
@@ -674,6 +1424,7 @@ namespace AudioFileForPhone {
         $result.Error = $_.Exception.Message
         $nativeError = $_.Exception.GetBaseException()
         if ($nativeError -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        elseif ($nativeError -is [TimeoutException]) { $result.Status = 'Timeout' }
         if ($nativeError.Data.Contains('AudioFileForPhone.ProcessReleased')) {
             $result.ProcessReleased = [bool]$nativeError.Data['AudioFileForPhone.ProcessReleased']
         }
@@ -683,21 +1434,33 @@ namespace AudioFileForPhone {
             $ownedProcessId = $capture.ProcessId
             $capture.Dispose()
             $result.ProcessReleased = $capture.Released
+            $result.PipeDrainCompleted = $capture.PipeDrainCompleted
+            # Snapshot bounded diagnostics even on cancellation/timeout.
+            $result.Stdout = $capture.Stdout; $result.Stderr = $capture.Stderr
+            $result.StdoutTruncated = $capture.StdoutTruncated; $result.StderrTruncated = $capture.StderrTruncated
+            $result.StdoutTotalChars = $capture.StdoutTotalChars; $result.StderrTotalChars = $capture.StderrTotalChars
+            $result.ProgressError = $capture.ProgressConsumerError
             if ($capture.Released -and $null -ne $Cancellation) { $Cancellation.ClearActiveProcessId($ownedProcessId) }
         }
         $timer.Stop()
         $result.DurationMilliseconds = $timer.ElapsedMilliseconds
+        $result.ElapsedMilliseconds = $timer.ElapsedMilliseconds
+        if ($result.Status -eq 'Timeout') {
+            $result.Error = "Timeout during $Operation using '$ExecutablePath' after $($result.ElapsedMilliseconds) ms (operation limit $TimeoutMilliseconds ms; pipe limit $PipeDrainTimeoutMilliseconds ms; process released=$($result.ProcessReleased)). $($result.Error) Retry with a responsive trusted executable; for slow media increase -ProbeTimeoutSeconds."
+        }
     }
     return [pscustomobject]$result
 }
 
 function Get-AudioMediaInfo {
     param([string]$Path, [string]$FfprobePath,
-          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext))
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60)
     $result = [ordered]@{
         Status = 'InvalidProbeData'; TitleStatus = 'Unknown'; Title = $null
         StreamIndex = $null; MetadataSource = $null; NativeResult = $null; Error = ''
         DurationSeconds = $null; DurationStatus = 'Missing'; DurationOrigin = $null
+        CodecName = $null; SampleRate = $null; Channels = $null; ChannelLayout = $null
     }
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
@@ -713,8 +1476,8 @@ function Get-AudioMediaInfo {
         $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
-            'stream=index,codec_type,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
-        ) -Cancellation $Cancellation
+            'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
+        ) -Cancellation $Cancellation -Operation 'Source media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
             $result.Status = $native.Status
@@ -779,6 +1542,13 @@ function Get-AudioMediaInfo {
             }
         }
         $result.StreamIndex = [int]$audio.index
+        # Keep shape separate from metadata/duration so an unavailable shape gets
+        # an explicit planning rejection before any encoder or working file.
+        if ($audio.codec_name -is [string]) { $result.CodecName = $audio.codec_name }
+        $sampleRate = 0; $channels = 0
+        if ([int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
+        if ([int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
+        if ($audio.channel_layout -is [string]) { $result.ChannelLayout = $audio.channel_layout }
         # Keep metadata inspection independent from duration policy. The caller
         # rejects a missing/invalid duration before it starts a transaction.
         $durationValue = $audio.duration
@@ -810,6 +1580,114 @@ function Get-AudioMediaInfo {
         $result.Error = $_.Exception.Message
     }
     return [pscustomobject]$result
+}
+
+function Get-AudioEncoderSampleRates {
+    param([Parameter(Mandatory = $true)][string]$FfmpegPath,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
+    $result = [ordered]@{ Status = 'Failed'; SampleRates = @(); NativeResult = $null; Error = '' }
+    try {
+        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-hide_banner', '-h', 'encoder=libmp3lame'
+        ) -Operation 'MP3 sample-rate capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+        $result.NativeResult = $native
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $native.ProcessReleased -or
+            $native.StdoutTruncated -or $native.StderrTruncated) { throw "Encoder capability query failed ($($native.Status)): $($native.Error)" }
+        $text = $native.Stdout + "`n" + $native.Stderr
+        $rateMatches = [regex]::Matches($text, '(?m)^\s*Supported sample rates:\s*([0-9 ]+)\r?$')
+        if ($rateMatches.Count -ne 1) { throw 'Selected libmp3lame did not report an unambiguous sample-rate list.' }
+        $result.SampleRates = @($rateMatches[0].Groups[1].Value.Trim() -split ' +' | ForEach-Object { [int]$_ } | Sort-Object -Unique)
+        if ($result.SampleRates.Count -eq 0) { throw 'Selected libmp3lame reported no sample rates.' }
+        $result.Status = 'Success'
+    }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
+    return [pscustomobject]$result
+}
+
+function Get-AudioOutputPlan {
+    param([Parameter(Mandatory = $true)][object]$Media, [int]$BitrateKbps = 64,
+          [Parameter(Mandatory = $true)][AllowEmptyCollection()][int[]]$SupportedSampleRates)
+    Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength 120
+    $plan = [ordered]@{
+        Status = 'Incompatible'; Code = 'InvalidSourceAudioShape'; Reason = ''
+        SourceCodec = $Media.CodecName; SourceSampleRate = $Media.SampleRate
+        SourceChannels = $Media.Channels; SourceChannelLayout = $Media.ChannelLayout
+        BitrateKbps = $BitrateKbps; OutputSampleRate = $null; OutputChannels = $null
+        Resample = $false; Downmix = $false
+    }
+    if ([string]::IsNullOrWhiteSpace([string]$Media.CodecName) -or
+        $null -eq $Media.SampleRate -or $Media.SampleRate -le 0 -or
+        $null -eq $Media.Channels -or $Media.Channels -lt 1) {
+        $plan.Reason = 'Selected audio needs a codec, positive sample rate and channel count before encoding.'
+        return [pscustomobject]$plan
+    }
+    if ($Media.Channels -le 2) { $plan.OutputChannels = [int]$Media.Channels }
+    else {
+        # Explicit standard FFmpeg stereo rematrix, only for these known layouts.
+        # Unknown/ambisonic/other layouts must not rely on an inferred downmix.
+        $layouts = @{ '2.1' = 3; '3.0' = 3; 'quad' = 4; '4.0' = 4; '5.0' = 5; '5.0(side)' = 5
+            '5.1' = 6; '5.1(side)' = 6; '6.1' = 7; '7.1' = 8 }
+        if (-not $layouts.ContainsKey([string]$Media.ChannelLayout) -or $layouts[[string]$Media.ChannelLayout] -ne $Media.Channels) {
+            $plan.Code = 'UnsupportedChannelLayout'
+            $plan.Reason = 'MP3 supports mono/stereo. This multichannel layout has no supported stereo downmix; supply a mono/stereo source or a documented standard layout.'
+            return [pscustomobject]$plan
+        }
+        $plan.OutputChannels = 2; $plan.Downmix = $true
+    }
+    # LAME tables.c bitrate_table and util.c FindNearestBitrate: MPEG2.5
+    # (<16 kHz) stops at64, MPEG2 at160; MPEG1 excludes8/16/24/144.
+    # Intersect those tested tables with this selected encoder's capabilities.
+    $candidates = @()
+    foreach ($rate in @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000)) {
+        if ($SupportedSampleRates -notcontains $rate) { continue }
+        $bitrates = if ($rate -lt 16000) { @(8, 16, 24, 32, 40, 48, 56, 64) }
+            elseif ($rate -lt 32000) { @(8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160) }
+            else { @(32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320) }
+        if ($bitrates -contains $BitrateKbps) { $candidates += $rate }
+    }
+    if ($candidates.Count -eq 0) {
+        $plan.Code = 'NoCompatibleSampleRate'
+        $plan.Reason = "Selected libmp3lame has no tested sample rate for $BitrateKbps kbps CBR. Select a capability-compatible FFmpeg build or another bitrate."
+        return [pscustomobject]$plan
+    }
+    # Preserve a valid source rate. Otherwise nearest Hz, ties toward the lower
+    # rate, gives one deterministic resampling decision without a trial encode.
+    $plan.OutputSampleRate = [int]($candidates | Sort-Object @{ Expression = { [math]::Abs($_ - [double]$Media.SampleRate) } }, @{ Expression = { $_ } } | Select-Object -First 1)
+    $plan.Resample = $plan.OutputSampleRate -ne $Media.SampleRate
+    $plan.Status = 'Success'; $plan.Code = 'Compatible'
+    $plan.Reason = '{0} Hz/{1} ch -> {2} Hz/{3} ch, {4} kbps CBR; resample={5}, stereo downmix={6}.' -f
+        $Media.SampleRate, $Media.Channels, $plan.OutputSampleRate, $plan.OutputChannels, $BitrateKbps, $plan.Resample, $plan.Downmix
+    return [pscustomobject]$plan
+}
+
+function New-AudioEncodeArguments {
+    param([Parameter(Mandatory = $true)][string]$InputPath,
+          [Parameter(Mandatory = $true)][object]$Media,
+          [Parameter(Mandatory = $true)][object]$OutputPlan,
+          [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$MetadataArguments,
+          [AllowNull()][string]$CoverPath)
+    if ($OutputPlan.Status -cne 'Success' -or $null -eq $Media.StreamIndex -or $Media.StreamIndex -lt 0) {
+        throw 'A compatible audio plan and selected source stream are required before encoding.'
+    }
+    $arguments = @('-nostdin', '-i', $InputPath)
+    $hasCover = -not [string]::IsNullOrWhiteSpace($CoverPath)
+    if ($hasCover) { $arguments += @('-i', $CoverPath) }
+    # Output options follow every input for both paths. No input -ar/-ac, and
+    # no implicit stream choice when an attached picture or other audio exists.
+    $arguments += @('-map', ('0:{0}' -f $Media.StreamIndex), '-c:a', 'libmp3lame',
+        '-b:a', ('{0}k' -f $OutputPlan.BitrateKbps), '-ar', [string]$OutputPlan.OutputSampleRate,
+        '-ac', [string]$OutputPlan.OutputChannels)
+    if ($hasCover) {
+        $arguments += @('-map', '1:0', '-c:v', 'mjpeg', '-disposition:v', 'attached_pic',
+            '-metadata:s:v', 'title=Album cover', '-metadata:s:v', 'comment=Cover (front)')
+    }
+    else { $arguments += '-vn' }
+    return $arguments + $MetadataArguments
 }
 
 function Get-AudioMetadataPlan {
@@ -901,16 +1779,22 @@ function Get-AudioOutputValidation {
         [int]$BitrateKbps = 64, [bool]$HasCover = $false,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
-        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext)
+        [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60,
+        [AllowNull()][object]$OutputPlan = $null
     )
     $result = [ordered]@{
         Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
         DurationSeconds = $null; DecodedDurationSeconds = $null; DurationToleranceSeconds = 0.35
         ProcessReleased = $true
+        Bitrate = $null; SampleRate = $null; Channels = $null
     }
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        if ($null -ne $OutputPlan -and ($OutputPlan.Status -cne 'Success' -or $OutputPlan.BitrateKbps -ne $BitrateKbps -or
+            $OutputPlan.OutputSampleRate -notin @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000) -or
+            $OutputPlan.OutputChannels -notin @(1, 2))) { throw 'Output validation requires a compatible plan matching the selected bitrate.' }
         Assert-AudioNoReparseAncestor -Path $Path
         $item = Get-Item -LiteralPath $Path -Force -ErrorAction Stop
         if ($item.PSIsContainer -or $item.Length -le 0) { throw 'Working output is not a nonempty regular file.' }
@@ -919,12 +1803,13 @@ function Get-AudioOutputValidation {
         $result.ProcessReleased = $false
         $probe = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-show_entries',
-            'stream=index,codec_type,codec_name,bit_rate,duration:stream_disposition=attached_pic:format=format_name',
+            'stream=index,codec_type,codec_name,bit_rate,sample_rate,channels,duration:stream_disposition=attached_pic:format=format_name',
             '-of', 'json', '-i', $Path
-        ) -Cancellation $Cancellation
+        ) -Cancellation $Cancellation -Operation 'Output media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.ProbeResult = $probe
         $result.ProcessReleased = $null -ne $probe.PSObject.Properties['ProcessReleased'] -and $probe.ProcessReleased
         if ($probe.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $probe.Error }
+        if ($probe.Status -eq 'Timeout') { $result.Status = 'Timeout'; throw $probe.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($probe.Status -ne 'Completed' -or $probe.ExitCode -ne 0 -or -not $result.ProcessReleased) {
             $result.Status = 'ProbeFailed'
@@ -960,6 +1845,14 @@ function Get-AudioOutputValidation {
         if (-not [long]::TryParse([string]$audio.bit_rate, [Globalization.NumberStyles]::None,
                 [Globalization.CultureInfo]::InvariantCulture, [ref]$audioRate) -or
             $audioRate -ne ([long]$BitrateKbps * 1000)) { throw 'Output audio-stream bitrate does not match the selected bitrate.' }
+        $result.Bitrate = $audioRate
+        $sampleRate = 0; $channels = 0
+        if ([int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
+        if ([int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
+        if ($null -ne $OutputPlan) {
+            if ($result.SampleRate -ne $OutputPlan.OutputSampleRate) { throw 'Output audio-stream sample rate does not match the audio plan.' }
+            if ($result.Channels -ne $OutputPlan.OutputChannels) { throw 'Output audio-stream channels do not match the audio plan.' }
+        }
         $result.DurationSeconds = ConvertTo-AudioPositiveSeconds -Value $audio.duration
         # A fixed bound avoids permitting minutes of loss in a multi-hour source.
         # 350ms covers low-sample-rate MP3 encoder padding as well as AAC/Opus
@@ -1030,7 +1923,9 @@ function Invoke-AudioOutputTransaction {
         [Parameter(Mandatory = $true)][string]$FfprobePath,
         [Parameter(Mandatory = $true)][AllowEmptyCollection()][string[]]$EncodeArguments,
         [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
-        [AllowNull()][scriptblock]$ProgressCallback
+        [AllowNull()][scriptblock]$ProgressCallback,
+        [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60,
+        [AllowNull()][object]$OutputPlan = $null
     )
     $result = [ordered]@{
         Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
@@ -1041,6 +1936,12 @@ function Invoke-AudioOutputTransaction {
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
+        if ($null -ne $OutputPlan -and ($OutputPlan.Status -cne 'Success' -or $OutputPlan.BitrateKbps -ne $BitrateKbps -or
+            $OutputPlan.OutputSampleRate -notin @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000) -or
+            $OutputPlan.OutputChannels -notin @(1, 2))) {
+            $result.Status = 'IncompatibleAudioPlan'
+            throw 'A compatible audio plan matching the selected bitrate is required before encoding.'
+        }
         $result.Status = 'StageFailed'
         $OutputPath = Get-AudioPath -Path $OutputPath
         $OutputRoot = Get-AudioPath -Path $OutputRoot
@@ -1098,11 +1999,14 @@ function Invoke-AudioOutputTransaction {
         Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState `
             -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Validating') | Out-Null
         $canCleanup = $false
+        $planParameters = @{}
+        if ($null -ne $OutputPlan) { $planParameters.OutputPlan = $OutputPlan }
         $validation = Get-AudioOutputValidation -Path $working -SourceDurationSeconds $sourceSeconds -BitrateKbps $BitrateKbps `
-            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation
+            -HasCover $HasCover -FfprobePath $FfprobePath -FfmpegPath $FfmpegPath -Cancellation $Cancellation -ProbeTimeoutSeconds $ProbeTimeoutSeconds @planParameters
         $result.ValidationResult = $validation
         $canCleanup = $validation.ProcessReleased
         if ($validation.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $validation.Error }
+        if ($validation.Status -eq 'Timeout') { $result.Status = 'Timeout'; throw $validation.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($validation.Status -ne 'Success') { throw "Output validation failed ($($validation.Status)): $($validation.Error)" }
         $result.Status = 'PromotionFailed'
@@ -1139,27 +2043,79 @@ function Invoke-AudioOutputTransaction {
     return [pscustomobject]$result
 }
 
+function Get-AudioExecutableArchitecture {
+    param([Parameter(Mandatory = $true)][string]$Path)
+    $reader = $null
+    try {
+        # Read only the DOS/PE headers, never load the executable as an assembly.
+        $reader = New-Object IO.BinaryReader([IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read))
+        if ($reader.BaseStream.Length -lt 64 -or $reader.ReadUInt16() -ne 0x5a4d) { return 'Unknown' }
+        $reader.BaseStream.Position = 60
+        $offset = $reader.ReadUInt32()
+        if ($offset -gt 1048576 -or $offset + 6 -gt $reader.BaseStream.Length) { return 'Unknown' }
+        $reader.BaseStream.Position = $offset
+        if ($reader.ReadUInt32() -ne 0x00004550) { return 'Unknown' }
+        switch ($reader.ReadUInt16()) {
+            0x8664 { return 'x64' }
+            0x014c { return 'x86' }
+            0xaa64 { return 'ARM64' }
+            0x01c4 { return 'ARM' }
+            default { return 'Unknown' }
+        }
+    }
+    catch { return 'Unknown' }
+    finally { if ($null -ne $reader) { $reader.Dispose() } }
+}
+
 function Assert-ToolPrerequisites {
-    param([string]$FfmpegPath, [string]$FfprobePath)
+    param([string]$FfmpegPath, [string]$FfprobePath,
+          [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [AllowNull()][hashtable]$DiagnosticContext)
     $tools = [ordered]@{}
     foreach ($tool in @(@{ Name = 'ffmpeg'; Path = $FfmpegPath }, @{ Name = 'ffprobe'; Path = $FfprobePath })) {
         try {
             $arguments = if ($tool.Name -eq 'ffmpeg') { @('-nostdin', '-version') } else { @('-version') }
-            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments
+            $native = Invoke-AudioNativeProcess -ExecutablePath $tool.Path -Arguments $arguments -Operation ($tool.Name + ' version check') -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+            if ($null -ne $DiagnosticContext) {
+                $DiagnosticContext.NativeResult = $native
+                $DiagnosticContext.Code = if ($native.Status -eq 'Timeout') { 'StartupTimeout' } else { 'DependencyInvalid' }
+            }
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin VersionCheck -Candidate $tool.Path -Status $native.Status -Reason $native.Error
+            Assert-AudioNotCancelled -Cancellation $Cancellation
             $version = ($native.Stdout -split '\r?\n' | Select-Object -First 1)
             if ($native.Status -ne 'Completed') { throw "$($native.Status): $($native.Error)" }
-            if ($native.ExitCode -ne 0 -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
+            if ($native.ExitCode -ne 0 -or -not $native.ProcessReleased -or $native.StdoutTruncated -or $version -notmatch ('^' + $tool.Name + ' version \S')) {
                 throw 'Expected a successful tool version response.'
             }
-            $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version }
-            Write-Host ("[INFO] {0}: {1}" -f $tool.Path, $version)
+            $architecture = Get-AudioExecutableArchitecture -Path $tool.Path
+            $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version; Architecture = $architecture }
+            if ($null -ne $DiagnosticContext -and $null -ne $DiagnosticContext.Selection) { $DiagnosticContext.Selection.($tool.Name) = $tools[$tool.Name] }
+            Write-Host ("[INFO] {0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
         }
+        catch [OperationCanceledException] { throw }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
     }
-    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders')
-    if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or $encoders.StdoutTruncated -or
+    $encoders = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @('-nostdin', '-hide_banner', '-encoders') -Operation 'ffmpeg encoder capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+    if ($null -ne $DiagnosticContext) {
+        $DiagnosticContext.NativeResult = $encoders
+        $DiagnosticContext.Code = if ($encoders.Status -eq 'Timeout') { 'StartupTimeout' } else { 'CapabilityMissing' }
+    }
+    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin CapabilityCheck -Candidate $FfmpegPath -Status $encoders.Status -Reason $encoders.Error
+    Assert-AudioNotCancelled -Cancellation $Cancellation
+    if ($encoders.Status -ne 'Completed') { throw "ffmpeg encoder capability check failed ($($encoders.Status)): $($encoders.Error)" }
+    if ($encoders.Status -ne 'Completed' -or $encoders.ExitCode -ne 0 -or -not $encoders.ProcessReleased -or $encoders.StdoutTruncated -or
         ($encoders.Stdout + "`n" + $encoders.Stderr) -notmatch '(?m)^\s*A\S*\s+libmp3lame\s') {
         throw "ffmpeg does not provide the required libmp3lame encoder: $FfmpegPath"
+    }
+    $ffmpegBuild = [regex]::Match($tools['ffmpeg'].Version, '^ffmpeg version (\S+)').Groups[1].Value
+    $ffprobeBuild = [regex]::Match($tools['ffprobe'].Version, '^ffprobe version (\S+)').Groups[1].Value
+    if ($ffmpegBuild -cne $ffprobeBuild) {
+        Write-Warning ("FFmpeg/ffprobe build IDs differ ('{0}' and '{1}'). Capabilities passed; both selected paths are disclosed above." -f $ffmpegBuild, $ffprobeBuild)
+    }
+    if ($tools['ffmpeg'].Architecture -ne 'Unknown' -and $tools['ffprobe'].Architecture -ne 'Unknown' -and
+        $tools['ffmpeg'].Architecture -cne $tools['ffprobe'].Architecture) {
+        Write-Warning ("FFmpeg/ffprobe PE architectures differ ('{0}' and '{1}'). Both selected executables passed startup validation." -f $tools['ffmpeg'].Architecture, $tools['ffprobe'].Architecture)
     }
     return [pscustomobject]@{ Ffmpeg = $tools['ffmpeg']; Ffprobe = $tools['ffprobe'] }
 }
@@ -1464,6 +2420,7 @@ function New-AudioRunManifest {
             input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
             input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
             source_title = $null; measurement_error = $measurementError
+            audio_plan = $null; observed_audio = $null
         }
     })
     $data = [pscustomobject][ordered]@{
@@ -1473,6 +2430,7 @@ function New-AudioRunManifest {
             helper_sha256 = (Get-FileHash -LiteralPath (Join-Path ([IO.Path]::GetDirectoryName($ScriptPath)) 'AudioFileForPhone.Helpers.ps1') -Algorithm SHA256 -ErrorAction Stop).Hash.ToLowerInvariant()
         }
         tools = [ordered]@{
+            selection_origin = $(if ($null -ne $ToolInfo.PSObject.Properties['Origin']) { $ToolInfo.Origin } else { $null })
             ffmpeg = [ordered]@{ path = $ToolInfo.Ffmpeg.Path; version = $ToolInfo.Ffmpeg.Version }
             ffprobe = [ordered]@{ path = $ToolInfo.Ffprobe.Path; version = $ToolInfo.Ffprobe.Version }
         }
@@ -1481,6 +2439,7 @@ function New-AudioRunManifest {
             supported_extensions = @('.mp3', '.m4a', '.ogg'); recursive_relative_layout = $true
             source_duration_policy = 'finite positive selected audio duration required'
             output_duration_tolerance_seconds = 0.35; full_output_decode_required = $true
+            audio_plan_policy = 'preserve compatible source rate and mono/stereo; otherwise nearest encoder-supported MPEG CBR rate (ties lower); known standard multichannel layouts explicitly downmix to stereo; other layouts reject before encoding'
             overwrite_policy = 'publish validated output without overwriting an occupied final path'
             metadata = [ordered]@{ artist = $Artist; album = $Album; cover_path = $CoverPath; title_policy = 'preserve existing title; otherwise use planned base name' }
         }
@@ -1502,12 +2461,22 @@ function New-AudioRunManifest {
 function Set-AudioManifestRecord {
     param([object]$Record, [string]$Status, [string]$Code, [AllowNull()][string]$Reason,
           [string]$SourcePath, [string]$OutputPath, [AllowNull()][object]$Media,
-          [AllowNull()][object]$Transaction, [double]$ElapsedSeconds)
+          [AllowNull()][object]$Transaction, [double]$ElapsedSeconds,
+          [AllowNull()][object]$OutputPlan = $null)
     # Commit the outcome before optional measurements, which cannot reclassify
     # an already published output. Missing measurements are explicit nulls.
     $Record.status = $Status; $Record.code = $Code
     $Record.reason = Get-AudioBoundedText -Value $Reason
     $Record.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
+    if ($null -ne $OutputPlan) {
+        $Record.audio_plan = [pscustomobject][ordered]@{
+            status = $OutputPlan.Status; code = $OutputPlan.Code; reason = $OutputPlan.Reason
+            source_codec = $OutputPlan.SourceCodec; source_sample_rate = $OutputPlan.SourceSampleRate
+            source_channels = $OutputPlan.SourceChannels; source_channel_layout = $OutputPlan.SourceChannelLayout
+            bitrate_kbps = $OutputPlan.BitrateKbps; output_sample_rate = $OutputPlan.OutputSampleRate
+            output_channels = $OutputPlan.OutputChannels; resample = $OutputPlan.Resample; downmix = $OutputPlan.Downmix
+        }
+    }
     $Record.measurement_error = ''; $Record.input_bytes = $null
     try {
         Assert-AudioNoReparseAncestor -Path $SourcePath
@@ -1530,6 +2499,10 @@ function Set-AudioManifestRecord {
             $Record.output_bytes = [long]$output.Length
             $Record.output_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DurationSeconds
             $Record.decoded_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Transaction.ValidationResult.DecodedDurationSeconds
+            $Record.observed_audio = [pscustomobject]@{
+                bitrate_bps = $Transaction.ValidationResult.Bitrate; sample_rate = $Transaction.ValidationResult.SampleRate
+                channels = $Transaction.ValidationResult.Channels
+            }
         }
         catch {
             $Record.measurement_error = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512

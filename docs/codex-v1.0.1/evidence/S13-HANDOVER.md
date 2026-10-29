@@ -1,0 +1,667 @@
+# S13 handover — COMPLETED
+
+## Outcome
+
+S13-A1/A2 retain their recorded scoped passes; S13-A3 now PASSED. This continuation
+from9295b1c98d808abae375add1f9ea70b098fe8b71 verified the saved real manual picker
+result in C:\projects\AFP-S13-Picker-Check-20261029 without repeating the test.
+The selected literal Unicode/bracket folder matches exactly; actual Cancel throws
+System.OperationCanceledException / 'Selection cancelled.'. Stage completed,
+error null, driver exit0. S13 is COMPLETED; S14 remains NOT_STARTED. STOP here.
+
+## Changes
+
+Eight documentation files: STATE/STATUS/NEXT_SESSION/DECISIONS plus S13 evidence,
+handover, review and nonpasses. Current blockers are resolved while all earlier
+reports and routing history remain preserved and labeled historical. No kit,
+test, runtime, dependency, workflow, default, icon or poster bytes changed.
+Kit/test source9e2c93335f08fabff51ea274e5bf43f3cd5c08af and production runtime
+b05b581dc6372cecd99471c53ee2cac72b8267ba keep their actual tested identities.
+The saved picker source9295b1c has identical relevant bytes. Prior114 groups/two
+analyses,14 real production conversions/four3605-second outputs and distinct
+rehearsal ZIP/kit identities are retained, without broad reruns or relabeling.
+
+## Verification
+
+| Check | Exact command/artifact | Actual environment/identity | Result | Evidence |
+|---|---|---|---|---|
+| Saved real selection/Cancel | Existing picker-result.json and launch-summary.json; no execution this thread | Saved PS5.1.26100.9711 x64 STA RemoteSigned/session1, PID14180; 2026-10-29T13:58:51.6198258Z–13:59:29.3308125Z | Exact ordinal expected/selected equality; Cancel expected exception/message; completed/error-null; driver exit0 | S13.json latest continuation; local raw capture retained |
+| Saved-result binding | Get-FileHash -LiteralPath -Algorithm SHA256 and summary field checks | Result61bf12b4; summaryc094811d | Result digest equals summary; later completed capture supersedes preparation NOT_RUN | Full digests below/in S13.json |
+| Exact source/function | Get-FileHash -LiteralPath; Parser.ParseFile and ordinal AST extent comparison | Driverba38dab5/function19222f49/runner58bfd53f; zero parser errors | All unchanged; exactly one function, exact AST match; full runner not executed | Private saved-evidence-verification.json |
+| Retained integrity | Literal SHA256 comparisons to S13.json |24 source/runtime files and23 historical reports | All match;114 groups/two analyses keep original identities | Private retained-reports-verification.json |
+| Owned path/process state | Literal ancestor/source inventory and CIM ProcessId/ParentProcessId14180 check | Windows11 Pro26H2 26300.9711 x64 Client/ProductType1; verifier portablePS7.6.5 | Empty source unchanged; ancestors non-reparse; recorded PID/children absent; no process termination | Private verification report |
+| Entry GitHub | git fetch origin; git ls-remote origin feature/main; exact-head Actions/jobs | Entry9295b1c; push40883105077/PR40883109829 | Fresh feature equality; both runs/all4 supplementary Server jobs SUCCESS | S13.json; live runs |
+| Checkpoint documents | Scoped JSON/routing/hash/history/privacy assertions; git diff --check; independent read-only review | Eight intended documentation files | Final result recorded in S13.json latest continuation before commit | S13-REVIEW.md |
+
+Saved result SHA256:
+61bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62.
+Saved summary SHA256:
+c094811d1eb03585f7568bd627a8bf27a20469991705afaafd74299a92dd145d.
+Private completion verification SHA256:
+c3c138ac701024b574778f09c3722136d0c227d19a89a9560e2a42bdc39a3ab0.
+Private23-report verification SHA256:
+a648a1816e7d240ad17fee8d1e4b8eb24ed7677ae7d122bfb9e09ab8fc3f7be7.
+Verification scope C:\projects\AFP-S13-Completion-20261029 is outside Git, as are
+all raw captures. This thread performs read-only saved-evidence checks only: no UI
+gestures, picker launch, conversion/download, Music/media/owner-config access,
+persistent policy/PATH/registry/permission changes, elevation or control bypass.
+
+## Git state (observe containing checkpoint after push)
+
+Origin https://github.com/PikkuJanne/AudioFileForPhone.git; active branch
+codex/audiofileforphone-v1.0.1. Entry9295b1c freshly equals live feature and its
+exact-head push/PR CI passes. Relevant PR29 remains OPEN draft/unmerged:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Final checkpoint HEAD/live comparison time, clean worktree and exact-head push/PR
+CI are reported after push in the final response and must be refreshed next entry.
+A commit cannot contain its own SHA; pending/failure requires S13 continuation.
+Main separately NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+No main integration, tag/release, protection, visibility or history change.
+Frozen release source, accepted runtime ZIP/kit and publication authority stay null.
+
+## Decisions, risks and blockers
+
+D66 accepts the unchanged saved successful manual picker capture as the missing
+S13 evidence; no repeated picker or broad tests are justified by documentation-only
+changes. Historical refusals and untargetable desktop attempts remain truthful
+past nonpasses. Preparation NOT_RUN describes the earlier pre-launch state.
+No S13 implementation blocker remains. Final checkpoint sync/CI is a post-push
+gate. Windows10 22H2 client cells, local StorePS7 conversion, actual physical BAT/
+phone, genuine cloud/UNC/redirected/share/full-disk and exact final1.0.1 candidate
+acceptance remain unproved and separate. Server CI is supplementary. The isolated
+picker pass supplies none of those later observations or main-merge authority.
+
+## Human action
+
+None remaining for S13. Do not repeat the saved successful picker unless its
+evidence or affected code changes. No diagnostics, PATH edits or media uploads.
+S15 remains the single consolidated acceptance-kit/client/physical/phone session.
+
+## Next step and fully filled prompt
+
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1. Read AGENTS.md,
+active CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET and the current S13
+handover. Verify fresh local/live GitHub feature/main state and the containing
+S13 checkpoint from the previous final response, including exact-head push/PR CI.
+If that final checkpoint gate is pending/failed, finish S13 first and stop.
+Otherwise complete ONLY S14 — Integrate and freeze the exact release candidate
+in this separately started thread. S01-S13 complete; S14 NOT_STARTED.
+Read tasks/S14.md and its relevant specs, including SYNC_AND_RELEASE and
+RELEASE_GATES. PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29
+is OPEN draft/unmerged; main remains28f53b10529495754273d55654c7b29e78848c83.
+S13 completion grants no main-merge authority: retain existing owner approval
+for the reviewed head or an explicitly recorded bounded merge policy; follow
+ordinary reviewed PR policy without changing protections or history.
+S13 saved picker result61bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62
+passes actual literal selection equality and Cancel/exit0. Do not repeat this
+successful picker unless its evidence or affected code changes. Private captures:
+C:\projects\AFP-S13-Picker-Check-20261029; verification:
+C:\projects\AFP-S13-Completion-20261029. All24 source/runtime and23 retained
+report hashes match. Tested kit/test source9e2c93335f08fabff51ea274e5bf43f3cd5c08af,
+runtimeb05b581dc6372cecd99471c53ee2cac72b8267ba,114 groups/two analyses and
+distinct runtime1.0.0 rehearsal assets keep actual identities. No final accepted
+source/ZIP/kit/authority exists. Current available client Windows11 Pro26H2
+26300.9711 x64; Windows10 unavailable, Store7.6.7 startup-only, Server supplementary.
+Keep actual BAT/phone and exact-final-package/client gates separate and unfilled.
+Fixed target runtime/tag/title/ZIP is publicv1.0.1 per RELEASE_TARGET.json;
+preserve publishedv1.0.0 and reconcile occupied target without overwrite.
+Preserve default64, source safety, Music/media/config, icons/posters and all
+safeguards; no silent downloads or persistent host/security changes. Automate
+appropriate isolated/full/exact-package tests required by S14. Update evidence,
+state/status/decisions/full handover; review/test/commit/push, verify fresh live
+sync and exact-head CI. Report main integration separately and give the filled
+next-thread prompt, then STOP before S15. S16 supplies exact accepted bytes;
+only separately authorized S17 publishes; S18 verifies closure.
+```
+
+## Stop
+
+This S13 thread ends here. S14 has not started; no next numbered step begins
+until the owner starts a separate thread.
+
+## Fixed final deliverable
+
+Public AudioFileForPhone v1.0.1 remains PENDING_S17. Current runtime is1.0.0;
+no accepted final assets or publication authority exist. S16 binds exact source/
+asset digests, separately started S17 publishes/verifies, S18 closes. Published
+v1.0.0 remains preserved. S13 completion is not overall project completion.
+
+## Preserved historical handovers — blockers resolved by saved evidence above
+
+# S13 handover — BLOCKED_INTERACTIVE_DESKTOP in session1
+
+## Outcome
+
+Continuation from6dda87b08cbfa6a384ce467439e8ce833cab0dc0 on2026-10-29
+ran the owner's authorized unchanged picker driver in Windows PowerShell5.1
+x64 STA with process-only RemoteSigned. Both launches stay before_selection;
+supported desktop inventories expose no picker. No UI interaction occurred.
+Actual selection/path equality and Cancel OperationCanceledException remain
+NOT_RUN. S13-A1/A2 retain scoped passes; S13/A3 BLOCKED; S14 NOT_STARTED. STOP.
+
+## Changes
+
+Eight documentation files only: STATE/STATUS/NEXT_SESSION/DECISIONS and S13
+evidence/handover/review/nonpasses. No implementation, kit, runtime, dependency,
+workflow, default, icon or poster change. Tested9e2c933 and runtimeb05b581 retain
+their actual identities, as do prior114 groups/two analyses and rehearsal assets.
+Only expected path in private settings changes to a fresh empty owned folder.
+
+## Verification
+
+| Check | Command/artifact | Actual environment/identity | Result |
+|---|---|---|---|
+| Managed checks | Native PS5.1 -NoLogo -NoProfile -EncodedCommand read-only policy/language/AppLocker/DeviceGuard/CIM queries | Windows11 Pro26H2 26300.9711 x64 Client; all policy scopes Undefined, baseline Restricted, FullLanguage, empty AppLocker, kernel CI2/user-mode CI0 | Before/after restriction states match; no managed refusal observed |
+| Driver integrity | Literal SHA256 and current runner AST extent comparison | Driverba38dab5, function19222f49, runner58bfd53f; full hashes in S13.json | All unchanged; full runner not dot-sourced |
+| Isolated launch | powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File private picker-driver.ps1 | Actual PS5.1.26100.9711 x64 STA RemoteSigned/session1; PID6452 hidden and9484 visible | Both before_selection; no final raw exit or interaction pass |
+| Desktop | sky.list_windows/list_apps; cua.getState/listWindows | New session1 differs from prior session2 | No targetable task picker/console; zero UI input actions/screenshots |
+| Owned release | Exact CIM PID/executable/command checks then Stop-Process -Id | Only6452/9484; child/process absence and literal source inventory | All absent, folder empty; termination is not Cancel |
+| Retained evidence | Literal Get-FileHash comparisons |24 source/runtime paths,22 prior reports,19 raw digests | All match; no broad suites rerun for unchanged implementation |
+| Entry GitHub | Fetch/advertised refs and exact-head Actions/jobs | Entry6dda87b; push40832089767/PR40832096671 | Fresh feature equality, both runs/all4 Server jobs SUCCESS; Server supplementary |
+
+Private report picker-session1-blocked.json SHA256:
+a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f.
+Private scope AFP-S13-picker-eec7defca96a4d3694abd844f4796227 retains raw evidence.
+Only native child PSModulePath uses existing PS5.1 module directories. No persistent
+policy/PATH/registry/permissions, owner config/Music/media access, conversion or
+download. Final documentation validation and independent review are in S13.json.
+
+## Git state — observe containing checkpoint after push
+
+Origin https://github.com/PikkuJanne/AudioFileForPhone.git; branch
+codex/audiofileforphone-v1.0.1; PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29
+OPEN draft/unmerged. Entry6dda87b advertised-equal with successful exact-head CI.
+Final HEAD/live comparison time, clean worktree and exact-head push/PR CI belong
+in the post-push final response and must be refreshed next entry. Pending/failed
+checks are not passes; a commit cannot contain its own SHA.
+Main separately NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+No main integration, tag, release, protection, visibility or history change.
+
+## Decisions, risks and blocker
+
+D65 preserves the renewed narrow authorization and fresh session1 outcome.
+Managed refusal was not observed; the concrete blocker is absent targetable UI.
+Do not infer path equality/Cancel from entry or termination, repeat blind launches,
+or delegate kit debugging to owner. Resume only S13 when the actual picker can
+be targeted; stop on managed signing/language/application-control refusal.
+Windows10 client, StorePS7 conversion, actual BAT/phone, genuine cloud/UNC/
+redirected/share/full-disk and exact final1.0.1 package evidence remain unproved.
+
+## Human action
+
+None requested for S13. No owner diagnostics, PATH edits, media uploads or debugging.
+S15 remains the consolidated owner acceptance session.
+
+## Next step and fully filled prompt
+
+```text
+Resume ONLY S13 in C:\projects\AudioFileForPhone-main using docs/codex-v1.0.1
+on branch codex/audiofileforphone-v1.0.1. PR29:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Latest entry6dda87b08cbfa6a384ce467439e8ce833cab0dc0; refresh the containing
+checkpoint from the previous final response, fresh live feature/main refs and
+exact-head push/PR CI. Main NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+Read AGENTS.md, active CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET,
+tasks/S13.md, evidence/S13.json, S13-HANDOVER/REVIEW/NONPASSES, D65 and relevant
+ACCEPTANCE_KIT/MINIMAL_HUMAN_ACCEPTANCE/AUTOMATED_ACCEPTANCE/RELEASE_GATES/
+SYNC_AND_RELEASE specs. S01-S12 complete; S13/A3 BLOCKED; S14 NOT_STARTED.
+Owner authorizes existing launcher-equivalent process-only RemoteSigned for the
+unchanged isolated picker driver. Check managed restrictions read-only first;
+stop on managed signing/language/application refusal. No persistent execution
+policy/PATH/registry/permissions changes, elevation or control bypass.
+Unchanged driver hash ba38dab55fae4173dc552c573816095a64d85f28e47f29acd612950ee103b481;
+function19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd;
+runner58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c.
+Run only Windows PowerShell5.1 -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned
+-File with existing native child module isolation and a fresh owned empty folder.
+Latest hidden/visible session1 launches entered PS5.1.26100.9711 x64 STA RemoteSigned
+but remained before_selection. sky/cua exposed no picker; zero UI input. Exact
+owned processes6452/9484 and children absent; source empty; termination is not Cancel.
+Private report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f retains19 raw digests;
+24 source/runtime hashes and22 prior reports match. Do not repeat identical blind
+launches without actual targetable-desktop evidence. No owner debugging.
+When targetable, select the empty owned folder yourself and verify ordinal exact
+expected-path equality. Reopen and click Cancel yourself; prove
+System.OperationCanceledException with exact message 'Selection cancelled.'.
+Retain tested9e2c93335f08fabff51ea274e5bf43f3cd5c08af/runtimeb05b581dc6372cecd99471c53ee2cac72b8267ba,
+prior114 groups/two analyses and actual rehearsal identities. No kit/runtime change
+in this continuation; rerun affected checks if bytes change. Available Windows11
+Pro26H2 26300.9711 client; Windows10 unavailable; Store7.6.7 startup-only; Server
+supplementary. Actual BAT/phone NOT_TESTED; no accepted final source/ZIP/kit/authority.
+Preserve Music/personal media/config, default64, source safety, icons/posters,
+publishedv1.0.0 and all safeguards. Update evidence/state/status/decisions/full
+handover; review/test/commit/push, verify fresh live sync and exact-head CI, STOP
+before S14. If still unavailable, checkpoint BLOCKED and stop. No main/release
+work. Fixed publicv1.0.1 remains S16 exact accepted bytes -> separate S17 -> S18.
+```
+
+## Stop and fixed deliverable
+
+This S13 thread ends after checkpoint verification. Publicv1.0.1 remains PENDING_S17;
+runtime1.0.0, frozen source/accepted ZIP/kit/authority null. S18 verifies closure.
+Publishedv1.0.0 remains preserved. No S14 or publication authority is supplied here.
+
+## Preserved earlier handovers
+
+# S13 handover — BLOCKED after authorized process-only RemoteSigned
+
+## Outcome
+
+Continuation from a063ea9abaab5c9f2354943134dc4fac9e1bf9af on2026-10-29 remains
+BLOCKED_INTERACTIVE_DESKTOP. The unchanged extracted picker driver now actually
+runs in native Windows PowerShell5.1 x64 STA with effective RemoteSigned, but the
+supported desktop tools expose no picker window. Selection/path equality and
+actual Cancel OperationCanceledException remain NOT_RUN. S13-A1/A2 retain scoped
+passes; S13-A3/S13 stay BLOCKED. S14 remains NOT_STARTED. STOP after checkpoint.
+
+## Changes
+
+Eight active documentation files only: STATE/STATUS/NEXT_SESSION/DECISIONS and
+S13 evidence/handover/review/nonpasses. No kit, test, runtime, dependency, workflow,
+default, icon or poster bytes changed. Tested kit/test source remains
+9e2c93335f08fabff51ea274e5bf43f3cd5c08af; production runtime remains
+b05b581dc6372cecd99471c53ee2cac72b8267ba. Prior114 groups/two analyses and distinct
+rehearsal ZIP/kit identities retain actual execution identities.
+
+The owner explicitly authorized the launcher-equivalent process-only
+-ExecutionPolicy RemoteSigned request for this unchanged isolated driver. This
+narrowly supersedes older blanket retry prohibitions. Only child PSModulePath
+was corrected to native PS5.1 module directories after an inherited PS7 module
+autoload failure. No persistent execution policy, PATH, registry or permissions
+were changed; no signing/language/application controls were bypassed.
+
+## Verification
+
+| Check | Exact command/artifact | Actual environment/identity | Result |
+|---|---|---|---|
+| Managed restrictions | PS5.1 -NoLogo -NoProfile -Command read-only Get-ExecutionPolicy -List, LanguageMode, Get-AppLockerPolicy -Effective -Xml, DeviceGuard CIM | All policy scopes Undefined; baseline effective Restricted; FullLanguage; AppLocker no rules; kernel CI2/user-mode CI0 | Native module/control probe succeeds; before/after state matches; no managed refusal on native driver route |
+| Driver integrity | Get-FileHash -LiteralPath; exact runner AST extent comparison | Runner58bfd53f; extracted function19222f49; unchanged driverba38dab5, full hashes in S13.json | PASSED; only fresh expected empty-folder path changed in settings; full runner not dot-sourced |
+| Actual launch | powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File private picker-driver.ps1 | Windows11 Pro Client26H2 26300.9711 x64; actual PS5.1.26100.9711 x64/STA/session2, effective RemoteSigned | Hidden and visible attempts entered and saved before_selection; actual selection/cancel NOT_RUN |
+| Desktop | Repeated sky.list_windows()/list_apps() | Supported Windows Computer Use; Explorer/Firefox also session2 | No targetable task picker/console; no UI input actions; no selected path or exception |
+| Owned release/source | Exact PID/executable/command checks, Stop-Process -Id, CIM child checks, literal empty-folder inventory | Driver4564/20652 and diagnostic7308 only; first25280 exited1 itself | All absent with owned children; drivers' captured-1 is forced termination, not Cancel; empty source unchanged |
+| Integrity/history | Literal SHA256 comparisons |24 source/runtime paths;21 retained reports including both old picker refusals | All match; new private report312e29d0; no broad suite rerun because implementation unchanged |
+| Entry sync/CI | git fetch/ls-remote; Actions run metadata/jobs | a063ea9 feature; main28f53b1; push40828165165/PR40828171042 | Feature freshly equal; both exact-head runs and all4 supplementary Server jobs SUCCESS |
+
+The first authorized launch exited1 before report creation because inherited
+PS7 PSModulePath selected the wrong Security module. A read-only diagnostic
+captured AuthorizationManager validation failure in that PS7 type file under
+baseline Restricted. Native PS5.1 module import works without a policy argument.
+One diagnostic remained alive and held captures; its exact identity was released
+before hashing all26 raw files. These preparation failures are preserved in
+S13-NONPASSES.md, separately from actual native-driver entry and unavailable UI.
+
+Private picker-remotesigned-blocked.json SHA256:
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7.
+It binds unchanged driver/function, restrictions before/after, actual before-
+selection reports, release, empty source and24/21 integrity checks. Private scope
+AFP-S13-picker-408a5eca428e4f8aba28542d226fd47d is retained. No ordinary Music,
+personal media or owner config access, conversion or download occurred. Physical
+BAT/phone observations remain NOT_TESTED. Final docs validation/review is recorded
+in S13.json; containing-checkpoint CI is observed after push, not invented here.
+
+## Git state — observe final containing checkpoint after push
+
+Origin https://github.com/PikkuJanne/AudioFileForPhone.git; branch
+codex/audiofileforphone-v1.0.1; PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29
+remains OPEN draft/unmerged. Entry a063ea9 freshly equals live feature; exact-head
+CI passes as above. Final containing HEAD/live equality, clean worktree, comparison
+time and exact-head push/PR CI belong in the final response and are refreshed next
+entry; a commit cannot contain its own SHA. Pending/failed checks are not passes.
+
+Main remains separately NOT_INTEGRATED at local/live
+28f53b10529495754273d55654c7b29e78848c83. No S14/main integration, tag, release,
+protection, visibility or history changes. Frozen source/accepted ZIP/kit/authority
+remain null; runtime1.0.0 and fixed publicv1.0.1 PENDING_S17 remain. S16 supplies
+exact accepted bytes; only separately started S17 publishes; S18 verifies closure.
+
+## Decisions, risks and blocker
+
+D64 records the owner's narrow authorization, read-only checks, safe child-module
+correction, actual driver entry, unavailable UI and exact owned process release.
+The earlier scripts-disabled refusals stay historical; they are not the latest
+failure stage. The remaining S13 requirement needs an actual targetable picker on
+a supported allowed desktop. Do not repeat identical untargetable launches without
+new desktop evidence or infer either interaction from process entry/termination.
+Stop on managed signing, language or application-control refusal.
+
+Windows10 client, StorePS7 conversion, actual physical BAT/phone, genuine cloud/
+UNC/redirected/share, physical full disk and final exact1.0.1 ZIP/kit acceptance
+remain separate unproved gates. All S08-S12 safeguards/nonpasses remain preserved.
+
+## Human action
+
+None requested for S13. No owner diagnostics, PATH edits, media uploads or kit
+debugging. S15 remains the later consolidated acceptance session.
+
+## Next step and filled prompt — resume S13 only
+
+```text
+Resume ONLY S13 in C:\projects\AudioFileForPhone-main using docs/codex-v1.0.1
+on branch codex/audiofileforphone-v1.0.1. PR29:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Latest entry a063ea9abaab5c9f2354943134dc4fac9e1bf9af; refresh the later
+containing checkpoint from the previous final response, fresh live feature/main
+refs and exact-head push/PR CI. Main NOT_INTEGRATED at
+28f53b10529495754273d55654c7b29e78848c83; PR remains OPEN draft/unmerged.
+Read AGENTS.md, active CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET,
+tasks/S13.md, evidence/S13.json, S13-HANDOVER/REVIEW/NONPASSES, D64 and relevant
+MINIMAL_HUMAN_ACCEPTANCE/ACCEPTANCE_KIT/AUTOMATED_ACCEPTANCE/RELEASE_GATES/
+SYNC_AND_RELEASE specs. S01-S12 complete; S13/A3 BLOCKED; S14 NOT_STARTED.
+Owner authorized existing launcher-equivalent process-only RemoteSigned for
+the unchanged isolated picker driver, narrowly superseding older blanket retry
+prohibitions. Check managed restrictions read-only first; stop on managed
+signing/language/application-control refusal. No persistent policy/PATH/registry/
+permission changes, elevation or control bypass. Use only unchanged hash-verified
+driver: Windows PowerShell5.1 -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned
+-File. Native PS5.1 child PSModulePath isolation is recorded; driverba38dab5,
+function19222f49 and runner58bfd53f full hashes are in S13.json.
+Both native launches actually entered PS5.1.26100.9711 x64 STA/session2 with
+RemoteSigned, but stayed before_selection and exposed no picker via supported
+desktop APIs. Selection/equality and actual Cancel remain NOT_RUN. No UI input
+occurred. Exact owned drivers/diagnostic were terminated and all children are
+absent; termination-1 is not cancellation. Fresh empty owned folder unchanged.
+Private report312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7
+binds evidence; prior refusals remain historical. All24 source/runtime hashes
+and21 retained reports match. Do not repeat identical unavailable launches
+without new targetable-desktop evidence or ask the owner to debug.
+When a supported actual picker is targetable, perform selection yourself into
+an empty owned temporary folder and prove exact expected-path equality. Reopen,
+click Cancel yourself and prove OperationCanceledException('Selection cancelled.').
+Tested kit/test9e2c93335f08fabff51ea274e5bf43f3cd5c08af; production runtime
+b05b581dc6372cecd99471c53ee2cac72b8267ba. Retain historical114 groups/two analyses
+and actual identities; rerun only affected checks if bytes change. Available
+Windows11 Pro26H2 26300.9711 client; portablePS7.6.5. Windows10 unavailable;
+Store7.6.7 startup-only; Server supplementary. Physical BAT/phone NOT_TESTED;
+no accepted final1.0.1 source/ZIP/kit/authority. Preserve explicit owned config/
+output, default64, source safety, icons/posters, old release and all safeguards.
+Do not touch ordinary Music/personal media or request repeated diagnostics.
+Update evidence/state/status/decisions/full handover; test/review/commit/push,
+verify fresh branch equality and exact-head CI, then STOP before S14. If still
+unavailable, checkpoint BLOCKED and stop. No main integration/publication here.
+Fixed public deliverablev1.0.1: S16 exact bytes -> separate S17 -> S18 closure.
+```
+
+## Preserved previous handover — latest authorization and outcome are above
+
+# S13 handover — BLOCKED
+
+## Latest continuation outcome — 2026-10-29
+
+S13 remains **BLOCKED_INTERACTIVE_DESKTOP**. The normal Windows PowerShell
+host refused the exact-function picker driver before execution because scripts
+are disabled. No actual picker was targetable. Selected-path equality and actual
+cancellation are still NOT_RUN; S13-A3 is BLOCKED. S01-S12 remain COMPLETED and
+S14 remains NOT_STARTED. This thread ends at the blocked S13 checkpoint.
+
+## Latest changes
+
+Only active evidence/state/status/next-session/decisions/handover documentation
+changed. No kit, test, runtime, dependency, workflow, default, icon or poster bytes
+changed. Tested kit/test source remains9e2c93335f08fabff51ea274e5bf43f3cd5c08af;
+production runtime remainsb05b581dc6372cecd99471c53ee2cac72b8267ba. Previous
+114 test groups/two analyses and distinct rehearsal ZIP/kit identities are retained,
+without relabeling them as runs at the documentation checkpoint.
+
+## Latest verification
+
+| Check | Exact command or artifact | Environment and identity | Actual result |
+|---|---|---|---|
+| Picker | powershell.exe -NoLogo -NoProfile -STA -File private picker-driver.ps1 | System32 Windows PowerShell; exact AST function hash19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd; runner58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c | Refused before entry: running scripts is disabled; no policy argument/change, no retry around refusal, raw exit unknown |
+| Desktop | sky.list_windows() before/after launch | Supported Windows Computer Use desktop inventory | No targetable task picker; no selection or cancellation input issued |
+| Owned release/source | Get-Process -Id 16988 -ErrorAction SilentlyContinue; Get-CimInstance Win32_Process -Filter 'ParentProcessId=16988'; literal empty-folder inventory | New private AFP-S13-picker-f338a6d9e51041c084bc0f1b11c91d8d scope | Process/children absent; no forced termination; empty source unchanged |
+| Integrity | Get-FileHash -LiteralPath comparisons against S13.json |24 kit/runtime paths and20 retained reports | All match; original picker report located in its separate S13Picker scope; first wrong-scope lookup is preserved in NONPASSES |
+| Client | CIM Win32_OperatingSystem plus CurrentVersion build/display fields; current host version | Windows11 Pro Client/ProductType1,26H2,26300.9711 x64; portablePS7.6.5 x64 | Fresh actual identity; stale registry ProductName is not used as OS label; refused PS5.1 child supplies no new version pass |
+| Entry sync/CI | git ls-remote origin feature/main; exact-head Actions runs/jobs |96da3cc4862da0784b629704edc568e8839e5dbe | Feature advertised-equal; push40826128531/PR40826136226 completed SUCCESS, all4 supplementary Server jobs |
+| Documentation checkpoint | ConvertFrom-Json state/evidence/target assertions,24 literal SHA256 comparisons, exact AST/driver comparison, git diff --check | PortablePS7.6.5;2026-10-29T06:15:16Z | PASSED;8 intended documentation files only; final assets/authority null; S01-S12 complete/S13 blocked/S14-S18 unstarted |
+
+Private picker-continuation-blocked.json SHA256 is
+6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727.
+It binds driver, extracted function, launch, stderr, desktop inventory and exact
+hash comparisons. Raw evidence remains private and retained. No config, ordinary
+Music or personal-media access, conversion, download or policy change occurred.
+No actual BAT/phone fields were filled. Broad conversion tests were not repeated
+because implementation bytes did not change; active JSON/state/diff validation
+and independent review check this documentation-only checkpoint.
+
+## Latest Git state — final checkpoint observed after push
+
+Origin remains https://github.com/PikkuJanne/AudioFileForPhone.git; branch
+codex/audiofileforphone-v1.0.1; PR29 remains OPEN draft/unmerged:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Entry96da3cc freshly equals the advertised feature ref. Tested code9e2c933's
+push40825453261/PR40825460359 also completed SUCCESS. The final containing
+checkpoint SHA/live equality, clean working-tree state and its exact-head CI
+are observed after commit/push in the final response and refreshed next thread;
+no commit contains its own SHA. Pending/failed checks are never passes.
+
+Main remains separately NOT_INTEGRATED at local/live
+28f53b10529495754273d55654c7b29e78848c83. No main integration, S14 work, tag,
+release, protection, visibility or history change occurred. S14 reviewed-head and
+existing owner-approval policy remain. Frozen source/accepted ZIP/kit/authority
+stay null, runtime stays1.0.0 and fixed publicv1.0.1 remains PENDING_S17.
+
+## Latest decisions, risks and blocker
+
+D63 records the narrow picker attempt, refusal and stop. S13-REVIEW.md records
+the independent scope review; S13-NONPASSES.md preserves the new refusal and
+corrected private-report lookup alongside all earlier nonpasses. Only an allowed
+supported interactive desktop able to execute the unchanged picker can provide
+the remaining selection/path-equality and OperationCanceledException evidence.
+Do not change policy, bypass controls, infer success or ask the owner to debug.
+
+Windows10 PS5.1/PS7 is unavailable; Store7.6.7 remains startup-only and Server CI
+supplementary. Actual physical BAT/phone, genuine cloud/UNC/redirected/share,
+physical full disk and final exact1.0.1 ZIP/kit acceptance remain separate unproved
+gates. All S08-S12 safeguards/tests/nonpasses and source safety remain preserved.
+
+## Latest human action
+
+None requested for S13. No repeated owner diagnostics, PATH edits, audio uploads
+or kit debugging. S15 remains the later consolidated acceptance session.
+
+## Latest next-thread prompt — resume S13 only
+
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Last entry checkpoint:96da3cc4862da0784b629704edc568e8839e5dbe; refresh the
+later containing checkpoint from the previous final response, fresh advertised
+feature/main identities and exact-head push/PR CI. Main remains separately
+NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+Tested kit/test code:9e2c93335f08fabff51ea274e5bf43f3cd5c08af.
+Production runtime:b05b581dc6372cecd99471c53ee2cac72b8267ba.
+Read AGENTS.md, active CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md,
+RELEASE_TARGET.json, evidence/S13.json, S13-HANDOVER.md, S13-REVIEW.md,
+S13-NONPASSES.md, tasks/S13.md and specs/MINIMAL_HUMAN_ACCEPTANCE.md,
+ACCEPTANCE_KIT.md, RELEASE_GATES.md, AUTOMATED_ACCEPTANCE.md,
+SYNC_AND_RELEASE.md. Complete ONLY remaining S13. S01-S12 stay complete.
+S13 is BLOCKED_INTERACTIVE_DESKTOP: normal PS5.1 STA -File driver was refused
+before execution because scripts are disabled; no actual picker appeared.
+New private refusal digest6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727;
+original44c91f98 blocker is preserved. All24 source/runtime hashes and20 old
+report digests matched; no kit/runtime bytes changed. Owned process/children
+are absent and empty source unchanged. No raw exit or cancellation is claimed.
+Verify actual picker literal selection/path equality and cancellation only on
+an allowed supported interactive Windows desktop. Do not change policy, bypass
+controls, retry around the refusal, infer a pass or make the owner debug the kit.
+Available client Windows11 Pro26H2 26300.9711 x64, PS5.1.26100.9711 and
+portablePS7.6.5. Store7.6.7 startup-only; Windows10 unavailable; Server supplementary.
+Keep explicit owned ConfigPath/OutputParent, UTF8 drivers, clean child PATH,
+exact package/member/report identities and all S08-S12 safeguards/tests/nonpasses.
+Conversion/check never download. Preserve default64, source safety, icons/posters
+and publishedv1.0.0. Do not scan ordinary Music/personal media or repeat owner
+diagnostics. Physical BAT and phone observations remain separate and NOT_TESTED.
+Retained runtime1.0.0 ZIP/two kits are rehearsals, not accepted final1.0.1 bytes.
+Update evidence/state/status/decisions/full handover; run affected checks and
+review/commit/push; verify fresh advertised equality and exact-head CI. If evidence
+remains missing, checkpoint BLOCKED and STOP. Give the filled next-thread prompt.
+Do not start S14 or integrate main. Fixed public deliverable remainsv1.0.1;
+only separately started S17 publishes S16's exact accepted source/assets;
+S18 verifies public-download/main closure. STOP after S13.
+```
+
+## Latest stop and fixed deliverable
+
+STOP at this S13 BLOCKED checkpoint. Publication of fixed public normalv1.0.1 is
+PENDING_S17; only a separately started exact-byte S17 may publish S16's accepted
+assets, and S18 verifies closure. Publishedv1.0.0/tag/assets remain preserved.
+
+## Preserved original S13 handover
+
+## Outcome
+
+The one-click kit builder, runner, short guide, redacted exporter and focused tests
+are implemented. The actual Windows11 automated rehearsal passes its tested
+package/host/source/media paths. S13 is **not complete**: actual picker selection
+and cancellation remain BLOCKED_INTERACTIVE_DESKTOP. S13-A3 is not PASSED. Resume
+S13; S14 remains NOT_STARTED. Do not give the rehearsal to the owner as a release
+candidate or ask the owner to debug the kit.
+
+## Changes
+
+tools/Build-AcceptanceKit.ps1 verifies existing runtime assets and creates a new
+local Acceptance-Kit.zip with an external digest. tools/acceptance contains the
+BAT/PS1 runner, common verifier, physical shortcut correlation, whitelist report
+exporter and one-page instruction sheet. Four focused tests cover builder faults,
+privacy/path/source/process boundaries, synthetic physical correlation, and actual
+extracted-kit rehearsal/faults. specs/ACCEPTANCE_KIT.md describes the exact scope.
+
+Automated conversions use the unchanged packaged PS1 with explicit owned config
+and output. Per host, actual production setup saves a selection and a fresh process
+converts one selected copy plus a3,605-second fixture. The full synthetic collection
+uses MP3/M4A/OGG and an unsupported sentinel. A real owner BAT collection is prepared
+as a separate direct shortcut and top-level creation watcher; no Music scan/newest
+guess, raw-exit inference or prefilled human answer exists. Optional separate
+production setup retains consent; conversion/check never download.
+
+The local PS5.1 identity-reader adapter preserves strict kit inventory on bracket/
+Unicode paths and disappears before conversion. All13 production runtime hashes
+remain b05b581dc6372cecd99471c53ee2cac72b8267ba. S08-S12 safeguards, original suites,
+exact ACL restoration/CWD assertions, default64, metadata/artwork, icons/posters,
+and publishedv1.0.0 are unchanged. No production/dependency/workflow change.
+
+## Verification
+
+S13.json records actual commands, expected/observed groups, report digests, source
+hashes and accepted versus superseded attempts. Client is Windows11 Pro26H2
+26300.9711 x64; PS5.1.26100.9711 and portablePS7.6.5. Store7.6.7 stays startup-only.
+
+| Check | Exact harness / artifact | Actual scope and result |
+|---|---|---|
+| Builder | tests/Test-AcceptanceKitBuild.ps1 |13 cases per shell; empty child PATH, real local archive faults, explicit synthetic final-version contract; no accepted final candidate |
+| Common | tests/Test-AcceptanceCommon.ps1 |19 per shell; source/ZIP/privacy/capture, bracket missing marker, real marker exclusion, lock/junction refusals and local adapter scope |
+| Physical contracts | tests/Test-AcceptancePhysical.ps1 |14 per shell; actual owned watcher events with injected answers/media; no physical owner pass |
+| Extracted runner | tests/Test-AcceptanceRunner.ps1 |11 groups per outer host; 14 real conversions total including four long outputs, both installed hosts, full source/media validation and eight early refusals per run |
+| Static | analysis-s13.ps1 (private owned driver) |Pinned analyzer1.25.0, verified complete dependency trees,12 selected files and71 parser files per shell; zero diagnostics |
+| Picker | exact Select-KitFolder function, private picker-ui-blocked.json |BLOCKED_INTERACTIVE_DESKTOP; no selection/cancel claim; exact owned processes released; no policy change |
+| Current release gate | tools/Test-ReleaseGates.ps1, actual current-gates-final2.json |Captured exit1/REFUSED in both shells; runtime1.0.0, no frozen C/accepted ZIP/kit or authority |
+
+Runtime rehearsal source7097713855982dbfe653c2d5b14c23f2852da9a9 was built from
+a clean detached private clone with exact Git blob/archive bytes. Its ZIP digest
+isfcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e.
+Kit/test code source9e2c93335f08fabff51ea274e5bf43f3cd5c08af is separate. Kit
+digests identify actual rebuilt runner bytes and are recorded per final report;
+STATE's accepted ZIP/kit hashes remain null. No source is frozen for publication.
+The actual PS5.1-built rehearsal kit hash is
+4b00dc4774785ed9c90f40e51d2e60837735d141543a4dbc9b9826605089233a;
+the independently built PS7 rehearsal hash is
+79a448b2fddec7f0887af17c9eb5f6421f918ddd9713533286b1ee6a7cd1ab8b.
+They are two tested builds, not a single accepted final candidate.
+
+## Git state (observe after checkpoint)
+
+Origin is PikkuJanne/AudioFileForPhone; branch codex/audiofileforphone-v1.0.1,
+draft PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Entry7097713 was freshly advertised-equal and its exact-head push40762722864 and
+PR40762732197 passed all four jobs. All72 selected private S12 report/analysis
+digests were rechecked; no earlier completion was restarted or relabeled.
+
+Code source9e2c933 is pushed and was independently advertised-equal. Containing
+documentation checkpoint HEAD/live equality, working tree and exact-head push/PR
+CI are observed after push in the final response and refreshed next entry; no
+commit contains its own SHA. Pending/failed checks are not PASSED.
+
+Main remains separately NOT_INTEGRATED at local/live
+28f53b10529495754273d55654c7b29e78848c83. PR29 remains OPEN draft/unmerged.
+S14's reviewed-head/owner-approval policy remains. No main/tag/release/protection/
+visibility/history change or publication authority was created.
+
+## Decisions, risks and blockers
+
+S13-REVIEW.md and S13-NONPASSES.md retain peer review, preparation failures,
+strict-inventory correction and real direct-shortcut percent expansion. D60-D62
+record the controlled PS1/physical BAT split, identities/privacy and stop decision.
+Resume the missing picker test on a supported allowed interactive desktop; prove
+selected path equality and cancellation, with no policy bypass or owner debugging.
+
+Windows10 client cells remain BLOCKED_UNAVAILABLE_CLIENT. Server CI cannot fill
+them. Actual physical shortcut/phone, genuine cloud/UNC/redirected/share, physical
+full disk and final exact1.0.1 ZIP/kit remain unproved. Existing S11/S12 nonpasses,
+cleanup uncertainty and actual/injected distinctions remain intact. Exact core,
+clean/online/offline campaigns are still required on matching final bytes; this
+kit does not fabricate them from historical reports.
+
+## Human action
+
+None requested for S13. Do not repeat owner diagnostics, request PATH edits,
+source audio or full logs. S15 remains the later consolidated client/shortcut/
+phone session after the kit and exact candidate are ready.
+
+## Next step and fully filled prompt
+
+```text
+Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main using
+docs/codex-v1.0.1 on branch codex/audiofileforphone-v1.0.1.
+Draft PR: https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Tested kit/test code: 9e2c93335f08fabff51ea274e5bf43f3cd5c08af.
+Production runtime remains b05b581dc6372cecd99471c53ee2cac72b8267ba.
+Rehearsal package source7097713855982dbfe653c2d5b14c23f2852da9a9,
+ZIP SHA256 fcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e;
+this is runtime1.0.0 preparation, not an accepted final1.0.1 candidate.
+Refresh the containing checkpoint from the previous final response, fresh
+advertised feature/main refs and exact-head push/PR CI. Read AGENTS.md and
+active CHARTER.md, STATE.json, STATUS.md, NEXT_SESSION.md, RELEASE_TARGET.json,
+evidence/S13.json, S13-HANDOVER.md, S13-REVIEW.md, S13-NONPASSES.md,
+tasks/S13.md and specs/MINIMAL_HUMAN_ACCEPTANCE.md, ACCEPTANCE_KIT.md,
+RELEASE_GATES.md, AUTOMATED_ACCEPTANCE.md and SYNC_AND_RELEASE.md.
+Complete ONLY the remainder of S13 — Build the one-click acceptance kit.
+S01-S12 are complete and remain preserved. S13 is BLOCKED_INTERACTIVE_DESKTOP:
+verify actual folder picker selection/path equality and cancellation on an
+allowed supported interactive Windows desktop, without changing policy,
+bypassing controls, inferring a pass or making the owner debug the kit.
+All exact owned prior picker processes were released; raw blocker evidence
+is private. Preserve all nonpasses. Rerun affected kit tests if bytes change.
+Available client Windows11 Pro26H2 26300.9711 x64, PS5.1.26100.9711,
+portablePS7.6.5; Store7.6.7 startup-only. Windows10 remains unavailable,
+Server supplementary. C:\ffmpeg\bin is Gyan Git ec420ba161; pinned9.0.2 separate.
+Keep automated PS1 conversions on explicit owned ConfigPath/OutputParent,
+UTF8 hidden drivers, clean child PATH, exact ZIP/member/report identities,
+full source hashes locally, exact64/full decode and native release guards.
+The real packaged BAT/normal config/console/shortcut collection is separate
+physical evidence; never substitute redirected Enter or LOCALAPPDATA for it.
+Keep actual answers separate from mechanical physical status; percent
+physical paths refuse before launch. Do not scan Music/personal media or
+repeat owner diagnostics. Retain all S08-S12 safeguards/tests/pins and
+historical report/ACL/CWD contracts; conversion/check never download.
+Preserve defaults, sources, icons/posters and publishedv1.0.0. No S14 work
+or main integration here; existing reviewed-head/owner approval stays separate.
+Update state/status/evidence/decisions/full handover; test/review/commit/push,
+verify fresh advertised equality and exact-head CI; give the filled prompt,
+then STOP. Do not start S14.
+Fixed public deliverable v1.0.1 remains pending. Only separately started
+S17 publishes S16's exact accepted source/assets; S18 verifies closure.
+```
+
+## Stop
+
+Stop at this S13 BLOCKED checkpoint. No S14 work begins in this thread.
+
+## Fixed final deliverable
+
+Public normalv1.0.1 remains PENDING_S17, not complete. Runtime is1.0.0; frozen
+release source, accepted ZIP/kit and publication authority remain null. S17's
+exact accepted bytes and S18's independent public download/main closure remain
+mandatory. Publishedv1.0.0 and its tag/assets are preserved.

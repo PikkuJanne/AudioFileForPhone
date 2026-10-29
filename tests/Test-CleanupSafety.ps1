@@ -22,7 +22,7 @@ $harnessNames = @('Test-AudioFileForPhone.ps1', 'Invoke-IsolatedBaseline.ps1', '
     'Test-TransactionalOutput.ps1', 'Test-ScriptResults.ps1', 'Test-LauncherResults.ps1',
     'Test-Cancellation.ps1', 'Test-Preview.ps1', 'Test-Progress.ps1',
     'Test-Diagnostics.ps1', 'Test-Metadata.ps1', 'Test-OutputParent.ps1')
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-BaselineCharacterization.ps1', 'tests/Test-CleanupSafety.ps1') +
     @($harnessNames | ForEach-Object { 'tests/' + $_ })
 $suiteRoot = $null; $suiteReserved = $false; $suiteToken = [guid]::NewGuid().ToString('N')

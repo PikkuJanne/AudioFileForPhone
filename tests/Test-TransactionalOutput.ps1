@@ -26,7 +26,7 @@ $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
 $events = New-Object 'System.Collections.Generic.List[object]'
 $savedAcls = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-TransactionalOutput.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-TransactionalOutput.ps1')
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
 $evidenceParent = [IO.Path]::GetFullPath((Join-Path $projectRoot 'docs/codex-v1/evidence')).TrimEnd('\', '/')
 if ((Split-Path -Parent $evidenceFullPath) -ine $evidenceParent -or
@@ -98,8 +98,9 @@ function New-NativeResult {
     return [pscustomobject]@{ Status = $Status; ExitCode = $Code; Stdout = $Stdout; Stderr = $Stderr; Error = $Stderr; StdoutTruncated = $Truncated; StderrTruncated = $false; ElapsedMilliseconds = 0; ProcessReleased = $Released }
 }
 function Invoke-RealNative {
-    param([string]$Tool, [string[]]$NativeArguments)
-    return & $script:originalNative -ExecutablePath $Tool -Arguments $NativeArguments
+    param([string]$Tool, [string[]]$NativeArguments,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
+    return & $script:originalNative -ExecutablePath $Tool -Arguments $NativeArguments -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
 }
 function Invoke-RealSuccess {
     param([string]$Tool, [string[]]$NativeArguments)
@@ -152,7 +153,8 @@ function Set-NativeMock {
     param([string]$Mode, [string]$CopyPath = '', [string]$Json = '')
     $script:faultMode = $Mode; $script:encodeCopy = $CopyPath; $script:probeJson = $Json; $script:encoderCalls = 0; $script:capturedWorking = ''
     Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value {
-        param([string]$ExecutablePath, [string[]]$Arguments)
+        param([string]$ExecutablePath, [string[]]$Arguments,
+              [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
         $encode = $ExecutablePath -ieq $ffmpeg -and @($Arguments | Where-Object { $_ -eq '-b:a' }).Count -gt 0
         if ($encode) {
             $script:encoderCalls++; $work = $Arguments[$Arguments.Count - 1]; $script:capturedWorking = $work
@@ -184,7 +186,7 @@ function Set-NativeMock {
         }
         if ($script:faultMode -eq 'decode-nonzero' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 23 '' 'controlled integrity decode failure' }
         if ($script:faultMode -eq 'decode-unreleased' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 0 '' 'controlled exit ownership unknown' 'Completed' $false $false }
-        return Invoke-RealNative $ExecutablePath $Arguments
+        return Invoke-RealNative $ExecutablePath $Arguments -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
     }
 }
 
@@ -201,6 +203,7 @@ try {
     $helpersCopy = Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'
     $scriptCopy = Join-Path $appRoot 'AudioFileForPhone.ps1'
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1') -Destination $helpersCopy
+    Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1') -Destination (Join-Path $appRoot 'AudioFileForPhone.Diagnostics.ps1')
     Copy-Item -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Destination $scriptCopy
     Assert-True ((Get-FileHash -LiteralPath $helpersCopy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1')).Hash) 'Copied runtime must be byte-identical.'
     Assert-True ((Get-FileHash -LiteralPath $scriptCopy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1')).Hash) 'Copied entry must be byte-identical.'
@@ -527,7 +530,7 @@ try {
             '  process { if ([string]$Value -match ''\[OK\]'') { throw ''controlled postpublication log write failure'' }',
             '    Microsoft.PowerShell.Management\Add-Content -LiteralPath $LiteralPath -Value $Value -ErrorAction Stop }',
             '}',
-            ('& ' + $literalScript + ' -InputFolder ' + $literalInput + ' -OutputParent ' + $literalParent),
+            ('& ' + $literalScript + ' -InputFolder ' + $literalInput + ' -OutputParent ' + $literalParent + ' -ConfigPath ' + ("'" + (Join-Path $appRoot 'missing-config.json').Replace("'", "''") + "'")),
             'exit $LASTEXITCODE') -join "`n"
         $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
         $shellPath = Join-Path $PSHOME $shellName

@@ -215,7 +215,8 @@ function Assert-CiPolicy {
     if ($document.permissions.contents -cne 'read') { throw 'Test token requires read-only contents permissions.' }
     Assert-CiMapKeys $document.jobs @('windows') 'jobs'
     $job = $document.jobs.windows
-    Assert-CiMapKeys $job @('runs-on', 'timeout-minutes', 'strategy', 'defaults', 'steps') 'windows job'
+    Assert-CiMapKeys $job @('name', 'runs-on', 'timeout-minutes', 'strategy', 'defaults', 'steps') 'windows job'
+    if ($job.name -cne 'Supplementary Windows Server 2025 / ${{ matrix.edition }}') { throw 'Hosted CI must be named supplementary Windows Server.' }
     if ($job['runs-on'] -cne 'windows-2025' -or $job['timeout-minutes'] -ne 20) { throw 'Only bounded GitHub-hosted Windows jobs are approved.' }
     Assert-CiMapKeys $job.strategy @('fail-fast', 'matrix') 'strategy'
     if ($job.strategy['fail-fast'] -isnot [bool] -or $job.strategy['fail-fast']) { throw 'Both supported shell jobs must report independently.' }
@@ -256,8 +257,19 @@ function Assert-CiPolicy {
     Assert-CiMapKeys $steps[2] @('name', 'if', 'uses', 'with') 'artifact step'
     if ($steps[2].if -cne 'always()' -or $steps[2].uses -cne 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9') { throw 'Evidence upload must use the reviewed official full SHA and run after failed checks.' }
     Assert-CiMapKeys $steps[2].with @('name', 'path', 'retention-days', 'if-no-files-found', 'include-hidden-files') 'artifact inputs'
+    $approvedArtifactPaths = [string]::Join("`n", @(
+        'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S09-encoding-ci-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S10-support-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S06-managedreal-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S11-corpus-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S11-filesystem-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+    ))
     if ($steps[2].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
-        $steps[2].with.path -cne 'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json' -or
+        $steps[2].with.path -cne $approvedArtifactPaths -or
         $steps[2].with['retention-days'] -ne 14 -or $steps[2].with['if-no-files-found'] -cne 'warn' -or
         $steps[2].with['include-hidden-files'] -isnot [bool] -or $steps[2].with['include-hidden-files']) { throw 'Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.' }
     $lock = Assert-CiLock $ManifestText
@@ -275,6 +287,9 @@ function Test-CiPolicyMutations {
     param([string]$WorkflowText, [string]$ManifestText, [string[]]$WorkflowFiles)
     [void](Assert-CiPolicy -WorkflowText $WorkflowText -ManifestText $ManifestText -WorkflowFiles $WorkflowFiles)
     $mutations = @(
+        @{ name = 'client acceptance CI label refused'; needle = 'Supplementary Windows Server 2025 /'; replacement = 'Required Windows 11 client /' }
+        @{ name = 'broad clean first artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S12-cleanfirst-'; replacement = 'docs/codex-v1.0.1/evidence/S12-*-' }
+        @{ name = 'broad gate artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S12-releasegates-'; replacement = 'docs/codex-v1.0.1/evidence/S12-*-' }
         @{ name = 'release-write token refused'; needle = 'contents: read'; replacement = 'contents: write' }
         @{ name = 'job permission override refused'; needle = '    runs-on: windows-2025'; replacement = "    permissions:`n      contents: write`n    runs-on: windows-2025" }
         @{ name = 'privileged PR trigger refused'; needle = '  pull_request:'; replacement = '  pull_request_target:' }
@@ -287,6 +302,8 @@ function Test-CiPolicyMutations {
         @{ name = 'unsafe checkout opt-out refused'; needle = 'allow-unsafe-pr-checkout: false'; replacement = 'allow-unsafe-pr-checkout: true' }
         @{ name = 'self-hosted execution refused'; needle = 'runs-on: windows-2025'; replacement = 'runs-on: self-hosted' }
         @{ name = 'hidden artifact upload refused'; needle = 'include-hidden-files: false'; replacement = 'include-hidden-files: true' }
+        @{ name = 'broad active-plan artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S09-encoding-ci-'; replacement = 'docs/codex-v1.0.1/evidence/S09-*-' }
+        @{ name = 'broad support artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S10-support-'; replacement = 'docs/codex-v1.0.1/evidence/S10-*-' }
         @{ name = 'artifact overwrite capability refused'; needle = '          retention-days: 14'; replacement = "          overwrite: true`n          retention-days: 14" }
         @{ name = 'release command injection refused'; needle = "          `$ErrorActionPreference = 'Stop'"; replacement = "          gh release create v1.0.0`n          `$ErrorActionPreference = 'Stop'" }
         @{ name = 'duplicate YAML permission key refused'; needle = 'permissions:'; replacement = "permissions:`n  contents: write`npermissions:" }

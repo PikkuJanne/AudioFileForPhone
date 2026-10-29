@@ -23,7 +23,7 @@ $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
 $events = New-Object 'System.Collections.Generic.List[object]'
 $nativeFiles = New-Object 'System.Collections.Generic.List[string]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-RegressionEdges.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-RegressionEdges.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -156,12 +156,13 @@ function New-Destination {
 function New-AppCopy {
     param([string]$Label)
     $app=Join-Path $testRoot ('A-'+$Label);[IO.Directory]::CreateDirectory($app)|Out-Null
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must start byte-identical.'}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Runtime copies must start byte-identical.'}
     $audit=@'
 $script:T16OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $encoder=$Arguments -contains 'libmp3lame'
     $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;encoder=$encoder;output_path=if($encoder){$Arguments[-1]}else{$null};validation_fault=$false}
     $global:T16NativeProofs.Add($proof)
@@ -203,7 +204,7 @@ function Invoke-AudioNativeProcess {
 $global:T16NativeAuditInstalled=$true
 '@
     [IO.File]::AppendAllText((Join-Path $app 'AudioFileForPhone.Helpers.ps1'),[Environment]::NewLine+$audit,[Text.Encoding]::UTF8)
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){Add-Fixture (Join-Path $app $name)}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){Add-Fixture (Join-Path $app $name)}
     return Join-Path $app 'AudioFileForPhone.ps1'
 }
 function Start-Entry {

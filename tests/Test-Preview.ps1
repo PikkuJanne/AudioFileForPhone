@@ -22,7 +22,7 @@ $ownerFile = Join-Path $testRoot '.t12-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preview.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preview.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -120,14 +120,15 @@ function Invoke-RealSuccess {
 function New-AppCopy {
     param([string]$Label, [switch]$Guards)
     $root = Join-Path $testRoot ('A-' + $Label); [IO.Directory]::CreateDirectory($root) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         [IO.File]::Copy((Join-Path $projectRoot $name), (Join-Path $root $name), $false)
         Assert-True ((Get-FileHash -LiteralPath (Join-Path $root $name)).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'Every app copy must start byte-identical.'
     }
     if ($Guards) {
         $append = @'
-function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation); Stop-T12Forbidden 'native' }
+function Invoke-AudioNativeProcess { param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,[int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000); Stop-T12Forbidden 'native' }
 function Get-ToolPath { param($ExeName,$ScriptDirectory); Stop-T12Forbidden 'tool lookup' }
+function Resolve-AudioToolSelection { param($FfmpegDirectory,$ConfigPath,$ScriptDirectory); Stop-T12Forbidden 'tool selection/config read' }
 function Assert-ToolPrerequisites { param($FfmpegPath,$FfprobePath); Stop-T12Forbidden 'tool prerequisites' }
 function Get-ValidatedCoverPath { param($Path,$FfmpegPath); Stop-T12Forbidden 'cover validation/cache' }
 function Test-OutputWritable { param($Path,[switch]$SkipWriteProbe); Stop-T12Forbidden 'destination write probe' }
@@ -147,14 +148,14 @@ function Get-OutputParent {
 '@
         [IO.File]::AppendAllText((Join-Path $root 'AudioFileForPhone.Helpers.ps1'), "`r`n" + $append, [Text.Encoding]::UTF8)
     }
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) { Add-Fixture (Join-Path $root $name) }
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) { Add-Fixture (Join-Path $root $name) }
     return Join-Path $root 'AudioFileForPhone.ps1'
 }
 function New-Driver {
     param([string]$Label, [string]$Entry, [string]$InputPath, [string]$OutputParent, [switch]$Preview,
           [switch]$Interactive, [string]$Cover = '', [int]$Limit = 40, [switch]$OmitOutputParent)
     $command = '& ' + (Get-Literal $Entry) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -BitrateKbps 64 -MaxBaseLength ' + $Limit +
-        ' -Artist ' + (Get-Literal "Synthetic O'Brien & !% ^ artist") + ' -Album ' + (Get-Literal 'Synthetic preview album')
+        ' -Artist ' + (Get-Literal "Synthetic O'Brien & !% ^ artist") + ' -Album ' + (Get-Literal 'Synthetic preview album') + ' -ConfigPath ' + (Get-Literal (Join-Path $testRoot 'missing-config.json'))
     if (-not $OmitOutputParent) { $command += ' -OutputParent ' + (Get-Literal $OutputParent) }
     if ($Preview) { $command += ' -DryRun' }; if ($Interactive) { $command += ' -Interactive' }; if ($Cover) { $command += ' -CoverPath ' + (Get-Literal $Cover) }
     $prefix = @('$ErrorActionPreference=''Stop''', '$ProgressPreference=''SilentlyContinue''', '[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)',

@@ -21,7 +21,7 @@ $ownerFile = Join-Path $testRoot '.t15-owner'; $ownerToken = [guid]::NewGuid().T
 $ownedRootCreated = $false; $descendantReleaseProved = $true
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Metadata.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Metadata.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -138,7 +138,7 @@ function Get-Tag {
 function New-AppCopy {
     param([string]$Label)
     $app=Join-Path $testRoot ('A-'+$Label);[IO.Directory]::CreateDirectory($app)|Out-Null
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must start byte-identical.'}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){$copy=Join-Path $app $name;[IO.File]::Copy((Join-Path $projectRoot $name),$copy,$false);Assert-True ((Get-FileHash -LiteralPath $copy).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must start byte-identical.'}
     $audit=@'
 $script:T15OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 $script:T15OriginalCover=(Get-Item -LiteralPath Function:Get-ValidatedCoverPath).ScriptBlock
@@ -149,7 +149,8 @@ function Get-ValidatedCoverPath {
 function Get-CoverDiagnostics {param([string]$Path);throw 'T15 cached cover diagnostics must be reused without reopening image'}
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
-          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,[object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     $proof=[pscustomobject]@{process_released=$false;status='not returned';exit_code=$null;cover_decode=$false;image_exclusively_reopened=$false;cover_temporarily_corrupted=$false;cover_bytes_restored=$false};$global:T15NativeProofs.Add($proof)
     $nativeParameters=@{};foreach($key in $PSBoundParameters.Keys){$nativeParameters[$key]=$PSBoundParameters[$key]}
     $saved=$null;$result=$null
@@ -171,7 +172,7 @@ function Invoke-AudioNativeProcess {
 }
 '@
     [IO.File]::AppendAllText((Join-Path $app 'AudioFileForPhone.Helpers.ps1'),"`r`n"+$audit,[Text.Encoding]::UTF8)
-    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1')){Add-Fixture (Join-Path $app $name)}
+    foreach($name in @('AudioFileForPhone.ps1','AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')){Add-Fixture (Join-Path $app $name)}
     return Join-Path $app 'AudioFileForPhone.ps1'
 }
 function Invoke-Entry {
@@ -181,7 +182,7 @@ function Invoke-Entry {
         ('$env:PATH='+(Get-Literal (Split-Path -Parent $ffmpeg))+'+'';''+$env:PATH'),('$global:T15Mode='+(Get-Literal $Mode)),('$global:T15CoverPath='+(Get-Literal $CoverPath)),
         '$global:T15NativeProofs=New-Object ''System.Collections.Generic.List[object]''','$global:T15CoverCalls=0;$global:T15Prompts=0',
         'function global:Read-Host {param($Prompt);$global:T15Prompts++;throw ''T15 unexpected metadata prompt''}')
-    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -BitrateKbps 64 -MaxBaseLength 40'
+    $command='& '+(Get-Literal $entry)+' -InputFolder '+(Get-Literal $InputPath)+' -OutputParent '+(Get-Literal $OutputParent)+' -ConfigPath '+(Get-Literal (Join-Path $testRoot 'absent-config.json'))+' -BitrateKbps 64 -MaxBaseLength 40'
     foreach($parameter in @('CoverPath','Artist','Album')){if($PSBoundParameters.ContainsKey($parameter)){$command+=' -'+$parameter+' '+(Get-Literal (Get-Variable $parameter -ValueOnly))}}
     if($Interactive){$command+=' -Interactive'}
     $text=(@($prefix)+@('$global:LASTEXITCODE=$null',($command+' *>&1 | ForEach-Object {[Console]::Out.WriteLine([string]$_)}'),
@@ -355,7 +356,7 @@ try {
     }
     Invoke-Case 'Completed exit0 without release proof is rejected even after disposed image validation' 'A39,A40' {
         param($case);$originalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock;$calls=0
-        $stub={param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,$ProgressParser,$ProgressCallback,$ProgressDurationSeconds,$ProgressCallbackState);$script:T15NoChildCalls++;return [pscustomobject]@{Status='Completed';ExitCode=0;ProcessReleased=$false;Stdout='';Stderr='';Error='';DurationMilliseconds=0}};$script:T15NoChildCalls=0;$refused=$false
+        $stub={param($ExecutablePath,$Arguments,$MaxStdoutChars,$MaxStderrChars,$Cancellation,$ProgressParser,$ProgressCallback,$ProgressDurationSeconds,$ProgressCallbackState,[int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000);$script:T15NoChildCalls++;return [pscustomobject]@{Status='Completed';ExitCode=0;ProcessReleased=$false;Stdout='';Stderr='';Error='';DurationMilliseconds=0}};$script:T15NoChildCalls=0;$refused=$false
         try{Set-Item -LiteralPath Function:Invoke-AudioNativeProcess -Value $stub;try{Get-ValidatedCoverPath -Path $blueJpg -FfmpegPath $ffmpeg -PassThru|Out-Null}catch{$refused=$true;$case['reason']=$_.Exception.Message.Replace($testRoot,'<OWNED_TEMP>')}}finally{Set-Item -LiteralPath Function:Invoke-AudioNativeProcess -Value $originalNative}
         Assert-True ($refused -and $script:T15NoChildCalls -eq 1) 'Cover preflight must not treat Completed/exit0 as release proof.';Assert-FileUnlocked $blueJpg;$case['native_fixture_kind']='explicit no-process stub; no unknown child launched';$case['image_handle_disposed']=$true
     }

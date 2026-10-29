@@ -1,0 +1,211 @@
+# S13 completion — historical picker blocker resolved
+
+The saved manual picker result and exit0 summary now prove actual path equality
+and Cancel with the expected exception/message. Earlier unavailable desktop and
+policy/module refusals below remain historical nonpasses; none is relabeled as
+success. Preparation NOT_RUN remains the pre-launch record. No picker was repeated.
+
+This thread's first private read-only verifier stopped on a timestamp conversion:
+PowerShell7.6.5 ConvertFrom-Json returned DateTime, and Parse(string) used a
+culture-sensitive conversion. Replacing it with a typed DateTimeOffset cast fixed
+the verifier; it then passed. The verifier failure did not modify any saved picker
+file, launch UI, change production/kit bytes or affect the actual successful test.
+The final private verification digest and retained reports are bound in S13.json.
+
+Windows10, StorePS7 conversion, actual physical BAT/phone, genuine cloud/UNC/
+redirected/share/full-disk and exact final package gates remain unproved later
+acceptance work. They are not S13 implementation blockers. S14 remains NOT_STARTED.
+
+## Preserved historical nonpasses — retain actual outcomes
+
+# Latest S13 nonpass — entry6dda87b, session1, actual picker still absent
+
+The renewed owner authorization permits unchanged process-only RemoteSigned.
+Native read-only restrictions before/after match: all scopes Undefined/baseline
+Restricted, FullLanguage, effective AppLocker empty, kernel CI2/user-mode CI0.
+No managed refusal is observed. Both actual PS5.1.26100.9711 x64 STA RemoteSigned
+launches (hidden6452, visible9484) are session1, distinct from historical session2.
+Both save before_selection. sky/list apps/windows and cua inventory expose no
+task picker/console. No UI input is issued; selection/equality and Cancel exception
+remain NOT_RUN. S13/A3 remain BLOCKED_INTERACTIVE_DESKTOP; S14 NOT_STARTED.
+
+Only exact PID/executable/driver-command identities6452/9484 are terminated;
+all owned processes/children absent and source empty. No final raw exit captured;
+termination is not Cancel. The initial read attempted nonexistent picker-settings.json;
+the actual unchanged driver names settings.json, which was then read. This was a
+read-only preparation lookup, with no driver edit or managed refusal.
+24 source/runtime hashes,22 retained reports and19 private raw digests match.
+Report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f retains actual launch/restriction/release facts.
+No Music/media/config access, conversion/download, persistent policy/PATH/registry/
+permission change or owner diagnostic request. Resume only with a targetable picker.
+
+## Preserved earlier nonpasses
+
+# S13 nonpasses and remaining evidence
+
+## Latest continuation from a063ea9 — process policy allowed, picker still untargetable
+
+The owner's2026-10-29 instruction explicitly authorizes only the existing
+launcher-equivalent process-only RemoteSigned request for this unchanged isolated
+driver. It supersedes older blanket retry prohibitions, while persistent settings
+and managed-control bypass remain forbidden. Read-only native PS5.1 checks find
+Machine/User/other policy scopes Undefined, baseline Restricted, FullLanguage,
+effective AppLocker no rules, kernel CI2/user-mode CI0. No managed refusal occurs
+on the native PS5.1 driver route. Before/after restriction state matches.
+
+The first requested launch (PID25280) exits1 before Save-PickerReport because the
+inherited PS7 PSModulePath selects the PS7 Security module and Get-ExecutionPolicy
+cannot autoload it. A read-only inherited-path diagnostic captures an
+AuthorizationManager validation failure for that PS7 Security.types.ps1xml under
+baseline Restricted. This is preserved separately from native PS5.1 managed checks.
+Native PS5.1 module import/control checks succeed without a policy argument. Only
+the child PSModulePath is corrected to System32 WindowsPowerShell Modules first,
+then Program Files WindowsPowerShell Modules; PATH/persistent settings, controls,
+signatures and driver/function bytes remain unchanged.
+
+Native-module hidden PID4564 and visible PID20652 both actually enter the unchanged
+driver: PS5.1.26100.9711 x64 STA/session2/effective RemoteSigned. Both save
+before_selection and wait. Repeated supported sky.list_windows/apps exposes no
+task picker or console, although Explorer/Firefox are also session2. No UI input
+is possible or issued. No selected path, path equality or Cancel exception exists.
+S13-A3/S13 remain BLOCKED_INTERACTIVE_DESKTOP, with actual interactions NOT_RUN.
+
+Both waiting drivers are terminated only after exact PID/executable/command checks.
+Their captured exit-1 means forced owned release and is never treated as Cancel.
+An earlier Start-Process read-only module diagnostic (PID7308) also remains alive;
+the first new raw-file hash inventory correctly refuses its still-open capture.
+Its exact executable/parent/command identity is checked and terminated, releasing
+the captures. All26 raw files can then be hashed. No diagnostic raw exit is claimed.
+All exact owned processes/children are absent; the fresh owned empty bracket/Unicode
+source is unchanged. No global termination, persistent policy/PATH/registry/ACL
+change, config/Music/personal-media access, conversion or download occurs.
+
+All24 source/runtime hashes and21 retained report digests match. New private
+picker-remotesigned-blocked.json SHA256:
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7.
+Earlier reports44c91f98/6eae94e4 remain historical failures, not erased or relabeled.
+No broad suite rerun is needed for unchanged implementation. Resume only S13 when
+a supported actual picker is targetable; no identical blind retries or owner
+debugging. S14 remains unstarted and later client/physical/phone/final-ZIP gates
+remain separate.
+
+## Preserved earlier nonpasses — latest authorization/outcome above takes precedence
+
+## Continuation from96da3cc — unchanged interactive blocker
+
+On2026-10-29 the current exact Select-KitFolder AST extent was extracted into a
+new owned UTF8 driver, with an empty bracket/Unicode synthetic folder. A normal
+Windows PowerShell -NoLogo -NoProfile -STA -File launch, with no policy argument,
+was refused before driver entry: running scripts is disabled. Supported desktop
+inventory returned no task picker. This is neither an actual cancellation nor a
+selected-path pass. No alternative invocation or policy change followed the
+refusal. The process and children are absent without forced termination; no raw
+exit code was captured. The empty owned source is unchanged and evidence remains
+private. New report digest6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727.
+
+The first evidence-integrity command looked for the old picker report under the
+main S13 session and stopped on the absent path. The report actually remains in
+the separate owned S13Picker-a315a3feea0141e988af9eb3c8f2184a scope. The corrected
+comparison verifies all20 retained report digests, including that original
+44c91f98 blocker, plus24 unchanged source/runtime hashes. No missing-report claim,
+cleanup claim, historical relabeling or product failure is inferred from that
+local verification-path error. S13-A3/S13 remain BLOCKED; S14 is unstarted.
+
+These are separate preparations, actual failures and environment limits. None is
+relabeled as a later pass. Raw reports/media/diagnostics remain private.
+
+## Controlled BAT design refused before adoption
+
+Review established that changing child LOCALAPPDATA does not redirect the
+production GetFolderPath(LocalApplicationData) configuration lookup. The BAT also
+deliberately launches Interactive and refuses redirected console input. Piping
+Enter therefore cannot prove that desktop route. The proposed controlled BAT
+implementation was removed before executing a production BAT collection. No
+interaction, configuration or policy safeguard was weakened.
+
+The tested automatic collection uses the unchanged packaged PS1 with explicit
+owned ConfigPath and OutputParent. The required actual BAT collection remains the
+separate prepared direct shortcut, normal setup and one real console gesture at
+S15. Its human observation, mechanical verification and unavailable raw process
+exit have distinct fields. No S13 rehearsal accesses ordinary Music or owner
+configuration.
+
+## Runner preparation failures
+
+The first integrated attempt passed a string array to a PowerShell script rather
+than named parameter splatting. The intended Version argument became an input
+folder and failed before conversion. A subsequent attempt correctly transported
+named parameters but exposed that the production script has no Version switch.
+The kit now calls the packaged authoritative Get-AudioAppVersion in its own
+parser/identity child; it never invents a version parameter. Fixed hidden UTF8
+drivers use private JSON and named splatting without evaluation.
+
+That initial task-created failure produced one bounded private startup diagnostic
+in the normal diagnostics directory, because the initial driver did not redirect
+the diagnostics environment. Its exact filename came from captured child output;
+a checked copy is retained privately. No owner configuration or media was read.
+The original is retained and no broader cleanup is claimed. Current drivers set
+LOCALAPPDATA for diagnostics and still pass explicit ConfigPath for configuration.
+
+A deep development session caused the automated collection's staged file path to
+reach274 UTF16 units. Production correctly refused its unchanged259-unit bound.
+The successful rehearsal uses a short new owned TEMP session. No path assertion
+was relaxed and no owner file was renamed.
+
+An earlier isolated common-helper smoke lacked own-host PSModulePath precedence
+and PS5.1 could not find Get-FileHash under its clean PATH. The corrected driver
+prepends the selected host Modules and Windows PowerShell Modules. Its failed and
+successful output scopes remain separate; this was not a converter regression.
+
+## Strict kit inventory on PS5.1
+
+Source5a37797d4b0a309ba40511fe7c90934fd05c93b2's final1 runner harness failed
+before invoking the runner. Actual PS5.1 Get-Item returned no object and no
+ItemNotFound exception for an absent identity member below an owned bracket/
+Unicode source. The unchanged production identity reader normally runs without
+StrictMode; the strict kit inventory instead failed on null.PSIsContainer.
+
+Source9e2c93335f08fabff51ea274e5bf43f3cd5c08af adds a local identity-reader
+adapter only inside the inventory call. It adds an explicit null return to the
+same literal/error/directory/reparse semantics. Shared production snapshot and
+generated-root checks remain, StrictMode stays enabled, and the global helper/
+separate conversion processes are unchanged. Peer review checked the exact diff.
+New regression cases cover missing marker, actual production marker exclusion,
+locked-marker refusal, junction refusal and disappearance of the adapter scope.
+The failed report and diagnostic remain private; final2 reports are distinct.
+
+## Direct shortcut percent expansion
+
+An actual owned stub BAT/direct .lnk test preserved a normal folder but expanded a
+literal %TEMP% component to the environment value despite raw exit0. This was a
+controlled ShellExecute experiment, not physical owner or converter acceptance.
+The physical kit route now refuses percent-containing source/runtime/session
+paths before accessing Music/Explorer, with PHYSICAL_LITERAL_PATH_UNSUPPORTED.
+It does not ask the owner to rename data or falsely claim that changed arguments
+were literal. Automated named PS1 arguments remain separately supported.
+
+## BLOCKED_INTERACTIVE_DESKTOP — S13 remains unfinished
+
+The picker test extracted the exact Select-KitFolder function into an owned
+PS5.1 STA driver. Supported desktop inventory exposed no targetable dialog from
+hidden or attached launches. A final temporary GUI host was refused by a
+scripts-disabled policy before showing the picker. No policy was altered and no
+managed-control fallback was attempted. All exact owned processes were released;
+the empty synthetic source stayed unchanged. Temporary private evidence remains
+retained, not claimed cleaned.
+
+No actual picker selection or cancellation is proved. The blocker report digest
+is44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691.
+S13-A3 and S13 therefore remain BLOCKED. Resume S13 in a supported allowed
+interactive desktop, verify selected-folder equality and cancellation, rerun any
+changed kit path, then checkpoint. Do not ask the owner to debug the kit or start
+S14 while this evidence remains missing.
+
+## Later acceptance remains separate
+
+Windows10 22H2 client PS5.1/PS7 remains unavailable. Store PS7 remains startup-only
+local evidence; portable7.6.5 supplies the new conversion evidence. Server CI is
+supplementary. Genuine cloud/UNC/redirected/share, physical full disk, actual owner
+shortcut and phone play/seek, frozen1.0.1 ZIP/kit and exact publication authority
+remain unproved. Historical S11/S12 reports and all their nonpasses remain intact.
+No prepared rehearsal kit or synthetic1.0.1 builder fixture satisfies these gates.

@@ -26,7 +26,7 @@ $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } e
 $shell = Join-Path $PSHOME $shellName
 $savedAcls = New-Object 'System.Collections.Generic.List[object]'
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preflight.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-Preflight.ps1')
 $exitCode = 1
 
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -204,7 +204,7 @@ function Invoke-NegativeCase {
         Assert-True ($diagnostic -match $Expected) "$Name must report its expected diagnostic ($Expected)."
         # A path-budget rejection can quote the planned run path. Filesystem
         # emptiness below proves that this diagnostic did not create that run.
-        Assert-True ($result.text -notmatch 'Optional metadata step|Processing file|\[INFO\] Output root') "$Name must stop before optional metadata prompts and run output."
+        Assert-True ($result.text -notmatch 'Optional metadata step|Ready:|Waiting for your selection|Processing file|\[INFO\] Output root') "$Name must stop before optional metadata prompts and run output."
         if ($RootSpelling) {
             $rootDiagnostic = @($diagnostic -split '\[FATAL\] (?:The run stopped: )?Preflight failed: ', 2)
             Assert-True ($rootDiagnostic.Count -eq 2 -and
@@ -259,7 +259,8 @@ try {
     }
     $scriptCopy = Join-Path $appRoot 'AudioFileForPhone.ps1'
     $helpersCopy = Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1'
-    foreach ($pair in @(@{ source = $application; copy = $scriptCopy }, @{ source = $helpers; copy = $helpersCopy })) {
+    foreach ($pair in @(@{ source = $application; copy = $scriptCopy }, @{ source = $helpers; copy = $helpersCopy },
+        @{ source = (Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1'); copy = (Join-Path $appRoot 'AudioFileForPhone.Diagnostics.ps1') })) {
         Copy-Item -LiteralPath $pair.source -Destination $pair.copy
         Assert-True ((Get-FileHash -LiteralPath $pair.source).Hash -ceq (Get-FileHash -LiteralPath $pair.copy).Hash) 'Every application/helper copy must preserve source bytes.'
         $tokens = $null; $parseErrors = $null

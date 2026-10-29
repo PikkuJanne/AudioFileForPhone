@@ -1,49 +1,35 @@
 @echo off
 setlocal DisableDelayedExpansion
 
-REM Drag & drop a folder onto this .bat
-REM It launches AudioFileForPhone.ps1 in interactive mode (TUI + file picker).
-
+REM Exactly one folder; transport the spelling once without evaluating it.
+set "AUDIOFILEFORPHONE_INPUT=%~1"
+set "AFP_LAUNCHER=%~dp0AudioFileForPhone.Launcher.ps1"
+set "AFP_BOOTSTRAP=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe"
+if exist "%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe" set "AFP_BOOTSTRAP=%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe"
+if not exist "%AFP_LAUNCHER%" goto missing_launcher
+if not exist "%AFP_BOOTSTRAP%" goto missing_host
 if "%~1"=="" goto invalid_arguments
 if not "%~2"=="" goto invalid_arguments
 REM A quoted empty second argument is still an extra argument.
 REM Inspect its raw spelling only after the dequoted value was proved empty.
 if not "%2"=="" goto invalid_arguments
 
-set "SCRIPT_DIR=%~dp0"
-set "PS_SCRIPT=%SCRIPT_DIR%AudioFileForPhone.ps1"
-
-REM Prefer pwsh if available, otherwise fall back to Windows PowerShell.
-where pwsh >nul 2>nul
-if errorlevel 1 goto windows_powershell
-pwsh -NoProfile -Sta -ExecutionPolicy Bypass ^
-    -File "%PS_SCRIPT%" "%~1" -Interactive
+"%AFP_BOOTSTRAP%" -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File "%AFP_LAUNCHER%"
 set "CHILD_EXIT=%ERRORLEVEL%"
-goto report_result
-
-:windows_powershell
-powershell.exe -NoProfile -Sta -ExecutionPolicy Bypass ^
-    -File "%PS_SCRIPT%" "%~1" -Interactive
-set "CHILD_EXIT=%ERRORLEVEL%"
-
-:report_result
-echo.
-if "%CHILD_EXIT%"=="0" echo Completed. Check the output and log paths printed above.
-if "%CHILD_EXIT%"=="1" echo Failed. Review the error and any output or log paths printed above.
-if "%CHILD_EXIT%"=="2" echo Completed with failures. Review the output and log paths printed above.
-if "%CHILD_EXIT%"=="130" echo Cancelled. Completed outputs are preserved; review the paths printed above.
-if "%CHILD_EXIT%"=="0" goto finish
-if "%CHILD_EXIT%"=="1" goto finish
-if "%CHILD_EXIT%"=="2" goto finish
-if "%CHILD_EXIT%"=="130" goto finish
-echo Failed with exit code %CHILD_EXIT%. Review the error printed above.
-
-:finish
-pause
 exit /b %CHILD_EXIT%
 
 :invalid_arguments
-echo Drag exactly one folder onto this .bat to convert audio for phone.
-echo Zero, empty or multiple folder arguments are not accepted.
-pause
+"%AFP_BOOTSTRAP%" -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File "%AFP_LAUNCHER%" -ShowUsage
+exit /b 1
+
+:missing_launcher
+echo Required AudioFileForPhone.Launcher.ps1 is missing. Restore the complete application package.
+echo [DIAGNOSTIC] stage=Bootstrap; code=HelperMissing.
+REM Fixed reporting/wait command; paths travel through environment, never evaluation.
+if exist "%AFP_BOOTSTRAP%" "%AFP_BOOTSTRAP%" -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "try { $dir = [IO.Path]::GetDirectoryName($env:AFP_LAUNCHER); $diag = [IO.Path]::Combine($dir, 'AudioFileForPhone.Diagnostics.ps1'); if (Test-Path -LiteralPath $diag -PathType Leaf) { . $diag; $r = New-AudioDiagnosticRecord -ScriptDirectory $dir -Stage Bootstrap -Code HelperMissing -Message 'Required AudioFileForPhone.Launcher.ps1 is missing. Restore the complete application package.'; $null = Write-AudioStartupFailure -Record $r } } catch { Write-Warning 'Startup diagnostics unavailable; original failure above is unchanged.' }; try { if (-not [Console]::IsInputRedirected -and -not [Console]::IsOutputRedirected) { Write-Host 'Press any key to close.'; $null = [Console]::ReadKey($true) } } catch { }"
+exit /b 1
+
+:missing_host
+echo Windows PowerShell bootstrap is missing. Run AudioFileForPhone.ps1 directly in an allowed x64 STA host.
+echo [DIAGNOSTIC] stage=Bootstrap; code=HostStartFailed. Console only: the bootstrap host could not start a logger.
 exit /b 1

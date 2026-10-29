@@ -22,7 +22,8 @@ if (-not [IO.Path]::GetDirectoryName($evidence).Equals($evidenceParent, [StringC
     throw 'Package evidence must use a fresh T19/T17-package-<actual shell>-attemptN/finalN/runN_N JSON directly in docs/codex-v1/evidence.'
 }
 if (Test-Path -LiteralPath $evidence) { throw 'Package evidence already exists; choose a fresh label.' }
-$required = @('AudioFileForPhone.bat', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ps1',
+$required = @('AudioFileForPhone.bat', 'AudioFileForPhone.Launcher.ps1', 'AudioFileForPhone.HostProbe.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.ManagedSetup.ps1', 'tools/ffmpeg-download.json', 'AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat',
+    'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.Checks.ps1', 'Check-AudioFileForPhone.ps1', 'Check-AudioFileForPhone.bat',
     'CHANGELOG.md', 'LICENSE', 'README.md', 'SECURITY.md', 'SUPPORT.md')
 [Array]::Sort($required, [StringComparer]::Ordinal)
 $buildFiles = @('tools/Build-Package.ps1', 'tools/package-files.json')
@@ -210,7 +211,8 @@ function Read-ZipInventory {
     $archive = [IO.Compression.ZipFile]::OpenRead($Path)
     try {
         return @($archive.Entries | ForEach-Object {
-            Assert-True ($_.FullName -cmatch '^[A-Za-z0-9._-]+$' -and -not $_.FullName.EndsWith('/') -and $_.FullName -cne '.' -and $_.FullName -cne '..') 'ZIP entry must be a safe root filename.'
+            Assert-True ($_.FullName -ceq 'tools/ffmpeg-download.json' -or
+                ($_.FullName -cmatch '^[A-Za-z0-9._-]+$' -and -not $_.FullName.EndsWith('/') -and $_.FullName -cne '.' -and $_.FullName -cne '..')) 'ZIP entry must be a safe root filename or the exact reviewed nested pin.'
             Assert-True (($_.ExternalAttributes -band 1024) -eq 0 -and ($_.ExternalAttributes -band -268435456) -ne -1610612736) 'ZIP entry cannot be a reparse point or symlink.'
             Assert-True ($_.LastWriteTime.Year -eq 1980 -and $_.LastWriteTime.Month -eq 1 -and $_.LastWriteTime.Day -eq 1 -and $_.LastWriteTime.Hour -eq 0 -and $_.LastWriteTime.Minute -eq 0 -and $_.LastWriteTime.Second -eq 0) 'ZIP timestamps must use the deterministic epoch.'
             $stream = $_.Open(); $hasher = [Security.Cryptography.SHA256]::Create()
@@ -367,7 +369,7 @@ try {
             Assert-True $case.configuration_restored 'Owned fixture configuration must be restored.'
         }
     }
-    Invoke-Case 'explicit eight-file allowlist excludes committed binary/media/log/cache/poster/evidence fixtures' 'A47,A48' {
+    Invoke-Case 'explicit distributable allowlist excludes committed binary/media/log/cache/poster/evidence fixtures' 'A47,A48' {
         param($case)
         $zipName = 'AudioFileForPhone-v' + (Get-AudioAppVersion) + '.zip'
         $inventory = Read-ZipInventory (Join-Path $first $zipName)

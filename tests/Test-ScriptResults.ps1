@@ -22,7 +22,7 @@ $ownerToken = [guid]::NewGuid().ToString('N')
 $ownedRootCreated = $false
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $children = New-Object 'System.Collections.Generic.List[object]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat', 'tests/Test-ScriptResults.ps1')
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat', 'tests/Test-ScriptResults.ps1')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $evidenceFullPath = [IO.Path]::GetFullPath($EvidencePath)
@@ -115,6 +115,7 @@ function New-AppCopy {
     $entry = Join-Path $root 'AudioFileForPhone.ps1'; $copyHelper = Join-Path $root 'AudioFileForPhone.Helpers.ps1'
     [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.ps1'), $entry, $false)
     [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1'), $copyHelper, $false)
+    [IO.File]::Copy((Join-Path $projectRoot 'AudioFileForPhone.Diagnostics.ps1'), (Join-Path $root 'AudioFileForPhone.Diagnostics.ps1'), $false)
     Assert-True ((Get-FileHash -LiteralPath $entry).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ps1')).Hash) 'Every copied entry must retain production bytes.'
     Assert-True ((Get-FileHash -LiteralPath $copyHelper).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.Helpers.ps1')).Hash) 'Helper copy must start byte-identical.'
     if ($AppendHelpers) { [IO.File]::AppendAllText($copyHelper, "`r`n" + $AppendHelpers, [Text.Encoding]::UTF8) }
@@ -283,7 +284,8 @@ try {
     $throwHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
     if (@($Arguments | Where-Object { $_ -match '2024-01-02 throw\.m4a$' }).Count -gt 0) { throw 'controlled source probe native boundary exception' }
     return & $script:T10OriginalNative @PSBoundParameters
 }
@@ -299,7 +301,8 @@ function Invoke-AudioNativeProcess {
     $encodeThrowHelper = @'
 $script:T10OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
-    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState)
+    param([string]$ExecutablePath, [string[]]$Arguments, [int]$MaxStdoutChars=1048576, [int]$MaxStderrChars=65536, [object]$Cancellation=(Get-AudioCancellationContext), [scriptblock]$ProgressCallback, [object]$ProgressDurationSeconds, [object]$ProgressParser, [object]$ProgressCallbackState,
+          [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
     if ([IO.Path]::GetFileName($ExecutablePath) -ieq 'ffmpeg.exe' -and
         @($Arguments | Where-Object { $_ -match 'encode-throw\.mp3$' }).Count -gt 0) { throw 'controlled encoder native boundary exception' }
     return & $script:T10OriginalNative @PSBoundParameters

@@ -28,9 +28,9 @@ $testRoot = Join-Path $tempParent $testName
 $ownerFile = Join-Path $testRoot '.t18-owner'; $ownerToken = [guid]::NewGuid().ToString('N')
 $ownedRootCreated = $false; $descendantReleaseProved = $true; $exitCode = 1
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
-$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.bat',
+$sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-HelpVersion.ps1', 'README.md', 'SUPPORT.md', 'CHANGELOG.md',
-    'docs/codex-v1/templates/release-manifest.example.json', 'docs/codex-v1/templates/RELEASE_CANDIDATE.example.json')
+    'docs/codex-v1.0.1/RELEASE_TARGET.json')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -153,6 +153,7 @@ $guardLoader = @'
 . $global:T18ExpectedHelper
 $script:T18OriginalOutputParent=(Get-Item -LiteralPath Function:Get-OutputParent).ScriptBlock
 $script:T18OriginalNative=(Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
+function Get-AudioConfigPath { param([string]$ConfigPath); return Microsoft.PowerShell.Management\Join-Path $global:T18OwnedRoot 'missing-config.json' }
 function Get-OutputParent {
     param([string]$OutputParent,[scriptblock]$MusicResolver)
     $parameters=@{OutputParent=$OutputParent}
@@ -167,7 +168,8 @@ function Get-OutputParent {
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
           [object]$Cancellation=(Get-AudioCancellationContext),[object]$ProgressParser=$null,[scriptblock]$ProgressCallback=$null,
-          [object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null)
+          [object]$ProgressDurationSeconds=$null,[object]$ProgressCallbackState=$null,
+          [int]$TimeoutMilliseconds=0,[string]$Operation='Native operation',[int]$PipeDrainTimeoutMilliseconds=5000)
     if($global:T18Preview) { $global:T18Forbidden.Add('native'); throw 'T18 preview attempted a native call.' }
     $proof=[pscustomobject]@{status='not returned';exit_code=$null;process_released=$false}
     $global:T18NativeProofs.Add($proof)
@@ -177,6 +179,7 @@ function Invoke-AudioNativeProcess {
 }
 if($global:T18Preview) {
     function Get-ToolPath { param($ExeName,$ScriptDirectory); $global:T18Forbidden.Add('tool lookup'); throw 'T18 preview tool lookup.' }
+    function Resolve-AudioToolSelection { param($FfmpegDirectory,$ConfigPath,$ScriptDirectory); $global:T18Forbidden.Add('tool selection/config read'); throw 'T18 preview tool selection/config read.' }
     function Assert-ToolPrerequisites { param($FfmpegPath,$FfprobePath); $global:T18Forbidden.Add('tool preflight'); throw 'T18 preview tool preflight.' }
     function Get-ValidatedCoverPath { param($Path,$FfmpegPath); $global:T18Forbidden.Add('cover'); throw 'T18 preview cover validation.' }
     function Test-OutputWritable { param($Path,[switch]$SkipWriteProbe); $global:T18Forbidden.Add('writability'); throw 'T18 preview write probe.' }
@@ -189,7 +192,7 @@ if($global:T18Preview) {
 function New-ExampleFixture {
     param([int]$Number, [string]$Code)
     $app = Join-Path $testRoot ('E' + $Number); [IO.Directory]::CreateDirectory($app) | Out-Null
-    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+    foreach ($name in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
         $target = Join-Path $app $name; [IO.File]::Copy((Join-Path $projectRoot $name), $target, $false)
         Assert-True ((Get-FileHash -LiteralPath $target).Hash -ceq (Get-FileHash -LiteralPath (Join-Path $projectRoot $name)).Hash) 'App/helper copies must be byte-identical.'
         Add-Fixture $target
@@ -313,7 +316,7 @@ try {
         $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
-        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun')
+        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
         $actual = @($help.parameters.parameter.name)
         Assert-True ($help.Synopsis -match 'MP3.*M4A.*OGG' -and $examples.Count -eq 5) 'Proper comment help must contain synopsis and five examples.'
         foreach ($name in $expected) {
@@ -348,21 +351,19 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -cmatch '^1\.0\.0$') 'Authoritative semantic app version must be 1.0.0.'
+        Assert-True ($appVersion -cmatch '^1\.0\.1$') 'Authoritative semantic app version must be 1.0.1.'
         $literals = @()
-        foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1')) {
+        foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
-            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.0' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
+            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.1' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
         }
-        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.0 literal.'
-        $manifestTemplate = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1/templates/release-manifest.example.json')) | ConvertFrom-Json
-        $candidateTemplate = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1/templates/RELEASE_CANDIDATE.example.json')) | ConvertFrom-Json
+        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.1 literal.'
+        $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/RELEASE_TARGET.json')) | ConvertFrom-Json
         $expectedTag = 'v' + $appVersion; $expectedZip = 'AudioFileForPhone-' + $expectedTag + '.zip'
-        Assert-True ($null -eq $manifestTemplate.app_version -and $manifestTemplate.tag -ceq $expectedTag -and $manifestTemplate.zip.name -ceq $expectedZip -and $candidateTemplate.tag -ceq $expectedTag -and $candidateTemplate.zip_name -ceq $expectedZip) 'Release template tag/name must agree with the runtime version without fabricating completed package metadata.'
-        Assert-True ($null -ne $manifestTemplate.files.PSObject.Properties['AudioFileForPhone.Helpers.ps1']) 'Release template must name the actual runtime helper.'
+        Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Active release target must agree with the runtime version, tag, title and ZIP name.'
         $case['app_version'] = $appVersion; $case['runtime_version_literals'] = $literals
-        $case['release_template_tag'] = $expectedTag; $case['release_template_zip_name'] = $expectedZip
+        $case['release_target_tag'] = $expectedTag; $case['release_target_zip_name'] = $expectedZip
         $case['package_limit'] = 'Actual package builder and exact release ZIP are later tasks; no package-build result claimed.'
     }
     $seedDir = Join-Path $testRoot 'S'; [IO.Directory]::CreateDirectory($seedDir) | Out-Null
