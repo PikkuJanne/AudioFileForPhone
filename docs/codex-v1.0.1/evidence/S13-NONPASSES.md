@@ -1,5 +1,25 @@
 # S13 nonpasses and remaining evidence
 
+## Continuation from96da3cc — unchanged interactive blocker
+
+On2026-10-29 the current exact Select-KitFolder AST extent was extracted into a
+new owned UTF8 driver, with an empty bracket/Unicode synthetic folder. A normal
+Windows PowerShell -NoLogo -NoProfile -STA -File launch, with no policy argument,
+was refused before driver entry: running scripts is disabled. Supported desktop
+inventory returned no task picker. This is neither an actual cancellation nor a
+selected-path pass. No alternative invocation or policy change followed the
+refusal. The process and children are absent without forced termination; no raw
+exit code was captured. The empty owned source is unchanged and evidence remains
+private. New report digest6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727.
+
+The first evidence-integrity command looked for the old picker report under the
+main S13 session and stopped on the absent path. The report actually remains in
+the separate owned S13Picker-a315a3feea0141e988af9eb3c8f2184a scope. The corrected
+comparison verifies all20 retained report digests, including that original
+44c91f98 blocker, plus24 unchanged source/runtime hashes. No missing-report claim,
+cleanup claim, historical relabeling or product failure is inferred from that
+local verification-path error. S13-A3/S13 remain BLOCKED; S14 is unstarted.
+
 These are separate preparations, actual failures and environment limits. None is
 relabeled as a later pass. Raw reports/media/diagnostics remain private.
 

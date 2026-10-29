@@ -55,3 +55,25 @@ The remaining S13 blocker is actual picker selection/cancellation on an allowed
 interactive desktop. The UI experiment and policy refusal are accurately labeled
 BLOCKED_INTERACTIVE_DESKTOP. S13 is not complete, no owner diagnostic is requested,
 and S14 remains unstarted.
+
+## Continuation review from96da3cc
+
+An independent read-only reviewer confirmed the remaining criterion is actual
+Select-KitFolder selection returning the identical literal owned path and actual
+cancellation throwing OperationCanceledException('Selection cancelled.'). The
+full runner must not be dot-sourced for this narrow test. The continuation binds
+the AST-extracted function and private driver to the current unchanged runner.
+
+The host refused the driver before execution; no pass is inferred from process
+exit, missing report or absent window. No policy argument/change, control bypass
+or owner debugging followed. All24 source/runtime hashes and20 old report digests
+match. Documentation-only changes preserve tested source9e2c933/runtimeb05b581,
+all prior nonpasses, NOT_TESTED physical/phone fields and null final-asset fields.
+Current entry source/live equality and four passing exact-head Server jobs are
+separate from the final containing-checkpoint sync/CI observation after push.
+
+Independent review of all eight final documentation diffs passed scope/privacy/
+state/identity checks and reverified the private refusal digest and24/20 comparison
+counts. One printed Get-Process parameter spacing error was corrected before
+commit. Active JSON/state/target/null-asset assertions, exact function extraction,
+source hashes and git diff --check passed on portablePS7.6.5.

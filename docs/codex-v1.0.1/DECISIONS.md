@@ -558,3 +558,19 @@ D62 - 2026-10-29, S13 stop: actual picker selection/cancellation is
       not PASSED. Main reviewed-head/owner approval, required missing client and
       actual human/final-ZIP evidence, fixed v1.0.1 S16/S17 authority and S18
       public-download/main closure remain separate. Preserve published v1.0.0.
+
+D63 - 2026-10-29, S13 continuation from96da3cc: use only the exact AST-extracted
+      picker function with an empty owned literal folder, never the full runner.
+      Normal PS5.1 STA -File launch was refused before entry because scripts are
+      disabled; no policy argument/change, bypass or retry around the refusal.
+      Actual selection/cancellation stay NOT_RUN, S13-A3/S13 BLOCKED and S14
+      NOT_STARTED. Process/children are absent; no forced termination/raw exit
+      claim. Preserve private new report6eae94e4 and original44c91f98 blocker.
+      All24 source/runtime hashes and20 prior report digests match; retain old
+      execution identities and broad tests because implementation bytes did not
+      change. Entry96da3cc push40826128531/PR40826136226 pass4 Server jobs;
+      code9e2c933 push40825453261/PR40825460359 completed SUCCESS. Final checkpoint
+      advertised equality/exact-head CI belongs in the post-push handover.
+      Main integration, Windows10/physical/phone/final ZIP gates, fixedv1.0.1
+      S16/S17 exact-byte authority and S18 closure remain separate. No owner
+      diagnostics or debugging; no config/Music/media access or downloads.

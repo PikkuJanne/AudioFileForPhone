@@ -1,5 +1,18 @@
 # Next session — resume S13, not S14
 
+Latest continuation began at96da3cc4862da0784b629704edc568e8839e5dbe.
+Its fresh entry push40826128531/PR40826136226 passed all four Server jobs.
+The unchanged exact-function PS5.1 STA driver was refused before execution
+because scripts are disabled; no actual dialog selection/cancellation occurred.
+Do not retry around that refusal or change policy. No owner debugging is needed.
+All24 recorded kit/runtime hashes and20 prior private-report digests match;
+the new refusal digest is6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727.
+Owned processes are absent, source empty/unchanged and raw evidence retained.
+No code/kit change or broad test rerun occurred. Source9e2c933 and runtimeb05b581
+remain the tested identities. Refresh the later containing checkpoint from the
+final response; the complete filled continuation prompt is first in
+evidence/S13-HANDOVER.md. S13-A3 is still BLOCKED; S14 stays NOT_STARTED.
+
 S13 remains BLOCKED_INTERACTIVE_DESKTOP. The kit and final automated tests pass,
 but actual picker selection/path equality and cancellation are not proved. Read
 evidence/S13.json, S13-HANDOVER.md, S13-REVIEW.md and S13-NONPASSES.md. Do not ask

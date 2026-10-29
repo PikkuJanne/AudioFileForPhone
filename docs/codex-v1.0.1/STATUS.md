@@ -1,5 +1,23 @@
 # Status — S13 BLOCKED
 
+Continuation from96da3cc on2026-10-29 remains BLOCKED_INTERACTIVE_DESKTOP.
+A normal PS5.1 STA launch of the exact extracted picker function was refused
+before script execution: running scripts is disabled. No picker was targetable;
+actual selection/path equality and cancellation are still NOT_RUN. No policy
+argument/change or retry around the refusal occurred. The exact process and its
+children are absent; the empty owned source is unchanged. No raw exit is claimed.
+
+All24 kit/runtime source hashes and20 retained S13 report digests were rechecked
+and match. No implementation bytes changed; prior114 groups/two analyses keep
+their actual source identities. The new private refusal report digest is
+6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727.
+Entry96da3cc freshly equals live feature; push40826128531/PR40826136226 pass all
+four supplementary Server jobs. Code9e2c933 push40825453261/PR40825460359 also
+completed SUCCESS. Final containing-checkpoint sync/CI is observed after push in
+the final response. Main remains28f53b1/NOT_INTEGRATED, PR29 OPEN draft/unmerged.
+No owner action is requested; S13-A3 stays BLOCKED and S14 stays NOT_STARTED.
+See S13-HANDOVER.md for the full continuation handover and filled prompt.
+
 S01-S12 remain COMPLETED. S13's kit is implemented and its automated rehearsal
 passes, but S13 is BLOCKED_INTERACTIVE_DESKTOP: actual picker selection/path
 equality and cancellation are unproved. Resume S13, finish S13-A3 and checkpoint.
