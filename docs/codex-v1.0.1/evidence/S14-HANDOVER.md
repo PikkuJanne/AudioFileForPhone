@@ -1,3 +1,114 @@
+# S14 handover — COMPLETED; stop before S15
+
+## Outcome
+
+S14-A1/A2/A3 pass. PR29 is merged normally after owner approval and exact-head CI.
+Frozen integrated source C is d9d7129e9463de17e29c2a36752c82e326abf22e. Exact runtime and acceptance-kit
+bytes are built, independently verified, tested and delivered. S15 NOT_STARTED;
+required client/physical/phone acceptance remains incomplete. Project remains
+IN_PROGRESS and fixed publicv1.0.1 is PENDING_S17.
+
+## Changes
+
+This continuation changes only active-plan evidence/state/status/decisions and
+handover files. Packaged, dependency, test, kit runner, icon and poster files
+remain unchanged from C. The explicit owner policy authorizes independently
+reviewed, exact-head CI-passing S14 evidence-only PRs; it grants no release or
+later-step integration authority. Prior preparation evidence/history is preserved.
+
+## Verification
+
+| Check | Command or bound artifact | Actual identity/environment | Result / evidence |
+|---|---|---|---|
+| Approved integration | gh pr ready 29; gh pr merge 29 --merge --match-head-commit 1feb54fd3d69fec6ef4f1d5840aefd4993f4e644 | Approved push40902224772/PR40902237562,all4 jobs SUCCESS; main C | Ordinary merge; connector mutations403 then authenticated CLI; no bypass |
+| Full source milestone | private run-full.ps1 and collect-integrated.ps1 -SourceCommit C | Windows11 Pro26H2 26300.9711 x64 Client, PS5.1.26100.9711/portablePS7.6.5 | 76 reports/1956 groups/6 observations;2 analyses,34 selected/71 parser files each,0 diagnostics; digests in S14.json |
+| Real media | Same full campaign | Actual C and recorded Gyan/reference tools | 1010 direct matrix/corpus,64 application matrix conversions,66 compatible default PCM comparisons; baseline isolated; native/timing last sequential |
+| Package | tools/Build-Package.ps1 -SourcePath clean-detached-C -SourceCommit C -TargetTag v1.0.1 -OutputDirectory runtime-assets -DependencyProvenancePath final-dependency-provenance.json -TestEvidencePath final-test-evidence.json | Clean detached C, actual pinned reference9.0.2 and78 passing report references |18 exact blob members,manifest/checksums/exclusions; record S14-RELEASE-CANDIDATE.json |
+| Final kit | tools/Build-AcceptanceKit.ps1 -RuntimeAssetsDirectory runtime-assets -OutputDirectory AFP-v1.0.1-Acceptance-20261029 -RunnerSourceDirectory exact-C-export | Final mode; six runners exported as exact C blobs without persisted Git setting change |10 members; embedded runtime assets byte-identical; no FFmpeg/developer/private files |
+| Exact extracted execution | private package-check/check-final.ps1, both fresh extracted copies -AutomatedOnly, no Rehearsal | Actual outer PS5.1/PS7, inner both hosts, owned source/config/output/TEMP/PATH |14 real conversions/4 long fully decoded outputs; source/child release; actual one_file/exact_package gates; raw captures private |
+| Release gate | tools/Test-ReleaseGates.ps1 -CandidateRecordPath local candidate-record.json | This exact C/ZIP/kit with actual2 captured gates | Expected REFUSED for S15/remaining evidence; no acceptance or publication claim |
+| v1.0.0 preservation/target | Fresh GitHub metadata and advertised tag refs | Original release410779813,tag279945f7/peeled2092a405,3 asset IDs/digests | Unchanged; v1.0.1 unused; no tag/release write |
+
+Runtime ZIP SHA256: 78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53
+Kit SHA256: 5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26
+Full external manifest/SHA256SUMS and per-member Git-blob hashes are in the local
+assets and versioned freeze record. Raw reports remain at C:\projects\AFP-S14-Freeze-20261029.
+Report transfer is by literal owned paths with digest verification; source tests
+and final-package executions retain distinct report identities. Any retained
+nonpasses/retries are documented in S14-NONPASSES.md and actual evidence.
+
+## Git state (observe after checkpoint)
+
+Repository PikkuJanne/AudioFileForPhone; active evidence branch codex/audiofileforphone-s14-freeze.
+Main contains C by ordinary PR29 integration. The containing evidence checkpoint
+requires independent review, passing exact-head CI and ordinary merge under the
+owner's bounded S14 policy. Those results and final feature/main comparisons, clean tree,
+checkpoint SHA and exact-head CI are observed after push/merge in the final
+response, then refreshed on next entry. Never record a self-referential final SHA.
+The release source stays C even when evidence-only main advances. No rebuilding
+or moving released tags to include evidence commits.
+
+## Decisions, risks and blockers
+
+No S14 blocker remains. Required Windows10 22H2/PS5.1/PS7, StorePS7 conversion,
+physical BAT/default route and phone play/seek observations remain missing.
+Actual one_file/exact_package captures do not manufacture the four core or
+clean/online/offline setup gate envelopes; later acceptance must bind actual
+matching source/package captures. Server CI is supplementary. Genuine cloud,
+redirected/UNC/share/full-disk remain unproved. No safeguards or assertions waived.
+S14 completion grants no publication authority or automatic S15 main merge policy.
+
+## Human action
+
+None for S14. Final kit: C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip.
+For the separately started S15, extract with the original ZIP beside its folder,
+double-click Run-Windows-Acceptance.bat and follow INSTRUCTIONS.txt. The prepared
+single shortcut/default and phone questions are consolidated there. Return only
+REPORT.txt; never upload media/private raw logs or perform developer diagnostics.
+
+## Next step and fully filled prompt
+
+S15 only in a new owner thread:
+
+```text
+Continue AudioFileForPhone using docs/codex-v1.0.1. Complete ONLY S15 in this new
+thread; S01-S14 are complete within their recorded scope. Read AGENTS.md,
+CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET, tasks/S15.md and the S14 handover,
+release-candidate record and relevant acceptance/gate specs. Refresh actual Git
+state, fresh advertised feature/main refs and exact-head CI for the containing
+checkpoint from the preceding final response. PR29 merged approved head1feb54fd
+after both exact-head CI runs passed. Frozen C is d9d7129e9463de17e29c2a36752c82e326abf22e.
+Use only final kit C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip,
+SHA256 5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26, embedding runtime ZIP
+SHA256 78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53. Verify local assets and records
+in C:\projects\AFP-S14-Freeze-20261029\runtime-assets; retain exact bytes and use the existing short
+guide. Windows11 automated source/final-package results are recorded in S14;
+do not repeat the successful unchanged S13 picker or invent physical/phone passes.
+Consolidate actual Windows10 22H2 x64 PS5.1/PS7 and real shortcut/default/phone
+observations into the one owner kit session; record missing evidence honestly.
+No developer command matrix, PATH edits, media upload or owner diagnostics.
+Keep raw captures private; bind every new report to C/ZIP/kit/member hashes.
+Preserve default64, sources, layout/metadata/artwork/safety and publicv1.0.0.
+S14-only bounded evidence-PR merge policy grants no automatic S15 main merge
+authority. Do not change packaged/dependency content under that policy. Update
+evidence/state/handover, review/test/commit/push and verify fresh sync/exact-head CI.
+Give the full handover and next-thread prompt, then STOP before S16. Only S16
+binds accepted bytes, separately authorized S17 publishes fixed publicv1.0.1,
+and S18 verifies closure. No publication authority exists here.
+```
+
+## Stop
+
+This S14 thread ends here. Do not execute S15 or S16/S17/S18 in this thread.
+
+## Fixed final deliverable
+
+Public AudioFileForPhone v1.0.1 is PENDING_S17. S16 binds actual accepted source
+and exact asset digests; separately started S17 publishes/verifies; S18 closes.
+No public tag, draft or release is created here. Published v1.0.0 is preserved.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # S14 handover — BLOCKED_OWNER_MERGE_APPROVAL
 
 ## Outcome

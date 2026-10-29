@@ -1,3 +1,9 @@
+# S14 continuation — former merge blocker resolved
+
+The owner's exact-head approval and bounded S14 evidence-only policy resolve BLOCKED_OWNER_MERGE_APPROVAL. Approved head CI passed; PR29 merged normally at C d9d7129e9463de17e29c2a36752c82e326abf22e. GitHub connector ready/merge returned403 FORBIDDEN; authenticated gh CLI succeeded with exact-head matching and no policy override. Prior failed premerge reports remain failed and retained below. Current full-C campaign preparation outcomes and final-package limits are in S14.json. S14 is complete; S15 and remaining required client/physical/phone acceptance are unstarted/missing. Expected release-gate refusal is not a waived safeguard.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # S14 nonpasses and remaining gates
 
 ## Actual initial test failures
@@ -60,3 +66,13 @@ observations, genuine cloud/redirected/UNC/share/full-disk and final exact-packa
 acceptance remain unproved. Server CI is supplementary. No diagnostic commands,
 PATH edits or media upload are requested from the owner. S15 remains unstarted;
 S16 binds accepted bytes, separate S17 publishes fixed publicv1.0.1, S18 closes.
+
+The completed integrated-C campaign had zero failed application/test attempts. Two
+private shell preparation/progress commands failed parsing before execution;
+corrected commands ran without source/test mutation. Independent collection review
+tightened exact38-family/two-shell coverage, analysis launch identity/exit/release/
+digests and all present declared safety flags. It independently verified674 safety
+assertions,1185 unchanged tracked hashes and70 literal report transfers. These are
+private collection corrections, not test fixes or weakened suite assertions.
+Final exact-package runs passed; actual acceptance gate exit1/REFUSED reports
+S15 incomplete and ten missing candidate envelopes, with no source/package error.

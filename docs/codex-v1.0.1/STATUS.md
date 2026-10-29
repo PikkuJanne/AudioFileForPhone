@@ -1,3 +1,33 @@
+# Status — S14 COMPLETED; stop before S15
+
+PR29 merged the owner-approved head 1feb54fd3d69fec6ef4f1d5840aefd4993f4e644
+after exact-head push40902224772/PR40902237562 and all4 Server jobs passed.
+Clean integrated source C is d9d7129e9463de17e29c2a36752c82e326abf22e. Its full Windows11 client campaign
+passes 76 suite reports/1956 required groups/6 historical observations,
+plus two analyses with zero diagnostics. Actual source identities and private
+report digests remain distinct from earlier premerge results.
+
+Exact18-member AudioFileForPhone-v1.0.1.zip SHA256:
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53
+Final10-member Acceptance-Kit.zip SHA256:
+5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26
+Both runtime and six kit runner members match exact C Git blobs. Two clean
+final-mode extracted-kit runs pass PS5.1/portablePS7 automation,14 real outputs
+including4 fully decoded3605-second outputs, source integrity and actual
+one_file/exact_package gate records. No rehearsal is relabeled.
+
+Delivered: C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip.
+Record: evidence/S14-RELEASE-CANDIDATE.json; full handover: evidence/S14-HANDOVER.md.
+S15 remains NOT_STARTED. Windows10/StorePS7 conversion/physical BAT/phone and
+remaining exact candidate acceptance envelopes are still missing; release gate
+refusal is expected. No owner action for S14. Start S15 separately with this kit.
+Publication stays PENDING_S17 with null authority; v1.0.0 remains preserved.
+The containing docs-only checkpoint's fresh feature/main sync and exact-head CI
+are observed after push/ordinary reviewed merge in the final response, refreshed
+on next entry. Frozen C/assets stay unchanged by outside-package evidence commits.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # Status — S14 BLOCKED_OWNER_MERGE_APPROVAL
 
 S01-S13 retain their recorded completed scope. S14 prepares runtime1.0.1 and

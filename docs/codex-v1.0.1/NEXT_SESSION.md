@@ -1,3 +1,32 @@
+# Next session — S15 only, separately started by owner
+
+Continue AudioFileForPhone using docs/codex-v1.0.1. Complete ONLY S15 in this new
+thread; S01-S14 are complete within their recorded scope. Read AGENTS.md,
+CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET, tasks/S15.md and the S14 handover,
+release-candidate record and relevant acceptance/gate specs. Refresh actual Git
+state, fresh advertised feature/main refs and exact-head CI for the containing
+checkpoint from the preceding final response. PR29 merged approved head1feb54fd
+after both exact-head CI runs passed. Frozen C is d9d7129e9463de17e29c2a36752c82e326abf22e.
+Use only final kit C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip,
+SHA256 5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26, embedding runtime ZIP
+SHA256 78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53. Verify local assets and records
+in C:\projects\AFP-S14-Freeze-20261029\runtime-assets; retain exact bytes and use the existing short
+guide. Windows11 automated source/final-package results are recorded in S14;
+do not repeat the successful unchanged S13 picker or invent physical/phone passes.
+Consolidate actual Windows10 22H2 x64 PS5.1/PS7 and real shortcut/default/phone
+observations into the one owner kit session; record missing evidence honestly.
+No developer command matrix, PATH edits, media upload or owner diagnostics.
+Keep raw captures private; bind every new report to C/ZIP/kit/member hashes.
+Preserve default64, sources, layout/metadata/artwork/safety and publicv1.0.0.
+S14-only bounded evidence-PR merge policy grants no automatic S15 main merge
+authority. Do not change packaged/dependency content under that policy. Update
+evidence/state/handover, review/test/commit/push and verify fresh sync/exact-head CI.
+Give the full handover and next-thread prompt, then STOP before S16. Only S16
+binds accepted bytes, separately authorized S17 publishes fixed publicv1.0.1,
+and S18 verifies closure. No publication authority exists here.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # Next session — resume S14 after exact-head main-merge approval
 
 S14 is BLOCKED_OWNER_MERGE_APPROVAL; S15 NOT_STARTED. Read current S14 evidence,
