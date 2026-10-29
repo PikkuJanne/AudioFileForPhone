@@ -1,3 +1,23 @@
+# S13 completion — historical picker blocker resolved
+
+The saved manual picker result and exit0 summary now prove actual path equality
+and Cancel with the expected exception/message. Earlier unavailable desktop and
+policy/module refusals below remain historical nonpasses; none is relabeled as
+success. Preparation NOT_RUN remains the pre-launch record. No picker was repeated.
+
+This thread's first private read-only verifier stopped on a timestamp conversion:
+PowerShell7.6.5 ConvertFrom-Json returned DateTime, and Parse(string) used a
+culture-sensitive conversion. Replacing it with a typed DateTimeOffset cast fixed
+the verifier; it then passed. The verifier failure did not modify any saved picker
+file, launch UI, change production/kit bytes or affect the actual successful test.
+The final private verification digest and retained reports are bound in S13.json.
+
+Windows10, StorePS7 conversion, actual physical BAT/phone, genuine cloud/UNC/
+redirected/share/full-disk and exact final package gates remain unproved later
+acceptance work. They are not S13 implementation blockers. S14 remains NOT_STARTED.
+
+## Preserved historical nonpasses — retain actual outcomes
+
 # Latest S13 nonpass — entry6dda87b, session1, actual picker still absent
 
 The renewed owner authorization permits unchanged process-only RemoteSigned.

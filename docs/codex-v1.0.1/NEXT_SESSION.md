@@ -1,3 +1,34 @@
+# Next session — S14 only after a separately started owner thread
+
+S13 is COMPLETED; S14 remains NOT_STARTED. Refresh the containing S13 checkpoint
+from the previous final response, fresh advertised feature/main refs and exact-head
+push/PR CI. If final sync/CI is pending or failed, resume S13 to finish that checkpoint.
+Entry9295b1c98d808abae375add1f9ea70b098fe8b71 was freshly feature-equal and both
+push40883105077/PR40883109829 passed all4 supplementary Server jobs. Main separately
+remains28f53b10529495754273d55654c7b29e78848c83/NOT_INTEGRATED; PR29 OPEN draft.
+
+The saved 2026-10-29 picker test PASSED actual exact selection/path equality and
+Cancel OperationCanceledException / 'Selection cancelled.', driver exit0. Result
+SHA25661bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62
+is bound by its saved summary. Current unchanged driver/function/runner and exact
+AST,24 source/runtime hashes and23 retained reports all match. Do not repeat the
+successful picker unless its evidence or affected code changes. Raw captures stay
+private in C:\projects\AFP-S13-Picker-Check-20261029; verification stays private in
+C:\projects\AFP-S13-Completion-20261029. No owner diagnostics remain for S13.
+
+Read the current evidence/S13-HANDOVER.md and filled prompt, S13.json/REVIEW/
+NONPASSES and D66. Kit/test source9e2c933 and production runtimeb05b581 retain actual
+identities,114 passing groups/two analyses and distinct rehearsal ZIP/kit hashes.
+No accepted final1.0.1 source/ZIP/kit or publication authority exists. Required
+Windows10/other client cells, physical BAT, phone and exact-package checks remain
+later acceptance gates. S14 must follow ordinary reviewed PR policy and existing
+owner approval for the reviewed head or explicitly recorded bounded merge policy;
+this S13 completion grants no main-merge authority. Preserve default64, sources,
+Music/config/media, icons/posters and publishedv1.0.0. Publicv1.0.1 remains
+S16 exact accepted bytes -> separately authorized S17 -> S18 closure. STOP here.
+
+## Preserved historical routing — superseded S13 blocker instructions
+
 # Next session — resume S13 only with a targetable picker
 
 Latest entry6dda87b08cbfa6a384ce467439e8ce833cab0dc0 freshly equals live feature;

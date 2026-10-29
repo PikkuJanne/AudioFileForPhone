@@ -1,3 +1,41 @@
+# Status — S13 COMPLETED; stop before S14
+
+S01-S13 are COMPLETED within their recorded scope. On 2026-10-29 this continuation
+from9295b1c98d808abae375add1f9ea70b098fe8b71 verified the owner's saved successful
+isolated picker capture in C:\projects\AFP-S13-Picker-Check-20261029. Selection
+matches the exact expected literal Unicode/bracket path; Cancel throws
+System.OperationCanceledException with 'Selection cancelled.'. Stage completed,
+error null, driver exit0. Actual capture: PS5.1.26100.9711 x64 STA RemoteSigned,
+session1, 13:58:51Z–13:59:29Z. The picker was not repeated.
+
+Result SHA25661bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62
+matches its saved exit summary. Driverba38dab5/function19222f49/runner58bfd53f
+are unchanged; exact current AST matches with zero parse errors. All24 kit/runtime
+hashes and23 retained report digests match. Empty non-reparse source unchanged;
+recorded driver/children absent. Private verification report SHA256:
+c3c138ac701024b574778f09c3722136d0c227d19a89a9560e2a42bdc39a3ab0.
+Prior desktop/policy blockers remain historical, superseded by this actual pass.
+S13-A1/A2 retain their scope; A3 now PASSED. No implementation or kit change,
+conversion/download, Music/media/config access or persistent settings change.
+
+Eight documentation files only. Prior114 groups/two analyses retain their actual
+source9e2c933/runtimeb05b581 and rehearsal asset identities; no broad suite rerun.
+Entry feature is freshly advertised-equal; push40883105077/PR40883109829 and all4
+supplementary Server jobs SUCCESS. Final containing-checkpoint equality and exact-head
+push/PR CI are observed after push in the final response, then refreshed next entry.
+Pending/failed final checks require S13 continuation. Main separately remains
+28f53b10529495754273d55654c7b29e78848c83/NOT_INTEGRATED; PR29 OPEN draft/unmerged.
+
+S14 is NOT_STARTED and only eligible in a separate owner thread. Windows10,
+StorePS7 conversion, physical BAT/phone, genuine cloud/UNC/redirected/share/full-disk
+and exact final candidate acceptance remain separate unproved gates. Runtime1.0.0,
+null frozen source/final ZIP/kit/publication authority and publicv1.0.1 PENDING_S17
+remain unchanged. S16 binds accepted bytes; separate S17 publishes; S18 verifies
+closure. Full handover/filled S14 prompt: evidence/S13-HANDOVER.md. No remaining
+human action for S13. STOP before S14.
+
+## Preserved historical S13 status — earlier blockers resolved above
+
 # Status — S13 remains BLOCKED; session1 picker unavailable
 
 Continuation from6dda87b08cbfa6a384ce467439e8ce833cab0dc0 on2026-10-29

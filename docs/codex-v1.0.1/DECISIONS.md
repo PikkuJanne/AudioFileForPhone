@@ -619,3 +619,24 @@ D65 - 2026-10-29, S13 continuation from6dda87b: renewed owner authorization
       No persistent settings, Music/media/config access, conversion/download,
       main integration or publication. Missing clients/physical/phone/final package
       and fixedv1.0.1 S16/S17 authority/S18 closure remain separate.
+
+D66 - 2026-10-29, finish S13 only from9295b1c: accept the saved successful manual
+      isolated picker capture without repeating it. Result61bf12b4 is bound by
+      summaryc094811d and driver exit0; actual exact literal/Unicode path equality
+      and Cancel System.OperationCanceledException / 'Selection cancelled.' pass
+      in PS5.1.26100.9711 x64 STA RemoteSigned/session1. Unchanged driverba38dab5,
+      function19222f49 and runner58bfd53f match exact current AST with zero errors.
+      All24 source/runtime hashes and23 retained report digests match; source
+      empty/non-reparse and recorded PID/children absent. Root and independent
+      read-only reviewer agree. Preserve raw private captures and historical
+      blockers; preparation NOT_RUN is earlier pre-launch evidence. S13/A3 now
+      complete/passed; S14 remains NOT_STARTED until a separate owner thread.
+      Eight documentation files only; no broad rerun/relabeling of114 groups/two
+      analyses, no production/kit changes, UI launch, conversion/download,
+      Music/media/config access or persistent host/security changes. Entry
+      push40883105077/PR40883109829 and all4 supplementary Server jobs SUCCESS;
+      final checkpoint fresh sync/exact-head CI observed after push. Main remains
+      NOT_INTEGRATED at28f53b1, PR29 draft/unmerged under ordinary reviewed-head/
+      owner-approval policy. Missing clients/physical/phone/exact package and
+      fixedv1.0.1 S16/S17 authority/S18 closure remain separate. No further S13
+      owner action. Do not repeat successful picker unless evidence/code changes.

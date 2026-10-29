@@ -1,3 +1,34 @@
+# S13 completion review — saved success, no picker repetition
+
+Independent read-only audit confirms saved actual selection equals the exact
+literal Unicode/bracket source path and actual Cancel raises
+System.OperationCanceledException / 'Selection cancelled.'. Saved stage completed,
+error null, exit0 summary/result digest match. Actual PS5.1.26100.9711 x64 STA
+RemoteSigned/session1 capture ended2026-10-29T13:59:29.3308125Z. Preparation NOT_RUN
+is historical pre-launch state. No UI gesture or new launch occurred this thread.
+
+Driverba38dab5/function19222f49/runner58bfd53f match previous full hashes and the
+current unique AST function extent exactly, with zero parse errors. All24 recorded
+kit/runtime hashes and23 retained historical report digests match, independently
+checked by both root and reviewer. Empty source/non-reparse ancestors and recorded
+PID14180/child absence pass. Raw captures/reports remain private outside Git.
+No kit/runtime bytes changed;114 groups/two analyses retain their actual sources.
+
+The intended eight-file documentation diff updates current S13/A3 status, clears
+only the resolved current blocker, preserves earlier reports/history and points
+to separately started S14. S14 stays NOT_STARTED, main NOT_INTEGRATED, PR draft;
+final assets/authority stay null and fixed publicv1.0.1 PENDING_S17. Windows10,
+physical BAT/phone/other unproved acceptance gates remain separate. Final scoped
+validation and independent documentation review are recorded in the latest
+S13.json continuation before commit; post-push sync/exact-head CI in final handover.
+
+Final independent eight-file documentation review PASSED with no actionable
+issues. Root scoped validation PASSED on portablePS7.6.5; private validation
+SHA25672736b3ecee54c529d332ac72055137a85fd43dd3d6af64fd0550a9edb10302c.
+All historical content/identities and later-step/release boundaries remain intact.
+
+## Preserved historical reviews
+
 # S13 continuation review — entry6dda87b
 
 Read-only prerequisite audit independently confirms exact S13-A3 selection/path

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "step": "S13",
-  "status": "BLOCKED",
-  "scope": "Prepared kit and available-client automated rehearsal; actual picker selection/cancellation unproved",
+  "status": "COMPLETED",
+  "scope": "Prepared kit and available-client automated rehearsal, plus saved real isolated picker selection/path equality and cancellation; later final-candidate/client/physical/phone acceptance remains separate",
   "entry_commit": "7097713855982dbfe653c2d5b14c23f2852da9a9",
   "tested_source_commit": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
   "production_runtime_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
-  "recorded_utc": "2026-10-29T05:53:06.8358015Z",
+  "recorded_utc": "2026-10-29T14:07:33.0520146Z",
   "entry_sync": {
     "feature": "7097713855982dbfe653c2d5b14c23f2852da9a9",
     "main": "28f53b10529495754273d55654c7b29e78848c83",
@@ -46,9 +46,9 @@
       "observed": "Two actual extracted-kit suites,7conversions each, both installed hosts/long3605s/default64/full decode; exact manifests/counts and full source hashes; owner answer fields NOT_TESTED. Physical BAT prepared but unperformed."
     },
     "S13-A3": {
-      "status": "BLOCKED",
+      "status": "PASSED",
       "expected": "Short guide, handled faults, actual picker selection/cancellation and accurate client/launch scope",
-      "observed": "Short guide/fault handling retained. Latest continuation from6dda87b freshly checks restrictions and runs unchanged PS5.1 x64 STA RemoteSigned driver in session1; hidden/visible attempts stay before_selection. sky and cua inventories expose no picker. No UI input, selected path/equality or Cancel exception exists; actual interactions NOT_RUN. Prior failures remain historical."
+      "observed": "Saved manual picker capture from 2026-10-29T13:58:51Z to 13:59:29Z passes actual ordinal selected-path equality and Cancel System.OperationCanceledException / Selection cancelled.; stage completed, error null, driver exit0. Unchanged PS5.1 x64 STA RemoteSigned driver/function match current runner AST. Verified without repeating picker. Short guide/fault handling and accurate scoped client records retained."
     }
   },
   "source_checkout_hashes": [
@@ -1071,24 +1071,7 @@
       "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
     }
   ],
-  "blocker": {
-    "code": "BLOCKED_INTERACTIVE_DESKTOP",
-    "actual_picker_selection": "NOT_RUN",
-    "actual_picker_cancellation": "NOT_RUN",
-    "private_report_leaf": "picker-session1-blocked.json",
-    "sha256": "a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f",
-    "process_release": true,
-    "temporary_evidence_retained": true,
-    "policy_changed": false,
-    "driver_entered": true,
-    "policy_changed_scope": "No persistent policy change; authorized process-only effective policy is RemoteSigned",
-    "process_only_policy_request": "RemoteSigned, explicitly authorized by owner; no persistent policy change",
-    "prior_refusal_reports": [
-      "44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691",
-      "6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727"
-    ],
-    "next_action": "Resume S13 only when a supported desktop exposes the actual picker. Preserve owner-authorized process-only RemoteSigned, unchanged driver and managed-control stop rules. Perform exact selected-path equality and actual Cancel OperationCanceledException; do not repeat blind launches or ask owner to debug."
-  },
+  "blocker": null,
   "review": {
     "record": "S13-REVIEW.md",
     "independent_readonly_review": true,
@@ -1104,12 +1087,12 @@
   },
   "ci": {
     "code_head": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
-    "status": "PENDING_AT_EVIDENCE_WRITE",
+    "status": "SUCCESS_OBSERVED_FOR_TESTED_SOURCE",
     "source_push": 40825453261,
     "source_pr": 40825460359,
     "initial_code_push": 40825099638,
     "initial_code_pr": 40825106944,
-    "scope": "Existing full supplementary Server CI retained; new kit suites executed locally. Exact containing checkpoint CI observed after push in final response."
+    "scope": "Tested-source push40825453261/PR40825460359 freshly completed SUCCESS. Entry9295b1c push40883105077/PR40883109829 and all4 supplementary Server jobs SUCCESS. Final containing-checkpoint exact-head push/PR CI is observed after push in final response and refreshed next entry."
   },
   "git": {
     "branch": "codex/audiofileforphone-v1.0.1",
@@ -1133,7 +1116,6 @@
     "publication_performed": false
   },
   "limitations": [
-    "S13 BLOCKED_INTERACTIVE_DESKTOP: native PS5.1 RemoteSigned driver enters, but actual selection/cancellation remain NOT_RUN because no picker is targetable; resume only this step",
     "Windows10 22H2 PS51/PS7 client unavailable; Server supplementary",
     "StorePS7 locally startup-only",
     "Actual owner BAT shortcut and phone not performed",
@@ -1143,7 +1125,7 @@
     "Current runtime ZIP and two kit builds are rehearsals, not frozen1.0.1 acceptance",
     "Private scopes and initial task-created bounded diagnostic retained; no general cleanup claim"
   ],
-  "human_action": "None requested in S13; do not repeat owner diagnostics or delegate kit debugging.",
+  "human_action": "None remaining for S13. Saved manual picker success accepted without repetition. S15 remains the consolidated client/physical/phone acceptance session.",
   "continuations": [
     {
       "entry_commit": "96da3cc4862da0784b629704edc568e8839e5dbe",
@@ -1349,9 +1331,150 @@
       "main_integration": "NOT_INTEGRATED",
       "containing_checkpoint_sync_ci": "Observe final HEAD/live equality and exact-head push/PR CI after commit/push in final response; refresh next entry.",
       "next_action": "Resume S13 only with a targetable actual picker; prove both interactions. Stop on managed refusal and before S14. No owner debugging."
+    },
+    {
+      "entry_commit": "9295b1c98d808abae375add1f9ea70b098fe8b71",
+      "recorded_utc": "2026-10-29T14:07:33.0704685Z",
+      "status": "COMPLETED",
+      "code": "SAVED_PICKER_EVIDENCE_VERIFIED",
+      "authorization": "Owner: finish S13 only; verify saved AFP-S13-Picker-Check-20261029 results, update evidence/state/handover, commit/push/live sync/exact-commit CI; do not repeat successful picker unless evidence changed; stop before S14.",
+      "fresh_entry_feature": "9295b1c98d808abae375add1f9ea70b098fe8b71",
+      "fresh_entry_main": "28f53b10529495754273d55654c7b29e78848c83",
+      "fresh_advertised_equality": true,
+      "entry_push_ci": 40883105077,
+      "entry_pr_ci": 40883109829,
+      "entry_ci": "Both exact-head runs and all4 supplementary Windows Server2025 PS51/PS7 jobs SUCCESS; PR29 OPEN draft/unmerged.",
+      "private_session_leaf": "AFP-S13-Picker-Check-20261029",
+      "saved_source_commit": "9295b1c98d808abae375add1f9ea70b098fe8b71",
+      "saved_test_started_utc": "2026-10-29T13:58:51.6198258Z",
+      "saved_test_ended_utc": "2026-10-29T13:59:29.3308125Z",
+      "result_leaf": "picker-result.json",
+      "result_sha256": "61bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62",
+      "summary_leaf": "launch-summary.json",
+      "summary_sha256": "c094811d1eb03585f7568bd627a8bf27a20469991705afaafd74299a92dd145d",
+      "driver_sha256": "ba38dab55fae4173dc552c573816095a64d85f28e47f29acd612950ee103b481",
+      "extracted_function_sha256": "19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd",
+      "runner_sha256": "58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c",
+      "raw_capture_hashes": [
+        {
+          "name": "Check-PreparedPicker.ps1",
+          "bytes": 2695,
+          "sha256": "c52f3da0e0e45590e895e974894ec0f2c898682b4c3d6f1bf0cf67db9f6ff662"
+        },
+        {
+          "name": "launch-summary.json",
+          "bytes": 311,
+          "sha256": "c094811d1eb03585f7568bd627a8bf27a20469991705afaafd74299a92dd145d"
+        },
+        {
+          "name": "picker-driver.ps1",
+          "bytes": 2129,
+          "sha256": "ba38dab55fae4173dc552c573816095a64d85f28e47f29acd612950ee103b481"
+        },
+        {
+          "name": "picker-result.json",
+          "bytes": 876,
+          "sha256": "61bf12b4a29cb32c3a96f7c794a7f1d705cd8e6a0749649082fdf9a0847d3c62"
+        },
+        {
+          "name": "preparation.json",
+          "bytes": 504,
+          "sha256": "5587de9918bc45cff11052c8c591282843333e5cc4ed2f3f54a95ddb4b98ac16"
+        },
+        {
+          "name": "Run-S13-Picker-Check.cmd",
+          "bytes": 1140,
+          "sha256": "f8bb40e066207b1b67754e587c3bfc0a791f9114d9c5e919019db50c4775b361"
+        },
+        {
+          "name": "Select-KitFolder.ps1",
+          "bytes": 476,
+          "sha256": "19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd"
+        },
+        {
+          "name": "settings.json",
+          "bytes": 489,
+          "sha256": "7137f799aff0101e9c1c70311a7283e47195d7fb701d79897709ebf6a8da6787"
+        },
+        {
+          "name": "Show-PickerResult.ps1",
+          "bytes": 1951,
+          "sha256": "933694168a49452f0daab34c00646cdf194871850c32112eafcaa885466116cd"
+        }
+      ],
+      "actual_driver_environment": "Saved actual Windows PowerShell5.1.26100.9711 x64 STA RemoteSigned/session1, PID14180. Current verifier Windows11 Pro26H2 build26300.9711 x64 Client/ProductType1, portablePS7.6.5.",
+      "actual_picker_selection": "PASSED",
+      "ordinal_expected_selected_equality": true,
+      "literal_path_scope": "Owned empty local source folder with square brackets and Unicode; private absolute path retained only in local capture.",
+      "actual_picker_cancellation": "PASSED",
+      "cancellation_exception": "System.OperationCanceledException",
+      "cancellation_message": "Selection cancelled.",
+      "actual_stage": "completed",
+      "error": null,
+      "driver_exit_code": 0,
+      "observation_scope": "Saved manual isolated picker capture; this thread verifies existing bytes and does not claim automated UI gestures, full runner/BAT execution, conversion, physical shortcut or phone observations.",
+      "preparation_scope": "preparation.json NOT_RUN/ui_launched=false is the historical pre-launch record; later picker-result and launch-summary are the completed execution evidence.",
+      "exact_ast_match": true,
+      "runner_parse_errors": 0,
+      "source_hashes_verified": 24,
+      "prior_private_report_digests_verified": 23,
+      "source_or_kit_bytes_changed": false,
+      "picker_repeated": false,
+      "broad_tests_repeated": false,
+      "full_runner_executed": false,
+      "empty_owned_source_unchanged": true,
+      "path_ancestors_non_reparse": true,
+      "recorded_pid_and_children_absent": true,
+      "private_verification_session_leaf": "AFP-S13-Completion-20261029",
+      "private_report_leaf": "saved-evidence-verification.json",
+      "private_report_sha256": "c3c138ac701024b574778f09c3722136d0c227d19a89a9560e2a42bdc39a3ab0",
+      "retained_reports_verification_leaf": "retained-reports-verification.json",
+      "retained_reports_verification_sha256": "a648a1816e7d240ad17fee8d1e4b8eb24ed7677ae7d122bfb9e09ab8fc3f7be7",
+      "verification_command_redacted": "PowerShell7.6.5: & '<PRIVATE_S13_COMPLETION_SCOPE>\\Verify-S13SavedEvidence.ps1'; literal SHA256 comparisons against all retained S13 reports.",
+      "independent_saved_evidence_review": "PASSED; independent read-only agent verified result/summary/driver/function/AST, all24 source/runtime hashes, all23 retained reports, non-reparse empty source and PID/child absence. No launch, edit or Git mutation by reviewer.",
+      "documentation_validation": {
+        "status": "PASSED",
+        "independent_diff_review": "PASSED; independent reviewer inspected all eight intended documentation diffs, JSON/routing/privacy/history, current and prior evidence structures, both new private verification digests and whitespace. No actionable issue; no edits or picker/test execution.",
+        "observed_utc": "2026-10-29T14:08:47.2474314Z",
+        "shell": "7.6.5",
+        "checks": "Eight intended docs-only paths; active JSON/state/target/null-assets and prior/later-step assertions; unchanged original source/runtime/report/rehearsal/analysis structures and all historical continuation/Markdown content;24 source/runtime hashes,9 saved capture hashes,2 private verification hashes and verifier-source hash; no untracked/private raw files; independent review; git diff --check.",
+        "private_report_leaf": "documentation-validation.json",
+        "private_report_sha256": "72736b3ecee54c529d332ac72055137a85fd43dd3d6af64fd0550a9edb10302c"
+      },
+      "persistent_settings_changed": false,
+      "music_media_or_owner_config_access": false,
+      "conversion_or_download_started": false,
+      "raw_reports_committed": false,
+      "physical_bat_observations": "NOT_TESTED",
+      "phone_observations": "NOT_TESTED",
+      "main_integration": "NOT_INTEGRATED",
+      "containing_checkpoint_sync_ci": "Observe final HEAD/live equality and exact-head push/PR CI after commit/push in final response; refresh next entry. Pending/failure requires S13 continuation.",
+      "next_action": "S13 complete; STOP before S14. S14 is eligible only in a separately started owner thread with its ordinary reviewed-head/owner-approval main-integration policy."
     }
   ],
-  "next_step": "S13",
-  "next_step_title": "Resume Build the one-click acceptance kit",
-  "stop": true
+  "next_step": "S14",
+  "next_step_title": "Integrate and freeze the exact release candidate, only in a separately started owner thread",
+  "stop": true,
+  "initial_recorded_utc": "2026-10-29T05:53:06.8358015Z",
+  "resolved_blockers": [
+    {
+      "code": "BLOCKED_INTERACTIVE_DESKTOP",
+      "actual_picker_selection": "NOT_RUN",
+      "actual_picker_cancellation": "NOT_RUN",
+      "private_report_leaf": "picker-session1-blocked.json",
+      "sha256": "a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f",
+      "process_release": true,
+      "temporary_evidence_retained": true,
+      "policy_changed": false,
+      "driver_entered": true,
+      "policy_changed_scope": "No persistent policy change; authorized process-only effective policy is RemoteSigned",
+      "process_only_policy_request": "RemoteSigned, explicitly authorized by owner; no persistent policy change",
+      "prior_refusal_reports": [
+        "44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691",
+        "6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727"
+      ],
+      "next_action": "Resume S13 only when a supported desktop exposes the actual picker. Preserve owner-authorized process-only RemoteSigned, unchanged driver and managed-control stop rules. Perform exact selected-path equality and actual Cancel OperationCanceledException; do not repeat blind launches or ask owner to debug.",
+      "resolution": "Superseded by verified saved real picker result and exit0 summary; historical blocked launches remain unchanged in continuations and NONPASSES."
+    }
+  ]
 }
