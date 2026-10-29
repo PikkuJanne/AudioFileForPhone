@@ -1,3 +1,29 @@
+# S14 integrated freeze review
+
+The source C campaign, private collector and final extracted-package harness have
+independent read-only reviews. Collection review verifies76 suites/two analyses,
+1956 groups/six observations,674 safety assertions and1185 unchanged tracked
+source hashes. All78 raw reports remain private. No new test failure occurred.
+Final package review verifies18 runtime and6 runner exact C Git blobs,14 actual
+converted/decoded outputs, actual two-host observations, unchanged sources/assets,
+controlled process release, and unperformed human gates remaining NOT_TESTED.
+
+Independent nine-file checkpoint review PASSED with no actionable issue against
+frozen C d9d7129e9463de17e29c2a36752c82e326abf22e. All78 private report digests,
+campaign/package/refusal summary digests, canonical asset hashes and local
+candidate-record digest match the versioned evidence. Prior evidence fields and
+document text are preserved. STATE/routing keep S14 complete, S15 unstarted,
+project IN_PROGRESS and publication authority null; the actual gate refusal lists
+S15 and ten missing reports, with no package-identity failure. The diff contains
+only the nine intended active-plan documents; packaged/dependency files remain
+unchanged. Public evidence contains redacted aggregates and local delivery paths,
+with raw reports/media retained privately. The review grants no missing acceptance
+or publication evidence.
+The exact committed review head, subsequent push/PR CI and bounded ordinary merge
+are observed after commit/push in the final response and refreshed next entry.
+No self-referential final SHA or unobserved CI/merge pass is embedded here.
+
+## Preserved preparation review
 # S14 preparation review
 
 The independent initial six-file review passed with no actionable issue. Runtime

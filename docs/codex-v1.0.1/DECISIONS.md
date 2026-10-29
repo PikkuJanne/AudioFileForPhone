@@ -658,3 +658,15 @@ D67 - 2026-10-29, S14 preparation: bump authoritative runtime to1.0.1 and descri
       package and final-mode kit/delivery. Missing clients/physical/phone and
       fixedv1.0.1 S16/S17 authority/S18 closure remain separate. Preserve v1.0.0,
       safety/defaults, icons/posters and private raw evidence outside public Git.
+
+D68 - 2026-10-29, S14 continuation: explicit owner approval binds PR29 head
+      1feb54fd3d69fec6ef4f1d5840aefd4993f4e644 after exact-head CI passes;
+      both runs/all4 jobs passed and ordinary merge produced C d9d7129e9463de17e29c2a36752c82e326abf22e.
+      Owner also authorizes independently reviewed, CI-passing S14 evidence/
+      state/handover-only PRs, packaged and dependency files unchanged.
+      Freeze clean C after full source checks; preserve exact runtime ZIP and
+      final kit. Runtime and six kit runners use exact Git blob bytes; runner
+      archive uses invocation-only EOL settings. No source/host policy change.
+      Actual extracted final-mode checks keep human/client gaps explicit.
+      S14 complete; STOP before separately started S15. Null publication
+      authority; only S16 exact accepted bytes -> S17 publication -> S18 closure.

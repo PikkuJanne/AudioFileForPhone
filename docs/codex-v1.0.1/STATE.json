@@ -3,11 +3,11 @@
   "target_version": "1.0.1",
   "project_status": "IN_PROGRESS",
   "current_step": "S14",
-  "active_branch": "codex/audiofileforphone-v1.0.1",
-  "tested_source_commit": "8bfb38c12feb4c0a9341577c23088868edf5040b",
-  "frozen_release_commit": null,
-  "runtime_zip_sha256": null,
-  "acceptance_kit_sha256": null,
+  "active_branch": "codex/audiofileforphone-s14-freeze",
+  "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
   "publication_authorization": null,
   "recovery_exception": null,
   "steps": {
@@ -90,18 +90,10 @@
       "blockers": []
     },
     "S14": {
-      "status": "BLOCKED",
+      "status": "COMPLETED",
       "evidence": "evidence/S14.json",
-      "remaining_work": [
-        "Obtain owner approval naming final reviewed PR29 head; refresh exact head/CI/policy before ordinary merge.",
-        "Verify clean integrated main and exact source C; run full required candidate checks with actual identities.",
-        "Build18-member exact-C runtime ZIP, external manifest/checksums and matching final kit; verify all hashes/exclusions.",
-        "Test extracted exact package/final-mode kit in owned available Windows11 PS5.1/PS7; deliver one local kit with missing-client/physical/phone gates explicit.",
-        "Checkpoint S14 with fresh feature/main sync and exact-head CI; stop before S15."
-      ],
-      "blockers": [
-        "BLOCKED_OWNER_MERGE_APPROVAL"
-      ]
+      "remaining_work": [],
+      "blockers": []
     },
     "S15": {
       "status": "NOT_STARTED",
