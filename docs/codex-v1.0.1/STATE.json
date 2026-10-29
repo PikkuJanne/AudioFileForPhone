@@ -2,8 +2,8 @@
   "schema_version": 1,
   "target_version": "1.0.1",
   "project_status": "IN_PROGRESS",
-  "current_step": "S14",
-  "active_branch": "codex/audiofileforphone-s14-freeze",
+  "current_step": "S15",
+  "active_branch": "codex/audiofileforphone-s15-acceptance",
   "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
@@ -96,10 +96,19 @@
       "blockers": []
     },
     "S15": {
-      "status": "NOT_STARTED",
-      "evidence": null,
-      "remaining_work": [],
-      "blockers": []
+      "status": "BLOCKED",
+      "evidence": "evidence/S15.json",
+      "remaining_work": [
+        "Receive and inspect the exact-kit Windows 10 22H2 x64 PS5.1/PS7 report, without repeating environment diagnostics.",
+        "Verify the actual shortcut/default collection counts, media, unchanged sources and unique watched run from that session.",
+        "Record actual phone play and seek observations on this exact candidate output.",
+        "Import only genuine remaining captures, rerun the actual acceptance gate, then checkpoint S15; do not start S16."
+      ],
+      "blockers": [
+        "BLOCKED_WINDOWS10_CLIENT_REPORT",
+        "BLOCKED_PHYSICAL_COLLECTION_REPORT",
+        "BLOCKED_PHONE_PLAY_SEEK_OBSERVATION"
+      ]
     },
     "S16": {
       "status": "NOT_STARTED",

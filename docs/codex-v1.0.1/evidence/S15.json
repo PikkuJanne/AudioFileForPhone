@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "step": "S15",
+  "status": "BLOCKED",
+  "recorded_utc": "2026-10-29T17:32:41.3794811Z",
+  "scope": "Available automated acceptance complete; actual Windows10/shortcut collection/phone report not received. S16 not started.",
+  "owner_authorization": "Direct owner instruction: Denied, you have the handover prompt, and kit. Please finish S15 on this thread, but do not start S16. This supersedes the prior thread boundary for S15 only; it does not waive actual evidence or grant publication/main-merge authority.",
+  "entry_commit": "1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2",
+  "active_branch": "codex/audiofileforphone-s15-acceptance",
+  "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
+  "acceptance": [
+    {
+      "id": "S15-A1",
+      "status": "BLOCKED",
+      "observed": "Windows11 PS5.1/PS7 actual exact-kit external selection, missing-tools refusal, saved fresh launch and real conversion pass. Actual frozen-package Windows10 client report not received."
+    },
+    {
+      "id": "S15-A2",
+      "status": "BLOCKED",
+      "observed": "Existing exact candidate one-file and controlled PS1 collection captures pass. No actual owner shortcut/default collection report has been received; controlled synthetic collection is not labeled physical collection."
+    },
+    {
+      "id": "S15-A3",
+      "status": "BLOCKED",
+      "observed": "Phone play and seek are NOT_TESTED in every available report. No fresh candidate phone observation has been received."
+    }
+  ],
+  "available_candidate_gates": [
+    {
+      "gate_id": "one_file",
+      "sha256": "570f8e4abc72b197ce3e4316c2507bc4c5662ff901a1d9cbd6f5168c3dd7aee9",
+      "status": "PASSED",
+      "command": "Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)",
+      "started_utc": "2026-10-29T16:21:17.8417721Z",
+      "ended_utc": "2026-10-29T16:22:04.4401582Z",
+      "environment": {
+        "os": "Windows11",
+        "caption": "Microsoft Windows 11 Pro",
+        "product_type": 1,
+        "architecture": "x64",
+        "process_64bit": true,
+        "build": "26300.9711",
+        "revision": 9711,
+        "display_version": "26H2",
+        "shell_version": "5.1.26100.9711",
+        "shell_edition": "Desktop",
+        "parser_files": 9,
+        "runtime_version": "1.0.1",
+        "apartment": "STA",
+        "host_id": "host1",
+        "status": "PASSED"
+      },
+      "check_ids": [
+        "counts",
+        "media",
+        "source_hashes"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "exact_package",
+      "sha256": "7597c70544175df0e5701f0ccb1196a1c35a3118e18c544e755871bb4952bfbc",
+      "status": "PASSED",
+      "command": "Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)",
+      "started_utc": "2026-10-29T16:21:17.8417721Z",
+      "ended_utc": "2026-10-29T16:22:04.4541905Z",
+      "environment": {
+        "os": "Windows11",
+        "caption": "Microsoft Windows 11 Pro",
+        "product_type": 1,
+        "architecture": "x64",
+        "process_64bit": true,
+        "build": "26300.9711",
+        "revision": 9711,
+        "display_version": "26H2",
+        "shell_version": "5.1.26100.9711",
+        "shell_edition": "Desktop",
+        "parser_files": 9,
+        "runtime_version": "1.0.1",
+        "apartment": "STA",
+        "host_id": "host1",
+        "status": "PASSED"
+      },
+      "check_ids": [
+        "member_hashes",
+        "extracted_conversion",
+        "full_decode"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "core_windows11_ps51",
+      "sha256": "80f7f14e6a6cf830cbb93196df2433b6c393bb4e769cfbe8f9cb9b714aba8742",
+      "status": "PASSED",
+      "command": "Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)",
+      "started_utc": "2026-10-29T16:21:17.8417721Z",
+      "ended_utc": "2026-10-29T16:22:04.4581891Z",
+      "environment": {
+        "os_family": "Windows11",
+        "os_type": "Client",
+        "caption": "Microsoft Windows 11 Pro",
+        "product_type": 1,
+        "architecture": "x64",
+        "process_64bit": true,
+        "build": "26300.9711",
+        "revision": 9711,
+        "display_version": "26H2",
+        "shell_version": "5.1.26100.9711",
+        "shell_edition": "Desktop",
+        "apartment": "STA"
+      },
+      "check_ids": [
+        "parser",
+        "focused",
+        "integration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "core_windows11_ps7",
+      "sha256": "4c1f54c079aadd2a38e9a12c406b3fd38682d78dd59f12c37b2ff31ec30eb49e",
+      "status": "PASSED",
+      "command": "Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)",
+      "started_utc": "2026-10-29T16:22:05.3715232Z",
+      "ended_utc": "2026-10-29T16:22:51.3893621Z",
+      "environment": {
+        "os_family": "Windows11",
+        "os_type": "Client",
+        "caption": "Microsoft Windows 11 Pro",
+        "product_type": 1,
+        "architecture": "x64",
+        "process_64bit": true,
+        "build": "26300.9711",
+        "revision": 9711,
+        "display_version": "26H2",
+        "shell_version": "7.6.5",
+        "shell_edition": "Core",
+        "apartment": "STA"
+      },
+      "check_ids": [
+        "parser",
+        "focused",
+        "integration"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "clean_first_run",
+      "sha256": "addc8f2a7c869aa1b54d26199b505872c0b3db7ca0888b4e9d7523d5939cdcbf",
+      "status": "PASSED",
+      "command": "Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)",
+      "started_utc": "2026-10-29T16:21:17.8417721Z",
+      "ended_utc": "2026-10-29T16:22:04.4581891Z",
+      "environment": {
+        "os_family": "Windows11",
+        "os_type": "Client",
+        "caption": "Microsoft Windows 11 Pro",
+        "product_type": 1,
+        "architecture": "x64",
+        "process_64bit": true,
+        "build": "26300.9711",
+        "revision": 9711,
+        "display_version": "26H2",
+        "shell_version": "5.1.26100.9711",
+        "shell_edition": "Desktop",
+        "apartment": "STA"
+      },
+      "check_ids": [
+        "missing_tools",
+        "external_selection",
+        "saved_fresh_process"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "online_setup",
+      "sha256": "c8ec59bb141890b0395bc013e950d0fa4fedfa02a28dec801396ef29507ff2fb",
+      "status": "PASSED",
+      "command": "& 'C:\\projects\\AFP-S15-20261029\\setup-checks\\collect-setup.ps1'",
+      "started_utc": "2026-10-29T17:16:55.534987Z",
+      "ended_utc": "2026-10-29T17:25:36.3179499Z",
+      "environment": {
+        "os_family": "Windows11",
+        "os_type": "Client",
+        "architecture": "x64",
+        "process_architecture": "x64",
+        "process_64bit": true,
+        "display_version": "26H2",
+        "build": "26300.9711",
+        "shell_version": "5.1.26100.9711"
+      },
+      "check_ids": [
+        "consent",
+        "download_pin",
+        "installed_conversion"
+      ],
+      "exit_code": 0
+    },
+    {
+      "gate_id": "offline_setup_failure",
+      "sha256": "ef4f6c23941b2fe7b3cd88d20fb12b126102d10478c12c98a0892c72457ba56e",
+      "status": "PASSED",
+      "command": "& 'C:\\projects\\AFP-S15-20261029\\setup-checks\\collect-setup.ps1'",
+      "started_utc": "2026-10-29T17:16:55.534987Z",
+      "ended_utc": "2026-10-29T17:25:36.3179499Z",
+      "environment": {
+        "os_family": "Windows11",
+        "os_type": "Client",
+        "architecture": "x64",
+        "process_architecture": "x64",
+        "process_64bit": true,
+        "display_version": "26H2",
+        "build": "26300.9711",
+        "shell_version": "5.1.26100.9711"
+      },
+      "check_ids": [
+        "no_publication",
+        "owned_cleanup"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "required_missing_gates": [
+    "core_windows10_ps51",
+    "core_windows10_ps7",
+    "full_collection",
+    "physical_shortcut",
+    "phone_play_seek"
+  ],
+  "reused_exact_kit_capture": {
+    "scope": "Provenance assembly from existing exact-package captures; no test rerun",
+    "summary_sha256": "22ae638cca396f22b2a758edc2322d787268fdf5e911772b1b20837c445508ad",
+    "reader_sha256": "0641c1f4c5ca6b56afe133e208b74c65981619c7eeb74a6fa7e12731a66f5016",
+    "assembly_script_sha256": "74e3649d89e3fc9c8212113fb4a3a766e36a62d54a970d6966556d1cd807a6b8",
+    "original_anchor_sha256": "56fa6f8b2e93c8b00a9dc6bc8fb13ccc0d301b1acece1c9a69d0b07e5d6b4fa3",
+    "new_application_executions": 0,
+    "assembled_gate_ids": [
+      "core_windows11_ps51",
+      "core_windows11_ps7",
+      "clean_first_run"
+    ],
+    "reused_unchanged_gate_ids": [
+      "one_file",
+      "exact_package"
+    ],
+    "original_execution_times_retained": true,
+    "independent_review": "PASSED",
+    "no_full_source_suite_reclassification": true
+  },
+  "fresh_extracted_setup": {
+    "scope": "Exact extracted Windows11 setup gates only; no Windows10/physicalBAT/phone/publication acceptance",
+    "summary_sha256": "67a35dde22e8cb6fdddae0f00b022ecc24748701fe389080e81e6bb674e14e22",
+    "collector_sha256": "f9c3ad151cbd254e3715ed474b51c8af87b4388e4d4f9b69f646c7ede4a32907",
+    "independent_audit_sha256": "f74954c7648c83285cbb5c23037326d5129ca11c9e062f9c917bcac7c2167a10",
+    "hosts": [
+      {
+        "edition": "ps51",
+        "environment": {
+          "os_family": "Windows11",
+          "os_type": "Client",
+          "architecture": "x64",
+          "process_architecture": "x64",
+          "process_64bit": true,
+          "display_version": "26H2",
+          "build": "26300.9711",
+          "shell_version": "5.1.26100.9711"
+        },
+        "report": "setup-ps51-recovery2.json",
+        "report_sha256": "7aad5a6868bf457d2ad3b4ec087eb6123e88bcd62e2dc986cf1c42bc88f28d01",
+        "launch": "setup-ps51-recovery2.launch.json",
+        "launch_sha256": "969d303557e1d054a214e048b1dc481ff200bd51c79ad3c79d4305760ccfc576",
+        "captured_harness_exit": 0,
+        "setup_child_exit": 0,
+        "fresh_conversion_child_exit": 0,
+        "controlled_offline_child_exit": 1,
+        "runtime_files": 18,
+        "vendor_files": 45,
+        "vendor_expanded_bytes": 329221735,
+        "owned_setup_cleanup": true
+      },
+      {
+        "edition": "ps7",
+        "environment": {
+          "os_family": "Windows11",
+          "os_type": "Client",
+          "architecture": "x64",
+          "process_architecture": "x64",
+          "process_64bit": true,
+          "display_version": "26H2",
+          "build": "26300.9711",
+          "shell_version": "7.6.5"
+        },
+        "report": "setup-ps7.json",
+        "report_sha256": "c611e787493ff383bb03824030b4666b6348b01cb3fc4ac97e346cba7808959e",
+        "launch": "setup-ps7.launch.json",
+        "launch_sha256": "fcc3d8144670d174f02e9e69cc9fc34d26d87f1eb0476da0e131a0e0fdb85d4c",
+        "captured_harness_exit": 0,
+        "setup_child_exit": 0,
+        "fresh_conversion_child_exit": 0,
+        "controlled_offline_child_exit": 1,
+        "runtime_files": 18,
+        "vendor_files": 45,
+        "vendor_expanded_bytes": 329221735,
+        "owned_setup_cleanup": true
+      }
+    ],
+    "new_application_conversions": 2,
+    "input": "1.5-second synthetic MP3 at 128000 bps",
+    "output": "Actual default64000 bps and complete decode, source unchanged",
+    "ps51_origin": "Original exact-package standalone setup child0; two failed private validators retained; Recovery2 reverified retained receipt/vendor/runtime, first captured its full inventory then, and performed fresh saved conversion and controlled downloader refusal.",
+    "ps7_origin": "One corrected direct fresh exact-package setup/conversion/refusal campaign with actual outer0.",
+    "offline_scope": "Actual downloader connection refusal through a process-only loopback proxy. A genuine machine-offline state was not tested. No TLS/pin/deadline/production function was changed.",
+    "cleanup": "No publication/staging/partials checked after downloader refusal and before harness-owned deletion; final owned roots then removed.",
+    "source_config_runtime_unchanged": true,
+    "all_children_released": true
+  },
+  "retained_failed_private_attempts": [
+    {
+      "report": "setup-ps51.json",
+      "sha256": "078babcfe99cdb0d0ce99e1c09d538c86371e9424cc002b9eb75785a7b0932a4",
+      "launch_sha256": "0a55b95e8bc2e92bd0adc1aff06dcca539d6a4fa40542fa0d5f9a14ae6286e66",
+      "outer_exit_code": 1,
+      "status": "FAILED",
+      "cause": "Private validator compared uppercase receipt SHA text case-sensitively with lowercase digest text after the actual standalone setup child succeeded. Strict hexadecimal normalization corrected the validator; original bytes and raw failure retained."
+    },
+    {
+      "report": "setup-ps51-recovery.json",
+      "sha256": "e0c8a570cd4f7d648c2c6b9835f2de302b8024137eb29050ab4c8918be9afb36",
+      "launch_sha256": "aaee88148859c30b39f769dd524ed20582375cd37730212338b8de3e88ce3abf",
+      "outer_exit_code": 1,
+      "status": "FAILED",
+      "cause": "Private recovery invocation supplied unsupported main conversion parameter NonInteractive. Parameter binding failed before application entry. Corrected private caller uses the proven InputFolder/OutputParent/ConfigPath interface; original failure retained."
+    }
+  ],
+  "preparation_corrections": [
+    "Capture-reader preparation initially hit PowerShell eager ISO timestamp conversion. Original execution strings are now preserved; assembly time is separate. No application rerun.",
+    "Aggregate gate command provenance was initially prose; corrected to the actual collector and captured execution commands. Superseded aggregate bytes are retained privately. No application/runtime/asset change."
+  ],
+  "current_acceptance_gate": {
+    "command": "tools/Test-ReleaseGates.ps1 -CandidateRecordPath <PRIVATE_S15>/candidate/candidate-record.json",
+    "exit_code": 1,
+    "status": "REFUSED",
+    "sha256": "1ea3722a74719be09a2ab934dd6e530e770cfe39975e0a979189b6d217c56c16",
+    "result": {
+      "schema_version": 1,
+      "kind": "release_gate_result",
+      "phase": "Acceptance",
+      "status": "REFUSED",
+      "publication_performed": false,
+      "publication_authority_granted": false,
+      "failures": [
+        {
+          "code": "STEP_INCOMPLETE",
+          "detail": "S15 is not COMPLETED."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "Exactly the twelve required digest-bound reports are required."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "core_windows10_ps51 needs one digest-verified report."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "core_windows10_ps7 needs one digest-verified report."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "full_collection needs one digest-verified report."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "physical_shortcut needs one digest-verified report."
+        },
+        {
+          "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+          "detail": "phone_play_seek needs one digest-verified report."
+        }
+      ]
+    },
+    "meaning": "All seven supplied gate/asset/source identities validate; S15 and five required actual reports remain missing."
+  },
+  "environment": {
+    "os": "Microsoft Windows11 Pro",
+    "display_version": "26H2",
+    "build": "26300.9711",
+    "architecture": "x64",
+    "product_type": 1,
+    "ps51": "5.1.26100.9711",
+    "portable_ps7": "7.6.5",
+    "windows10": "No available client capture; no Get-VM/VBoxManage/vmrun provider exposed",
+    "server_ci": "SUPPLEMENTARY_ONLY"
+  },
+  "owner_report": {
+    "status": "NOT_RECEIVED",
+    "question_status": "ANSWERED_NOT_RUN_YET",
+    "known_scope_search": "No owner report in delivered kit, known S14 final package sessions or known project acceptance folders; available reports are Windows11 automated scope only.",
+    "physical_shortcut": "NOT_TESTED",
+    "phone_play": "NOT_TESTED",
+    "phone_seek": "NOT_TESTED",
+    "no_owner_diagnostics_requested": true,
+    "required_action": "Run the exact kit once on Windows10, follow its shortcut/default and phone prompts, then return only REPORT.txt in this same thread. If already run, provide the existing report path; do not repeat it.",
+    "owner_answer": "Not run yet",
+    "session_status": "NOT_RUN",
+    "owner_answer_recorded_utc": "2026-10-29T17:33:14.7985318Z"
+  },
+  "local_artifacts": {
+    "canonical_kit": "C:\\projects\\AFP-v1.0.1-Acceptance-20261029\\Acceptance-Kit.zip",
+    "guide": "C:\\projects\\AFP-v1.0.1-Acceptance-20261029\\extracted\\INSTRUCTIONS.txt",
+    "private_evidence": "C:\\projects\\AFP-S15-20261029",
+    "candidate_record": "C:\\projects\\AFP-S15-20261029\\candidate\\candidate-record.json",
+    "candidate_record_sha256": "d8dd03fea166fe9b19d68ca74a26f816fa6750e04a6c3f9d1da8458cd56fe88e",
+    "preserved_seven_gate_record": "C:\\projects\\AFP-S15-20261029\\candidate-record-7gates.json"
+  },
+  "git": {
+    "repository": "PikkuJanne/AudioFileForPhone",
+    "feature_branch": "codex/audiofileforphone-s15-acceptance",
+    "entry_main": "1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2",
+    "source_code_in_main": true,
+    "s15_checkpoint_in_main": "NOT_INTEGRATED",
+    "s15_merge_authority": "Owner default remains; earlier bounded evidence merge authority was S14 only. No S15 main merge attempted.",
+    "containing_checkpoint": "Observe exact pushed HEAD/fresh advertised equality and exact-head CI in final handover after push. Refresh next entry; no self-referential final SHA."
+  },
+  "boundaries": {
+    "packaged_dependency_builder_runner_test_files_changed": false,
+    "ordinary_music_access": false,
+    "owner_media_access": false,
+    "owner_config_access": false,
+    "persistent_path_registry_policy_changes": false,
+    "no_source_audio_modified_in_place": true,
+    "raw_reports_media_binaries_in_git": false,
+    "publication_authorization": null,
+    "project_status": "IN_PROGRESS",
+    "s16_status": "NOT_STARTED",
+    "publication": "PENDING_S17"
+  },
+  "blockers": [
+    "BLOCKED_WINDOWS10_CLIENT_REPORT",
+    "BLOCKED_PHYSICAL_COLLECTION_REPORT",
+    "BLOCKED_PHONE_PLAY_SEEK_OBSERVATION"
+  ],
+  "remaining_work": [
+    "Receive and inspect the exact-kit Windows 10 22H2 x64 PS5.1/PS7 report, without repeating environment diagnostics.",
+    "Verify the actual shortcut/default collection counts, media, unchanged sources and unique watched run from that session.",
+    "Record actual phone play and seek observations on this exact candidate output.",
+    "Import only genuine remaining captures, rerun the actual acceptance gate, then checkpoint S15; do not start S16."
+  ],
+  "next_step": "S15",
+  "stop_before": "S16",
+  "checkpoint_review": {
+    "status": "PASSED",
+    "scope": "Independent actual eight-document review; seven gate/asset/digest chains, preserved history, missing actual reports and S16/publication boundaries verified.",
+    "root_validation_sha256": "b3295362e146865aa6074ae35b716e38c397b1d7a20acc2482504ec7c5c733c9",
+    "root_validation_file": "checkpoint-validation-precommit.json",
+    "committed_head_review": "Observe after commit; no self-referential containing HEAD."
+  }
+}

@@ -670,3 +670,16 @@ D68 - 2026-10-29, S14 continuation: explicit owner approval binds PR29 head
       Actual extracted final-mode checks keep human/client gaps explicit.
       S14 complete; STOP before separately started S15. Null publication
       authority; only S16 exact accepted bytes -> S17 publication -> S18 closure.
+
+D69 - 2026-10-29, direct owner instruction continues S15 in this same thread
+      and forbids starting S16. Supersede only the old thread boundary; do not
+      waive client/human evidence or extend S14-only main-merge authority.
+      Reuse actual unchanged exact-kit captures with disclosed provenance,
+      preserving original times. Fresh exact-package online and controlled
+      downloader refusal checks pass on Windows11 PS5.1/PS7. Preserve both
+      failed private validators and all original/mixed-stage origins. Seven
+      candidate reports validate; actual Windows10/shortcut collection/phone
+      report not received, so S15 stays BLOCKED and S16 NOT_STARTED. Return
+      the one existing kit REPORT.txt here; no new thread, diagnostic matrix,
+      PATH edit, audio/private-log upload or invented observation. Frozen C,
+      runtime/kit bytes and null publication authority remain unchanged.

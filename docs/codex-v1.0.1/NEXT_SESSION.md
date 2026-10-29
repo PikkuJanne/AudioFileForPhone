@@ -1,3 +1,32 @@
+# S15 continuation — owner report required; do not start S16
+
+Continue S15 only in this same AudioFileForPhone thread as the owner authorized;
+do not start S16. Read AGENTS.md, active CHARTER/STATE/STATUS/NEXT_SESSION/
+RELEASE_TARGET, tasks/S15.md and S15.json/HANDOVER/REVIEW/NONPASSES. Refresh local
+and fresh advertised feature/main refs and exact-head CI from the prior response.
+Active feature is codex/audiofileforphone-s15-acceptance; entry main is 1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2.
+Frozen source is d9d7129e9463de17e29c2a36752c82e326abf22e. Preserve runtime ZIP SHA256
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53 and kit SHA256
+5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26. Use the existing final kit
+C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip and short guide.
+Available evidence is private at C:\projects\AFP-S15-20261029; seven valid gates
+are bound in candidate/candidate-record.json and its preserved seven-gate record.
+Reuse reviewed existing Windows11 exact-kit captures and fresh setup results;
+do not rerun them, invent Windows10/physical/phone passes, or repeat the picker.
+The missing input is the actual owner Windows10 kit report, with real shortcut/
+default full collection and phone play/seek observations. Consume REPORT.txt
+and available local redacted companion evidence when provided; do not request
+audio/private logs, version commands, PATH changes or another developer matrix.
+If the session already ran, inspect its existing report without repeating it.
+Import only actual remaining results and verify the real acceptance gate. Until
+then S15 remains BLOCKED, S16 NOT_STARTED and publication authority null. Preserve
+default64, source integrity/layout/metadata/artwork and published v1.0.0. Checkpoint
+intended evidence only, review/test/commit/push, verify fresh feature equality and
+exact-head CI, and report main integration separately. Do not extend the S14-only
+bounded merge policy to S15. Give the handover and stop before S16.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # Next session — S15 only, separately started by owner
 
 Continue AudioFileForPhone using docs/codex-v1.0.1. Complete ONLY S15 in this new
