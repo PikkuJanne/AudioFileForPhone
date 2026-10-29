@@ -4,7 +4,7 @@
   "project_status": "IN_PROGRESS",
   "current_step": "S13",
   "active_branch": "codex/audiofileforphone-v1.0.1",
-  "tested_source_commit": "375adcdfdbc9d70001b21d8d495efb1384b1201d",
+  "tested_source_commit": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
   "frozen_release_commit": null,
   "runtime_zip_sha256": null,
   "acceptance_kit_sha256": null,
@@ -84,10 +84,15 @@
       "blockers": []
     },
     "S13": {
-      "status": "NOT_STARTED",
-      "evidence": null,
-      "remaining_work": [],
-      "blockers": []
+      "status": "BLOCKED",
+      "evidence": "evidence/S13.json",
+      "remaining_work": [
+        "Verify actual folder picker selection/path equality and cancellation on an allowed supported interactive Windows desktop",
+        "Rerun affected kit checks if source/kit bytes change, complete S13-A3, update evidence/checkpoint and stop before S14"
+      ],
+      "blockers": [
+        "BLOCKED_INTERACTIVE_DESKTOP: no targetable picker; temporary GUI host refused scripts before dialog. No policy changes or owner debugging."
+      ]
     },
     "S14": {
       "status": "NOT_STARTED",

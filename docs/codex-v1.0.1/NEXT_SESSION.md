@@ -1,3 +1,33 @@
+# Next session — resume S13, not S14
+
+S13 remains BLOCKED_INTERACTIVE_DESKTOP. The kit and final automated tests pass,
+but actual picker selection/path equality and cancellation are not proved. Read
+evidence/S13.json, S13-HANDOVER.md, S13-REVIEW.md and S13-NONPASSES.md. Do not ask
+the owner to debug the kit or rerun supplied diagnostics. No S14 work is authorized
+by this unfinished S13 checkpoint.
+
+Tested code9e2c93335f08fabff51ea274e5bf43f3cd5c08af; production runtime unchanged
+from b05b581dc6372cecd99471c53ee2cac72b8267ba. Eight selected suites/114 groups and
+two analyses pass. Two real extracted-kit rehearsals execute both installed hosts,
+14 production conversions/four long outputs, full decode/source hashes and all
+early fault reports. Human observations remain NOT_TESTED. Old builder/physical
+reports retain actual 5a37797 identities; final integration/common/analysis9e2.
+
+The real owner BAT route remains separate from automated PS1 collection. Preserve
+explicit owned config/output and UTF8 drivers; LOCALAPPDATA is diagnostics-only,
+not production config isolation. Preserve actual human answers separately from
+mechanical physical status; direct percent paths refuse before physical launch.
+The retained runtime1.0.0 package/two kit builds are rehearsals, not accepted1.0.1.
+
+Refresh the containing checkpoint recorded after push in the previous final
+response, fresh advertised feature/main refs and exact-head push/PR CI. The commit
+cannot contain its own SHA. Use the fully filled continuation prompt in
+evidence/S13-HANDOVER.md, adding the exact containing checkpoint from that final
+response. Complete only remaining S13; at success/failure/missing evidence
+checkpoint and STOP. S14 stays unstarted until the owner starts a later thread.
+
+## Preserved S12 next-session checkpoint
+
 # Next session — S12 checkpoint
 
 S01-S12 COMPLETED within available-client and developer-CI scope. S13 — Build the

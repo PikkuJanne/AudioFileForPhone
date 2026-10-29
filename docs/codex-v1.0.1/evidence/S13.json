@@ -1,0 +1,1143 @@
+{
+  "schema_version": 1,
+  "step": "S13",
+  "status": "BLOCKED",
+  "scope": "Prepared kit and available-client automated rehearsal; actual picker selection/cancellation unproved",
+  "entry_commit": "7097713855982dbfe653c2d5b14c23f2852da9a9",
+  "tested_source_commit": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+  "production_runtime_commit": "b05b581dc6372cecd99471c53ee2cac72b8267ba",
+  "recorded_utc": "2026-10-29T05:53:06.8358015Z",
+  "entry_sync": {
+    "feature": "7097713855982dbfe653c2d5b14c23f2852da9a9",
+    "main": "28f53b10529495754273d55654c7b29e78848c83",
+    "fresh_advertised_equality": true,
+    "push_ci": 40762722864,
+    "pr_ci": 40762732197,
+    "four_jobs": "SUCCESS",
+    "prior_private_report_digests_verified": 72,
+    "old_source_changed": false
+  },
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "display_version": "26H2",
+    "build": "26300.9711",
+    "architecture": "x64",
+    "ps51": "5.1.26100.9711",
+    "portable_ps7": "7.6.5",
+    "store_ps7": "7.6.7 startup-only",
+    "output_codepage": 65001,
+    "ordinary_music_access": false,
+    "owner_config_read_or_written": false,
+    "personal_media_access": false,
+    "persistent_changes": false,
+    "drivers": "Owned hidden UTF8/CP65001; selected host Modules first; explicit ConfigPath/OutputParent; diagnostics LOCALAPPDATA only."
+  },
+  "acceptance": {
+    "S13-A1": {
+      "status": "PASSED",
+      "scope": "Automated available-host rehearsal",
+      "expected": "No developer dependencies/admin/PATH edits/manual FFmpeg commands in extracted runner",
+      "observed": "Actual PS51 and PS7 extracted kits run using only Windows/PowerShell and deliberately selected external tools; no owner commands or downloads."
+    },
+    "S13-A2": {
+      "status": "PASSED",
+      "scope": "Automated collection plus preparation of later physical route",
+      "expected": "Real production one-file/full-batch/package/source checks, one report and unfilled human observations",
+      "observed": "Two actual extracted-kit suites,7conversions each, both installed hosts/long3605s/default64/full decode; exact manifests/counts and full source hashes; owner answer fields NOT_TESTED. Physical BAT prepared but unperformed."
+    },
+    "S13-A3": {
+      "status": "BLOCKED",
+      "expected": "Short guide, handled faults, actual picker selection/cancellation and accurate client/launch scope",
+      "observed": "One-page guide and8early runner refusals per shell; actual client identities. Picker target could not be exposed; final temporary GUI host had scripts-disabled refusal. No actual selection or cancellation pass."
+    }
+  },
+  "source_checkout_hashes": [
+    {
+      "path": "tests/Test-AcceptanceCommon.ps1",
+      "sha256": "050149cdd9fe686b73d4b8d4da0a21caf82f2dc6caa421ca7e1d0c3721dcf309"
+    },
+    {
+      "path": "tests/Test-AcceptanceKitBuild.ps1",
+      "sha256": "bd5f10476a988682ca83ab28950be14423cf8d425c6d211c3f75a2fefe85f027"
+    },
+    {
+      "path": "tests/Test-AcceptancePhysical.ps1",
+      "sha256": "245b23f87eea2cd82b3fae9a8121598059b0b33811583c07403039b43afe54e2"
+    },
+    {
+      "path": "tests/Test-AcceptanceRunner.ps1",
+      "sha256": "8cbdc8a2518e3ce274f4240e595c081a81fa6a0cc86512b0bc3a66d92b7ad479"
+    },
+    {
+      "path": "tools/Build-AcceptanceKit.ps1",
+      "sha256": "19fec3befd937dfd64ee833c4c5c445f5e0219507b019e503b4d461622dfab3f"
+    },
+    {
+      "path": "tools/acceptance/Acceptance.Common.ps1",
+      "sha256": "c60290bcf78768b990735439334c4a8f889449caab58b8289f1253dc8c3b4fd7"
+    },
+    {
+      "path": "tools/acceptance/Acceptance.Physical.ps1",
+      "sha256": "5f8139b6df5b6350d6b85efaee866e0c9ae9aa84009355ba32956c747887b5a7"
+    },
+    {
+      "path": "tools/acceptance/Export-AcceptanceReport.ps1",
+      "sha256": "57102f87c6c691888daac1fcd17599b047865c6047a59f0b0cba81372faec496"
+    },
+    {
+      "path": "tools/acceptance/INSTRUCTIONS.txt",
+      "sha256": "43b79b4a7cce7f27824f4c62b25ef9ac5b83d0bf234276805db52b326f9014c6"
+    },
+    {
+      "path": "tools/acceptance/Run-Windows-Acceptance.bat",
+      "sha256": "2cfeecc8370e2ed9ba7793f05a60e65bf7eb4f5b94db6a4407aa968a53880bd0"
+    },
+    {
+      "path": "tools/acceptance/Run-Windows-Acceptance.ps1",
+      "sha256": "58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c"
+    }
+  ],
+  "production_runtime_checkout_hashes": [
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "2bfbe066420c76f00391f2c38963c2d97510b2bd7863181812a645e5b732d28c"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "a0aff73af92f73817b1b4341be6ec81d3326caca5ea37a6a71cc70fe38239b36"
+    },
+    {
+      "path": "AudioFileForPhone.Diagnostics.ps1",
+      "sha256": "078196abc845bd8651ac047f0d5c6ddf283e0a8965d121223123e851c6b9915e"
+    },
+    {
+      "path": "AudioFileForPhone.Checks.ps1",
+      "sha256": "72f1ca6593ae861eda0bf137378e9e4305e74176048b19a3ccfc47cec5e62c46"
+    },
+    {
+      "path": "AudioFileForPhone.ManagedSetup.ps1",
+      "sha256": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538"
+    },
+    {
+      "path": "AudioFileForPhone.Launcher.ps1",
+      "sha256": "47ff967cdef0392f6d937a73a09763fa5f0952b68ddf47de237974062fbc1732"
+    },
+    {
+      "path": "AudioFileForPhone.HostProbe.ps1",
+      "sha256": "043ccfe7199f1cbdcbc98e27339e7fd7c6a1ec57307a6352dab24f8ad2829996"
+    },
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "85123393a4a903e628f748004de9f51cf7a6f15159a29576abb9f5214121b338"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "881f23c652eed61ddb074174403a2f225aca8aa8d84c0574ab6dba121f5eb630"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "3d877f10816e65ec062c3a3c2788207cc4504e7829bdd6f994c03dd4525c3553"
+    },
+    {
+      "path": "Check-AudioFileForPhone.ps1",
+      "sha256": "ebd667882c3144b181caa7b1d8aff770f994e1c71b49b38bcc48d544deb6d1f4"
+    },
+    {
+      "path": "Check-AudioFileForPhone.bat",
+      "sha256": "b67202151d87e585cef1517917f9cb25dcd8cf2e327c1d4ec46f67e5cd521580"
+    },
+    {
+      "path": "tools/ffmpeg-download.json",
+      "sha256": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a"
+    }
+  ],
+  "rehearsal_runtime_package": {
+    "source_commit": "7097713855982dbfe653c2d5b14c23f2852da9a9",
+    "app_version": "1.0.0",
+    "name": "AudioFileForPhone-v1.0.0.zip",
+    "sha256": "fcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e",
+    "manifest_sha256": "bfc46c94b044010b31b1b72a2de270e78fb5a392e5d21ee5c087bbd072441a7a",
+    "build_mode": "clean_detached_exact_git_blobs",
+    "members": [
+      {
+        "path": "AudioFileForPhone.Checks.ps1",
+        "sha256": "3222bb3ade91193eaa3f4520b101c5fd1375db720cee2d90f38a02f4041c843e",
+        "bytes": 21704
+      },
+      {
+        "path": "AudioFileForPhone.Diagnostics.ps1",
+        "sha256": "dd987bbbd9d8bc31b54318f32e813aa604f7913248f4dc2afeddd66ce9f9d0d6",
+        "bytes": 21926
+      },
+      {
+        "path": "AudioFileForPhone.Helpers.ps1",
+        "sha256": "4618b3e2c1f47e92773180a16a7c950bb17f64aebceb536bac174bb0a43f06d1",
+        "bytes": 176464
+      },
+      {
+        "path": "AudioFileForPhone.HostProbe.ps1",
+        "sha256": "043ccfe7199f1cbdcbc98e27339e7fd7c6a1ec57307a6352dab24f8ad2829996",
+        "bytes": 2375
+      },
+      {
+        "path": "AudioFileForPhone.Launcher.ps1",
+        "sha256": "f51f744e4b57a8645743e8c493f58338b63b54773cbf446952ff3dc90fb46854",
+        "bytes": 13997
+      },
+      {
+        "path": "AudioFileForPhone.ManagedSetup.ps1",
+        "sha256": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538",
+        "bytes": 44910
+      },
+      {
+        "path": "AudioFileForPhone.bat",
+        "sha256": "85123393a4a903e628f748004de9f51cf7a6f15159a29576abb9f5214121b338",
+        "bytes": 2446
+      },
+      {
+        "path": "AudioFileForPhone.ps1",
+        "sha256": "2bfbe066420c76f00391f2c38963c2d97510b2bd7863181812a645e5b732d28c",
+        "bytes": 48361
+      },
+      {
+        "path": "CHANGELOG.md",
+        "sha256": "df7840654701e132fe176cfede8898a8f021d65f4587b29b1f5b161590e6e1b3",
+        "bytes": 4446
+      },
+      {
+        "path": "Check-AudioFileForPhone.bat",
+        "sha256": "b67202151d87e585cef1517917f9cb25dcd8cf2e327c1d4ec46f67e5cd521580",
+        "bytes": 1506
+      },
+      {
+        "path": "Check-AudioFileForPhone.ps1",
+        "sha256": "1a5601a9d6b6dcb9cd7bd57745e24e6156559f837a6921255a3ee9537e0f3883",
+        "bytes": 9892
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+        "bytes": 1070
+      },
+      {
+        "path": "README.md",
+        "sha256": "eee49a86c21eb33ecab09de4bec820bc19dcfc33f1ec7058573838472ddca4c3",
+        "bytes": 25756
+      },
+      {
+        "path": "SECURITY.md",
+        "sha256": "85d3831c1a86131e0e29fdfa299a1b6a16d5dcbd0f05a9998dc9f23624ece57b",
+        "bytes": 8913
+      },
+      {
+        "path": "SUPPORT.md",
+        "sha256": "754c73feeca4d5a4839a1e85da736bff9408ce881383563301848f983ad44343",
+        "bytes": 24643
+      },
+      {
+        "path": "Setup-AudioFileForPhone.bat",
+        "sha256": "6ec888f55921f64039accfcfec7906b5aedb9e6091909922129840a8a3e67599",
+        "bytes": 2353
+      },
+      {
+        "path": "Setup-AudioFileForPhone.ps1",
+        "sha256": "29cde3ce0258e8b79781bdc7748676df551a1ea6af51a12a3dba886c1109f69b",
+        "bytes": 6908
+      },
+      {
+        "path": "tools/ffmpeg-download.json",
+        "sha256": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a",
+        "bytes": 833
+      }
+    ],
+    "accepted_release_candidate": false,
+    "git_blob_helper_sha256": "4618b3e2c1f47e92773180a16a7c950bb17f64aebceb536bac174bb0a43f06d1",
+    "checkout_helper_sha256": "a0aff73af92f73817b1b4341be6ec81d3326caca5ea37a6a71cc70fe38239b36",
+    "note": "Exact blob/archive bytes and checkout EOL bytes are distinct. No S14 freeze or accepted ZIP."
+  },
+  "rehearsal_kits": [
+    {
+      "builder_host": "5.1.26100.9711",
+      "kind": "rehearsal_acceptance_kit",
+      "sha256": "4b00dc4774785ed9c90f40e51d2e60837735d141543a4dbc9b9826605089233a",
+      "runtime_zip_sha256": "fcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e",
+      "runtime_source": "7097713855982dbfe653c2d5b14c23f2852da9a9",
+      "kit_code_source": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "positive_report_sha256": "37a032f505254de7b01508e85a0d1a1e6c73359e971c7ef43a86015c96262ef4",
+      "positive_text_sha256": "bc400e7917a63c971d4a2f5e70132c9fd141d81aad7c9d014825d1359e753012",
+      "human_observations": "NOT_TESTED",
+      "publication_authority": false
+    },
+    {
+      "builder_host": "7.6.5",
+      "kind": "rehearsal_acceptance_kit",
+      "sha256": "79a448b2fddec7f0887af17c9eb5f6421f918ddd9713533286b1ee6a7cd1ab8b",
+      "runtime_zip_sha256": "fcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e",
+      "runtime_source": "7097713855982dbfe653c2d5b14c23f2852da9a9",
+      "kit_code_source": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "positive_report_sha256": "d89155922b0affe845237f03d793d69ad7293f5867c8e9bfbb57b844d1045940",
+      "positive_text_sha256": "876524df0b55f83a38047a2d1574f0a3f99f7a3c34d1139681eef67a50403b33",
+      "human_observations": "NOT_TESTED",
+      "publication_authority": false
+    }
+  ],
+  "local_reports": [
+    {
+      "report": "builder-ps51-final1.json",
+      "sha256": "93c875459e623747762c595933b40614da2a0f883b6b9385c33104910d83d4f5",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "5a37797d4b0a309ba40511fe7c90934fd05c93b2",
+      "harness": "tests/Test-AcceptanceKitBuild.ps1",
+      "harness_current_checkout_sha256": "bd5f10476a988682ca83ab28950be14423cf8d425c6d211c3f75a2fefe85f027",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceKitBuild.ps1 -EvidencePath <PRIVATE_S13_SESSION>/builder-ps51-final1.json",
+      "started_utc": "2026-10-29T05:44:13.5376563Z",
+      "ended_utc": "2026-10-29T05:44:25.3115222Z",
+      "groups": 13,
+      "cases": [
+        {
+          "id": "rehearsal-no-developer-path",
+          "status": "PASSED"
+        },
+        {
+          "id": "runtime100-refuses-final-mode",
+          "status": "PASSED"
+        },
+        {
+          "id": "synthetic-final-contract",
+          "status": "PASSED"
+        },
+        {
+          "id": "packaged-version-mismatch",
+          "status": "PASSED"
+        },
+        {
+          "id": "duplicate-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "traversal-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "unexpected-binary",
+          "status": "PASSED"
+        },
+        {
+          "id": "omitted-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "runtime-member-hash-mismatch",
+          "status": "PASSED"
+        },
+        {
+          "id": "escaped-duplicate-json-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "extra-checksum-row",
+          "status": "PASSED"
+        },
+        {
+          "id": "occupied-output-refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "missing-runner-refused",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "reuse_note": "Preserves actual earlier execution identity. Builder/physical harness+implementation files are unchanged at final source. Later complete-kit integration exercises the updated inventory adapter."
+    },
+    {
+      "report": "builder-ps7-final1.json",
+      "sha256": "7dbcb9f44f91ca9df361cf71482384c591b73a6918037bd7a004b0ae768b19d8",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "5a37797d4b0a309ba40511fe7c90934fd05c93b2",
+      "harness": "tests/Test-AcceptanceKitBuild.ps1",
+      "harness_current_checkout_sha256": "bd5f10476a988682ca83ab28950be14423cf8d425c6d211c3f75a2fefe85f027",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceKitBuild.ps1 -EvidencePath <PRIVATE_S13_SESSION>/builder-ps7-final1.json",
+      "started_utc": "2026-10-29T05:44:38.1969784Z",
+      "ended_utc": "2026-10-29T05:44:51.6206383Z",
+      "groups": 13,
+      "cases": [
+        {
+          "id": "rehearsal-no-developer-path",
+          "status": "PASSED"
+        },
+        {
+          "id": "runtime100-refuses-final-mode",
+          "status": "PASSED"
+        },
+        {
+          "id": "synthetic-final-contract",
+          "status": "PASSED"
+        },
+        {
+          "id": "packaged-version-mismatch",
+          "status": "PASSED"
+        },
+        {
+          "id": "duplicate-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "traversal-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "unexpected-binary",
+          "status": "PASSED"
+        },
+        {
+          "id": "omitted-runtime-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "runtime-member-hash-mismatch",
+          "status": "PASSED"
+        },
+        {
+          "id": "escaped-duplicate-json-member",
+          "status": "PASSED"
+        },
+        {
+          "id": "extra-checksum-row",
+          "status": "PASSED"
+        },
+        {
+          "id": "occupied-output-refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "missing-runner-refused",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "reuse_note": "Preserves actual earlier execution identity. Builder/physical harness+implementation files are unchanged at final source. Later complete-kit integration exercises the updated inventory adapter."
+    },
+    {
+      "report": "common-ps51-final2.json",
+      "sha256": "92eefff6f84ebbd8df46bb85bfc724309152aa869bfadd4317c6134b89765f3f",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "harness": "tests/Test-AcceptanceCommon.ps1",
+      "harness_current_checkout_sha256": "050149cdd9fe686b73d4b8d4da0a21caf82f2dc6caa421ca7e1d0c3721dcf309",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceCommon.ps1 -EvidencePath <PRIVATE_S13_SESSION>/common-ps51-final2.json",
+      "started_utc": "2026-10-29T05:48:17.4751891Z",
+      "ended_utc": "2026-10-29T05:48:19.5330275Z",
+      "groups": 19,
+      "cases": [
+        {
+          "id": "unc_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "dot_alias_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "stream_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "relative_escape_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "bracket_unicode_missing_marker",
+          "status": "PASSED"
+        },
+        {
+          "id": "production_marker_exclusion_preserved",
+          "status": "PASSED"
+        },
+        {
+          "id": "unreadable_marker_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_reparse_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_unchanged",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_added_file_detected",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_mutation_detected",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_exact_inventory",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_extra_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_duplicate_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_traversal_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_digest_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "report_whitelist_and_nested_result",
+          "status": "PASSED"
+        },
+        {
+          "id": "report_no_overwrite",
+          "status": "PASSED"
+        },
+        {
+          "id": "child_bounded_overflow_raw_exit_and_release",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance."
+    },
+    {
+      "report": "common-ps7-final2.json",
+      "sha256": "424fe7a4f067ee8a580bb6cbc15c9e6bb5468ea3f3b2af7e37b8df1e025108bc",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "harness": "tests/Test-AcceptanceCommon.ps1",
+      "harness_current_checkout_sha256": "050149cdd9fe686b73d4b8d4da0a21caf82f2dc6caa421ca7e1d0c3721dcf309",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceCommon.ps1 -EvidencePath <PRIVATE_S13_SESSION>/common-ps7-final2.json",
+      "started_utc": "2026-10-29T05:48:20.1385182Z",
+      "ended_utc": "2026-10-29T05:48:23.9295236Z",
+      "groups": 19,
+      "cases": [
+        {
+          "id": "unc_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "dot_alias_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "stream_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "relative_escape_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "bracket_unicode_missing_marker",
+          "status": "PASSED"
+        },
+        {
+          "id": "production_marker_exclusion_preserved",
+          "status": "PASSED"
+        },
+        {
+          "id": "unreadable_marker_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_reparse_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_unchanged",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_added_file_detected",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_mutation_detected",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_exact_inventory",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_extra_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_duplicate_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_traversal_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "zip_digest_refused",
+          "status": "PASSED"
+        },
+        {
+          "id": "report_whitelist_and_nested_result",
+          "status": "PASSED"
+        },
+        {
+          "id": "report_no_overwrite",
+          "status": "PASSED"
+        },
+        {
+          "id": "child_bounded_overflow_raw_exit_and_release",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance."
+    },
+    {
+      "report": "physical-ps51-final1.json",
+      "sha256": "c6fae9d70074f701e06f7f8fb47aba1751f9fe47f5ca2c4129ee9f00baa9c3bb",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "5a37797d4b0a309ba40511fe7c90934fd05c93b2",
+      "harness": "tests/Test-AcceptancePhysical.ps1",
+      "harness_current_checkout_sha256": "245b23f87eea2cd82b3fae9a8121598059b0b33811583c07403039b43afe54e2",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptancePhysical.ps1 -EvidencePath <PRIVATE_S13_SESSION>/physical-ps51-final1.json",
+      "started_utc": "2026-10-29T06:44:30.2172942+01:00",
+      "ended_utc": "2026-10-29T06:44:32.1066921+01:00",
+      "groups": 14,
+      "cases": [
+        {
+          "id": "literal-percent-shortcut-refusal",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-blank",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-no",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-maybe",
+          "status": "PASSED"
+        },
+        {
+          "id": "yes-without-run",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-matching",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-wrong-source",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-wrong-build",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-old-time",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-bad-marker",
+          "status": "PASSED"
+        },
+        {
+          "id": "ambiguous-runs",
+          "status": "PASSED"
+        },
+        {
+          "id": "watcher-error",
+          "status": "PASSED"
+        },
+        {
+          "id": "event-bound",
+          "status": "PASSED"
+        },
+        {
+          "id": "media-refusal",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "reuse_note": "Preserves actual earlier execution identity. Builder/physical harness+implementation files are unchanged at final source. Later complete-kit integration exercises the updated inventory adapter."
+    },
+    {
+      "report": "physical-ps7-final1.json",
+      "sha256": "9c0bd7428abe64670942fc6e9fdadcb35ce13adf0345454cb64b794d78e0f78d",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "5a37797d4b0a309ba40511fe7c90934fd05c93b2",
+      "harness": "tests/Test-AcceptancePhysical.ps1",
+      "harness_current_checkout_sha256": "245b23f87eea2cd82b3fae9a8121598059b0b33811583c07403039b43afe54e2",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptancePhysical.ps1 -EvidencePath <PRIVATE_S13_SESSION>/physical-ps7-final1.json",
+      "started_utc": "2026-10-29T06:44:56.1552674+01:00",
+      "ended_utc": "2026-10-29T06:44:58.6471546+01:00",
+      "groups": 14,
+      "cases": [
+        {
+          "id": "literal-percent-shortcut-refusal",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-blank",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-no",
+          "status": "PASSED"
+        },
+        {
+          "id": "answer-maybe",
+          "status": "PASSED"
+        },
+        {
+          "id": "yes-without-run",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-matching",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-wrong-source",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-wrong-build",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-old-time",
+          "status": "PASSED"
+        },
+        {
+          "id": "correlation-bad-marker",
+          "status": "PASSED"
+        },
+        {
+          "id": "ambiguous-runs",
+          "status": "PASSED"
+        },
+        {
+          "id": "watcher-error",
+          "status": "PASSED"
+        },
+        {
+          "id": "event-bound",
+          "status": "PASSED"
+        },
+        {
+          "id": "media-refusal",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "reuse_note": "Preserves actual earlier execution identity. Builder/physical harness+implementation files are unchanged at final source. Later complete-kit integration exercises the updated inventory adapter."
+    },
+    {
+      "report": "runner-ps51-final2.json",
+      "sha256": "3557e0fcc827f5fbe58cc214cdcdb45daae014abf2a9f1b46c7c1dbff05c2c9c",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "harness": "tests/Test-AcceptanceRunner.ps1",
+      "harness_current_checkout_sha256": "8cbdc8a2518e3ce274f4240e595c081a81fa6a0cc86512b0bc3a66d92b7ad479",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceRunner.ps1 -EvidencePath <PRIVATE_S13_SESSION>/runner-ps51-final2.json -RuntimeAssetsDirectory <PRIVATE_S13_SESSION>/runtime-assets -FfmpegDirectory C:\\ffmpeg\\bin -PowerShell7Path <PORTABLE_PS7>",
+      "started_utc": "2026-10-29T05:48:05.3314071Z",
+      "ended_utc": "2026-10-29T05:49:30.6494308Z",
+      "groups": 11,
+      "cases": [
+        {
+          "id": "real_runtime_kit_build",
+          "status": "PASSED"
+        },
+        {
+          "id": "extracted_real_rehearsal",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_runner",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_runtime",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_archive",
+          "status": "PASSED"
+        },
+        {
+          "id": "missing_retained_archive",
+          "status": "PASSED"
+        },
+        {
+          "id": "rehearsal_requires_opt_in",
+          "status": "PASSED"
+        },
+        {
+          "id": "empty_source",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_session_overlap",
+          "status": "PASSED"
+        },
+        {
+          "id": "unavailable_explicit_tools",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_and_input_assets_unchanged",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "actual_application_conversions": 7,
+      "source_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_performed": false,
+      "fixtures_retained": true,
+      "raw_capture_digests": [
+        {
+          "id": "positive",
+          "report_sha256": "37a032f505254de7b01508e85a0d1a1e6c73359e971c7ef43a86015c96262ef4",
+          "text_sha256": "bc400e7917a63c971d4a2f5e70132c9fd141d81aad7c9d014825d1359e753012",
+          "private_sha256": "a5824bc3de05d5b2cb0b4a8edfc01e5f5e460262435fc5096450a142f741549e"
+        },
+        {
+          "id": "tampered-runner",
+          "report_sha256": "97b33df3b744d64d10df0616475fa303800ec07c948c28be71400b062c9e1f64",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "44a65dd24d2ad9c75ca1e8002e0a84702bec5beef3c2c590958a16546e81670f"
+        },
+        {
+          "id": "tampered-runtime",
+          "report_sha256": "8388fc070097f04a9b71795a073239edb5691a68efe342ea4888c5ef7037f717",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "44a65dd24d2ad9c75ca1e8002e0a84702bec5beef3c2c590958a16546e81670f"
+        },
+        {
+          "id": "tampered-archive",
+          "report_sha256": "ff1f8e6643211b90032e5c814c77340bb713dae05a2c1f0ae4330b72ba08a3ae",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "a2ee466a87c589b2d5f20fa765152bb643cd6ea15c72437943c19e269d45ea63"
+        },
+        {
+          "id": "missing-archive",
+          "report_sha256": "0dbec3cd3e1e57ae48e49dad18d504e00766ab2c57e021eda59cc1acb0c3daa0",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "0554acddb3cedbea22e96bd965fd8b51790000b05daa4c811f1240e183a7c971"
+        },
+        {
+          "id": "no-rehearsal",
+          "report_sha256": "5bba962a7a178eac94575b9f2a3ba03b33102772625c5e2676b11c6087ab6ad9",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "d2274e1f7041c8066733a5f1277a3ea81719fd52cefc7443c2656051a87e84e1"
+        },
+        {
+          "id": "empty-source",
+          "report_sha256": "8aac7f40db3d352367f3756b30e51a9264bf548015504b94d4016afbb196005e",
+          "text_sha256": "30685137875169da04e1f9a47530e0a244923c16dde1bc69abca26232fe68527",
+          "private_sha256": "e009f9f99e078d033fe69260ec87b0bcf03fc58b536ae566311c47760a0c2d99"
+        },
+        {
+          "id": "overlap",
+          "report_sha256": "0834f6332a9e89484d4642ca468fdde00304ad7afed4f2190478e3ad55e37503",
+          "text_sha256": "30685137875169da04e1f9a47530e0a244923c16dde1bc69abca26232fe68527",
+          "private_sha256": "cd5e672de11dfffe33eacf4f0f28aa30cb416d22be87a23f1a6e8d85514e65f4"
+        },
+        {
+          "id": "missing-tools",
+          "report_sha256": "4e2191469babd621d9f43f9e238fb30190e86f69636ff6ca1ffb4015aa209889",
+          "text_sha256": "904fda8cdfc4bd6187ca4191c38e36dbfaf91831d58557326aaff6b83feddce3",
+          "private_sha256": "5365becc7415a70f942701eec522f4109ce5fd452190dd6bdd4a62fb9e37ca12"
+        }
+      ]
+    },
+    {
+      "report": "runner-ps7-final2.json",
+      "sha256": "e944a575eada7213d204e5329a6ad93900f526d8b2fbd86f1a443d8d13d0b4a3",
+      "status": "PASSED",
+      "actual_checkout_observed_by_parent": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "harness": "tests/Test-AcceptanceRunner.ps1",
+      "harness_current_checkout_sha256": "8cbdc8a2518e3ce274f4240e595c081a81fa6a0cc86512b0bc3a66d92b7ad479",
+      "command_redacted": "<ACTUAL_HOST> -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <REPOSITORY>/tests/Test-AcceptanceRunner.ps1 -EvidencePath <PRIVATE_S13_SESSION>/runner-ps7-final2.json -RuntimeAssetsDirectory <PRIVATE_S13_SESSION>/runtime-assets -FfmpegDirectory C:\\ffmpeg\\bin -PowerShell7Path <PORTABLE_PS7>",
+      "started_utc": "2026-10-29T05:49:39.3085142Z",
+      "ended_utc": "2026-10-29T05:51:18.1115168Z",
+      "groups": 11,
+      "cases": [
+        {
+          "id": "real_runtime_kit_build",
+          "status": "PASSED"
+        },
+        {
+          "id": "extracted_real_rehearsal",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_runner",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_runtime",
+          "status": "PASSED"
+        },
+        {
+          "id": "tampered_archive",
+          "status": "PASSED"
+        },
+        {
+          "id": "missing_retained_archive",
+          "status": "PASSED"
+        },
+        {
+          "id": "rehearsal_requires_opt_in",
+          "status": "PASSED"
+        },
+        {
+          "id": "empty_source",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_session_overlap",
+          "status": "PASSED"
+        },
+        {
+          "id": "unavailable_explicit_tools",
+          "status": "PASSED"
+        },
+        {
+          "id": "source_and_input_assets_unchanged",
+          "status": "PASSED"
+        }
+      ],
+      "media_evidence": "Per actual mode; synthetic builder/watcher fixtures never count as owner acceptance.",
+      "actual_application_conversions": 7,
+      "source_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_performed": false,
+      "fixtures_retained": true,
+      "raw_capture_digests": [
+        {
+          "id": "positive",
+          "report_sha256": "d89155922b0affe845237f03d793d69ad7293f5867c8e9bfbb57b844d1045940",
+          "text_sha256": "876524df0b55f83a38047a2d1574f0a3f99f7a3c34d1139681eef67a50403b33",
+          "private_sha256": "37d424edbf739c1864d66f2cb6fd99ae4723f87909c6dc3ad6f72293be18f666"
+        },
+        {
+          "id": "tampered-runner",
+          "report_sha256": "6cff442af083e5061b57678895ea32c35ecf2dceca0ccddb04b206d12158bd0f",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "756c4dee15049788cafbcfca940b128e9c947b4858d111683127517b013b791f"
+        },
+        {
+          "id": "tampered-runtime",
+          "report_sha256": "b0d880b62f99151f1e3fae86496244b57e13d0c4f1345844f51d76c1c3faba52",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "756c4dee15049788cafbcfca940b128e9c947b4858d111683127517b013b791f"
+        },
+        {
+          "id": "tampered-archive",
+          "report_sha256": "84ec2e19de06e743028fba9220221dd15c1bb0755c676e3e697061aacb35f5b6",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "1384bd8c5c4a1e227f8d2ceae1e72ba5371f8962d91abab6e32923e1eb200d86"
+        },
+        {
+          "id": "missing-archive",
+          "report_sha256": "3be9a948ccf2331054ad6993b0c233b195012e0fc7cf09cdc270d0a5043781fe",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "11feb0f86384bb4eb2b5e5f84f74632249a7c4967ac671e44e2e2521959ae317"
+        },
+        {
+          "id": "no-rehearsal",
+          "report_sha256": "37da74d6d1b7fee63a4eeb9412aa1577fbbe9d32dde115e9ab82d962097c9c00",
+          "text_sha256": "c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf",
+          "private_sha256": "d4213b1f335defa46ca1ec8d0139c68dcce2a68123b5484759e2504e5446363c"
+        },
+        {
+          "id": "empty-source",
+          "report_sha256": "ebc683b293244c783f71f853dcd54a6c4282b5748cda8a22a1368f1a0aa3d29f",
+          "text_sha256": "ac21da9934654883a55354ec500073314fec3daf79ca2577e1166d699e2b1d9b",
+          "private_sha256": "76aeb80b547b78e9d414872e5cb51cbf8c9298e36d7dd9b130ca6153fd48ca35"
+        },
+        {
+          "id": "overlap",
+          "report_sha256": "a5c06f01ab79b1260da8753eb37a61cdd499957818ba64876a006daf88b3b911",
+          "text_sha256": "ac21da9934654883a55354ec500073314fec3daf79ca2577e1166d699e2b1d9b",
+          "private_sha256": "0bdfc564b45e945dd763a96931c23b35453bff5867461cfaa423d7e1273a7506"
+        },
+        {
+          "id": "missing-tools",
+          "report_sha256": "4c092858780e95c3e3ce4ff08bc9a7052db68605fad032684e5d81dc06ce3c39",
+          "text_sha256": "5422750c0cebb0e1b2c1b7f1aedca7cbd3fbfe88b0c354ea453abedc4cd2126e",
+          "private_sha256": "5d6077763cb56087bd0736bc64babb88a2a1ac54f4f993f3030933dabf437ca6"
+        }
+      ]
+    }
+  ],
+  "analysis": [
+    {
+      "report": "analysis-ps51-final2.json",
+      "sha256": "aceaf666abd9e1d7ff1efc3373dd42faa901eb12a196562102fd17a6ba648f00",
+      "tested_commit": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "shell": "5.1.26100.9711",
+      "analyzer": "1.25.0",
+      "selected_files": 12,
+      "parser_files": 71,
+      "diagnostics": 0,
+      "dependency_inventories_verified": true
+    },
+    {
+      "report": "analysis-ps7-final2.json",
+      "sha256": "7dfde79da274dfc2856dd74c36afaf58caa10510fc53b00f7511b86dfc902e85",
+      "tested_commit": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+      "shell": "7.6.5",
+      "analyzer": "1.25.0",
+      "selected_files": 12,
+      "parser_files": 71,
+      "diagnostics": 0,
+      "dependency_inventories_verified": true
+    }
+  ],
+  "local_totals": {
+    "selected_suite_reports": 8,
+    "analysis_reports": 2,
+    "required_groups": 114,
+    "actual_application_conversions": 14,
+    "long3605_outputs": 4,
+    "actual_owner_shortcut_passes": 0,
+    "actual_phone_passes": 0,
+    "accepted_candidate_reports": 0
+  },
+  "current_release_refusal": {
+    "report": "current-gates-final2.json",
+    "sha256": "f21ac3772614f6cf81d608360ca18f80d5ef393108ed589150cdd9bbe3086c89",
+    "two_actual_exits": [
+      1,
+      1
+    ],
+    "status": "REFUSED",
+    "reason": "Runtime1.0.0, no frozen C/accepted ZIP/kit/complete evidence/authority; safeguards unchanged."
+  },
+  "preparation_reports": [
+    {
+      "report": "runner-ps51-final1.json",
+      "sha256": "7d51a9a5970aa8852bfcaaee06e39bdda71cdcf300b183d5b766981f0d9eaa0b",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "runner-ps51-final1-diagnostic.json",
+      "sha256": "cb1e7312e4e56a0d1c56d73a6aaabbe1149e3c0b1cd23551d8173ad36269c018",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "common-ps51-null-adapter1.json",
+      "sha256": "2186ac28746f9e6e3b98ce87f81a4528b9e113d8a9d981819a4bac3954149a28",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "common-ps7-null-adapter1.json",
+      "sha256": "467c4f6f88a9f480f797c051ec617700de9e1d1d26e947934b00adbe9f7663cb",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "kit-attempt3.build.json",
+      "sha256": "8fc8c77d518afd46328c9c0d8f401b838c1261de2c41ea636229ff1ad779e540",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "kit-attempt4.build.json",
+      "sha256": "e6cfaca66b459596dfa9b0d2f25888d0b6cf667856395a03fab670fc847a0dc7",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "kit-attempt5.build.json",
+      "sha256": "7fc55602a6a71db864e4e789f6201db72c5b5a27843bcea5b244c9fdf3fe72ef",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    },
+    {
+      "report": "attempt2-startup-diagnostic-private.json",
+      "sha256": "8a9b9fcae15ca6f68154bdbe7369a4cb34bd834911fb5166e80f72c421f814b8",
+      "scope": "Preparation/superseded/failed as documented in S13-NONPASSES; never relabeled."
+    }
+  ],
+  "blocker": {
+    "code": "BLOCKED_INTERACTIVE_DESKTOP",
+    "actual_picker_selection": "NOT_RUN",
+    "actual_picker_cancellation": "NOT_RUN",
+    "private_report_leaf": "picker-ui-blocked.json",
+    "sha256": "44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691",
+    "process_release": true,
+    "temporary_evidence_retained": true,
+    "policy_changed": false,
+    "next_action": "Resume S13 on an allowed supported interactive desktop; verify actual source picker selection/equality and cancellation. No owner debugging."
+  },
+  "review": {
+    "record": "S13-REVIEW.md",
+    "independent_readonly_review": true,
+    "null_adapter_reviewed": true,
+    "nonpasses": "S13-NONPASSES.md"
+  },
+  "private_evidence": {
+    "session_leaf": "AFP-S13-session-7c80491cb2b144c0a0f24001c0a2072d",
+    "raw_reports_committed": false,
+    "media_committed": false,
+    "raw_reports_retained": true,
+    "no_broad_cleanup_claim": true
+  },
+  "ci": {
+    "code_head": "9e2c93335f08fabff51ea274e5bf43f3cd5c08af",
+    "status": "PENDING_AT_EVIDENCE_WRITE",
+    "source_push": 40825453261,
+    "source_pr": 40825460359,
+    "initial_code_push": 40825099638,
+    "initial_code_pr": 40825106944,
+    "scope": "Existing full supplementary Server CI retained; new kit suites executed locally. Exact containing checkpoint CI observed after push in final response."
+  },
+  "git": {
+    "branch": "codex/audiofileforphone-v1.0.1",
+    "pr": 29,
+    "pr_state": "OPEN draft",
+    "main": "28f53b10529495754273d55654c7b29e78848c83",
+    "main_integration": "NOT_INTEGRATED",
+    "source_pushed": true,
+    "source_advertised_equal": true,
+    "containing_checkpoint": "Observe after commit/push; no self-containing SHA."
+  },
+  "release": {
+    "target_version": "1.0.1",
+    "status": "PENDING_S17",
+    "runtime_version": "1.0.0",
+    "frozen_source": null,
+    "accepted_runtime_zip_sha256": null,
+    "accepted_kit_sha256": null,
+    "publication_authorization": null,
+    "v100_preserved": true,
+    "publication_performed": false
+  },
+  "limitations": [
+    "S13 picker selection/cancellation BLOCKED_INTERACTIVE_DESKTOP; resume same step",
+    "Windows10 22H2 PS51/PS7 client unavailable; Server supplementary",
+    "StorePS7 locally startup-only",
+    "Actual owner BAT shortcut and phone not performed",
+    "Direct BAT shortcut percent expressions refuse before launch",
+    "Cloud/UNC/reparse/redirected/share and physical full-disk unproved",
+    "Full core/clean/online/offline campaigns still required on exact final candidate",
+    "Current runtime ZIP and two kit builds are rehearsals, not frozen1.0.1 acceptance",
+    "Private scopes and initial task-created bounded diagnostic retained; no general cleanup claim"
+  ],
+  "human_action": "None requested in S13; do not repeat owner diagnostics or delegate kit debugging.",
+  "next_step": "S13",
+  "next_step_title": "Resume Build the one-click acceptance kit",
+  "stop": true
+}

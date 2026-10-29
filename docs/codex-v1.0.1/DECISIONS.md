@@ -523,3 +523,38 @@ D59 - 2026-10-28, S12 verification: final source375adcd retains runtime b05b581.
       S13 only in a new owner thread. No human action; main/S14 owner approval,
       Windows10/physical/phone/exactZIP gates and fixedv1.0.1 S16/S17 authority
       remain separate. Publishedv1.0.0/icons/posters remain preserved.
+D60 - 2026-10-29, S13 execution scope: exact packaged PS1 performs controlled
+      full collection with explicit owned ConfigPath/OutputParent. The unchanged
+      BAT requires normal Known Folder configuration and a real console; child
+      LOCALAPPDATA and redirected Enter cannot stand in. Prepare a direct BAT
+      shortcut and watch only new top-level run events. Require one exact source/
+      package/start/ownership match and media validation, with actual owner answer
+      separate from mechanical status and no invented raw Explorer exit. Normal
+      setup selects tools once and owns consent/remember. Automated rehearsals
+      never read default owner config or scan Music. Actual percent shortcut
+      expansion is a named physical-route refusal, not a literal pass.
+
+D61 - 2026-10-29, S13 evidence and compatibility: verify retained kit/runtime ZIP,
+      exact inventories and manifests before conversion; keep Git blob package
+      hashes distinct from raw checkout EOL hashes. Rehearsal1.0.0 source7097713,
+      kit/test code9e2c933 and each actual built kit digest remain distinct.
+      Whitelist/stage bounded reports; source hashes/raw captures stay private.
+      Preserve19-group source/privacy/ZIP tests,13 builder and14 synthetic watcher
+      groups per shell, plus11 extracted-kit groups per host. These114 groups and
+      two zero-diagnostic analyses accompany14 real production conversions/four
+      long outputs, never fake core/client10/online/physical/phone acceptance.
+      The local PS5.1 null adapter preserves production missing-identity semantics
+      under strict kit scope; literal/error/reparse guards and shared snapshots
+      remain. Global helper and all13 runtime bytes remain unchanged. Preserve
+      failed final1 and all preparations; final2 reports are separate.
+
+D62 - 2026-10-29, S13 stop: actual picker selection/cancellation is
+      BLOCKED_INTERACTIVE_DESKTOP after no targetable dialog and a temporary GUI
+      host's scripts-disabled refusal. No policy change, managed-control bypass
+      or owner debugging; exact owned processes released and evidence retained.
+      S13-A3/S13 stay BLOCKED, current_step S13; resume only this step in a new
+      thread and do not start S14. Observe containing-checkpoint advertised
+      equality/exact-head CI after push without self-hashing; pending/failure is
+      not PASSED. Main reviewed-head/owner approval, required missing client and
+      actual human/final-ZIP evidence, fixed v1.0.1 S16/S17 authority and S18
+      public-download/main closure remain separate. Preserve published v1.0.0.

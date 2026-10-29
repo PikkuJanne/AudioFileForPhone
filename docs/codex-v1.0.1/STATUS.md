@@ -1,3 +1,56 @@
+# Status — S13 BLOCKED
+
+S01-S12 remain COMPLETED. S13's kit is implemented and its automated rehearsal
+passes, but S13 is BLOCKED_INTERACTIVE_DESKTOP: actual picker selection/path
+equality and cancellation are unproved. Resume S13, finish S13-A3 and checkpoint.
+S14 remains NOT_STARTED; do not advance while the picker evidence is missing.
+
+Tested kit/test source: 9e2c93335f08fabff51ea274e5bf43f3cd5c08af. Eight selected
+suite reports pass 114 groups; two analyses report zero diagnostics across 12
+selected files and 71 parser files per shell. Both extracted-kit suites pass
+11 groups, with 14 actual production conversions total, including four 3,605-second
+outputs. Every source hash matches and output probes/full decodes pass. Eight
+early refusals per suite preserve redacted reports and NOT_TESTED human answers.
+
+Builder13 and synthetic watcher14 per shell retain actual earlier 5a37797
+identities and unchanged relevant implementation bytes. Common19, full extracted
+runner11 and analyses use 9e2c933. No report is relabeled. Production runtime13
+remains byte-identical to b05b581dc6372cecd99471c53ee2cac72b8267ba. Rehearsal
+runtime source7097713 and ZIP fcae30b0a528e85bbbb5f98e8c2bc2a25847dfd2fe13145102438896da39715e
+remain separate from kit code source and its two actual ZIP digests in S13.json.
+Runtime is 1.0.0; no frozen source or accepted final ZIP/kit exists.
+
+Actual client: Windows 11 Pro 26H2 26300.9711 x64, PS5.1.26100.9711 and portable
+PS7.6.5. Store7.6.7 remains startup-only; Server CI is supplementary. Hidden UTF8
+drivers, clean child PATH, explicit owned ConfigPath/OutputParent and native
+release guards remain. Automated collection uses the exact packaged PS1. The
+actual BAT/normal-config/console shortcut collection is separately prepared and
+unperformed. No ordinary Music/personal-media scan or owner-config access occurred.
+
+The picker desktop/policy blocker and all owned process release evidence remain
+private; no policy changed or owner diagnostic is requested. The narrow PS5.1
+kit inventory null adapter is reviewed/tested; production bytes and StrictMode
+guards remain. S13-NONPASSES preserves earlier argument/version/path preparation,
+strict-inventory failure, private diagnostic scope and actual shortcut percent
+expansion. Direct percent physical paths refuse before Music/Explorer launch.
+
+All S08-S12 behavior/tests, exact ACL restoration/CWD/report contracts, dependency
+pins, permissions/narrow artifacts, default64, metadata/artwork, full decode,
+no-write/privacy/cancellation and source safety remain. Conversion/check never
+download; optional separate production setup requires consent. Windows10, actual
+physical/phone, genuine cloud/UNC/redirected/share/full-disk and final exact ZIP
+acceptance remain separate unproved gates. No historical aggregate supplies them.
+
+Code 9e2c933 is pushed and freshly advertised-equal; containing documentation
+checkpoint equality and exact-head push/PR CI are observed after push in the final
+response, then refreshed next entry. Pending/failed checks are not passes. Main
+remains separately NOT_INTEGRATED at 28f53b10529495754273d55654c7b29e78848c83;
+PR29 stays OPEN draft/unmerged under S14 reviewed-head/owner-approval policy.
+Fixed public v1.0.1 remains PENDING_S17, only from S16's exact accepted bytes;
+S18 verifies closure. Published v1.0.0, icons and posters remain preserved.
+
+## Preserved S12 checkpoint
+
 # Status
 
 Project IN_PROGRESS. S01-S12 are COMPLETED in the recorded available-host scope.
