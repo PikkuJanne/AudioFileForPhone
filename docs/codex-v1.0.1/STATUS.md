@@ -1,3 +1,32 @@
+# Status — S13 remains BLOCKED; session1 picker unavailable
+
+Continuation from6dda87b08cbfa6a384ce467439e8ce833cab0dc0 on2026-10-29
+uses the owner's renewed narrow process-only RemoteSigned authorization.
+Fresh native PS5.1 read-only checks find all policy scopes Undefined/baseline
+Restricted, FullLanguage, no effective AppLocker rules, kernel CI2/user-mode CI0.
+Before/after restriction state matches; no managed refusal is observed.
+
+The unchanged hash-verified driver actually enters PS5.1.26100.9711 x64 STA with
+RemoteSigned in session1 (prior attempts used session2). Hidden and visible runs
+save before_selection; both supported sky and cua inventories expose no picker.
+No UI input occurred. Selected-path equality and actual Cancel exception remain
+NOT_RUN. S13/A3 stay BLOCKED_INTERACTIVE_DESKTOP; S14 remains NOT_STARTED.
+Only exact owned PID identities6452/9484 were terminated; both and children are
+absent. Termination is not Cancel. The fresh owned literal/Unicode source is empty.
+
+All24 source/runtime hashes and22 retained reports match;19 raw evidence digests
+are retained privately. New report SHA256 a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f.
+No implementation/kit change, Music/media/config access, conversion/download or
+persistent policy/PATH/registry/permission change occurred. Prior114 groups/two
+analyses retain actual source9e2c933/runtimeb05b581 identities.
+Entry push40832089767/PR40832096671 pass all4 supplementary Server jobs. Observe
+final checkpoint sync/exact-head CI after push; refresh next entry. Main remains
+28f53b1/NOT_INTEGRATED; PR29 OPEN draft/unmerged. Final assets/authority null;
+runtime1.0.0 and fixed publicv1.0.1 PENDING_S17. Full handover and filled continuation
+prompt: evidence/S13-HANDOVER.md. No owner diagnostics. STOP before S14.
+
+## Preserved earlier status
+
 # Status — S13 BLOCKED after authorized RemoteSigned launch
 
 Latest continuation began at a063ea9abaab5c9f2354943134dc4fac9e1bf9af on

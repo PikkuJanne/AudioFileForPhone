@@ -1,3 +1,118 @@
+# S13 handover — BLOCKED_INTERACTIVE_DESKTOP in session1
+
+## Outcome
+
+Continuation from6dda87b08cbfa6a384ce467439e8ce833cab0dc0 on2026-10-29
+ran the owner's authorized unchanged picker driver in Windows PowerShell5.1
+x64 STA with process-only RemoteSigned. Both launches stay before_selection;
+supported desktop inventories expose no picker. No UI interaction occurred.
+Actual selection/path equality and Cancel OperationCanceledException remain
+NOT_RUN. S13-A1/A2 retain scoped passes; S13/A3 BLOCKED; S14 NOT_STARTED. STOP.
+
+## Changes
+
+Eight documentation files only: STATE/STATUS/NEXT_SESSION/DECISIONS and S13
+evidence/handover/review/nonpasses. No implementation, kit, runtime, dependency,
+workflow, default, icon or poster change. Tested9e2c933 and runtimeb05b581 retain
+their actual identities, as do prior114 groups/two analyses and rehearsal assets.
+Only expected path in private settings changes to a fresh empty owned folder.
+
+## Verification
+
+| Check | Command/artifact | Actual environment/identity | Result |
+|---|---|---|---|
+| Managed checks | Native PS5.1 -NoLogo -NoProfile -EncodedCommand read-only policy/language/AppLocker/DeviceGuard/CIM queries | Windows11 Pro26H2 26300.9711 x64 Client; all policy scopes Undefined, baseline Restricted, FullLanguage, empty AppLocker, kernel CI2/user-mode CI0 | Before/after restriction states match; no managed refusal observed |
+| Driver integrity | Literal SHA256 and current runner AST extent comparison | Driverba38dab5, function19222f49, runner58bfd53f; full hashes in S13.json | All unchanged; full runner not dot-sourced |
+| Isolated launch | powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File private picker-driver.ps1 | Actual PS5.1.26100.9711 x64 STA RemoteSigned/session1; PID6452 hidden and9484 visible | Both before_selection; no final raw exit or interaction pass |
+| Desktop | sky.list_windows/list_apps; cua.getState/listWindows | New session1 differs from prior session2 | No targetable task picker/console; zero UI input actions/screenshots |
+| Owned release | Exact CIM PID/executable/command checks then Stop-Process -Id | Only6452/9484; child/process absence and literal source inventory | All absent, folder empty; termination is not Cancel |
+| Retained evidence | Literal Get-FileHash comparisons |24 source/runtime paths,22 prior reports,19 raw digests | All match; no broad suites rerun for unchanged implementation |
+| Entry GitHub | Fetch/advertised refs and exact-head Actions/jobs | Entry6dda87b; push40832089767/PR40832096671 | Fresh feature equality, both runs/all4 Server jobs SUCCESS; Server supplementary |
+
+Private report picker-session1-blocked.json SHA256:
+a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f.
+Private scope AFP-S13-picker-eec7defca96a4d3694abd844f4796227 retains raw evidence.
+Only native child PSModulePath uses existing PS5.1 module directories. No persistent
+policy/PATH/registry/permissions, owner config/Music/media access, conversion or
+download. Final documentation validation and independent review are in S13.json.
+
+## Git state — observe containing checkpoint after push
+
+Origin https://github.com/PikkuJanne/AudioFileForPhone.git; branch
+codex/audiofileforphone-v1.0.1; PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29
+OPEN draft/unmerged. Entry6dda87b advertised-equal with successful exact-head CI.
+Final HEAD/live comparison time, clean worktree and exact-head push/PR CI belong
+in the post-push final response and must be refreshed next entry. Pending/failed
+checks are not passes; a commit cannot contain its own SHA.
+Main separately NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+No main integration, tag, release, protection, visibility or history change.
+
+## Decisions, risks and blocker
+
+D65 preserves the renewed narrow authorization and fresh session1 outcome.
+Managed refusal was not observed; the concrete blocker is absent targetable UI.
+Do not infer path equality/Cancel from entry or termination, repeat blind launches,
+or delegate kit debugging to owner. Resume only S13 when the actual picker can
+be targeted; stop on managed signing/language/application-control refusal.
+Windows10 client, StorePS7 conversion, actual BAT/phone, genuine cloud/UNC/
+redirected/share/full-disk and exact final1.0.1 package evidence remain unproved.
+
+## Human action
+
+None requested for S13. No owner diagnostics, PATH edits, media uploads or debugging.
+S15 remains the consolidated owner acceptance session.
+
+## Next step and fully filled prompt
+
+```text
+Resume ONLY S13 in C:\projects\AudioFileForPhone-main using docs/codex-v1.0.1
+on branch codex/audiofileforphone-v1.0.1. PR29:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Latest entry6dda87b08cbfa6a384ce467439e8ce833cab0dc0; refresh the containing
+checkpoint from the previous final response, fresh live feature/main refs and
+exact-head push/PR CI. Main NOT_INTEGRATED at28f53b10529495754273d55654c7b29e78848c83.
+Read AGENTS.md, active CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET,
+tasks/S13.md, evidence/S13.json, S13-HANDOVER/REVIEW/NONPASSES, D65 and relevant
+ACCEPTANCE_KIT/MINIMAL_HUMAN_ACCEPTANCE/AUTOMATED_ACCEPTANCE/RELEASE_GATES/
+SYNC_AND_RELEASE specs. S01-S12 complete; S13/A3 BLOCKED; S14 NOT_STARTED.
+Owner authorizes existing launcher-equivalent process-only RemoteSigned for the
+unchanged isolated picker driver. Check managed restrictions read-only first;
+stop on managed signing/language/application refusal. No persistent execution
+policy/PATH/registry/permissions changes, elevation or control bypass.
+Unchanged driver hash ba38dab55fae4173dc552c573816095a64d85f28e47f29acd612950ee103b481;
+function19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd;
+runner58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c.
+Run only Windows PowerShell5.1 -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned
+-File with existing native child module isolation and a fresh owned empty folder.
+Latest hidden/visible session1 launches entered PS5.1.26100.9711 x64 STA RemoteSigned
+but remained before_selection. sky/cua exposed no picker; zero UI input. Exact
+owned processes6452/9484 and children absent; source empty; termination is not Cancel.
+Private report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f retains19 raw digests;
+24 source/runtime hashes and22 prior reports match. Do not repeat identical blind
+launches without actual targetable-desktop evidence. No owner debugging.
+When targetable, select the empty owned folder yourself and verify ordinal exact
+expected-path equality. Reopen and click Cancel yourself; prove
+System.OperationCanceledException with exact message 'Selection cancelled.'.
+Retain tested9e2c93335f08fabff51ea274e5bf43f3cd5c08af/runtimeb05b581dc6372cecd99471c53ee2cac72b8267ba,
+prior114 groups/two analyses and actual rehearsal identities. No kit/runtime change
+in this continuation; rerun affected checks if bytes change. Available Windows11
+Pro26H2 26300.9711 client; Windows10 unavailable; Store7.6.7 startup-only; Server
+supplementary. Actual BAT/phone NOT_TESTED; no accepted final source/ZIP/kit/authority.
+Preserve Music/personal media/config, default64, source safety, icons/posters,
+publishedv1.0.0 and all safeguards. Update evidence/state/status/decisions/full
+handover; review/test/commit/push, verify fresh live sync and exact-head CI, STOP
+before S14. If still unavailable, checkpoint BLOCKED and stop. No main/release
+work. Fixed publicv1.0.1 remains S16 exact accepted bytes -> separate S17 -> S18.
+```
+
+## Stop and fixed deliverable
+
+This S13 thread ends after checkpoint verification. Publicv1.0.1 remains PENDING_S17;
+runtime1.0.0, frozen source/accepted ZIP/kit/authority null. S18 verifies closure.
+Publishedv1.0.0 remains preserved. No S14 or publication authority is supplied here.
+
+## Preserved earlier handovers
+
 # S13 handover — BLOCKED after authorized process-only RemoteSigned
 
 ## Outcome

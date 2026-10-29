@@ -1,3 +1,25 @@
+# S13 continuation review — entry6dda87b
+
+Read-only prerequisite audit independently confirms exact S13-A3 selection/path
+equality and Cancel exception criteria, unchanged driver/function/runner identities
+and all24 source/runtime hashes. Latest fresh managed checks permit the narrow
+authorized process-only request without an observed managed refusal. Session1
+differs from prior session2, but hidden/visible actual PS5.1 x64 STA entries still
+expose no picker through sky or cua and remain before_selection. Zero UI input;
+selection/Cancel remain NOT_RUN. Forced owned release cannot supply cancellation.
+All24 source/runtime and22 retained reports match;19 private raw digests retained.
+No implementation changes or broad reruns. Final independent documentation/privacy/
+JSON/diff review is recorded in the latest S13.json continuation before commit.
+Private report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f remains outside Git.
+
+Final independent review PASSED: all eight files and private report,19 raw
+file digests,24 source/runtime and22 retained reports were independently checked.
+Driver/function and exact ordinal current AST match with zero parse errors; owned
+folder/process state, privacy, release/routing assertions and whitespace pass.
+No substantive correction was required. Latest S13.json validation is PASSED.
+
+## Preserved earlier reviews
+
 # S13 review
 
 ## Latest continuation from a063ea9 — unchanged driver enters, UI still unavailable

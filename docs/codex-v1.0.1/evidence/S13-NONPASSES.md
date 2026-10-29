@@ -1,3 +1,26 @@
+# Latest S13 nonpass — entry6dda87b, session1, actual picker still absent
+
+The renewed owner authorization permits unchanged process-only RemoteSigned.
+Native read-only restrictions before/after match: all scopes Undefined/baseline
+Restricted, FullLanguage, effective AppLocker empty, kernel CI2/user-mode CI0.
+No managed refusal is observed. Both actual PS5.1.26100.9711 x64 STA RemoteSigned
+launches (hidden6452, visible9484) are session1, distinct from historical session2.
+Both save before_selection. sky/list apps/windows and cua inventory expose no
+task picker/console. No UI input is issued; selection/equality and Cancel exception
+remain NOT_RUN. S13/A3 remain BLOCKED_INTERACTIVE_DESKTOP; S14 NOT_STARTED.
+
+Only exact PID/executable/driver-command identities6452/9484 are terminated;
+all owned processes/children absent and source empty. No final raw exit captured;
+termination is not Cancel. The initial read attempted nonexistent picker-settings.json;
+the actual unchanged driver names settings.json, which was then read. This was a
+read-only preparation lookup, with no driver edit or managed refusal.
+24 source/runtime hashes,22 retained reports and19 private raw digests match.
+Report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f retains actual launch/restriction/release facts.
+No Music/media/config access, conversion/download, persistent policy/PATH/registry/
+permission change or owner diagnostic request. Resume only with a targetable picker.
+
+## Preserved earlier nonpasses
+
 # S13 nonpasses and remaining evidence
 
 ## Latest continuation from a063ea9 — process policy allowed, picker still untargetable

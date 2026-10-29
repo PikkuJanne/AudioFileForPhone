@@ -1,3 +1,34 @@
+# Next session — resume S13 only with a targetable picker
+
+Latest entry6dda87b08cbfa6a384ce467439e8ce833cab0dc0 freshly equals live feature;
+push40832089767/PR40832096671 pass all4 supplementary Server jobs. Refresh the
+later containing checkpoint from the final response, fresh advertised refs and
+exact-head push/PR CI. Main28f53b10529495754273d55654c7b29e78848c83 remains
+NOT_INTEGRATED; PR29 OPEN draft/unmerged. S13/A3 BLOCKED; S14 NOT_STARTED.
+
+Fresh native PS5.1 restrictions match before/after: all policy scopes Undefined,
+baseline Restricted, FullLanguage, empty effective AppLocker, kernel CI2/user-mode
+CI0. No managed refusal observed. Owner-authorized process-only RemoteSigned
+remains narrowly permitted; no persistent policy/PATH/registry/permission change,
+elevation or control bypass. Stop on managed signing/language/application refusal.
+
+Unchanged driverba38dab5/function19222f49/runner58bfd53f runs in PS5.1 x64 STA
+RemoteSigned/session1. Both hidden/visible attempts remain before_selection.
+sky and cua expose no picker; no UI input occurred. Selection/equality and Cancel
+OperationCanceledException remain NOT_RUN. Exact owned drivers6452/9484 and
+children are absent after identity-checked termination, which is not Cancel.
+Fresh owned source remains empty;24 source/runtime and22 prior reports match.
+New private report a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f binds19 raw files.
+
+Read the latest evidence/S13-HANDOVER.md section and its filled prompt, S13.json,
+REVIEW/NONPASSES and D65. Resume only S13 with actual targetable-desktop evidence;
+do not repeat identical blind launches or ask owner to debug. Retain prior114
+groups/two analyses, tested9e2c933/runtimeb05b581, missing client/physical/phone/
+exact final package gates and null final assets/authority. No S14/main integration
+or publication in this checkpoint. STOP after safe checkpoint if still unavailable.
+
+## Preserved earlier routing
+
 # Next session — resume S13 only when the picker is targetable
 
 Latest entry a063ea9abaab5c9f2354943134dc4fac9e1bf9af freshly matched the live

@@ -601,3 +601,21 @@ D64 - 2026-10-29, S13 continuation from a063ea9: the owner's explicit narrow
       retries or owner debugging. Main integration, missing clients/physical/phone/
       exact final package, fixedv1.0.1 S16/S17 authority and S18 closure remain
       separate. No config/Music/media access, conversion or download.
+
+D65 - 2026-10-29, S13 continuation from6dda87b: renewed owner authorization
+      retains only the existing launcher-equivalent process-only RemoteSigned
+      request for unchanged extracted driver. Fresh native read-only restrictions
+      before/after match; no managed refusal observed. New session1 differs from
+      historical session2, so one bounded hidden/visible recheck is recorded.
+      Actual PS5.1.26100.9711 x64 STA RemoteSigned drivers6452/9484 remain
+      before_selection; sky and cua expose no picker. Zero UI input; selection/
+      equality and Cancel exception NOT_RUN. Exact owned identities terminated,
+      children absent and source empty; termination is not Cancel. Preserve24
+      source/runtime hashes,22 retained reports,19 raw digests and private report
+      a7ab867c671262994f1699d3706766065525146526c3afaef4ace68800bd382f. No code/kit changes or broad reruns/relabeling. Entry exact-head
+      push40832089767/PR40832096671 and all4 Server jobs SUCCESS. Final checkpoint
+      sync/CI observed after push. S13/A3 BLOCKED_INTERACTIVE_DESKTOP; S14 unstarted.
+      Resume only with actual targetable UI; no blind retries or owner debugging.
+      No persistent settings, Music/media/config access, conversion/download,
+      main integration or publication. Missing clients/physical/phone/final package
+      and fixedv1.0.1 S16/S17 authority/S18 closure remain separate.
