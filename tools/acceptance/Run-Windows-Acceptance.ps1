@@ -166,7 +166,7 @@ function Write-KitGate {
         schema_version = 1; kind = 'candidate_acceptance'; gate_id = $GateId; status = 'PASSED'
         source_commit = $kit.source_commit; runtime_zip_sha256 = $kit.runtime_zip_sha256
         acceptance_kit_sha256 = $kit.acceptance_kit_sha256; runtime_hashes = $kit.runtime_hashes
-        command = 'Run-Windows-Acceptance.bat (local kit; exact archived runner identity)'
+        command = $(if ($AutomatedOnly) { 'Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)' } else { 'Run-Windows-Acceptance.ps1 (interactive; exact archived runner; private arguments omitted)' })
         started_utc = $report.started_utc; ended_utc = [DateTime]::UtcNow.ToString('o')
         environment = $EnvironmentRecord; checks = $Checks
     }

@@ -106,6 +106,52 @@ try {
     Assert-Common ($exported.report.cases[0].exit_code -eq 0 -and $exported.report.cases[0].input_count -eq 1 -and $exported.report.cases[0].raw_exit_captured -and @($exported.report.runtime_hashes).Count -eq 1) 'Nested result fields were not exported correctly.'
     Add-CommonCase 'report_whitelist_and_nested_result'
     Assert-CommonRefused { Export-AcceptanceReport -Report $report -OutputDirectory $export } 'report_no_overwrite'
+    # Invoke only exact extracted inert writers. Synthetic gate files exercise
+    # provenance contracts; they are deleted and never count as acceptance.
+    & {
+        $runnerPath = Join-Path $project 'tools\acceptance\Run-Windows-Acceptance.ps1'
+        $tokens = $null; $parseErrors = $null
+        $runnerAst = [Management.Automation.Language.Parser]::ParseFile($runnerPath, [ref]$tokens, [ref]$parseErrors)
+        Assert-Common (@($parseErrors).Count -eq 0) 'Runner must parse before exact writer extraction.'
+        foreach ($name in @('Write-KitJson', 'Write-KitGate')) {
+            $definitions = @($runnerAst.FindAll({ param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -ceq $name }, $false))
+            Assert-Common ($definitions.Count -eq 1) ('Expected one exact inert writer: ' + $name)
+            . ([scriptblock]::Create($definitions[0].Extent.Text))
+        }
+        $gateRoot = Join-Path $scope 'synthetic-gate-provenance'
+        $null = [IO.Directory]::CreateDirectory($gateRoot)
+        $kit = [pscustomobject]@{
+            source_commit = ('1' * 40); runtime_zip_sha256 = ('2' * 64)
+            acceptance_kit_sha256 = ('3' * 64)
+            runtime_hashes = @([pscustomobject]@{ path = 'AudioFileForPhone.ps1'; sha256 = ('4' * 64) })
+        }
+        $report = [pscustomobject]@{ kind = 'candidate_collection'; started_utc = [DateTime]::UtcNow.ToString('o') }
+        $gateCase = [pscustomobject]@{ status = 'PASSED' }
+        $checks = @([pscustomobject]@{ id = 'member_hashes'; status = 'PASSED'; expected = 'synthetic writer fixture'; observed = 'synthetic writer fixture' })
+        $environment = [pscustomobject]@{ os = 'synthetic contract fixture' }
+        foreach ($automatedMode in @($true, $false)) {
+            $AutomatedOnly = $automatedMode
+            $mode = if ($AutomatedOnly) { 'automated' } else { 'interactive' }
+            $session = Join-Path $gateRoot $mode
+            $null = [IO.Directory]::CreateDirectory($session)
+            Write-KitGate 'exact_package' $checks $gateCase $environment
+            $gate = Read-AcceptanceJson (Join-Path $session 'exact_package.json')
+            $expectedCommand = if ($AutomatedOnly) { 'Run-Windows-Acceptance.ps1 -AutomatedOnly (exact archived runner; private arguments omitted)' } else { 'Run-Windows-Acceptance.ps1 (interactive; exact archived runner; private arguments omitted)' }
+            Assert-Common ($gate.command -ceq $expectedCommand -and $gate.command -notmatch '\.bat|[A-Za-z]:[\\/]|\\\\') 'Gate command must identify actual runner/mode without claiming BAT execution or exposing paths.'
+            Assert-Common ($gate.kind -ceq 'candidate_acceptance' -and $gate.gate_id -ceq 'exact_package' -and $gate.exit_code -eq 0 -and $gate.source_commit -ceq $kit.source_commit -and $gate.runtime_zip_sha256 -ceq $kit.runtime_zip_sha256 -and $gate.acceptance_kit_sha256 -ceq $kit.acceptance_kit_sha256) 'Gate provenance lost its candidate identity or controlled result.'
+            Add-CommonCase ('gate_command_' + $mode + '_mode')
+        }
+        $session = Join-Path $gateRoot 'guarded'
+        $null = [IO.Directory]::CreateDirectory($session)
+        $report.kind = 'rehearsal_collection'
+        Write-KitGate 'exact_package' $checks $gateCase $environment
+        Assert-Common (-not [IO.File]::Exists((Join-Path $session 'exact_package.json'))) 'Rehearsal emitted candidate acceptance.'
+        Add-CommonCase 'gate_rehearsal_cannot_emit_candidate_acceptance'
+        $report.kind = 'candidate_collection'; $gateCase.status = 'FAILED'
+        Write-KitGate 'exact_package' $checks $gateCase $environment
+        Assert-Common (-not [IO.File]::Exists((Join-Path $session 'exact_package.json'))) 'Failed case emitted candidate acceptance.'
+        Add-CommonCase 'gate_failed_case_cannot_emit_candidate_acceptance'
+    }
     $shell = Join-Path $PSHOME $(if ($PSVersionTable.PSEdition -ceq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' })
     $released = $false
     $child = Invoke-AcceptanceChild -Executable $shell -Arguments @('-NoLogo', '-NoProfile', '-Command', '[Console]::OutputEncoding = New-Object Text.UTF8Encoding($false); [Console]::Write([string]::new([char]120,1100000)); exit 7')
