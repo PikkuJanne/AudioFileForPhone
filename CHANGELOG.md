@@ -6,7 +6,7 @@ vendor notices/provenance and validates a synthetic encode/probe/decode before
 selection. Conversion never downloads tools. Existing-tool setup and deliberate
 remembering remain available offline; no automatic update or global install.
 
-## Unreleased v1.0.1 work
+## 1.0.1 (unreleased candidate)
 
 - Add a no-write environment-check PS1/BAT, explicit owned synthetic self-test,
   bounded early startup failure records with storage fallback, stable stage/error
@@ -37,7 +37,8 @@ remembering remain available offline; no automatic update or global install.
 - Add deliberate atomic user-selection persistence through
   `Save-AudioToolSelection`; ordinary conversion and preview never save settings.
 - Preserve short-operation deadlines and unlimited normal encode/full-decode
-  runtime. Runtime version remains 1.0.0 until the planned package step.
+  runtime. Set the single runtime version to 1.0.1 for candidate preparation;
+  exact-package acceptance and public release remain separate pending gates.
 
 ## 1.0.0
 

@@ -1,6 +1,9 @@
 # Support and troubleshooting
 
-AudioFileForPhone targets Windows 11 with Windows PowerShell 5.1 and PowerShell 7.
+AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
+PowerShell 5.1 and PowerShell 7. Required Windows 10 client acceptance and exact
+v1.0.1 package acceptance remain pending in the
+[active release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
 It is unsigned and needs separately supplied FFmpeg/ffprobe for conversion.
 Read [README.md](README.md) for setup, options and output behavior.
 

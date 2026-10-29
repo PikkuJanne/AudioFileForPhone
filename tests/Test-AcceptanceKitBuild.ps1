@@ -41,7 +41,17 @@ function New-KitTestFixture {
             $bytes=[IO.File]::ReadAllBytes((Join-Path $project $name))
             if ($name -ceq 'AudioFileForPhone.Helpers.ps1') {
                 $text=[Text.Encoding]::UTF8.GetString($bytes)
-                $text=$text.Replace("return '1.0.0'",("return '"+$HelperVersion+"'"))
+                $tokens=$null; $parseErrors=$null
+                $helperAst=[Management.Automation.Language.Parser]::ParseInput($text,[ref]$tokens,[ref]$parseErrors)
+                $versionFunctions=@($helperAst.FindAll({param($node) $node -is [Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -ceq 'Get-AudioAppVersion'},$true))
+                Assert-KitTest (@($parseErrors).Count -eq 0 -and $versionFunctions.Count -eq 1) 'Fixture helper must parse and define exactly one version function.'
+                $statements=@($versionFunctions[0].Body.EndBlock.Statements)
+                Assert-KitTest ($statements.Count -eq 1 -and $statements[0] -is [Management.Automation.Language.ReturnStatementAst]) 'Fixture version function must contain one literal return.'
+                $pipeline=$statements[0].Pipeline
+                Assert-KitTest ($pipeline -is [Management.Automation.Language.PipelineAst] -and $pipeline.PipelineElements.Count -eq 1 -and $pipeline.PipelineElements[0] -is [Management.Automation.Language.CommandExpressionAst]) 'Fixture version return must contain one expression.'
+                $literal=$pipeline.PipelineElements[0].Expression
+                Assert-KitTest ($literal -is [Management.Automation.Language.StringConstantExpressionAst] -and $literal.Value -cmatch '^[0-9]+\.[0-9]+\.[0-9]+$' -and $HelperVersion -cmatch '^[0-9]+\.[0-9]+\.[0-9]+$') 'Fixture version replacement requires literal semantic versions.'
+                $text=$text.Substring(0,$literal.Extent.StartOffset)+("'"+$HelperVersion+"'")+$text.Substring($literal.Extent.EndOffset)
                 $bytes=[Text.Encoding]::UTF8.GetBytes($text)
             }
             $sha=[Security.Cryptography.SHA256]::Create()

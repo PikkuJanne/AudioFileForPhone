@@ -9,15 +9,16 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-The app reports version 1.0.0. Exact package and publication verification are
-recorded in the repository's [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md).
+The app reports version 1.0.1. Candidate package, acceptance and publication status
+are recorded in the repository's [active release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
 See [CHANGELOG.md](CHANGELOG.md) and the
 [tested boundaries in SUPPORT.md](SUPPORT.md#tested-boundaries).
 
 ## Setup
 
-Use Windows 11 with Windows PowerShell 5.1 or PowerShell 7. Keep these files
-together:
+The target systems are Windows 10 22H2 x64 and Windows 11 x64 with Windows
+PowerShell 5.1 or PowerShell 7. See the recorded acceptance limits in SUPPORT.md.
+Keep these files together:
 
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)
