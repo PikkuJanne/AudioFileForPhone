@@ -1,3 +1,31 @@
+# Next session — resume S14 after exact-head main-merge approval
+
+S14 is BLOCKED_OWNER_MERGE_APPROVAL; S15 NOT_STARTED. Read current S14 evidence,
+handover/review/nonpasses and active task/specs, including SYNC_AND_RELEASE.
+Refresh the containing checkpoint SHA from the preceding final response, fresh
+advertised feature/main refs and exact-head push/PR CI. Do not treat pending or
+failed checks as success. Verify owner approval names that reviewed head or a
+recorded bounded policy before merging PR29 by ordinary repository policy.
+
+Feature codex/audiofileforphone-v1.0.1; PR29:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Main28f53b10529495754273d55654c7b29e78848c83 remains NOT_INTEGRATED. Runtime1.0.1;
+premerge source c783c8c02468eabe16286fb88eab4b64c66179bc and reporting correction
+8bfb38c12feb4c0a9341577c23088868edf5040b retain their actual reports/source hashes. Private evidence:
+C:\projects\AFP-S14-20261029. No accepted/frozen source or final ZIP/kit exists.
+
+After approval, integrate and verify clean main source C, run full candidate
+checks, build18-member allowlisted exact-C runtime ZIP/manifest/checksums and
+one final kit embedding those exact bytes. Verify extracted final-mode behavior
+in owned Windows11 PS5.1/portablePS7 scopes; deliver kit. Keep missing Windows10,
+StorePS7 conversion, actual BAT/phone and other unproved gates separate for S15.
+Do not repeat successful S13 picker unless affected code/evidence changes.
+Preserve source/default64/Music/config/media/icons/posters/security and publicv1.0.0.
+Follow S14-HANDOVER.md filled prompt; test/review/checkpoint/push/fresh-sync/CI,
+report main integration separately and STOP before S15. Only S16 binds accepted
+bytes, separately authorized S17 publishes fixed publicv1.0.1, S18 closes.
+
+## Preserved prior routing — current S14 routing above supersedes it
 # Next session — S14 only after a separately started owner thread
 
 S13 is COMPLETED; S14 remains NOT_STARTED. Refresh the containing S13 checkpoint

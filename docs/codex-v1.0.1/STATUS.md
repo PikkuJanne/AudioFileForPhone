@@ -1,3 +1,30 @@
+# Status — S14 BLOCKED_OWNER_MERGE_APPROVAL
+
+S01-S13 retain their recorded completed scope. S14 prepares runtime1.0.1 and
+current docs/version tests, independent synthetic kit versions and accurate
+PS1/automated gate provenance. The feature candidate is reviewable; AGENTS.md
+requires owner approval for the exact reviewed head before main integration.
+No such approval/bounded merge policy is recorded. S14 is BLOCKED; S15 unstarted.
+
+Premerge source c783c8c02468eabe16286fb88eab4b64c66179bc passes 76
+suite reports/1948 required groups/6 historical observations
+in Windows11 Pro26H2 26300.9711 x64 Client, PS5.1.26100.9711/portablePS7.6.5.
+Two analyses check34 selected/71 parser files with zero diagnostics and verified
+pinned dependencies. Reporting-only correction 8bfb38c12feb4c0a9341577c23088868edf5040b has separate
+focused contracts/analyses; actual per-report identities/digests stay distinct.
+No broad result is relabeled as execution on a later documentation head.
+
+Main remains28f53b10529495754273d55654c7b29e78848c83/NOT_INTEGRATED; PR29 draft/open.
+Final containing checkpoint fresh advertised equality and exact-head CI are
+observed after push in the final response, then refreshed next entry. Frozen C,
+final runtime ZIP/kit and publication authority remain null. Build/test/delivery
+from clean integrated C still remains in S14. Windows10, StorePS7 conversion,
+actual physical BAT/phone and exact final acceptance remain separate missing gates.
+Publishedv1.0.0 tag/release/3server asset digests match S01; v1.0.1 unused.
+Full handover/remaining work: evidence/S14-HANDOVER.md. No owner diagnostics.
+Only exact-head main-merge approval is requested; STOP before S15.
+
+## Preserved S13 and earlier status
 # Status — S13 COMPLETED; stop before S14
 
 S01-S13 are COMPLETED within their recorded scope. On 2026-10-29 this continuation

@@ -640,3 +640,21 @@ D66 - 2026-10-29, finish S13 only from9295b1c: accept the saved successful manua
       owner-approval policy. Missing clients/physical/phone/exact package and
       fixedv1.0.1 S16/S17 authority/S18 closure remain separate. No further S13
       owner action. Do not repeat successful picker unless evidence/code changes.
+
+D67 - 2026-10-29, S14 preparation: bump authoritative runtime to1.0.1 and describe
+      unreleased candidate/target acceptance limits. Bind help/version to active
+      fixed RELEASE_TARGET without altering historical v1.0.0 templates. Replace
+      only AST-identified synthetic version literal so old/new/mismatch fixtures
+      remain independent. Correct gate command provenance to actual PS1 runner/
+      AutomatedOnly mode without private arguments, with four focused writer
+      contracts and rehearsal/failed-case refusal. Full premerge and reporting
+      focused reports keep actual distinct source identities. No frozen C or
+      accepted final ZIP/kit is invented from synthetic packaging/rehearsal tests.
+      AGENTS retains owner approval for reviewed-head main integration; no current
+      approval/bounded policy exists. Checkpoint BLOCKED_OWNER_MERGE_APPROVAL with
+      exact final head/CI and a ready-to-paste owner approval request, then STOP.
+      Main28f53b1 stays NOT_INTEGRATED/PR29 draft; S15 unstarted. After approval,
+      resume S14 ordinary merge/full clean-main candidate tests/allowlisted exact
+      package and final-mode kit/delivery. Missing clients/physical/phone and
+      fixedv1.0.1 S16/S17 authority/S18 closure remain separate. Preserve v1.0.0,
+      safety/defaults, icons/posters and private raw evidence outside public Git.
