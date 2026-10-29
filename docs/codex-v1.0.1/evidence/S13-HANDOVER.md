@@ -1,3 +1,143 @@
+# S13 handover — BLOCKED after authorized process-only RemoteSigned
+
+## Outcome
+
+Continuation from a063ea9abaab5c9f2354943134dc4fac9e1bf9af on2026-10-29 remains
+BLOCKED_INTERACTIVE_DESKTOP. The unchanged extracted picker driver now actually
+runs in native Windows PowerShell5.1 x64 STA with effective RemoteSigned, but the
+supported desktop tools expose no picker window. Selection/path equality and
+actual Cancel OperationCanceledException remain NOT_RUN. S13-A1/A2 retain scoped
+passes; S13-A3/S13 stay BLOCKED. S14 remains NOT_STARTED. STOP after checkpoint.
+
+## Changes
+
+Eight active documentation files only: STATE/STATUS/NEXT_SESSION/DECISIONS and
+S13 evidence/handover/review/nonpasses. No kit, test, runtime, dependency, workflow,
+default, icon or poster bytes changed. Tested kit/test source remains
+9e2c93335f08fabff51ea274e5bf43f3cd5c08af; production runtime remains
+b05b581dc6372cecd99471c53ee2cac72b8267ba. Prior114 groups/two analyses and distinct
+rehearsal ZIP/kit identities retain actual execution identities.
+
+The owner explicitly authorized the launcher-equivalent process-only
+-ExecutionPolicy RemoteSigned request for this unchanged isolated driver. This
+narrowly supersedes older blanket retry prohibitions. Only child PSModulePath
+was corrected to native PS5.1 module directories after an inherited PS7 module
+autoload failure. No persistent execution policy, PATH, registry or permissions
+were changed; no signing/language/application controls were bypassed.
+
+## Verification
+
+| Check | Exact command/artifact | Actual environment/identity | Result |
+|---|---|---|---|
+| Managed restrictions | PS5.1 -NoLogo -NoProfile -Command read-only Get-ExecutionPolicy -List, LanguageMode, Get-AppLockerPolicy -Effective -Xml, DeviceGuard CIM | All policy scopes Undefined; baseline effective Restricted; FullLanguage; AppLocker no rules; kernel CI2/user-mode CI0 | Native module/control probe succeeds; before/after state matches; no managed refusal on native driver route |
+| Driver integrity | Get-FileHash -LiteralPath; exact runner AST extent comparison | Runner58bfd53f; extracted function19222f49; unchanged driverba38dab5, full hashes in S13.json | PASSED; only fresh expected empty-folder path changed in settings; full runner not dot-sourced |
+| Actual launch | powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File private picker-driver.ps1 | Windows11 Pro Client26H2 26300.9711 x64; actual PS5.1.26100.9711 x64/STA/session2, effective RemoteSigned | Hidden and visible attempts entered and saved before_selection; actual selection/cancel NOT_RUN |
+| Desktop | Repeated sky.list_windows()/list_apps() | Supported Windows Computer Use; Explorer/Firefox also session2 | No targetable task picker/console; no UI input actions; no selected path or exception |
+| Owned release/source | Exact PID/executable/command checks, Stop-Process -Id, CIM child checks, literal empty-folder inventory | Driver4564/20652 and diagnostic7308 only; first25280 exited1 itself | All absent with owned children; drivers' captured-1 is forced termination, not Cancel; empty source unchanged |
+| Integrity/history | Literal SHA256 comparisons |24 source/runtime paths;21 retained reports including both old picker refusals | All match; new private report312e29d0; no broad suite rerun because implementation unchanged |
+| Entry sync/CI | git fetch/ls-remote; Actions run metadata/jobs | a063ea9 feature; main28f53b1; push40828165165/PR40828171042 | Feature freshly equal; both exact-head runs and all4 supplementary Server jobs SUCCESS |
+
+The first authorized launch exited1 before report creation because inherited
+PS7 PSModulePath selected the wrong Security module. A read-only diagnostic
+captured AuthorizationManager validation failure in that PS7 type file under
+baseline Restricted. Native PS5.1 module import works without a policy argument.
+One diagnostic remained alive and held captures; its exact identity was released
+before hashing all26 raw files. These preparation failures are preserved in
+S13-NONPASSES.md, separately from actual native-driver entry and unavailable UI.
+
+Private picker-remotesigned-blocked.json SHA256:
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7.
+It binds unchanged driver/function, restrictions before/after, actual before-
+selection reports, release, empty source and24/21 integrity checks. Private scope
+AFP-S13-picker-408a5eca428e4f8aba28542d226fd47d is retained. No ordinary Music,
+personal media or owner config access, conversion or download occurred. Physical
+BAT/phone observations remain NOT_TESTED. Final docs validation/review is recorded
+in S13.json; containing-checkpoint CI is observed after push, not invented here.
+
+## Git state — observe final containing checkpoint after push
+
+Origin https://github.com/PikkuJanne/AudioFileForPhone.git; branch
+codex/audiofileforphone-v1.0.1; PR29 https://github.com/PikkuJanne/AudioFileForPhone/pull/29
+remains OPEN draft/unmerged. Entry a063ea9 freshly equals live feature; exact-head
+CI passes as above. Final containing HEAD/live equality, clean worktree, comparison
+time and exact-head push/PR CI belong in the final response and are refreshed next
+entry; a commit cannot contain its own SHA. Pending/failed checks are not passes.
+
+Main remains separately NOT_INTEGRATED at local/live
+28f53b10529495754273d55654c7b29e78848c83. No S14/main integration, tag, release,
+protection, visibility or history changes. Frozen source/accepted ZIP/kit/authority
+remain null; runtime1.0.0 and fixed publicv1.0.1 PENDING_S17 remain. S16 supplies
+exact accepted bytes; only separately started S17 publishes; S18 verifies closure.
+
+## Decisions, risks and blocker
+
+D64 records the owner's narrow authorization, read-only checks, safe child-module
+correction, actual driver entry, unavailable UI and exact owned process release.
+The earlier scripts-disabled refusals stay historical; they are not the latest
+failure stage. The remaining S13 requirement needs an actual targetable picker on
+a supported allowed desktop. Do not repeat identical untargetable launches without
+new desktop evidence or infer either interaction from process entry/termination.
+Stop on managed signing, language or application-control refusal.
+
+Windows10 client, StorePS7 conversion, actual physical BAT/phone, genuine cloud/
+UNC/redirected/share, physical full disk and final exact1.0.1 ZIP/kit acceptance
+remain separate unproved gates. All S08-S12 safeguards/nonpasses remain preserved.
+
+## Human action
+
+None requested for S13. No owner diagnostics, PATH edits, media uploads or kit
+debugging. S15 remains the later consolidated acceptance session.
+
+## Next step and filled prompt — resume S13 only
+
+```text
+Resume ONLY S13 in C:\projects\AudioFileForPhone-main using docs/codex-v1.0.1
+on branch codex/audiofileforphone-v1.0.1. PR29:
+https://github.com/PikkuJanne/AudioFileForPhone/pull/29.
+Latest entry a063ea9abaab5c9f2354943134dc4fac9e1bf9af; refresh the later
+containing checkpoint from the previous final response, fresh live feature/main
+refs and exact-head push/PR CI. Main NOT_INTEGRATED at
+28f53b10529495754273d55654c7b29e78848c83; PR remains OPEN draft/unmerged.
+Read AGENTS.md, active CHARTER/STATE/STATUS/NEXT_SESSION/RELEASE_TARGET,
+tasks/S13.md, evidence/S13.json, S13-HANDOVER/REVIEW/NONPASSES, D64 and relevant
+MINIMAL_HUMAN_ACCEPTANCE/ACCEPTANCE_KIT/AUTOMATED_ACCEPTANCE/RELEASE_GATES/
+SYNC_AND_RELEASE specs. S01-S12 complete; S13/A3 BLOCKED; S14 NOT_STARTED.
+Owner authorized existing launcher-equivalent process-only RemoteSigned for
+the unchanged isolated picker driver, narrowly superseding older blanket retry
+prohibitions. Check managed restrictions read-only first; stop on managed
+signing/language/application-control refusal. No persistent policy/PATH/registry/
+permission changes, elevation or control bypass. Use only unchanged hash-verified
+driver: Windows PowerShell5.1 -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned
+-File. Native PS5.1 child PSModulePath isolation is recorded; driverba38dab5,
+function19222f49 and runner58bfd53f full hashes are in S13.json.
+Both native launches actually entered PS5.1.26100.9711 x64 STA/session2 with
+RemoteSigned, but stayed before_selection and exposed no picker via supported
+desktop APIs. Selection/equality and actual Cancel remain NOT_RUN. No UI input
+occurred. Exact owned drivers/diagnostic were terminated and all children are
+absent; termination-1 is not cancellation. Fresh empty owned folder unchanged.
+Private report312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7
+binds evidence; prior refusals remain historical. All24 source/runtime hashes
+and21 retained reports match. Do not repeat identical unavailable launches
+without new targetable-desktop evidence or ask the owner to debug.
+When a supported actual picker is targetable, perform selection yourself into
+an empty owned temporary folder and prove exact expected-path equality. Reopen,
+click Cancel yourself and prove OperationCanceledException('Selection cancelled.').
+Tested kit/test9e2c93335f08fabff51ea274e5bf43f3cd5c08af; production runtime
+b05b581dc6372cecd99471c53ee2cac72b8267ba. Retain historical114 groups/two analyses
+and actual identities; rerun only affected checks if bytes change. Available
+Windows11 Pro26H2 26300.9711 client; portablePS7.6.5. Windows10 unavailable;
+Store7.6.7 startup-only; Server supplementary. Physical BAT/phone NOT_TESTED;
+no accepted final1.0.1 source/ZIP/kit/authority. Preserve explicit owned config/
+output, default64, source safety, icons/posters, old release and all safeguards.
+Do not touch ordinary Music/personal media or request repeated diagnostics.
+Update evidence/state/status/decisions/full handover; test/review/commit/push,
+verify fresh branch equality and exact-head CI, then STOP before S14. If still
+unavailable, checkpoint BLOCKED and stop. No main integration/publication here.
+Fixed public deliverablev1.0.1: S16 exact bytes -> separate S17 -> S18 closure.
+```
+
+## Preserved previous handover — latest authorization and outcome are above
+
 # S13 handover — BLOCKED
 
 ## Latest continuation outcome — 2026-10-29

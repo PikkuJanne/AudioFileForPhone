@@ -1,5 +1,42 @@
 # S13 review
 
+## Latest continuation from a063ea9 — unchanged driver enters, UI still unavailable
+
+An independent read-only reviewer confirmed S13-A3 still requires actual literal
+selection/equality and actual Cancel throwing OperationCanceledException with
+message 'Selection cancelled.'. Process entry, policy state and termination cannot
+satisfy either interaction. A1/A2 retain their recorded scope; S13/A3 remain BLOCKED.
+
+The owner's narrow process-only RemoteSigned authorization supersedes the older
+blanket retry prohibition. Native PS5.1 managed checks are read-only: Machine/User
+and other policy scopes Undefined, baseline Restricted, FullLanguage, effective
+AppLocker empty, kernel CI2/user-mode CI0; before/after state matches. No native
+managed signing/language/application-control refusal is encountered or bypassed.
+An inherited PS7 Security autoload/type-file validation failure is separately
+preserved; correcting only child PSModulePath uses the selected host's existing
+modules without changing driver/function/signatures/PATH or persistent settings.
+
+The driver and exact AST extent retain prior full hashes. Only the expected empty
+owned folder changes in settings. Actual PS5.1 x64 STA/session2 RemoteSigned entry
+saves before_selection, but hidden/visible attempts expose no picker through the
+supported desktop APIs. No UI input, selected path or exception is claimed. Exact
+owned driver and diagnostic processes are terminated after identity checks; their
+captured termination codes are not Cancel. Children are absent and source empty.
+
+All24 source/runtime hashes and21 retained reports match; raw26-file inventory and
+private report312e29d0 remain outside Git. The transient raw-hash refusal on an open
+diagnostic capture is recorded and resolved only after releasing that exact owned
+process. No broad tests are rerun or historical reports relabeled. The eight-file
+documentation checkpoint preserves all runtime/default/release/human evidence gaps.
+Final independent full eight-file diff/JSON/privacy review PASSED. The reviewer
+independently verified the private report digest, all24 source/runtime and26 raw
+hashes, unchanged driver, exact current AST extraction, state/release/null-asset
+assertions and git diff --check. No substantive correction was required. The
+portablePS7.6.5 documentation validation passed at2026-10-29T06:54:01.7393433Z;
+S13.json records both outcomes before commit.
+
+## Preserved implementation and earlier continuation reviews
+
 The implementation is confined to kit/build/test files; all13 production runtime
 checkout hashes and packaged behavior remain unchanged from b05b581dc6372cecd99471c53ee2cac72b8267ba.
 S13.json records exact code, runtime-package and kit identities separately.

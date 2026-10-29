@@ -1,3 +1,42 @@
+# Next session — resume S13 only when the picker is targetable
+
+Latest entry a063ea9abaab5c9f2354943134dc4fac9e1bf9af freshly matched the live
+feature ref; push40828165165/PR40828171042 passed all4 Server jobs. Refresh the
+later containing checkpoint from the final response, fresh advertised refs and
+exact-head push/PR CI. Main remains28f53b10529495754273d55654c7b29e78848c83,
+NOT_INTEGRATED; PR29 OPEN draft/unmerged. S13/A3 BLOCKED; S14 NOT_STARTED.
+
+The owner explicitly authorized the existing launcher-equivalent process-only
+-ExecutionPolicy RemoteSigned request for the unchanged isolated picker driver,
+narrowly superseding older blanket retry prohibitions. No persistent execution
+policy/PATH/registry/permission changes or managed-control bypass are authorized.
+Read-only managed checks passed in native PS5.1: all policy scopes Undefined,
+baseline Restricted, FullLanguage, no effective AppLocker rules, kernel CI2 and
+user-mode CI0. Before/after restriction state matches. Stop on managed signing,
+language or application-control refusal.
+
+After correcting only child PSModulePath to native PS5.1 module directories, the
+unchanged driver entered PS5.1.26100.9711 x64 STA with effective RemoteSigned.
+Hidden/visible launches stayed before_selection; repeated supported desktop
+inventory exposed no picker. Selection/equality and actual Cancel remain NOT_RUN.
+No dialog input occurred. Exact owned waiting drivers and diagnostic were released
+by verified PID termination; termination exit-1 is not cancellation. Empty owned
+source unchanged; all24 source/runtime hashes and21 retained reports match.
+
+Read the current first section of evidence/S13-HANDOVER.md for the full handover
+and filled prompt, plus S13.json/REVIEW/NONPASSES and D64. Private report digest
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7
+binds actual launch, restrictions and missing UI. Raw reports remain private.
+Do not repeat identical untargetable launches without new desktop evidence or
+ask the owner to debug. Complete only remaining S13 if a supported targetable
+picker becomes available; otherwise checkpoint the same named blocker and STOP.
+No S14/main integration, release or publication is authorized by this checkpoint.
+Retain tested9e2c933/runtimeb05b581, historical failures/114 groups/two analyses,
+NOT_TESTED physical/phone and all missing client/final-package gates. No Music,
+personal media or owner-config access occurred. No owner diagnostic action.
+
+## Preserved earlier S13 routing — narrower authorization above supersedes prohibition
+
 # Next session — resume S13, not S14
 
 Latest continuation began at96da3cc4862da0784b629704edc568e8839e5dbe.

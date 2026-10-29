@@ -574,3 +574,30 @@ D63 - 2026-10-29, S13 continuation from96da3cc: use only the exact AST-extracted
       Main integration, Windows10/physical/phone/final ZIP gates, fixedv1.0.1
       S16/S17 exact-byte authority and S18 closure remain separate. No owner
       diagnostics or debugging; no config/Music/media access or downloads.
+
+D64 - 2026-10-29, S13 continuation from a063ea9: the owner's explicit narrow
+      authorization permits the existing launcher-equivalent process-only
+      RemoteSigned request for the unchanged extracted picker driver, superseding
+      the earlier blanket retry prohibition only in that scope. Check managed
+      restrictions read-only first; no persistent policy/PATH/registry/permission
+      changes, elevation or managed-control bypass. Native PS5.1 reports all
+      policy scopes Undefined/baseline Restricted, FullLanguage, effective
+      AppLocker no rules and kernel CI2/user-mode CI0; before/after state matches.
+      First inherited PS7 Security autoload failure is preserved separately.
+      Correct only child PSModulePath to native host modules, retaining exact
+      driverba38dab5/function19222f49/runner58bfd53f and requested launch flags.
+      Hidden/visible native launches actually enter PS5.1.26100.9711 x64 STA
+      RemoteSigned/session2 but expose no supported picker and stay before_selection.
+      No UI input, selected path/equality or OperationCanceledException exists;
+      S13-A3/S13 remain BLOCKED_INTERACTIVE_DESKTOP, S14 NOT_STARTED. Only exact
+      owned waiting driver/diagnostic identities are terminated; captured driver
+      exit-1 is not Cancel. All processes/children absent; owned folder empty.
+      Preserve private report312e29d0, all26 raw digests, historical refusals and
+      unchanged24 source/runtime hashes/21 prior report digests. No broad suite
+      rerun or relabeling of prior114 groups/two analyses. Entry a063ea9 push
+      40828165165/PR40828171042 pass all4 supplementary Server jobs; final
+      containing-checkpoint advertised equality/CI follows push. Resume only S13
+      when actual targetable-desktop evidence is available; no identical blind
+      retries or owner debugging. Main integration, missing clients/physical/phone/
+      exact final package, fixedv1.0.1 S16/S17 authority and S18 closure remain
+      separate. No config/Music/media access, conversion or download.

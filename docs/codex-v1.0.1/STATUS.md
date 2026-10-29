@@ -1,3 +1,40 @@
+# Status — S13 BLOCKED after authorized RemoteSigned launch
+
+Latest continuation began at a063ea9abaab5c9f2354943134dc4fac9e1bf9af on
+2026-10-29. The owner's narrow process-only RemoteSigned authorization supersedes
+the previous blanket retry prohibition for the unchanged isolated picker driver.
+Read-only checks: all execution-policy scopes Undefined, baseline Restricted,
+FullLanguage, effective AppLocker no rules, kernel CI2/user-mode CI0. Native PS5.1
+module import/control checks succeed. Before/after restriction state matches;
+no persistent policy, PATH, registry or permission change occurred.
+
+The unchanged driver actually entered Windows PowerShell5.1.26100.9711 x64 STA,
+effective RemoteSigned, on Windows11 Pro26H2 26300.9711 client/session2. Both hidden
+and visible launches saved before_selection, but supported desktop inventory
+exposed no picker. No input, selected value, equality result or Cancel exception
+exists. S13-A3/S13 remain BLOCKED_INTERACTIVE_DESKTOP; S14 stays NOT_STARTED.
+
+An initial inherited PS7 Security module autoload failure is separate from the
+successful native PS5.1 entry. Only child PSModulePath was corrected. The exact
+owned waiting drivers and diagnostic were terminated after identity checks; their
+termination is not cancellation. All owned processes/children are absent, and the
+fresh empty owned folder is unchanged. No Music, personal media or owner config
+access, conversion or download occurred. Raw evidence is private and retained.
+
+All24 source/runtime hashes and21 retained report digests match. New private
+picker-remotesigned-blocked.json SHA256:
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7.
+No implementation/kit bytes changed; prior114 groups/two analyses retain their
+actual tested source9e2c933/runtimeb05b581 identities. Entry push40828165165 and
+PR40828171042 pass all4 supplementary Server jobs. Final containing-checkpoint
+sync/CI is observed after push in the final response and refreshed next entry.
+Main remains28f53b1/NOT_INTEGRATED; PR29 stays OPEN draft/unmerged. Runtime1.0.0,
+null final assets/authority and fixed publicv1.0.1 PENDING_S17 remain unchanged.
+Full handover and filled S13 continuation prompt: evidence/S13-HANDOVER.md.
+No owner debugging is requested. STOP before S14.
+
+## Preserved earlier S13 status — superseded current blocker description
+
 # Status — S13 BLOCKED
 
 Continuation from96da3cc on2026-10-29 remains BLOCKED_INTERACTIVE_DESKTOP.

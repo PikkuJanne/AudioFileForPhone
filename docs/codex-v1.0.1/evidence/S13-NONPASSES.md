@@ -1,5 +1,53 @@
 # S13 nonpasses and remaining evidence
 
+## Latest continuation from a063ea9 — process policy allowed, picker still untargetable
+
+The owner's2026-10-29 instruction explicitly authorizes only the existing
+launcher-equivalent process-only RemoteSigned request for this unchanged isolated
+driver. It supersedes older blanket retry prohibitions, while persistent settings
+and managed-control bypass remain forbidden. Read-only native PS5.1 checks find
+Machine/User/other policy scopes Undefined, baseline Restricted, FullLanguage,
+effective AppLocker no rules, kernel CI2/user-mode CI0. No managed refusal occurs
+on the native PS5.1 driver route. Before/after restriction state matches.
+
+The first requested launch (PID25280) exits1 before Save-PickerReport because the
+inherited PS7 PSModulePath selects the PS7 Security module and Get-ExecutionPolicy
+cannot autoload it. A read-only inherited-path diagnostic captures an
+AuthorizationManager validation failure for that PS7 Security.types.ps1xml under
+baseline Restricted. This is preserved separately from native PS5.1 managed checks.
+Native PS5.1 module import/control checks succeed without a policy argument. Only
+the child PSModulePath is corrected to System32 WindowsPowerShell Modules first,
+then Program Files WindowsPowerShell Modules; PATH/persistent settings, controls,
+signatures and driver/function bytes remain unchanged.
+
+Native-module hidden PID4564 and visible PID20652 both actually enter the unchanged
+driver: PS5.1.26100.9711 x64 STA/session2/effective RemoteSigned. Both save
+before_selection and wait. Repeated supported sky.list_windows/apps exposes no
+task picker or console, although Explorer/Firefox are also session2. No UI input
+is possible or issued. No selected path, path equality or Cancel exception exists.
+S13-A3/S13 remain BLOCKED_INTERACTIVE_DESKTOP, with actual interactions NOT_RUN.
+
+Both waiting drivers are terminated only after exact PID/executable/command checks.
+Their captured exit-1 means forced owned release and is never treated as Cancel.
+An earlier Start-Process read-only module diagnostic (PID7308) also remains alive;
+the first new raw-file hash inventory correctly refuses its still-open capture.
+Its exact executable/parent/command identity is checked and terminated, releasing
+the captures. All26 raw files can then be hashed. No diagnostic raw exit is claimed.
+All exact owned processes/children are absent; the fresh owned empty bracket/Unicode
+source is unchanged. No global termination, persistent policy/PATH/registry/ACL
+change, config/Music/personal-media access, conversion or download occurs.
+
+All24 source/runtime hashes and21 retained report digests match. New private
+picker-remotesigned-blocked.json SHA256:
+312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7.
+Earlier reports44c91f98/6eae94e4 remain historical failures, not erased or relabeled.
+No broad suite rerun is needed for unchanged implementation. Resume only S13 when
+a supported actual picker is targetable; no identical blind retries or owner
+debugging. S14 remains unstarted and later client/physical/phone/final-ZIP gates
+remain separate.
+
+## Preserved earlier nonpasses — latest authorization/outcome above takes precedence
+
 ## Continuation from96da3cc — unchanged interactive blocker
 
 On2026-10-29 the current exact Select-KitFolder AST extent was extracted into a

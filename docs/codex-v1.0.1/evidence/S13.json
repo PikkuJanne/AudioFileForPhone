@@ -48,7 +48,7 @@
     "S13-A3": {
       "status": "BLOCKED",
       "expected": "Short guide, handled faults, actual picker selection/cancellation and accurate client/launch scope",
-      "observed": "One-page guide and8early runner refusals per shell; actual client identities. Picker target could not be exposed; final temporary GUI host had scripts-disabled refusal. No actual selection or cancellation pass."
+      "observed": "One-page guide and8early runner refusals per shell; actual client identities. Latest owner-authorized process-only RemoteSigned launch runs unchanged PS5.1 x64 STA driver after native host module isolation, but hidden/visible attempts stay before_selection and expose no targetable picker. Selection/cancellation remain NOT_RUN; prior policy refusals preserved."
     }
   },
   "source_checkout_hashes": [
@@ -1075,12 +1075,19 @@
     "code": "BLOCKED_INTERACTIVE_DESKTOP",
     "actual_picker_selection": "NOT_RUN",
     "actual_picker_cancellation": "NOT_RUN",
-    "private_report_leaf": "picker-ui-blocked.json",
-    "sha256": "44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691",
+    "private_report_leaf": "picker-remotesigned-blocked.json",
+    "sha256": "312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7",
     "process_release": true,
     "temporary_evidence_retained": true,
     "policy_changed": false,
-    "next_action": "Resume S13 on an allowed supported interactive desktop; verify actual source picker selection/equality and cancellation. No owner debugging."
+    "driver_entered": true,
+    "policy_changed_scope": "No persistent policy change; authorized process-only effective policy is RemoteSigned",
+    "process_only_policy_request": "RemoteSigned, explicitly authorized by owner; no persistent policy change",
+    "prior_refusal_reports": [
+      "44c91f9891332c31b67d992db8104a1210b190c6a97a00e53b07631d121db691",
+      "6eae94e4cc2b2d8367961984cb23fc31baff05feb022176bf7c2b992c72eb727"
+    ],
+    "next_action": "Resume S13 only with evidence that the supported desktop can expose the actual picker. Preserve the owner's narrow process-only RemoteSigned authorization and managed-control stop rules; verify selection/equality and actual Cancel without changing driver bytes or asking the owner to debug."
   },
   "review": {
     "record": "S13-REVIEW.md",
@@ -1126,7 +1133,7 @@
     "publication_performed": false
   },
   "limitations": [
-    "S13 picker selection/cancellation BLOCKED_INTERACTIVE_DESKTOP; resume same step",
+    "S13 BLOCKED_INTERACTIVE_DESKTOP: native PS5.1 RemoteSigned driver enters, but actual selection/cancellation remain NOT_RUN because no picker is targetable; resume only this step",
     "Windows10 22H2 PS51/PS7 client unavailable; Server supplementary",
     "StorePS7 locally startup-only",
     "Actual owner BAT shortcut and phone not performed",
@@ -1191,6 +1198,80 @@
       "main_integration": "NOT_INTEGRATED",
       "containing_checkpoint_sync_ci": "Observe after commit/push in final response and refresh next thread; no self-containing SHA.",
       "next_action": "Resume S13 only when an allowed supported interactive desktop can run the unchanged picker driver. Prove actual literal selected-path equality and OperationCanceledException cancellation. Do not alter policy, bypass controls or delegate kit debugging to the owner."
+    },
+    {
+      "entry_commit": "a063ea9abaab5c9f2354943134dc4fac9e1bf9af",
+      "recorded_utc": "2026-10-29T06:50:29.7387624Z",
+      "status": "BLOCKED",
+      "code": "BLOCKED_INTERACTIVE_DESKTOP",
+      "authorization": "Owner 2026-10-29 explicitly permits existing launcher-equivalent process-only -ExecutionPolicy RemoteSigned for unchanged isolated picker driver. This narrowly supersedes the previous blanket retry prohibition; managed signing/language/application-control refusal still requires stop.",
+      "fresh_entry_feature": "a063ea9abaab5c9f2354943134dc4fac9e1bf9af",
+      "fresh_entry_main": "28f53b10529495754273d55654c7b29e78848c83",
+      "fresh_advertised_equality": true,
+      "entry_push_ci": 40828165165,
+      "entry_pr_ci": 40828171042,
+      "entry_ci": "Both runs completed SUCCESS at exact entry head; all four supplementary Server jobs passed. PR integration checkout remains distinct.",
+      "environment_refresh": "CIM Microsoft Windows11 Pro Client/ProductType1,26H2,26300.9711 x64. Actual driver PS5.1.26100.9711,64bit,STA,session2; Explorer/Firefox also session2. Portable parent PS7.6.5.",
+      "managed_restrictions_readonly": {
+        "machine_policy": "Undefined",
+        "user_policy": "Undefined",
+        "other_policy_scopes": "Process/CurrentUser/LocalMachine Undefined before and after",
+        "baseline_effective_policy": "Restricted",
+        "language_mode": "FullLanguage",
+        "effective_applocker": "<AppLockerPolicy Version=\"1\" />",
+        "kernel_ci_enforcement_status": 2,
+        "usermode_ci_enforcement_status": 0,
+        "native_ps51_managed_control_refusal": false,
+        "before_after_restrictions_equal": true
+      },
+      "command_redacted": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File <PRIVATE_S13_PICKER_SESSION>\\picker-driver.ps1",
+      "runner_sha256": "58bfd53f66f11e0932c7f1a68c2fece88f3534b9586fcb84bcd11d2b6a441c0c",
+      "extracted_function_sha256": "19222f49398211ffe2d7e3980c6e0bfaa4905bd9c9072648cebfb7fb2bcc3bdd",
+      "driver_sha256": "ba38dab55fae4173dc552c573816095a64d85f28e47f29acd612950ee103b481",
+      "driver_and_function_unchanged": true,
+      "driver_signature": "NotSigned; only default DATA stream; no Zone.Identifier; no signature/content changes",
+      "settings_scope": "Only expected path points to a fresh owned empty bracket/Unicode folder; historical source context remains in settings. Full runner not dot-sourced.",
+      "preparation_nonpasses": "First launch PID25280 exit1 inherited PS7 module search path and failed Get-ExecutionPolicy Security autoload before report creation. Read-only diagnostic captured wrong PS7 Security.types.ps1xml AuthorizationManager validation failure under baseline Restricted; native PS5.1 module import/control probe succeeds without a policy argument. Separate Start-Process diagnostic PID7308 remained alive; its exact identity was verified and terminated. Initial raw-digest inventory refused a still-open diagnostic capture; after exact diagnostic release all26 raw files were hashed. No safeguard was disabled.",
+      "child_environment": "PSModulePath only: native System32 WindowsPowerShell Modules first, then Program Files WindowsPowerShell Modules; no PATH or persistent change.",
+      "driver_entered": true,
+      "observed_effective_policy": "RemoteSigned",
+      "actual_picker_selection": "NOT_RUN",
+      "actual_picker_cancellation": "NOT_RUN",
+      "observed": "Hidden PID4564 and explicitly interactive visible PID20652 both saved before_selection then waited. Repeated supported sky.list_windows/apps exposed no task picker or console. No UI input was issued; no selected value, equality result or OperationCanceledException exists.",
+      "driver_exit_codes": [-1, -1],
+      "exit_scope": "Both are captured termination results after unavailable dialog; neither is cancellation or dialog completion. First pre-report launch exit1 is separate; diagnostic raw exit unavailable.",
+      "process_termination_performed": true,
+      "termination_scope": "Only exact owned PID/executable/command identities; driver4564/20652 and diagnostic7308; no global process termination",
+      "processes_and_owned_children_absent": true,
+      "empty_owned_source_unchanged": true,
+      "source_hashes_verified": 24,
+      "prior_private_report_digests_verified": 21,
+      "source_or_kit_bytes_changed": false,
+      "broad_tests_repeated": false,
+      "test_scope": "Read-only restrictions before/after, unchanged AST/driver and24 source/runtime hashes,21 retained report digests, actual isolated driver entry/window inventory, exact owned release and empty-folder checks. Prior114 groups/two analyses keep original identities.",
+      "documentation_validation": {
+        "status": "PASSED",
+        "observed_utc": "2026-10-29T06:54:01.7393433Z",
+        "shell": "7.6.5",
+        "checks": "JSON/routing/prior completion/later NOT_STARTED/target/null-asset assertions;24 literal source/runtime hashes,21 prior report checks,26 raw-file digests and private report hash; actual RemoteSigned entry without interaction claims; empty source/process absence; eight intended docs-only paths, privacy and git diff --check.",
+        "independent_diff_review": "PASSED; full eight-file diff and private report independently checked,24 source/runtime and26 raw hashes verified, unchanged driver and exact current AST extent confirmed, state/release assertions and whitespace pass. No substantive correction required."
+      },
+      "persistent_execution_policy_changed": false,
+      "path_changed": false,
+      "registry_changed": false,
+      "permissions_changed": false,
+      "ordinary_music_or_personal_media_access": false,
+      "owner_config_access": false,
+      "conversion_or_download_started": false,
+      "private_session_leaf": "AFP-S13-picker-408a5eca428e4f8aba28542d226fd47d",
+      "private_report_leaf": "picker-remotesigned-blocked.json",
+      "private_report_sha256": "312e29d0b1aa1296918f2fb02d8281b6fbd0c7aeadc403737ead82d066fe26e7",
+      "raw_evidence_retained": true,
+      "physical_bat_observations": "NOT_TESTED",
+      "phone_observations": "NOT_TESTED",
+      "main_integration": "NOT_INTEGRATED",
+      "containing_checkpoint_sync_ci": "Observe after commit/push in final response and refresh next thread; no self-containing SHA.",
+      "next_action": "Resume S13 only when the supported desktop can expose the actual picker; prove exact selected-path equality and actual Cancel OperationCanceledException. Preserve narrow process-only authorization and stop at managed-control refusal. No owner debugging or S14 work."
     }
   ],
   "next_step": "S13",
