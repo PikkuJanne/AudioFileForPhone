@@ -30,7 +30,7 @@ $ownedRootCreated = $false; $descendantReleaseProved = $true; $exitCode = 1
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-HelpVersion.ps1', 'README.md', 'SUPPORT.md', 'CHANGELOG.md',
-    'docs/codex-v1.0.1/RELEASE_TARGET.json')
+    'docs/codex-v1.0.1/RELEASE_TARGET.json', 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -364,19 +364,26 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -cmatch '^1\.0\.1$') 'Authoritative semantic app version must be 1.0.1.'
+        Assert-True ($appVersion -cmatch '^1\.0\.2$') 'Authoritative semantic app version must be the owner-selected 1.0.2.'
         $literals = @()
         foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
-            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.1' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
+            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.2' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
         }
-        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.1 literal.'
-        $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/RELEASE_TARGET.json')) | ConvertFrom-Json
+        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.2 literal.'
+        $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')) | ConvertFrom-Json
         $expectedTag = 'v' + $appVersion; $expectedZip = 'AudioFileForPhone-' + $expectedTag + '.zip'
-        Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Active release target must agree with the runtime version, tag, title and ZIP name.'
+        Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Corrective release target must agree with the runtime version, tag, title and ZIP name.'
+        $historicalTargetPath = Join-Path $projectRoot 'docs/codex-v1.0.1/RELEASE_TARGET.json'
+        $historicalTarget = [IO.File]::ReadAllText($historicalTargetPath) | ConvertFrom-Json
+        Assert-True ($historicalTarget.target_version -ceq '1.0.1' -and $historicalTarget.target_tag -ceq 'v1.0.1' -and
+            $historicalTarget.runtime_zip -ceq 'AudioFileForPhone-v1.0.1.zip' -and $historicalTarget.release_title -ceq 'AudioFileForPhone v1.0.1') 'Historical v1.0.1 release identity must remain separate from the corrective target.'
         $case['app_version'] = $appVersion; $case['runtime_version_literals'] = $literals
+        $case['release_target_contract'] = 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json'
         $case['release_target_tag'] = $expectedTag; $case['release_target_zip_name'] = $expectedZip
+        $case['historical_release_target_version'] = $historicalTarget.target_version
+        $case['historical_release_target_sha256'] = (Get-FileHash -LiteralPath $historicalTargetPath).Hash.ToLowerInvariant()
         $case['package_limit'] = 'Actual package builder and exact release ZIP are later tasks; no package-build result claimed.'
     }
     $seedDir = Join-Path $testRoot 'S'; [IO.Directory]::CreateDirectory($seedDir) | Out-Null

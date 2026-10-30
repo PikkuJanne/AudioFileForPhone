@@ -116,15 +116,20 @@ internal static class DirectLauncherConsole
 
     // Arguments: exact cmd.exe, cmd argument string, unrelated working directory,
     // fresh report path, deadline milliseconds. The case environment is inherited.
+    // Optional sixth argument is literal Enter (ready menu) or SetupCancel (Q + Enter).
     private static int Main(string[] args)
     {
         ProcessInformation pi = new ProcessInformation();
         IntPtr job = IntPtr.Zero, input = IntPtr.Zero, output = IntPtr.Zero;
         bool attached = false, assigned = false, paused = false, waiting = false, injected = false, released = false;
+        bool initialMenuKeySent = false;
         uint exit = 999;
         string text = "", error = "";
         try
         {
+            if (args.Length > 5 && (args.Length != 6 ||
+                (!String.Equals(args[5], "Enter", StringComparison.Ordinal) && !String.Equals(args[5], "SetupCancel", StringComparison.Ordinal))))
+                throw new ArgumentException("Optional sixth argument must be literal Enter or SetupCancel.");
             job = CreateJobObject(IntPtr.Zero, null);
             Require(job != IntPtr.Zero, "Cannot create exclusive test job.");
             ExtendedLimits limits = new ExtendedLimits(); limits.basic.flags = 0x2000;
@@ -146,6 +151,25 @@ internal static class DirectLauncherConsole
             {
                 text = ReadConsole(output);
                 if (text.IndexOf("Press any key", StringComparison.OrdinalIgnoreCase) >= 0) { paused = true; break; }
+                if (args.Length > 5 && args[5] == "Enter" && !initialMenuKeySent && text.IndexOf("Waiting for your selection", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    InputRecord enter = new InputRecord(); enter.type = 1; enter.down = 1; enter.repeat = 1;
+                    enter.key = 0x0D; enter.scan = 0x1C; enter.character = '\r';
+                    InputRecord enterUp = enter; enterUp.down = 0; uint menuWritten;
+                    Require(WriteConsoleInputW(input, new InputRecord[] { enter, enterUp }, 2, out menuWritten) && menuWritten == 2, "Cannot supply initial menu Enter.");
+                    initialMenuKeySent = true;
+                }
+                if (args.Length > 5 && args[5] == "SetupCancel" && !initialMenuKeySent && text.IndexOf("S = select existing folder", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    InputRecord cancel = new InputRecord(); cancel.type = 1; cancel.down = 1; cancel.repeat = 1;
+                    cancel.key = 0x51; cancel.scan = 0x10; cancel.character = 'Q';
+                    InputRecord cancelUp = cancel; cancelUp.down = 0;
+                    InputRecord enter = new InputRecord(); enter.type = 1; enter.down = 1; enter.repeat = 1;
+                    enter.key = 0x0D; enter.scan = 0x1C; enter.character = '\r';
+                    InputRecord enterUp = enter; enterUp.down = 0; uint menuWritten;
+                    Require(WriteConsoleInputW(input, new InputRecord[] { cancel, cancelUp, enter, enterUp }, 4, out menuWritten) && menuWritten == 4, "Cannot supply setup menu cancellation.");
+                    initialMenuKeySent = true;
+                }
                 if (WaitForSingleObject(pi.process, 0) == 0) break;
                 Thread.Sleep(25);
             }
@@ -190,7 +214,8 @@ internal static class DirectLauncherConsole
             if (pi.process != IntPtr.Zero) CloseHandle(pi.process);
             if (job != IntPtr.Zero) CloseHandle(job);
             string report = "{\"exit_code\":" + exit + ",\"pause_seen\":" + Bool(paused) + ",\"still_waiting_before_key\":" + Bool(waiting) +
-                ",\"key_injected\":" + Bool(injected) + ",\"owned_tree_released\":" + Bool(released) + ",\"text\":" + Json(text) + ",\"error\":" + Json(error) + "}";
+                ",\"key_injected\":" + Bool(injected) + (args.Length > 5 ? ",\"initial_menu_key_sent\":" + Bool(initialMenuKeySent) + ",\"initial_menu_mode\":" + Json(args[5]) : "") +
+                ",\"owned_tree_released\":" + Bool(released) + ",\"text\":" + Json(text) + ",\"error\":" + Json(error) + "}";
             File.WriteAllText(args[3], report, new UTF8Encoding(false));
         }
         return error.Length == 0 ? 0 : 1;

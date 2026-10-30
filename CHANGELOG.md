@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.2 (corrective candidate; not published)
+
+- Launch the converter directly from the BAT in built-in x64 Windows PowerShell
+  5.1 STA with a documented process-only policy request. CMD owns final status,
+  pause and preserved exit, including failures before a script can enter.
+- Preserve literal folder transport and optional existing-tool/consent-based
+  setup. Store CRLF BAT bytes consistently in Git and application archives.
+- Present a small package root: BAT, unchanged ICO, README.txt and app/ with all
+  required helpers, setup, support and license files. Omit developer material.
+- Keep normal console output concise while retaining warnings/errors, counts,
+  output/log locations and detailed local diagnostics.
+- Retain default64kbps CBR, supported inputs, metadata/layout and source safety.
+  Automated exact-package acceptance and publication are recorded separately;
+  no owner testing is required and earlier releases remain preserved.
+
+## Historical 1.0.1 preparation notes
+
 Unreleased v1.0.1 work: separate consent-based managed setup now pins the exact
 Gyan 9.0.2 Windows x64 ZIP. It verifies transfer/integrity/extraction bounds, retains
 vendor notices/provenance and validates a synthetic encode/probe/decode before

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "target_version": "1.0.1",
   "project_status": "REPAIR_IN_PROGRESS",
-  "current_step": "R2",
+  "current_step": "R3",
   "active_branch": "codex/audiofileforphone-r1-launch-repair",
   "tested_source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
@@ -296,7 +296,16 @@
         "remaining_work": []
       },
       "R3": {
-        "status": "NOT_STARTED"
+        "status": "IN_PROGRESS",
+        "owner_testing_required": "none",
+        "corrective_version": "1.0.2",
+        "version_authority": "Owner reply: Use v1.0.2",
+        "publication_authorization": null,
+        "main_integration_authorization": null,
+        "technical_gaps": [
+          "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+          "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN"
+        ]
       }
     },
     "main_integration": "NOT_REQUESTED: existing reviewed-head/owner-approval policy retained.",
@@ -337,6 +346,7 @@
       ],
       "members": 17,
       "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
-    }
+    },
+    "corrective_release_target": "CORRECTIVE_RELEASE_TARGET.json"
   }
 }

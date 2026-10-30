@@ -120,10 +120,11 @@ forced window closure can still discard visible output.
 
 ## Package provenance
 
-The R1 launch repair is currently a source patch. Existing public v1.0.1 assets
-remain unchanged; revised user-package construction and automated exact-package
-acceptance belong to R2/R3. Owner testing required: none. Historical package
-provenance below describes the existing builders and published layout.
+The owner-selected v1.0.2 corrective candidate includes the R1/R2 repairs; R3
+automated exact-package acceptance and publication authorization are separate
+gates. Existing public v1.0.0/v1.0.1 assets remain unchanged. Owner testing
+required: none. Historical package provenance below describes the earlier
+published layout; current candidate layout/provenance is in docs/DISTRIBUTION.md.
 
 The runtime builder uses the explicit 18-file repository allowlist. The final
 user-package builder keeps those runtime files under `app/` and exposes only the

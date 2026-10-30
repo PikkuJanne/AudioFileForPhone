@@ -788,3 +788,22 @@ R2 owner-authorized resumption: "Resume r2 right now" resumes this same step.
      No runtime/pin/policy/deadline or canonical ZIP change; no speculative fix.
      R2 is completed by actual verification, R3 remains a separate owner-started
      thread, owner testing none, and existing release/main authority is unchanged.
+
+R3 - 2026-10-30, owner instruction "Please continue with r3" starts R3 only.
+     The later explicit reply "Use v1.0.2" selects the corrective identity.
+     Preserve historical RELEASE_TARGET.json and both published releases; record
+     the new identity in CORRECTIVE_RELEASE_TARGET.json, with publication and
+     main-integration authority separate and unset. Version/runtime/packaged-doc
+     changes require a fresh exact ZIP and affected acceptance, rather than
+     relabeling the R2 bytes. Extend only the existing narrow native-console
+     controller for ready-menu Enter and setup-menu Q; retain its ordinary
+     pause/key/exit/job ownership behavior. Setup BAT cancellation and explicit
+     existing-tool setup success are separate observations. No owner tests.
+     No authorized Windows10 client was found in the local/runner inventory.
+     A genuine Explorer drop onto an inert real shortcut transported the input,
+     but Explorer used the ordinary user environment instead of the owned one.
+     Do not launch real conversion into ordinary Music to fill that gap. Preserve
+     the preflight nonpass and use controlled native-console conversion evidence
+     with an independently verified owned default Music destination. Record the
+     remaining actual-client and genuine-Explorer coverage as technical gaps;
+     do not expand historical publication authority or waive required gates.

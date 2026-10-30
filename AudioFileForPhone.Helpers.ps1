@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.1'
+    return '1.0.2'
 }
 
 function Assert-AudioParameters {

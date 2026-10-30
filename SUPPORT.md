@@ -1,9 +1,9 @@
 # Support and troubleshooting
 
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
-PowerShell 5.1 and PowerShell 7. The R1 direct launch repair is a source patch;
-published v1.0.1 ZIP bytes are unchanged. The revised user package and automated
-exact-package acceptance belong to R2/R3. Actual coverage and gaps are in the
+PowerShell 5.1 and PowerShell 7. The owner-selected v1.0.2 corrective candidate
+includes the R1/R2 launch and package repairs; R3 exact-package acceptance is in
+progress. Published v1.0.0/v1.0.1 bytes are preserved. Actual coverage and gaps are in the
 [active release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
 Owner testing required: none. Codex performs all new repair verification; no
 owner diagnostic run, phone check or acceptance kit is required.
@@ -18,7 +18,8 @@ failure results, cancellation components and local record persistence.
 
 | Environment or workflow | Evidence boundary |
 | --- | --- |
-| Active Windows 11 Pro 26300.9457 | Local synthetic regression runs on Windows PowerShell 5.1.26100.9444 and PowerShell 7.6.5. |
+| Historical Windows 11 Pro 26300.9457 | Local synthetic regression runs on Windows PowerShell 5.1.26100.9444 and PowerShell 7.6.5. |
+| Repair client, Windows 11 Pro 26H2 26300.9711 x64 | Codex-run isolated synthetic verification on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5. Exact candidate results and remaining Windows10/Explorer gaps are recorded in the active repair evidence. |
 | Historical v1.0.1 development, Windows 11 Pro 26H2 26300.9711 x64 | S03/S04 synthetic source tests on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5. These source tests do not establish Windows 10 or later exact-package results; see the retained evidence. |
 | Hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. This is separate from Windows 11 acceptance. |
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
