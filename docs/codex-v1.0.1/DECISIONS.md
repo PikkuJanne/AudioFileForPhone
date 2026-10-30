@@ -707,3 +707,18 @@ D71 - 2026-10-30, explicit owner scope override: "S15 and S16 are not blocked
       v1.0.0, then ordinary independently reviewed/CI-passing documentation PR and
       final local/live main sync in this chat. Never label waived observations
       PASSED or silently alter published assets/tags for closure evidence.
+
+D72 - 2026-10-30, owner rejects the flat public ZIP and requests distribution
+      cleanup. Correct current v1.0.1 transparently as packaging revision2; this
+      specific product request authorizes updated package bytes, not a tag move,
+      new version or closure-only substitution. Keep all18 core files unchanged
+      under app/, expose only6 launch/readme/license files, preserve PS1 parameters
+      and BAT literal transport, and document/test app-local FFmpeg under app/.
+      Pin original3assets, identify generated wrappers separately, test actual
+      local/public ZIP in PS5.1/7, preserve original assets privately, stage and
+      download new assets before name cutover, remove temporary originals only
+      after independent public verification. Keep v1.0.0/tag/version/history
+      untouched. New publication authority is the cleanup request; retain original
+      S16 exact-byte authority and S14-S18 evidence as revision1 history. Commit/
+      review/test/push and ordinary CI-passing main integration/fresh sync within
+      this authorized task, without another owner approval/checkpoint block.

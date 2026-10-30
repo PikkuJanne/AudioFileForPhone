@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "kind": "post_release_packaging_correction",
+  "package_revision": 2,
+  "status": "COMPLETED",
+  "recorded_utc": "2026-10-30T15:58:45.2430386Z",
+  "owner_authority": "Owner rejected the flat distribution as not presentable/acceptable and explicitly requested: Please clean up the distributed package.",
+  "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "entry_main": "f46210621ced4c0c2b07729a73fce40814471be7",
+  "feature_branch": "codex/audiofileforphone-package-cleanup",
+  "release_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1",
+  "release_id": 429170892,
+  "target_version": "1.0.1",
+  "target_tag": "v1.0.1",
+  "original_assets": [
+    {
+      "id": 692475978,
+      "name": "AudioFileForPhone-v1.0.1.zip",
+      "size": 118443,
+      "digest": "sha256:78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53"
+    },
+    {
+      "id": 692475976,
+      "name": "release-manifest.json",
+      "size": 25732,
+      "digest": "sha256:45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3"
+    },
+    {
+      "id": 692475982,
+      "name": "SHA256SUMS.txt",
+      "size": 183,
+      "digest": "sha256:298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f"
+    }
+  ],
+  "current_assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.1.zip",
+      "bytes": 128139,
+      "sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 12118,
+      "sha256": "8587279cddc03e31954cc747857c73ead36b8b90d777a7ca9d1ab1e684e90887"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "1a93c76f1473b9b67555c3e0fd1aaae8d81ca347045ea67faf89ef76c8775ee3"
+    }
+  ],
+  "current_public_asset_ids": [
+    {
+      "id": 692603804,
+      "name": "AudioFileForPhone-v1.0.1.zip"
+    },
+    {
+      "id": 692603805,
+      "name": "release-manifest.json"
+    },
+    {
+      "id": 692603802,
+      "name": "SHA256SUMS.txt"
+    }
+  ],
+  "layout": {
+    "root_files": [
+      "AudioFileForPhone.bat",
+      "AudioFileForPhone.ps1",
+      "Setup-AudioFileForPhone.bat",
+      "Setup-AudioFileForPhone.ps1",
+      "README.md",
+      "LICENSE"
+    ],
+    "support_directory": "app/",
+    "unchanged_original_payload_files": 18,
+    "total_files": 24,
+    "excluded": "No test/developer/raw report/media/config/binaries in package. Diagnostic modules are required runtime internals, grouped under app/.",
+    "app_local_tools": "Both binaries beside actual implementation in app/; this new location is explicitly documented and tested. Explicit/saved/PATH order preserved."
+  },
+  "builder": {
+    "path": "tools/Build-UserPackage.ps1",
+    "sha256": "2ce5dd701ec29668db6bc89195b2b9e742afc9c13db546dc46214732e08427c2",
+    "mode": "Pinned original published payload; generated entrypoints separately identified; ordinal member order/fixed timestamps.",
+    "original_builder_changed": false,
+    "converter_code_changed": false,
+    "source_to_archive": "All18 original members preserved byte-identically under app/; root help/parameter prefixes copied via AST, then PSBoundParameters/exit forwarding.",
+    "same_host_finalization": "Final PS7 ZIP equals candidate ZIP632070... after attaching actual report to external manifest.",
+    "cross_host_report_sha256": "3b88df10050d8e31f144aaa30d6c02eaca44511cbd12e66c36bbedaaf10a5708",
+    "cross_host_result": "PS5.1/PS7 builds execute successfully; all24 member hashes identical. Outer ZIPs differ due to CLR compression; exact canonical PS7 artifact is tested and published."
+  },
+  "test_script": {
+    "path": "tests/Test-UserPackage.ps1",
+    "sha256": "9e09f1f72409d144628331b5330f07a61ce9052bcd62a1e656f370aa1269b1a4",
+    "ps51_parser_errors": 0,
+    "ps7_parser_errors": 0
+  },
+  "actual_tests": [
+    {
+      "kind": "local_candidate",
+      "report_sha256": "baae736f94362efcaf89a45d7336c0f0b6feaf1872a7b7c15667c5b178e9d95f",
+      "zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
+      "status": "PASSED",
+      "cases": 11,
+      "outputs": 20.0,
+      "started_utc": "2026-10-30T15:53:44.2077121Z",
+      "ended_utc": "2026-10-30T15:54:22.9246381Z"
+    },
+    {
+      "kind": "anonymous_public_bytes",
+      "report_sha256": "b3602f221958266e50a23413911d7f9bc7cd027cf663e04a148daef7ded9c620",
+      "zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
+      "status": "PASSED",
+      "cases": 11,
+      "outputs": 20.0,
+      "started_utc": "2026-10-30T15:56:32.261389Z",
+      "ended_utc": "2026-10-30T15:57:11.3034619Z"
+    }
+  ],
+  "environment": {
+    "caption": "Microsoft Windows 11 Pro",
+    "product_type": 1,
+    "build": "26300.9711",
+    "display_version": "26H2",
+    "architecture": "64-bit",
+    "orchestrator_ps": "7.6.5",
+    "shell_versions": {
+      "ps51": "5.1.26100.9711",
+      "ps7": "7.6.5",
+      "source": "Actual version child capture and setup-preview-check observed fields in bound package reports."
+    }
+  },
+  "verification_scope": "Each exact-candidate/public run: PS5.1 explicit4+saved4, PS7 explicit4+saved4+actual app-local4;20real default64 outputs with probe/full decode/metadata/date/layout/counts; remembered setup/fresh process, no-write preview/check, parameter/help parity, instrumented BAT literal path/exit/refusals, missing-app refusal.62natural/drained/released processes and124capture hashes per run. Sources/package/dependencies unchanged.",
+  "production_bat_refusals": {
+    "report_sha256": "92a208066d76882942c7efef65aebd3d7472ed481084822dffcda243956d13fd",
+    "status": "PASSED",
+    "cases": 3,
+    "exit_codes": [
+      1,
+      1,
+      1
+    ],
+    "scope": "Actual unmodified BAT and launcher zero/extra/empty arguments; no UI/conversion/config/tool/Music action."
+  },
+  "negative_builder_tests": {
+    "report_sha256": "f77dcac002b4540e9fa4ad80aba48cadfff5d64dd8e061891a72cb161e3a4709",
+    "status": "PASSED_EXPECTED_REFUSAL",
+    "cases": [
+      "existing_output",
+      "tampered_original_zip",
+      "missing_original_assets"
+    ],
+    "scope": "Validation logic on prior builder7ce01... before guide-only text change; actual execution identities retained. No final-looking refused output."
+  },
+  "nonpasses": [
+    {
+      "case": "First test harness",
+      "result": "FAILED on earlier candidate after PS5.1 cases; multiple pwsh command matches joined into invalid path.",
+      "report_sha256": "16554d409f79946e8fd9a0d142b374f36bd11a7a324b90831adaf1c8e0860768",
+      "resolution": "Test harness selects first exact executable; new real reports pass. No runtime or assertion weakened."
+    },
+    {
+      "case": "Earlier candidate",
+      "zip_sha256": "da1e41d964c7210310e1cead5fce3863aab45d2b983717bbb5a6e6a72af19d49",
+      "status": "PASSED_BUT_SUPERSEDED",
+      "report_sha256": "08d9413ac00f06b5bedbd5c761b9acf6965f8470acba380c67be40f412d1d50f",
+      "resolution": "Guide changed to require new empty extraction folder; new632070... candidate tested separately."
+    },
+    {
+      "case": "Cross-host outer ZIP assertion",
+      "result": "Outer ZIP hashes differed; verified all24 member hashes equal.",
+      "resolution": "Distinct CLR compression outputs kept distinct; canonical testedPS7 bytes published."
+    }
+  ],
+  "publication": {
+    "original_backup_proof_sha256": "d9f83d970068ae4e961b02a30ec61f7ed898f8c1acc1eacef9d084351e4a9b72",
+    "staged_upload_and_authenticated_download": "All3 new assets uploaded under unique temporary names and downloaded/hash verified before canonical-name cutover.",
+    "cutover_plan_sha256": "50030aa28ffefbb06b362a78b4a5eb2deade43096ff2fb5bbd02173c7e6d89bd",
+    "canonical_cutover_sha256": "1c7348f80cc743c8c504b7e9b5be4b0cc5b4c301c8f325bec37dffed4ab986c5",
+    "atomic": false,
+    "anonymous_download_proof_sha256": "0e48d72ed46c4e4f99938137a8b796fc507136e354200164cf4a20658c246efc",
+    "final_release_proof_sha256": "eb96b0d0e69c3c4a3d8e305ded0e6fa8871971f944aced1f77dbdd275f280e62",
+    "public_assets": 3,
+    "temporary_previous_assets_removed_after_public_byte_pass": 3,
+    "original_private_backup_preserved": true,
+    "release_notes_disclose_revision": true,
+    "tag_refs": [
+      "279945f7d5a4b887b7bd44eae5244b03060f76cc\trefs/tags/v1.0.0",
+      "2092a405c1d06eca336e771a0ed5d1881acd015a\trefs/tags/v1.0.0^{}",
+      "c5a6312cf6ba2c6e75369e3ea199697f7310e4d3\trefs/tags/v1.0.1",
+      "d9d7129e9463de17e29c2a36752c82e326abf22e\trefs/tags/v1.0.1^{}"
+    ],
+    "released_tag_moved": false,
+    "new_version_created": false
+  },
+  "historical_acceptance": "Revision1 S14-S18/kit/report hashes retained as history. Missing Windows10/physical/phone observations are not fabricated or revived as blockers; original owner waiver remains explicit.",
+  "review": "Independent builder/ZIP audit PASSED; final document/fact review observed before commit.",
+  "private_evidence": "C:/projects/AFP-Package-Cleanup-20261030",
+  "commands": [
+    "tools/Build-UserPackage.ps1 -RuntimeAssetDirectory <verified original3assets> -OutputDirectory <new directory>",
+    "tests/Test-UserPackage.ps1 -PackageDirectory <clean3assets> -OriginalRuntimeZipPath <originalZIP> -EvidencePath <owned external report>",
+    "tools/Build-UserPackage.ps1 ... -PackageTestEvidencePath <actual local pass report>",
+    "gh release upload v1.0.1 <unique staged names>; gh release download <those exact names>",
+    "GitHub asset PATCH by validated IDs for names; anonymous canonical downloads; actual public-byte test; DELETE only temporary originals after pass"
+  ],
+  "git": "Feature commit/live equality/exact-head CI and ordinary main integration/final fresh equality are observed after containing checkpoint, under self-reference protocol.",
+  "remaining_work": [],
+  "original_v100_preservation": {
+    "status": "PASSED",
+    "proof_sha256": "3c51ca4d6f60f7cc47092fc29813640df4ab17b15404009d4de14496d11b0298",
+    "scope": "Fresh release ID/flags/three asset IDs/names/sizes/serverdigests equal S01; remote tag identities retained."
+  }
+}

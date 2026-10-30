@@ -113,11 +113,12 @@ Do not weaken an enforced organization policy to run the app.
 
 ## Package provenance
 
-The developer builder uses the explicit ten-file repository allowlist. It packages
-the conversion script, runtime helper, conversion BAT, setup PS1/BAT, README,
-SUPPORT, SECURITY, CHANGELOG and MIT license at the ZIP root. FFmpeg/ffprobe
-binaries, vendor DLLs, tests, generated
-audio, logs, caches, posters, Git data and Codex handoff/evidence are excluded.
+The runtime builder uses the explicit 18-file repository allowlist. The final
+user-package builder keeps those runtime files under `app/` and exposes only the
+converter/setup entry points, short README and license at the top level. See
+[distribution layout and provenance](docs/DISTRIBUTION.md). FFmpeg/ffprobe
+binaries, vendor DLLs, tests, generated audio, logs, caches, posters, Git data and
+Codex handoff/evidence are excluded.
 
 The ZIP is built from a supplied clean detached source commit. The external
 `release-manifest.json` records that commit, the helper-derived app version,
@@ -133,6 +134,11 @@ and verify the report SHA-256. The builder validates the supplied schema/commit
 and carries those references; it does not open the referenced reports or execute
 their tests. Approved exact asset bytes must be verified separately under the
 release runbook.
+
+The user-distribution manifest additionally identifies its package revision,
+original runtime ZIP and source-to-archive mapping. Generated entry points and
+guide have their own hashes and packaging-tool provenance; they are not claimed
+to be original source blobs. New layout tests bind the actual distributed ZIP.
 
 Repository CI downloads dependencies only into its isolated test environment,
 using reviewed fixed archives and complete hashed inventories. This CI provisioning

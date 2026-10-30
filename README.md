@@ -16,9 +16,19 @@ See [CHANGELOG.md](CHANGELOG.md) and the
 
 ## Setup
 
+For the GitHub download, extract the complete ZIP into a new, empty folder and keep the `app` folder beside
+the launch files. The top level contains only the converter/setup BAT and PS1
+entry points, a short README and the license. Drag an audio folder onto
+`AudioFileForPhone.bat`; use `Setup-AudioFileForPhone.bat` to select FFmpeg.
+The supporting scripts and full documentation live in `app/`.
+
+Explicit and saved FFmpeg selections and PATH discovery work as before. If you
+keep an application-local pair instead, put both executables in `app/`, beside
+the implementation scripts. FFmpeg is not included in the download.
+
 The target systems are Windows 10 22H2 x64 and Windows 11 x64 with Windows
 PowerShell 5.1 or PowerShell 7. See the recorded acceptance limits in SUPPORT.md.
-Keep these files together:
+In a source checkout (or inside the download's `app/` folder), keep these files together:
 
 - `AudioFileForPhone.ps1`
 - `AudioFileForPhone.Helpers.ps1` (required)

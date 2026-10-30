@@ -1,3 +1,32 @@
+# Status — clean v1.0.1 distribution revision 2 published and verified
+
+The owner rejected the original flat package and requested cleanup. The GitHub
+runtime ZIP now has six top-level launch/readme/license files and one app/ folder.
+All18 original runtime files remain byte-identical under app/; no converter code,
+release version/tag, icons/posters or v1.0.0 asset was changed. The new manifest
+identifies generated entrypoints and packaging provenance separately.
+
+Current ZIP SHA256:
+632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6
+Public release429170892 still v1.0.1; exactly3 revised public assets. Original3
+assets are privately backed up; staged uploads were downloaded/verified before
+name cutover, and temporary originals removed only after public-byte tests pass.
+Checksums and release notes identify revision2. Extract into a new empty folder.
+
+Both local candidate and anonymous public ZIP passed11cases/20real conversions
+per run in Win11 Pro26H2 26300.9711 x64, PS5.1.26100.9711/PS7.6.5, including saved
+setup, fresh conversions, full decode/source integrity and actual app-local tools
+in app/. BAT literal transport is instrumented; three separate actual unmodified
+BAT argument-refusals pass. No physical/phone/Windows10 result is invented.
+Application-local FFmpeg now belongs in app/; explicit/saved/PATH choices remain.
+
+Current evidence/handover: evidence/PACKAGING-REVISION-2.json and
+PACKAGING-REVISION-2-HANDOVER.md. Historical S14-S18 below describe revision1;
+their frozen kit and hashes are retained, not rebound to the clean distribution.
+Final feature/main sync and exact-head CI are observed after containing commit
+and ordinary reviewed integration. No owner diagnostics or new numbered step.
+
+## Preserved original revision1 release closure
 # Status — v1.0.1 published and verified; owner-directed closure
 
 Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1

@@ -1,3 +1,26 @@
+# Next session — packaging revision 2 is the current download
+
+The owner explicitly requested cleanup after rejecting the original flat ZIP.
+Current v1.0.1 ZIP SHA256632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6
+contains six root launch/readme/license files plus app/ with18unchanged originals.
+Read evidence/PACKAGING-REVISION-2.json and its handover for current hashes,
+new generated-entrypoint provenance, actual local/public20-output tests and
+publication reconciliation. Original S14-S18/kit evidence below is revision1.
+
+No owner diagnostics, acceptance rerun or next numbered step is requested.
+If interrupted only during Git completion, finish the existing reviewed feature
+codex/audiofileforphone-package-cleanup: verify exact-head CI, ordinary main merge,
+fast-forward local main and independently compare fresh advertised main. Refresh
+containing commit/live identities from the previous final response. The original
+release tag stays at d9d7129e9463de17e29c2a36752c82e326abf22e; do not move it.
+Do not alter verified public revision2 bytes for closure documentation. Retain
+private original-asset backup and public3assets, original v1.0.0 and historical
+nonpasses/waivers. To reproduce this packaging revision, follow docs/DISTRIBUTION.md.
+Build-UserPackage currently accepts only the pinned original v1.0.1 assets; it
+requires an explicit contract update for other payloads or versions. The raw flat
+Build-Package output is not the final user-facing ZIP.
+
+## Preserved original revision1 closure routing
 # Next session — no numbered work remains after verified final sync
 
 The owner explicitly requested finishing and publishing in this chat, superseding
