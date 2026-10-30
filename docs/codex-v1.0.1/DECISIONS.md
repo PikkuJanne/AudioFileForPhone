@@ -746,3 +746,18 @@ R1 CI follow-up: preserve the four4a812dc/PR integration nonpasses. A test's S11
      hash; retain current-source freeze, nonexistent commit refusal, historical
      digest rejection and unchanged production release safeguards. Both local
      complete release-gate suites pass50 cases; runtime bytes remain unchanged.
+
+R2 - 2026-10-30, clean-package repair: replace the historical published-payload
+     pin with an explicit clean detached source commit and verify every core
+     member against its Git blob. The final allowlist has17 files, exposing only
+     BAT/unchanged ICO/README.txt/app. Required helpers, setup, pin, diagnostics,
+     support and license stay under app; legacy launcher/probe sources remain
+     in Git. Generate CRLF for both packaged BATs and retarget only the root
+     converter assignment, retaining R1 transport/pause/policy/exit behavior.
+     Keep runtime1.0.1 but name this unpublished artifact R2-candidate; layout
+     revision3 selects no corrective version/tag and grants no publication.
+     Preserve full local diagnostics while reducing normal console chatter;
+     warnings/failures/cancellation and final counts/output/log stay visible.
+     Validate build refusals, relocated exact ZIP/icon, real synthetic conversion
+     and native console pause automatically. Owner testing required: none.
+     No R2 publication/main integration; R3 remains a separate owner-started chat.

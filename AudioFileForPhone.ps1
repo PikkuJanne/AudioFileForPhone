@@ -245,21 +245,15 @@ try {
     if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
     . $diagnosticsPath
     $diagnosticsReady = $true
-Write-Host "[INFO] Script path : $ScriptPath"
-Write-Host "[INFO] Script dir  : $ScriptDir"
-Write-Host "[INFO] Raw input   : '$InputFolder'"
-Write-Host "[INFO] Bitrate     : ${BitrateKbps}kbps"
-Write-Host "[INFO] Max name    : $MaxBaseLength chars"
-Write-Host "[INFO] Interactive : $Interactive"
-Write-Host ""
+Write-Verbose "Script path: $ScriptPath; bitrate: ${BitrateKbps}kbps; max name: $MaxBaseLength; interactive: $Interactive"
 
 # --- Preflight: reject prerequisites before optional prompts or run creation ---
-Write-Host '[STATE] Preflight: checking input, destination and prerequisites.'
+Write-Verbose 'Preflight: checking input, destination and prerequisites.'
 try {
     $helperPath = Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1'
     if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
     . $helperPath
-    Write-Host ("==== AudioFileForPhone v{0} ====" -f (Get-AudioAppVersion))
+    Write-Host ("AudioFileForPhone v{0}" -f (Get-AudioAppVersion))
     $diagnosticStage = 'Parameters'; $diagnosticCode = 'StartupFailed'
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
@@ -271,7 +265,7 @@ try {
     $provisionalRun = Get-AudioAvailableRunCandidate -OutputParent $outputParentPath -InputFolder $InputFolder -BitrateKbps $BitrateKbps -Timestamp $timestamp
     $outputRoot = $provisionalRun.OutputRoot
     $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
-    Write-Host "[INFO] Scanning for audio files (.mp3/.m4a/.ogg) under: $InputFolder"
+    Write-Host "Input: $InputFolder"
     $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
     $files = @($snapshot.Files)
@@ -447,7 +441,12 @@ if ($Interactive) {
 function Write-Log {
     param([string]$Message, [string]$Level = 'INFO')
     $line = '[{0}] {1}' -f $Level, $Message
-    Write-Host $line
+    # Keep full mappings/native diagnostics in the local log. Warnings, failures
+    # and phase changes remain visible; -Verbose also shows the retained detail.
+    if ($Level -in @('WARN', 'FAIL', 'FATAL', 'CANCELLED') -or $Message.StartsWith('[STATE]')) {
+        Write-Host $line
+    }
+    else { Write-Verbose $line }
     Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
 }
 
@@ -529,6 +528,7 @@ catch {
 $diagnosticStage = 'Conversion'; $diagnosticCode = 'StartupFailed'
 
 if ($script:AudioCancellationContext.ConsoleCaptureEnabled) {
+    Write-Host 'Press Ctrl+C during conversion to cancel this run safely.'
     Write-Log 'Press Ctrl+C during conversion to cancel this run safely.'
 }
 else {
@@ -566,10 +566,8 @@ catch {
     throw "Could not create output base '$outputBase': $($_.Exception.Message)"
 }
 
-Write-Host ""
 Write-Log "Using completed input snapshot from: $InputFolder"
 Write-Log ("Found {0} audio file(s) (.mp3/.m4a/.ogg)." -f $files.Count)
-Write-Host ""
 
 # --- Main conversion + sanitize loop ---
 $index  = 0
@@ -587,7 +585,7 @@ foreach ($plan in $plans) {
     $media = $null; $transaction = $null; $outputAudioPlan = $null
     $outPath = $plan.OutputPath
 
-    Write-Host "------------------------------------------------------------"
+    Write-Host ("[{0}/{1}] {2}" -f $index, $total, $plan.SourceRelativePath)
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
     Write-Log '[STATE] Probing source; duration unknown.'
@@ -619,15 +617,14 @@ foreach ($plan in $plans) {
     foreach ($warning in $plan.Warnings) { Write-Log ("{0}: {1}" -f $file.FullName, $warning) 'WARN' }
     Write-Log ("Sanitized base: '{0}' (from '{1}')" -f $newBase, $plan.OriginalBase) "DEBUG"
 
-    Write-Host "       Source : $($file.FullName)"
-    Write-Host "       Target : $outPath"
+    Write-Log ("Source: {0}; target: {1}" -f $file.FullName, $outPath) 'DEBUG'
     Write-Log  ("Output file   : {0}" -f $outPath) "DEBUG"
 
     # A failed probe is a file failure, distinct from a valid missing title.
     $transaction = $null
     $fileStatus = 'ProbeFailed'; $fileReason = ''
     try {
-    Write-Host "       [DEBUG] Running ffprobe..."
+    Write-Log 'Running ffprobe.' 'DEBUG'
     $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
     if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
@@ -655,10 +652,10 @@ foreach ($plan in $plans) {
     $metadataPlan = Get-AudioMetadataPlan -Media $media -FallbackTitle $newBase -Artist $Artist -Album $Album
     $hasTitle = $metadataPlan.HasSourceTitle
     if ($hasTitle) {
-        Write-Host "       [INFO] Existing title tag: $($media.Title)"
+        Write-Log ("Existing title tag: {0}" -f $media.Title) 'DEBUG'
     }
     else {
-        Write-Host "       [INFO] No title tag found; will set from sanitized filename."
+        Write-Log 'No title tag found; will set from sanitized filename.' 'DEBUG'
     }
 
     # The shared plan preserves the source map and puts explicit overrides last.
@@ -666,24 +663,23 @@ foreach ($plan in $plans) {
 
     if (-not $hasTitle) {
         $title = $metadataPlan.Title
-        Write-Host "       [INFO] Setting title tag: $title"
+        Write-Log ("Setting title tag: {0}" -f $title) 'DEBUG'
     }
 
     if (-not [string]::IsNullOrWhiteSpace($Artist)) {
-        Write-Host "       [INFO] Setting artist tag: $Artist"
+        Write-Log ("Setting artist tag: {0}" -f $Artist) 'DEBUG'
     }
     if (-not [string]::IsNullOrWhiteSpace($Album)) {
-        Write-Host "       [INFO] Setting album tag: $Album"
+        Write-Log ("Setting album tag: {0}" -f $Album) 'DEBUG'
     }
 
     # One output-scoped audio argument builder supplies both cover paths.
     if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
-        Write-Host "       [INFO] Embedding cover: $CoverPath"
+        Write-Log ("Embedding cover: {0}" -f $CoverPath) 'DEBUG'
     }
-    $ffArgs = @(New-AudioEncodeArguments -InputPath $file.FullName -Media $media -OutputPlan $outputAudioPlan -MetadataArguments $metadataArgs -CoverPath $CoverPath)
+    $ffArgs = @('-hide_banner', '-loglevel', 'warning') + @(New-AudioEncodeArguments -InputPath $file.FullName -Media $media -OutputPlan $outputAudioPlan -MetadataArguments $metadataArgs -CoverPath $CoverPath)
 
-    Write-Host "       [DEBUG] ffmpeg encoding arguments (working path added by transaction):"
-    Write-Host "              $ffmpeg " + ($ffArgs -join " ")
+    Write-Log ("FFmpeg encoding arguments (working path added by transaction): {0} {1}" -f $ffmpeg, ($ffArgs -join ' ')) 'DEBUG'
 
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
@@ -724,11 +720,11 @@ foreach ($plan in $plans) {
     }
     if ($null -ne $transaction) {
         $conversion = $transaction.EncoderResult
-        if ($null -ne $conversion -and $conversion.Stderr) { Write-Host $conversion.Stderr.TrimEnd() }
+        if ($null -ne $conversion -and $conversion.Stderr) { Write-Log $conversion.Stderr.TrimEnd() 'WARN' }
         if ($null -ne $conversion -and $conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
     }
     if ($fileStatus -eq 'Success') {
-        Write-Host "       [OK]   Converted successfully."
+        Write-Host '  Converted and validated.'
         Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
     }
     else {
@@ -740,7 +736,6 @@ foreach ($plan in $plans) {
         Write-Log ("Working path retained: '{0}'; {1}" -f $transaction.WorkingPath, $transaction.CleanupError) 'WARN'
     }
 
-    Write-Host ""
 }
 
 Assert-AudioNotCancelled
@@ -883,10 +878,7 @@ finally {
         Write-AudioBatchProgress -Detail $runStatus -Completed
     }
     $runWatch.Stop()
-    Write-Host "============================================================"
-    Write-Host "==== Summary ===="
     Write-Host ("[RESULT] " + (Get-AudioResultSummary))
-    Write-Host "  Input folder : $InputFolder"
     # A setup failure can leave the exact reserved scope named in its error
     # before the reservation object returns. Do not imply that nothing exists.
     $actualOutput = if ($run) { $run.OutputRoot }
@@ -897,14 +889,8 @@ finally {
         elseif ($DryRun) { '(not created during preview)' }
         else { '(not available)' }
     Write-Host "  Output root  : $actualOutput"
-    Write-Host "  Output base  : $outputBase"
-    Write-Host "  Total files  : $total"
-    Write-Host "  Converted    : $ok"
-    Write-Host "  Failed       : $failed"
     Write-Host "  Log file     : $actualLog"
     $actualManifest = if ($manifestPath) { $manifestPath } elseif ($DryRun) { '(not created during preview)' } else { '(not available)' }
-    Write-Host "  Manifest     : $actualManifest"
-    Write-Host "  Exit code    : $batchExitCode"
-    Write-Host "============================================================"
+    Write-Verbose "Manifest: $actualManifest; exit code: $batchExitCode"
 }
 exit $batchExitCode

@@ -2091,7 +2091,7 @@ function Assert-ToolPrerequisites {
             $architecture = Get-AudioExecutableArchitecture -Path $tool.Path
             $tools[$tool.Name] = [pscustomobject]@{ Path = $tool.Path; Version = $version; Architecture = $architecture }
             if ($null -ne $DiagnosticContext -and $null -ne $DiagnosticContext.Selection) { $DiagnosticContext.Selection.($tool.Name) = $tools[$tool.Name] }
-            Write-Host ("[INFO] {0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
+            Write-Verbose ("{0}: {1} (PE architecture: {2})" -f $tool.Path, $version, $architecture)
         }
         catch [OperationCanceledException] { throw }
         catch { throw "Invalid $($tool.Name) executable '$($tool.Path)': $($_.Exception.Message)" }
@@ -2111,11 +2111,11 @@ function Assert-ToolPrerequisites {
     $ffmpegBuild = [regex]::Match($tools['ffmpeg'].Version, '^ffmpeg version (\S+)').Groups[1].Value
     $ffprobeBuild = [regex]::Match($tools['ffprobe'].Version, '^ffprobe version (\S+)').Groups[1].Value
     if ($ffmpegBuild -cne $ffprobeBuild) {
-        Write-Warning ("FFmpeg/ffprobe build IDs differ ('{0}' and '{1}'). Capabilities passed; both selected paths are disclosed above." -f $ffmpegBuild, $ffprobeBuild)
+        Write-Warning ("FFmpeg/ffprobe build IDs differ ('{0}' and '{1}'). Capabilities passed. FFmpeg: {2}; ffprobe: {3}." -f $ffmpegBuild, $ffprobeBuild, $FfmpegPath, $FfprobePath)
     }
     if ($tools['ffmpeg'].Architecture -ne 'Unknown' -and $tools['ffprobe'].Architecture -ne 'Unknown' -and
         $tools['ffmpeg'].Architecture -cne $tools['ffprobe'].Architecture) {
-        Write-Warning ("FFmpeg/ffprobe PE architectures differ ('{0}' and '{1}'). Both selected executables passed startup validation." -f $tools['ffmpeg'].Architecture, $tools['ffprobe'].Architecture)
+        Write-Warning ("FFmpeg/ffprobe PE architectures differ ('{0}' and '{1}'). Both passed startup validation. FFmpeg: {2}; ffprobe: {3}." -f $tools['ffmpeg'].Architecture, $tools['ffprobe'].Architecture, $FfmpegPath, $FfprobePath)
     }
     return [pscustomobject]@{ Ffmpeg = $tools['ffmpeg']; Ffprobe = $tools['ffprobe'] }
 }

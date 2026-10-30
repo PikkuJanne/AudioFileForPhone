@@ -1,5 +1,58 @@
 # User distribution
 
+## Current focused-repair R2 candidate (unpublished)
+
+The repaired application ZIP has exactly four visible root entries:
+
+```text
+AudioFileForPhone.bat
+AudioFileForPhone.ico
+README.txt
+app/
+```
+
+The existing icon is copied from the exact source commit, without modification.
+The root BAT directly invokes `app/AudioFileForPhone.ps1` in the built-in x64
+Windows PowerShell 5.1 STA host. It retains R1's literal folder transport,
+process-only Bypass request, CMD-owned pause and preserved exit result. Both
+packaged BATs have explicitly generated CRLF bytes, including optional standalone
+setup under `app/`. Direct PS7 use is `app/AudioFileForPhone.ps1`.
+
+The final allowlist is in `tools/Build-UserPackage.ps1`: 14 app members plus the
+three root files. Required helpers, diagnostics, setup, the dependency pin,
+support documents and license remain together under `app/`. The old launcher,
+host probe and redundant BATs remain in Git and the intermediate core payload;
+they are excluded from the user ZIP. Developer material, tests, acceptance kits,
+promotional PNGs, generated output and FFmpeg binaries are also excluded.
+
+Build the intermediate core assets using `tools/Build-Package.ps1` from a clean,
+detached exact source commit and actual dependency/test records. Then run:
+
+```powershell
+.\tools\Build-UserPackage.ps1 -SourcePath 'C:\build\source' -SourceCommit '<full commit SHA>' -RuntimeAssetDirectory 'C:\build\core-assets' -OutputDirectory 'C:\build\candidate-assets'
+```
+
+The final builder verifies every core member against that source's Git blobs,
+reads the icon from the same commit and refuses dirty source, modified inputs,
+unsafe paths and existing output. It creates `AudioFileForPhone-R2-candidate.zip`,
+`release-manifest.json` and `SHA256SUMS.txt`. The manifest records generated BAT
+and README provenance, exact member/icon digests and no publication authority.
+Package revision 3 identifies the layout; it is not a release version. Runtime
+version 1.0.1 is retained pending R3 release-identity reconciliation. No tag is
+selected and no existing release is changed.
+
+Run `tests/Test-UserPackageBuild.ps1` in both supported shells for build/refusal
+policy, and `tests/Test-UserPackage.ps1` against the exact final ZIP for relocated
+layout/icon, real isolated conversions, concise console, setup and native BAT
+pause/exit checks. All media and destinations are synthetic and owned. Native
+console argument tests do not establish an Explorer drop or successful BAT
+encoding to the ordinary Music folder. R3 acceptance remains a separate step.
+Owner testing required: none. R2 does not publish.
+
+## Historical published v1.0.1 package revision 2
+
+The following records the preserved public package, not the repaired candidate.
+
 The downloadable package presents six files and one folder at the top level:
 
 ```text
