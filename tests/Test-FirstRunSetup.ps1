@@ -447,7 +447,7 @@ try {
             $case['actual_apartment'] = 'MTA'; $case['dialog_result'] = $results[0].Status; $case['physical_dialog'] = 'NOT_RUN'
         } finally { if ($null -ne $pipeline) { $pipeline.Dispose() }; $runspace.Dispose() }
     }
-    Invoke-Case 'setup BAT rejects extra and quoted-empty arguments and never pauses redirected launches' 'S05-A2,S05-A3' {
+    Invoke-Case 'setup BAT rejects extra and quoted-empty arguments and shows CMD pause before EOF returns' 'S05-A2,S05-A3,R1' {
         param($case)
         $observations = @()
         foreach ($mode in @('NoArguments','Extra','QuotedEmpty','QuotedEmptyExtra')) {
@@ -458,7 +458,7 @@ try {
             $driverText = '@echo off' + "`r`n" + '"' + (Join-Path $env:SystemRoot 'System32\chcp.com') + '" 65001 >NUL' + "`r`ncall " + '"' + (Join-Path $appRoot 'Setup-AudioFileForPhone.bat') + '"' + $arguments + ' <NUL' + "`r`nexit /b %ERRORLEVEL%`r`n"
             Write-NewText $driver $driverText -NoBom; Add-Fixture $driver
             $native = Invoke-WithPath '' { Invoke-AudioNativeProcess -ExecutablePath (Join-Path $env:SystemRoot 'System32\cmd.exe') -Arguments @('/d','/c',$driver) -TimeoutMilliseconds 30000 -Operation ('S05 setup BAT ' + $mode) }; Assert-NativeComplete $native
-            Assert-True ($native.ExitCode -eq 1 -and $native.Stdout -notmatch 'Press any key') ('BAT must preserve bounded exit1 with redirected input: ' + $mode + ' ' + $native.Stdout + $native.Stderr)
+            Assert-True ($native.ExitCode -eq 1 -and $native.Stdout -match 'Press any key') ('BAT must show its CMD pause and preserve exit1 when redirected input reaches EOF: ' + $mode + ' ' + $native.Stdout + $native.Stderr)
             if ($mode -cne 'NoArguments') { Assert-True ($native.Stdout -match 'accepts no arguments') 'Every supplied argument must be rejected before setup begins.' }
             else {
                 if ($native.Stdout -notmatch 'explicit existing-tool directory|console input is unavailable') {
@@ -466,7 +466,7 @@ try {
                 }
                 Assert-True ($native.Stdout -match 'explicit existing-tool directory|console input is unavailable') 'Double-click entry under redirected input must show direct recovery route.'
             }
-            $observations += [pscustomobject]@{mode=$mode;exit_code=1;pause_shown=$false}
+            $observations += [pscustomobject]@{mode=$mode;exit_code=1;pause_shown=$true;input='redirected EOF';interactive_wait='NOT_RUN here; covered by Test-DirectLauncher.ps1 native console'}
         }
         $case['observations'] = $observations
     }

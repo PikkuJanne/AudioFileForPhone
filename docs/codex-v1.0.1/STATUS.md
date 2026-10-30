@@ -1,3 +1,150 @@
+# Status — R3 BLOCKED; v1.0.2 candidate verified on available Windows11
+
+Owner testing required: none. Version instruction "Use v1.0.2" is recorded in
+CORRECTIVE_RELEASE_TARGET.json; historical RELEASE_TARGET.json remains unchanged.
+No new tag, draft release, public release or main integration was performed.
+
+Frozen source: 83a5713cacfbc330f309f48d8377cb5be11ba3a6. Canonical assets:
+C:/projects/AFP-R3-20261030/candidate-verified. ZIP SHA256
+012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad (286541 bytes).
+Final manifest 5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06; sums dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c.
+The report attachment changes only external manifest/sums; ZIP bytes stay exact.
+
+Available Windows11 Pro26H2 26300.9711 x64 checks pass: ps51:20families/951checks+3observations, ps7:20families/951checks+3observations;
+build11 per shell; relocated user package12groups/20 outputs/5native cases;
+exact audio64 outputs across PS5.1/PS7, including31M4A batch and30-minute/seek
+checks per host; controlled native BAT8cases/2outputs, real default Music
+in an owned child profile, saved tools outside empty PATH, success0/partial2/
+visible failure1/setup-cancel130, final pause/wait/key/exit/job release. Internet
+marks are deterministic ADS. Independent member/source/icon/finalasset audits
+pass. Raw reports/media remain private; all new data are synthetic.
+
+R3 remains BLOCKED: no authorized available Windows10 client for either host;
+genuine Explorer conversion could not be safely isolated from ordinary Music.
+An inert actual Explorer shortcut drop delivered the literal folder/cwd but
+failed environment isolation; it is not conversion acceptance. A test identity
+probe OEM/UTF8 mismatch, console softwrap assertion and private audit culture
+nonpasses are retained. C2 shortoperations16 per host add a strict live sentinel
+negative check and retire only proved-completed identities; C3 shell11/8/2
+passes unchanged assets. Source push CI passed both hosts; source PR PS7 remains
+FAILED after15 functional passes and strict cleanup identity refusal. PID reuse
+is likely, not proved. Corrected targeted reports do not relabel that PR run. No actual
+browser extraction, deployed managed-policy scenario, physical picker or new
+phone/listening result is claimed. Owner-reported recovery stays historical.
+
+Exact frozen-byte publication authority and reviewed-head main-integration
+authority remain absent. Published v1.0.0/v1.0.1 refs/asset metadata are unchanged.
+Final containing checkpoint/live-ref comparison and exact-head CI are reported
+after push. Full evidence/commands/report digests: evidence/R3.json and
+R3-HANDOVER.md. Resume only R3 in another owner-started thread, then STOP.
+
+## Preserved R2 status — historical
+
+# Status — R2 completed; candidate and safeguards unchanged
+
+Owner testing required: none. Clean17-member package/build11 per shell, exact
+relocated ZIP12groups/20real conversions, five native BAT cases and independent
+final3asset/icon/source proof pass. Canonical source3f9610ee39db3ae30e965c159effede46baf00b9
+and ZIP SHA256cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426
+remain unchanged in C:/projects/AFP-R2-20261030/candidate-verified/.
+
+The named local PS7 download-deadline verification gap is resolved: actual fresh
+S06-managedreal-ps7-attempt95002 PASSED3/3 on Windows11 Pro26H2 26300.9711 x64,
+PS7.6.5. All7 runtime/harness hashes match previous reports; real pinned transfer,
+setup/provenance, saved-config conversion/full decode and cleanup/release pass.
+No runtime/pin/policy/deadline changes. The two genuine prior300s body-deadline
+failures remain failed and root cause remains unknown. Diagnostic cancellation
+is not a completed download/acceptance claim.
+
+WinPS5.1 full aggregate covers20families/951checks+3observations. PS7 composed
+campaign independently binds original18families/913checks, new real setup3 and
+prior native35, completing20/951+3 without relabeling its failed aggregate.
+Source3f push/PR ServerCI passed all4jobs; final containing checkpoint exact-head
+CI/live refs are observed after push and reported separately. Main unintegrated.
+
+R1/R2 complete; R3 NOT_STARTED and requires a separate owner-started thread.
+Runtime1.0.1/layout revision3 are internal: no corrective version/tag/publication
+authority selected. No release/tag/main integration in R2. Public v1.0.0/v1.0.1
+tags/assets are preserved. Remaining client/Explorer/browser/large/long/seek/
+exact-final setupBAT acceptance and release identity/authority belong to R3.
+Full evidence/handover: evidence/R2.json and R2-HANDOVER.md. STOP before R3.
+
+## Preserved R2 blocked checkpoint — historical
+
+# Status — R2 clean candidate verified; local regression BLOCKED
+
+Owner testing required: none. R2 built the clean17-member allowlisted package:
+BAT/unchanged ICO/README.txt/app. Required helpers/setup/pin/support/license remain
+under app. Root BAT directly invokes the converter; literal transport, CRLF,
+process-only Bypass and CMD pause/exit are preserved. Normal console is concise;
+warnings/errors/cancellation and detailed local logs remain. Audio defaults,
+metadata/layout, source safety, icon/posters and public releases are preserved.
+
+Source3f9610ee39db3ae30e965c159effede46baf00b9; canonical assets:
+C:/projects/AFP-R2-20261030/candidate-verified/. ZIP SHA256:
+cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+Build-policy11/11 per shell; exact relocated ZIP12groups/20real conversions with
+full decode/metadata/layout/integrity/console checks; five native BAT cases;
+independent final3asset/source/icon proof all pass. Runtime1.0.1/layout revision3
+are internal: no corrective version/tag is selected or publication authorized.
+
+Windows11 Pro26H2 26300.9711 x64, non-elevated: WinPS5.1.26100.9711 full aggregate
+passes20families/951checks+3observations. PS7.6.5 has19successful families/948checks+
+3observations, including native35. Its full aggregate and serialized real-setup
+retry both FAILED at the unchanged production300s response-body deadline.
+LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE is the named R2 blocker. Source/
+fixture integrity and cleanup passed; network/transport root cause is unknown.
+No deadline or safeguard was weakened; genuine nonpasses remain nonpasses.
+Implementation push/PR ServerCI passes all4jobs, supplementary to client evidence.
+See evidence/R2.json and R2-HANDOVER.md for exact hashes, commands and limits.
+
+R2 remains BLOCKED; resume only R2 next thread. No R3 work/publication/main merge.
+Final containing feature sync/exact-head CI are observed after push and reported
+separately. Windows10, genuine Explorer/.lnk/defaultMusic BAT success, browser
+extraction and remaining R3 acceptance remain unverified, never owner tasks.
+Published v1.0.0/v1.0.1 tags/assets remain unchanged. STOP at this checkpoint.
+
+## Preserved R1 checkpoint — historical
+
+# Status — focused repair R1 completed
+
+R1 restores one direct built-in x64 Windows PowerShell5.1 STA launch and CMD-owned
+status/pause, with a process-only Bypass request for the trusted unsigned app.
+Both BATs preserve exit results; the converter receives the folder as process
+data. Built-in host modules are selected only in the child; CRLF checkout rules
+preserve CMD labels. The existing audio engine, helpers, optional setup/selection,
+icon and posters are preserved. Legacy launcher/probe sources remain in Git.
+
+Owner testing required: none. The owner-reported successful recovery is historical
+evidence, not independent final-package verification. The newer adopted brief is
+REPAIR_BRIEF.md; conflicting S01-S18 routing and owner acceptance tasks are retired.
+
+Windows11 Pro26H2 26300.9711 x64, non-elevated: direct launch39, first-run setup15,
+help7 and CI-contract41 cases pass per shell (WinPS5.1.26100.9711 / PS7.6.5).
+The existing isolated real-FFmpeg baseline passes both shells, with unchanged
+sources/full decode; setup adds four real64kbps conversions per shell. Native
+console tests observe the actual pause, wait, inject a key and verify original
+exit/owned-process release. Internet marks are deterministic disposable ADS;
+negative policy adapters generate genuine File-entry refusals without changing
+workstation policy. Initial nonpasses and corrections remain recorded honestly.
+
+Implementation commit:6e22c5c8394c6453e0d3428bc9fc143040126b96. Evidence and full
+handover: evidence/R1.json and evidence/R1-HANDOVER.md. Reports preserve the actual
+precommit base plus hashes; final feature sync/exact-head CI are observed after
+containing push and reported separately. Main integration is not performed.
+
+Windows10, actual managed-policy/application-control deployment, Explorer/shortcut
+events and the repaired exact ZIP remain unverified. R2 must update the pinned
+package builder, use the existing ICO and small root, and verify console/relocation.
+No package was built or release published in R1. Existing v1.0.0/v1.0.1 bytes and
+historical release target remain unchanged. Corrective publication identity and
+exact-byte authority must be reconciled before R3. Stop; R2 needs a separate chat.
+First-checkpoint Server CI exposed a stale historical-converter hash test. The
+source-freeze guard stayed intact; the binary-reader test now checks the existing
+ICO. Corrected local release-gate suites pass50/50 per shell. R1.json preserves
+all four genuine CI nonpasses; corrected exact-head CI is observed after push.
+
+## Preserved v1.0.1 and packaging history
 # Status — clean v1.0.1 distribution revision 2 published and verified
 
 The owner rejected the original flat package and requested cleanup. The GitHub

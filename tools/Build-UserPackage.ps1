@@ -1,18 +1,20 @@
 <#
 .SYNOPSIS
-Repackages the published v1.0.1 payload into a clean end-user folder layout.
+Builds the corrective v1.0.2 candidate in a small end-user layout.
 .DESCRIPTION
-Follow-up to Build-Package.ps1: verifies its exact original published assets,
-retains all eighteen payload files byte-for-byte under app/, and adds the four
-compatible entry points, a short guide and LICENSE at the archive root.
-Build-Package.ps1 remains the exact-source core payload builder. Generated
-entry points are identified separately from retained source blobs in the new
-manifest. This operation establishes no acceptance, release or upload authority.
-No download, native tool execution, repository change or existing output write.
+Follow-up to Build-Package.ps1: binds every core member and the existing icon to
+an explicit clean detached source commit. A reviewed subset stays under app/;
+the root contains only the direct BAT, existing ICO and short README.txt.
+BATs receive explicit CRLF and the root converter target moves under app/.
+The owner-selected corrective identity is v1.0.2. This operation establishes no
+acceptance, publication, tag creation or upload authority.
+No download, audio conversion, repository change or existing output write.
 The new output directory receives complete assets through one directory move.
 #>
 [CmdletBinding()]
 param(
+    [Parameter(Mandatory = $true)][string]$SourcePath,
+    [Parameter(Mandatory = $true)][string]$SourceCommit,
     [Parameter(Mandatory = $true)][string]$RuntimeAssetDirectory,
     [Parameter(Mandatory = $true)][string]$OutputDirectory,
     [string]$PackageTestEvidencePath
@@ -20,13 +22,10 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
-$sourceCommit = 'd9d7129e9463de17e29c2a36752c82e326abf22e'
-$zipName = 'AudioFileForPhone-v1.0.1.zip'
-$originalHashes = [ordered]@{
-    'AudioFileForPhone-v1.0.1.zip' = '78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53'
-    'release-manifest.json' = '45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3'
-    'SHA256SUMS.txt' = '298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f'
-}
+$appVersion = '1.0.2'
+$targetTag = 'v1.0.2'
+$zipName = 'AudioFileForPhone-v1.0.2.zip'
+$coreZipName = $zipName
 $payloadNames = @(
     'AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1',
     'AudioFileForPhone.ManagedSetup.ps1', 'AudioFileForPhone.Launcher.ps1',
@@ -38,6 +37,15 @@ $payloadNames = @(
     'SECURITY.md', 'LICENSE'
 )
 [Array]::Sort($payloadNames, [StringComparer]::Ordinal)
+# This is the final distribution allowlist, not an enumeration of the checkout.
+$appNames = @(
+    'AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1',
+    'AudioFileForPhone.ManagedSetup.ps1', 'AudioFileForPhone.Diagnostics.ps1',
+    'AudioFileForPhone.Checks.ps1', 'Check-AudioFileForPhone.ps1',
+    'tools/ffmpeg-download.json', 'Setup-AudioFileForPhone.ps1',
+    'Setup-AudioFileForPhone.bat', 'README.md', 'SUPPORT.md', 'CHANGELOG.md',
+    'SECURITY.md', 'LICENSE'
+)
 $utf8 = New-Object Text.UTF8Encoding($false, $true)
 $stage = $null
 $ownedFiles = New-Object 'Collections.Generic.List[string]'
@@ -111,36 +119,50 @@ function ConvertFrom-UserPackageUtf8 {
     return $text
 }
 
-function New-UserPackageForwarder {
-    param([byte[]]$Bytes, [string]$FileName)
-    $text = ConvertFrom-UserPackageUtf8 $Bytes
-    $tokens = $null; $errors = $null
-    $ast = [Management.Automation.Language.Parser]::ParseInput($text, [ref]$tokens, [ref]$errors)
-    if ($errors.Count -ne 0 -or $null -eq $ast.ParamBlock -or
-        $null -ne $ast.BeginBlock -or $null -ne $ast.ProcessBlock) {
-        throw 'Original entry point must have one unambiguous script parameter block.'
-    }
-    $prefix = $text.Substring(0, $ast.ParamBlock.Extent.EndOffset)
-    $body = @'
-
-
-# Compatibility entry point. The complete implementation stays together in app/.
-$implementation = Join-Path $PSScriptRoot 'app\__FILE__'
-if (-not [IO.File]::Exists($implementation)) {
-    Write-Error 'Required app/__FILE__ is missing. Extract the complete application ZIP.' -ErrorAction Continue
-    exit 1
+function Invoke-UserPackageSourceGit {
+    param([string[]]$Arguments, [int[]]$AllowedExitCodes = @(0))
+    $saved = $ErrorActionPreference
+    try {
+        $ErrorActionPreference = 'Continue'
+        $rows = @(& $gitPath --no-optional-locks -C $sourceRoot @Arguments 2>&1)
+        $code = $LASTEXITCODE
+    } finally { $ErrorActionPreference = $saved }
+    if ($AllowedExitCodes -notcontains $code) { throw 'Exact source Git verification failed.' }
+    return [pscustomobject]@{ code = $code; lines = @($rows | ForEach-Object { [string]$_ }) }
 }
-& $implementation @PSBoundParameters
-exit $LASTEXITCODE
-'@
-    $body = $body.Replace('__FILE__', $FileName).Replace("`r`n", "`n").Replace("`n", "`r`n")
-    $wrapper = $prefix + $body + "`r`n"
-    $wrapperAst = [Management.Automation.Language.Parser]::ParseInput($wrapper, [ref]$tokens, [ref]$errors)
-    if ($errors.Count -ne 0 -or $wrapperAst.ParamBlock.Extent.Text -cne $ast.ParamBlock.Extent.Text) {
-        throw 'Generated compatibility entry point did not preserve its parameter contract.'
+
+function Assert-UserPackageSource {
+    $head = Invoke-UserPackageSourceGit @('rev-parse', '--verify', 'HEAD')
+    $branch = Invoke-UserPackageSourceGit @('symbolic-ref', '--quiet', 'HEAD') @(0, 1)
+    $status = Invoke-UserPackageSourceGit @('status', '--porcelain=v1', '--untracked-files=all', '--ignored=matching')
+    if ($head.lines.Count -ne 1 -or $head.lines[0] -cne $SourceCommit -or
+        $branch.code -ne 1 -or $branch.lines.Count -ne 0 -or $status.lines.Count -ne 0) {
+        throw 'SourcePath must be a clean detached checkout of SourceCommit, without untracked or ignored files.'
     }
-    # BOM lets Windows PowerShell 5.1 read any non-ASCII comment help correctly.
-    return ,([byte[]](@(239, 187, 191) + $utf8.GetBytes($wrapper)))
+}
+
+function Read-UserPackageSourceBlob {
+    param([string]$Name)
+    if ($Name -cnotmatch '^(?:[A-Za-z0-9][A-Za-z0-9._-]*|tools/(?:ffmpeg-download\.json|Build-UserPackage\.ps1))$') {
+        throw 'Unexpected exact-source blob path.'
+    }
+    $info = New-Object Diagnostics.ProcessStartInfo
+    $info.FileName = $gitPath; $info.WorkingDirectory = $sourceRoot
+    $info.Arguments = 'cat-file blob ' + $SourceCommit + ':' + $Name
+    $info.UseShellExecute = $false; $info.CreateNoWindow = $true
+    $info.RedirectStandardOutput = $true; $info.RedirectStandardError = $true
+    $process = New-Object Diagnostics.Process; $process.StartInfo = $info
+    $buffer = New-Object IO.MemoryStream
+    try {
+        if (-not $process.Start()) { throw 'Cannot read exact source blob.' }
+        $errorTask = $process.StandardError.ReadToEndAsync()
+        $process.StandardOutput.BaseStream.CopyTo($buffer)
+        $process.WaitForExit(); $null = $errorTask.GetAwaiter().GetResult()
+        if ($process.ExitCode -ne 0 -or $buffer.Length -lt 1 -or $buffer.Length -gt 10485760) {
+            throw 'Missing or excessive exact source blob.'
+        }
+        return ,$buffer.ToArray()
+    } finally { $buffer.Dispose(); $process.Dispose() }
 }
 
 function New-UserPackageBat {
@@ -150,7 +172,7 @@ function New-UserPackageBat {
         throw 'Original BAT target assignment must occur exactly once.'
     }
     # Preserve the original argument transport, validation, policy and exit logic.
-    return ,$utf8.GetBytes($text.Replace($Before, $After))
+    return ,$utf8.GetBytes($text.Replace($Before, $After).Replace("`r`n", "`n").Replace("`n", "`r`n"))
 }
 
 function Write-UserPackageNewText {
@@ -175,35 +197,45 @@ try {
     Assert-UserPackageNoReparse $outputParent
     if (-not (Get-Item -LiteralPath $outputParent -Force).PSIsContainer) { throw 'OutputDirectory needs an existing parent.' }
 
-    $originalBytes = @{}
-    foreach ($name in $originalHashes.Keys) {
+    if ($SourceCommit -cnotmatch '^[a-f0-9]{40}$') { throw 'SourceCommit must be a full lowercase commit SHA.' }
+    $sourceRoot = Get-UserPackagePath $SourcePath
+    Assert-UserPackageNoReparse $sourceRoot
+    $gitPath = (Get-Command git.exe -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source
+    Assert-UserPackageSource
+    $builderBytes = Read-UserPackageSourceBlob 'tools/Build-UserPackage.ps1'
+    $builderHash = Get-UserPackageBytesHash $builderBytes
+    $runningBuilder = Read-UserPackageBytes $PSCommandPath 1048576
+    if ((ConvertFrom-UserPackageUtf8 $builderBytes).Replace("`r`n", "`n") -cne
+        (ConvertFrom-UserPackageUtf8 $runningBuilder).Replace("`r`n", "`n")) {
+        throw 'Run the builder bytes recorded in SourceCommit.'
+    }
+    if (Test-UserPackageWithin $output $sourceRoot) { throw 'OutputDirectory must be outside SourcePath.' }
+    $originalBytes = @{}; $originalHashes = [ordered]@{}
+    foreach ($name in @($coreZipName, 'release-manifest.json', 'SHA256SUMS.txt')) {
         $limit = if ($name -ceq 'SHA256SUMS.txt') { 4096 } elseif ($name -ceq 'release-manifest.json') { 1048576 } else { 2097152 }
         $bytes = Read-UserPackageBytes (Join-Path $inputRoot $name) $limit
-        if ((Get-UserPackageBytesHash $bytes) -cne $originalHashes[$name]) {
-            throw ('Original published asset hash mismatch: ' + $name)
-        }
-        $originalBytes[$name] = $bytes
+        $originalBytes[$name] = $bytes; $originalHashes[$name] = Get-UserPackageBytesHash $bytes
     }
     $originalManifest = (ConvertFrom-UserPackageUtf8 $originalBytes['release-manifest.json']) | ConvertFrom-Json
-    $expectedChecksums = $originalHashes[$zipName] + '  ' + $zipName + "`n" +
+    $expectedChecksums = $originalHashes[$coreZipName] + '  ' + $coreZipName + "`n" +
         $originalHashes['release-manifest.json'] + "  release-manifest.json`n"
     if ((ConvertFrom-UserPackageUtf8 $originalBytes['SHA256SUMS.txt']).Replace("`r`n", "`n") -cne $expectedChecksums) {
-        throw 'Original external checksum rows must bind exactly the original ZIP and manifest.'
+        throw 'Core external checksum rows must bind exactly the core ZIP and manifest.'
     }
     if ($originalManifest.schema_version -ne 1 -or $originalManifest.repository -cne 'PikkuJanne/AudioFileForPhone' -or
-        $originalManifest.app_version -cne '1.0.1' -or $originalManifest.tag -cne 'v1.0.1' -or
-        $originalManifest.release_commit -cne $sourceCommit -or $originalManifest.zip.name -cne $zipName -or
-        $originalManifest.zip.sha256 -cne $originalHashes[$zipName] -or
-        $originalManifest.zip.bytes -ne $originalBytes[$zipName].Length -or
+        $originalManifest.app_version -cne $appVersion -or $originalManifest.tag -cne $targetTag -or
+        $originalManifest.release_commit -cne $SourceCommit -or $originalManifest.zip.name -cne $coreZipName -or
+        $originalManifest.zip.sha256 -cne $originalHashes[$coreZipName] -or
+        $originalManifest.zip.bytes -ne $originalBytes[$coreZipName].Length -or
         @($originalManifest.files.PSObject.Properties).Count -ne 18 -or
         @($originalManifest.file_bytes.PSObject.Properties).Count -ne 18) {
-        throw 'Original payload manifest does not identify the exact published v1.0.1 source and inventory.'
+        throw 'Core manifest must identify the explicit current source and expected input inventory.'
     }
 
     Add-Type -AssemblyName System.IO.Compression -ErrorAction Stop
     Add-Type -AssemblyName System.IO.Compression.FileSystem -ErrorAction Stop
     $payload = @{}
-    $memory = New-Object IO.MemoryStream(,$originalBytes[$zipName])
+    $memory = New-Object IO.MemoryStream(,$originalBytes[$coreZipName])
     $archive = New-Object IO.Compression.ZipArchive($memory, [IO.Compression.ZipArchiveMode]::Read, $false)
     try {
         if ($archive.Entries.Count -ne 18) { throw 'Original ZIP must contain exactly eighteen files.' }
@@ -225,6 +257,9 @@ try {
                 (Get-UserPackageBytesHash $bytes) -cne $originalManifest.files.$name) {
                 throw 'Original ZIP member bytes do not match the original manifest.'
             }
+            if ((Get-UserPackageBytesHash $bytes) -cne (Get-UserPackageBytesHash (Read-UserPackageSourceBlob $name))) {
+                throw 'Core ZIP member does not match the explicit source commit.'
+            }
             $payload[$name] = $bytes
         }
         if ($seen.Count -ne $payloadNames.Count) { throw 'Original ZIP omitted a required payload file.' }
@@ -233,49 +268,60 @@ try {
 
     $members = @{}
     $mappings = @()
-    foreach ($name in $payloadNames) {
+    foreach ($name in $appNames) {
         $destination = 'app/' + $name
         $members[$destination] = $payload[$name]
-        $mappings += [ordered]@{ source_path = $name; archive_path = $destination; sha256 = $originalManifest.files.$name }
+        $mappings += [ordered]@{ source_path = $name; archive_path = $destination; source_sha256 = $originalManifest.files.$name; method = $(if ($name -ceq 'Setup-AudioFileForPhone.bat') { 'Explicit CRLF' } else { 'Exact Git blob' }) }
     }
     $members['AudioFileForPhone.bat'] = New-UserPackageBat $payload['AudioFileForPhone.bat'] `
-        'set "AFP_LAUNCHER=%~dp0AudioFileForPhone.Launcher.ps1"' 'set "AFP_LAUNCHER=%~dp0app\AudioFileForPhone.Launcher.ps1"'
-    $members['Setup-AudioFileForPhone.bat'] = New-UserPackageBat $payload['Setup-AudioFileForPhone.bat'] `
-        'set "SETUP_SCRIPT=%~dp0Setup-AudioFileForPhone.ps1"' 'set "SETUP_SCRIPT=%~dp0app\Setup-AudioFileForPhone.ps1"'
-    foreach ($name in @('AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.ps1')) {
-        $members[$name] = New-UserPackageForwarder $payload[$name] $name
-    }
+        'set "AFP_SCRIPT=%~dp0AudioFileForPhone.ps1"' 'set "AFP_SCRIPT=%~dp0app\AudioFileForPhone.ps1"'
+    # Git stores LF; distribute explicit CRLF so CMD labels remain reliable.
+    $setupText = (ConvertFrom-UserPackageUtf8 $payload['Setup-AudioFileForPhone.bat']).Replace("`r`n", "`n").Replace("`n", "`r`n")
+    $members['app/Setup-AudioFileForPhone.bat'] = $utf8.GetBytes($setupText)
+    $members['AudioFileForPhone.ico'] = Read-UserPackageSourceBlob 'AudioFileForPhone.ico'
+    $mappings += [ordered]@{ source_path = 'AudioFileForPhone.ico'; archive_path = 'AudioFileForPhone.ico'; source_sha256 = Get-UserPackageBytesHash $members['AudioFileForPhone.ico']; method = 'Exact Git blob' }
     $readme = @'
-# AudioFileForPhone
+AudioFileForPhone v1.0.2
 
-Convert a folder of podcasts or audiobooks to 64 kbps MP3. Original audio stays unchanged.
+Convert MP3, M4A and OGG folders to validated 64 kbps CBR MP3. Sources stay unchanged.
 
-1. Extract the entire ZIP into a new, empty folder you want to keep.
-2. First time: open Setup-AudioFileForPhone.bat to select an existing FFmpeg folder,
-   or choose its optional download after reviewing and accepting the prompt.
-3. Drag one audio folder onto AudioFileForPhone.bat. Press Enter to use defaults.
+1. Extract the complete application ZIP into a new empty folder you want to keep.
+2. Make a shortcut to AudioFileForPhone.bat. In shortcut Properties, Change Icon,
+   choose the AudioFileForPhone.ico beside it. Keep the BAT, ICO and app/ together.
+3. Drop one audio folder onto the shortcut (or BAT). Press Enter for defaults,
+   M to customize metadata, or Q to cancel. Completed files go to a new run folder
+   under Music, preserving relative folders and date-first filenames.
 
-Completed files go into a new run folder under your Music folder, keeping the
-relative subfolders and date-first filenames. MP3, M4A and OGG input is supported.
-Conversion never downloads tools. FFmpeg and ffprobe are not bundled.
+If tools are needed, select the folder containing both ffmpeg.exe and ffprobe.exe
+when prompted, or open app/Setup-AudioFileForPhone.bat first. The separate setup
+can remember that choice or offer an optional download with your consent.
+Conversion never downloads tools. No FFmpeg binaries are bundled. Existing tools
+can stay in a separate folder; no PATH edit or reinstall is required. App-local
+tools, if wanted, belong beside the scripts in app/.
 
-Keep the app folder: it contains the program components and detailed instructions.
-You do not need to open or edit those files for ordinary use. Advanced help and
-support are in app/README.md and app/SUPPORT.md.
+If an error stays visible, read it and the reported local log path. Restore the
+complete package if a component is missing; consult app/SUPPORT.md. The final
+key press closes the console and preserves its exit result.
 
-PowerShell users can run AudioFileForPhone.ps1 or Setup-AudioFileForPhone.ps1 here
-with the existing command-line options. If using app-local FFmpeg discovery,
-place both ffmpeg.exe and ffprobe.exe in app/, beside the actual implementation.
-An explicit or saved selection can point to a separate trusted tools folder.
+Both BATs request ExecutionPolicy Bypass only for their child Windows PowerShell
+process to run this trusted unsigned app, including downloaded scripts. No policy
+or PATH change is saved. Managed policies and application control still apply;
+if they refuse execution, the error stays visible and no other host is retried.
 
-Version 1.0.1, package revision 2. This layout keeps the original program payload
-unchanged and presents the launchers separately from its internal files.
+Download this version's application asset, AudioFileForPhone-v1.0.2.zip, from:
+https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2
+Choose that application ZIP, rather than the autogenerated Source code archives.
+Later application updates appear on the project's Releases page.
+
+Detailed options: app/README.md. License: app/LICENSE. Security: app/SECURITY.md.
+Optional setup notices and vendor provenance: app/tools/ffmpeg-download.json.
+PowerShell users can run app/AudioFileForPhone.ps1 and app/Setup-AudioFileForPhone.ps1
+with their existing options, including an explicit output directory.
 '@
-    $members['README.md'] = $utf8.GetBytes($readme.Replace("`r`n", "`n") + "`n")
-    $members['LICENSE'] = $payload['LICENSE']
+    $members['README.txt'] = $utf8.GetBytes($readme.Replace("`r`n", "`n").Replace("`n", "`r`n") + "`r`n")
     [string[]]$names = @($members.Keys)
     [Array]::Sort($names, [StringComparer]::Ordinal)
-    if ($names.Count -ne 24) { throw 'Clean package must contain exactly twenty-four reviewed members.' }
+    if ($names.Count -ne 17) { throw 'Clean package must contain exactly seventeen reviewed members.' }
 
     $stage = Join-Path $outputParent ('.afp-user-package-' + [guid]::NewGuid().ToString('N'))
     if (Test-Path -LiteralPath $stage) { throw 'Unexpected owned staging collision.' }
@@ -318,30 +364,35 @@ unchanged and presents the launchers separately from its internal files.
         $testPath = Get-UserPackagePath $PackageTestEvidencePath
         $testBytes = Read-UserPackageBytes $testPath 4194304
         $testRecord = (ConvertFrom-UserPackageUtf8 $testBytes) | ConvertFrom-Json
-        if ($testRecord.schema_version -ne 1 -or $testRecord.status -cnotin @('PASSED', 'pass') -or
-            $testRecord.runtime_zip_sha256 -cne $zipHash -or $testRecord.package_revision -ne 2) {
-            throw 'Package evidence must be an actual passing revision2 report bound to this exact clean ZIP.'
+        if ($testRecord.schema_version -ne 1 -or $testRecord.kind -cne 'user_package_verification' -or
+            $testRecord.status -cnotin @('PASSED', 'pass') -or
+            $testRecord.app_version -cne $appVersion -or $testRecord.artifact_kind -cne 'corrective_release_candidate' -or
+            $testRecord.source_commit -cne $SourceCommit -or
+            $testRecord.runtime_zip_sha256 -cne $zipHash -or $testRecord.package_revision -ne 3) {
+            throw 'Package evidence must be an actual passing v1.0.2 verification report bound to this exact source and ZIP.'
         }
-        $tests = [ordered]@{ sha256 = Get-UserPackageBytesHash $testBytes; runtime_zip_sha256 = $zipHash; status = [string]$testRecord.status; scope = 'Caller-supplied new-layout report; no client or human results are inferred.' }
+        $tests = [ordered]@{ sha256 = Get-UserPackageBytesHash $testBytes; runtime_zip_sha256 = $zipHash; app_version = $appVersion; artifact_kind = 'corrective_release_candidate'; source_commit = $SourceCommit; status = [string]$testRecord.status; scope = 'Caller-supplied exact-package verification; no unrun client or human results or publication authority are inferred.' }
     }
-    $builderHash = (Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant()
     $generated = @()
-    foreach ($name in @('AudioFileForPhone.bat', 'AudioFileForPhone.ps1', 'Setup-AudioFileForPhone.bat', 'Setup-AudioFileForPhone.ps1')) {
-        $generated += [ordered]@{ path = $name; source_path = $name; source_sha256 = $originalManifest.files.$name; sha256 = $hashes[$name]; generator_sha256 = $builderHash; method = $(if ($name.EndsWith('.ps1')) { 'Original help/attributes/parameter prefix plus PSBoundParameters forwarding and exit propagation.' } else { 'Original BAT with only the one implementation-target assignment changed to app/.' }) }
+    foreach ($name in @('AudioFileForPhone.bat', 'app/Setup-AudioFileForPhone.bat')) {
+        $sourceName = $name -replace '^app/', ''
+        $generated += [ordered]@{ path = $name; source_path = $sourceName; source_sha256 = $originalManifest.files.$sourceName; sha256 = $hashes[$name]; generator_sha256 = $builderHash; method = $(if ($name.StartsWith('app/')) { 'Explicit CRLF only' } else { 'Direct converter target under app/ and explicit CRLF; original literal transport/pause/exit preserved' }) }
     }
     $manifest = [ordered]@{
-        schema_version = 1; repository = 'PikkuJanne/AudioFileForPhone'; app_version = '1.0.1'
-        tag = 'v1.0.1'; release_commit = $sourceCommit; package_revision = 2; layout = 'app/'
-        original_runtime_zip_sha256 = $originalHashes[$zipName]
+        schema_version = 1; repository = 'PikkuJanne/AudioFileForPhone'; app_version = $appVersion
+        tag = $targetTag; release_commit = $SourceCommit; package_revision = 3; layout = 'app/'
+        artifact_kind = 'corrective_release_candidate'; publication_authorized = $false
+        corrective_release_version = $appVersion
+        original_runtime_zip_sha256 = $originalHashes[$coreZipName]
         original_release_manifest_sha256 = $originalHashes['release-manifest.json']
         zip = [ordered]@{ name = $zipName; bytes = (Get-Item -LiteralPath $zipPath).Length; sha256 = $zipHash }
         files = $hashes; file_bytes = $lengths; source_to_archive = $mappings
         generated_entrypoints = $generated
-        generated_readme = [ordered]@{ path = 'README.md'; generator_sha256 = $builderHash; sha256 = $hashes['README.md'] }
-        copied_license = [ordered]@{ source_path = 'LICENSE'; sha256 = $hashes['LICENSE'] }
+        generated_readme = [ordered]@{ path = 'README.txt'; generator_sha256 = $builderHash; sha256 = $hashes['README.txt'] }
+        icon = [ordered]@{ source_path = 'AudioFileForPhone.ico'; sha256 = $hashes['AudioFileForPhone.ico']; byte_identical = $true }
         dependencies = $originalManifest.dependencies
         package_test_evidence = $tests
-        build = [ordered]@{ builder = 'tools/Build-UserPackage.ps1'; builder_sha256 = $builderHash; source_mode = 'Pinned original published payload plus separately identified generated entrypoints'; archive_order = 'Ordinal'; zip_timestamp_utc = '1980-01-01T00:00:00Z'; evidence_scope = 'Original payload bytes are unchanged. Original acceptance does not establish the new generated entrypoints or layout; test this exact package separately. This build grants no publication authority.' }
+        build = [ordered]@{ builder = 'tools/Build-UserPackage.ps1'; builder_sha256 = $builderHash; source_mode = 'Explicit clean detached Git source; every core blob verified; allowlisted app subset plus direct CRLF BAT and unchanged icon'; archive_order = 'Ordinal'; zip_timestamp_utc = '1980-01-01T00:00:00Z'; evidence_scope = 'Corrective v1.0.2 candidate only. The selected version and passing verification do not grant exact-byte publication authority. Preserve existing v1.0.0/v1.0.1 tags and public assets.' }
     }
     $manifestPath = Join-Path $stage 'release-manifest.json'; $ownedFiles.Add($manifestPath)
     Write-UserPackageNewText $manifestPath (($manifest | ConvertTo-Json -Depth 20) + "`n")
@@ -354,12 +405,13 @@ unchanged and presents the launchers separately from its internal files.
             throw 'Original asset changed during repackaging; completed output is not published.'
         }
     }
+    Assert-UserPackageSource
     Assert-UserPackageNoReparse $stage
     Assert-UserPackageNoReparse $outputParent
     if (Test-Path -LiteralPath $output) { throw 'OutputDirectory appeared and will not be replaced.' }
     [IO.Directory]::Move($stage, $output)
     $stage = $null
-    [ordered]@{ status = 'pass'; package_revision = 2; source_commit = $sourceCommit; runtime_zip_sha256 = $zipHash; manifest_sha256 = $manifestHash; output_directory = $output; members = 24; original_payload_files_unchanged = 18 } | ConvertTo-Json
+    [ordered]@{ status = 'pass'; app_version = $appVersion; tag = $targetTag; artifact_kind = 'corrective_release_candidate'; package_revision = 3; source_commit = $SourceCommit; runtime_zip_sha256 = $zipHash; manifest_sha256 = $manifestHash; output_directory = $output; members = 17; original_payload_files_unchanged = 13; publication_authorized = $false } | ConvertTo-Json
 }
 finally {
     if ($null -ne $stage -and (Test-Path -LiteralPath $stage)) {

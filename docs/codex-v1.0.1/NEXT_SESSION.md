@@ -1,3 +1,181 @@
+# Next session — resume BLOCKED R3 only
+
+Owner testing required: none. R1/R2 complete; corrective version v1.0.2 selected.
+Exact-package available Windows11 tests pass, but required client/shell gates and
+publication/main authority remain missing. No release or main integration. Read
+evidence/R3.json/R3-HANDOVER.md; refresh the prior final checkpoint/live refs/CI.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair from the containing R3 checkpoint
+    recorded in the previous final response. Follow AGENTS.md, active CHARTER,
+    STATE.json, STATUS.md, NEXT_SESSION.md, REPAIR_BRIEF.md, historical
+    RELEASE_TARGET.json, CORRECTIVE_RELEASE_TARGET.json, specs/SYNC_AND_RELEASE.md
+    and evidence/R3.json/R3-HANDOVER.md. Resume ONLY BLOCKED R3. R1/R2 are complete.
+    Owner testing required: none. Version v1.0.2 is explicitly selected already;
+    version selection is not publication/main-integration authority. Refresh fresh
+    advertised feature/main refs, PR34, exact-head CI and preserved live releases.
+    Frozen candidate source 83a5713cacfbc330f309f48d8377cb5be11ba3a6; assets are in
+    C:\projects\AFP-R3-20261030\candidate-verified. Exact ZIP SHA256
+    012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad.
+    Windows11 available automated acceptance passes: full20families per shell,
+    build11 per shell, corrected shortoperations16 per host at harness C2,
+    package20 outputs, audio64 outputs (31-M4A batch/30-minute
+    case/seeks per host), controlled nativeBAT2 outputs and visible failure/pause/
+    exit/setup checks using shell harness C3. C2 is dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77; C3 is d303a161f1d1eae8ec2eea3a9b02f115d79659d2.
+    Preserve original PR PS7 cleanup failure and shell attempts1/2; a likely stale
+    identity/PID reuse mechanism is not proved. Source push passed both hosts.
+    Actual nonpasses/hashes remain; do not relabel failed source PR CI as passed.
+    Resolve BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE and
+    FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN through available authorized Codex
+    execution environments. Do not use ordinary Music/private audio, request owner
+    tests/screenshots/logs/playback/phone/kit, weaken controls or invent a pass.
+    No draft/tag/publication/main merge until required exact-candidate gates and
+    exact-byte/reviewed-head authority are satisfied. Preserve public v1.0.0/v1.0.1
+    tags/assets; never overwrite public bytes or move a released tag. Preserve
+    defaults/directBAT/CRLF/CMD pause/exit/ICO/policy/source safety. Do not restart
+    R1/R2 or generate another plan. Checkpoint safe work, update evidence/state/
+    status/next/decisions/fullhandover, review/test/commit/push, compare fresh live
+    advertised refs, report exact-head CI/main separately, then STOP within R3.
+
+## Preserved R2 next-session routing — historical
+
+# Next session — R3 only, in a separate owner-started thread
+
+R1/R2 are complete. The local PS7 verification gap was resolved by an actual
+passing unmodified-source retest; prior failed reports are preserved. Owner
+testing required: none. Read R2.json/R2-HANDOVER.md and refresh final containing
+checkpoint/live refs/draft PR34/exact-head CI from the prior final response.
+No R3 work, publication, tag or main integration was performed.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair from the containing R2 checkpoint
+    recorded in the previous final response. Follow AGENTS.md, active CHARTER,
+    STATE.json, STATUS.md, NEXT_SESSION.md, REPAIR_BRIEF.md, RELEASE_TARGET.json,
+    specs/SYNC_AND_RELEASE.md and evidence/R2.json/R2-HANDOVER.md.
+    Refresh actual checkout, fresh advertised feature/main refs, draft PR34,
+    exact-commit CI and live releases/tags. Complete ONLY R3. R1/R2 are complete;
+    do not restart them. Owner testing required: none. Canonical R2 source:
+    3f9610ee39db3ae30e965c159effede46baf00b9. Assets remain under
+    C:\projects\AFP-R2-20261030\candidate-verified; ZIP SHA256
+    cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+    Preserve the two genuine local PS7 download-deadline failures. The fresh
+    unchanged-source client retest S06-managedreal-ps7-attempt95002 passes3/3;
+    root cause remains unknown. All20 source regression families are covered
+    per shell; PS7 is an explicit composed campaign, not a relabeled aggregate.
+    Reconcile corrective release identity and exact tested-byte publication
+    authority before publication. This prompt selects no version/tag or new
+    publication bytes. Preserve public v1.0.0/v1.0.1 tags/assets; no overwrite
+    or silent v1.0.2 selection. Runtime1.0.1/internal candidate revision3 are
+    not a corrective-release contract. Version/runtime/pin changes require new
+    exact artifacts and affected automated acceptance.
+    Finish R3 exact-package/client/native-shell/setup/audio acceptance using
+    isolated synthetic media and owned destinations, never ordinary Music or
+    private media. Remaining gaps include genuine Explorer/.lnk/defaultMusic
+    BAT success, actual browser extraction, Windows10,30M4A/long/seek cases and
+    exact-final setupBAT. Use available authorized environments safely; record
+    technical gaps without owner assignments. No owner kit/run/screenshots/logs/
+    playback or phone request. Retain direct literal BAT/CRLF/CMD pause/exit/
+    policy safeguards, existing ICO/defaults/metadata/source safety and optional
+    consent-based setup. Main retains reviewed-head/owner-approval policy.
+    Only with required gates and authority satisfied: exact ZIP -> verified
+    draft -> public corrective release -> independent download/automated smoke
+    of those bytes -> final branch/main sync and closure. Otherwise record the
+    specific technical/authorization blocker and checkpoint safe work truthfully.
+    Update evidence/state/status/next-session/decisions and full handover; review,
+    test, commit/push, compare fresh advertised refs, report exact-head CI/main
+    separately, then STOP. Never move a released tag or replace public bytes
+    for closure evidence. Do not invent a new owner-testing gate.
+
+## Preserved R2 blocked checkpoint prompt — historical
+
+# Next session — resume BLOCKED R2 only, in a separate thread
+
+The clean candidate is verified; R2 is not complete because its named local
+PS7 real-download verification failed twice. Owner testing required: none.
+Read evidence/R2.json/R2-HANDOVER.md. Refresh the containing checkpoint/live refs,
+draft PR34 and exact-head CI from the final response. No R3 work, public release,
+tag or main integration was performed. Preserve all existing public bytes.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair from the containing R2 checkpoint
+    recorded in the previous final response. Follow AGENTS.md, active CHARTER,
+    STATE.json, STATUS.md, NEXT_SESSION.md, REPAIR_BRIEF.md, RELEASE_TARGET.json,
+    specs/SYNC_AND_RELEASE.md and evidence/R2.json/R2-HANDOVER.md.
+    Refresh actual checkout, fresh advertised feature/main refs, draft PR34,
+    exact-commit CI and live releases/tags. Resume ONLY R2; do not start R3.
+    Owner testing required: none. The clean candidate is verified, but R2 is
+    BLOCKED by LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE: full source smoke
+    and serialized retry both exceeded the unchanged production300s body bound
+    on Windows11 Pro26H2 build26300.9711 / PS7.6.5. Cleanup/source integrity passed;
+    transport/proxy/CDN cause remains unknown. PS5.1 full aggregate passed all20
+    families/951checks+3observations; PS7 has19 successful families/948checks+
+    3observations including independent native35. Preserve all genuine failures.
+    Source3f9610ee39db3ae30e965c159effede46baf00b9 push/PR ServerCI passed all4jobs;
+    supplementary Server evidence does not replace the missing local client pass.
+    Diagnose/resolve the specific remaining local verification gap using available
+    authorized environments without weakening deadlines, pins, policies or cleanup.
+    Do not repeat19 valid families merely to retry one transfer; verify actual
+    source hashes/report binding. Use a clean detached source3f for runtime tests
+    when the containing documentation checkpoint differs. Any runtime/pin/package
+    change requires new exact artifacts and affected automated verification.
+    Canonical assets: C:\projects\AFP-R2-20261030\candidate-verified; ZIP SHA256
+    cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+    Build11/11 per shell and exact relocated package12groups/20real conversions,
+    full decode/metadata/layout/integrity/console/icon checks already pass. Keep
+    unchanged ZIP/source evidence; raw reports are privately retained under
+    C:\projects\AFP-R2-20261030. Do not request an owner run, diagnostics, kit,
+    screenshots, logs, playback or phone check. Do not access ordinary Music or
+    private media. Keep literal direct BAT/CRLF/CMD pause/exit/policy safeguards,
+    existing icon/defaults/metadata/source safety and optional consent-based setup.
+    No publication, tag or main integration in R2. Preserve public v1.0.0/v1.0.1;
+    corrective identity/exact-byte authority remain separate R3 requirements.
+    No silent v1.0.2 selection or historical-approval expansion. Main retains the
+    reviewed-head/owner-approval default. After resolving this gap, finish R2,
+    update evidence/state/status/next-session/decisions and full handover, review,
+    commit/push, compare fresh live refs and report exact-head CI/main separately.
+    STOP before R3. If the specific environment remains broken, record BLOCKED
+    honestly, checkpoint safe work and STOP; no owner-testing assignment.
+
+## Preserved R1 checkpoint and original R2 prompt — historical
+
+# Next session — R2 only, in a separate chat
+
+R1 is complete on codex/audiofileforphone-r1-launch-repair. Implementation source:
+6e22c5c8394c6453e0d3428bc9fc143040126b96. Refresh the containing checkpoint/live
+branch/main refs, draft PR and exact-head CI from the previous final response.
+Owner testing required: none. Do not follow historical owner-kit/phone prompts.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair. Follow AGENTS.md and the active
+    docs/codex-v1.0.1/CHARTER.md amendment, STATE.json, STATUS.md, NEXT_SESSION.md,
+    REPAIR_BRIEF.md, RELEASE_TARGET.json and specs/SYNC_AND_RELEASE.md.
+    Read evidence/R1.json and evidence/R1-HANDOVER.md. Refresh actual checkout,
+    containing checkpoint/live refs, draft PR and exact-commit CI; R1 source is
+    6e22c5c8394c6453e0d3428bc9fc143040126b96. Complete ONLY R2 of the focused repair:
+    small allowlisted root BAT/unchanged ICO/README.txt/app, direct BAT-to-app
+    converter with no CALL forwarding, concise console and relocated exact-package
+    tests. Keep CMD pause/exit, CRLF BAT files, process-only Bypass, own-host module
+    selection, literal folder transport, existing engine/metadata/defaults and
+    optional consent-based dependency setup. Build-UserPackage currently pins old
+    published bytes and targets the old launcher; deliberately update that contract
+    and relevant tests rather than shipping the old path. Retain all required
+    helpers/licenses/notices under app and preserve unrelated historical evidence.
+    Owner testing required: none. No acceptance kit, logs, playback or phone request.
+    Do not publish or replace v1.0.0/v1.0.1 assets/tags. Do not silently choose a
+    corrective version or infer new publication/main authority from historical
+    approvals. Main integration retains ordinary review and owner-approval default.
+    Validate the candidate, record exact artifact/icon hashes and actual evidence
+    gaps, review/commit/push and compare HEAD with fresh advertised branch, report
+    exact-head CI and main separately. Give the full handover, then STOP before R3.
+## Preserved v1.0.1 and packaging history
 # Next session — packaging revision 2 is the current download
 
 The owner explicitly requested cleanup after rejecting the original flat ZIP.

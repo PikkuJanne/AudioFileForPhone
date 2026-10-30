@@ -154,17 +154,52 @@ function Assert-CiCleanFirstReport {
     }
     if (@($cases | Where-Object { $_.production_saved_selection -eq $true -and $_.exit_code -eq 0 -and $_.PATH -ceq 'empty' }).Count -ne 1) { throw 'Clean first-run lost deliberately saved production setup.' }
 }
+function Assert-CiDirectLauncherReport {
+    param([object]$Record)
+    if ($Record.schema_version -ne 1 -or $Record.task -cne 'R1' -or $Record.status -cne 'pass' -or
+        $Record.mode -cne 'native_console_direct_bat') { throw 'Direct launcher requires a passing actual R1/schema1 native-console report.' }
+    foreach ($flag in @('source_unchanged', 'cleanup_verified', 'descendant_release_proved', 'parent_path_unchanged', 'parent_module_path_unchanged', 'policies_unchanged')) {
+        if ($Record.$flag -isnot [bool] -or -not $Record.$flag) { throw "Direct launcher did not prove $flag." }
+    }
+    $before = @($Record.source_before); $after = @($Record.source_after)
+    if (($before | ConvertTo-Json -Compress) -cne ($after | ConvertTo-Json -Compress)) { throw 'Direct launcher source inventories differ.' }
+    foreach ($path in @('AudioFileForPhone.bat', 'Setup-AudioFileForPhone.bat', 'AudioFileForPhone.ps1',
+        'Setup-AudioFileForPhone.ps1', 'tests/Test-DirectLauncher.ps1', 'tests/DirectLauncher.Console.cs')) {
+        $identities = @($before | Where-Object { $_.path -ceq $path })
+        if ($identities.Count -ne 1 -or [string]$identities[0].sha256 -cnotmatch '^[0-9a-f]{64}$') { throw 'Direct launcher lost an exact source identity.' }
+    }
+    $cases = @($Record.cases)
+    if ($cases.Count -lt 39 -or @($cases | Where-Object { $_.status -cne 'pass' }).Count -ne 0) { throw 'Direct launcher requires all actual native-console cases to pass.' }
+    foreach ($case in $cases) {
+        foreach ($flag in @('pause_seen', 'still_waiting_before_key', 'key_injected', 'owned_tree_released')) {
+            if ($case.native.$flag -isnot [bool] -or -not $case.native.$flag) { throw "Direct launcher case lost $flag evidence." }
+        }
+        if ($null -eq $case.expected_exit -or $null -eq $case.native.exit_code -or $case.native.exit_code -ne $case.expected_exit) { throw 'Direct launcher case lost the expected native exit code.' }
+        if ($case.parent_path_unchanged -isnot [bool] -or -not $case.parent_path_unchanged) { throw 'Direct launcher case changed the parent PATH.' }
+        if ($case.parent_module_path_unchanged -isnot [bool] -or -not $case.parent_module_path_unchanged) { throw 'Direct launcher case changed the parent PSModulePath.' }
+    }
+    $required = @('exit-0', 'exit-1', 'exit-2', 'exit-130', 'exit-37', 'trailing-separator', 'application-location',
+        'converter-missing-runtime', 'converter-missing-host', 'converter-parse-error', 'converter-real-missing-helper',
+        'setup-missing-runtime', 'setup-missing-host', 'setup-parse-error', 'setup-real-missing-helper',
+        'setup-exit-0', 'setup-exit-1', 'setup-exit-130', 'setup-extra', 'setup-empty', 'converter-policy-denial', 'setup-policy-denial',
+        'converter-remotesigned-internet-denial', 'setup-remotesigned-internet-denial', 'contaminated-parent-modules')
+    $required += @(0..7 | ForEach-Object { 'input-' + $_ })
+    $required += @(0..5 | ForEach-Object { 'invalid-' + $_ })
+    foreach ($name in $required) {
+        if (@($cases | Where-Object { $_.name -ceq $name }).Count -ne 1) { throw 'Direct launcher lost required launch, argument, result or refusal coverage.' }
+    }
+}
 function Invoke-CiHarness {
     param([string]$RelativePath, [string]$Family, [switch]$RealMedia)
     $path = Join-Path $projectRoot $RelativePath
-    # Keep every historical suite/report path intact. Current launcher and
-    # encoding evidence retain their active-plan step and narrow family names.
-    $activeFamilies = @{ launcher='S08'; 'encoding-ci'='S09'; support='S10'; managedreal='S06'; corpus='S11'; filesystem='S11'; cleanfirst='S12'; releasegates='S12' }
+    # Keep historical suites/report paths intact; R1 gates the current direct BAT.
+    $activeFamilies = @{ directlauncher='R1'; launcher='S08'; 'encoding-ci'='S09'; support='S10'; managedreal='S06'; corpus='S11'; filesystem='S11'; cleanfirst='S12'; releasegates='S12' }
     $childTask = if ($activeFamilies.ContainsKey($Family)) { $activeFamilies[$Family] } else { 'T17' }
     $childParent = if ($activeFamilies.ContainsKey($Family)) { Join-Path $projectRoot 'docs/codex-v1.0.1/evidence' } else { $evidenceParent }
     $evidence = Join-Path $childParent ("$childTask-$Family-$edition-$RunLabel.json")
     if (Test-Path -LiteralPath $evidence) { throw "Existing $Family report cannot be replaced." }
     $arguments = @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned', '-File', $path, '-EvidencePath', $evidence)
+    if ($Family -ceq 'directlauncher') { $arguments += @('-Task', $childTask, '-RunLabel', $RunLabel) }
     if ($RealMedia) { $arguments += @('-FfmpegPath', $dependencies.ffmpeg_path, '-FfprobePath', $dependencies.ffprobe_path) }
     & $shellPath @arguments
     $childExit = $LASTEXITCODE
@@ -182,7 +217,7 @@ function Invoke-CiHarness {
         $child.task -cne $childTask -or $child.tested_commit -cne $report.tested_commit -or $child.shell -cne $report.shell) {
         throw "$Family requires exit zero, pass status and unchanged source bytes."
     }
-    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package', 'launcher', 'managedreal')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
+    if (($RealMedia -or $Family -in @('ci-dependencyguards', 'package', 'launcher', 'directlauncher', 'managedreal')) -and $child.cleanup_verified -ne $true) { throw "$Family did not prove exact owned fixture cleanup." }
     if ($Family -ceq 'baseline') {
         if ($child.mode -cne 'real_ffmpeg_baseline' -or $child.legacy.exit_code -ne 0 -or $child.legacy.status -cne 'pass' -or
             $child.characterization.status -cne 'pass' -or $child.isolation.verified -ne $true -or $child.isolation.copied_bytes_unchanged -ne $true) {
@@ -203,6 +238,7 @@ function Invoke-CiHarness {
         }
         if ($Family -ceq 'support') { Assert-CiSupportReport -Record $child }
         if ($Family -ceq 'cleanfirst') { Assert-CiCleanFirstReport -Record $child }
+        if ($Family -ceq 'directlauncher') { Assert-CiDirectLauncherReport -Record $child }
         if ($Family -ceq 'corpus') {
             if ($child.mode -cne 'real_windows_complementary_short_irregular_codec_corpus' -or @($child.matrix).Count -ne 10 -or
                 @($child.matrix | Where-Object { $_.status -cne 'pass' -or $_.full_decode -ne $true -or $_.observed_bitrate_bps -ne ([long]$_.requested_bitrate_kbps * 1000) -or $_.observed_sample_rate -ne $_.planned_sample_rate -or $_.observed_channels -ne $_.planned_channels }).Count -ne 0) { throw 'Complementary corpus lost exact planned real conversion/decode evidence.' }
@@ -345,7 +381,8 @@ try {
     Invoke-CiHarness -RelativePath 'tests/ci/Test-CiDependencies.ps1' -Family 'ci-dependencyguards'
     Invoke-CiHarness -RelativePath 'tests/ci/Test-ReleaseGates.ps1' -Family 'releasegates'
     Invoke-CiHarness -RelativePath 'tests/Test-CleanFirstRun.ps1' -Family 'cleanfirst' -RealMedia
-    Invoke-CiHarness -RelativePath 'tests/Test-Launcher.ps1' -Family 'launcher'
+    # Legacy host-selection suites remain optional development evidence in Git.
+    Invoke-CiHarness -RelativePath 'tests/Test-DirectLauncher.ps1' -Family 'directlauncher'
     # Package tests inspect the verified external tool identity; they do not convert media.
     Invoke-CiHarness -RelativePath 'tests/Test-Package.ps1' -Family 'package' -RealMedia
     Invoke-CiHarness -RelativePath 'tests/Invoke-IsolatedBaseline.ps1' -Family 'baseline' -RealMedia

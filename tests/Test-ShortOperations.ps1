@@ -291,6 +291,29 @@ class ShortChild {
     $createdAudio = Invoke-AudioNativeProcess -ExecutablePath $ffmpeg -Arguments @('-nostdin','-v','error','-f','lavfi','-i','sine=frequency=440:sample_rate=44100:duration=2','-c:a','pcm_s16le',$audio) -Operation 'synthetic source creation'
     Assert-Success $createdAudio; $fixtures.Add($audio)
     $report.synthetic_before = Get-Inventory $fixtures.ToArray() $testRoot
+    Invoke-Case 'wrong-started-ticks-refuses-live-owned-sentinel' {
+        param($case)
+        # Model a reused numeric PID with the live, directly retained sentinel.
+        # The claimed creation time is wrong; no Stop/Kill path is called here.
+        $negativeIdentity = Join-Path $testRoot 'wrong-started-ticks.json'
+        $record = [ordered]@{
+            pid = $sentinel.Id
+            started_ticks = ([long]$sentinel.StartTime.ToUniversalTime().Ticks + [long]1)
+            executable = $sentinel.MainModule.FileName
+            token = $ownerToken
+        }
+        Write-NewText $negativeIdentity ($record | ConvertTo-Json)
+        $refusal = $null
+        try {
+            $unexpected = Get-ExactFixtureProcess $negativeIdentity
+            if ($null -ne $unexpected) { $unexpected.Dispose() }
+        } catch { $refusal = $_.Exception.Message }
+        Assert-True ($null -ne $refusal -and $refusal -match 'Exact retained PID/start-time/executable identity must match') 'Wrong creation time must refuse before any fixture termination.'
+        Assert-True (-not $sentinel.HasExited -and $sentinel.Handle -eq $sentinelHandle) 'The independently retained live sentinel must survive the rejected identity.'
+        $case['wrong_started_ticks_rejected'] = $true
+        $case['live_owned_sentinel_survived'] = $true
+        $case['unknown_process_termination_attempted'] = $false
+    }
     Invoke-Case 'never-exiting-child-times-out-with-owned-release' {
         param($case)
         $identity = Join-Path $testRoot 'hung-child.json'; $identityFiles.Add($identity)
@@ -302,6 +325,7 @@ class ShortChild {
         Assert-Timeout $result 2000
         Assert-True $case['fixture_ready_marker_created'] 'The independently compiled child must reach its hang readiness marker before the deadline.'
         Assert-True ($result.PipeDrainCompleted -and $result.Stdout -ceq 'before hang' -and $result.Stderr -ceq 'hang diagnostic') 'Timeout retains independently captured output and proves both EOFs after owned child kill.'
+        Assert-True ($identityFiles.Remove($identity)) 'The owned native child already has proved process release and both EOFs; retire its completed identity.'
         Assert-True (-not $sentinel.HasExited) 'Unrelated sentinel must survive timeout.'
         $case['native_status'] = $result.Status; $case['elapsed_ms'] = $result.ElapsedMilliseconds; $case['unrelated_process_survived'] = $true
     }
@@ -315,6 +339,7 @@ class ShortChild {
             $descendant = Get-ExactFixtureProcess $identity
             Assert-True (-not $descendant.HasExited -and -not $sentinel.HasExited) 'Runtime must leave exact fixture descendant and unrelated sentinel alive.'
             Stop-ExactFixtureProcess $descendant
+            Assert-True ($identityFiles.Remove($identity)) 'Only the exact descendant proved stopped and waited may retire from the active identity ledger.'
             $uncertainOperations.Remove('S03 held ' + $stream) | Out-Null
             $case['held_stream'] = $stream; $case['owned_parent_exit'] = 0; $case['conservative_process_release'] = $false
             $case['descendant_survived_runtime'] = $true; $case['descendant_exact_cleanup'] = $true; $case['elapsed_ms'] = $result.ElapsedMilliseconds
@@ -329,6 +354,7 @@ class ShortChild {
         $descendant = Get-ExactFixtureProcess $identity
         Assert-True (-not $descendant.HasExited) 'Pipe-only handling must not kill the independently owned descendant.'
         Stop-ExactFixtureProcess $descendant
+        Assert-True ($identityFiles.Remove($identity)) 'Only the exact descendant proved stopped and waited may retire from the active identity ledger.'
         $uncertainOperations.Remove('S03 pipe-only bound') | Out-Null
         $case['native_status'] = $result.Status; $case['deadline_ms'] = 0; $case['drain_bound_ms'] = 300; $case['descendant_exact_cleanup'] = $true
     }
@@ -390,6 +416,7 @@ class ShortChild {
                 $descendant = Get-ExactFixtureProcess $identity
                 Assert-True (-not $descendant.HasExited) 'Application must preserve independently owned pipe holder.'
                 Stop-ExactFixtureProcess $descendant
+                Assert-True ($identityFiles.Remove($identity)) 'Only the exact descendant proved stopped and waited may retire from the active identity ledger.'
                 $uncertainOperations.Remove('Output media probe') | Out-Null
             }
             $case['transaction_status'] = $transaction.Status; $case['probe_timeout_ms'] = $transaction.ValidationResult.ProbeResult.TimeoutMilliseconds

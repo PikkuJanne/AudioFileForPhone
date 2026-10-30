@@ -154,8 +154,8 @@ function Assert-Outcome {
     $summaryLines = @($Result.text -split '\r?\n' | Where-Object { $_ -match '^\[RESULT\] ' })
     Assert-True ($summaryLines.Count -ge 1) 'Every path must emit a final stable aggregate result.'
     $fields = @{}
-    # Normal runs also echo the persisted RESULT log record; the final summary
-    # follows diagnostic failures and is authoritative for the actual exit.
+    # The final summary follows diagnostic failures and is authoritative for the
+    # actual exit. Persisted RESULT records are retained in the local log.
     foreach ($pair in ($summaryLines[$summaryLines.Count - 1].Substring(9) -split ';\s*')) {
         $parts = $pair -split '=', 2; if ($parts.Count -eq 2) { $fields[$parts[0].Trim()] = $parts[1].Trim() }
     }
@@ -260,6 +260,11 @@ try {
         Assert-True (@($observed.published | Where-Object { $_.FullName -match '\\Sub\\2024-01-03 - Third\.mp3$' }).Count -eq 1) 'Recursive planned relative mapping must reach the actual final filename.'
         $log = [IO.File]::ReadAllText($observed.log)
         foreach ($name in @('2024-01-01 First.mp3', '2024-01-02 Second.m4a', '2024-01-03 Third.ogg')) { Assert-True ($log.Contains($name)) 'Every source mapping must be logged.' }
+        Assert-True ([regex]::Matches($result.text, '(?m)^AudioFileForPhone v').Count -eq 1 -and
+            [regex]::Matches($result.text, '(?m)^\[RESULT\] ').Count -eq 1) 'Successful console output must contain one heading and one final aggregate summary.'
+        Assert-True ($result.text -notmatch '(?m)^[-=]{8}|\[DEBUG\]|ffmpeg version|FFmpeg encoding arguments|Script path\s*:|Raw input\s*:') 'Successful console output must omit decorative banners, debug dumps and raw FFmpeg commands.'
+        Assert-True ($log.Contains('FFmpeg encoding arguments') -and $log.Contains('[DEBUG]')) 'Detailed commands and diagnostics must remain in the local run log.'
+        $case['concise_console_verified'] = $true; $case['detailed_local_log_retained'] = $true
         Assert-LoggedMappings $observed $successInput 3 0
         $case['recursive_mapping_verified'] = $true; $case['exact_per_file_log_mappings_verified'] = $true
     }

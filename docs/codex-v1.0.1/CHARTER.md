@@ -1,4 +1,60 @@
-# Charter — incremental setup and compatibility release
+# Charter — focused launch and distribution repair
+
+## Active owner-directed repair amendment — 2026-10-30
+
+The owner has authorized following the two supplied repair documents. The newer
+`AudioFileForPhone_Focused_Repair_No_Human_Testing.md` replaces the earlier brief;
+its unchanged text is preserved in `REPAIR_BRIEF.md`.
+Its requirements supersede conflicting legacy plan, human-acceptance and release
+routing below; completed work and valid historical evidence remain preserved.
+This is a repair of the existing converter, not a restart of S01-S18 or a new
+feature programme. Existing work boundaries and safeguards continue to apply.
+
+Complete exactly one of the three repair steps per thread, checkpoint safe work,
+give the factual handover and exact next prompt, then STOP:
+
+1. R1 — Restore a simple, visible direct BAT launch and standalone setup, with
+   focused automated Windows regressions.
+2. R2 — Build the small allowlisted user package with the existing icon, direct
+   entry BAT, concise console and relocated-package evidence. No public release.
+3. R3 — Automate acceptance of the exact package, publish only with the required
+   gates and authority satisfied, independently download/test and verify closure.
+
+Owner testing required: none. Codex is responsible for every new verification.
+Do not request a run, screenshot, logs, playback, phone observation or acceptance
+kit from the owner, including under another name or as a release prerequisite.
+Starting the next thread is not a test request. Try already available authorized
+Windows environments for gaps; record the exact unrun coverage and technical
+blocker honestly, without assigning tests back to the owner or weakening controls.
+
+The owner reports that the recovery BAT ran the tool and produced working audio.
+Retain this as owner-reported successful recovery. It does not independently
+verify every file, shell, shortcut, final package or phone. New machine validation
+is not human-listening evidence. Use isolated synthetic media and destinations;
+do not access private audio or the ordinary Music folder for disposable tests.
+
+Prefer BAT -> one built-in x64 Windows PowerShell 5.1 STA process -> the existing
+converter; direct PowerShell 7 use remains available. The trusted unsigned app may
+request documented process-only ExecutionPolicy Bypass. MachinePolicy/UserPolicy
+and application control remain authoritative. No persistent policy/PATH/registry
+changes, download-mark removal, elevation, policy evasion or alternate-engine
+retry after an enforced denial. CMD owns final status, pause and preserved exit.
+Conversion never downloads tools; separate setup stays optional and consent-based.
+
+R1 and R2 do not publish. Preserve existing public v1.0.0/v1.0.1 tags and bytes.
+The original RELEASE_TARGET.json and S16/S17 approvals describe the historical
+v1.0.1 release, not new repair assets. Refresh live state and reconcile corrective
+release identity and exact tested source/asset authority before publication; do
+not silently choose v1.0.2 or overwrite an occupied target. The no-human-testing
+amendment does not broaden publication or main-integration authority. A ZIP,
+tag, draft or release-ready handover alone is not completion. Keep ordinary
+reviewed PR policy, feature push/live-ref verification and separate main status.
+
+## Historical v1.0.1 charter — retained for evidence
+
+The following original charter is historical. Its S01-S18, fixed-next-release and
+owner/phone-acceptance clauses do not route the focused repair above. Preserve
+its valid compatibility, source-safety, implementation and evidence boundaries.
 
 ## User mandate
 

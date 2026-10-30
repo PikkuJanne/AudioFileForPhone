@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target_version": "1.0.1",
-  "project_status": "COMPLETED",
-  "current_step": "S18",
-  "active_branch": "main",
-  "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "project_status": "REPAIR_BLOCKED",
+  "current_step": "R3",
+  "active_branch": "codex/audiofileforphone-r1-launch-repair",
+  "tested_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
   "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
@@ -252,5 +252,151 @@
     "layout": "six launch/readme/license files at root; unchanged original18 files in app/",
     "app_local_tools_directory": "app/",
     "final_git_sync": "Observed after containing feature push/ordinary reviewed CI-passing main integration; no self-referential SHA embedded."
-  }
+  },
+  "focused_repair": {
+    "authority": "Owner explicitly instructed following both supplied repair documents; latest no-human-testing brief supersedes earlier brief and conflicting routing.",
+    "brief": "REPAIR_BRIEF.md",
+    "brief_sha256": "6faed693912a305822b967900d49f75d7b3303b8988e9c77f343e797b5f973ff",
+    "owner_testing_required": "none",
+    "owner_recovery_evidence": "Owner-reported recovery BAT produced working audio; not independent final-package, shell, shortcut or phone verification.",
+    "historical_checkpoint": {
+      "project_status": "COMPLETED",
+      "current_step": "S18",
+      "active_branch": "main",
+      "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e"
+    },
+    "tested_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "steps": {
+      "R1": {
+        "status": "COMPLETED",
+        "evidence": "evidence/R1.json",
+        "handover": "evidence/R1-HANDOVER.md"
+      },
+      "R2": {
+        "status": "COMPLETED",
+        "evidence": "evidence/R2.json",
+        "handover": "evidence/R2-HANDOVER.md",
+        "candidate_verification": "PASSED",
+        "blockers": [],
+        "resolved_blockers": [
+          {
+            "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
+            "occurrences": 2,
+            "production_deadline_seconds": 300,
+            "scope": "Local Windows11 PS7 real pinned-vendor setup smoke; full aggregate and serialized retry failed",
+            "cleanup_verified": true,
+            "source_unchanged": true,
+            "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
+            "safeguards_changed": false,
+            "owner_action": "none",
+            "resolution": "Fresh unchanged-source local PS7 real setup report S06-managedreal-ps7-attempt95002 passed3/3; prior failures retained; root cause remains unknown.",
+            "resolution_report_sha256": "69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05"
+          }
+        ],
+        "remaining_work": []
+      },
+      "R3": {
+        "status": "BLOCKED",
+        "owner_testing_required": "none",
+        "corrective_version": "1.0.2",
+        "version_authority": "Owner reply: Use v1.0.2",
+        "publication_authorization": null,
+        "main_integration_authorization": null,
+        "technical_gaps": [
+          "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+          "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN"
+        ],
+        "evidence": "evidence/R3.json",
+        "handover": "evidence/R3-HANDOVER.md",
+        "candidate_verification": "PASSED_AVAILABLE_WINDOWS11_COVERAGE",
+        "required_release_acceptance": "BLOCKED",
+        "authorization_blockers": [
+          "EXACT_FROZEN_ASSET_PUBLICATION_AUTHORITY_MISSING",
+          "REVIEWED_HEAD_MAIN_INTEGRATION_AUTHORITY_MISSING"
+        ],
+        "remaining_work": [
+          "Use available authorized Windows10 and isolated desktop environments for the missing Codex-run checks; otherwise retain the named technical gaps.",
+          "Complete remaining required gates on exact frozen candidate; reconcile exact-byte publication and reviewed main-integration authority.",
+          "Only when permitted: verified draft, public release, independent public-download smoke and final main/branch closure."
+        ]
+      }
+    },
+    "main_integration": "NOT_PERFORMED; reviewed-head/owner-approval authority missing.",
+    "publication": "BLOCKED: required automated client/shell gates and exact-byte publication authority missing; no draft/tag/release created.",
+    "next_step": "Resume BLOCKED R3 only",
+    "source_binding": "Exact ZIP built from clean detached83a5713;13 app payloads match binary Git blobs, generated root BAT/setupCRLF/README provenance and unchanged ICO verified. Full source campaigns use83a5713. Later harness C2 corrects only the shell UTF8 identity probe and test-only shortoperations active-identity ledger, with a strict live sentinel negative case; C3 changes only the shell missing-helper expected text to stable diagnostic code. C83..C3 changes only these two test files. Actual shell harness hash/controller hash and C2/C3 identities are recorded separately; no packaged file, builder, runtime or asset changed.",
+    "candidate": {
+      "directory": "C:\\projects\\AFP-R3-20261030\\candidate-verified",
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "artifact_kind": "corrective_release_candidate",
+      "app_version": "1.0.2",
+      "tag": "v1.0.2",
+      "package_revision": 3,
+      "publication_authorized": false,
+      "assets": [
+        {
+          "name": "AudioFileForPhone-v1.0.2.zip",
+          "bytes": 286541,
+          "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 10318,
+          "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 183,
+          "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+        }
+      ],
+      "root_entries": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ico",
+        "README.txt",
+        "app/"
+      ],
+      "members": 17,
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
+    },
+    "corrective_release_target": "CORRECTIVE_RELEASE_TARGET.json",
+    "r2_candidate": {
+      "directory": "C:/projects/AFP-R2-20261030/candidate-verified",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "artifact_kind": "unpublished_R2_candidate",
+      "app_version": "1.0.1",
+      "package_revision": 3,
+      "corrective_release_version": null,
+      "tag": null,
+      "publication_authorized": false,
+      "assets": [
+        {
+          "name": "AudioFileForPhone-R2-candidate.zip",
+          "bytes": 285931,
+          "sha256": "cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 10102,
+          "sha256": "044266f4055f1d3ed12963c1a6f4f28c866724ee2a1e1a00eb3eea6af6869b44"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 189,
+          "sha256": "91270fb0722324b7df244957e60729e8e093ce1099a5b0101150026ec3e26b76"
+        }
+      ],
+      "root_entries": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ico",
+        "README.txt",
+        "app/"
+      ],
+      "members": 17,
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
+    },
+    "r2_source_binding": "Canonical assets remain built from clean detached source3f9610e and every core Git blob. Resumed explicitly NoProfile/NonInteractive real setup ran from a clean detached3f checkout; all7 runtime/harness hashes exactly match original full/failed reports. Original18 PS7 families and prior native35 are independently rehashed/bound; fresh real3 completes20families/951checks+3observations. Original .github PS7 aggregate and serialized retry stay FAILED. PS5.1 full aggregate passes20/951. No runtime, pin, deadline or policy change. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits."
+  },
+  "active_corrective_target_version": "1.0.2",
+  "historical_release_fields_note": "Top target_version/frozen_release_commit/runtime_zip_sha256/acceptance_kit/publication_authorization preserve the historical v1.0.1 release. Active corrective identity/assets/authority are separate in focused_repair and CORRECTIVE_RELEASE_TARGET.json."
 }

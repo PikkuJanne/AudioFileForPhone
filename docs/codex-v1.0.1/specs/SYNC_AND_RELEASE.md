@@ -1,5 +1,19 @@
 # Checkpoint, handover and release protocol
 
+## Active focused repair amendment — 2026-10-30
+
+The owner-authorized REPAIR_BRIEF.md and active CHARTER amendment supersede
+conflicting S01-S18 routing below. Apply the start/end checkpoint protocol to
+R1/R2/R3, one step per chat. Owner testing required: none; all new checks belong
+to Codex. No owner acceptance kit, phone check, retest or diagnostic request is an
+active gate. Preserve old observations and waivers as historical evidence.
+R1/R2 do not publish. Existing v1.0.0/v1.0.1 tags/assets remain unchanged;
+historical S16/S17 authority is not authority for new corrective bytes. Reconcile
+the release identity and exact tested assets before any R3 publication. Main
+integration still requires ordinary review and the existing owner-approval
+default. Feature branch push and fresh advertised-ref comparison remain required.
+The numbered S14-S18 sections describe the old release and do not restart it.
+
 ## Start every thread
 
 Read active state and previous handover; inspect repository identity, status,

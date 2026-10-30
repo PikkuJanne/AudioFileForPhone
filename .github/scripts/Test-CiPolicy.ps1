@@ -260,6 +260,7 @@ function Assert-CiPolicy {
     $approvedArtifactPaths = [string]::Join("`n", @(
         'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/R1-directlauncher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S09-encoding-ci-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S10-support-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S06-managedreal-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
@@ -290,6 +291,7 @@ function Test-CiPolicyMutations {
         @{ name = 'client acceptance CI label refused'; needle = 'Supplementary Windows Server 2025 /'; replacement = 'Required Windows 11 client /' }
         @{ name = 'broad clean first artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S12-cleanfirst-'; replacement = 'docs/codex-v1.0.1/evidence/S12-*-' }
         @{ name = 'broad gate artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S12-releasegates-'; replacement = 'docs/codex-v1.0.1/evidence/S12-*-' }
+        @{ name = 'broad direct launcher artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/R1-directlauncher-'; replacement = 'docs/codex-v1.0.1/evidence/R1-*-' }
         @{ name = 'release-write token refused'; needle = 'contents: read'; replacement = 'contents: write' }
         @{ name = 'job permission override refused'; needle = '    runs-on: windows-2025'; replacement = "    permissions:`n      contents: write`n    runs-on: windows-2025" }
         @{ name = 'privileged PR trigger refused'; needle = '  pull_request:'; replacement = '  pull_request_target:' }

@@ -69,6 +69,7 @@ try {
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiEncodingReport')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiSupportReport')
     . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiCleanFirstReport')
+    . (Get-CiActualFunction (Join-Path $projectRoot '.github/scripts/Invoke-CiChecks.ps1') 'Assert-CiDirectLauncherReport')
     $policyPath = Join-Path $projectRoot '.github/scripts/Test-CiPolicy.ps1'
     $tokens = $null; $errors = $null
     $policyAst = [Management.Automation.Language.Parser]::ParseFile($policyPath, [ref]$tokens, [ref]$errors)
@@ -137,6 +138,48 @@ try {
             Assert-CiThrows { Assert-CiCleanFirstReport $changed } 'Clean|clean'
         }
     }
+    Invoke-CiPureCase 'direct launcher CI rejects missing console waits refusal cases changed sources and unproved cleanup' {
+        $names = @('exit-0', 'exit-1', 'exit-2', 'exit-130', 'exit-37', 'trailing-separator', 'application-location',
+            'converter-missing-runtime', 'converter-missing-host', 'converter-parse-error', 'converter-real-missing-helper',
+            'setup-missing-runtime', 'setup-missing-host', 'setup-parse-error', 'setup-real-missing-helper',
+            'setup-exit-0', 'setup-exit-1', 'setup-exit-130', 'setup-extra', 'setup-empty', 'converter-policy-denial', 'setup-policy-denial',
+            'converter-remotesigned-internet-denial', 'setup-remotesigned-internet-denial', 'contaminated-parent-modules')
+        $names += @(0..7 | ForEach-Object { 'input-' + $_ })
+        $names += @(0..5 | ForEach-Object { 'invalid-' + $_ })
+        $identities = @('AudioFileForPhone.bat', 'Setup-AudioFileForPhone.bat', 'AudioFileForPhone.ps1',
+            'Setup-AudioFileForPhone.ps1', 'tests/Test-DirectLauncher.ps1', 'tests/DirectLauncher.Console.cs' | ForEach-Object {
+                [pscustomobject]@{ path = $_; sha256 = ('a' * 64) }
+            })
+        $valid = [pscustomobject]@{
+            schema_version = 1; task = 'R1'; mode = 'native_console_direct_bat'; status = 'pass'
+            source_unchanged = $true; cleanup_verified = $true; descendant_release_proved = $true
+            parent_path_unchanged = $true; parent_module_path_unchanged = $true; policies_unchanged = $true; source_before = $identities; source_after = $identities
+            cases = @($names | ForEach-Object { [pscustomobject]@{
+                name = $_; status = 'pass'; parent_path_unchanged = $true; parent_module_path_unchanged = $true; expected_exit = 0
+                native = [pscustomobject]@{ pause_seen = $true; still_waiting_before_key = $true; key_injected = $true; owned_tree_released = $true; exit_code = 0 }
+            } })
+        }
+        Assert-CiDirectLauncherReport $valid
+        foreach ($mutation in @(
+            { param($r) $r.cases[0].status = 'fail' }, { param($r) $r.cases[0].native.pause_seen = $false },
+            { param($r) $r.cases[0].native.still_waiting_before_key = $false }, { param($r) $r.cases[0].native.key_injected = $false },
+            { param($r) $r.cases[0].native.owned_tree_released = $false }, { param($r) $r.cases[0].parent_path_unchanged = $false },
+            { param($r) $r.cases[0].native.exit_code = 1 },
+            { param($r) $r.cases[0].parent_module_path_unchanged = $false },
+            { param($r) $r.cleanup_verified = $false }, { param($r) $r.descendant_release_proved = $false },
+            { param($r) $r.source_unchanged = $false }, { param($r) $r.parent_path_unchanged = $false },
+            { param($r) $r.policies_unchanged = $false }, { param($r) $r.source_before[0].sha256 = 'invalid' },
+            { param($r) $r.parent_module_path_unchanged = $false },
+            { param($r) $r.source_after[0].sha256 = ('b' * 64) }, { param($r) $r.cases[20].name = 'missing-policy-refusal' },
+            { param($r) $r.cases = @($r.cases | Select-Object -First 35) }, { param($r) $r.task = 'S08' },
+            { param($r) $r.schema_version = 2 }, { param($r) $r.mode = 'static_only' }
+        )) {
+            $copy = $valid | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+            & $mutation $copy
+            Assert-CiThrows { Assert-CiDirectLauncherReport $copy } 'Direct launcher'
+        }
+    }
+
     Invoke-CiPureCase 'encoding CI reports require complete exact planned results actual app groups and release integrity' {
         # In-memory report fixtures exercise the CI gate only, never conversion.
         $rows = @(); $ordinal = 0

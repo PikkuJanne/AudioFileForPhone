@@ -30,7 +30,7 @@ $ownedRootCreated = $false; $descendantReleaseProved = $true; $exitCode = 1
 $fixtures = New-Object 'System.Collections.Generic.List[string]'
 $sourceFiles = @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1', 'AudioFileForPhone.bat',
     'tests/Test-HelpVersion.ps1', 'README.md', 'SUPPORT.md', 'CHANGELOG.md',
-    'docs/codex-v1.0.1/RELEASE_TARGET.json')
+    'docs/codex-v1.0.1/RELEASE_TARGET.json', 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')
 $shellName = if ($PSVersionTable.PSEdition -eq 'Desktop') { 'powershell.exe' } else { 'pwsh.exe' }
 $shellPath = Join-Path $PSHOME $shellName
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
@@ -306,7 +306,7 @@ try {
     $report['ffprobe_version'] = ((Invoke-OwnedNative $ffprobe @('-version')).Stdout -split '\r?\n')[0]
     $appVersion = Get-AudioAppVersion
     $help = $null; $examples = @()
-    Invoke-Case 'Get-Help recognizes all public parameters and exact executable examples without entry execution' 'A45,A46' {
+    Invoke-Case 'Get-Help recognizes all documented parameters and exact executable examples without entry execution' 'A45,A46' {
         param($case)
         $before = Get-TreeInventory $testRoot
         $alternateRoot = $testRoot.ToUpperInvariant()
@@ -316,14 +316,27 @@ try {
         $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
-        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
+        $expected = @('InputFolder', 'FromBatchLauncher', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
         $actual = @($help.parameters.parameter.name)
         Assert-True ($help.Synopsis -match 'MP3.*M4A.*OGG' -and $examples.Count -eq 5) 'Proper comment help must contain synopsis and five examples.'
         foreach ($name in $expected) {
             $parameter = @($help.parameters.parameter | Where-Object { $_.name -ceq $name })
             Assert-True ($parameter.Count -eq 1 -and -not [string]::IsNullOrWhiteSpace(($parameter[0].description.Text | Out-String))) ('Missing help parameter description: ' + $name)
         }
-        Assert-True (@($actual | Where-Object { $_ -notin $expected }).Count -eq 0) 'Help must match the bounded public parameter set.'
+        Assert-True (@($actual | Where-Object { $_ -notin $expected }).Count -eq 0) 'Help must match the bounded documented parameter set.'
+        $command = Get-Command -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -CommandType ExternalScript
+        $direct = @($command.ParameterSets | Where-Object { $_.Name -ceq 'Direct' })
+        $batch = @($command.ParameterSets | Where-Object { $_.Name -ceq 'BatchLauncher' })
+        Assert-True ($command.ParameterSets.Count -eq 2 -and $direct.Count -eq 1 -and $batch.Count -eq 1) 'Direct and BAT launch syntax must remain separate.'
+        $directInput = @($direct[0].Parameters | Where-Object { $_.Name -ceq 'InputFolder' })
+        Assert-True ($direct[0].IsDefault -and $directInput.Count -eq 1 -and $directInput[0].IsMandatory -and $directInput[0].Position -eq 0) 'Direct calls must still require the positional input folder.'
+        Assert-True (@($direct[0].Parameters | Where-Object { $_.Name -ceq 'FromBatchLauncher' }).Count -eq 0) 'The internal BAT switch must not change direct-call binding.'
+        $batchRequired = @($batch[0].Parameters | Where-Object { $_.IsMandatory })
+        Assert-True ($batchRequired.Count -eq 1 -and $batchRequired[0].Name -ceq 'FromBatchLauncher' -and $batchRequired[0].ParameterType -eq [Management.Automation.SwitchParameter]) 'The BAT route must bind its switch without prompting for an input parameter.'
+        Assert-True (@($batch[0].Parameters | Where-Object { $_.Name -ceq 'InputFolder' }).Count -eq 0) 'The BAT route must take its folder through its data transport, not command-line rebinding.'
+        $case['parameter_sets'] = @($command.ParameterSets | ForEach-Object {
+            [pscustomobject]@{ name = $_.Name; default = $_.IsDefault; required = @($_.Parameters | Where-Object { $_.IsMandatory } | ForEach-Object { $_.Name }) }
+        })
         $case['examples'] = @($examples | ForEach-Object {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseInput([string]$_.code, [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0 -and $ast.EndBlock.Statements.Count -gt 0) ('Example AST parse failed: ' + $_.title)
@@ -351,19 +364,26 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -cmatch '^1\.0\.1$') 'Authoritative semantic app version must be 1.0.1.'
+        Assert-True ($appVersion -cmatch '^1\.0\.2$') 'Authoritative semantic app version must be the owner-selected 1.0.2.'
         $literals = @()
         foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
-            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.1' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
+            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.2' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
         }
-        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.1 literal.'
-        $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/RELEASE_TARGET.json')) | ConvertFrom-Json
+        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.2 literal.'
+        $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')) | ConvertFrom-Json
         $expectedTag = 'v' + $appVersion; $expectedZip = 'AudioFileForPhone-' + $expectedTag + '.zip'
-        Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Active release target must agree with the runtime version, tag, title and ZIP name.'
+        Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Corrective release target must agree with the runtime version, tag, title and ZIP name.'
+        $historicalTargetPath = Join-Path $projectRoot 'docs/codex-v1.0.1/RELEASE_TARGET.json'
+        $historicalTarget = [IO.File]::ReadAllText($historicalTargetPath) | ConvertFrom-Json
+        Assert-True ($historicalTarget.target_version -ceq '1.0.1' -and $historicalTarget.target_tag -ceq 'v1.0.1' -and
+            $historicalTarget.runtime_zip -ceq 'AudioFileForPhone-v1.0.1.zip' -and $historicalTarget.release_title -ceq 'AudioFileForPhone v1.0.1') 'Historical v1.0.1 release identity must remain separate from the corrective target.'
         $case['app_version'] = $appVersion; $case['runtime_version_literals'] = $literals
+        $case['release_target_contract'] = 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json'
         $case['release_target_tag'] = $expectedTag; $case['release_target_zip_name'] = $expectedZip
+        $case['historical_release_target_version'] = $historicalTarget.target_version
+        $case['historical_release_target_sha256'] = (Get-FileHash -LiteralPath $historicalTargetPath).Hash.ToLowerInvariant()
         $case['package_limit'] = 'Actual package builder and exact release ZIP are later tasks; no package-build result claimed.'
     }
     $seedDir = Join-Path $testRoot 'S'; [IO.Directory]::CreateDirectory($seedDir) | Out-Null

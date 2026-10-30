@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "repository": "PikkuJanne/AudioFileForPhone",
+  "step": "R3",
+  "status": "VERSION_APPROVED_RELEASE_BLOCKED",
+  "version_authority": {
+    "owner_instruction": "Use v1.0.2",
+    "recorded_date": "2026-10-30",
+    "scope": "Corrective version selection only; not publication of unverified bytes or main integration."
+  },
+  "target_version": "1.0.2",
+  "target_tag": "v1.0.2",
+  "release_title": "AudioFileForPhone v1.0.2",
+  "runtime_zip": "AudioFileForPhone-v1.0.2.zip",
+  "release_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2",
+  "required_assets": [
+    "AudioFileForPhone-v1.0.2.zip",
+    "release-manifest.json",
+    "SHA256SUMS.txt"
+  ],
+  "preserve_existing_releases": [
+    "v1.0.0",
+    "v1.0.1"
+  ],
+  "historical_contract": "RELEASE_TARGET.json",
+  "required_draft": true,
+  "prerelease": false,
+  "source_frozen": true,
+  "publication_authorization": null,
+  "main_integration_authorization": null,
+  "owner_testing_required": "none",
+  "candidate_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+  "candidate_assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.2.zip",
+      "bytes": 286541,
+      "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 10318,
+      "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+    }
+  ],
+  "technical_blockers": [
+    "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+    "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN"
+  ],
+  "authorization_blockers": [
+    "EXACT_FROZEN_ASSET_PUBLICATION_AUTHORITY_MISSING",
+    "REVIEWED_HEAD_MAIN_INTEGRATION_AUTHORITY_MISSING"
+  ]
+}

@@ -722,3 +722,106 @@ D72 - 2026-10-30, owner rejects the flat public ZIP and requests distribution
       S16 exact-byte authority and S14-S18 evidence as revision1 history. Commit/
       review/test/push and ordinary CI-passing main integration/fresh sync within
       this authorized task, without another owner approval/checkpoint block.
+
+R1 - 2026-10-30, focused repair adopted by explicit owner instruction after an
+     initially empty request. REPAIR_BRIEF.md preserves the newer no-human-testing
+     brief. It supersedes conflicting S01-S18 routing and owner acceptance tasks;
+     valid historical evidence and published bytes remain intact. Complete one of
+     R1/R2/R3 per chat. The recovery success is owner-reported, not a fabricated
+     independent package/phone pass. No owner tests, diagnostics or acceptance kit.
+     R1 selects one built-in x64 WinPS5.1 STA NoProfile converter directly, via
+     literal process input and an explicit switch parameter set. Both BATs request
+     process-only Bypass and own status/pause/exit in CMD, without retry/evaluation
+     around policy refusal. Inherited Core modules caused a real failure; select
+     built-in host modules within setlocal only. Actual CMD label failure justifies
+     CRLF checkout attributes for the two entry BATs. Preserve PS7 direct use and
+     engine/tool-selection/consent behavior. Native console tests prove waits and
+     inject keys; genuine process-policy refusals are distinct from unrun managed
+     GPO/app-control. Exact package/Explorer/Win10 gates remain later automated
+     work, never owner assignments. R2 updates the old pinned builder. No R1/R2
+     publication or historical-approval expansion; ordinary main policy retained.
+R1 CI follow-up: preserve the four4a812dc/PR integration nonpasses. A test's S11
+     converter SHA was historical and could not constrain changed current source.
+     Verify the binary Git reader against the unchanged ICO and independent file
+     hash; retain current-source freeze, nonexistent commit refusal, historical
+     digest rejection and unchanged production release safeguards. Both local
+     complete release-gate suites pass50 cases; runtime bytes remain unchanged.
+
+R2 - 2026-10-30, clean-package repair: replace the historical published-payload
+     pin with an explicit clean detached source commit and verify every core
+     member against its Git blob. The final allowlist has17 files, exposing only
+     BAT/unchanged ICO/README.txt/app. Required helpers, setup, pin, diagnostics,
+     support and license stay under app; legacy launcher/probe sources remain
+     in Git. Generate CRLF for both packaged BATs and retarget only the root
+     converter assignment, retaining R1 transport/pause/policy/exit behavior.
+     Keep runtime1.0.1 but name this unpublished artifact R2-candidate; layout
+     revision3 selects no corrective version/tag and grants no publication.
+     Preserve full local diagnostics while reducing normal console chatter;
+     warnings/failures/cancellation and final counts/output/log stay visible.
+     Validate build refusals, relocated exact ZIP/icon, real synthetic conversion
+     and native console pause automatically. Owner testing required: none.
+     No R2 publication/main integration; R3 remains a separate owner-started chat.
+R2 archive follow-up: real core build caught git archive applying R1's eol=crlf
+     attributes despite command-local EOL settings. Store both existing CRLF BATs
+     verbatim using -text. Checkout bytes/behavior stay unchanged; exact-blob
+     core build and its archive-attribute refusal guard remain untouched.
+R2 verification checkpoint: canonical PS7 candidate ZIP is cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+     Builds repeat within each host; cross-host compression bytes differ while
+     verified members match. Build11 per host, exact ZIP12groups/20real outputs
+     and final asset proof pass. WinPS5.1 full20families/951checks pass; PS7 has
+     19successful families/948checks, but real managed setup and its serialized
+     retry both exceed the unchanged300s body deadline. Preserve both failures,
+     cleanup/source proof and unknown transport cause. Name the required local
+     verification blocker LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE; R2 stays
+     BLOCKED and next thread resumes R2. Passing implementation ServerCI does not
+     relabel that client failure. No guard/deadline change, owner test, R3 work,
+     publication or expanded main authority. Checkpoint safe work and STOP.
+R2 owner-authorized resumption: "Resume r2 right now" resumes this same step.
+     Fresh real PS7 setup passes3/3 on frozen3f9610e, then explicit NoProfile/
+     NonInteractive retest95002 also passes3/3 with identical7 runtime/harness
+     hashes, unchanged300s deadline and all cleanup/release/fixture checks.
+     Bind completed PS7 coverage to that explicit-host report (SHA256
+     69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05),
+     the original18 passed families and prior native35:20families/951checks+
+     3observations. The failed aggregates/retry remain failed. A short cancelled
+     diagnostic is not an accepted artifact; prior timeout cause remains unknown.
+     No runtime/pin/policy/deadline or canonical ZIP change; no speculative fix.
+     R2 is completed by actual verification, R3 remains a separate owner-started
+     thread, owner testing none, and existing release/main authority is unchanged.
+
+R3 - 2026-10-30, owner instruction "Please continue with r3" starts R3 only.
+     The later explicit reply "Use v1.0.2" selects the corrective identity.
+     Preserve historical RELEASE_TARGET.json and both published releases; record
+     the new identity in CORRECTIVE_RELEASE_TARGET.json, with publication and
+     main-integration authority separate and unset. Version/runtime/packaged-doc
+     changes require a fresh exact ZIP and affected acceptance, rather than
+     relabeling the R2 bytes. Extend only the existing narrow native-console
+     controller for ready-menu Enter and setup-menu Q; retain its ordinary
+     pause/key/exit/job ownership behavior. Setup BAT cancellation and explicit
+     existing-tool setup success are separate observations. No owner tests.
+     No authorized Windows10 client was found in the local/runner inventory.
+     A genuine Explorer drop onto an inert real shortcut transported the input,
+     but Explorer used the ordinary user environment instead of the owned one.
+     Do not launch real conversion into ordinary Music to fill that gap. Preserve
+     the preflight nonpass and use controlled native-console conversion evidence
+     with an independently verified owned default Music destination. Record the
+     remaining actual-client and genuine-Explorer coverage as technical gaps;
+     do not expand historical publication authority or waive required gates.
+
+R3 checkpoint: exact v1.0.2 candidate012b82fb passes available Windows11
+     automated package/audio/native acceptance. Frozen83a5713 full20families
+     per shell pass; isolated synthetic outputs and raw report identities are
+     recorded in R3.json. Preserve the identity-probe OEM/UTF8 guard nonpass;
+     test-only UTF8 capture and stable HelperMissing semantic assertion fix shell
+     harness checks; C2 also retires only proved-completed shortoperations identity
+     records and adds strict live sentinel refusal. Both hosts16cases pass at C2,
+     final shell11groups/8native/2outputs pass at C3; C83..C3 onlytwo testfiles,
+     no candidate change. Preserve sourcePR PS7 failure after15 functional passes
+     and final identity refusal; sourcepush bothhosts pass. PID reuse likely, not
+     proved. Original failed CI stays failed. Genuine inert Explorer drop failed owned environment
+     propagation, so real conversion was not attempted into ordinary Music.
+     No authorized Windows10 client exists in actual inventory. Record R3
+     BLOCKED for these technical gaps and missing exact-byte publication/main
+     authority; version approval alone is separate. No draft/tag/public release
+     or main integration. Owner testing none. Checkpoint/push/fresh live refs/
+     exact-head CI and STOP; later thread resumes only R3.
