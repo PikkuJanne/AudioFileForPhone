@@ -1,5 +1,26 @@
 # Charter — focused launch and distribution repair
 
+## Owner-directed R3 completion and publication — 2026-10-30
+
+The owner explicitly instructed: "R3 isnot blocked by executive order. Finish
+the work and publish version", following the exact v1.0.2 candidate handover and
+earlier "Use v1.0.2" choice. This resumes R3 and authorizes publication of the
+frozen source83a5713/exact three assets plus ordinary integration of reviewed
+checkpoint0afa2ea and bounded documentation closure. Authority and exact hashes:
+evidence/R3-PUBLICATION-AUTHORITY.json.
+
+The two previously reported coverage gates are OWNER_WAIVED, with their missing
+executions still NOT_RUN: Windows10 client runs and genuine Explorer conversion.
+This is owner acceptance of the disclosed limits, not an invented test pass.
+All available Windows11 acceptance, verified draft, anonymous public-byte
+verification and Windows smoke remain actual evidence. No security control,
+source protection, prior public bytes, managed policy or normal PR/CI policy is
+waived. Do not ask for owner testing or reopen version selection.
+
+The normal v1.0.2 release and public smoke are verified in
+evidence/R3-PUBLICATION.json. Preserve original blocked/nonpass evidence below.
+Finish only R3 closure/sync; no next numbered step is authorized automatically.
+
 ## Active owner-directed repair amendment — 2026-10-30
 
 The owner has authorized following the two supplied repair documents. The newer

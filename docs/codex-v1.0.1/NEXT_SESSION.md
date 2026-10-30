@@ -1,3 +1,20 @@
+# Next session — repair complete; no automatic next step
+
+R3 is complete: v1.0.2 is public and independently verified at https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2.
+Read evidence/R3-PUBLICATION.json, R3-PUBLICATION-AUTHORITY.json and the current
+R3-HANDOVER.md. Owner testing required: none. There is no R4 or resumed blocked
+R3 to run automatically. Await a new owner-directed maintenance task.
+
+For a requested maintenance review, refresh actual local/live main and feature
+refs and exact-head CI from the final response. Preserve the released v1.0.2 tag
+at 83a5713cacfbc330f309f48d8377cb5be11ba3a6, exact ZIP SHA256
+012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad, and public v1.0.0/v1.0.1 bytes.
+Do not move any released tag or replace its bytes for later documentation.
+Windows10/Explorer coverage remains unverified under explicit owner exceptions.
+Do not ask for owner tests, screenshots, logs, playback or a phone check.
+
+## Preserved R3 resumption prompt — historical, no longer active
+
 # Next session — resume BLOCKED R3 only
 
 Owner testing required: none. R1/R2 complete; corrective version v1.0.2 selected.

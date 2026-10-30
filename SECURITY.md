@@ -68,7 +68,8 @@ retains the real failure and exit code and pauses without another host retry. Or
 noninteractive conversion and preview never run setup or save settings.
 
 After reviewing the app/helper and trusting the chosen vendor files, run these
-commands from the application folder to inspect the exact selected files.
+commands from `app/` in the extracted release, or the repository root in a source
+checkout, to inspect the exact selected files.
 Resolution executes bounded version/capability queries; the final three commands
 also execute the selected tools directly:
 
@@ -88,9 +89,10 @@ Get-AuthenticodeSignature -LiteralPath $ffprobePath
 & $ffmpegPath -hide_banner -encoders
 ```
 
-Conversion startup prints both resolved paths and version responses and verifies
-`libmp3lame` before reserving a run. Its log/manifest retain tool paths and version
-responses; their build hashes identify the app scripts, not the vendor binaries.
+Conversion startup reports the selection origin and verifies `libmp3lame` before
+reserving a run. Setup displays selected paths/hashes; the log/manifest retain
+tool paths and version responses. Their build hashes identify the app scripts,
+not the vendor binaries.
 Startup does not verify vendor checksums or signatures, enforce a minimum FFmpeg
 version, or certify authenticity or absence of vulnerabilities. Preview performs
 no tool queries. SHA-256 identifies bytes against a trusted reference; a matching
@@ -120,15 +122,24 @@ forced window closure can still discard visible output.
 
 ## Package provenance
 
-The owner-selected v1.0.2 corrective candidate includes the R1/R2 repairs; R3
-automated exact-package acceptance and publication authorization are separate
-gates. Existing public v1.0.0/v1.0.1 assets remain unchanged. Owner testing
-required: none. Historical package provenance below describes the earlier
-published layout; current candidate layout/provenance is in docs/DISTRIBUTION.md.
+The normal public [v1.0.2 release](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2)
+provides the [application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip),
+external manifest and checksums. Its tag remains on tested source
+`83a5713cacfbc330f309f48d8377cb5be11ba3a6`; ZIP SHA256 is
+`012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad`.
+The public assets remain the exact frozen bytes. Later repository documentation
+does not rebuild them or move the tag. Existing v1.0.0/v1.0.1 tags/assets remain unchanged.
 
-The runtime builder uses the explicit 18-file repository allowlist. The final
-user-package builder keeps those runtime files under `app/` and exposes only the
-converter/setup entry points, short README and license at the top level. See
+An independent public download passed 12 groups/20 synthetic outputs in total
+across Windows PowerShell 5.1 and PowerShell 7 on Windows 11 Pro 26300.9711 x64,
+including full decode/source integrity and five native BAT cases. Windows 10 and
+genuine Explorer conversion remain unverified owner-accepted release exceptions,
+not passes. Owner testing required: none.
+
+The runtime builder uses an 18-file intermediate core allowlist. The final
+user-package builder selects 17 members, exposing only `AudioFileForPhone.bat`,
+the unchanged `AudioFileForPhone.ico`, `README.txt` and `app/`. Required helpers,
+optional setup, detailed documentation and license remain under `app/`. See
 [distribution layout and provenance](docs/DISTRIBUTION.md). FFmpeg/ffprobe
 binaries, vendor DLLs, tests, generated audio, logs, caches, posters, Git data and
 Codex handoff/evidence are excluded.
@@ -147,6 +158,12 @@ and verify the report SHA-256. The builder validates the supplied schema/commit
 and carries those references; it does not open the referenced reports or execute
 their tests. Approved exact asset bytes must be verified separately under the
 release runbook.
+
+The published manifest retains its build-time `corrective_release_candidate`
+kind and `publication_authorized: false`. Those fields describe the frozen build;
+the later exact-byte owner authorization and actual public release are recorded
+separately in the release evidence. The manifest/checksum bytes were not rewritten
+after publication to update their status.
 
 The user-distribution manifest additionally identifies its package revision,
 original runtime ZIP and source-to-archive mapping. Generated entry points and

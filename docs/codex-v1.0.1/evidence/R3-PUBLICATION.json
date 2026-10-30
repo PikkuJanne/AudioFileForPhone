@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "step": "R3",
+  "status": "COMPLETED",
+  "recorded_utc": "2026-10-30T19:57:01.191936+00:00",
+  "owner_testing_required": "none",
+  "owner_authority_record": "R3-PUBLICATION-AUTHORITY.json",
+  "owner_instruction": "R3 isnot blocked by executive order. Finish the work and publish version",
+  "authority_scope": "Explicit owner resumption, acceptance of the reported unrun coverage as release exceptions, and publication/integration authority for this concrete v1.0.2 candidate. It is not a fabricated test pass or a general future-release grant.",
+  "coverage_exceptions": [
+    {
+      "gate": "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+      "resolution": "OWNER_WAIVED",
+      "execution": "NOT_RUN",
+      "scope": "Windows10 22H2 x64 PS5.1 and PS7 client executions remain unavailable and unverified."
+    },
+    {
+      "gate": "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN",
+      "resolution": "OWNER_WAIVED",
+      "execution": "NOT_RUN",
+      "scope": "Genuine Explorer production BAT/shortcut conversion remains unverified. Inert shortcut transport and controlled native BAT conversion are distinct retained observations."
+    }
+  ],
+  "security_controls_waived": false,
+  "release": {
+    "id": 429430152,
+    "tag": "v1.0.2",
+    "title": "AudioFileForPhone v1.0.2",
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-30T19:52:07Z",
+    "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "annotated_tag_object": "f6c3c6f005f1df2137d350458373b9a74e10958c",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.2.zip",
+        "bytes": 286541,
+        "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad",
+        "asset_id": 693234678,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10318,
+        "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06",
+        "asset_id": 693234679,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c",
+        "asset_id": 693234677,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/SHA256SUMS.txt"
+      }
+    ]
+  },
+  "source_integration": {
+    "pr": 34,
+    "reviewed_head": "0afa2eac21120c1ba4c3114e34251c400e12aedf",
+    "merge_commit": "d9dde6a3dcb87bc17c86af4666ecf03ce33dcd4d",
+    "source_is_main_ancestor": true,
+    "reviewed_and_merged_tree": "19a36c64de1e93181ca04ecb91499d1346c31034",
+    "ordinary_pr_method": true,
+    "protections_changed": false,
+    "history_rewritten": false
+  },
+  "automated_acceptance": {
+    "prior_exact_candidate_record": "R3.json",
+    "full_local_source": "Windows11 PS5.1/PS7 each20families/951checks+3observations at frozenC83; isolated baseline/495matrix/real setup/native checks retained.",
+    "corrected_harnesses": "C2shortoperations16 per host with strict identity refusal/sentinel survival; C3native shell11groups/8cases/2outputs. Nonpackaged test changes only.",
+    "candidate_outputs": {
+      "user_package": 20,
+      "audio": 64,
+      "native_shell": 2,
+      "long_duration_seconds": 1800,
+      "seek_offsets_seconds": [
+        450,
+        900,
+        1620
+      ]
+    },
+    "final_reviewed_checkpoint_ci": {
+      "commit": "0afa2eac21120c1ba4c3114e34251c400e12aedf",
+      "push_run": 41116043601,
+      "pull_request_run": 41116051045,
+      "all_four_jobs": "SUCCESS"
+    },
+    "draft_download": {
+      "report": "draft-download-verification.json",
+      "bytes": 4650,
+      "sha256": "10a30a09a4fd0b15a890fc63b2dc58e900fbe5690c3d836af196635f542d9a24",
+      "retained_privately": true
+    },
+    "anonymous_public_download": {
+      "report": "anonymous-public-download.json",
+      "bytes": 1922,
+      "sha256": "72fe591ef6b52001e4041b844ded2f6e76082cedfe3c084ec46ac430646ea1f5",
+      "retained_privately": true
+    },
+    "independent_anonymous_download": {
+      "report": "independent-live-publication-verification-attempt2.json",
+      "bytes": 3248,
+      "sha256": "4d700fdabaceaf06a3a740e46c340e42ea882eb3d8078e0cd21b3ed10c5fcc9e",
+      "retained_privately": true
+    },
+    "public_member_preflight": {
+      "report": "public-download-preflight.json",
+      "bytes": 4264,
+      "sha256": "3869d0acfb45cf435e1c2a487de42fcbe55fe0cdc245f348e3630832486754cb",
+      "retained_privately": true
+    },
+    "public_windows_smoke": {
+      "report": "public-package-smoke-attempt1.json",
+      "bytes": 31334,
+      "sha256": "6067418cbf743418dc21dc19848bca8593a684cf783e13f76d05757c8c3fa08f",
+      "retained_privately": true,
+      "summary": {
+        "report": "public-package-smoke-summary.json",
+        "bytes": 4902,
+        "sha256": "00f6afb6cb9c0bbacfc56a982e4bcbb1fb0beb102767123a06633b432721f770",
+        "retained_privately": true
+      },
+      "status": "PASSED",
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "zip_sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad",
+      "windows": "Windows11 Pro26H2 build26300.9711 x64 non-administrator",
+      "hosts": [
+        "Windows PowerShell5.1.26100.9711",
+        "PowerShell7.6.5"
+      ],
+      "groups": 12,
+      "outputs": 20,
+      "native_bat_cases": 5,
+      "captured_processes": 57,
+      "full_decode": true,
+      "metadata_and_layout": true,
+      "source_and_package_unchanged": true,
+      "policies_unchanged": true,
+      "synthetic_only": true,
+      "ordinary_music_media_access": false,
+      "profiles": "NoProfile",
+      "internet_marks": "Deterministic ADS; no browser-extraction claim",
+      "tools": "Existing external C:/ffmpeg/bin, empty app-child PATH"
+    }
+  },
+  "prior_nonpasses": "Original R3.json/failed reports remain unchanged; owner waiver is not a pass. Source PR41112062810 remains failed; later checkpoint CI successes are separate. PID reuse remains inference.",
+  "reviewer_preparation_nonpass": {
+    "report": "independent-live-publication-verification.json",
+    "bytes": 2706,
+    "sha256": "b1ebe21aced7505f2724fd27bf79635c14a9b524823b386e6926294234d72874",
+    "retained_privately": true
+  },
+  "reviewer_preparation_nonpass_scope": "Private expected-ref array formatting assertion failed after correct API/download observations. Fresh attempt2 corrected the comparison and passed unchanged public bytes; no public release discrepancy.",
+  "preservation": {
+    "old_releases": [
+      "v1.0.0",
+      "v1.0.1"
+    ],
+    "old_release_and_asset_metadata_unchanged": true,
+    "old_tag_objects_and_peeled_commits_unchanged": true,
+    "proof": {
+      "report": "independent-live-publication-verification-attempt2.json",
+      "bytes": 3248,
+      "sha256": "4d700fdabaceaf06a3a740e46c340e42ea882eb3d8078e0cd21b3ed10c5fcc9e",
+      "retained_privately": true
+    },
+    "new_public_bytes_replaced": false,
+    "released_tag_moved": false
+  },
+  "closure": {
+    "scope": "Documentation/evidence only; the frozen source/tag/assets are unchanged.",
+    "ordinary_pr_required": true,
+    "final_checkpoint": "Observe final containing commit/live main+feature equality and exact-head CI after closure merge, report in final handover; do not create a self-referential SHA commit."
+  },
+  "commands": [
+    "gh pr merge 34 --repo PikkuJanne/AudioFileForPhone --merge --match-head-commit 0afa2eac21120c1ba4c3114e34251c400e12aedf --subject <reviewed repair subject> --body-file pr34-owner-merge-body.md; no admin bypass",
+    "git tag -a v1.0.2 83a5713cacfbc330f309f48d8377cb5be11ba3a6 -m \"AudioFileForPhone v1.0.2: owner-authorized exact corrective package\"; git push origin refs/tags/v1.0.2",
+    "gh release create v1.0.2 <exact3assets> --verify-tag --draft --prerelease=false --notes-file release-notes-v1.0.2.md",
+    "gh release download v1.0.2 --dir <freshdraft> --pattern <each exact asset name>",
+    "gh release edit v1.0.2 --draft=false --prerelease=false --verify-tag --latest",
+    "NoProfile private anonymous HttpClient verifier: no Authorization, default credentials or cookies; fresh API and each public asset HTTP200 with exact size/SHA.",
+    "pwsh.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File source-frozen/tests/Test-UserPackage.ps1 -PackageDirectory <freshpublicdownload> -CoreRuntimeZipPath core/AudioFileForPhone-v1.0.2.zip -EvidencePath publication-20261030/public-package-smoke-attempt1.json -FfmpegDirectory C:/ffmpeg/bin -PowerShell7Path <actual external PS7 executable recorded privately>"
+  ],
+  "references": {
+    "gh_release_create": "https://cli.github.com/manual/gh_release_create",
+    "gh_release_edit": "https://cli.github.com/manual/gh_release_edit",
+    "gh_release_download": "https://cli.github.com/manual/gh_release_download",
+    "gh_pr_merge": "https://cli.github.com/manual/gh_pr_merge"
+  }
+}

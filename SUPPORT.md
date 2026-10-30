@@ -1,9 +1,12 @@
 # Support and troubleshooting
 
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
-PowerShell 5.1 and PowerShell 7. The owner-selected v1.0.2 corrective candidate
-includes the R1/R2 launch and package repairs; R3 exact-package acceptance is in
-progress. Published v1.0.0/v1.0.1 bytes are preserved. Actual coverage and gaps are in the
+PowerShell 5.1 and PowerShell 7. The published
+[v1.0.2 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)
+includes the direct-launch and clean-package repairs. Published v1.0.0/v1.0.1
+tags and bytes are preserved. Windows 10 and genuine Explorer conversion remain
+unverified owner-accepted release exceptions (`OWNER_WAIVED`, `NOT_RUN`), not test
+passes. Actual coverage and gaps are in the
 [active release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
 Owner testing required: none. Codex performs all new repair verification; no
 owner diagnostic run, phone check or acceptance kit is required.
@@ -19,15 +22,18 @@ failure results, cancellation components and local record persistence.
 | Environment or workflow | Evidence boundary |
 | --- | --- |
 | Historical Windows 11 Pro 26300.9457 | Local synthetic regression runs on Windows PowerShell 5.1.26100.9444 and PowerShell 7.6.5. |
-| Repair client, Windows 11 Pro 26H2 26300.9711 x64 | Codex-run isolated synthetic verification on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5. Exact candidate results and remaining Windows10/Explorer gaps are recorded in the active repair evidence. |
+| v1.0.2 client, Windows 11 Pro 26H2 26300.9711 x64 | Automated isolated verification on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5, including a 31-M4A batch and 30-minute audio/seek checks per host. Controlled native BAT success/partial failure uses an owned default Music folder. |
+| v1.0.2 public-download smoke | The independently downloaded exact public ZIP passed 12 groups and 20 real outputs in total across PS5.1/PS7, with full decode/source integrity and five native BAT cases. This does not establish genuine Explorer conversion. |
+| Windows 10 22H2 x64, PS5.1/PS7 | NOT_RUN and unverified. The owner accepted this release exception; Server CI does not supply a Windows 10 pass. |
+| Genuine Explorer conversion through the current BAT/shortcut | NOT_RUN and unverified; owner-accepted release exception. An inert genuine shortcut drop proved literal argument/cwd delivery but failed environment isolation. Controlled native BAT conversion is separate evidence. |
 | Historical v1.0.1 development, Windows 11 Pro 26H2 26300.9711 x64 | S03/S04 synthetic source tests on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5. These source tests do not establish Windows 10 or later exact-package results; see the retained evidence. |
-| Hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. This is separate from Windows 11 acceptance. |
+| Historical hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. Server CI is separate from client acceptance. |
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
 | Music-folder default | Configured-folder resolver and dedicated owned generated-input smoke checks; no real network-redirected Music acceptance. Ordinary personal Music was not used as disposable test data. |
 | Samsung S24, One UI 8.5, AIMP v4.31.1747, USB cable | Named owner acceptance on the three T21 assets: long playback/seeking/duration, resume, tags, supplied blue cover and ordering work. Chapters unavailable; navigation not tested. [T21 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T21.md). |
-| Explorer folder drop and PS5.1 STA picker | Named owner folder-on-BAT observation reached "Completed with failures"; selected BAT shell, raw exit and output path were not captured. Actual PS5.1 picker outputs were independently verified. Current PS7 picker, physical Cancel and fallback remain unobserved. [T20 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T20.md). |
+| Historical Explorer folder drop and PS5.1 STA picker | Named owner folder-on-BAT observation reached "Completed with failures"; selected BAT shell, raw exit and output path were not captured. Actual PS5.1 picker outputs were independently verified. Current PS7 picker, physical Cancel and fallback remain unobserved. [T20 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T20.md). |
 | Other phone/player or USB/MTP configurations and NAS/UNC | Claims remain limited to recorded evidence, without a universal compatibility guarantee. Automated launcher checks do not establish unobserved Explorer/phone behavior. |
-| Exact release ZIP | Package verification is recorded separately in the repository's [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md); source tests alone do not establish acceptance of downloaded bytes. |
+| Exact v1.0.2 release ZIP | Public bytes match the frozen tested ZIP SHA256 `012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad`. Current package/public verification is in the [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md); source tests alone do not establish public-byte acceptance. |
 | Recovery BAT, owner report of 2026-10-30 | The owner reports a successful launch and working audio. This is owner-reported recovery, not independent verification of every file, host, shortcut or repaired package. No repeat owner test is requested. |
 
 Local regression history also uses an existing Gyan FFmpeg build dated
@@ -51,6 +57,9 @@ they do not extend the recorded device scope or establish exact package acceptan
 | Local regression and supplementary hosted checks | [T16](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T16.md), [T17](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T17.md), with the exact environment boundaries above. |
 
 ## Unsigned scripts and execution policy
+
+In the extracted release, run the PS1 commands below from `app/`; source-checkout
+commands run from the repository root. The root BAT remains the normal folder-drop entry.
 
 The scripts have no Authenticode publisher signature. Review the source and
 origin of the app and FFmpeg pair. A checksum identifies bytes against a trusted
@@ -95,8 +104,8 @@ powershell.exe -NoProfile -Sta -ExecutionPolicy Bypass -File .\Setup-AudioFileFo
 pwsh -NoProfile -Sta -ExecutionPolicy Bypass -File .\Setup-AudioFileForPhone.ps1
 ```
 
-`Check-AudioFileForPhone.bat` is a separate optional helper and still requests
-`RemoteSigned`; R1 does not change that helper or its policy requirements.
+`Check-AudioFileForPhone.bat` remains a separate source-checkout helper requesting
+`RemoteSigned`. The application ZIP supplies the check PS1 under `app/`.
 
 ## Existing-tool and offline recovery
 
@@ -207,8 +216,11 @@ is unused by this route. Normal encoding and full decode have no short deadline.
 
 ## Environment check and support export
 
-Use `Check-AudioFileForPhone.bat` for the default environment check. It accepts no
-arguments. In an allowed PowerShell host, the PS1 offers explicit options:
+In an allowed PowerShell host, run `app/Check-AudioFileForPhone.ps1` for the
+download's default environment check. From a source checkout,
+`Check-AudioFileForPhone.bat` is also available and accepts no arguments.
+With PowerShell open in `app/` (or the repository root for a checkout), the PS1
+offers explicit options:
 
 ```powershell
 .\Check-AudioFileForPhone.ps1 -FfmpegDirectory 'C:\ffmpeg\bin' -ConfigPath '.\portable-config.json'
