@@ -16,7 +16,12 @@ See [CHANGELOG.md](CHANGELOG.md) and the
 
 ## Setup
 
-For the GitHub download, extract the complete ZIP into a new, empty folder and keep the `app` folder beside
+**Development repair:** the direct BAT launch described below is an R1 source
+patch. Published v1.0.1 ZIP bytes are unchanged. The revised user package (R2)
+and exact-package acceptance/release (R3) are separate work. Owner testing required:
+none; all new repair verification is automated by Codex.
+
+For the existing GitHub download, extract the complete ZIP into a new, empty folder and keep the `app` folder beside
 the launch files. The top level contains only the converter/setup BAT and PS1
 entry points, a short README and the license. Drag an audio folder onto
 `AudioFileForPhone.bat`; use `Setup-AudioFileForPhone.bat` to select FFmpeg.
@@ -35,7 +40,7 @@ In a source checkout (or inside the download's `app/` folder), keep these files 
 - `AudioFileForPhone.Diagnostics.ps1` (startup evidence and local support export)
 - `Check-AudioFileForPhone.ps1`, `Check-AudioFileForPhone.bat` and `AudioFileForPhone.Checks.ps1` (environment check and explicit synthetic self-test)
 - `AudioFileForPhone.bat` (optional drag-and-drop launcher)
-- `AudioFileForPhone.Launcher.ps1` and `AudioFileForPhone.HostProbe.ps1` (required by the BAT)
+- `AudioFileForPhone.Launcher.ps1` and `AudioFileForPhone.HostProbe.ps1` (retained legacy source; unused by the repaired BAT)
 - `Setup-AudioFileForPhone.ps1` and `Setup-AudioFileForPhone.bat` (dependency setup)
 - `AudioFileForPhone.ManagedSetup.ps1` and `tools/ffmpeg-download.json` (optional pinned download)
 
@@ -61,9 +66,10 @@ trusted build and retain the publisher's notices. Startup capability/version
 responses do not authenticate a vendor binary.
 
 The scripts are **unsigned**. Review the [execution-policy guidance](SUPPORT.md#unsigned-scripts-and-execution-policy)
-before running downloaded files. The conversion BAT requests process-scoped
-`-ExecutionPolicy RemoteSigned`, preserving policy checks without changing saved
-policy. Never work around an enforced organization policy.
+before running downloaded files. The repaired conversion and setup BATs request
+process-only `-ExecutionPolicy Bypass` for this trusted unsigned personal app.
+This leaves saved policy unchanged; MachinePolicy, UserPolicy and application
+control remain authoritative. A denial stays visible without retrying another host.
 
 ## Usage
 
@@ -129,36 +135,26 @@ Get-Help .\AudioFileForPhone.ps1 -Examples
 ```
 
 For drag and drop, drop **exactly one folder** onto `AudioFileForPhone.bat`.
-The launcher prefers a healthy PowerShell 7, including an available Store execution
-alias, then Windows PowerShell 5.1. It prints the selected full executable path,
-version, process/OS architecture and STA state, and supplies `-Interactive`.
-The side-effect-free host check uses `-NoProfile` and a 15-second deadline.
-Fallback ends before application entry: an application failure or cancellation
-returns its exit code without starting a second conversion. An explicit policy
-refusal stops startup. Redirected input returns without a mandatory pause; an
-interactive console can keep the outcome visible. See the security note above.
+The repaired BAT starts one built-in x64 Windows PowerShell 5.1 STA process with
+`-NoProfile`, calling the converter directly and enabling its existing interactive
+workflow. It performs no host selection or automatic retry. CMD prints the result,
+pauses and returns the original exit code: 0 success, 1 failure, 2 partial failure,
+or 130 cancellation. Startup and parsing errors remain above the pause. Forced
+window termination cannot preserve visibility or guarantee an exit result.
 
-Choose an exact host for this PowerShell session and its BAT launches when needed:
-
-```powershell
-$env:AUDIOFILEFORPHONE_HOST = 'C:\Program Files\PowerShell\7\pwsh.exe'
-.\AudioFileForPhone.bat '.\Podcasts'
-Remove-Item Env:\AUDIOFILEFORPHONE_HOST
-```
-
-Use your installed executable's absolute path. This override never falls back.
-The alternate launcher route accepts an explicit host and a startup deadline of
-1–60 seconds; this deadline applies to the host check, not audio conversion:
+PowerShell 7 remains available through the direct parameter-based converter route.
+After reviewing and trusting the unsigned app, an explicit process-only launch can
+use an existing FFmpeg pair outside PATH:
 
 ```powershell
-.\AudioFileForPhone.Launcher.ps1 -InputFolder '.\Podcasts' -HostPath 'C:\Program Files\PowerShell\7\pwsh.exe' -StartupTimeoutSeconds 15
+pwsh -NoProfile -Sta -ExecutionPolicy Bypass -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -FfmpegDirectory 'D:\Trusted tools\bin'
 ```
 
-The launcher is the interactive one-folder route. Continue using
-`AudioFileForPhone.ps1` directly for the existing parameter-based, prompt-free
-conversion or preview options, including `-FfmpegDirectory` and `-ConfigPath`.
-Quoting protects arguments received by the launcher; it cannot recover text that
-the calling CMD shell already expanded.
+Direct calls keep all conversion/preview options, including `-ConfigPath` and
+`-Interactive`. No PATH edit is required. The old Launcher/HostProbe scripts remain
+in source for historical compatibility; the repaired BAT does not depend on them
+or honor their host override. When calling a BAT from a shell, account for the
+caller's expansion rules; it cannot recover text already expanded by CMD.
 
 ## Existing-tool setup and recovery
 
@@ -178,9 +174,11 @@ build, transfer size, destination, SHA-256, source and license before asking **Y
 to download. Any other answer cancels. An invalid pair stops setup without
 replacing a saved choice.
 
-`Setup-AudioFileForPhone.bat` opens the same setup using Windows PowerShell 5.1,
-STA and process-scoped `RemoteSigned`, preserving policy checks. It accepts no
-arguments; use the PS1 entry for explicit options. A console with readable input
+The repaired `Setup-AudioFileForPhone.bat` opens the same setup using one built-in
+x64 Windows PowerShell 5.1 STA process, `-NoProfile` and process-only `Bypass`.
+Managed policy and application control still apply. CMD retains errors, pauses
+and returns the original result. It accepts no arguments; use the PS1 entry for
+explicit options. A console with readable input
 is needed for interactive setup. To select and remember a reviewed pair directly,
 without prompts or a PATH edit:
 
@@ -455,6 +453,7 @@ The command emits the helper-versioned ZIP, external `release-manifest.json` and
 signing observations; checksums establish bytes against a trusted reference, not
 publisher authenticity. Required-file omissions, dirty/mismatched source and
 unsafe paths fail instead of producing a complete-looking package. A generated
-package is not release acceptance: exact extraction, Windows/launcher/phone
-checks and recorded approval remain gated by the repository's
-[release runbook](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/RELEASE_RUNBOOK.md).
+package is not release acceptance: exact extraction, automated Windows/launcher
+checks and exact-byte publication authority remain required by the active
+[repair charter](docs/codex-v1.0.1/CHARTER.md). No owner or phone test is required
+for this repair. The clean repaired user-package build belongs to R2.

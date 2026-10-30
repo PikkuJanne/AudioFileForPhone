@@ -1,35 +1,49 @@
 @echo off
 setlocal DisableDelayedExpansion
 
-REM Exactly one folder; transport the spelling once without evaluating it.
+REM Transport the folder once as data; never CALL or build PowerShell command text.
 set "AUDIOFILEFORPHONE_INPUT=%~1"
-set "AFP_LAUNCHER=%~dp0AudioFileForPhone.Launcher.ps1"
-set "AFP_BOOTSTRAP=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe"
-if exist "%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe" set "AFP_BOOTSTRAP=%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe"
-if not exist "%AFP_LAUNCHER%" goto missing_launcher
-if not exist "%AFP_BOOTSTRAP%" goto missing_host
+set "AFP_SCRIPT=%~dp0AudioFileForPhone.ps1"
+set "AFP_HOST=%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe"
+if exist "%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe" set "AFP_HOST=%SystemRoot%\Sysnative\WindowsPowerShell\v1.0\powershell.exe"
 if "%~1"=="" goto invalid_arguments
 if not "%~2"=="" goto invalid_arguments
 REM A quoted empty second argument is still an extra argument.
-REM Inspect its raw spelling only after the dequoted value was proved empty.
 if not "%2"=="" goto invalid_arguments
+if not exist "%AFP_SCRIPT%" goto missing_script
+if not exist "%AFP_HOST%" goto missing_host
 
-"%AFP_BOOTSTRAP%" -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File "%AFP_LAUNCHER%"
+REM Trusted unsigned app: process-only request; managed policy remains authoritative.
+REM One host, one converter invocation. Never retry after an error or policy refusal.
+REM A PowerShell 7 caller may export incompatible module paths; use this host's modules.
+set "PSModulePath=%SystemRoot%\System32\WindowsPowerShell\v1.0\Modules"
+"%AFP_HOST%" -NoLogo -NoProfile -STA -ExecutionPolicy Bypass -File "%AFP_SCRIPT%" -FromBatchLauncher
 set "CHILD_EXIT=%ERRORLEVEL%"
-exit /b %CHILD_EXIT%
+goto finish
 
 :invalid_arguments
-"%AFP_BOOTSTRAP%" -NoLogo -NoProfile -STA -ExecutionPolicy RemoteSigned -File "%AFP_LAUNCHER%" -ShowUsage
-exit /b 1
+echo Drop exactly one audio folder onto AudioFileForPhone.bat or its shortcut.
+echo Keep the complete application together. Startup errors remain above this message.
+set "CHILD_EXIT=1"
+goto finish
 
-:missing_launcher
-echo Required AudioFileForPhone.Launcher.ps1 is missing. Restore the complete application package.
+:missing_script
+echo Required AudioFileForPhone.ps1 is missing. Restore the complete application package.
 echo [DIAGNOSTIC] stage=Bootstrap; code=HelperMissing.
-REM Fixed reporting/wait command; paths travel through environment, never evaluation.
-if exist "%AFP_BOOTSTRAP%" "%AFP_BOOTSTRAP%" -NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command "try { $dir = [IO.Path]::GetDirectoryName($env:AFP_LAUNCHER); $diag = [IO.Path]::Combine($dir, 'AudioFileForPhone.Diagnostics.ps1'); if (Test-Path -LiteralPath $diag -PathType Leaf) { . $diag; $r = New-AudioDiagnosticRecord -ScriptDirectory $dir -Stage Bootstrap -Code HelperMissing -Message 'Required AudioFileForPhone.Launcher.ps1 is missing. Restore the complete application package.'; $null = Write-AudioStartupFailure -Record $r } } catch { Write-Warning 'Startup diagnostics unavailable; original failure above is unchanged.' }; try { if (-not [Console]::IsInputRedirected -and -not [Console]::IsOutputRedirected) { Write-Host 'Press any key to close.'; $null = [Console]::ReadKey($true) } } catch { }"
-exit /b 1
+set "CHILD_EXIT=1"
+goto finish
 
 :missing_host
-echo Windows PowerShell bootstrap is missing. Run AudioFileForPhone.ps1 directly in an allowed x64 STA host.
-echo [DIAGNOSTIC] stage=Bootstrap; code=HostStartFailed. Console only: the bootstrap host could not start a logger.
-exit /b 1
+echo Built-in x64 Windows PowerShell could not be found. Restore Windows PowerShell or use an allowed x64 STA host directly.
+echo [DIAGNOSTIC] stage=Bootstrap; code=HostStartFailed.
+set "CHILD_EXIT=1"
+
+:finish
+echo.
+echo AudioFileForPhone exit code: %CHILD_EXIT%
+if "%CHILD_EXIT%"=="1" echo The operation failed. Read the error above and any reported local log.
+if "%CHILD_EXIT%"=="2" echo Some files failed. Read the summary and local log above.
+if "%CHILD_EXIT%"=="130" echo The operation was cancelled.
+REM CMD owns visibility even if PowerShell could not load or parse any script.
+pause
+exit /b %CHILD_EXIT%

@@ -28,6 +28,10 @@ Exactly one existing filesystem folder below a drive/share root. Input and outpu
 ancestors with reparse points are rejected. Descendant links and recognized prior
 output runs are skipped; an inaccessible subtree aborts discovery.
 
+.PARAMETER FromBatchLauncher
+Internal BAT entry point. Reads the single folder from the process environment
+without evaluating it and enables the existing interactive workflow.
+
 .PARAMETER BitrateKbps
 CBR MP3 bitrate in kbps; default 64. Accepted: 8, 16, 24, 32, 40, 48, 56, 64, 80,
 96, 112, 128, 144, 160, 192, 224, 256, 320. Rates depend on source sample rate.
@@ -141,10 +145,13 @@ Logs can contain private paths/metadata; redact before sharing. No automatic upl
 .LINK
 https://github.com/PikkuJanne/AudioFileForPhone
 #>
-[CmdletBinding()]
+[CmdletBinding(DefaultParameterSetName = 'Direct')]
 param(
-    [Parameter(Mandatory = $true, Position = 0)]
+    [Parameter(Mandatory = $true, Position = 0, ParameterSetName = 'Direct')]
     [string]$InputFolder,
+
+    [Parameter(Mandatory = $true, ParameterSetName = 'BatchLauncher')]
+    [switch]$FromBatchLauncher,
 
     [int]$BitrateKbps = 64,
 
@@ -175,6 +182,11 @@ param(
     [ValidateScript({ -not [string]::IsNullOrWhiteSpace($_) })]
     [string]$ConfigPath
 )
+
+if ($FromBatchLauncher) {
+    $InputFolder = [Environment]::GetEnvironmentVariable('AUDIOFILEFORPHONE_INPUT', 'Process')
+    $Interactive = $true
+}
 
 # --- Script path & dir, computed ONCE here, not inside functions ---
 $ScriptPath = $MyInvocation.MyCommand.Path

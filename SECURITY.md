@@ -28,7 +28,7 @@ sharing diagnostics.
    Available decoders, encoders and image support vary with build configuration.
    The app requires `libmp3lame`; actual inputs and covers must also be supported
    by the chosen build. Review the publisher's update/security information when
-   replacing it, then test a short nonprivate sample yourself.
+   replacing it. New repair verification uses Codex-run synthetic media.
 4. Select a trusted installation with `-FfmpegDirectory`, deliberately save a
    choice using the separate setup entry, place a complete pair beside the application,
    or use a trusted installation already in your shell's `PATH`, in that order.
@@ -60,9 +60,11 @@ source folder never authorizes executing programs found there.
 Saving requires affirmative interactive consent or explicit `-Remember` on the
 setup command. Config holds only the deliberate tool location, uses the shared
 bounded atomic writer, and preserves corrupt/newer settings on failure. It never
-changes PATH, registry, profiles or persistent execution policy. The setup BAT
-uses Windows PowerShell 5.1 with process-scoped `RemoteSigned`; an enforced policy
-failure is reported without switching hosts to work around it. Ordinary
+changes PATH, registry, profiles or persistent execution policy. The repaired
+setup BAT uses one built-in x64 Windows PowerShell 5.1 STA process with `-NoProfile`
+and a process-only `Bypass` request for this trusted unsigned personal app.
+MachinePolicy, UserPolicy and application control remain authoritative. CMD
+retains the real failure and exit code and pauses without another host retry. Ordinary
 noninteractive conversion and preview never run setup or save settings.
 
 After reviewing the app/helper and trusting the chosen vendor files, run these
@@ -108,10 +110,20 @@ The app's PowerShell scripts currently have no Authenticode publisher signature.
 Package generation records actual script signature status. Neither the ZIP,
 external manifest nor checksums acquire a publisher signature from packaging.
 See [unsigned scripts and execution policy](SUPPORT.md#unsigned-scripts-and-execution-policy)
-for read-only checks, the BAT's existing process-scoped Bypass and direct invocation.
-Do not weaken an enforced organization policy to run the app.
+for read-only checks, the repaired BATs' process-only Bypass request and direct
+invocation. This request does not sign files, remove download marks or change
+saved execution policy. Do not weaken enforced organization policy or application
+control. The conversion BAT calls the converter directly in one built-in x64
+Windows PowerShell 5.1 STA process with `-NoProfile`; direct PowerShell 7 calls
+remain available. Final status and pause live in CMD, including pre-entry errors;
+forced window closure can still discard visible output.
 
 ## Package provenance
+
+The R1 launch repair is currently a source patch. Existing public v1.0.1 assets
+remain unchanged; revised user-package construction and automated exact-package
+acceptance belong to R2/R3. Owner testing required: none. Historical package
+provenance below describes the existing builders and published layout.
 
 The runtime builder uses the explicit 18-file repository allowlist. The final
 user-package builder keeps those runtime files under `app/` and exposes only the

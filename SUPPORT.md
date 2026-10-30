@@ -1,9 +1,12 @@
 # Support and troubleshooting
 
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
-PowerShell 5.1 and PowerShell 7. Required Windows 10 client acceptance and exact
-v1.0.1 package acceptance remain pending in the
+PowerShell 5.1 and PowerShell 7. The R1 direct launch repair is a source patch;
+published v1.0.1 ZIP bytes are unchanged. The revised user package and automated
+exact-package acceptance belong to R2/R3. Actual coverage and gaps are in the
 [active release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
+Owner testing required: none. Codex performs all new repair verification; no
+owner diagnostic run, phone check or acceptance kit is required.
 It is unsigned and needs separately supplied FFmpeg/ffprobe for conversion.
 Read [README.md](README.md) for setup, options and output behavior.
 
@@ -16,7 +19,7 @@ failure results, cancellation components and local record persistence.
 | Environment or workflow | Evidence boundary |
 | --- | --- |
 | Active Windows 11 Pro 26300.9457 | Local synthetic regression runs on Windows PowerShell 5.1.26100.9444 and PowerShell 7.6.5. |
-| Active v1.0.1 development, Windows 11 Pro 26H2 26300.9711 x64 | S03/S04 synthetic source tests on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5; see the active plan's evidence. Windows 10 22H2 and exact v1.0.1 package acceptance remain pending. |
+| Historical v1.0.1 development, Windows 11 Pro 26H2 26300.9711 x64 | S03/S04 synthetic source tests on Windows PowerShell 5.1.26100.9711 and PowerShell 7.6.5. These source tests do not establish Windows 10 or later exact-package results; see the retained evidence. |
 | Hosted Windows Server 2025, image `win25-vs2026` / `20260925.250.1` | Supplementary CI on Windows PowerShell 5.1.26100.33438 and PowerShell 7.6.6 with fixed FFmpeg/ffprobe 9.0.2 essentials. This is separate from Windows 11 acceptance. |
 | Physical console Ctrl+C | Owner-confirmed historical checks on Windows PowerShell 5.1 and Store PowerShell 7.6.6; not a new manual claim for every later change. |
 | Music-folder default | Configured-folder resolver and dedicated owned generated-input smoke checks; no real network-redirected Music acceptance. Ordinary personal Music was not used as disposable test data. |
@@ -24,6 +27,7 @@ failure results, cancellation components and local record persistence.
 | Explorer folder drop and PS5.1 STA picker | Named owner folder-on-BAT observation reached "Completed with failures"; selected BAT shell, raw exit and output path were not captured. Actual PS5.1 picker outputs were independently verified. Current PS7 picker, physical Cancel and fallback remain unobserved. [T20 evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/evidence/T20.md). |
 | Other phone/player or USB/MTP configurations and NAS/UNC | Claims remain limited to recorded evidence, without a universal compatibility guarantee. Automated launcher checks do not establish unobserved Explorer/phone behavior. |
 | Exact release ZIP | Package verification is recorded separately in the repository's [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1/STATUS.md); source tests alone do not establish acceptance of downloaded bytes. |
+| Recovery BAT, owner report of 2026-10-30 | The owner reports a successful launch and working audio. This is owner-reported recovery, not independent verification of every file, host, shortcut or repaired package. No repeat owner test is requested. |
 
 Local regression history also uses an existing Gyan FFmpeg build dated
 2026-10-08. These tested builds do not establish compatibility with every FFmpeg
@@ -47,7 +51,9 @@ they do not extend the recorded device scope or establish exact package acceptan
 
 ## Unsigned scripts and execution policy
 
-Inspect policy in the shell you intend to use; these commands only read it:
+The scripts have no Authenticode publisher signature. Review the source and
+origin of the app and FFmpeg pair. A checksum identifies bytes against a trusted
+reference; it does not authenticate the publisher. Optional read-only checks are:
 
 ```powershell
 Get-ExecutionPolicy
@@ -57,55 +63,39 @@ Get-AuthenticodeSignature -LiteralPath '.\AudioFileForPhone.Helpers.ps1'
 Get-AuthenticodeSignature -LiteralPath '.\Setup-AudioFileForPhone.ps1'
 ```
 
-The scripts have no Authenticode publisher signature. A SHA-256 comparison checks
-bytes against a trusted reference; a checksum alone does not authenticate the
-publisher. Review the source and the origin of both app and vendor binaries.
+For this trusted unsigned personal app, the repaired conversion and setup BATs
+request `-ExecutionPolicy Bypass` for their one child process. This permits
+reviewed unsigned Internet-marked app files without removing their download
+marks. `RemoteSigned` can reject such files before any PS1 error handler runs.
+The request does not change saved execution policy, PATH, profiles or registry.
+MachinePolicy, UserPolicy and application control remain authoritative. A refusal
+stays visible in CMD, with no alternate-engine retry or script-text evaluation.
+See [Microsoft's execution-policy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies).
 
-On a personal machine where you are permitted to run reviewed unsigned scripts,
-direct invocation can request `RemoteSigned` for that child process:
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio'
-pwsh -NoProfile -ExecutionPolicy RemoteSigned -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio'
-```
-
-Use the command for the installed shell. The request does not persistently change
-machine/user policy and does not override Group Policy. If your effective policy
-requires signatures or your organization blocks unsigned scripts, ask its
-administrator for an approved route. Do not weaken that policy or endpoint
-protection. See [Microsoft's execution-policy documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies).
-
-If `RemoteSigned` blocks reviewed files solely because they carry an Internet
-download mark, and your personal-machine policy permits unblocking, unblock only
-the exact files you have inspected:
+On a personal machine where this request is permitted, a direct parameter-based
+launch in the installed shell can use the same process-only policy:
 
 ```powershell
-Unblock-File -LiteralPath '.\AudioFileForPhone.ps1'
-Unblock-File -LiteralPath '.\AudioFileForPhone.Helpers.ps1'
-Unblock-File -LiteralPath '.\Setup-AudioFileForPhone.ps1'
+powershell.exe -NoProfile -Sta -ExecutionPolicy Bypass -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio'
+pwsh -NoProfile -Sta -ExecutionPolicy Bypass -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -OutputParent '.\Phone audio'
 ```
 
-This removes each file's download mark; it does not sign the file or change
-execution policy. Do not recursively unblock a download directory. See
-[Microsoft's Unblock-File documentation](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/unblock-file).
+If managed policy refuses these unsigned scripts, an administrator-approved route
+is required. Do not weaken policy or endpoint protection, switch engines to
+escape a denial, or remove download marks as a workaround. The repaired BATs use
+one built-in x64 Windows PowerShell 5.1 STA process with `-NoProfile`. CMD owns
+their final status and pause even when the host, runtime or parsing fails.
 
-The conversion BAT and its selected child request process-scoped
-`-ExecutionPolicy RemoteSigned`. They do not change saved execution policy or
-override Group Policy. The bootstrap also stops on detected managed signing or
-language restrictions before considering an alternate host. An unclassified
-health-check refusal is treated as policy blocking and never triggers fallback.
-Use the direct application command above for
-the ordinary parameter route; ask an administrator for an approved route when
-an organization blocks these unsigned scripts.
-
-The separate setup BAT uses process-scoped `RemoteSigned` in Windows PowerShell
-5.1 and does not retry another shell if policy or startup fails. For a direct
-setup launch with policy checks, choose your installed shell:
+The standalone setup BAT accepts no arguments and uses the same launch policy.
+For explicit setup options, direct calls remain available:
 
 ```powershell
-powershell.exe -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\Setup-AudioFileForPhone.ps1
-pwsh -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\Setup-AudioFileForPhone.ps1
+powershell.exe -NoProfile -Sta -ExecutionPolicy Bypass -File .\Setup-AudioFileForPhone.ps1
+pwsh -NoProfile -Sta -ExecutionPolicy Bypass -File .\Setup-AudioFileForPhone.ps1
 ```
+
+`Check-AudioFileForPhone.bat` is a separate optional helper and still requests
+`RemoteSigned`; R1 does not change that helper or its policy requirements.
 
 ## Existing-tool and offline recovery
 
@@ -178,7 +168,7 @@ trusted offline build; do not disable verification to accept changed bytes.
 
 | Symptom | What to check |
 | --- | --- |
-| Script cannot run or window closes | Run from an existing PowerShell window to keep diagnostics visible; inspect execution policy as above. Keep the helper beside the entry script. |
+| Script cannot run or window closes | The repaired BAT keeps its own status and pause in CMD, including script-load errors. Read the error above the pause and follow the policy guidance above. Keep required helpers beside the converter. Forced window closure cannot retain the display. |
 | FFmpeg/ffprobe missing or capability check fails | Run `Setup-AudioFileForPhone.ps1` and select a trusted pair, or use the explicit existing-tool command above. Selection order remains explicit, saved config, complete app-local pair, then PATH. Check the printed origin, versions/paths and `libmp3lame` error. |
 | Saved tool folder is stale, config is corrupt/newer, or saving fails | Follow existing-tool/offline recovery above. `-FfmpegDirectory` works for the current run without changing config. The app preserves a bad/unsupported file and never silently falls back; failed persistence means not remembered. |
 | Invalid/unreadable input or no supported files | Select an existing folder below the drive/share root, not a file, shortcut or generated output. Only MP3/M4A/OGG extensions are scanned. |
@@ -189,38 +179,30 @@ trusted offline build; do not disable verification to accept changed bytes.
 | Some files fail | Inspect each Failed manifest row and bounded native error in the log. Unsupported source media, nonpositive/unknown duration or a rate incompatible with the source can fail. Other valid files continue; exit 2 reports batch failures. |
 | Progress reaches 100 percent but files failed | Batch progress means processed, including failed files. Encoding progress precedes validation/publication. Use the final counts and exit code. |
 | Required log/manifest write fails | The run stops with exit 1 while preserving actual published outputs/counts; cancellation stays 130. The last durable manifest may be incomplete. Keep the console result and reported root cause. |
-| Files, tags, cover or chapters behave differently on a phone | Compare the converted count and output files locally first, then test transfer/playback in your player. Recorded phone acceptance is limited to the S24/AIMP configuration above. Chapter navigation/resume and every source-specific tag are not guaranteed; M4B is unsupported. |
+| Files, tags, cover or chapters behave differently on a phone | Recorded phone acceptance is limited to the historical S24/AIMP configuration above. Chapter navigation/resume and every source-specific tag are not guaranteed; M4B is unsupported. No new phone test is required for this repair. |
 
-For a direct interactive launch with policy checks, choose the installed shell:
+For a direct interactive launch of the trusted app, choose the installed shell:
 
 ```powershell
-powershell.exe -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -Interactive
-pwsh -NoProfile -Sta -ExecutionPolicy RemoteSigned -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -Interactive
+powershell.exe -NoProfile -Sta -ExecutionPolicy Bypass -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -Interactive
+pwsh -NoProfile -Sta -ExecutionPolicy Bypass -File .\AudioFileForPhone.ps1 -InputFolder '.\Podcasts' -Interactive
 ```
 
 The BAT accepts exactly one folder and preserves the application exit code,
-including 0, 1, 2 and 130. Redirected input does not wait on a mandatory pause.
+including 0 success, 1 failure, 2 partial failure and 130 cancellation. CMD prints
+the result and runs `pause`; redirected EOF can release the pause without a key.
+Forced window/process termination cannot guarantee visibility or a final code.
 When calling it from a shell, quote the path and account for the caller's
 expansion rules. The wrapper cannot restore `%NAME%`, `!NAME!` or other characters
 already changed by the caller or an extra `CALL` expansion pass.
 
-The launcher checks candidate hosts before application entry, preferring a
-usable PowerShell 7 and otherwise Windows PowerShell 5.1. Both installed hosts
-and available Store execution aliases are candidates; the printed executable is
-the process that actually passed the check. The displayed process architecture
-is separate from OS architecture. This route requires x64 Windows and an x64
-host, and verifies STA for the optional metadata picker. Checks use `-NoProfile`
-and a 15-second default deadline. A failed host can fall back before application
-entry; once the application is entered, every result returns without retrying
-conversion in another host.
-
-Set process-local `AUDIOFILEFORPHONE_HOST` to the exact absolute executable path
-to require one host, or invoke `AudioFileForPhone.Launcher.ps1` with `-HostPath`.
-An explicit choice is checked and never replaced with another host. Use that
-launcher's `-StartupTimeoutSeconds` (1–60) for slow startup. This bound does not
-limit normal encode or full-decode time. Keep both launcher files beside the BAT,
-and keep `AudioFileForPhone.Helpers.ps1` and `AudioFileForPhone.Diagnostics.ps1`
-beside the application. Startup failures identify missing runtime files.
+The repaired BAT directly calls the converter in the built-in x64 Windows
+PowerShell 5.1 STA host. There is no health-probe chain, host override or automatic
+retry. Direct PowerShell 7 calls keep the existing parameters, including explicit
+`-FfmpegDirectory` and `-ConfigPath`; no PATH edit is needed. Keep
+`AudioFileForPhone.Helpers.ps1` and `AudioFileForPhone.Diagnostics.ps1` beside the
+converter. Launcher/HostProbe source is retained for historical compatibility and
+is unused by this route. Normal encoding and full decode have no short deadline.
 
 ## Environment check and support export
 
@@ -252,9 +234,10 @@ ordinary conversion. A timeout stays distinct. Encoding and complete decode
 retain their unlimited normal runtime. If release or ownership is uncertain,
 the self-test reports the exact retained scope; do not remove unrelated files.
 Check/self-test exits are 0 (passed), 1 (failed/unavailable), or 130 (cancelled).
-Physical console/phone behavior and Windows 10 acceptance remain separate gates.
+Unobserved physical-console/phone behavior and Windows 10 coverage remain
+explicit evidence limits, not owner-testing assignments.
 
-Real converter/launcher/setup startup failures attempt a PRIVATE JSON report
+Once converter/setup script entry succeeds, startup failures attempt a PRIVATE JSON report
 before an ordinary run exists. The first location is
 `%LOCALAPPDATA%\AudioFileForPhone\Diagnostics`; a unique TEMP location is the
 fallback. Records are capped at 64 KiB and disclose exact local paths/native
@@ -296,6 +279,9 @@ original conversion and child have stopped and that the exact paths are yours.
 Do not terminate every FFmpeg process or delete source media to recover a run.
 
 ## Reporting a problem
+
+This optional reporting guidance is not a repair acceptance or diagnostic task
+for the owner; no new owner testing or log collection is required.
 
 Open a [GitHub issue](https://github.com/PikkuJanne/AudioFileForPhone/issues).
 Prefer a short synthetic or nonprivate reproduction. Include:

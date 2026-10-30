@@ -306,7 +306,7 @@ try {
     $report['ffprobe_version'] = ((Invoke-OwnedNative $ffprobe @('-version')).Stdout -split '\r?\n')[0]
     $appVersion = Get-AudioAppVersion
     $help = $null; $examples = @()
-    Invoke-Case 'Get-Help recognizes all public parameters and exact executable examples without entry execution' 'A45,A46' {
+    Invoke-Case 'Get-Help recognizes all documented parameters and exact executable examples without entry execution' 'A45,A46' {
         param($case)
         $before = Get-TreeInventory $testRoot
         $alternateRoot = $testRoot.ToUpperInvariant()
@@ -316,14 +316,27 @@ try {
         $case['alternate_root_spelling_inventory_equal'] = $true
         $script:help = Get-Help -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -Full
         $script:examples = @($help.examples.example)
-        $expected = @('InputFolder', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
+        $expected = @('InputFolder', 'FromBatchLauncher', 'BitrateKbps', 'MaxBaseLength', 'Interactive', 'CoverPath', 'Artist', 'Album', 'OutputParent', 'DryRun', 'ProbeTimeoutSeconds', 'FfmpegDirectory', 'ConfigPath')
         $actual = @($help.parameters.parameter.name)
         Assert-True ($help.Synopsis -match 'MP3.*M4A.*OGG' -and $examples.Count -eq 5) 'Proper comment help must contain synopsis and five examples.'
         foreach ($name in $expected) {
             $parameter = @($help.parameters.parameter | Where-Object { $_.name -ceq $name })
             Assert-True ($parameter.Count -eq 1 -and -not [string]::IsNullOrWhiteSpace(($parameter[0].description.Text | Out-String))) ('Missing help parameter description: ' + $name)
         }
-        Assert-True (@($actual | Where-Object { $_ -notin $expected }).Count -eq 0) 'Help must match the bounded public parameter set.'
+        Assert-True (@($actual | Where-Object { $_ -notin $expected }).Count -eq 0) 'Help must match the bounded documented parameter set.'
+        $command = Get-Command -Name (Join-Path $projectRoot 'AudioFileForPhone.ps1') -CommandType ExternalScript
+        $direct = @($command.ParameterSets | Where-Object { $_.Name -ceq 'Direct' })
+        $batch = @($command.ParameterSets | Where-Object { $_.Name -ceq 'BatchLauncher' })
+        Assert-True ($command.ParameterSets.Count -eq 2 -and $direct.Count -eq 1 -and $batch.Count -eq 1) 'Direct and BAT launch syntax must remain separate.'
+        $directInput = @($direct[0].Parameters | Where-Object { $_.Name -ceq 'InputFolder' })
+        Assert-True ($direct[0].IsDefault -and $directInput.Count -eq 1 -and $directInput[0].IsMandatory -and $directInput[0].Position -eq 0) 'Direct calls must still require the positional input folder.'
+        Assert-True (@($direct[0].Parameters | Where-Object { $_.Name -ceq 'FromBatchLauncher' }).Count -eq 0) 'The internal BAT switch must not change direct-call binding.'
+        $batchRequired = @($batch[0].Parameters | Where-Object { $_.IsMandatory })
+        Assert-True ($batchRequired.Count -eq 1 -and $batchRequired[0].Name -ceq 'FromBatchLauncher' -and $batchRequired[0].ParameterType -eq [Management.Automation.SwitchParameter]) 'The BAT route must bind its switch without prompting for an input parameter.'
+        Assert-True (@($batch[0].Parameters | Where-Object { $_.Name -ceq 'InputFolder' }).Count -eq 0) 'The BAT route must take its folder through its data transport, not command-line rebinding.'
+        $case['parameter_sets'] = @($command.ParameterSets | ForEach-Object {
+            [pscustomobject]@{ name = $_.Name; default = $_.IsDefault; required = @($_.Parameters | Where-Object { $_.IsMandatory } | ForEach-Object { $_.Name }) }
+        })
         $case['examples'] = @($examples | ForEach-Object {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseInput([string]$_.code, [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0 -and $ast.EndBlock.Statements.Count -gt 0) ('Example AST parse failed: ' + $_.title)
