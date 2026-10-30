@@ -198,7 +198,7 @@ try {
     if ($SourceCommit -cnotmatch '^[a-f0-9]{40}$') { throw 'SourceCommit must be a full lowercase commit SHA.' }
     $sourceRoot = Get-UserPackagePath $SourcePath
     Assert-UserPackageNoReparse $sourceRoot
-    $gitPath = (Get-Command git.exe -CommandType Application -ErrorAction Stop).Source
+    $gitPath = (Get-Command git.exe -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source
     Assert-UserPackageSource
     $builderBytes = Read-UserPackageSourceBlob 'tools/Build-UserPackage.ps1'
     $builderHash = Get-UserPackageBytesHash $builderBytes
