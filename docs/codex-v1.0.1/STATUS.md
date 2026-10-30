@@ -1,3 +1,88 @@
+# Status — v1.0.1 published and verified; owner-directed closure
+
+Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1
+Published 2026-10-30T15:08:54Z, release429170892. Annotated tag v1.0.1 stays at
+frozen tested source d9d7129e9463de17e29c2a36752c82e326abf22e. All three exact assets
+were downloaded from the verified draft and anonymously from public URLs; sizes
+and SHA256 match S16-RELEASE-RECORD.json. Runtime ZIP SHA256:
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53.
+
+Public-byte Windows11 Pro26H2 26300.9711 x64 smoke PASSED PS5.1.26100.9711 and
+PS7.6.5: eight real default64 conversions, all supported input codecs, correct
+metadata/date/layout, full decode and source/package/dependency integrity.
+Original v1.0.0 release/tag/three asset metadata are unchanged.
+
+The owner explicitly instructed project completion/publication and superseded
+S15/S16 acceptance blockers and thread stops. Five original gates remain
+OWNER_WAIVED/NOT_VERIFIED: Windows10 PS5.1/PS7, full collection, physical shortcut,
+phone play/seek. Seven genuine passes and received failed/unbound owner attempt
+are preserved. The original release gate still REFUSED missing reports; no gate
+code or runtime was weakened and no absent observation is labeled PASSED.
+
+S16 exact authority/record, S17 publication proof and S18 closure are in their
+evidence files and S18-HANDOVER.md. No owner diagnostics, retest or further step
+is requested. Final containing feature sync, reviewed main integration and
+exact-head CI are observed after push/merge in the final response, following
+the no-self-referential-SHA protocol. Closure docs do not alter released bytes.
+
+## Preserved prior routing/evidence — superseded by current owner override
+# Status - S15 BLOCKED after received acceptance startup failure
+
+2026-10-30 report reconciliation: the owner supplied REPORT.txt. Its actual status
+is FAILED / PACKAGE_IDENTITY; runtime, source and both ZIP identities are blank.
+The kit stopped before a conversion result was established. This is a received
+failed attempt, superseding yesterday's NOT_RECEIVED/NOT_RUN routing. The generic
+report cannot identify the exact exception or bind the attempt to frozen C/Win10.
+
+The owner refuses machine shuttling. No additional trip, diagnostic command,
+report hunt or acceptance rerun is requested. Test a portable delivery layout
+locally with the exact original ZIP retained internally and passed explicitly;
+do not change frozen kit/runtime/dependency bytes or start S16. The original
+runner's fixed parent-folder archive lookup is a known fragility, not a proven
+explanation of the owner attempt. Raw report/evidence stay outside public Git. The portable
+transport is now locally verified by seven focused startup/refusal checks and an
+independent transport review; no conversion/client/human gate is added. Artifact:
+C:\projects\AFP-S15-Report-Recovery-20261030\AudioFileForPhone-Acceptance-Ready.zip.
+
+Seven previous genuine candidate reports are preserved. Actual Windows10 cells,
+collection/shortcut and phone observations remain unproved; local startup tests
+cannot substitute for them. S15 remains BLOCKED; S16 NOT_STARTED; publication
+authority null. Full current diagnosis/handover: evidence/S15-HANDOVER.md.
+The prior requests to run/return the kit below are historical and superseded.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
+# Status — S15 BLOCKED awaiting the actual owner acceptance report
+
+The owner explicitly continued S15 in this same thread; this supersedes the prior
+thread boundary only. S14 remains complete. S16 has not started.
+
+Seven genuine candidate gates validate: Windows11 PS5.1 and PS7 core cells,
+clean first run, one_file, exact_package, online_setup and offline_setup_failure.
+Windows11 core/clean envelopes disclose reuse of actual exact-kit captures and
+their original times; no application rerun or source-suite relabeling. Fresh
+exact-extracted setup runs pass on PS5.1.26100.9711 and portablePS7.6.5, Windows11
+Pro26H2 26300.9711 x64 Client: pinned installation, two real saved-config128→64
+conversions/full decode, source integrity and controlled proxy refusal/cleanup.
+The proxy case is an actual downloader refusal, not a machine-offline claim.
+Two failed private PS5.1 validators remain retained and separate from final passes.
+
+The exact owner Windows10/shortcut/default collection/phone report has not been
+received. Actual gate exit1/REFUSED lists S15 and precisely five missing reports:
+core_windows10_ps51, core_windows10_ps7, full_collection, physical_shortcut,
+phone_play_seek. No source/package identity error is waived. S15-A1/A2/A3 remain
+BLOCKED. The owner confirmed the kit session has not run yet; no missing observation is a pass.
+
+Source C d9d7129e9463de17e29c2a36752c82e326abf22e and both canonical ZIP hashes remain unchanged.
+Use C:\projects\AFP-v1.0.1-Acceptance-20261029\Acceptance-Kit.zip once on Windows10
+and return only REPORT.txt here; if already run, provide its existing report path.
+No owner diagnostics or new thread is required. Full handover: evidence/S15-HANDOVER.md.
+Checkpoint feature sync/exact-head CI are observed after push in the final response;
+S15 docs remain outside main under normal owner-approval policy. Publicv1.0.1 is
+PENDING_S17, publication authority null, and v1.0.0 remains preserved.
+
+## Preserved prior checkpoint — current routing above supersedes it
+
 # Status — S14 COMPLETED; stop before S15
 
 PR29 merged the owner-approved head 1feb54fd3d69fec6ef4f1d5840aefd4993f4e644

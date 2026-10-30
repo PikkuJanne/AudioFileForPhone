@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "step": "S17",
+  "status": "COMPLETED",
+  "recorded_utc": "2026-10-30T15:11:15.2494219Z",
+  "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "release_record": "evidence/S16-RELEASE-RECORD.json",
+  "authorization": "Explicit owner publish/finish instruction; exact unchanged C/assets bound in S16 record and STATE. Same-thread instruction supersedes historical paste-back/stop requirement.",
+  "release_id": 429170892,
+  "release_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1",
+  "published_at": "2026-10-30T15:08:54Z",
+  "target_tag": "v1.0.1",
+  "release_title": "AudioFileForPhone v1.0.1",
+  "draft": false,
+  "prerelease": false,
+  "assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.1.zip",
+      "bytes": 118443,
+      "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.1/AudioFileForPhone-v1.0.1.zip",
+      "http_status": 200
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 25732,
+      "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.1/release-manifest.json",
+      "http_status": 200
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.1/SHA256SUMS.txt",
+      "http_status": 200
+    }
+  ],
+  "annotated_remote_tag_refs": [
+    "279945f7d5a4b887b7bd44eae5244b03060f76cc\trefs/tags/v1.0.0",
+    "2092a405c1d06eca336e771a0ed5d1881acd015a\trefs/tags/v1.0.0^{}",
+    "c5a6312cf6ba2c6e75369e3ea199697f7310e4d3\trefs/tags/v1.0.1",
+    "d9d7129e9463de17e29c2a36752c82e326abf22e\trefs/tags/v1.0.1^{}"
+  ],
+  "draft_verification": {
+    "status": "PASSED",
+    "authenticated_download": true,
+    "assets": 3,
+    "runtime_members": 18,
+    "runtime_version": "1.0.1",
+    "sha256": "a51b68acbfdecd86aa53e10b510c97c0b540e844f61cbd2ebb65574df9e9cd0f"
+  },
+  "public_verification": {
+    "status": "PASSED",
+    "anonymous": true,
+    "authorization_header_present": false,
+    "default_credentials_used": false,
+    "sha256": "0219145959988f953cc5664eb57ad32e1265371eead58e8a436facca3381a4cc",
+    "zip_members_verified": 18,
+    "scope": "Three anonymous browser_download_url downloads into a fresh directory; exact size/SHA256/API identity. Public ZIP independently extracted and pinned in smoke."
+  },
+  "public_windows_smoke": {
+    "status": "PASSED",
+    "command": "pwsh -NoProfile -NonInteractive -File C:/projects/AFP-S17-20261030/Invoke-PublicZipSmoke.ps1 -ZipPath <fresh anonymous download>/AudioFileForPhone-v1.0.1.zip",
+    "harness_sha256": "1716c2b92204a4510c875002fabaf807b8b39db943d542957062ff1497195b1d",
+    "report_sha256": "343f5c4e7454ba617d130a6d0a71ef66ee5b739b8c4cb9da7a5900e30d37a7f7",
+    "started_utc": "2026-10-30T15:09:59.3348158Z",
+    "ended_utc": "2026-10-30T15:10:12.0950599Z",
+    "environment": {
+      "caption": "Microsoft Windows 11 Pro",
+      "product_type": 1,
+      "version": "10.0.26300",
+      "build": "26300.9711",
+      "display_version": "26H2",
+      "architecture": "64-bit",
+      "process_64bit": true,
+      "orchestrator_ps": "7.6.5"
+    },
+    "dependencies": [
+      {
+        "name": "ffmpeg.exe",
+        "sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b"
+      },
+      {
+        "name": "ffprobe.exe",
+        "sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+      }
+    ],
+    "ffmpeg_version": "ffmpeg version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers",
+    "ffprobe_version": "ffprobe version 2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+    "shells": [
+      {
+        "shell": "ps51",
+        "version": "5.1.26100.9711",
+        "raw_exit": 0,
+        "manifest_sha256": "9da7038e65e951557c64474e9c5dfb9573b7a56780dab94774f123bbb1d3d06a",
+        "converted": 4,
+        "failed": 0,
+        "app_version": "1.0.1",
+        "requested_bitrate_kbps": 64,
+        "config_remained_absent": true
+      },
+      {
+        "shell": "ps7",
+        "version": "7.6.5",
+        "raw_exit": 0,
+        "manifest_sha256": "7b1bb31297b74cca6ccdc6edcbddea2a84751aaaa88c11810f70098cd0a4eeff",
+        "converted": 4,
+        "failed": 0,
+        "app_version": "1.0.1",
+        "requested_bitrate_kbps": 64,
+        "config_remained_absent": true
+      }
+    ],
+    "synthetic_source_files": 4,
+    "total_outputs": 8,
+    "actual_audio_bitrate_bps": 64000,
+    "codec_inputs": [
+      "MP3",
+      "AAC/M4A",
+      "Vorbis/OGG",
+      "Opus/OGG"
+    ],
+    "full_decode_outputs": 8,
+    "source_metadata_and_relative_date_layout_verified": true,
+    "sources_unchanged": true,
+    "package_unchanged": true,
+    "dependencies_unchanged": true,
+    "owned_processes": 26,
+    "raw_capture_hashes_verified": 52,
+    "natural_exits_pipes_drained_handles_closed": true
+  },
+  "original_v1_0_0_preservation": {
+    "schema_version": 1,
+    "status": "PASSED",
+    "checked_utc": "2026-10-30T15:10:18.5523297Z",
+    "old_release_id": 410779813,
+    "old_release_public_unchanged": true,
+    "old_asset_metadata_matches_s01": true,
+    "old_and_new_tag_refs": [
+      "279945f7d5a4b887b7bd44eae5244b03060f76cc\trefs/tags/v1.0.0",
+      "2092a405c1d06eca336e771a0ed5d1881acd015a\trefs/tags/v1.0.0^{}",
+      "c5a6312cf6ba2c6e75369e3ea199697f7310e4d3\trefs/tags/v1.0.1",
+      "d9d7129e9463de17e29c2a36752c82e326abf22e\trefs/tags/v1.0.1^{}"
+    ],
+    "old_assets_redownloaded": false,
+    "authenticated": false
+  },
+  "original_acceptance_waiver": [
+    "core_windows10_ps51",
+    "core_windows10_ps7",
+    "full_collection",
+    "physical_shortcut",
+    "phone_play_seek"
+  ],
+  "nonpasses": [
+    {
+      "case": "Draft release tag endpoint",
+      "result": "HTTP404 after successful draft creation",
+      "resolution": "Authenticated release-list API located unique draft ID429170892; no duplicate draft or overwrite."
+    },
+    {
+      "case": "Initial public-byte smoke PS5.1",
+      "result": "FAILED before conversion; inherited PS7 module paths hid native Get-FileHash",
+      "report_sha256": "baeca7c42ac44d7cf57daa0a6d952a4f453437a5c9d5adda21f5b16a10e99e3b",
+      "diagnosis_sha256": "a44e42aa9dfda99be89109ad5a9ea5298f5c6a20fe6c5bd1b2760c03fc99dcec",
+      "resolution": "Fresh child-only native PS5.1 PSModulePath selects installed Windows modules. Only private harness changed; original failure retained and not relabeled."
+    }
+  ],
+  "commands": [
+    "git tag -a v1.0.1 d9d7129e9463de17e29c2a36752c82e326abf22e -m <release annotation>",
+    "git push origin refs/tags/v1.0.1",
+    "gh release create v1.0.1 <three explicit frozen asset paths> --verify-tag --draft --title AudioFileForPhone v1.0.1 --notes-file docs/codex-v1.0.1/evidence/S16-RELEASE-NOTES.md",
+    "gh release download v1.0.1 --dir <fresh draft directory> --pattern <each of three exact names>",
+    "gh release edit v1.0.1 --draft=false --prerelease=false --latest --verify-tag",
+    "Anonymous HttpClient release API and asset browser_download_url requests, no Authorization/default credentials",
+    "git ls-remote origin refs/tags/v1.0.0 refs/tags/v1.0.0^{} refs/tags/v1.0.1 refs/tags/v1.0.1^{}"
+  ],
+  "sources": [
+    "https://cli.github.com/manual/gh_release_create",
+    "https://cli.github.com/manual/gh_release_edit",
+    "https://docs.github.com/en/rest/releases/assets"
+  ],
+  "private_evidence": "C:/projects/AFP-S17-20261030",
+  "remaining_work": [],
+  "next_step": "S18 ordinary reviewed main integration and fresh final sync"
+}
