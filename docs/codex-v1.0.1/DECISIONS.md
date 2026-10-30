@@ -807,3 +807,21 @@ R3 - 2026-10-30, owner instruction "Please continue with r3" starts R3 only.
      with an independently verified owned default Music destination. Record the
      remaining actual-client and genuine-Explorer coverage as technical gaps;
      do not expand historical publication authority or waive required gates.
+
+R3 checkpoint: exact v1.0.2 candidate012b82fb passes available Windows11
+     automated package/audio/native acceptance. Frozen83a5713 full20families
+     per shell pass; isolated synthetic outputs and raw report identities are
+     recorded in R3.json. Preserve the identity-probe OEM/UTF8 guard nonpass;
+     test-only UTF8 capture and stable HelperMissing semantic assertion fix shell
+     harness checks; C2 also retires only proved-completed shortoperations identity
+     records and adds strict live sentinel refusal. Both hosts16cases pass at C2,
+     final shell11groups/8native/2outputs pass at C3; C83..C3 onlytwo testfiles,
+     no candidate change. Preserve sourcePR PS7 failure after15 functional passes
+     and final identity refusal; sourcepush bothhosts pass. PID reuse likely, not
+     proved. Original failed CI stays failed. Genuine inert Explorer drop failed owned environment
+     propagation, so real conversion was not attempted into ordinary Music.
+     No authorized Windows10 client exists in actual inventory. Record R3
+     BLOCKED for these technical gaps and missing exact-byte publication/main
+     authority; version approval alone is separate. No draft/tag/public release
+     or main integration. Owner testing none. Checkpoint/push/fresh live refs/
+     exact-head CI and STOP; later thread resumes only R3.

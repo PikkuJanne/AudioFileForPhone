@@ -1,3 +1,46 @@
+# Next session — resume BLOCKED R3 only
+
+Owner testing required: none. R1/R2 complete; corrective version v1.0.2 selected.
+Exact-package available Windows11 tests pass, but required client/shell gates and
+publication/main authority remain missing. No release or main integration. Read
+evidence/R3.json/R3-HANDOVER.md; refresh the prior final checkpoint/live refs/CI.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair from the containing R3 checkpoint
+    recorded in the previous final response. Follow AGENTS.md, active CHARTER,
+    STATE.json, STATUS.md, NEXT_SESSION.md, REPAIR_BRIEF.md, historical
+    RELEASE_TARGET.json, CORRECTIVE_RELEASE_TARGET.json, specs/SYNC_AND_RELEASE.md
+    and evidence/R3.json/R3-HANDOVER.md. Resume ONLY BLOCKED R3. R1/R2 are complete.
+    Owner testing required: none. Version v1.0.2 is explicitly selected already;
+    version selection is not publication/main-integration authority. Refresh fresh
+    advertised feature/main refs, PR34, exact-head CI and preserved live releases.
+    Frozen candidate source 83a5713cacfbc330f309f48d8377cb5be11ba3a6; assets are in
+    C:\projects\AFP-R3-20261030\candidate-verified. Exact ZIP SHA256
+    012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad.
+    Windows11 available automated acceptance passes: full20families per shell,
+    build11 per shell, corrected shortoperations16 per host at harness C2,
+    package20 outputs, audio64 outputs (31-M4A batch/30-minute
+    case/seeks per host), controlled nativeBAT2 outputs and visible failure/pause/
+    exit/setup checks using shell harness C3. C2 is dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77; C3 is d303a161f1d1eae8ec2eea3a9b02f115d79659d2.
+    Preserve original PR PS7 cleanup failure and shell attempts1/2; a likely stale
+    identity/PID reuse mechanism is not proved. Source push passed both hosts.
+    Actual nonpasses/hashes remain; do not relabel failed source PR CI as passed.
+    Resolve BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE and
+    FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN through available authorized Codex
+    execution environments. Do not use ordinary Music/private audio, request owner
+    tests/screenshots/logs/playback/phone/kit, weaken controls or invent a pass.
+    No draft/tag/publication/main merge until required exact-candidate gates and
+    exact-byte/reviewed-head authority are satisfied. Preserve public v1.0.0/v1.0.1
+    tags/assets; never overwrite public bytes or move a released tag. Preserve
+    defaults/directBAT/CRLF/CMD pause/exit/ICO/policy/source safety. Do not restart
+    R1/R2 or generate another plan. Checkpoint safe work, update evidence/state/
+    status/next/decisions/fullhandover, review/test/commit/push, compare fresh live
+    advertised refs, report exact-head CI/main separately, then STOP within R3.
+
+## Preserved R2 next-session routing — historical
+
 # Next session — R3 only, in a separate owner-started thread
 
 R1/R2 are complete. The local PS7 verification gap was resolved by an actual

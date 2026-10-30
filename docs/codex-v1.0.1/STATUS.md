@@ -1,3 +1,45 @@
+# Status — R3 BLOCKED; v1.0.2 candidate verified on available Windows11
+
+Owner testing required: none. Version instruction "Use v1.0.2" is recorded in
+CORRECTIVE_RELEASE_TARGET.json; historical RELEASE_TARGET.json remains unchanged.
+No new tag, draft release, public release or main integration was performed.
+
+Frozen source: 83a5713cacfbc330f309f48d8377cb5be11ba3a6. Canonical assets:
+C:/projects/AFP-R3-20261030/candidate-verified. ZIP SHA256
+012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad (286541 bytes).
+Final manifest 5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06; sums dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c.
+The report attachment changes only external manifest/sums; ZIP bytes stay exact.
+
+Available Windows11 Pro26H2 26300.9711 x64 checks pass: ps51:20families/951checks+3observations, ps7:20families/951checks+3observations;
+build11 per shell; relocated user package12groups/20 outputs/5native cases;
+exact audio64 outputs across PS5.1/PS7, including31M4A batch and30-minute/seek
+checks per host; controlled native BAT8cases/2outputs, real default Music
+in an owned child profile, saved tools outside empty PATH, success0/partial2/
+visible failure1/setup-cancel130, final pause/wait/key/exit/job release. Internet
+marks are deterministic ADS. Independent member/source/icon/finalasset audits
+pass. Raw reports/media remain private; all new data are synthetic.
+
+R3 remains BLOCKED: no authorized available Windows10 client for either host;
+genuine Explorer conversion could not be safely isolated from ordinary Music.
+An inert actual Explorer shortcut drop delivered the literal folder/cwd but
+failed environment isolation; it is not conversion acceptance. A test identity
+probe OEM/UTF8 mismatch, console softwrap assertion and private audit culture
+nonpasses are retained. C2 shortoperations16 per host add a strict live sentinel
+negative check and retire only proved-completed identities; C3 shell11/8/2
+passes unchanged assets. Source push CI passed both hosts; source PR PS7 remains
+FAILED after15 functional passes and strict cleanup identity refusal. PID reuse
+is likely, not proved. Corrected targeted reports do not relabel that PR run. No actual
+browser extraction, deployed managed-policy scenario, physical picker or new
+phone/listening result is claimed. Owner-reported recovery stays historical.
+
+Exact frozen-byte publication authority and reviewed-head main-integration
+authority remain absent. Published v1.0.0/v1.0.1 refs/asset metadata are unchanged.
+Final containing checkpoint/live-ref comparison and exact-head CI are reported
+after push. Full evidence/commands/report digests: evidence/R3.json and
+R3-HANDOVER.md. Resume only R3 in another owner-started thread, then STOP.
+
+## Preserved R2 status — historical
+
 # Status — R2 completed; candidate and safeguards unchanged
 
 Owner testing required: none. Clean17-member package/build11 per shell, exact

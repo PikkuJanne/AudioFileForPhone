@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "step": "R3",
+  "status": "BLOCKED",
+  "recorded_utc": "2026-10-30T19:29:55.501199+00:00",
+  "owner_testing_required": "none",
+  "entry_checkpoint": "5202414844091cf5982b680b15e740d9fbb27b85",
+  "implementation_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+  "branch": "codex/audiofileforphone-r1-launch-repair",
+  "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/34",
+  "corrective_version_authority": {
+    "owner_instruction": "Use v1.0.2",
+    "scope": "Version selection only; exact-byte publication and reviewed main integration remain separate."
+  },
+  "candidate": {
+    "directory": "C:\\projects\\AFP-R3-20261030\\candidate-verified",
+    "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "artifact_kind": "corrective_release_candidate",
+    "app_version": "1.0.2",
+    "tag": "v1.0.2",
+    "package_revision": 3,
+    "publication_authorized": false,
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.2.zip",
+        "bytes": 286541,
+        "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10318,
+        "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+      }
+    ],
+    "root_entries": [
+      "AudioFileForPhone.bat",
+      "AudioFileForPhone.ico",
+      "README.txt",
+      "app/"
+    ],
+    "members": 17,
+    "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
+  },
+  "candidate_windows11_verification": "PASSED_AVAILABLE_AUTOMATED_COVERAGE",
+  "required_release_acceptance": "BLOCKED",
+  "technical_blockers": [
+    "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+    "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN"
+  ],
+  "authorization_blockers": [
+    "EXACT_FROZEN_ASSET_PUBLICATION_AUTHORITY_MISSING",
+    "REVIEWED_HEAD_MAIN_INTEGRATION_AUTHORITY_MISSING"
+  ],
+  "environment": {
+    "os": "Windows 11 Pro",
+    "display_version": "26H2",
+    "build": "26300.9711",
+    "architecture": "x64",
+    "account": "Non-administrator account and token; Administrators group SID absent",
+    "powershell51": "5.1.26100.9711",
+    "powershell7": "7.6.5",
+    "ordinary_music_access": false,
+    "ordinary_music_access_scope": "Runtime acceptance used owned media and output scopes. The separate inert Explorer preflight queried the configured default folder identity with the default GetFolderPath overload; no directory enumeration or audio read/conversion occurred there.",
+    "owner_media_access": false,
+    "profiles": "NoProfile",
+    "tools": "External explicit or deliberately saved existing pair outside empty child PATH; full source campaign uses revalidated pinned9.0.2 provisioning.",
+    "internet_marks": "Deterministic Zone.Identifier ADS on disposable extracted PS1 files; actual browser extraction NOT_OBSERVED."
+  },
+  "tests": [
+    {
+      "name": "full_local_source_ps51",
+      "report": "T17-ci-ps51-attempt97001.json",
+      "bytes": 94938,
+      "sha256": "c44e7c27852a14e37a39fdf33f679c759a0964be84dd6ef0fff3eb3c770a1165",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "5.1.26100.9711",
+      "families": 20,
+      "required_checks": 951,
+      "observations": 3,
+      "source_unchanged": true,
+      "dependency_provisioning": "Exact R2 PS7 provisioning record reused verbatim; current lock, helper, ownership and extracted bytes revalidated independently by each host. No fabricated new provisioning."
+    },
+    {
+      "name": "full_local_source_ps7",
+      "report": "T17-ci-ps7-attempt97001.json",
+      "bytes": 56306,
+      "sha256": "b92b793d63bd4a91b5026ca79e62c13b62ff4df8a8ec3461e6bd423c185bd7d7",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "7.6.5",
+      "families": 20,
+      "required_checks": 951,
+      "observations": 3,
+      "source_unchanged": true,
+      "dependency_provisioning": "Exact R2 PS7 provisioning record reused verbatim; current lock, helper, ownership and extracted bytes revalidated independently by each host. No fabricated new provisioning."
+    },
+    {
+      "name": "package_build_policy_ps51",
+      "report": "user-package-build-ps51-attempt1.json",
+      "bytes": 6072,
+      "sha256": "7b11a2303bbab6efe609438dfc3958ab700e236a16ae9b485f57396ef190c64c",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "cases": 11,
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "5.1.26100.9711",
+      "scope": "Same-host repeatability and build refusal/cleanup/source/core policies; cross-host compression differs."
+    },
+    {
+      "name": "package_build_policy_ps7",
+      "report": "user-package-build-ps7-attempt1.json",
+      "bytes": 4409,
+      "sha256": "2f81a575077669018068ae820609f29cfa6ff4ff299cd06dd5507b4b16bbe8a4",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "cases": 11,
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "7.6.5",
+      "scope": "Same-host repeatability and build refusal/cleanup/source/core policies; cross-host compression differs."
+    },
+    {
+      "name": "exact_user_package",
+      "report": "user-package-verification-attempt1.json",
+      "bytes": 31283,
+      "sha256": "458fe1a055c211bffec1fdd0d01ad066726121cc2546da4836b17d0722fb5709",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "groups": 12,
+      "native_cases": 5,
+      "outputs": 20,
+      "scope": "PS5.1/PS7 real packaged entry points, explicit/saved/app-local external pair, default64/full-decode/metadata/layout/console, root/icon/ADS and native BAT negatives."
+    },
+    {
+      "name": "exact_audio",
+      "report": "audio-acceptance-attempt2.json",
+      "bytes": 160762,
+      "sha256": "f6a66fe65178abdc1cd3f29fac2c4bade188fd6cff0933a78a5fa8710c93f1d0",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "outputs": 64,
+      "application_runs": 4,
+      "native_operations": 208,
+      "long_duration_seconds": 1800,
+      "scope": "Each app host: one M4A plus31 M4A including30-minute synthetic. Every output fully decoded,64000bps and source/meta/layout/counts verified; long seek segments at450/900/1620 seconds."
+    },
+    {
+      "name": "exact_controlled_native_shell",
+      "report": "shell-acceptance-attempt3.json",
+      "bytes": 32917,
+      "sha256": "1b821f3772438cc33796529333ced7f34d89dc8fe318015c188c40a5d8c54365",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "cases": 11,
+      "native_cases": 8,
+      "outputs": 2,
+      "test_script_sha256": "4dd32d8b910212a5e4c89e6c0beee9a34b8c5c36935d88ea33efeb877bf6ff1c",
+      "controller_source_sha256": "4c07533e8e8d49475e51936118c0c4d5f9062f23072aa349734aa17a6c6825b2",
+      "harness_unchanged": true,
+      "harness_source_commit": "d303a161f1d1eae8ec2eea3a9b02f115d79659d2",
+      "harness_source_scope": "Frozen C83 packaged source; shell harness C3 has only explicit UTF8 identity capture and stable HelperMissing semantic diagnostic assertion corrections. Separate shortoperations harness C2 retires only proved-completed identities and adds a strict live sentinel negative case; no packaged file or builder changed.",
+      "scope": "Unmodified BAT with ready-menu Enter, owned default Music and saved tools: success0, good+corrupt2, missing host/runtime/helper1, invalid arity1. Marked real setup PS1 Ready0; real setup BAT actual menu/Q cancel130. Every BAT final pause/wait/key/exit/job-release verified. No genuine Explorer conversion or physical picker claim."
+    },
+    {
+      "name": "corrected_shortoperations_ps51",
+      "report": "S03-shortoperations-ps51-attempt97003.json",
+      "bytes": 36467,
+      "sha256": "ffed42216fb0313758ea33b0feadab02856096504b4f3e35834feb329b8da899",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "harness_commit": "dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77",
+      "packaged_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "5.1.26100.9711",
+      "cases": 16,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "strict_live_identity_negative_case": "wrong-started-ticks-refuses-live-owned-sentinel passed; sentinel survived and no unknown process termination attempted"
+    },
+    {
+      "name": "corrected_shortoperations_ps7",
+      "report": "S03-shortoperations-ps7-attempt97003.json",
+      "bytes": 22703,
+      "sha256": "ab9e0256a0c9ddce9fe055c0566d553bb03bd798bff1dbdfcc0acbf717efe2f5",
+      "raw_retained_privately": true,
+      "status": "PASSED",
+      "harness_commit": "dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77",
+      "packaged_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "shell": "7.6.5",
+      "cases": 16,
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "descendant_release_proved": true,
+      "cleanup_verified": true,
+      "strict_live_identity_negative_case": "wrong-started-ticks-refuses-live-owned-sentinel passed; sentinel survived and no unknown process termination attempted"
+    }
+  ],
+  "independent_proofs": [
+    {
+      "report": "windows10-environment-inventory.json",
+      "bytes": 4397,
+      "sha256": "cc935095550b7fc53f5c269ecff0b06e1e58d7a20fceadbd2309a08642129e98",
+      "raw_retained_privately": true
+    },
+    {
+      "report": "identity-encoding-diagnosis.json",
+      "bytes": 1942,
+      "sha256": "60155914cbac8317e4c2e1a6564c38f5dbb974074fce56a58689d77191c185db",
+      "raw_retained_privately": true
+    },
+    {
+      "report": "independent-candidate-audit-attempt2.json",
+      "bytes": 7980,
+      "sha256": "93454d985a2c5ab01a7070226d597543d34e18f2675d3042de43c06263c25242",
+      "raw_retained_privately": true
+    },
+    {
+      "report": "independent-candidate-audit-final-assets.json",
+      "bytes": 7981,
+      "sha256": "44b809aef6e5e21c66f14626c880469ef879f79587313ad9f132be3719a9f685",
+      "raw_retained_privately": true
+    },
+    {
+      "report": "independent-final-attachment-audit-attempt2.json",
+      "bytes": 1399,
+      "sha256": "b35d125c2c627efbf50b780250f5242a58c1c747b1e903711303e626b2e2564c",
+      "raw_retained_privately": true
+    },
+    {
+      "report": "final-artifact-verification.json",
+      "bytes": 4041,
+      "sha256": "c7b0eacbd3e270939e6fb18962db6b269b226fce2450a2329d73789b05dd9543",
+      "raw_retained_privately": true
+    }
+  ],
+  "nonpasses": [
+    {
+      "report": "shell-acceptance-attempt1.json",
+      "bytes": 10007,
+      "sha256": "e3a1a663c1e8b8a59c5211b4a1d867a8a75cfcb89651de7cad9d65f9ae1e0ec1",
+      "raw_retained_privately": true,
+      "scope": "Identity guard refused before app execution; PS5.1 OEM437 output was incorrectly decoded as UTF8. Owned profile/Music/Local/PATH were correct; only captured nonASCIIcwd failed. No converted outputs. Cleanup verified. One test-only UTF8 probe line fixes capture without weakening any guard."
+    },
+    {
+      "report": "shell-acceptance-attempt2.json",
+      "bytes": 29380,
+      "sha256": "1c38e53b604133c2cec35dd136adb7e1bc61b774f211384ad1c4be96609a5d89",
+      "raw_retained_privately": true,
+      "scope": "Actual happy/partial/setup-cancel and native negative routes ran, but the missing-helper assertion expected an unwrapped filename; the120-column console wrapped .ps1. Stable stage=Bootstrap; code=HelperMissing, exit1/pause/wait/key/release were present. Report remains FAILED, cleanup verified; source_unchanged was not reached and remains false, not a changed-source claim. C3 changes only this assertion to the stable diagnostic code; attempt3 passes unchanged ZIP."
+    },
+    {
+      "report": "source-ci-pr-failure-summary.json",
+      "bytes": 4772,
+      "sha256": "2e173b06d88c14b6392df32bed35b57c329af9a134a15bd87d898c1592f05760",
+      "raw_retained_privately": true,
+      "scope": "Supplementary PR41112062810 PS7 remains FAILED after15 functional passes: strict final identity cleanup refused a PID/start-time/executable mismatch. Integration77130f24 has the same tree and6 relevant source hashes as C83. Stale completed identity/PID reuse is likely, not proved. Push41112051237 both hosts passed; corrected C2 shortoperations16cases pass separately on both local hosts, including strict live sentinel refusal."
+    },
+    {
+      "report": "independent-candidate-audit-attempt1.json",
+      "bytes": 1137,
+      "sha256": "319f9b7ce73c73f18546b1cd1171b17739af22831adfbf26e14440dd21b938bf",
+      "raw_retained_privately": true,
+      "scope": "Private audit compared timestamp strings using Finnish culture; stored ZIP timestamp was correct. InvariantCulture assertion passes unchanged assets in attempt2."
+    },
+    {
+      "report": "independent-final-attachment-audit.json",
+      "bytes": 1437,
+      "sha256": "03f686ab17a35fb98139aa84643df1a4d6e3ace6b6d24af5c5b6549d6031905d",
+      "raw_retained_privately": true,
+      "scope": "Private review initially used an abbreviated nonexistent report filename. Fresh independent-final-attachment-audit-attempt2.json uses the actual verification filename and passes unchanged assets; no product failure."
+    },
+    {
+      "report": "preflight-shell/preparation-nonpass.json",
+      "bytes": 691,
+      "sha256": "f39a4257778c8077388b54ee3e79732cdbbf405d74a9446732ac92f0fae3d85e",
+      "raw_retained_privately": true,
+      "scope": "Strict no-profile-write preparation assertion observed PowerShell host StartupProfileData cache. Empty-host control reproduced it; no app output/config/audio conversion. Bounded fixture preparation nonpass, not acceptance."
+    },
+    {
+      "report": "preflight-shell/reducedpreflight-drop-proof.json",
+      "bytes": 1371,
+      "sha256": "e28a6ce5e8588a935c48cae1b40d84acb577060c55f984aba8764580b8f151ee",
+      "raw_retained_privately": true,
+      "scope": "Genuine automated Explorer folder drop onto real shortcut with inert app copy delivered literal input/unrelated cwd; Explorer broker used ordinary user environment. Isolation FAILED, real conversion NOT_RUN. It queried configured MyMusic with the default GetFolderPath overload, not DoNotVerify; no directory enumeration, audio read, conversion or output write. Raw capture privately retained; not exact-app acceptance."
+    }
+  ],
+  "provisional_old_package_audio": {
+    "report": "audio-acceptance-attempt1.json",
+    "bytes": 159189,
+    "sha256": "6cc0a90bfde3cc0354b249f353d7b725294f9f4609994b27e472dd8b05274349",
+    "raw_retained_privately": true,
+    "scope": "Earlier R2 ZIP only;64 machine-validated outputs, not acceptance of the new v1.0.2 bytes."
+  },
+  "coverage_limits": [
+    "Windows10 22H2 x64 PS5.1 and PS7 not run: no authorized available client, VM provider or repository selfhosted runner. Inventory retained; no elevation/account/payment/security changes.",
+    "Genuine Explorer drop onto production BAT and .lnk with actual conversion remains unverified: broker did not propagate owned environment. Inert genuine shortcut transport is distinct from controlled native BAT conversion.",
+    "No actual browser extraction, deployed MachinePolicy/UserPolicy/application-control scenario, physical folder-picker selection, new phone/player/listening or network-redirected Music pass. Deterministic marks/process-policy regressions and explicit existing-tool setup are bounded executed coverage.",
+    "Historical owner recovery audio report and S15/S16 waivers remain historical; no new owner test requested and no old authority applied to changed assets."
+  ],
+  "release_and_git": {
+    "publication": "NOT_PERFORMED",
+    "draft_release": "NOT_CREATED",
+    "tag": "NOT_CREATED",
+    "version_only_authority": true,
+    "exact_asset_publication_authorization": null,
+    "main_integration_authorization": null,
+    "main_integration": "NOT_PERFORMED; ordinary reviewed-head/owner-approval policy retained",
+    "entry_main": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+    "existing_releases": "v1.0.0/v1.0.1 tags and GitHub release/asset IDs, sizes and digest metadata independently match R2. No public bytes were altered; no new public-download acceptance claimed.",
+    "fresh_live_snapshot": {
+      "report": "final-public-preservation.json",
+      "bytes": 1855,
+      "sha256": "844063d61f53f9893a2f1fe7e02454fa0d15e894ad5fa64ee478d86a4194d5bd",
+      "raw_retained_privately": true
+    },
+    "near_checkpoint_live_snapshot": {
+      "report": "independent-public-preservation-nearcheckpoint.json",
+      "bytes": 2835,
+      "sha256": "e7a843153b27644bb0adb99819d0fb6449bd924838f2a115ed1658b42ad860e9",
+      "raw_retained_privately": true
+    },
+    "entry_live_snapshot": {
+      "report": "independent-live-release-review-20261030T185909Z-b6cdeb17.json",
+      "bytes": 4361,
+      "sha256": "0e68058142d268f415a0f3e6c10e4a7f3d43f221a1bc57c130c171a16eabeb2c",
+      "raw_retained_privately": true
+    },
+    "checkpoint": "Final containing HEAD/live advertised-ref equality and exact-head CI observed after commit/push and reported in final response; do not embed self SHA."
+  },
+  "source_binding": "Exact ZIP built from clean detached83a5713;13 app payloads match binary Git blobs, generated root BAT/setupCRLF/README provenance and unchanged ICO verified. Full source campaigns use83a5713. Later harness C2 corrects only the shell UTF8 identity probe and test-only shortoperations active-identity ledger, with a strict live sentinel negative case; C3 changes only the shell missing-helper expected text to stable diagnostic code. C83..C3 changes only these two test files. Actual shell harness hash/controller hash and C2/C3 identities are recorded separately; no packaged file, builder, runtime or asset changed.",
+  "project_completion": false,
+  "next_step": "Resume BLOCKED R3 only",
+  "changed_files": [
+    "AudioFileForPhone.Helpers.ps1",
+    "CHANGELOG.md",
+    "README.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "docs/DISTRIBUTION.md",
+    "docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json",
+    "docs/codex-v1.0.1/DECISIONS.md",
+    "docs/codex-v1.0.1/NEXT_SESSION.md",
+    "docs/codex-v1.0.1/STATE.json",
+    "docs/codex-v1.0.1/STATUS.md",
+    "docs/codex-v1.0.1/evidence/R3-HANDOVER.md",
+    "docs/codex-v1.0.1/evidence/R3.json",
+    "tests/DirectLauncher.Console.cs",
+    "tests/Test-HelpVersion.ps1",
+    "tests/Test-RepairAudioAcceptance.ps1",
+    "tests/Test-RepairShellAcceptance.ps1",
+    "tests/Test-ShortOperations.ps1",
+    "tests/Test-UserPackage.ps1",
+    "tests/Test-UserPackageBuild.ps1",
+    "tools/Build-UserPackage.ps1"
+  ],
+  "changed_file_groups": {
+    "Runtime version": [
+      "AudioFileForPhone.Helpers.ps1"
+    ],
+    "User and release documents": [
+      "CHANGELOG.md",
+      "README.md",
+      "SECURITY.md",
+      "SUPPORT.md",
+      "docs/DISTRIBUTION.md"
+    ],
+    "Package builder": [
+      "tools/Build-UserPackage.ps1"
+    ],
+    "Tests and controller": [
+      "tests/DirectLauncher.Console.cs",
+      "tests/Test-HelpVersion.ps1",
+      "tests/Test-RepairAudioAcceptance.ps1",
+      "tests/Test-RepairShellAcceptance.ps1",
+      "tests/Test-ShortOperations.ps1",
+      "tests/Test-UserPackage.ps1",
+      "tests/Test-UserPackageBuild.ps1"
+    ],
+    "Routing and evidence": [
+      "docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json",
+      "docs/codex-v1.0.1/DECISIONS.md",
+      "docs/codex-v1.0.1/STATE.json",
+      "docs/codex-v1.0.1/STATUS.md",
+      "docs/codex-v1.0.1/NEXT_SESSION.md",
+      "docs/codex-v1.0.1/evidence/R3.json",
+      "docs/codex-v1.0.1/evidence/R3-HANDOVER.md"
+    ]
+  },
+  "harness_checkpoints": {
+    "packaged_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "shortoperations_harness_commit": "dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77",
+    "shell_harness_commit": "d303a161f1d1eae8ec2eea3a9b02f115d79659d2",
+    "git_diff_C83_to_C3_only": [
+      "tests/Test-ShortOperations.ps1",
+      "tests/Test-RepairShellAcceptance.ps1"
+    ],
+    "packaged_runtime_builders_assets_unchanged": true
+  },
+  "preflight_identity_query_only": {
+    "configured_MyMusic_query": "Default GetFolderPath overload; not DoNotVerify",
+    "directory_enumeration": false,
+    "audio_read": false,
+    "conversion": false,
+    "output_write": false,
+    "scope": "The ordinary_music_access=false media-test flags do not claim zero filesystem metadata query by the separate inert Explorer preflight."
+  },
+  "supplementary_source_ci": {
+    "push": {
+      "report": "source-ci-push.json",
+      "bytes": 2148,
+      "sha256": "3b4200a5976f6cb2b487a0364f3e925d7e706b46132a7c20163ff90dfa71bdd2",
+      "raw_retained_privately": true,
+      "run_id": 41112051237,
+      "feature_head": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "status": "PASSED_BOTH_HOSTS",
+      "jobs": [
+        {
+          "name": "Supplementary Windows Server 2025 / ps7",
+          "conclusion": "success"
+        },
+        {
+          "name": "Supplementary Windows Server 2025 / ps51",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "pull_request": {
+      "report": "source-ci-pr.json",
+      "bytes": 2778,
+      "sha256": "caccfab484fb0d032e87cf5128ad5e9b2aa223762366b046fb7b69fcf93024b2",
+      "raw_retained_privately": true,
+      "run_id": 41112062810,
+      "feature_head": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "actual_tested_integration_commit": "77130f24f2d395c6dce0a5e0f7fb4a969d8f9c3e",
+      "integration_and_feature_tree": "9ccaefdce4539ec084ec7e466fd517be50440390",
+      "trees_identical": true,
+      "status": "FAILED_PS7_PS51_PASSED",
+      "jobs": [
+        {
+          "name": "Supplementary Windows Server 2025 / ps51",
+          "conclusion": "success"
+        },
+        {
+          "name": "Supplementary Windows Server 2025 / ps7",
+          "conclusion": "failure"
+        }
+      ],
+      "failure_summary": {
+        "report": "source-ci-pr-failure-summary.json",
+        "bytes": 4772,
+        "sha256": "2e173b06d88c14b6392df32bed35b57c329af9a134a15bd87d898c1592f05760",
+        "raw_retained_privately": true
+      },
+      "functional_cases_passed": 15,
+      "cleanup_verified": false,
+      "observed_failure": "Exact retained PID/start-time/executable identity must match before fixture cleanup.",
+      "likely_mechanism": "Already-completed identities stay in the active identityFiles ledger after exact stop/wait/dispose or native release/EOF proof. Rechecking a stale PID can encounter a reused PID.",
+      "inference_limit": "The failed report does not capture the mismatched identity path/PID/current start-time/executable; a specific reused process is not proven."
+    },
+    "targeted_local_retests": "Both hosts16cases at C2; distinct from the failed original PR run. Final containing-head CI is observed after push separately."
+  },
+  "commands": [
+    "pwsh.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File C:/projects/AFP-R3-20261030/build-frozen-candidate.ps1 -SourceCommit 83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "<powershell.exe or pwsh.exe> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath docs/codex-v1/evidence/T17-dependencies-<ps51 or ps7>-attempt97001.json -RunLabel attempt97001",
+    "<powershell.exe or pwsh.exe> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tests/Test-UserPackageBuild.ps1 -SourcePath C:/projects/AFP-R3-20261030/source-frozen -SourceCommit 83a5713cacfbc330f309f48d8377cb5be11ba3a6 -RuntimeAssetDirectory C:/projects/AFP-R3-20261030/core -EvidencePath C:/projects/AFP-R3-20261030/user-package-build-<ps51 or ps7>-attempt1.json",
+    "pwsh.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tests/Test-UserPackage.ps1 -PackageDirectory C:/projects/AFP-R3-20261030/candidate -CoreRuntimeZipPath C:/projects/AFP-R3-20261030/core/AudioFileForPhone-v1.0.2.zip -EvidencePath C:/projects/AFP-R3-20261030/user-package-verification-attempt1.json -FfmpegDirectory C:/ffmpeg/bin -PowerShell7Path <actual PS7 executable recorded privately>",
+    "pwsh.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tests/Test-RepairAudioAcceptance.ps1 -RuntimeZipPath C:/projects/AFP-R3-20261030/candidate/AudioFileForPhone-v1.0.2.zip -ExpectedZipSha256 012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad -ExpectedSourceCommit 83a5713cacfbc330f309f48d8377cb5be11ba3a6 -EvidencePath C:/projects/AFP-R3-20261030/audio-acceptance-attempt2.json -FfmpegDirectory C:/ffmpeg/bin -PowerShell7Path <actual PS7 executable recorded privately>",
+    "pwsh.exe -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass -File tests/Test-RepairShellAcceptance.ps1 -RuntimeZipPath C:/projects/AFP-R3-20261030/candidate/AudioFileForPhone-v1.0.2.zip -ExpectedZipSha256 012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad -ExpectedSourceCommit 83a5713cacfbc330f309f48d8377cb5be11ba3a6 -EvidencePath C:/projects/AFP-R3-20261030/shell-acceptance-attempt3.json -FfmpegDirectory C:/ffmpeg/bin",
+    "<powershell.exe or pwsh.exe> -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-ShortOperations.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S03-shortoperations-<ps51 or ps7>-attempt97003.json -FfmpegPath C:/ffmpeg/bin/ffmpeg.exe -FfprobePath C:/ffmpeg/bin/ffprobe.exe; tested harness commit dc1da9a6c7e7c2def82f8cd028d4bb59ed567c77"
+  ]
+}
