@@ -184,7 +184,7 @@ try{
         $negative=Join-Path $dataRoot ('negative-missing-'+$kind);$null=New-ShellPackage $negative;$extra=@{};$message=''
         if($kind-ceq'host'){$fake=Join-Path $dataRoot 'missing-windows-host';[IO.Directory]::CreateDirectory($fake)|Out-Null;$extra.SystemRoot=$fake;$message='Windows PowerShell could not be found'}
         elseif($kind-ceq'runtime'){Remove-Item -LiteralPath (Join-Path $negative 'app/AudioFileForPhone.ps1');$message='AudioFileForPhone.ps1 is missing'}
-        else{Remove-Item -LiteralPath (Join-Path $negative 'app/AudioFileForPhone.Helpers.ps1');$message='AudioFileForPhone.Helpers.ps1'}
+        else{Remove-Item -LiteralPath (Join-Path $negative 'app/AudioFileForPhone.Helpers.ps1');$message='stage=Bootstrap; code=HelperMissing'}
         $null=Invoke-ShellBat ('missing-'+$kind) (Join-Path $negative 'AudioFileForPhone.bat') @($single) 1 '' $extra $message
         Add-ShellCase ('owned-negative-missing-'+$kind) 'Only named owned negative copy/environment changed; visible exit1 and native pause/key/job release verified.'
     }
