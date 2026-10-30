@@ -92,3 +92,11 @@ ordinary reviewed policy and existing owner-approval default apply.
     gaps, review/commit/push and compare HEAD with fresh advertised branch, report
     exact-head CI and main separately. Give the full handover, then STOP before R3.
 Owner testing required: none. STOP after R1; do not start R2 in this chat.
+
+CI follow-up: the first checkpoint4a812dc's push/PR Server jobs correctly failed
+an obsolete test comparing the modified converter to historical S11 bytes. The
+actual source-freeze guard passed. The test now verifies binary Git transport
+against the unchanged existing ICO; current-source freeze, invalid-source refusal
+and the production release gate remain intact. Both local corrected release-gate
+suites pass50/50; four genuine CI failures and raw report digests are in R1.json.
+Runtime files are unchanged. Observe corrected exact-head CI after the next push.

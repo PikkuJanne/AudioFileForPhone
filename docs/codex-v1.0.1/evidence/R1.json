@@ -279,5 +279,65 @@
     "existing_v101_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
     "new_package": "NOT_BUILT in R1",
     "authority": "No R1/R2 release. Preserve existing v1.0.0/v1.0.1 bytes; corrective identity and exact-byte authority must be reconciled before R3."
+  },
+  "ci_correction": {
+    "failed_feature_head": "4a812dcff78658adf6fd5a130e8ad43267207239",
+    "failed_pr_integration": "eb4c44a8a2d164ebd15d031f24146ce515339a6c",
+    "failed_jobs": [
+      {
+        "sha256": "5042b15822eb78b147f0425c23f3e442bd31618238d1137ce92e4461f83daca4",
+        "job": 124201816619,
+        "run": 41096006346,
+        "file": "S12-releasegates-ps51-run41096006346_1.json",
+        "event": "push"
+      },
+      {
+        "sha256": "43391f4b97659126471f15f1771c3c3e63b97b8642be9a312dc37ea1c9631bbb",
+        "job": 124201817485,
+        "run": 41096006346,
+        "file": "S12-releasegates-ps7-run41096006346_1.json",
+        "event": "push"
+      },
+      {
+        "sha256": "e7b4a1004b7588b9fa8d88b7e80743745f405015aec22a55d6078c7398ae3a26",
+        "job": 124202039408,
+        "run": 41096070336,
+        "file": "S12-releasegates-ps51-run41096070336_1.json",
+        "event": "pull_request"
+      },
+      {
+        "sha256": "fc3f72b30a0199fad311320c1e2e8b4af963f8ff6ecd7a93751af17b98f1c13d",
+        "job": 124202039102,
+        "run": 41096070336,
+        "file": "S12-releasegates-ps7-run41096070336_1.json",
+        "event": "pull_request"
+      }
+    ],
+    "actual_failure": "Each job passed unit41 and dependencyguards22; releasegates stopped after47 cases (46pass/1fail) because a test compared current changed converter Git bytes against historical S11 converter hash. Current source-freeze guard passed. Direct-launch suite was not reached in these runs.",
+    "fix": "Only the test now compares Git-read immutable ICO binary bytes to independent current-ICO file hash and inventories ICO. Current-source freeze and nonexistent-source refusal remain; historical S11 digest rejection and production release gate are unchanged.",
+    "test_path": "tests/ci/Test-ReleaseGates.ps1",
+    "test_sha256": "e4c3dc1cfbe0c409d928939299a114fe5ab8329d8f2bb7a13c3566e3591f99c5",
+    "local_results": [
+      {
+        "report_filename": "S12-releasegates-ps51-attempt81.json",
+        "report_sha256": "307f7adf30853bb04788057f92017a738be22dbfc3ab42947d3a5eef86fcd059",
+        "shell": "5.1.26100.9711",
+        "status": "pass",
+        "cases": 50,
+        "source_unchanged": true,
+        "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/ci/Test-ReleaseGates.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S12-releasegates-ps51-attempt81.json"
+      },
+      {
+        "report_filename": "S12-releasegates-ps7-attempt81.json",
+        "report_sha256": "1191657c7e6373de80c208161d5899f3be63d13abe376e12b0278b4ac4e55101",
+        "shell": "7.6.5",
+        "status": "pass",
+        "cases": 50,
+        "source_unchanged": true,
+        "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/ci/Test-ReleaseGates.ps1 -EvidencePath docs/codex-v1.0.1/evidence/S12-releasegates-ps7-attempt81.json"
+      }
+    ],
+    "runtime_changed": false,
+    "final_ci": "Observe corrected containing-head push and PR jobs after push; preserve pending/failure until actually passed."
   }
 }

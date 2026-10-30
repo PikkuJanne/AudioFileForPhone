@@ -31,6 +31,11 @@ package builder, use the existing ICO and small root, and verify console/relocat
 No package was built or release published in R1. Existing v1.0.0/v1.0.1 bytes and
 historical release target remain unchanged. Corrective publication identity and
 exact-byte authority must be reconciled before R3. Stop; R2 needs a separate chat.
+First-checkpoint Server CI exposed a stale historical-converter hash test. The
+source-freeze guard stayed intact; the binary-reader test now checks the existing
+ICO. Corrected local release-gate suites pass50/50 per shell. R1.json preserves
+all four genuine CI nonpasses; corrected exact-head CI is observed after push.
+
 ## Preserved v1.0.1 and packaging history
 # Status — clean v1.0.1 distribution revision 2 published and verified
 

@@ -9,7 +9,7 @@ $parent = Join-Path $projectRoot 'docs/codex-v1.0.1/evidence'
 if ((Split-Path -Parent $full) -ine $parent -or (Split-Path -Leaf $full) -cnotmatch ('^S12-releasegates-' + $edition + '-(?:(?:attempt|final)[1-9][0-9]*|run[1-9][0-9]*_[1-9][0-9]*)\.json$')) { throw 'Use a fresh active S12-releasegates edition/label report.' }
 if (Test-Path -LiteralPath $full) { throw 'Report exists; select a fresh label.' }
 . (Join-Path $projectRoot 'tools/ReleaseGates.ps1')
-$sourceFiles = @('tools/ReleaseGates.ps1','tools/Test-ReleaseGates.ps1','tests/ci/Test-ReleaseGates.ps1')
+$sourceFiles = @('tools/ReleaseGates.ps1','tools/Test-ReleaseGates.ps1','tests/ci/Test-ReleaseGates.ps1','AudioFileForPhone.ico')
 function Get-GateTestInventory { return @($sourceFiles | ForEach-Object { [pscustomobject]@{ path=$_; sha256=(Get-FileHash -LiteralPath (Join-Path $projectRoot $_) -Algorithm SHA256).Hash.ToLowerInvariant() } }) }
 function Assert-GateTest { param([bool]$Condition,[string]$Message); if (-not $Condition) { throw $Message } }
 function Copy-GateFixture { param([object]$Value); return $Value | ConvertTo-Json -Depth 30 | ConvertFrom-Json }
@@ -143,13 +143,13 @@ try {
         $result=Invoke-GateFixture $fixture 'Publication'
         Assert-GateTest (@($result.failures|Where-Object code -ceq 'PUBLICATION_AUTHORIZATION').Count -gt 0) 'Unchanged ZIP cannot carry authority to a changed manifest asset.'
     }
-    Invoke-GateTestCase 'actual frozen source guard accepts retained package bytes and rejects nonexistent commits' {
+    Invoke-GateTestCase 'actual frozen source guard accepts current source and binary asset bytes and rejects nonexistent commits' {
         $source=(& git -C $projectRoot rev-parse HEAD | Out-String).Trim()
         $files=@((Read-ReleaseJson (Join-Path $projectRoot 'tools/package-files.json')).files)
         Assert-ReleaseFrozenSource -RepositoryRoot $projectRoot -SourceCommit $source -Paths $files
-        $blob=Get-ReleaseGitBlobHash -RepositoryRoot $projectRoot -SourceCommit $source -RelativePath 'AudioFileForPhone.ps1'
-        $s11=Read-ReleaseJson (Join-Path $projectRoot 'docs/codex-v1.0.1/evidence/S11.json')
-        Assert-GateTest ($blob -ceq @($s11.runtime_hashes | Where-Object path -CEQ 'AudioFileForPhone.ps1')[0].sha256) 'Binary Git read must preserve exact retained application blob bytes.'
+        $blob=Get-ReleaseGitBlobHash -RepositoryRoot $projectRoot -SourceCommit $source -RelativePath 'AudioFileForPhone.ico'
+        $iconHash=(Get-FileHash -LiteralPath (Join-Path $projectRoot 'AudioFileForPhone.ico') -Algorithm SHA256).Hash.ToLowerInvariant()
+        Assert-GateTest ($blob -ceq $iconHash) 'Binary Git read must preserve exact current icon bytes.'
         $refused=$false
         try { Assert-ReleaseFrozenSource -RepositoryRoot $projectRoot -SourceCommit ('0'*40) -Paths $files } catch { $refused=$true }
         Assert-GateTest $refused 'An invented frozen source must fail before evidence is evaluated.'

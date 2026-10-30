@@ -740,3 +740,9 @@ R1 - 2026-10-30, focused repair adopted by explicit owner instruction after an
      GPO/app-control. Exact package/Explorer/Win10 gates remain later automated
      work, never owner assignments. R2 updates the old pinned builder. No R1/R2
      publication or historical-approval expansion; ordinary main policy retained.
+R1 CI follow-up: preserve the four4a812dc/PR integration nonpasses. A test's S11
+     converter SHA was historical and could not constrain changed current source.
+     Verify the binary Git reader against the unchanged ICO and independent file
+     hash; retain current-source freeze, nonexistent commit refusal, historical
+     digest rejection and unchanged production release safeguards. Both local
+     complete release-gate suites pass50 cases; runtime bytes remain unchanged.
