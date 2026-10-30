@@ -1,3 +1,61 @@
+# R3 handover — COMPLETED
+
+Published and independently verified normal v1.0.2: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2.
+Owner testing required: none. The owner explicitly directed completion and
+publication; reported Windows10/Explorer gaps are OWNER_WAIVED/NOT_RUN.
+
+## Exact release and verification
+
+Source 83a5713cacfbc330f309f48d8377cb5be11ba3a6; annotated tag object f6c3c6f005f1df2137d350458373b9a74e10958c.
+Release429430152 is public, draft=false and prerelease=false. The tag remains
+at the frozen tested source; closure documentation never changes public bytes.
+
+| Asset | Bytes | SHA256 |
+|---|---:|---|
+| AudioFileForPhone-v1.0.2.zip | 286541 | 012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad |
+| release-manifest.json | 10318 | 5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06 |
+| SHA256SUMS.txt | 183 | dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c |
+
+Authenticated draft downloads verified all assets/members/source/icon before
+publication. Two separate anonymous API/download checks then matched all three
+public assets. Actual downloaded ZIP smoke on Windows11 Pro26H2 26300.9711,
+PS5.1.26100.9711/PS7.6.5, non-administrator, NoProfile and empty app-child PATH:
+12 groups,20 outputs, full decode/metadata/layout/source safety, five native BAT
+pause/wait/key/exit/release cases,57 naturally completed captured processes.
+Public smoke report SHA256: 6067418cbf743418dc21dc19848bca8593a684cf783e13f76d05757c8c3fa08f.
+
+Previous exact-candidate Windows11 checks remain valid:20families/951checks+
+3observations per shell, build11 per shell, package20/audio64/native2 outputs,
+31-M4A batches/30-minute audio/seeks, corrected shortoperations16 per shell.
+Checkpoint0afa push41116043601 and PR41116051045 passed all four Server jobs.
+Full evidence and report hashes: R3-PUBLICATION.json; original R3.json is retained.
+
+## Authority, coverage and preservation
+
+R3-PUBLICATION-AUTHORITY.json records the owner's exact instruction and approved
+source/assets/integration scope. Windows10 client execution and genuine Explorer
+conversion remain unverified; owner exceptions are not machine passes. No new
+browser extraction, managed-policy deployment, physical picker or phone/listening
+observation is invented. Original failed PR and fixture/audit nonpasses remain
+unchanged. Security/source/policy safeguards remain active.
+
+Both old release IDs, all six asset identities/sizes/digests, and old tag objects/
+peeled commits match preserved evidence. No old byte was replaced; no released
+tag was moved. Main includes C83 through ordinary PR34 merge d9dde6a3dcb87bc17c86af4666ecf03ce33dcd4d.
+
+## Closure and Git state
+
+This final update changes only release/user documentation, state, authority and
+evidence. Runtime, builders, icon and all published assets stay frozen. The
+documentation closure uses the ordinary reviewed PR policy. Final containing
+main/feature equality, clean worktree and exact-head CI are observed after merge
+and reported in the final response; do not make an endless self-SHA commit.
+
+No further repair step remains. NEXT_SESSION.md now routes only a new owner
+maintenance request. Owner testing required: none. STOP after final sync.
+
+## Preserved earlier R3 blocked handover — historical
+
 # R3 handover — BLOCKED
 
 Owner testing required: none. The v1.0.2 corrective candidate passes available

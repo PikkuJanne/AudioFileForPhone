@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "PikkuJanne/AudioFileForPhone",
   "step": "R3",
-  "status": "VERSION_APPROVED_RELEASE_BLOCKED",
+  "status": "PUBLISHED_VERIFIED",
   "version_authority": {
     "owner_instruction": "Use v1.0.2",
     "recorded_date": "2026-10-30",
@@ -26,8 +26,33 @@
   "required_draft": true,
   "prerelease": false,
   "source_frozen": true,
-  "publication_authorization": null,
-  "main_integration_authorization": null,
+  "publication_authorization": {
+    "record": "evidence/R3-PUBLICATION-AUTHORITY.json",
+    "approved": true,
+    "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.2.zip",
+        "bytes": 286541,
+        "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10318,
+        "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+      }
+    ]
+  },
+  "main_integration_authorization": {
+    "authorized": true,
+    "reviewed_head": "0afa2eac21120c1ba4c3114e34251c400e12aedf",
+    "method": "Ordinary PR34 merge with exact head matching and successful existing CI; then bounded documentation/evidence closure through an ordinary reviewed CI-passing PR. No runtime/package drift, force push, protection or history change."
+  },
   "owner_testing_required": "none",
   "candidate_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
   "candidate_assets": [
@@ -47,12 +72,30 @@
       "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
     }
   ],
-  "technical_blockers": [
-    "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
-    "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN"
+  "technical_blockers": [],
+  "authorization_blockers": [],
+  "coverage_exceptions": [
+    {
+      "gate": "BLOCKED_WINDOWS10_CLIENT_ENVIRONMENT_UNAVAILABLE",
+      "resolution": "OWNER_WAIVED",
+      "execution": "NOT_RUN",
+      "scope": "Windows10 22H2 x64 PS5.1 and PS7 client executions remain unavailable and unverified."
+    },
+    {
+      "gate": "FULL_EXPLORER_CONVERSION_ISOLATION_UNPROVEN",
+      "resolution": "OWNER_WAIVED",
+      "execution": "NOT_RUN",
+      "scope": "Genuine Explorer production BAT/shortcut conversion remains unverified. Inert shortcut transport and controlled native BAT conversion are distinct retained observations."
+    }
   ],
-  "authorization_blockers": [
-    "EXACT_FROZEN_ASSET_PUBLICATION_AUTHORITY_MISSING",
-    "REVIEWED_HEAD_MAIN_INTEGRATION_AUTHORITY_MISSING"
-  ]
+  "published_release": {
+    "id": 429430152,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2",
+    "published_at": "2026-10-30T19:52:07Z",
+    "tag_object": "f6c3c6f005f1df2137d350458373b9a74e10958c",
+    "peeled_source": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "normal": true,
+    "public_download_verified": true,
+    "public_windows_smoke": "PASSED20"
+  }
 }

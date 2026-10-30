@@ -1,3 +1,28 @@
+# Status — R3 completed; v1.0.2 published and verified
+
+Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2
+Release ID429430152; tag v1.0.2 points to frozen source 83a5713cacfbc330f309f48d8377cb5be11ba3a6.
+ZIP SHA256 012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad.
+All three assets were downloaded anonymously and matched the tested bytes.
+The actual public ZIP passed20 real conversions across PS5.1/PS7, full decode,
+metadata/layout/source integrity and five native BAT visibility cases.
+
+Owner instruction to finish/publish resolves the prior authority blockers and
+accepts the disclosed Windows10/Explorer coverage exceptions. Those executions
+remain NOT_RUN/OWNER_WAIVED, never relabeled passed. No owner testing required.
+All available Windows11 results and original nonpasses remain in R3.json;
+final checkpoint0afa push/PR CI passed all four jobs. PR34 integrated the reviewed
+repair normally. No protection/history changes; v1.0.0/v1.0.1 remain preserved.
+
+Release, draft/public download and smoke evidence: evidence/R3-PUBLICATION.json.
+Authority: evidence/R3-PUBLICATION-AUTHORITY.json. Final documentation closure
+uses ordinary PR/CI; containing main/feature ref equality and exact-head CI are
+observed after merge and reported in the final response without a self SHA.
+R3 is the last repair step. No automatic next numbered step. Owner testing
+required: none.
+
+## Preserved R3 blocked checkpoint — historical
+
 # Status — R3 BLOCKED; v1.0.2 candidate verified on available Windows11
 
 Owner testing required: none. Version instruction "Use v1.0.2" is recorded in

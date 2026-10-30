@@ -825,3 +825,15 @@ R3 checkpoint: exact v1.0.2 candidate012b82fb passes available Windows11
      authority; version approval alone is separate. No draft/tag/public release
      or main integration. Owner testing none. Checkpoint/push/fresh live refs/
      exact-head CI and STOP; later thread resumes only R3.
+
+R3 owner completion directive — 2026-10-30: "R3 isnot blocked by executive
+     order. Finish the work and publish version" resolves the presented version/
+     exact-byte/main authority and accepts the two disclosed coverage exceptions.
+     Record Windows10/Explorer executions as NOT_RUN with OWNER_WAIVED resolution,
+     not PASSED. Merge reviewed0afa through ordinary CI-passing PR34; annotate
+     v1.0.2 at frozen83a5713; preserve exact3assets. Draft download verifies;
+     normal public release429430152 and two anonymous byte checks pass; actual
+     public ZIP smoke produces20 outputs across PS5.1/PS7 with full decode and
+     native BAT checks. No security waiver, old-byte replacement or tag move.
+     Complete documentation-only closure through ordinary reviewed PR/CI and
+     observe final live main/feature equality after merge. Owner testing none.

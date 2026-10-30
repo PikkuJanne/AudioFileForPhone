@@ -1,6 +1,10 @@
 # Changelog
 
-## 1.0.2 (corrective candidate; not published)
+## 1.0.2 — published 2026-10-30
+
+[Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)
+and [release notes/checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2).
+The tag and exact assets retain frozen source `83a5713cacfbc330f309f48d8377cb5be11ba3a6`.
 
 - Launch the converter directly from the BAT in built-in x64 Windows PowerShell
   5.1 STA with a documented process-only policy request. CMD owns final status,
@@ -12,10 +16,20 @@
 - Keep normal console output concise while retaining warnings/errors, counts,
   output/log locations and detailed local diagnostics.
 - Retain default64kbps CBR, supported inputs, metadata/layout and source safety.
-  Automated exact-package acceptance and publication are recorded separately;
-  no owner testing is required and earlier releases remain preserved.
+- Verify the exact package on Windows 11 Pro 26300.9711 x64 with Windows
+  PowerShell 5.1.26100.9711 and PowerShell 7.6.5, including the 31-M4A batch,
+  30-minute synthetic audio/seek checks and controlled native BAT conversion.
+  An independent public download passed 12 groups, 20 real outputs in total
+  across both hosts and five native BAT cases.
+- Publish with explicit owner-accepted coverage exceptions: Windows 10 22H2 x64
+  and genuine Explorer BAT/shortcut conversion remain unverified (`OWNER_WAIVED`,
+  `NOT_RUN`), not passed. No owner testing is required. Published v1.0.0/v1.0.1
+  tags and bytes remain unchanged.
 
 ## Historical 1.0.1 preparation notes
+
+These notes predate the preserved [v1.0.1 release](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1).
+Their candidate status and old launcher describe that historical preparation.
 
 Unreleased v1.0.1 work: separate consent-based managed setup now pins the exact
 Gyan 9.0.2 Windows x64 ZIP. It verifies transfer/integrity/extraction bounds, retains
@@ -23,7 +37,7 @@ vendor notices/provenance and validates a synthetic encode/probe/decode before
 selection. Conversion never downloads tools. Existing-tool setup and deliberate
 remembering remain available offline; no automatic update or global install.
 
-## 1.0.1 (unreleased candidate)
+## Historical 1.0.1 candidate notes
 
 - Add a no-write environment-check PS1/BAT, explicit owned synthetic self-test,
   bounded early startup failure records with storage fallback, stable stage/error
