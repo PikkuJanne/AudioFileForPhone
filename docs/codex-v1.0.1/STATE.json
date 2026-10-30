@@ -1,14 +1,41 @@
 {
   "schema_version": 1,
   "target_version": "1.0.1",
-  "project_status": "IN_PROGRESS",
-  "current_step": "S15",
-  "active_branch": "codex/audiofileforphone-s15-acceptance",
+  "project_status": "COMPLETED",
+  "current_step": "S18",
+  "active_branch": "main",
   "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
   "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
-  "publication_authorization": null,
+  "publication_authorization": {
+    "step": "S17",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+    "target_tag": "v1.0.1",
+    "owner_started_s17": true,
+    "authority_basis": "Explicit owner publish instruction in this chat; separate-thread prerequisite superseded.",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.1.zip",
+        "bytes": 118443,
+        "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 25732,
+        "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
+        "matches_s14_and_s15": true
+      }
+    ]
+  },
   "recovery_exception": null,
   "steps": {
     "S01": {
@@ -96,37 +123,85 @@
       "blockers": []
     },
     "S15": {
-      "status": "BLOCKED",
+      "status": "COMPLETED",
       "evidence": "evidence/S15.json",
-      "remaining_work": [
-        "Exact cause of the received startup failure remains unknown; use additional local evidence only if it becomes available, without requesting a report hunt or owner diagnostics.",
-        "Windows10 PS5.1/PS7, actual collection/shortcut and phone observations remain unproved; import only genuinely available evidence, never waive or fabricate them.",
-        "Preserve the locally verified portable delivery, canonical assets and seven genuine reports; continue S15 only and do not start S16."
-      ],
-      "blockers": [
-        "BLOCKED_OWNER_ATTEMPT_PACKAGE_IDENTITY_UNBOUND",
-        "BLOCKED_WINDOWS10_CLIENT_REPORT",
-        "BLOCKED_PHYSICAL_COLLECTION_REPORT",
-        "BLOCKED_PHONE_PLAY_SEEK_OBSERVATION"
+      "remaining_work": [],
+      "blockers": [],
+      "completion_basis": "OWNER_WAIVER; historical failed attempt and seven genuine passes retained in evidence/S15.json; no missing observation is relabeled.",
+      "waived_gate_ids": [
+        "core_windows10_ps51",
+        "core_windows10_ps7",
+        "full_collection",
+        "physical_shortcut",
+        "phone_play_seek"
       ]
     },
     "S16": {
-      "status": "NOT_STARTED",
-      "evidence": null,
+      "status": "COMPLETED",
+      "evidence": "evidence/S16.json",
       "remaining_work": [],
-      "blockers": []
+      "blockers": [],
+      "completion_basis": "Owner-directed acceptance resolution and exact frozen-byte publication authorization; see evidence/S16.json."
     },
     "S17": {
-      "status": "NOT_STARTED",
-      "evidence": null,
+      "status": "COMPLETED",
+      "evidence": "evidence/S17.json",
       "remaining_work": [],
       "blockers": []
     },
     "S18": {
-      "status": "NOT_STARTED",
-      "evidence": null,
+      "status": "COMPLETED",
+      "evidence": "evidence/S18.json",
       "remaining_work": [],
       "blockers": []
     }
+  },
+  "owner_override": {
+    "recorded_utc": "2026-10-30T15:07:52.6518866Z",
+    "kind": "explicit_owner_scope_override",
+    "instruction": "S15 and S16 are not blocked by executive order. ... Now please finish the project and publish the version.",
+    "scope": "Complete S15-S18 and publish the existing frozen v1.0.1 in this chat; outstanding acceptance is owner-waived, not passed. Complete ordinary reviewed, CI-passing documentation integration and final sync.",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.1.zip",
+        "bytes": 118443,
+        "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 25732,
+        "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
+        "matches_s14_and_s15": true
+      }
+    ],
+    "waived_gate_ids": [
+      "core_windows10_ps51",
+      "core_windows10_ps7",
+      "full_collection",
+      "physical_shortcut",
+      "phone_play_seek"
+    ],
+    "separate_thread_stop_superseded": true,
+    "main_integration_basis": "Owner-directed project completion; ordinary reviewed PR and passing CI remain required."
+  },
+  "completion_basis": "OWNER_OVERRIDE: public v1.0.1 verified; outstanding original acceptance observations waived, never passed. Final containing documentation merge/sync observed after commit.",
+  "public_release": {
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1",
+    "id": 429170892,
+    "tag": "v1.0.1",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "status": "PUBLICLY_VERIFIED",
+    "published_at": "2026-10-30T15:08:54Z",
+    "public_download_sha256": "0219145959988f953cc5664eb57ad32e1265371eead58e8a436facca3381a4cc",
+    "public_smoke_sha256": "343f5c4e7454ba617d130a6d0a71ef66ee5b739b8c4cb9da7a5900e30d37a7f7"
   }
 }

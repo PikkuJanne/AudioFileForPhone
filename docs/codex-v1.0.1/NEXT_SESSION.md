@@ -1,3 +1,30 @@
+# Next session — no numbered work remains after verified final sync
+
+The owner explicitly requested finishing and publishing in this chat, superseding
+prior S15/S16 missing-acceptance blockers and one-step-per-thread stops. Public
+normal v1.0.1 is verified; five original observations are OWNER_WAIVED/NOT_VERIFIED,
+not fabricated passes. No further owner action, diagnostic exercise or kit run.
+Read evidence/S16.json, S16-RELEASE-RECORD.json, S17.json, S18.json and
+S18-HANDOVER.md for exact authority, assets, verification and support limits.
+
+If resuming only because this chat was interrupted during final synchronization,
+finish the existing docs-only PR on codex/audiofileforphone-s16-acceptance-audit:
+review intended diff, observe exact-head push/PR CI, merge by ordinary policy,
+fast-forward local main and independently compare fresh advertised live main.
+Refresh the containing checkpoint/main SHA and exact-head CI from the previous
+final response; do not assume tracking refs prove live equality. PR31 is the
+superseded S15 documentation draft; preserve its evidence/branch and close it
+once the containing closure PR integrates the same history.
+
+Release is https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1,
+ID429170892, source d9d7129e9463de17e29c2a36752c82e326abf22e, runtime ZIP SHA256
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53. All three public
+asset hashes are in S16-RELEASE-RECORD.json. Keep tag/source/assets unchanged;
+never rebuild or replace public bytes to include closure evidence. Preserve
+v1.0.0 and private reports. No new publication permission or extra numbered step
+is needed. The intended final state is clean local main equal to fresh live main.
+
+## Preserved prior routing — superseded by current owner instruction
 # S15 continuation - received failure; no machine-shuttling request
 
 2026-10-30 report reconciliation supersedes the previous owner-action prompt.

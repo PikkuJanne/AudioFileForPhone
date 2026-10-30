@@ -1,3 +1,31 @@
+# Status — v1.0.1 published and verified; owner-directed closure
+
+Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1
+Published 2026-10-30T15:08:54Z, release429170892. Annotated tag v1.0.1 stays at
+frozen tested source d9d7129e9463de17e29c2a36752c82e326abf22e. All three exact assets
+were downloaded from the verified draft and anonymously from public URLs; sizes
+and SHA256 match S16-RELEASE-RECORD.json. Runtime ZIP SHA256:
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53.
+
+Public-byte Windows11 Pro26H2 26300.9711 x64 smoke PASSED PS5.1.26100.9711 and
+PS7.6.5: eight real default64 conversions, all supported input codecs, correct
+metadata/date/layout, full decode and source/package/dependency integrity.
+Original v1.0.0 release/tag/three asset metadata are unchanged.
+
+The owner explicitly instructed project completion/publication and superseded
+S15/S16 acceptance blockers and thread stops. Five original gates remain
+OWNER_WAIVED/NOT_VERIFIED: Windows10 PS5.1/PS7, full collection, physical shortcut,
+phone play/seek. Seven genuine passes and received failed/unbound owner attempt
+are preserved. The original release gate still REFUSED missing reports; no gate
+code or runtime was weakened and no absent observation is labeled PASSED.
+
+S16 exact authority/record, S17 publication proof and S18 closure are in their
+evidence files and S18-HANDOVER.md. No owner diagnostics, retest or further step
+is requested. Final containing feature sync, reviewed main integration and
+exact-head CI are observed after push/merge in the final response, following
+the no-self-referential-SHA protocol. Closure docs do not alter released bytes.
+
+## Preserved prior routing/evidence — superseded by current owner override
 # Status - S15 BLOCKED after received acceptance startup failure
 
 2026-10-30 report reconciliation: the owner supplied REPORT.txt. Its actual status

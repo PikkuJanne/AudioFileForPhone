@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "step": "S16",
+  "status": "COMPLETED",
+  "completion_basis": "OWNER_OVERRIDE",
+  "recorded_utc": "2026-10-30T15:10:04.8815666Z",
+  "entry_commit": "3ed0dabe0e4d5ef3d9acfcbb244d931cc0990335",
+  "active_branch": "codex/audiofileforphone-s16-acceptance-audit",
+  "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
+  "owner_override": {
+    "recorded_utc": "2026-10-30T15:07:52.6518866Z",
+    "kind": "explicit_owner_scope_override",
+    "instruction": "S15 and S16 are not blocked by executive order. ... Now please finish the project and publish the version.",
+    "scope": "Complete S15-S18 and publish the existing frozen v1.0.1 in this chat; outstanding acceptance is owner-waived, not passed. Complete ordinary reviewed, CI-passing documentation integration and final sync.",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.1.zip",
+        "bytes": 118443,
+        "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 25732,
+        "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
+        "matches_s14_and_s15": true
+      }
+    ],
+    "waived_gate_ids": [
+      "core_windows10_ps51",
+      "core_windows10_ps7",
+      "full_collection",
+      "physical_shortcut",
+      "phone_play_seek"
+    ],
+    "separate_thread_stop_superseded": true,
+    "main_integration_basis": "Owner-directed project completion; ordinary reviewed PR and passing CI remain required."
+  },
+  "acceptance": [
+    {
+      "id": "S16-A1",
+      "status": "OWNER_WAIVED_REMAINING_GATES",
+      "observed": "Seven genuine reports validate; five required observations remain unverified and were waived by explicit owner publication instruction."
+    },
+    {
+      "id": "S16-A2",
+      "status": "PASSED",
+      "observed": "Exact source, tag, 3 public assets, 18 member hashes, retained reports and original v1.0.0 metadata verified; see S16-RELEASE-RECORD.json."
+    },
+    {
+      "id": "S16-A3",
+      "status": "SUPERSEDED_BY_DIRECT_OWNER_PUBLICATION_AUTHORITY",
+      "observed": "Owner explicitly requested publication now and superseded separate-thread/checkpoint stops. No extra authorization prompt is required."
+    }
+  ],
+  "artifact_audit": {
+    "sha256": "ad5e5884542de09d6f74db0cef7ca7e822342f1d400ac4f40cece74c34d4887d",
+    "status": "PASSED",
+    "runtime_members": 18,
+    "kit_members": 10,
+    "candidate_rebuilt": false,
+    "source_blob_comparison": "All 18 actual ZIP members equal exact frozen C Git blobs.",
+    "old_release_check": "Release/tag/three asset IDs, names, sizes and server digests match S01; no new old-asset download in S16."
+  },
+  "gate_runs": [
+    {
+      "shell_version": "5.1.26100.9711",
+      "edition": "Desktop",
+      "command": "tools/Test-ReleaseGates.ps1 -CandidateRecordPath C:/projects/AFP-S15-20261029/candidate/candidate-record.json -Phase <Acceptance|Publication>",
+      "results": [
+        {
+          "phase": "Acceptance",
+          "exit_code": 1,
+          "status": "REFUSED",
+          "started_utc": "2026-10-30T15:05:26.9963675Z",
+          "ended_utc": "2026-10-30T15:05:30.2554Z",
+          "sha256": "f300830640b5768c1bdc5cc78acd828ada73541e75d5a8b0e22ca03c90258a1d",
+          "failures": [
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S15 is not COMPLETED."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "Exactly the twelve required digest-bound reports are required."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps51 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps7 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "full_collection needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "physical_shortcut needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "phone_play_seek needs one digest-verified report."
+            }
+          ]
+        },
+        {
+          "phase": "Publication",
+          "exit_code": 1,
+          "status": "REFUSED",
+          "started_utc": "2026-10-30T15:05:30.4645745Z",
+          "ended_utc": "2026-10-30T15:05:33.6119016Z",
+          "sha256": "93284c829183121245dfc2f1c03b5f426e0df15d0c9d6db881cc4f732d5bbd82",
+          "failures": [
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S15 is not COMPLETED."
+            },
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S16 is not COMPLETED."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "Exactly the twelve required digest-bound reports are required."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps51 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps7 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "full_collection needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "physical_shortcut needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "phone_play_seek needs one digest-verified report."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "Separate owner-started S17 authority must name these exact accepted bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "Exact authority must bind all three public asset digests."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "AudioFileForPhone-v1.0.1.zip differs from exact owner-authorized public bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "release-manifest.json differs from exact owner-authorized public bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "SHA256SUMS.txt differs from exact owner-authorized public bytes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "shell_version": "7.6.5",
+      "edition": "Core",
+      "command": "tools/Test-ReleaseGates.ps1 -CandidateRecordPath C:/projects/AFP-S15-20261029/candidate/candidate-record.json -Phase <Acceptance|Publication>",
+      "results": [
+        {
+          "phase": "Acceptance",
+          "exit_code": 1,
+          "status": "REFUSED",
+          "started_utc": "2026-10-30T15:05:27.070658Z",
+          "ended_utc": "2026-10-30T15:05:30.2390466Z",
+          "sha256": "1ea3722a74719be09a2ab934dd6e530e770cfe39975e0a979189b6d217c56c16",
+          "failures": [
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S15 is not COMPLETED."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "Exactly the twelve required digest-bound reports are required."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps51 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps7 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "full_collection needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "physical_shortcut needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "phone_play_seek needs one digest-verified report."
+            }
+          ]
+        },
+        {
+          "phase": "Publication",
+          "exit_code": 1,
+          "status": "REFUSED",
+          "started_utc": "2026-10-30T15:05:30.2942427Z",
+          "ended_utc": "2026-10-30T15:05:33.3468738Z",
+          "sha256": "47a877fb01ef8abb4082a092b0f09435d5b0ee0764525f113e6a0dcadf854c2d",
+          "failures": [
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S15 is not COMPLETED."
+            },
+            {
+              "code": "STEP_INCOMPLETE",
+              "detail": "S16 is not COMPLETED."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "Exactly the twelve required digest-bound reports are required."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps51 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "core_windows10_ps7 needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "full_collection needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "physical_shortcut needs one digest-verified report."
+            },
+            {
+              "code": "EVIDENCE_MISSING_OR_DUPLICATE",
+              "detail": "phone_play_seek needs one digest-verified report."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "Separate owner-started S17 authority must name these exact accepted bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "Exact authority must bind all three public asset digests."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "AudioFileForPhone-v1.0.1.zip differs from exact owner-authorized public bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "release-manifest.json differs from exact owner-authorized public bytes."
+            },
+            {
+              "code": "PUBLICATION_AUTHORIZATION",
+              "detail": "SHA256SUMS.txt differs from exact owner-authorized public bytes."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "post_authorization_gate": {
+    "status": "REFUSED",
+    "sha256": "4ddf05f5feb8ad2a2dab0f464345ea544f31dfc9664d69b01c60a490a22c808f",
+    "failures": "Only six missing-report findings: required twelve-report inventory plus five absent reports. No asset/source/version/authority error.",
+    "meaning": "Unmodified gate enforces original criteria. Owner explicitly waived these acceptance prerequisites; it is not claimed PASSED."
+  },
+  "private_evidence": "C:/projects/AFP-S16-20261030",
+  "release_record": "evidence/S16-RELEASE-RECORD.json",
+  "release_notes": "evidence/S16-RELEASE-NOTES.md",
+  "review": "Independent prepublication record/state/notes review PASSED; exact identities and waiver truthfulness verified.",
+  "preparation_nonpasses": [
+    "Read-only artifact audit initially looked for inner ZIP at archive root rather than runtime/; corrected private lookup only.",
+    "Read-only old-release timestamp comparison initially mixed formatted text with parsed DateTime; corrected comparison only."
+  ],
+  "boundaries": {
+    "runtime_changed": false,
+    "assets_rebuilt": false,
+    "gate_validator_changed": false,
+    "missing_results_fabricated": false,
+    "private_raw_reports_committed": false,
+    "owner_diagnostics_requested": false
+  },
+  "remaining_work": [],
+  "next_step": "S17 owner-authorized publication in this chat"
+}
