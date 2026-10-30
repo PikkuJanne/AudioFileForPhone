@@ -722,3 +722,21 @@ D72 - 2026-10-30, owner rejects the flat public ZIP and requests distribution
       S16 exact-byte authority and S14-S18 evidence as revision1 history. Commit/
       review/test/push and ordinary CI-passing main integration/fresh sync within
       this authorized task, without another owner approval/checkpoint block.
+
+R1 - 2026-10-30, focused repair adopted by explicit owner instruction after an
+     initially empty request. REPAIR_BRIEF.md preserves the newer no-human-testing
+     brief. It supersedes conflicting S01-S18 routing and owner acceptance tasks;
+     valid historical evidence and published bytes remain intact. Complete one of
+     R1/R2/R3 per chat. The recovery success is owner-reported, not a fabricated
+     independent package/phone pass. No owner tests, diagnostics or acceptance kit.
+     R1 selects one built-in x64 WinPS5.1 STA NoProfile converter directly, via
+     literal process input and an explicit switch parameter set. Both BATs request
+     process-only Bypass and own status/pause/exit in CMD, without retry/evaluation
+     around policy refusal. Inherited Core modules caused a real failure; select
+     built-in host modules within setlocal only. Actual CMD label failure justifies
+     CRLF checkout attributes for the two entry BATs. Preserve PS7 direct use and
+     engine/tool-selection/consent behavior. Native console tests prove waits and
+     inject keys; genuine process-policy refusals are distinct from unrun managed
+     GPO/app-control. Exact package/Explorer/Win10 gates remain later automated
+     work, never owner assignments. R2 updates the old pinned builder. No R1/R2
+     publication or historical-approval expansion; ordinary main policy retained.

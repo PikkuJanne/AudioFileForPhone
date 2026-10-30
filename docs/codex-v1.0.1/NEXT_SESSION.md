@@ -1,3 +1,35 @@
+# Next session — R2 only, in a separate chat
+
+R1 is complete on codex/audiofileforphone-r1-launch-repair. Implementation source:
+6e22c5c8394c6453e0d3428bc9fc143040126b96. Refresh the containing checkpoint/live
+branch/main refs, draft PR and exact-head CI from the previous final response.
+Owner testing required: none. Do not follow historical owner-kit/phone prompts.
+
+Use this next prompt:
+
+    Continue AudioFileForPhone in C:\projects\AudioFileForPhone-main on branch
+    codex/audiofileforphone-r1-launch-repair. Follow AGENTS.md and the active
+    docs/codex-v1.0.1/CHARTER.md amendment, STATE.json, STATUS.md, NEXT_SESSION.md,
+    REPAIR_BRIEF.md, RELEASE_TARGET.json and specs/SYNC_AND_RELEASE.md.
+    Read evidence/R1.json and evidence/R1-HANDOVER.md. Refresh actual checkout,
+    containing checkpoint/live refs, draft PR and exact-commit CI; R1 source is
+    6e22c5c8394c6453e0d3428bc9fc143040126b96. Complete ONLY R2 of the focused repair:
+    small allowlisted root BAT/unchanged ICO/README.txt/app, direct BAT-to-app
+    converter with no CALL forwarding, concise console and relocated exact-package
+    tests. Keep CMD pause/exit, CRLF BAT files, process-only Bypass, own-host module
+    selection, literal folder transport, existing engine/metadata/defaults and
+    optional consent-based dependency setup. Build-UserPackage currently pins old
+    published bytes and targets the old launcher; deliberately update that contract
+    and relevant tests rather than shipping the old path. Retain all required
+    helpers/licenses/notices under app and preserve unrelated historical evidence.
+    Owner testing required: none. No acceptance kit, logs, playback or phone request.
+    Do not publish or replace v1.0.0/v1.0.1 assets/tags. Do not silently choose a
+    corrective version or infer new publication/main authority from historical
+    approvals. Main integration retains ordinary review and owner-approval default.
+    Validate the candidate, record exact artifact/icon hashes and actual evidence
+    gaps, review/commit/push and compare HEAD with fresh advertised branch, report
+    exact-head CI and main separately. Give the full handover, then STOP before R3.
+## Preserved v1.0.1 and packaging history
 # Next session — packaging revision 2 is the current download
 
 The owner explicitly requested cleanup after rejecting the original flat ZIP.

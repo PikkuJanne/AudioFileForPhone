@@ -1,3 +1,37 @@
+# Status — focused repair R1 completed
+
+R1 restores one direct built-in x64 Windows PowerShell5.1 STA launch and CMD-owned
+status/pause, with a process-only Bypass request for the trusted unsigned app.
+Both BATs preserve exit results; the converter receives the folder as process
+data. Built-in host modules are selected only in the child; CRLF checkout rules
+preserve CMD labels. The existing audio engine, helpers, optional setup/selection,
+icon and posters are preserved. Legacy launcher/probe sources remain in Git.
+
+Owner testing required: none. The owner-reported successful recovery is historical
+evidence, not independent final-package verification. The newer adopted brief is
+REPAIR_BRIEF.md; conflicting S01-S18 routing and owner acceptance tasks are retired.
+
+Windows11 Pro26H2 26300.9711 x64, non-elevated: direct launch39, first-run setup15,
+help7 and CI-contract41 cases pass per shell (WinPS5.1.26100.9711 / PS7.6.5).
+The existing isolated real-FFmpeg baseline passes both shells, with unchanged
+sources/full decode; setup adds four real64kbps conversions per shell. Native
+console tests observe the actual pause, wait, inject a key and verify original
+exit/owned-process release. Internet marks are deterministic disposable ADS;
+negative policy adapters generate genuine File-entry refusals without changing
+workstation policy. Initial nonpasses and corrections remain recorded honestly.
+
+Implementation commit:6e22c5c8394c6453e0d3428bc9fc143040126b96. Evidence and full
+handover: evidence/R1.json and evidence/R1-HANDOVER.md. Reports preserve the actual
+precommit base plus hashes; final feature sync/exact-head CI are observed after
+containing push and reported separately. Main integration is not performed.
+
+Windows10, actual managed-policy/application-control deployment, Explorer/shortcut
+events and the repaired exact ZIP remain unverified. R2 must update the pinned
+package builder, use the existing ICO and small root, and verify console/relocation.
+No package was built or release published in R1. Existing v1.0.0/v1.0.1 bytes and
+historical release target remain unchanged. Corrective publication identity and
+exact-byte authority must be reconciled before R3. Stop; R2 needs a separate chat.
+## Preserved v1.0.1 and packaging history
 # Status — clean v1.0.1 distribution revision 2 published and verified
 
 The owner rejected the original flat package and requested cleanup. The GitHub

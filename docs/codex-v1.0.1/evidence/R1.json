@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "step": "R1",
+  "status": "COMPLETED",
+  "date": "2026-10-30",
+  "owner_testing_required": "none",
+  "brief": "REPAIR_BRIEF.md",
+  "brief_sha256": "6faed693912a305822b967900d49f75d7b3303b8988e9c77f343e797b5f973ff",
+  "implementation_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
+  "observed_local_test_checkout_base": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+  "source_binding": "Local reports retain the observed precommit base plus tested file hashes. Final native, setup, help and CI-contract results were source-stable; native runtime/harness hashes were independently compared with implementation-commit working files. The final checkpoint changes only evidence/routing; fresh exact-head CI and advertised-ref equality are observed after push, without embedding a self-referential SHA.",
+  "environment": {
+    "windows_caption": "Microsoft Windows 11 Pro",
+    "display_version": "26H2",
+    "windows_build": "26300.9711",
+    "architecture": "x64",
+    "elevated_administrator_role": false,
+    "powershell51": "5.1.26100.9711",
+    "powershell7": "7.6.5",
+    "ffmpeg_version": "2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev",
+    "ffmpeg_sha256": "54474e51fd3612a9e6654fed5a0b746cfe51984cc055ea0075195c1cc786ad2b",
+    "ffprobe_sha256": "ff735e9bf07ec6ccd6aeb2005a727f49f36a96ee9664a8d9d7deca7628544f20"
+  },
+  "changes": [
+    "BAT directly starts one built-in x64 Windows PowerShell 5.1 STA NoProfile converter; folder transported as process data with an explicit internal switch parameter set.",
+    "Both BATs request documented process-only Bypass; CMD owns final status/pause and preserves immediate child exit, including pre-entry errors. No retry, executable path text or CALL forwarding.",
+    "Both BATs isolate built-in host module discovery within setlocal; caller environment unchanged. CRLF checkout attributes preserve CMD label behavior.",
+    "Optional/saved/app-local/PATH FFmpeg resolution, interactive selection, engine validation, sources, icons and posters remain intact. Legacy launcher/probe source retained after reference audit; pinned published-package builder changes deferred to R2.",
+    "Automated hidden native consoles observe actual production pause, wait at least250ms, inject a key and prove owned job release; Internet marks applied deterministically to disposable NTFS fixtures.",
+    "CI uses39-case direct launch gate with source/policy/environment/cleanup checks and exact current-run artifact allowlist. Obsolete mandatory host-selection BAT suite is retained as legacy development material.",
+    "Active instructions use R1/R2/R3 one per chat and no owner testing; historical S01-S18 evidence is retained and explicitly historical."
+  ],
+  "tests": [
+    {
+      "family": "direct_launcher",
+      "shell": "5.1.26100.9711",
+      "status": "pass",
+      "report_filename": "AFP-R1-test-final3-ps51.json",
+      "report_bytes": 72465,
+      "report_sha256": "8ca94ac6ffec385af71e9da1a2b77d0ef18334fa7dbd18fd7e98faefbc56164e",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-ExecutionPolicy Bypass -NoProfile -File tests/Test-DirectLauncher.ps1 -Task R1 -RunLabel local-final3-ps51 -EvidencePath <private-temp>/AFP-R1-test-final3-ps51.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 39,
+      "descendant_release_proved": true,
+      "policies_unchanged": true,
+      "parent_path_unchanged": true,
+      "parent_module_path_unchanged": true,
+      "native_cases_all_preserve_wait_key_exit_release": true,
+      "recorded_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoProfile -ExecutionPolicy Bypass -File tests/Test-DirectLauncher.ps1 -Task R1 -RunLabel local-final3-ps51 -EvidencePath <USERPROFILE>\\AppData\\Local\\Temp\\AFP-R1-test-final3-ps51.json"
+    },
+    {
+      "family": "isolated_real_ffmpeg_baseline",
+      "shell": "5.1.26100.9711",
+      "status": "pass",
+      "report_filename": "T17-r1-baseline-ps51-20261030.json",
+      "report_bytes": 135908,
+      "report_sha256": "771c865891fd86e8fb11140686add019cbaca166425d4e8b7a7df48eda627902",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1/evidence/T17-r1-baseline-ps51-20261030.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_characterization_checks": 7,
+      "binding_note": "Ran before final BAT-only module environment fix; converter/helpers match final implementation. Final BAT behavior is separately covered by final3 native suite."
+    },
+    {
+      "family": "help_examples",
+      "shell": "5.1.26100.9711",
+      "status": "pass",
+      "report_filename": "T17-help-ps51-attempt103002.json",
+      "report_bytes": 563510,
+      "report_sha256": "648cdad6ada467f03111f57012bba004c1302719b204679666c08e7dba2ba52f",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-HelpVersion.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1/evidence/T17-help-ps51-attempt103002.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 7,
+      "recorded_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-HelpVersion.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T17-help-ps51-attempt103002.json"
+    },
+    {
+      "family": "first_run_setup",
+      "shell": "5.1.26100.9711",
+      "status": "pass",
+      "report_filename": "S05-firstrunsetup-ps51-attempt83.json",
+      "report_bytes": 71383,
+      "report_sha256": "b1653692ee2125141364760bf6e544bff48543a5619ecb82da0dbd96823a0abd",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-FirstRunSetup.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps51-attempt83.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 15,
+      "actual_one_file_64kbps_conversions": 4,
+      "full_decode": true,
+      "ui_adapters": "scripted; no physical dialog/Explorer claim",
+      "recorded_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests\\Test-FirstRunSetup.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1.0.1\\evidence\\S05-firstrunsetup-ps51-attempt83.json"
+    },
+    {
+      "family": "ci_contracts",
+      "shell": "5.1.26100.9711",
+      "status": "pass",
+      "report_filename": "T17-unit-ps51-attempt84.json",
+      "report_bytes": 14716,
+      "report_sha256": "0d01517697b85da20136ea8b12d63eeb9d02b33693b8187bbaeeef3e63f6a54b",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/ci/Test-CiContracts.ps1 -EvidencePath docs/codex-v1/evidence/T17-unit-ps51-attempt84.json",
+      "source_unchanged": true,
+      "cleanup_verified": null,
+      "cases": 41,
+      "recorded_command_redacted": "\"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests\\ci\\Test-CiContracts.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-unit-ps51-attempt84.json"
+    },
+    {
+      "family": "direct_launcher",
+      "shell": "7.6.5",
+      "status": "pass",
+      "report_filename": "AFP-R1-test-final3-ps7.json",
+      "report_bytes": 47006,
+      "report_sha256": "db6d8334ae48cd221149a6d123cf898ea9b12b0af77c4d81fa8b480aa2583766",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoProfile -File tests/Test-DirectLauncher.ps1 -Task R1 -RunLabel local-final3-ps7 -EvidencePath <private-temp>/AFP-R1-test-final3-ps7.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 39,
+      "descendant_release_proved": true,
+      "policies_unchanged": true,
+      "parent_path_unchanged": true,
+      "parent_module_path_unchanged": true,
+      "native_cases_all_preserve_wait_key_exit_release": true,
+      "recorded_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoProfile -File tests/Test-DirectLauncher.ps1 -Task R1 -RunLabel local-final3-ps7 -EvidencePath <USERPROFILE>\\AppData\\Local\\Temp\\AFP-R1-test-final3-ps7.json"
+    },
+    {
+      "family": "isolated_real_ffmpeg_baseline",
+      "shell": "7.6.5",
+      "status": "pass",
+      "report_filename": "T17-r1-baseline-ps7-20261030.json",
+      "report_bytes": 57780,
+      "report_sha256": "162f4f5646d36fc5572e28569deb45b0bf46e7e2a50a0a60d2d6dbeebca40703",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Invoke-IsolatedBaseline.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1/evidence/T17-r1-baseline-ps7-20261030.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "legacy": {
+        "status": "pass",
+        "exit_code": 0
+      },
+      "characterization_status": "pass",
+      "required_characterization_checks": 7,
+      "binding_note": "Ran before final BAT-only module environment fix; converter/helpers match final implementation. Final BAT behavior is separately covered by final3 native suite."
+    },
+    {
+      "family": "help_examples",
+      "shell": "7.6.5",
+      "status": "pass",
+      "report_filename": "T17-help-ps7-attempt103002.json",
+      "report_bytes": 342596,
+      "report_sha256": "642780142ed7b329bd72326a1f898c5c94c05325e1773fc168b2466abf95eb1f",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-HelpVersion.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1/evidence/T17-help-ps7-attempt103002.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 7,
+      "recorded_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File .\\tests\\Test-HelpVersion.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath .\\docs\\codex-v1\\evidence\\T17-help-ps7-attempt103002.json"
+    },
+    {
+      "family": "first_run_setup",
+      "shell": "7.6.5",
+      "status": "pass",
+      "report_filename": "S05-firstrunsetup-ps7-attempt83.json",
+      "report_bytes": 42035,
+      "report_sha256": "f3ef8832eae94ce4e6aedf8117778d55624b1c51595ede4769fcea25ada59ab1",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/Test-FirstRunSetup.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath docs/codex-v1.0.1/evidence/S05-firstrunsetup-ps7-attempt83.json",
+      "source_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 15,
+      "actual_one_file_64kbps_conversions": 4,
+      "full_decode": true,
+      "ui_adapters": "scripted; no physical dialog/Explorer claim",
+      "recorded_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests\\Test-FirstRunSetup.ps1 -FfmpegPath C:\\ffmpeg\\bin\\ffmpeg.exe -FfprobePath C:\\ffmpeg\\bin\\ffprobe.exe -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1.0.1\\evidence\\S05-firstrunsetup-ps7-attempt83.json"
+    },
+    {
+      "family": "ci_contracts",
+      "shell": "7.6.5",
+      "status": "pass",
+      "report_filename": "T17-unit-ps7-attempt84.json",
+      "report_bytes": 10109,
+      "report_sha256": "e0aaf92252148a0a2aebf2d7c4eb6d1ed1975f3a2f882e1a67eb124aa779a8a9",
+      "observed_report_checkout_commit": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+      "command_arguments": "-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests/ci/Test-CiContracts.ps1 -EvidencePath docs/codex-v1/evidence/T17-unit-ps7-attempt84.json",
+      "source_unchanged": true,
+      "cleanup_verified": null,
+      "cases": 41,
+      "recorded_command_redacted": "<USERPROFILE>\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.dll -NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -File tests\\ci\\Test-CiContracts.ps1 -EvidencePath C:\\projects\\AudioFileForPhone-main\\docs\\codex-v1\\evidence\\T17-unit-ps7-attempt84.json"
+    }
+  ],
+  "source_inventory": [
+    {
+      "path": "AudioFileForPhone.bat",
+      "sha256": "f45a7c9c18f796ca37f15f4dabedda7afb1a900405e054fa21f844ebfae3bc52"
+    },
+    {
+      "path": "AudioFileForPhone.ps1",
+      "sha256": "eb22557809353a81fc829c3d62e91654c2dece8161834e6af5d8d5bbb51374bc"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.bat",
+      "sha256": "e7a3780c5276f5a4aaa3dd504b29a71165f3df169532e1b0e7bdec08dccda655"
+    },
+    {
+      "path": "Setup-AudioFileForPhone.ps1",
+      "sha256": "881f23c652eed61ddb074174403a2f225aca8aa8d84c0574ab6dba121f5eb630"
+    },
+    {
+      "path": "AudioFileForPhone.Helpers.ps1",
+      "sha256": "393e6b578494002644136fb017c3851419bdc67bfb4d5d4f743df921bf9d97f1"
+    },
+    {
+      "path": "AudioFileForPhone.Diagnostics.ps1",
+      "sha256": "078196abc845bd8651ac047f0d5c6ddf283e0a8965d121223123e851c6b9915e"
+    },
+    {
+      "path": "AudioFileForPhone.ManagedSetup.ps1",
+      "sha256": "da1a31cb9fb221e68d53f1790d22cbb7e41886ca0ad6e41b5c5fd2c2a38fdbd8"
+    },
+    {
+      "path": "AudioFileForPhone.ico",
+      "sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
+    },
+    {
+      "path": "tests/Test-DirectLauncher.ps1",
+      "sha256": "f0ec330a138881537824055a13a458f140cd253cee598b2896776f13dc2b7e6a"
+    },
+    {
+      "path": "tests/DirectLauncher.Console.cs",
+      "sha256": "de7bfed48b75650cb9a3a97e128a5f02e71be256c545c9057e046c5b1945baa3"
+    }
+  ],
+  "policy_evidence": {
+    "internet_marks": "Deterministic Zone.Identifier ZoneId=3 on disposable unsigned scripts; not browser extraction.",
+    "negative_fixture": "Disposable selected-host adapter requests genuine process-only AllSigned or RemoteSigned in real Windows PowerShell; actual File-entry PSSecurityException, absent runtime entry, single invocation and BAT wait/exit are verified.",
+    "actual_machine_user_group_policy": "NOT_RUN: neither managed scope is configured; no workstation policy/registry changes.",
+    "application_control": "NOT_RUN; no alternate-engine retries or text evaluation to evade a denial.",
+    "documentation": "https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1"
+  },
+  "not_tested": [
+    "Windows10 22H2 client execution.",
+    "Real MachinePolicy/UserPolicy or application-control deployment.",
+    "Actual Explorer folder drag/drop or a real shortcut event; argument transport is distinct.",
+    "Exact repaired user ZIP, relocated icon/package, browser-extraction Internet marks, >=30-input/long-duration package acceptance and public download; these belong to R2/R3.",
+    "New phone/player or human listening; no owner test is required."
+  ],
+  "preparation_nonpasses": [
+    "Test-only ADS API, fixture serialization and assertion wording corrected; earlier reports preserved privately.",
+    "Actual setup BAT LF goto-label failure corrected with CRLF and explicit checkout attributes.",
+    "Actual PS7-inherited module autoload failure corrected within BAT child process only.",
+    "Policy adapter fake SystemRoot initially broke CLR startup; only adapter child corrected to genuine Windows root.",
+    "Source-change guards correctly refused in-flight runs during repairs; no case or failure was relabeled.",
+    "Help bounded parameter expectation initially rejected the new documented internal switch; updated exact binding/help contract then both7-case suites passed.",
+    "CI artifact policy initially rejected the new R1 glob; exact current-run allowlist and broad-glob rejection mutation added then both41-case suites passed."
+  ],
+  "raw_reports_committed": false,
+  "raw_report_policy": "Private raw reports retained locally; versioned evidence contains only redacted summaries, filenames, byte counts and SHA256. Absolute private executable/temp paths are omitted from reproduction commands.",
+  "owner_recovery_report": "Owner reports recovery BAT produced working audio; historical owner-reported success only, not independent final-package/shell/shortcut/phone evidence.",
+  "git_checkpoint": {
+    "branch": "codex/audiofileforphone-r1-launch-repair",
+    "base_main": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+    "implementation_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
+    "final_feature_sync": "Observe final containing HEAD versus fresh git ls-remote advertised branch after push; report in final response.",
+    "exact_commit_ci": "Observe final containing commit push/PR CI after push; pending is pending.",
+    "main_integration": "NOT_PERFORMED: owner-approval default and ordinary reviewed policy retained."
+  },
+  "publication": {
+    "performed": false,
+    "existing_v101_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
+    "new_package": "NOT_BUILT in R1",
+    "authority": "No R1/R2 release. Preserve existing v1.0.0/v1.0.1 bytes; corrective identity and exact-byte authority must be reconciled before R3."
+  }
+}

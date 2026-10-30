@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target_version": "1.0.1",
-  "project_status": "COMPLETED",
-  "current_step": "S18",
-  "active_branch": "main",
-  "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+  "project_status": "REPAIR_IN_PROGRESS",
+  "current_step": "R1",
+  "active_branch": "codex/audiofileforphone-r1-launch-repair",
+  "tested_source_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
   "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
@@ -252,5 +252,36 @@
     "layout": "six launch/readme/license files at root; unchanged original18 files in app/",
     "app_local_tools_directory": "app/",
     "final_git_sync": "Observed after containing feature push/ordinary reviewed CI-passing main integration; no self-referential SHA embedded."
+  },
+  "focused_repair": {
+    "authority": "Owner explicitly instructed following both supplied repair documents; latest no-human-testing brief supersedes earlier brief and conflicting routing.",
+    "brief": "REPAIR_BRIEF.md",
+    "brief_sha256": "6faed693912a305822b967900d49f75d7b3303b8988e9c77f343e797b5f973ff",
+    "owner_testing_required": "none",
+    "owner_recovery_evidence": "Owner-reported recovery BAT produced working audio; not independent final-package, shell, shortcut or phone verification.",
+    "historical_checkpoint": {
+      "project_status": "COMPLETED",
+      "current_step": "S18",
+      "active_branch": "main",
+      "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e"
+    },
+    "tested_source_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
+    "steps": {
+      "R1": {
+        "status": "COMPLETED",
+        "evidence": "evidence/R1.json",
+        "handover": "evidence/R1-HANDOVER.md"
+      },
+      "R2": {
+        "status": "NOT_STARTED"
+      },
+      "R3": {
+        "status": "NOT_STARTED"
+      }
+    },
+    "main_integration": "NOT_REQUESTED: existing reviewed-head/owner-approval policy retained.",
+    "publication": "NOT_AUTHORIZED_FOR_R1_R2; preserve existing v1.0.0/v1.0.1 tags and assets; corrective release identity and exact-byte authority remain to be reconciled.",
+    "next_step": "R2",
+    "source_binding": "R1.json preserves precommit observed base and exact runtime hashes; implementation commit binds matching bytes. Final containing checkpoint/live/CI observed after push."
   }
 }
