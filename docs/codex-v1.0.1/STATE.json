@@ -6,35 +6,33 @@
   "active_branch": "main",
   "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
-  "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
   "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
   "publication_authorization": {
-    "step": "S17",
+    "step": "POST_RELEASE_PACKAGING_CORRECTION",
+    "owner_requested_cleanup": true,
+    "instruction": "Please clean up the distributed package",
     "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
-    "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+    "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
     "target_tag": "v1.0.1",
-    "owner_started_s17": true,
-    "authority_basis": "Explicit owner publish instruction in this chat; separate-thread prerequisite superseded.",
     "assets": [
       {
         "name": "AudioFileForPhone-v1.0.1.zip",
-        "bytes": 118443,
-        "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
-        "matches_s14_and_s15": true
+        "bytes": 128139,
+        "sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6"
       },
       {
         "name": "release-manifest.json",
-        "bytes": 25732,
-        "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
-        "matches_s14_and_s15": true
+        "bytes": 12118,
+        "sha256": "8587279cddc03e31954cc747857c73ead36b8b90d777a7ca9d1ab1e684e90887"
       },
       {
         "name": "SHA256SUMS.txt",
         "bytes": 183,
-        "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
-        "matches_s14_and_s15": true
+        "sha256": "1a93c76f1473b9b67555c3e0fd1aaae8d81ca347045ea67faf89ef76c8775ee3"
       }
-    ]
+    ],
+    "scope": "Packaging revision2 after owner rejected the flat layout. Core payload/tag/version unchanged; new ZIP and generated-entrypoint provenance recorded separately."
   },
   "recovery_exception": null,
   "steps": {
@@ -193,8 +191,47 @@
     "separate_thread_stop_superseded": true,
     "main_integration_basis": "Owner-directed project completion; ordinary reviewed PR and passing CI remain required."
   },
-  "completion_basis": "OWNER_OVERRIDE: public v1.0.1 verified; outstanding original acceptance observations waived, never passed. Final containing documentation merge/sync observed after commit.",
+  "completion_basis": "Original release closure plus owner-requested packaging revision2, public downloads and actual clean-package tests verified. Original absent Win10/physical/phone observations remain waived, never passed.",
   "public_release": {
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1",
+    "id": 429170892,
+    "tag": "v1.0.1",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "status": "PUBLICLY_VERIFIED",
+    "package_revision": 2,
+    "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
+    "public_download_sha256": "0e48d72ed46c4e4f99938137a8b796fc507136e354200164cf4a20658c246efc",
+    "public_package_test_sha256": "b3602f221958266e50a23413911d7f9bc7cd027cf663e04a148daef7ded9c620"
+  },
+  "initial_publication_authorization": {
+    "step": "S17",
+    "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+    "target_tag": "v1.0.1",
+    "owner_started_s17": true,
+    "authority_basis": "Explicit owner publish instruction in this chat; separate-thread prerequisite superseded.",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.1.zip",
+        "bytes": 118443,
+        "sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 25732,
+        "sha256": "45f6f6022dbb3bf065804106af0b4e444a5bd5fdb3565876133120569008bda3",
+        "matches_s14_and_s15": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "298cbd7374fee37a400b0016fc7c4065939761c32140107dfdd2c2f9d3293e6f",
+        "matches_s14_and_s15": true
+      }
+    ]
+  },
+  "initial_public_release": {
     "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.1",
     "id": 429170892,
     "tag": "v1.0.1",
@@ -203,5 +240,17 @@
     "published_at": "2026-10-30T15:08:54Z",
     "public_download_sha256": "0219145959988f953cc5664eb57ad32e1265371eead58e8a436facca3381a4cc",
     "public_smoke_sha256": "343f5c4e7454ba617d130a6d0a71ef66ee5b739b8c4cb9da7a5900e30d37a7f7"
+  },
+  "initial_runtime_zip_sha256": "78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53",
+  "distribution_revision": {
+    "revision": 2,
+    "status": "COMPLETED",
+    "evidence": "evidence/PACKAGING-REVISION-2.json",
+    "handover": "evidence/PACKAGING-REVISION-2-HANDOVER.md",
+    "core_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
+    "historical_acceptance_kit_scope": "Original revision1 only; not rebuilt or relabeled as new-layout acceptance.",
+    "layout": "six launch/readme/license files at root; unchanged original18 files in app/",
+    "app_local_tools_directory": "app/",
+    "final_git_sync": "Observed after containing feature push/ordinary reviewed CI-passing main integration; no self-referential SHA embedded."
   }
 }
