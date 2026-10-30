@@ -1,3 +1,29 @@
+# Status - S15 BLOCKED after received acceptance startup failure
+
+2026-10-30 report reconciliation: the owner supplied REPORT.txt. Its actual status
+is FAILED / PACKAGE_IDENTITY; runtime, source and both ZIP identities are blank.
+The kit stopped before a conversion result was established. This is a received
+failed attempt, superseding yesterday's NOT_RECEIVED/NOT_RUN routing. The generic
+report cannot identify the exact exception or bind the attempt to frozen C/Win10.
+
+The owner refuses machine shuttling. No additional trip, diagnostic command,
+report hunt or acceptance rerun is requested. Test a portable delivery layout
+locally with the exact original ZIP retained internally and passed explicitly;
+do not change frozen kit/runtime/dependency bytes or start S16. The original
+runner's fixed parent-folder archive lookup is a known fragility, not a proven
+explanation of the owner attempt. Raw report/evidence stay outside public Git. The portable
+transport is now locally verified by seven focused startup/refusal checks and an
+independent transport review; no conversion/client/human gate is added. Artifact:
+C:\projects\AFP-S15-Report-Recovery-20261030\AudioFileForPhone-Acceptance-Ready.zip.
+
+Seven previous genuine candidate reports are preserved. Actual Windows10 cells,
+collection/shortcut and phone observations remain unproved; local startup tests
+cannot substitute for them. S15 remains BLOCKED; S16 NOT_STARTED; publication
+authority null. Full current diagnosis/handover: evidence/S15-HANDOVER.md.
+The prior requests to run/return the kit below are historical and superseded.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
 # Status — S15 BLOCKED awaiting the actual owner acceptance report
 
 The owner explicitly continued S15 in this same thread; this supersedes the prior

@@ -1,3 +1,101 @@
+# S15 handover - BLOCKED after received startup failure
+
+## Outcome
+
+2026-10-30 report reconciliation: the owner supplied a failed acceptance report,
+then refused machine shuttling. REPORT.txt is FAILED / PACKAGE_IDENTITY with
+blank candidate identities and all human observations NOT_TESTED. This is a
+received failed attempt before conversion, superseding the previous missing-report
+claim. Exact historical cause and actual client OS cannot be recovered from TXT.
+No new trip, diagnostic command, report hunt or acceptance rerun is requested.
+S15 remains BLOCKED; S16 NOT_STARTED; publication authority null.
+
+## Changes
+
+Eight active-plan documents reconcile the failure and current owner constraint.
+Private delivery repair: AudioFileForPhone-Acceptance-Ready.zip carries the exact
+original Acceptance-Kit.zip and a small launcher/readme. It verifies the pinned
+original archive before extraction, creates a fresh owned folder and passes the
+absolute archive path explicitly to the unchanged runner. It removes dependence
+on where the outer download ZIP sits. Runtime, original kit and dependency bytes
+remain unchanged; this is a transport fix within S15, not S16/package repair.
+
+Frozen C: d9d7129e9463de17e29c2a36752c82e326abf22e.
+Runtime ZIP SHA256:
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53
+Original acceptance kit SHA256:
+5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26
+Private outer transport SHA256:
+68d64d229ec51c8820d60e3d45c96f696377eec171eb3449839d73ddb724b8cd
+All raw records/binaries stay outside Git at C:\projects\AFP-S15-Report-Recovery-20261030.
+
+## Verification
+
+| Check | Command/artifact | Actual environment/result | Limit |
+|---|---|---|---|
+| Owner report | Retained 519-byte REPORT.txt, SHA256 c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf | FAILED PACKAGE_IDENTITY; candidate/OS unbound | No conversion or human result |
+| Portable startup | test-transport.ps1; pinned outer ZIP | Win11 Pro26H2 26300.9711 x64 Client; PS5.1.26100.9711 and PS7.6.5 wrappers, canonical PS5.1 | Three startups verify 18 members/exact identities, then intentionally refuse nonexistent source at SOURCE_SELECTION/exit1 |
+| Moved delivery | Same captured harness; renamed/nested non-ASCII/spaces/metacharacter folder without outer ZIP | Exact original kit retained internally and found explicitly | AutomatedOnly prevents UI; normal physical dispatch NOT_TESTED |
+| Bad/missing original ZIP | Same captured harness | Both refuse before extraction or canonical runner | No safeguard bypass |
+| Legacy reproducer | Original runner with default missing retained ZIP | PACKAGE_IDENTITY/blank identities reproduced | Possible failure path, not proven owner cause |
+| Actual BAT refusal | test-bat-refusal.ps1 -> cmd /d /c Start-Acceptance.bat | Exit1 propagated, process released/pipes drained, no extraction/runner/UI | Only refusal route, no physical gesture |
+| Existing acceptance | Seven preserved candidate reports plus actual Test-ReleaseGates.ps1 | Seven valid reports; S15 and five missing reports refuse | No local startup test imported as candidate acceptance |
+
+Final seven-case summary SHA256:
+15228732fa51647715a79c8f1ff9ac94c9709f273b8ca2b4c0949ef1b50d6d8a.
+Exact raw launch/report/member/harness digests and limitations are in S15.json.
+Independent transport review found no blocking issue. No new conversion,
+download, owner media/Music/config access or physical/phone/Windows10 claim.
+Unchanged successful conversion suites were not repeated.
+
+## Git state (observe after checkpoint)
+
+Branch codex/audiofileforphone-s15-acceptance; entry a64f5cf4849143e5fcad3ad13f9fa6985e63ee73.
+Main entry remains 1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2; PR31 stays draft/unmerged.
+No S15 main-merge authority follows from the S14-only policy. Final checkpoint
+HEAD, fresh advertised equality, clean worktree and exact-head CI are observed
+after push in the final response and refreshed at continuation.
+
+## Decisions, risks and blockers
+
+Received failure replaces NOT_RECEIVED/NOT_RUN. Generic TXT does not expose its
+private validation exception. Canonical runner's fixed parent-folder archive
+lookup is a verified fragility; the owner cause remains UNKNOWN. Missing real
+Windows10, actual collection/shortcut and phone observations cannot be supplied
+by local Win11 startup checks. Preserve both failure and seven genuine passes.
+S15 stays blocked; no release gates, main integration or S16 authority is invented.
+
+## Human action
+
+None requested. The owner refuses machine shuttling. The private portable
+transport is prepared and tested locally; its existence is not a new acceptance
+rerun request. Prior run-on-Windows10/return-report instructions below are historical
+and superseded. Do not ask for diagnostics, media or private-log uploads.
+
+## Continuation prompt
+
+Continue S15 only in this same thread; do not start S16. Read active routing and
+this current handover, then refresh Git/live refs and exact-head CI. Branch is
+codex/audiofileforphone-s15-acceptance; frozen C d9d7129e9463de17e29c2a36752c82e326abf22e;
+main entry 1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2. Consume the already-supplied
+FAILED PACKAGE_IDENTITY report and preserve its unbound identity. Review private
+portable artifact/summary and checkpoint records at
+C:\projects\AFP-S15-Report-Recovery-20261030; preserve original runtime/kit hashes
+above and seven actual gates at C:\projects\AFP-S15-20261029\candidate. Respect
+the owner refusal: no machine trip, repeated diagnostics, report hunt or retest
+is requested. Use only genuinely available evidence; do not invent client/human
+passes or repeat unchanged successful conversion suites. Keep S15 BLOCKED until
+required evidence exists, S16 NOT_STARTED and publication authority null. Review,
+checkpoint/push intended evidence and fresh-sync/exact-head CI; main integration
+remains separate and unauthorized for S15. Give the handover and stop.
+
+## Stop and fixed deliverable
+
+S16 has not started. Public AudioFileForPhone v1.0.1 remains PENDING_S17, with
+published v1.0.0 preserved. This handoff repair is not completed acceptance.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
 # S15 handover — BLOCKED_REQUIRED_ACCEPTANCE_REPORT
 
 ## Outcome

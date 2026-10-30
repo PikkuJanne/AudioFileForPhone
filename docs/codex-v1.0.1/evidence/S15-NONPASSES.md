@@ -1,3 +1,26 @@
+# S15 received owner failure - 2026-10-30 report reconciliation
+
+REPORT.txt is received, 519 bytes, SHA256
+c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf.
+It says FAILED / PACKAGE_IDENTITY and acceptance_collection, with blank runtime,
+source and ZIP identities and all four human observations NOT_TESTED. The runner
+populates candidate identity only after Read-AcceptanceKit completes. Therefore
+this is a startup-validation failure before any conversion result is established.
+It cannot be imported into the candidate gate set or attributed to frozen C/Win10.
+
+The redacted TXT omits the private validation exception. No matching companion is
+available locally in the bounded known scopes; exact owner cause remains UNKNOWN.
+The runner assumes a retained Acceptance-Kit.zip one directory above extraction.
+A portable outer delivery can remove that layout dependency without changing
+canonical bytes. Local reproduction proves a possible failure path, not the
+historical owner cause. No safeguard is disabled and no missing evidence waived.
+
+The owner refuses further machine shuttling. No owner retest, diagnostics, media
+or private-log upload is requested. Prior seven candidate passes are preserved;
+missing client/physical/phone results remain missing. S16 has not started.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
 # S15 nonpasses and missing evidence
 
 The initial private PS5.1 validator failed outer1 after the standalone packaged

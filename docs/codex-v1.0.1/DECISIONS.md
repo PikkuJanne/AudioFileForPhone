@@ -683,3 +683,14 @@ D69 - 2026-10-29, direct owner instruction continues S15 in this same thread
       the one existing kit REPORT.txt here; no new thread, diagnostic matrix,
       PATH edit, audio/private-log upload or invented observation. Frozen C,
       runtime/kit bytes and null publication authority remain unchanged.
+
+D70 - 2026-10-30, S15 report reconciliation: owner supplied a FAILED
+      PACKAGE_IDENTITY report and refuses machine shuttling. Record the attempt
+      as received/failed, superseding NOT_RECEIVED/NOT_RUN. Blank candidate/OS
+      identities prevent exact attribution; do not invent a conversion result or
+      an exact cause. Diagnose locally and prepare only a private portable
+      transport retaining the original verified ZIP and passing its absolute
+      path explicitly. Preserve canonical C/runtime/kit/dependencies and the
+      seven genuine candidate reports; startup checks supply no missing client
+      or human pass. No further owner trip/diagnostics/retest is requested.
+      Keep S15 BLOCKED, S16 NOT_STARTED, main merge/publication authority unchanged.

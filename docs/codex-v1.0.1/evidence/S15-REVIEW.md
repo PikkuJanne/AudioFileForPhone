@@ -1,3 +1,28 @@
+# S15 review - 2026-10-30 report reconciliation
+
+Independent transport review PASSED for the stated startup-only scope. Reviewer
+read launcher source and all four outer ZIP members, recomputed member and raw
+launch/report hashes, and verified the unchanged inner kit digest. The launcher
+pins a write/delete-locked original archive before extraction, uses a fresh owned
+GUID root, direct argument-array invocation, RemoteSigned and child exit forwarding.
+No dependency or persistent policy mutation. Three startups populate exact C/ZIP/
+kit identities with the package-members case passed and no source/conversion child.
+Missing/tampered archive refusals occur before extraction/canonical execution.
+Legacy missing-archive reproducer has blank identities and PACKAGE_IDENTITY;
+this does not prove the historical owner cause. Normal physical/UI/conversion
+acceptance is untested. The final actual BAT refusal adds exit1/process-release/
+pipe-drain proof without changing delivered bytes. Seven-case summary and all
+digests are bound in S15.json; original six-case summary is preserved.
+
+Independent final eight-document reconciliation review PASSED with no actionable
+findings. Root report/state/asset/gate/privacy validation passed. Received failure,
+unknown cause, unchanged seven genuine reports, no owner trip/diagnostics/retest
+and S15/S16/main/release boundaries agree. Actual final BAT capture and all final
+summary/member/harness/report digests were independently verified. Earlier PASSED
+reviews below retain their original 2026-10-29 checkpoint scope.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
 # S15 review
 
 Independent actual capture audit PASSED for the three provenance-linked Win11

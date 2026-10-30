@@ -1,3 +1,35 @@
+# S15 continuation - received failure; no machine-shuttling request
+
+2026-10-30 report reconciliation supersedes the previous owner-action prompt.
+Continue S15 only in this same thread. Do not start S16. Read AGENTS.md, active
+CHARTER/STATE/STATUS/RELEASE_TARGET, tasks/S15.md and current S15 evidence/handover.
+Refresh actual Git state, fresh advertised feature/main refs and exact-head CI.
+Branch codex/audiofileforphone-s15-acceptance; main entry
+1bfbe05b58a441c6f45c4e6ebee2b5a46d4f5fb2; frozen source
+d9d7129e9463de17e29c2a36752c82e326abf22e. Preserve runtime ZIP SHA256
+78ae51a2d5bcddc56ae64c4703a4e35baa340204c2647123fefaeb175dae8a53
+and canonical kit SHA256
+5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26.
+
+Consume the already-received FAILED PACKAGE_IDENTITY report, SHA256
+c5036c52e49a9fbd65265f143e7969a05e5cdd11c84ebe7f06f14a28d95f4fbf.
+Its blank candidate/OS fields prevent attribution; no conversion/human pass exists.
+Private copy and reconciliation: C:\projects\AFP-S15-Report-Recovery-20261030\checkpoint.
+Exact owner cause is unknown. Verify the local portable delivery repair and its
+recorded checks; do not repeat unchanged successful conversion suites. The outer
+transport is distinct from the frozen original kit. Respect the owner's refusal
+to shuttle between machines: no new trip, diagnostics, report search or acceptance
+rerun is requested. The historical run-on-Win10 instructions below are superseded.
+
+Reuse seven genuine reports in C:\projects\AFP-S15-20261029\candidate without
+relabeling local startup checks as missing Windows10/collection/phone acceptance.
+Keep S15 BLOCKED until real required evidence exists, S16 NOT_STARTED and release
+authority null. Checkpoint intended evidence only; review/test/commit/push/fresh
+sync and exact-head CI. Keep S15 main integration separate: no merge authority
+is inherited from the earlier S14-only policy. Give the handover and stop.
+
+## Preserved 2026-10-29 checkpoint - superseded by the current reconciliation above
+
 # S15 continuation — owner report required; do not start S16
 
 Continue S15 only in this same AudioFileForPhone thread as the owner authorized;
