@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "target_version": "1.0.1",
-  "project_status": "REPAIR_BLOCKED",
+  "project_status": "REPAIR_IN_PROGRESS",
   "current_step": "R2",
   "active_branch": "codex/audiofileforphone-r1-launch-repair",
   "tested_source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
@@ -273,11 +273,12 @@
         "handover": "evidence/R1-HANDOVER.md"
       },
       "R2": {
-        "status": "BLOCKED",
+        "status": "COMPLETED",
         "evidence": "evidence/R2.json",
         "handover": "evidence/R2-HANDOVER.md",
         "candidate_verification": "PASSED",
-        "blockers": [
+        "blockers": [],
+        "resolved_blockers": [
           {
             "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
             "occurrences": 2,
@@ -287,12 +288,12 @@
             "source_unchanged": true,
             "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
             "safeguards_changed": false,
-            "owner_action": "none"
+            "owner_action": "none",
+            "resolution": "Fresh unchanged-source local PS7 real setup report S06-managedreal-ps7-attempt95002 passed3/3; prior failures retained; root cause remains unknown.",
+            "resolution_report_sha256": "69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05"
           }
         ],
-        "remaining_work": [
-          "Resolve the named local PS7 real-download verification gap with existing safeguards; record actual results, finish R2 checkpoint and STOP before R3. Owner testing required: none."
-        ]
+        "remaining_work": []
       },
       "R3": {
         "status": "NOT_STARTED"
@@ -300,8 +301,8 @@
     },
     "main_integration": "NOT_REQUESTED: existing reviewed-head/owner-approval policy retained.",
     "publication": "NOT_AUTHORIZED_FOR_R1_R2; preserve existing v1.0.0/v1.0.1 tags and assets; corrective release identity and exact-byte authority remain to be reconciled.",
-    "next_step": "R2",
-    "source_binding": "Canonical artifacts are built from clean detached source3f9610e, with every core member independently compared to Git blobs. Exact-package tests execute extracted artifact bytes. Earlier focused script reports preserve actual precommit base and runtime hashes; final regression campaign binds stable3f9610e. PS5.1 full aggregate passes; PS7 original network-deadline aggregate remains failed. Serialized real setup retry also failed at the unchanged300s deadline; no aggregate is relabeled. Native-process results are separate. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
+    "next_step": "R3",
+    "source_binding": "Canonical assets remain built from clean detached source3f9610e and every core Git blob. Resumed explicitly NoProfile/NonInteractive real setup ran from a clean detached3f checkout; all7 runtime/harness hashes exactly match original full/failed reports. Original18 PS7 families and prior native35 are independently rehashed/bound; fresh real3 completes20families/951checks+3observations. Original .github PS7 aggregate and serialized retry stay FAILED. PS5.1 full aggregate passes20/951. No runtime, pin, deadline or policy change. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
     "candidate": {
       "directory": "C:/projects/AFP-R2-20261030/candidate-verified",
       "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",

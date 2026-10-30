@@ -776,3 +776,15 @@ R2 verification checkpoint: canonical PS7 candidate ZIP is cd356ff92bac6c1d05a3a
      BLOCKED and next thread resumes R2. Passing implementation ServerCI does not
      relabel that client failure. No guard/deadline change, owner test, R3 work,
      publication or expanded main authority. Checkpoint safe work and STOP.
+R2 owner-authorized resumption: "Resume r2 right now" resumes this same step.
+     Fresh real PS7 setup passes3/3 on frozen3f9610e, then explicit NoProfile/
+     NonInteractive retest95002 also passes3/3 with identical7 runtime/harness
+     hashes, unchanged300s deadline and all cleanup/release/fixture checks.
+     Bind completed PS7 coverage to that explicit-host report (SHA256
+     69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05),
+     the original18 passed families and prior native35:20families/951checks+
+     3observations. The failed aggregates/retry remain failed. A short cancelled
+     diagnostic is not an accepted artifact; prior timeout cause remains unknown.
+     No runtime/pin/policy/deadline or canonical ZIP change; no speculative fix.
+     R2 is completed by actual verification, R3 remains a separate owner-started
+     thread, owner testing none, and existing release/main authority is unchanged.

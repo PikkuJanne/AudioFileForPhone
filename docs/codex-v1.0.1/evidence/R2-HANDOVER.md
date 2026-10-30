@@ -1,9 +1,9 @@
-# R2 handover — BLOCKED; clean candidate verified
+# R2 handover — COMPLETED; candidate unchanged
 
 ## Outcome and changes
 
-R2 built and verified the clean candidate, but remains BLOCKED by the repeated
-local PS7 real-download smoke deadline. Owner testing required: none. No tag, release,
+R2 is complete. The local PS7 verification gap is resolved by an actual passing
+retest on unchanged source and safeguards. Owner testing required: none. No tag, release,
 public asset or main integration was changed. R3 has not started.
 
 The extracted root is exactly AudioFileForPhone.bat, the unchanged existing
@@ -58,7 +58,8 @@ config scopes only. No ordinary Music/personal media or persistent host changes.
 | Real native console control | Existing DirectLauncher.Console.cs controller, five relocated candidate BAT cases | Production pause observed, waiting proved, key injected, original exit and owned-tree release; literal success case uses inert owned converter |
 | Final three assets | final-artifact-verification.json, SHA25671a7fdf3cee392ed4b71b1cea8714bc820ad7250ab5eaf0ef381adc893a031aa | Passed; same tested ZIP and unchanged ICO, actual Git blobs and attached report |
 | Console/failure regressions | tests/Test-ScriptResults.ps1, attempt93002 | 13/13 each shell; earlier helper-banner assertion failures preserved |
-| Full local suites | .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath docs/codex-v1/evidence/T17-dependencies-SHELL-attempt94004.json -RunLabel attempt94004 | PS5.1 full aggregate PASSED20families/951checks+3observations; PS7 aggregate FAILED at real download after18passed families; independent native35 passes, giving19successful families/948checks+3observations; serialized download retry also FAILED; no aggregate relabeled |
+| Full local suites | .github/scripts/Invoke-CiChecks.ps1 -DependenciesPath docs/codex-v1/evidence/T17-dependencies-SHELL-attempt94004.json -RunLabel attempt94004 | PS5.1 aggregate PASSED20families/951checks+3observations; PS7 original18/913 + fresh real setup3 + prior native35 complete20families/951checks+3observations; original failed aggregate/retry unchanged |
+| Resumed local PS7 real setup | Frozen source3f; S06-managedreal-ps7-attempt95002, SHA25669e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05 | PASSED3/3; real pinned download, remembered selection, fresh default64 conversion/full decode, repeat download refused without renewed consent; all7 source hashes, cleanup/release/fixtures verified |
 | Exact implementation CI | Source3f9610e; GitHub push41100582135 and PR41100588547 | Both events passed both shells; supplementary Server2025 evidence |
 
 Builds repeat exactly within each shell. Different .NET compression versions
@@ -73,15 +74,16 @@ The stable PS7 full aggregate hit its existing300s real-download body deadline;
 its18 passed families remain valid. Preserve that failed aggregate separately
 from the guarded serialized retry and final native-process results in R2.json.
 
-## Named blocker, other gaps and future R3 authority
+## Resolved checkpoint blocker and remaining R3 coverage
 
-LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE: both actual client attempts
-exceeded the unchanged300s response-body transfer deadline. Source/fixtures and
-owned cleanup passed. There is no established proxy/CDN/transport root cause.
-No deadline, pin, policy or cleanup guard changed. This is a required local
-full-regression gap, separate from the passing candidate20conversions and the
-passing Server sourceCI. Resume R2, resolve this specific gap and checkpoint
-before R3. No owner action or testing is requested.
+LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE is resolved as a verification
+gap: fresh actual client report95002 passes3/3 on source3f with the same7 runtime/
+harness hashes and unchanged300s production deadline. Both previous failures
+remain failed; transport/proxy/CDN cause is unproved. A short deliberately
+cancelled instrumented probe was diagnostic only, not artifact acceptance.
+No production code, pin, request policy, deadline or candidate bytes changed.
+Independent composition verifies all20 regression families without repeating
+19 valid families or relabeling a failed .github aggregate. No owner action.
 
 No actual Windows10 client, Explorer BAT/.lnk drop, browser extraction, deployed
 managed policy/application control, physical dialog, phone or listening pass is
@@ -104,6 +106,8 @@ Build-UserPackage; Test-UserPackage, new Test-UserPackageBuild and ScriptResults
 DISTRIBUTION; active-rule supersession note; STATE/STATUS/NEXT_SESSION/DECISIONS and R2 evidence/handover.
 No core-builder, icon/poster, dependency-pin or public-release change.
 
+Resumption changed only evidence/routing; canonical runtime/assets/ICO stayed
+unchanged. Blocked entry checkpoint804a2670c3f561bcfe8ba9fc638b5d949a412244.
 Branch: codex/audiofileforphone-r1-launch-repair; draft PR34.
 Entry checkpoint e79226455d38b3f7db2eabffdeb44581da0cf5c3; main remains separate
 at b571fd17fb1123ae9b78d44ee246b4701e021194. Implementation3f9610e was pushed and
@@ -121,38 +125,37 @@ by R2. Pending CI must remain pending until actually observed.
     STATE.json, STATUS.md, NEXT_SESSION.md, REPAIR_BRIEF.md, RELEASE_TARGET.json,
     specs/SYNC_AND_RELEASE.md and evidence/R2.json/R2-HANDOVER.md.
     Refresh actual checkout, fresh advertised feature/main refs, draft PR34,
-    exact-commit CI and live releases/tags. Resume ONLY R2; do not start R3.
-    Owner testing required: none. The clean candidate is verified, but R2 is
-    BLOCKED by LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE: full source smoke
-    and serialized retry both exceeded the unchanged production300s body bound
-    on Windows11 Pro26H2 build26300.9711 / PS7.6.5. Cleanup/source integrity passed;
-    transport/proxy/CDN cause remains unknown. PS5.1 full aggregate passed all20
-    families/951checks+3observations; PS7 has19 successful families/948checks+
-    3observations including independent native35. Preserve all genuine failures.
-    Source3f9610ee39db3ae30e965c159effede46baf00b9 push/PR ServerCI passed all4jobs;
-    supplementary Server evidence does not replace the missing local client pass.
-    Diagnose/resolve the specific remaining local verification gap using available
-    authorized environments without weakening deadlines, pins, policies or cleanup.
-    Do not repeat19 valid families merely to retry one transfer; verify actual
-    source hashes/report binding. Use a clean detached source3f for runtime tests
-    when the containing documentation checkpoint differs. Any runtime/pin/package
-    change requires new exact artifacts and affected automated verification.
-    Canonical assets: C:\projects\AFP-R2-20261030\candidate-verified; ZIP SHA256
+    exact-commit CI and live releases/tags. Complete ONLY R3. R1/R2 are complete;
+    do not restart them. Owner testing required: none. Canonical R2 source:
+    3f9610ee39db3ae30e965c159effede46baf00b9. Assets remain under
+    C:\projects\AFP-R2-20261030\candidate-verified; ZIP SHA256
     cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
-    Build11/11 per shell and exact relocated package12groups/20real conversions,
-    full decode/metadata/layout/integrity/console/icon checks already pass. Keep
-    unchanged ZIP/source evidence; raw reports are privately retained under
-    C:\projects\AFP-R2-20261030. Do not request an owner run, diagnostics, kit,
-    screenshots, logs, playback or phone check. Do not access ordinary Music or
-    private media. Keep literal direct BAT/CRLF/CMD pause/exit/policy safeguards,
-    existing icon/defaults/metadata/source safety and optional consent-based setup.
-    No publication, tag or main integration in R2. Preserve public v1.0.0/v1.0.1;
-    corrective identity/exact-byte authority remain separate R3 requirements.
-    No silent v1.0.2 selection or historical-approval expansion. Main retains the
-    reviewed-head/owner-approval default. After resolving this gap, finish R2,
-    update evidence/state/status/next-session/decisions and full handover, review,
-    commit/push, compare fresh live refs and report exact-head CI/main separately.
-    STOP before R3. If the specific environment remains broken, record BLOCKED
-    honestly, checkpoint safe work and STOP; no owner-testing assignment.
+    Preserve the two genuine local PS7 download-deadline failures. The fresh
+    unchanged-source client retest S06-managedreal-ps7-attempt95002 passes3/3;
+    root cause remains unknown. All20 source regression families are covered
+    per shell; PS7 is an explicit composed campaign, not a relabeled aggregate.
+    Reconcile corrective release identity and exact tested-byte publication
+    authority before publication. This prompt selects no version/tag or new
+    publication bytes. Preserve public v1.0.0/v1.0.1 tags/assets; no overwrite
+    or silent v1.0.2 selection. Runtime1.0.1/internal candidate revision3 are
+    not a corrective-release contract. Version/runtime/pin changes require new
+    exact artifacts and affected automated acceptance.
+    Finish R3 exact-package/client/native-shell/setup/audio acceptance using
+    isolated synthetic media and owned destinations, never ordinary Music or
+    private media. Remaining gaps include genuine Explorer/.lnk/defaultMusic
+    BAT success, actual browser extraction, Windows10,30M4A/long/seek cases and
+    exact-final setupBAT. Use available authorized environments safely; record
+    technical gaps without owner assignments. No owner kit/run/screenshots/logs/
+    playback or phone request. Retain direct literal BAT/CRLF/CMD pause/exit/
+    policy safeguards, existing ICO/defaults/metadata/source safety and optional
+    consent-based setup. Main retains reviewed-head/owner-approval policy.
+    Only with required gates and authority satisfied: exact ZIP -> verified
+    draft -> public corrective release -> independent download/automated smoke
+    of those bytes -> final branch/main sync and closure. Otherwise record the
+    specific technical/authorization blocker and checkpoint safe work truthfully.
+    Update evidence/state/status/next-session/decisions and full handover; review,
+    test, commit/push, compare fresh advertised refs, report exact-head CI/main
+    separately, then STOP. Never move a released tag or replace public bytes
+    for closure evidence. Do not invent a new owner-testing gate.
 
-Owner testing required: none. STOP at this R2 checkpoint; do not start R3.
+Owner testing required: none. STOP after R2; do not start R3 in this chat.

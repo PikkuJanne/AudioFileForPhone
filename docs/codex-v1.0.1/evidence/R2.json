@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "step": "R2",
-  "status": "BLOCKED",
+  "status": "COMPLETED",
   "date": "2026-10-30",
   "owner_testing_required": "none",
   "implementation_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
@@ -9,19 +9,7 @@
   "entry_main": "b571fd17fb1123ae9b78d44ee246b4701e021194",
   "branch": "codex/audiofileforphone-r1-launch-repair",
   "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/34",
-  "blockers": [
-    {
-      "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
-      "occurrences": 2,
-      "production_deadline_seconds": 300,
-      "scope": "Local Windows11 PS7 real pinned-vendor setup smoke; full aggregate and serialized retry failed",
-      "cleanup_verified": true,
-      "source_unchanged": true,
-      "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
-      "safeguards_changed": false,
-      "owner_action": "none"
-    }
-  ],
+  "blockers": [],
   "brief": "REPAIR_BRIEF.md",
   "brief_sha256": "6faed693912a305822b967900d49f75d7b3303b8988e9c77f343e797b5f973ff",
   "environment": {
@@ -581,6 +569,59 @@
       "cleanup_verified": true,
       "descendant_release_proved": true,
       "cases": 35
+    },
+    {
+      "family": "preliminary_resumed_real_setup",
+      "report_filename": "S06-managedreal-ps7-attempt95001.json",
+      "report_bytes": 40661,
+      "report_sha256": "2cd1aa94c94a8d8597e5962934e13dd32b155e1186af8a1881e1659069aaaffd",
+      "cases": 3,
+      "status": "pass",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "mocked_network": false,
+      "windows_build": "26300.9711",
+      "host_scope": "Genuine real setup pass; tool host did not explicitly select NoProfile; not used for completed-campaign host-condition proof."
+    },
+    {
+      "family": "completed_ps7_campaign",
+      "report_filename": "ps7-completed-campaign.json",
+      "report_bytes": 1753,
+      "report_sha256": "d99af7e75eeea31dafa91c15b6ae5a6a8d56357ebb971f55f0a6d021dc3dfcae",
+      "status": "PASSED",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "families": 20,
+      "required_checks": 951,
+      "observations": 3,
+      "source_unchanged": true,
+      "original_full_aggregate_status": "fail",
+      "original_full_aggregate_preserved": true,
+      "deadline_or_policy_changed": false,
+      "explanation": "The original PS7 full aggregate failed when real download body exceeded its existing deadline. Its first18 families passed. On unchanged source a serialized real3-case setup retry and final35-case native suite passed. This completes coverage of all20 families without calling the original aggregate a pass."
+    },
+    {
+      "family": "resumed_real_setup_retest_noprofile",
+      "report_filename": "S06-managedreal-ps7-attempt95002.json",
+      "report_bytes": 40483,
+      "report_sha256": "69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05",
+      "cases": 3,
+      "no_profile": true,
+      "noninteractive": true,
+      "process_policy_request": "Bypass",
+      "status": "pass",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "mocked_network": false,
+      "windows_build": "26300.9711"
     }
   ],
   "commands": [
@@ -609,9 +650,23 @@
         "PS7"
       ],
       "command": "tools/Build-UserPackage.ps1 -SourcePath <clean-detached-source> -SourceCommit 3f9610ee39db3ae30e965c159effede46baf00b9 -RuntimeAssetDirectory <core-tested> -OutputDirectory <fresh-candidate-verified> -PackageTestEvidencePath <passing-exact-ZIP-report>"
+    },
+    {
+      "hosts": [
+        "PS7.6.5 tool-host preliminary run; NoProfile flags not explicit"
+      ],
+      "command": "source-client-verify/tests/Test-ManagedSetupReal.ps1 -EvidencePath source-client-verify/docs/codex-v1.0.1/evidence/S06-managedreal-ps7-attempt95001.json",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9"
+    },
+    {
+      "hosts": [
+        "PS7.6.5 -NoLogo -NoProfile -NonInteractive -ExecutionPolicy Bypass"
+      ],
+      "command": "source-client-verify/tests/Test-ManagedSetupReal.ps1 -EvidencePath source-client-verify/docs/codex-v1.0.1/evidence/S06-managedreal-ps7-attempt95002.json",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9"
     }
   ],
-  "source_binding": "Canonical artifacts are built from clean detached source3f9610e, with every core member independently compared to Git blobs. Exact-package tests execute extracted artifact bytes. Earlier focused script reports preserve actual precommit base and runtime hashes; final regression campaign binds stable3f9610e. PS5.1 full aggregate passes; PS7 original network-deadline aggregate remains failed. Serialized real setup retry also failed at the unchanged300s deadline; no aggregate is relabeled. Native-process results are separate. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
+  "source_binding": "Canonical assets remain built from clean detached source3f9610e and every core Git blob. Resumed explicitly NoProfile/NonInteractive real setup ran from a clean detached3f checkout; all7 runtime/harness hashes exactly match original full/failed reports. Original18 PS7 families and prior native35 are independently rehashed/bound; fresh real3 completes20families/951checks+3observations. Original .github PS7 aggregate and serialized retry stay FAILED. PS5.1 full aggregate passes20/951. No runtime, pin, deadline or policy change. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
   "reproducibility": "All three assets repeat exactly within each host. PS5.1 and PS7 compression produces different ZIP bytes with independently verified identical17members; canonical PS7 ZIP cd356f... is the one exercised by exact-package media tests. No cross-host byte-equality claim.",
   "nonpasses": [
     {
@@ -1091,6 +1146,58 @@
       }
     ]
   },
-  "next_step": "Resume R2 only in a separate owner-started thread; resolve the named local verification blocker, checkpoint and STOP before R3. Owner testing required: none.",
-  "candidate_verification": "PASSED: clean layout/icon, build11 per shell, exact relocated ZIP12groups/20real conversions and final asset proof. R2 remains BLOCKED by the separately named local full-regression setup smoke; candidate is not release acceptance."
+  "next_step": "R3 only in a separate owner-started thread. Owner testing required: none.",
+  "candidate_verification": "PASSED: build11 per shell; exact relocated ZIP12groups/20real conversions; native BAT5cases; final3asset/icon/source proof. Full frozen-source client regression campaign complete20families/951checks+3observations each shell, with PS7 composition and prior failures explicitly retained.",
+  "resolved_blockers": [
+    {
+      "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
+      "occurrences": 2,
+      "production_deadline_seconds": 300,
+      "scope": "Local Windows11 PS7 real pinned-vendor setup smoke; full aggregate and serialized retry failed",
+      "cleanup_verified": true,
+      "source_unchanged": true,
+      "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
+      "safeguards_changed": false,
+      "owner_action": "none",
+      "resolution": "Fresh unchanged-source local PS7 real setup report S06-managedreal-ps7-attempt95002 passed3/3; prior failures retained; root cause remains unknown.",
+      "resolution_report_sha256": "69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05"
+    }
+  ],
+  "diagnostics": [
+    {
+      "report_filename": "read-wait-diagnostic-ps7-attempt1.json",
+      "report_bytes": 410233,
+      "report_sha256": "6f11399d24005e63bec19cb3d584132f034364df2edcec9e3ce88b6bcccddd80",
+      "kind": "R2_short_live_read_wait_diagnostic",
+      "status": "DIAGNOSTIC_ONLY",
+      "elapsed_seconds": 15.7586096,
+      "bytes_written": 69197540,
+      "diagnostic_cancellation_seconds": 15,
+      "complete_artifact_accepted": false,
+      "scope": "Instrumented original wait function; deliberately cancelled real HTTPS probe, not acceptance. Instrumentation can affect timing; no proven cause of earlier deadlines."
+    }
+  ],
+  "resumption": {
+    "owner_instruction": "Resume r2 right now",
+    "entry_checkpoint": "804a2670c3f561bcfe8ba9fc638b5d949a412244",
+    "runtime_or_pin_changed": false,
+    "canonical_assets_changed": false,
+    "production_deadline_seconds": 300,
+    "original_failed_reports_preserved": true,
+    "relevant_source_hashes_matched": 7,
+    "root_cause": "Not established. Verification gap resolved by an actual passing unmodified client retest, not a claimed code fix or relaxed guard.",
+    "explicit_noprofile_noninteractive_retest_sha256": "69e09506d3272b988ad8bc10722f22564b7d7340e51dccd1ca04ea393109be05",
+    "public_release_preservation": [
+      {
+        "tag": "v1.0.0",
+        "unchanged": true,
+        "fresh_api_report_sha256": "350522fee0daab8b88d0760e7628767ad456c7de3f5b70352ea9e1d4395530fc"
+      },
+      {
+        "tag": "v1.0.1",
+        "unchanged": true,
+        "fresh_api_report_sha256": "59be59fc3d281f1840a79ee68f31554efdb9898c1778172a957f58f20a0a4f32"
+      }
+    ]
+  }
 }

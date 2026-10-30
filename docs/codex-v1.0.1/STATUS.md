@@ -1,3 +1,34 @@
+# Status — R2 completed; candidate and safeguards unchanged
+
+Owner testing required: none. Clean17-member package/build11 per shell, exact
+relocated ZIP12groups/20real conversions, five native BAT cases and independent
+final3asset/icon/source proof pass. Canonical source3f9610ee39db3ae30e965c159effede46baf00b9
+and ZIP SHA256cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426
+remain unchanged in C:/projects/AFP-R2-20261030/candidate-verified/.
+
+The named local PS7 download-deadline verification gap is resolved: actual fresh
+S06-managedreal-ps7-attempt95002 PASSED3/3 on Windows11 Pro26H2 26300.9711 x64,
+PS7.6.5. All7 runtime/harness hashes match previous reports; real pinned transfer,
+setup/provenance, saved-config conversion/full decode and cleanup/release pass.
+No runtime/pin/policy/deadline changes. The two genuine prior300s body-deadline
+failures remain failed and root cause remains unknown. Diagnostic cancellation
+is not a completed download/acceptance claim.
+
+WinPS5.1 full aggregate covers20families/951checks+3observations. PS7 composed
+campaign independently binds original18families/913checks, new real setup3 and
+prior native35, completing20/951+3 without relabeling its failed aggregate.
+Source3f push/PR ServerCI passed all4jobs; final containing checkpoint exact-head
+CI/live refs are observed after push and reported separately. Main unintegrated.
+
+R1/R2 complete; R3 NOT_STARTED and requires a separate owner-started thread.
+Runtime1.0.1/layout revision3 are internal: no corrective version/tag/publication
+authority selected. No release/tag/main integration in R2. Public v1.0.0/v1.0.1
+tags/assets are preserved. Remaining client/Explorer/browser/large/long/seek/
+exact-final setupBAT acceptance and release identity/authority belong to R3.
+Full evidence/handover: evidence/R2.json and R2-HANDOVER.md. STOP before R3.
+
+## Preserved R2 blocked checkpoint — historical
+
 # Status — R2 clean candidate verified; local regression BLOCKED
 
 Owner testing required: none. R2 built the clean17-member allowlisted package:
