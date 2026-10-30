@@ -1,4 +1,13 @@
-# Merge these active rules into root AGENTS.md
+# Active focused-repair routing
+
+Root AGENTS.md, the CHARTER amendment and REPAIR_BRIEF.md supersede conflicting
+rules below. Complete only the owner-started R1/R2/R3 step per thread; owner
+testing required: none. No owner kit, diagnostics, playback or phone assignment.
+R1/R2 never publish. Preserve public v1.0.0/v1.0.1 tags/assets; reconcile corrective
+identity and exact-byte authority before R3 publication. Main retains ordinary
+reviewed policy and the existing owner-approval default.
+
+## Historical v1.0.1 merge rules — preserved, not active repair routing
 
 - The active project is the incremental v1.0.1 setup/compatibility plan under
   docs/codex-v1.0.1. Read CHARTER, STATE, STATUS and NEXT_SESSION, then only the current

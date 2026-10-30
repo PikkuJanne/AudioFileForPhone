@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target_version": "1.0.1",
-  "project_status": "REPAIR_IN_PROGRESS",
+  "project_status": "REPAIR_BLOCKED",
   "current_step": "R2",
   "active_branch": "codex/audiofileforphone-r1-launch-repair",
-  "tested_source_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
+  "tested_source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
   "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
   "runtime_zip_sha256": "632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6",
   "acceptance_kit_sha256": "5f48a6d052e813f68754b093142c3bc07021db385be208265330b6e715acfb26",
@@ -265,7 +265,7 @@
       "active_branch": "main",
       "tested_source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e"
     },
-    "tested_source_commit": "6e22c5c8394c6453e0d3428bc9fc143040126b96",
+    "tested_source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
     "steps": {
       "R1": {
         "status": "COMPLETED",
@@ -273,7 +273,26 @@
         "handover": "evidence/R1-HANDOVER.md"
       },
       "R2": {
-        "status": "IN_PROGRESS"
+        "status": "BLOCKED",
+        "evidence": "evidence/R2.json",
+        "handover": "evidence/R2-HANDOVER.md",
+        "candidate_verification": "PASSED",
+        "blockers": [
+          {
+            "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
+            "occurrences": 2,
+            "production_deadline_seconds": 300,
+            "scope": "Local Windows11 PS7 real pinned-vendor setup smoke; full aggregate and serialized retry failed",
+            "cleanup_verified": true,
+            "source_unchanged": true,
+            "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
+            "safeguards_changed": false,
+            "owner_action": "none"
+          }
+        ],
+        "remaining_work": [
+          "Resolve the named local PS7 real-download verification gap with existing safeguards; record actual results, finish R2 checkpoint and STOP before R3. Owner testing required: none."
+        ]
       },
       "R3": {
         "status": "NOT_STARTED"
@@ -282,6 +301,41 @@
     "main_integration": "NOT_REQUESTED: existing reviewed-head/owner-approval policy retained.",
     "publication": "NOT_AUTHORIZED_FOR_R1_R2; preserve existing v1.0.0/v1.0.1 tags and assets; corrective release identity and exact-byte authority remain to be reconciled.",
     "next_step": "R2",
-    "source_binding": "R1.json preserves precommit observed base and exact runtime hashes; implementation commit binds matching bytes. Final containing checkpoint/live/CI observed after push."
+    "source_binding": "Canonical artifacts are built from clean detached source3f9610e, with every core member independently compared to Git blobs. Exact-package tests execute extracted artifact bytes. Earlier focused script reports preserve actual precommit base and runtime hashes; final regression campaign binds stable3f9610e. PS5.1 full aggregate passes; PS7 original network-deadline aggregate remains failed. Serialized real setup retry also failed at the unchanged300s deadline; no aggregate is relabeled. Native-process results are separate. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
+    "candidate": {
+      "directory": "C:/projects/AFP-R2-20261030/candidate-verified",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "artifact_kind": "unpublished_R2_candidate",
+      "app_version": "1.0.1",
+      "package_revision": 3,
+      "corrective_release_version": null,
+      "tag": null,
+      "publication_authorized": false,
+      "assets": [
+        {
+          "name": "AudioFileForPhone-R2-candidate.zip",
+          "bytes": 285931,
+          "sha256": "cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 10102,
+          "sha256": "044266f4055f1d3ed12963c1a6f4f28c866724ee2a1e1a00eb3eea6af6869b44"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 189,
+          "sha256": "91270fb0722324b7df244957e60729e8e093ce1099a5b0101150026ec3e26b76"
+        }
+      ],
+      "root_entries": [
+        "AudioFileForPhone.bat",
+        "AudioFileForPhone.ico",
+        "README.txt",
+        "app/"
+      ],
+      "members": 17,
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976"
+    }
   }
 }

@@ -765,3 +765,14 @@ R2 archive follow-up: real core build caught git archive applying R1's eol=crlf
      attributes despite command-local EOL settings. Store both existing CRLF BATs
      verbatim using -text. Checkout bytes/behavior stay unchanged; exact-blob
      core build and its archive-attribute refusal guard remain untouched.
+R2 verification checkpoint: canonical PS7 candidate ZIP is cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+     Builds repeat within each host; cross-host compression bytes differ while
+     verified members match. Build11 per host, exact ZIP12groups/20real outputs
+     and final asset proof pass. WinPS5.1 full20families/951checks pass; PS7 has
+     19successful families/948checks, but real managed setup and its serialized
+     retry both exceed the unchanged300s body deadline. Preserve both failures,
+     cleanup/source proof and unknown transport cause. Name the required local
+     verification blocker LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE; R2 stays
+     BLOCKED and next thread resumes R2. Passing implementation ServerCI does not
+     relabel that client failure. No guard/deadline change, owner test, R3 work,
+     publication or expanded main authority. Checkpoint safe work and STOP.

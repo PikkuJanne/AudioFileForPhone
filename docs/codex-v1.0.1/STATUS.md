@@ -1,3 +1,38 @@
+# Status — R2 clean candidate verified; local regression BLOCKED
+
+Owner testing required: none. R2 built the clean17-member allowlisted package:
+BAT/unchanged ICO/README.txt/app. Required helpers/setup/pin/support/license remain
+under app. Root BAT directly invokes the converter; literal transport, CRLF,
+process-only Bypass and CMD pause/exit are preserved. Normal console is concise;
+warnings/errors/cancellation and detailed local logs remain. Audio defaults,
+metadata/layout, source safety, icon/posters and public releases are preserved.
+
+Source3f9610ee39db3ae30e965c159effede46baf00b9; canonical assets:
+C:/projects/AFP-R2-20261030/candidate-verified/. ZIP SHA256:
+cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
+Build-policy11/11 per shell; exact relocated ZIP12groups/20real conversions with
+full decode/metadata/layout/integrity/console checks; five native BAT cases;
+independent final3asset/source/icon proof all pass. Runtime1.0.1/layout revision3
+are internal: no corrective version/tag is selected or publication authorized.
+
+Windows11 Pro26H2 26300.9711 x64, non-elevated: WinPS5.1.26100.9711 full aggregate
+passes20families/951checks+3observations. PS7.6.5 has19successful families/948checks+
+3observations, including native35. Its full aggregate and serialized real-setup
+retry both FAILED at the unchanged production300s response-body deadline.
+LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE is the named R2 blocker. Source/
+fixture integrity and cleanup passed; network/transport root cause is unknown.
+No deadline or safeguard was weakened; genuine nonpasses remain nonpasses.
+Implementation push/PR ServerCI passes all4jobs, supplementary to client evidence.
+See evidence/R2.json and R2-HANDOVER.md for exact hashes, commands and limits.
+
+R2 remains BLOCKED; resume only R2 next thread. No R3 work/publication/main merge.
+Final containing feature sync/exact-head CI are observed after push and reported
+separately. Windows10, genuine Explorer/.lnk/defaultMusic BAT success, browser
+extraction and remaining R3 acceptance remain unverified, never owner tasks.
+Published v1.0.0/v1.0.1 tags/assets remain unchanged. STOP at this checkpoint.
+
+## Preserved R1 checkpoint — historical
+
 # Status — focused repair R1 completed
 
 R1 restores one direct built-in x64 Windows PowerShell5.1 STA launch and CMD-owned

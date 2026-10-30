@@ -1,0 +1,1096 @@
+{
+  "schema_version": 1,
+  "step": "R2",
+  "status": "BLOCKED",
+  "date": "2026-10-30",
+  "owner_testing_required": "none",
+  "implementation_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+  "entry_checkpoint": "e79226455d38b3f7db2eabffdeb44581da0cf5c3",
+  "entry_main": "b571fd17fb1123ae9b78d44ee246b4701e021194",
+  "branch": "codex/audiofileforphone-r1-launch-repair",
+  "draft_pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/34",
+  "blockers": [
+    {
+      "name": "LOCAL_PS7_MANAGED_SETUP_DOWNLOAD_BODY_DEADLINE",
+      "occurrences": 2,
+      "production_deadline_seconds": 300,
+      "scope": "Local Windows11 PS7 real pinned-vendor setup smoke; full aggregate and serialized retry failed",
+      "cleanup_verified": true,
+      "source_unchanged": true,
+      "root_cause": "Unknown; response-body transfer exceeded existing bound. No proxy/CDN/transport root cause established.",
+      "safeguards_changed": false,
+      "owner_action": "none"
+    }
+  ],
+  "brief": "REPAIR_BRIEF.md",
+  "brief_sha256": "6faed693912a305822b967900d49f75d7b3303b8988e9c77f343e797b5f973ff",
+  "environment": {
+    "windows_caption": "Microsoft Windows 11 Pro",
+    "display_version": "26H2",
+    "build": "26300.9711",
+    "architecture": "x64",
+    "elevated_administrator_role": false,
+    "powershell51": "5.1.26100.9711",
+    "powershell7": "7.6.5",
+    "package_media_tools": "External C:/ffmpeg/bin, used by absolute path; not bundled",
+    "full_ci_tools": "Freshly provisioned exact .github/dependencies.json pins; one actual PS7 provisioning record reused verbatim by both suite hosts, independently revalidated before execution"
+  },
+  "candidate": {
+    "directory": "C:/projects/AFP-R2-20261030/candidate-verified",
+    "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+    "artifact_kind": "unpublished_R2_candidate",
+    "app_version": "1.0.1",
+    "package_revision": 3,
+    "corrective_release_version": null,
+    "tag": null,
+    "publication_authorized": false,
+    "assets": [
+      {
+        "name": "AudioFileForPhone-R2-candidate.zip",
+        "bytes": 285931,
+        "sha256": "cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10102,
+        "sha256": "044266f4055f1d3ed12963c1a6f4f28c866724ee2a1e1a00eb3eea6af6869b44"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 189,
+        "sha256": "91270fb0722324b7df244957e60729e8e093ce1099a5b0101150026ec3e26b76"
+      }
+    ],
+    "root_entries": [
+      "AudioFileForPhone.bat",
+      "AudioFileForPhone.ico",
+      "README.txt",
+      "app/"
+    ],
+    "members": 17,
+    "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+    "files": {
+      "AudioFileForPhone.bat": "fbcdb7e85a24f851339261eb38339446c35e139b529dacfec2605f26ff4f78df",
+      "AudioFileForPhone.ico": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+      "README.txt": "d7a31ec36f506b8f71080479e3bd9a7f01b8e5b5d1f3af0d7313b38ca7591646",
+      "app/AudioFileForPhone.Checks.ps1": "3222bb3ade91193eaa3f4520b101c5fd1375db720cee2d90f38a02f4041c843e",
+      "app/AudioFileForPhone.Diagnostics.ps1": "dd987bbbd9d8bc31b54318f32e813aa604f7913248f4dc2afeddd66ce9f9d0d6",
+      "app/AudioFileForPhone.Helpers.ps1": "fd2caa865a8dd3a9163e152c2cdfb4f640789e77ca9a0aac60eaa57c3b98ad88",
+      "app/AudioFileForPhone.ManagedSetup.ps1": "facc047465e1a2c7b094d5f871d21d8399124d57985577ebe2ed1bddd1c06538",
+      "app/AudioFileForPhone.ps1": "7b9f59cb4e6228760178573690245b63392afd56b925f443ecf283143f9c2551",
+      "app/CHANGELOG.md": "5948f5788187e26c5012c3f52c3faaae13adefee853e1c06ee92bf2c349f972b",
+      "app/Check-AudioFileForPhone.ps1": "1a5601a9d6b6dcb9cd7bd57745e24e6156559f837a6921255a3ee9537e0f3883",
+      "app/LICENSE": "714ffa7a21614e637d7dbb17a2e86e4575d7ecd2b6d36b5b67ab3fdcc4193477",
+      "app/README.md": "aa46ef5dc006613ff5e2b08fec3dd346ac126b834adaf2533939e686414a6646",
+      "app/SECURITY.md": "0fef2b45f242b232f0dd5d801b35ce1bdd8f6d966ad4b26830435dec8b6e4329",
+      "app/SUPPORT.md": "c77b4d71587333c2d444a396fb004fa86b2c2a50e575e39dbf9ed4a93d0a17f6",
+      "app/Setup-AudioFileForPhone.bat": "e7a3780c5276f5a4aaa3dd504b29a71165f3df169532e1b0e7bdec08dccda655",
+      "app/Setup-AudioFileForPhone.ps1": "29cde3ce0258e8b79781bdc7748676df551a1ea6af51a12a3dba886c1109f69b",
+      "app/tools/ffmpeg-download.json": "46a5b9150f7905296c1623d17dbcbdd2d2f8984909050bea59af63140745156a"
+    },
+    "file_bytes": {
+      "AudioFileForPhone.bat": 2266,
+      "AudioFileForPhone.ico": 370070,
+      "README.txt": 2235,
+      "app/AudioFileForPhone.Checks.ps1": 21704,
+      "app/AudioFileForPhone.Diagnostics.ps1": 21926,
+      "app/AudioFileForPhone.Helpers.ps1": 176506,
+      "app/AudioFileForPhone.ManagedSetup.ps1": 44910,
+      "app/AudioFileForPhone.ps1": 48489,
+      "app/CHANGELOG.md": 4534,
+      "app/Check-AudioFileForPhone.ps1": 9892,
+      "app/LICENSE": 1070,
+      "app/README.md": 26822,
+      "app/SECURITY.md": 10176,
+      "app/SUPPORT.md": 24537,
+      "app/Setup-AudioFileForPhone.bat": 2087,
+      "app/Setup-AudioFileForPhone.ps1": 6908,
+      "app/tools/ffmpeg-download.json": 833
+    },
+    "attached_test_report_sha256": "5a29fb6327b20136d6ae78845932a394b819377546264d6bbfde6e64f3d3c5e7"
+  },
+  "changes": [
+    "Replaced historical published-byte pin with exact clean detached source and every-core-blob verification; explicit final17-member allowlist.",
+    "Root BAT directly invokes app converter; unchanged ICO; README.txt; required helpers/setup/pin/support/license under app. Legacy launcher/probe/redundant BATs retained in Git only.",
+    "Both BATs stored verbatim CRLF with -text, preserving checkout and git archive exact bytes. Final builder explicitly emits CRLF and records generated provenance; core integrity/attribute refusal guards unchanged.",
+    "One normal heading and final result; concise input/destination/progress; detailed commands/mappings/native diagnostics in local log or Verbose. Warnings/errors/partial failure/cancellation remain visible."
+  ],
+  "tests": [
+    {
+      "family": "user_package_build_policy",
+      "report_filename": "build-policy-ps51-attempt1.json",
+      "report_bytes": 5975,
+      "report_sha256": "2a55688ec2bff50a470ca8940e872d7966ec870a7b9a7922f7322d30a4c0353c",
+      "status": "PASSED",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "5.1.26100.9711",
+      "edition": "Desktop",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "core_unchanged": true,
+      "stage_cleanup_verified": true,
+      "reparse_cleanup_verified": true,
+      "runtime_zip_sha256": "0fa5dbfdfa1c0519969d8f13965853d68678523c86d774ed1ecdcfa80192e06f",
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+      "cases": 11
+    },
+    {
+      "family": "user_package_build_policy",
+      "report_filename": "build-policy-ps7-attempt1.json",
+      "report_bytes": 4318,
+      "report_sha256": "3d44c4c2a20b661a00ae7ffa001d6caef7a57f159e7dfc58117e93cfdcd3619b",
+      "status": "PASSED",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "edition": "Core",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "core_unchanged": true,
+      "stage_cleanup_verified": true,
+      "reparse_cleanup_verified": true,
+      "runtime_zip_sha256": "cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426",
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+      "cases": 11
+    },
+    {
+      "family": "exact_relocated_package",
+      "report_filename": "package-verification-attempt1.json",
+      "report_bytes": 31203,
+      "report_sha256": "5a29fb6327b20136d6ae78845932a394b819377546264d6bbfde6e64f3d3c5e7",
+      "status": "PASSED",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "source_unchanged": true,
+      "package_unchanged": true,
+      "dependencies_unchanged": true,
+      "policies_unchanged": true,
+      "runtime_zip_sha256": "cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426",
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+      "total_outputs": 20.0,
+      "cases": 12
+    },
+    {
+      "family": "final_three_assets",
+      "report_filename": "final-artifact-verification.json",
+      "report_bytes": 7802,
+      "report_sha256": "71a7fdf3cee392ed4b71b1cea8714bc820ad7250ab5eaf0ef381adc893a031aa",
+      "status": "PASSED",
+      "source_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "icon_sha256": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+      "cases": 0
+    },
+    {
+      "family": "script_results_console_and_failure_regressions",
+      "report_filename": "T16-script-ps51-attempt93002.json",
+      "report_bytes": 48551,
+      "report_sha256": "dd540f579c1aee1a22a805d4fdcb32dc41583e9e89e3a85e1f9051fa5061de87",
+      "status": "pass",
+      "tested_commit": "e79226455d38b3f7db2eabffdeb44581da0cf5c3",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 13
+    },
+    {
+      "family": "script_results_console_and_failure_regressions",
+      "report_filename": "T16-script-ps7-attempt93002.json",
+      "report_bytes": 28560,
+      "report_sha256": "69fe15be443cd9d221b4851811b67f6be65b0977723598e17eca5a2bb7965e40",
+      "status": "pass",
+      "tested_commit": "e79226455d38b3f7db2eabffdeb44581da0cf5c3",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 13
+    },
+    {
+      "family": "full_local_ci",
+      "report_filename": "T17-ci-ps51-attempt94004.json",
+      "report_bytes": 93567,
+      "report_sha256": "0ed5fff1135a6df5eb12039eba897bb974ff6313b19bc40314d164cab0555c40",
+      "status": "pass",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "cases": 0,
+      "families": 20,
+      "required_checks": 951,
+      "observations": 3,
+      "family_results": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 41,
+          "observations": null,
+          "report_sha256": "1d027bcaa307c5e2a41c446b3acc8fa3e5621be9049cab7d003ccfda4a52ef76"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 22,
+          "observations": null,
+          "report_sha256": "0f86059ec345e221ed8716d4c0ab211232c83cc2cb539e5722be2af88a2b254f"
+        },
+        {
+          "family": "releasegates",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "9dec09d0d794b2a80fa6ff3ffe63cd6d13b19bd1b02254d303739e8b2f1bbaa5"
+        },
+        {
+          "family": "cleanfirst",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "6352ff5fc353d0301fe206d7cba57587bb2b647047f0b3b502596d3e7173dd23"
+        },
+        {
+          "family": "directlauncher",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 39,
+          "observations": null,
+          "report_sha256": "0a19013f153b0a5e4952161a7b1235d0ef15c8a18c12fd0a9db704ccc7c65a19"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 61,
+          "observations": null,
+          "report_sha256": "90aa142230433f748df4b73edfb1dbd01a5360e827a080b981a23bc71795ede8"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": 3,
+          "report_sha256": "e8bade2f8677fd3ab2ebfcc1b68d13872ce23cd8f4bc55e010110180fd61d26e"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "42901eabc3cbaf95730124947b8097608708bb7ea30484afe7be90c54cece749"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 12,
+          "observations": null,
+          "report_sha256": "12639fbcb9e12a9c7a142770878ac3c48fdaa9fe6d1e49457345ec1ec5e3d9bb"
+        },
+        {
+          "family": "encoding-ci",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 504,
+          "observations": null,
+          "report_sha256": "3df62f475ae8a93b34fbfa2bd80073cb2ef3dfd471bd4810e7a1b3a8fd06451d"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "11e7e50249a03a206c2d1cb8aefda97185b3fe955f8eb1dd6491653b3c7fa3eb"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "21edb68d3327d9c5e40700c97b179a45d4a9458c408196ac9e8b2ee1c0dbc346"
+        },
+        {
+          "family": "firstrunsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "0b72e81294220fc6e25fe243e4ee7acf1976bbf673795a38186c41b06727f36f"
+        },
+        {
+          "family": "metadatainteraction",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 23,
+          "observations": null,
+          "report_sha256": "45d9714ee26f63c0a4f9264e31131c868638a852a1b18cbc9b2565207c4624b8"
+        },
+        {
+          "family": "managedsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "aabb4e94b88769c81003e6ccdfa2aec7fc02e1b1b8af2e236eb9399bbc7f9bbb"
+        },
+        {
+          "family": "support",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 27,
+          "observations": null,
+          "report_sha256": "5a77c8f0413e98b966a73d7d569ad010fad4f23ef19c269914ff2162e17e7d18"
+        },
+        {
+          "family": "corpus",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "051df42b89a8607273c96a66a1e8ab36e510fe816cc11229f8b1017f9bfd122b"
+        },
+        {
+          "family": "filesystem",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 5,
+          "observations": null,
+          "report_sha256": "88da08c122f9aa534eb813a30b0fb14636df161a960fc32dee9f478493798312"
+        },
+        {
+          "family": "managedreal",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 3,
+          "observations": null,
+          "report_sha256": "282443f4da0635d65a14d47df675915c44f3e9e0ccb9cae60ae0500019371950"
+        },
+        {
+          "family": "native",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 35,
+          "observations": null,
+          "report_sha256": "1b0c9d3db3bc7840f877b4d346a2da3eed7e7aaae3a796ea059dcc0c18536462"
+        }
+      ]
+    },
+    {
+      "family": "full_local_ci",
+      "report_filename": "T17-ci-ps7-attempt94004.json",
+      "report_bytes": 54500,
+      "report_sha256": "75922e7801654ca69c6936f31b2ca7c27556b87a4164a978c9f419a0841032c9",
+      "status": "fail",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "cases": 0,
+      "families": 19,
+      "required_checks": null,
+      "observations": null,
+      "family_results": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 41,
+          "observations": null,
+          "report_sha256": "fc63c12c93d414c535497211c613678ec8b865b3962970bef835cf1315db8408"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 22,
+          "observations": null,
+          "report_sha256": "debb7448ea020637ae4b1708d150ae467ab0ca4dfcb5a99882c76d954a86a4d2"
+        },
+        {
+          "family": "releasegates",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "999153b743a6732bc1ac1791f69b57004ed992c8b0be1a0e502dc1dec43d5d76"
+        },
+        {
+          "family": "cleanfirst",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "50e4f506c2f79bc91099dc6838ea7ac3b6675ff859c152fbd212ec820a7c5eb2"
+        },
+        {
+          "family": "directlauncher",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 39,
+          "observations": null,
+          "report_sha256": "b22fbf9d2709a0b0223a1616b2de6aecb971251cdc63710d33343c8d65462231"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 61,
+          "observations": null,
+          "report_sha256": "c5c30094a3b840d4dec39371c362fe21e0b73b9d440beb42f5364a820bd6df8b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": 3,
+          "report_sha256": "f91c4bb0814c50bb2eb268f3aaf3dbe6b6f4e8329ba52f47d07a4d30ebf45dc2"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "13160e9366bfbe6ef7fddc86c1bbb5197979ce689a2bdc327aa132ab90c95850"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 12,
+          "observations": null,
+          "report_sha256": "b95a634f56255a70d3df0d1f0a15f97d81585b0027b8ac2592244e3cde6245c0"
+        },
+        {
+          "family": "encoding-ci",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 504,
+          "observations": null,
+          "report_sha256": "8188effd0de78bc0f2126d4557f07312472a6e64e522de3b8ccb59797fa4f415"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "cb67f7dee9e7a1447f4dc7407b3f0c0d2cdc4216184fafe1a2713bab8091e539"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "f76a5f729ed6392b492f0c857e1ef719009ef385f00315a836d131bf6715b135"
+        },
+        {
+          "family": "firstrunsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "ab295ffa2144f30320303aae0a0818871e6514527ad30c771c7f872fae875369"
+        },
+        {
+          "family": "metadatainteraction",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 23,
+          "observations": null,
+          "report_sha256": "ef2ddd5edd949af3a5148a5c8a05659343cf16b6218ebf57b112457225e56bfd"
+        },
+        {
+          "family": "managedsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "f337324c3b1d4ef4b8dce4ba35276f21ef145b2e2c448c72b40dd985217f7a31"
+        },
+        {
+          "family": "support",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 27,
+          "observations": null,
+          "report_sha256": "6bbb16d4fb573a3e7ba3bc0838725b5faadb9c48fab34803616e97d2cb54e034"
+        },
+        {
+          "family": "corpus",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "b09870dad7817e43d1eb8ce027b0171b9dd53a541cefe76076dac1954b6bca8d"
+        },
+        {
+          "family": "filesystem",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 5,
+          "observations": null,
+          "report_sha256": "b0109b3500fa67b66256732029585259d5df0577f76349bfabb4b5aadc071931"
+        },
+        {
+          "family": "managedreal",
+          "status": "fail",
+          "exit_code": 1,
+          "required_checks": null,
+          "observations": null,
+          "report_sha256": "c1c9a6f5d3bae6aa7d7aae0ea9ee6725a927f806e659e840be639ef4d0d56088"
+        }
+      ]
+    },
+    {
+      "family": "serialized_real_setup_retry",
+      "report_filename": "S06-managedreal-ps7-attempt94005.json",
+      "report_bytes": 7843,
+      "report_sha256": "231af21a3b539da4c60d7c29ea74665246074f2dc07e23115376a4e6c0519cc2",
+      "status": "fail",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 1
+    },
+    {
+      "family": "final_native_process",
+      "report_filename": "T17-native-ps7-attempt94005.json",
+      "report_bytes": 45045,
+      "report_sha256": "5c26ce8f63004f9005c8985f1085ac64c14f9761911bef08b1354593dd20643a",
+      "status": "pass",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 35
+    }
+  ],
+  "commands": [
+    {
+      "hosts": [
+        "WinPS5.1",
+        "PS7"
+      ],
+      "command": "tests/Test-UserPackageBuild.ps1 -SourcePath <clean-detached-source> -SourceCommit 3f9610ee39db3ae30e965c159effede46baf00b9 -RuntimeAssetDirectory <core-tested> -EvidencePath <private-fresh-report>"
+    },
+    {
+      "hosts": [
+        "PS7 orchestrator; real WinPS5.1 and PS7 applications"
+      ],
+      "command": "tests/Test-UserPackage.ps1 -PackageDirectory <candidate-tested> -CoreRuntimeZipPath <core-tested>/AudioFileForPhone-v1.0.1.zip -FfmpegDirectory C:/ffmpeg/bin -PowerShell7Path <available-executable> -EvidencePath <private-fresh-report>"
+    },
+    {
+      "hosts": [
+        "WinPS5.1",
+        "PS7"
+      ],
+      "command": ".github/scripts/Invoke-CiChecks.ps1 -DependenciesPath docs/codex-v1/evidence/T17-dependencies-<shell>-attempt94004.json -RunLabel attempt94004"
+    },
+    {
+      "hosts": [
+        "PS7"
+      ],
+      "command": "tools/Build-UserPackage.ps1 -SourcePath <clean-detached-source> -SourceCommit 3f9610ee39db3ae30e965c159effede46baf00b9 -RuntimeAssetDirectory <core-tested> -OutputDirectory <fresh-candidate-verified> -PackageTestEvidencePath <passing-exact-ZIP-report>"
+    }
+  ],
+  "source_binding": "Canonical artifacts are built from clean detached source3f9610e, with every core member independently compared to Git blobs. Exact-package tests execute extracted artifact bytes. Earlier focused script reports preserve actual precommit base and runtime hashes; final regression campaign binds stable3f9610e. PS5.1 full aggregate passes; PS7 original network-deadline aggregate remains failed. Serialized real setup retry also failed at the unchanged300s deadline; no aggregate is relabeled. Native-process results are separate. Containing docs checkpoint/live refs/exact-head CI are observed after push without self-referential commits.",
+  "reproducibility": "All three assets repeat exactly within each host. PS5.1 and PS7 compression produces different ZIP bytes with independently verified identical17members; canonical PS7 ZIP cd356f... is the one exercised by exact-package media tests. No cross-host byte-equality claim.",
+  "nonpasses": [
+    {
+      "family": "genuine_preparation_nonpass",
+      "report_filename": "T16-script-ps51-attempt93001.json",
+      "report_bytes": 13716,
+      "report_sha256": "970cba7c18a7e6626258dfd4f9b407f523548c60aad4c16d3a2c18df02027bd3",
+      "status": "fail",
+      "tested_commit": "e79226455d38b3f7db2eabffdeb44581da0cf5c3",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 1,
+      "explanation": "Initial concise-console assertion caught full helper version banners; corrected helper display, assertions retained."
+    },
+    {
+      "family": "genuine_preparation_nonpass",
+      "report_filename": "T17-ci-ps51-attempt94001.json",
+      "report_bytes": 70118,
+      "report_sha256": "7728935483fa5a959279e4bba7cabcc4437e3ffb69aaed4f5b33de803a96e3a7",
+      "status": "fail",
+      "tested_commit": "48e0857bdd9ae9bd7447a83f89654879b2a05568",
+      "shell": "5.1.26100.9711",
+      "windows_build": "26300.9711",
+      "source_unchanged": false,
+      "cases": 0,
+      "families": 7,
+      "required_checks": null,
+      "observations": null,
+      "family_results": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 41,
+          "observations": null,
+          "report_sha256": "76093f13110ad6d992786c45bbddf50053475c1b2e5733c9584eada3378979db"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 22,
+          "observations": null,
+          "report_sha256": "2660a1632ca3ba74ece5035dae6c0a8238d145b9b2e7d2ab0a80356eaa05c5ff"
+        },
+        {
+          "family": "releasegates",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "944df637430a4a0b9a5c7f29062d825a2cc4b5be2808b3c5b99d23cc8d5dffc4"
+        },
+        {
+          "family": "cleanfirst",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "c5e49c4b498bb5f627e77f6ab2519792b363d1b61e5cde449bdffee1d346c81a"
+        },
+        {
+          "family": "directlauncher",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 39,
+          "observations": null,
+          "report_sha256": "d3b2e64c700b52cfdacb1b76fae82a0d9d29ce5fb838f6004de934b9ca4f13ab"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 61,
+          "observations": null,
+          "report_sha256": "28b6bf336b09b63499de45b8a57096496120cb6e35e7970fca11f54b8c1e200b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": null,
+          "observations": null,
+          "report_sha256": "610651b2ef3b3a91d0b9c6aa1b9d21ca40a4a192076f48ed8fe2a85c12017ee5"
+        }
+      ],
+      "explanation": "Top source48e0857 and later child3f9610e differed during package repair; parent source/commit guard correctly refused. Individual baseline passed. Replaced by stable-source full rerun, not relabeled."
+    },
+    {
+      "family": "genuine_preparation_nonpass",
+      "report_filename": "T16-script-ps7-attempt93001.json",
+      "report_bytes": 8785,
+      "report_sha256": "f67fe790b1c53049371a9be74d513e54d8b0c2c4c7b377eb16299fa607f7b232",
+      "status": "fail",
+      "tested_commit": "e79226455d38b3f7db2eabffdeb44581da0cf5c3",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "cases": 1,
+      "explanation": "Initial concise-console assertion caught full helper version banners; corrected helper display, assertions retained."
+    },
+    {
+      "family": "genuine_preparation_nonpass",
+      "report_filename": "T17-ci-ps7-attempt94001.json",
+      "report_bytes": 41631,
+      "report_sha256": "8dabae49ec777fc8dbee95c7502270bb430b81837e5a61ac72a0a25dae489ba6",
+      "status": "fail",
+      "tested_commit": "48e0857bdd9ae9bd7447a83f89654879b2a05568",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": false,
+      "cases": 0,
+      "families": 7,
+      "required_checks": null,
+      "observations": null,
+      "family_results": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 41,
+          "observations": null,
+          "report_sha256": "230204d4df1cecd40a1d669257aa90a9df495fcede7f8953c2cc4f5582006113"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 22,
+          "observations": null,
+          "report_sha256": "6bd6214d60326bed33e0ad98f9df40ecde04566bce4517df3ce9f7372b48f53b"
+        },
+        {
+          "family": "releasegates",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "37b390a17a5707b88bcff1a3acc7230c7ed4be65beab0ce111a43e46af332647"
+        },
+        {
+          "family": "cleanfirst",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "80e2565a479442ddb128da2d864a618684e44a9d50a4e471fbf03d32df581e15"
+        },
+        {
+          "family": "directlauncher",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 39,
+          "observations": null,
+          "report_sha256": "b3e09638546561dee4411eded9e04e46dba93f93767e73fe85b2121b0f1331e6"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 61,
+          "observations": null,
+          "report_sha256": "4203c29f006618b02c077b8a21ff28e4d89f635825f621a6f85e2cf67f184af6"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": null,
+          "observations": null,
+          "report_sha256": "5abf39d135d8f14b9bc131c2325856767e1d18ec203d50e63bd29d1ea272b89a"
+        }
+      ],
+      "explanation": "Top source48e0857 and later child3f9610e differed during package repair; parent source/commit guard correctly refused. Individual baseline passed. Replaced by stable-source full rerun, not relabeled."
+    },
+    {
+      "family": "full_local_ci",
+      "report_filename": "T17-ci-ps7-attempt94004.json",
+      "report_bytes": 54500,
+      "report_sha256": "75922e7801654ca69c6936f31b2ca7c27556b87a4164a978c9f419a0841032c9",
+      "status": "fail",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "cases": 0,
+      "families": 19,
+      "required_checks": null,
+      "observations": null,
+      "family_results": [
+        {
+          "family": "unit",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 41,
+          "observations": null,
+          "report_sha256": "fc63c12c93d414c535497211c613678ec8b865b3962970bef835cf1315db8408"
+        },
+        {
+          "family": "ci-dependencyguards",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 22,
+          "observations": null,
+          "report_sha256": "debb7448ea020637ae4b1708d150ae467ab0ca4dfcb5a99882c76d954a86a4d2"
+        },
+        {
+          "family": "releasegates",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "999153b743a6732bc1ac1791f69b57004ed992c8b0be1a0e502dc1dec43d5d76"
+        },
+        {
+          "family": "cleanfirst",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "50e4f506c2f79bc91099dc6838ea7ac3b6675ff859c152fbd212ec820a7c5eb2"
+        },
+        {
+          "family": "directlauncher",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 39,
+          "observations": null,
+          "report_sha256": "b22fbf9d2709a0b0223a1616b2de6aecb971251cdc63710d33343c8d65462231"
+        },
+        {
+          "family": "package",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 61,
+          "observations": null,
+          "report_sha256": "c5c30094a3b840d4dec39371c362fe21e0b73b9d440beb42f5364a820bd6df8b"
+        },
+        {
+          "family": "baseline",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": 3,
+          "report_sha256": "f91c4bb0814c50bb2eb268f3aaf3dbe6b6f4e8329ba52f47d07a4d30ebf45dc2"
+        },
+        {
+          "family": "help",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 7,
+          "observations": null,
+          "report_sha256": "13160e9366bfbe6ef7fddc86c1bbb5197979ce689a2bdc327aa132ab90c95850"
+        },
+        {
+          "family": "setupencoding",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 12,
+          "observations": null,
+          "report_sha256": "b95a634f56255a70d3df0d1f0a15f97d81585b0027b8ac2592244e3cde6245c0"
+        },
+        {
+          "family": "encoding-ci",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 504,
+          "observations": null,
+          "report_sha256": "8188effd0de78bc0f2126d4557f07312472a6e64e522de3b8ccb59797fa4f415"
+        },
+        {
+          "family": "shortoperations",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "cb67f7dee9e7a1447f4dc7407b3f0c0d2cdc4216184fafe1a2713bab8091e539"
+        },
+        {
+          "family": "toolselection",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "f76a5f729ed6392b492f0c857e1ef719009ef385f00315a836d131bf6715b135"
+        },
+        {
+          "family": "firstrunsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 15,
+          "observations": null,
+          "report_sha256": "ab295ffa2144f30320303aae0a0818871e6514527ad30c771c7f872fae875369"
+        },
+        {
+          "family": "metadatainteraction",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 23,
+          "observations": null,
+          "report_sha256": "ef2ddd5edd949af3a5148a5c8a05659343cf16b6218ebf57b112457225e56bfd"
+        },
+        {
+          "family": "managedsetup",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 50,
+          "observations": null,
+          "report_sha256": "f337324c3b1d4ef4b8dce4ba35276f21ef145b2e2c448c72b40dd985217f7a31"
+        },
+        {
+          "family": "support",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 27,
+          "observations": null,
+          "report_sha256": "6bbb16d4fb573a3e7ba3bc0838725b5faadb9c48fab34803616e97d2cb54e034"
+        },
+        {
+          "family": "corpus",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 14,
+          "observations": null,
+          "report_sha256": "b09870dad7817e43d1eb8ce027b0171b9dd53a541cefe76076dac1954b6bca8d"
+        },
+        {
+          "family": "filesystem",
+          "status": "pass",
+          "exit_code": 0,
+          "required_checks": 5,
+          "observations": null,
+          "report_sha256": "b0109b3500fa67b66256732029585259d5df0577f76349bfabb4b5aadc071931"
+        },
+        {
+          "family": "managedreal",
+          "status": "fail",
+          "exit_code": 1,
+          "required_checks": null,
+          "observations": null,
+          "report_sha256": "c1c9a6f5d3bae6aa7d7aae0ea9ee6725a927f806e659e840be639ef4d0d56088"
+        }
+      ],
+      "explanation": "Unchanged local PS7 production300s download-body deadline exceeded; source/fixture preservation and cleanup verified. Full source ServerCI passes separately; not a client pass."
+    },
+    {
+      "family": "serialized_real_setup_retry",
+      "report_filename": "S06-managedreal-ps7-attempt94005.json",
+      "report_bytes": 7843,
+      "report_sha256": "231af21a3b539da4c60d7c29ea74665246074f2dc07e23115376a4e6c0519cc2",
+      "status": "fail",
+      "tested_commit": "3f9610ee39db3ae30e965c159effede46baf00b9",
+      "shell": "7.6.5",
+      "windows_build": "26300.9711",
+      "source_unchanged": true,
+      "synthetic_unchanged": true,
+      "cleanup_verified": true,
+      "descendant_release_proved": true,
+      "cases": 1,
+      "explanation": "Unchanged local PS7 production300s download-body deadline exceeded; source/fixture preservation and cleanup verified. Full source ServerCI passes separately; not a client pass."
+    }
+  ],
+  "other_preparation_failures": [
+    "First core build correctly refused invocation outside the detached source; rerun using contained builder.",
+    "Second core build correctly refused archive-transformed BAT bytes under eol=crlf. Two BAT mismatches were independently identified; -text plus storedCRLF fixed the source contract without changing Build-Package guards.",
+    "First user build exposed multiple Get-Command git.exe matches concatenated as one executable path. Selected the first resolved application, then rebuilt from new exact source.",
+    "Initial targeted git add did not refresh unchanged BAT stat entries after attribute change; explicit targeted renormalize recorded actualCRLF. No force/reset/clean or history rewrite."
+  ],
+  "coverage_limits": [
+    "No Windows10 client execution in R2; Windows11 build26300.9711 only. Server CI supplementary.",
+    "No actual Explorer BAT or .lnk drop; native hidden console tests observe real pause/wait/injected key/exit/owned-tree release. Literal-success case uses an inert owned converter; real packaged failures use actual BAT/runtime.",
+    "Successful BAT encoding to its Music default was not run in R2 to avoid ordinary Music.20 actual package PS1 conversions use explicit owned OutputParent.",
+    "Internet marks are deterministic Zone.Identifier ADS on disposable copies, not actual browser extraction. No real managed-policy or application-control deployment.",
+    "No new physical dialogs/phone/human listening/full personal collection claim. Owner-reported recovery remains historical only.",
+    "R3 still owns single/30-M4A/long-duration/seek, exact-final setupBAT and genuine shell cases plus any remaining supported-client coverage."
+  ],
+  "release_and_git": {
+    "publication_performed": false,
+    "tags_changed": false,
+    "public_assets_changed": false,
+    "existing_releases_preserved": [
+      "v1.0.0",
+      "v1.0.1"
+    ],
+    "main_integration": "NOT_REQUESTED; existing reviewed-head/owner-approval default retained",
+    "feature_sync": "Implementation3f9610e pushed and independently matched live advertised branch; containing checkpoint refreshed after final push",
+    "exact_head_ci": "Observe exact containing checkpoint after push; pending is not passed",
+    "r3_authorization_gap": "Corrective release identity and exact tested-byte publication authority not reconciled. Runtime1.0.1/internal candidate does not authorize overwriting occupiedv1.0.1 or choosingv1.0.2. Reconcile before changing version/contract and publishing.",
+    "preservation_observations": [
+      {
+        "identity": {
+          "id": 410779813,
+          "tag": "v1.0.0",
+          "draft": false,
+          "prerelease": false,
+          "published_at": "2026-10-12T16:47:31Z",
+          "assets": [
+            {
+              "id": 634242834,
+              "name": "AudioFileForPhone-v1.0.0.zip",
+              "size": 53958,
+              "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+            },
+            {
+              "id": 634242836,
+              "name": "release-manifest.json",
+              "size": 4162,
+              "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+            },
+            {
+              "id": 634242837,
+              "name": "SHA256SUMS.txt",
+              "size": 183,
+              "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+            }
+          ]
+        },
+        "before_report_sha256": "350522fee0daab8b88d0760e7628767ad456c7de3f5b70352ea9e1d4395530fc",
+        "after_report_sha256": "350522fee0daab8b88d0760e7628767ad456c7de3f5b70352ea9e1d4395530fc",
+        "unchanged": true
+      },
+      {
+        "identity": {
+          "id": 429170892,
+          "tag": "v1.0.1",
+          "draft": false,
+          "prerelease": false,
+          "published_at": "2026-10-30T15:08:54Z",
+          "assets": [
+            {
+              "id": 692603804,
+              "name": "AudioFileForPhone-v1.0.1.zip",
+              "size": 128139,
+              "digest": "sha256:632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6"
+            },
+            {
+              "id": 692603805,
+              "name": "release-manifest.json",
+              "size": 12118,
+              "digest": "sha256:8587279cddc03e31954cc747857c73ead36b8b90d777a7ca9d1ab1e684e90887"
+            },
+            {
+              "id": 692603802,
+              "name": "SHA256SUMS.txt",
+              "size": 183,
+              "digest": "sha256:1a93c76f1473b9b67555c3e0fd1aaae8d81ca347045ea67faf89ef76c8775ee3"
+            }
+          ]
+        },
+        "before_report_sha256": "59be59fc3d281f1840a79ee68f31554efdb9898c1778172a957f58f20a0a4f32",
+        "after_report_sha256": "59be59fc3d281f1840a79ee68f31554efdb9898c1778172a957f58f20a0a4f32",
+        "unchanged": true
+      }
+    ],
+    "advertised_main_and_tag_refs_unchanged": true,
+    "implementation_source_ci": [
+      {
+        "databaseId": 41100582135,
+        "headSha": "3f9610ee39db3ae30e965c159effede46baf00b9",
+        "event": "push",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/41100582135"
+      },
+      {
+        "databaseId": 41100588547,
+        "headSha": "3f9610ee39db3ae30e965c159effede46baf00b9",
+        "event": "pull_request",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/41100588547"
+      }
+    ]
+  },
+  "next_step": "Resume R2 only in a separate owner-started thread; resolve the named local verification blocker, checkpoint and STOP before R3. Owner testing required: none.",
+  "candidate_verification": "PASSED: clean layout/icon, build11 per shell, exact relocated ZIP12groups/20real conversions and final asset proof. R2 remains BLOCKED by the separately named local full-regression setup smoke; candidate is not release acceptance."
+}
