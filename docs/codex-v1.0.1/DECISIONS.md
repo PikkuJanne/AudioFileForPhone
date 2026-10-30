@@ -761,3 +761,7 @@ R2 - 2026-10-30, clean-package repair: replace the historical published-payload
      Validate build refusals, relocated exact ZIP/icon, real synthetic conversion
      and native console pause automatically. Owner testing required: none.
      No R2 publication/main integration; R3 remains a separate owner-started chat.
+R2 archive follow-up: real core build caught git archive applying R1's eol=crlf
+     attributes despite command-local EOL settings. Store both existing CRLF BATs
+     verbatim using -text. Checkout bytes/behavior stay unchanged; exact-blob
+     core build and its archive-attribute refusal guard remain untouched.
