@@ -73,6 +73,7 @@ function Invoke-ShellProcess([string]$Executable,[string[]]$Arguments,[string]$L
 }
 function Add-ShellCase([string]$Id,[string]$Observed){$report.cases+=[pscustomobject]@{id=$Id;status='PASSED';observed=$Observed}}
 $identityCommand=@'
+[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
 $i=[Security.Principal.WindowsIdentity]::GetCurrent();$p=New-Object Security.Principal.WindowsPrincipal($i)
 [ordered]@{music=[Environment]::GetFolderPath([Environment+SpecialFolder]::MyMusic,[Environment+SpecialFolderOption]::DoNotVerify);local=[Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,[Environment+SpecialFolderOption]::DoNotVerify);profile=$env:USERPROFILE;path=$env:PATH;cwd=(Get-Location).ProviderPath;process64=[Environment]::Is64BitProcess;shell_version=$PSVersionTable.PSVersion.ToString();is_admin=$p.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)}|ConvertTo-Json -Compress
 '@
