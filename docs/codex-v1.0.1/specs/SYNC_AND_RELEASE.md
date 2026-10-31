@@ -1,5 +1,15 @@
 # Checkpoint, handover and release protocol
 
+## Active v1.0.3 patch authority — 2026-10-31
+
+The owner's current request and incorporated v1.0.3 work order authorize this
+tested patch through ordinary reviewed PR integration, required CI, public normal
+release and independent public-download smoke in this chat. They supersede old
+numbered stops and separate owner approval gates. Preserve existing access
+controls, tags and assets. Freeze the exact integrated source, validate its ZIP,
+verify a draft's exact assets, publish, independently download and convert from
+those bytes, then complete final main/live sync. No new owner testing or sign-off.
+
 ## Active focused repair amendment — 2026-10-30
 
 The owner-authorized REPAIR_BRIEF.md and active CHARTER amendment supersede

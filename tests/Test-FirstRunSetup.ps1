@@ -119,6 +119,13 @@ function Assert-NativeComplete {
 function Get-Literal { param([string]$Value); return "'" + $Value.Replace("'", "''") + "'" }
 $guardLoader = @'
 . $global:S05ExpectedHelper
+function Get-AudioEnvironmentSetting {
+    param([string]$Name, [string]$Target = 'Process')
+    # Keep first-run scenarios independent of the desktop's saved PATH/FFMPEG.
+    # Explicit and saved application selections still use the real resolver.
+    if ($Name -ieq 'Path' -and $Target -eq 'Process') { return $env:PATH }
+    return $null
+}
 $script:S05OriginalNative = (Get-Item -LiteralPath Function:Invoke-AudioNativeProcess).ScriptBlock
 function Invoke-AudioNativeProcess {
     param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars=1048576,[int]$MaxStderrChars=65536,
@@ -201,8 +208,7 @@ function global:Join-Path {
 function global:Read-Host {
     param([string]$Prompt)
     if (-not $global:S05ScriptedUI) { $global:S05Forbidden.Add('Read-Host'); throw 'Unexpected Read-Host.' }
-    # Existing metadata flow is preserved. Only its three opt-in questions get N.
-    if ($Prompt -match 'Add album cover|Set Artist|Set Album') { return 'N' }
+    # Metadata uses its named adapter above; legacy host reads must stay absent.
     $global:S05Forbidden.Add('unrecognized Read-Host'); throw ('Unexpected metadata prompt: ' + $Prompt)
 }
 function global:Invoke-WebRequest { $global:S05Forbidden.Add('download'); throw 'Unexpected download.' }
@@ -312,6 +318,14 @@ try {
         $case['conversion'] = Assert-Conversion $parent $child
         Assert-True (-not (Test-Path -LiteralPath $config) -and $child.Audit.remaining_responses -eq 0) 'Declining remember must never create settings.'
         $case['settings_created'] = $false
+    }
+    Invoke-Case 'invalid setup and remember choices repeat only the affected prompt' 'v1.0.3' {
+        param($case)
+        $config = Join-Path $configRoot 'RetryNoRemember.json'; $parent = Join-Path $testRoot 'Retry not remembered output'
+        $child = Invoke-ProductionChild 'RetryNoRemember' (Get-AppCommand $config $parent -Interactive) -Responses @('typo','S','typo','N') -DialogStatus 'Selected' -DialogDirectory $toolDirectory -ScriptedUI
+        $case['conversion'] = Assert-Conversion $parent $child
+        Assert-True ($child.Audit.setup_prompts.Count -eq 4 -and $child.Audit.dialog_calls -eq 1 -and $child.Audit.setup_prompts[0] -ceq $child.Audit.setup_prompts[1] -and $child.Audit.setup_prompts[2] -ceq $child.Audit.setup_prompts[3]) 'Each typo must repeat only its own prompt and retain the selected directory.'
+        Assert-True ([regex]::Matches($child.Text,'Use S, M, D or Q\.').Count -eq 1 -and [regex]::Matches($child.Text,'Use Y, N/Enter or Q\.').Count -eq 1 -and -not (Test-Path -LiteralPath $config)) 'One short hint per typo; declined persistence must remain declined.'
     }
     Invoke-Case 'read-only stale config save failure is explicit preserves bytes and allows current launch conversion' 'S05-A2' {
         param($case)

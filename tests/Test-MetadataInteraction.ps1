@@ -208,6 +208,7 @@ exit $LASTEXITCODE
     $script:releaseProved=$previousRelease
     Assert-True ($audit.helper_loads -eq 1 -and @($audit.forbidden_calls).Count -eq 0) ('Production guards failed: '+$text.Replace($testRoot,'<OWNED_TEMP>'))
     Assert-True ($audit.remaining_responses -eq 0) 'Exactly the supplied injected responses must be consumed.'
+    Assert-True (-not $text.Contains([string][char]27)) 'Redirected presentation must remain plain and contain no raw escape sequences.'
     return [pscustomobject]@{ExitCode=$native.ExitCode;Text=$text;Audit=$audit;ElapsedMilliseconds=$native.ElapsedMilliseconds}
 }
 function Get-AppCommand {
@@ -303,7 +304,7 @@ try {
         param($case)
         $parent=Join-Path $testRoot 'Enter output'; $child=Invoke-ProductionChild 'Enter' (Get-AppCommand $parent -Interactive) -Responses @('') -ScriptedUI
         $case['conversion']=Assert-Conversion $parent $child
-        Assert-True ($child.Text.Contains('Ready: 1 supported files -> 64 kbps CBR MP3') -and $child.Text.Contains('Enter = start with defaults | M = customize metadata | Q = cancel') -and $child.Text.Contains('Waiting for your selection (no conversion has started).')) 'Ready menu must describe all actions and waiting explicitly.'
+        Assert-True ($child.Text.Contains('[READY] 1 files -> 64 kbps CBR MP3') -and $child.Text.Contains('Enter: convert    M: metadata    Q: quit') -and $child.Text.Contains('Waiting for your selection (no conversion has started).')) 'Ready menu must describe all actions and waiting explicitly.'
         Assert-True ($child.Audit.metadata_prompts.Count -eq 1 -and $child.Audit.dialog_calls -eq 0) 'Enter advances immediately without customization.'
         $positions=@(); foreach ($pattern in @('Waiting for your selection','\[STATE\] Probing source','\[STATE\] Encoding audio','\[STATE\] Validating output')) {$match=[regex]::Match($child.Text,$pattern); Assert-True $match.Success ('Missing state: '+$pattern); $positions+=$match.Index}
         Assert-True ($positions[0] -lt $positions[1] -and $positions[1] -lt $positions[2] -and $positions[2] -lt $positions[3]) 'Waiting must precede probing, encoding, then validation.'
@@ -312,16 +313,16 @@ try {
     Invoke-Case 'M customizes real Artist Album and replacement cover without extra confirmation' 'S07-A1,S07-A3' {
         param($case)
         $parent=Join-Path $testRoot 'Customize output'; $artist='Custom artist '+[char]0xE4; $album='Custom album '+[char]0xE9
-        $child=Invoke-ProductionChild 'Customize' (Get-AppCommand $parent -Interactive) -Responses @('M','Y','Y',$artist,'Y',$album) -DialogPath $blue -ScriptedUI
+        $child=Invoke-ProductionChild 'Customize' (Get-AppCommand $parent -Interactive) -Responses @('M','Y',$artist,$album) -DialogPath $blue -ScriptedUI
         $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum $album -HasCover $true
-        Assert-True ($child.Audit.metadata_prompts.Count -eq 6 -and $child.Audit.dialog_calls -eq 1 -and $child.Text -match '(?i)customiz|metadata' -and $child.Text -match '(?i)start|continu|return') 'Customization must explain progress without extra input.'
+        Assert-True ($child.Audit.metadata_prompts.Count -eq 4 -and $child.Audit.dialog_calls -eq 1 -and $child.Text -match '(?i)customiz|metadata' -and $child.Text -match '(?i)start|continu|return') 'Customization asks one cover choice and each free-text field without opt-in questions.'
     }
     Invoke-Case 'Enter preserves explicit tags cover and selected bitrate' 'S07-A1,S07-A3' {
         param($case)
         $parent=Join-Path $testRoot 'Explicit Enter output'; $artist='  Explicit artist  '; $album='Explicit album'
         $child=Invoke-ProductionChild 'ExplicitEnter' (Get-AppCommand $parent -Interactive -Bitrate 96 -Overrides @{CoverPath=$blue;Artist=$artist;Album=$album}) -Responses @('') -ScriptedUI
         $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum $album -HasCover $true -Bitrate 96
-        Assert-True ($child.Text.Contains('Ready: 1 supported files -> 96 kbps CBR MP3') -and $child.Audit.metadata_prompts.Count -eq 1 -and $child.Audit.dialog_calls -eq 0) 'Supplied values and selected rate must survive Enter.'
+        Assert-True ($child.Text.Contains('[READY] 1 files -> 96 kbps CBR MP3') -and $child.Audit.metadata_prompts.Count -eq 1 -and $child.Audit.dialog_calls -eq 0) 'Supplied values and selected rate must survive Enter.'
     }
     Invoke-Case 'M respects explicit parameters and skips their controls' 'S07-A1,S07-A3' {
         param($case)
@@ -330,19 +331,19 @@ try {
         $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum $album -HasCover $true
         Assert-True ($child.Audit.metadata_prompts.Count -eq 1 -and $child.Audit.dialog_calls -eq 0) 'Explicit parameters must not be replaced or asked again.'
     }
-    Invoke-Case 'M customizes only missing controls and trims entered tag values' 'S07-A1' {
+    Invoke-Case 'M customizes only missing controls and retains exact nonblank text' 'S07-A1' {
         param($case)
         $parent=Join-Path $testRoot 'Partial M output'; $artist='Partial explicit artist'
-        $child=Invoke-ProductionChild 'PartialM' (Get-AppCommand $parent -Interactive -Overrides @{Artist=$artist}) -Responses @('M','N','Y','  Selected album  ') -ScriptedUI
-        $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum 'Selected album'
-        Assert-True ($child.Audit.metadata_prompts.Count -eq 4 -and $child.Audit.dialog_calls -eq 0) 'Missing cover/album controls must not override explicit artist.'
+        $child=Invoke-ProductionChild 'PartialM' (Get-AppCommand $parent -Interactive -Overrides @{Artist=$artist}) -Responses @('M','N','  Selected album  ') -ScriptedUI
+        $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum '  Selected album  '
+        Assert-True ($child.Audit.metadata_prompts.Count -eq 3 -and $child.Audit.dialog_calls -eq 0) 'Missing cover/album controls must not override explicit artist.'
     }
     Invoke-Case 'M blank custom values preserve defaults and cancelled cover picker continues without cover' 'S07-A1,S07-A3' {
         param($case)
         $parent=Join-Path $testRoot 'Blank M output'
-        $child=Invoke-ProductionChild 'BlankM' (Get-AppCommand $parent -Interactive) -Responses @('M','Y','Y','   ','Y','') -ScriptedUI
+        $child=Invoke-ProductionChild 'BlankM' (Get-AppCommand $parent -Interactive) -Responses @('M','Y','   ','') -ScriptedUI
         $case['conversion']=Assert-Conversion $parent $child
-        Assert-True ($child.Audit.dialog_calls -eq 1 -and $child.Audit.metadata_prompts.Count -eq 6) 'Cancelled picker and entered blank tags retain defaults.'
+        Assert-True ($child.Audit.dialog_calls -eq 1 -and $child.Audit.metadata_prompts.Count -eq 4) 'Cancelled picker and entered blank tags retain defaults.'
     }
     Invoke-Case 'M explicit blank tag parameters suppress controls while preserving source tags' 'S07-A1,S07-A3' {
         param($case)
@@ -359,7 +360,7 @@ try {
         $case['settings_files_created']=0
     }
     $pastedSentinel=Join-Path $testRoot 'Pasted code must never execute.txt'
-    foreach ($row in @(@{label='Q';response='Q';code=130},@{label='LowerQ';response=' q ';code=130},@{label='EOF';response=$null;code=130},@{label='Invalid';response='bad';code=1},@{label='PastedCode';response=('Set-Content -LiteralPath '+(Get-Literal $pastedSentinel)+' -Value executed');code=1})) {
+    foreach ($row in @(@{label='Q';response='Q';code=130},@{label='LowerQ';response=' q ';code=130},@{label='EOF';response=$null;code=130})) {
         Invoke-Case ('menu '+$row.label+' stops once without media processing or output') 'S07-A1,S07-A2' {
             param($case)
             $parent=Join-Path $testRoot ($row.label+' output'); $child=Invoke-ProductionChild $row.label (Get-AppCommand $parent -Interactive) -Responses @($row.response) -ScriptedUI
@@ -369,7 +370,7 @@ try {
             $case['exit_code']=$child.ExitCode; $case['prompts']=1; $case['elapsed_ms']=$child.ElapsedMilliseconds
         }
     }
-    foreach ($row in @(@{label='CoverEof';responses=@('M',$null)},@{label='ArtistChoiceEof';responses=@('M','N',$null)},@{label='ArtistValueEof';responses=@('M','N','Y',$null)},@{label='AlbumChoiceEof';responses=@('M','N','N',$null)},@{label='AlbumValueEof';responses=@('M','N','N','Y',$null)})) {
+    foreach ($row in @(@{label='ReadyRetryEof';responses=@('typo',$null)},@{label='CoverRetryEof';responses=@('M','typo',$null)},@{label='CoverEof';responses=@('M',$null)},@{label='ArtistValueEof';responses=@('M','N',$null)},@{label='AlbumValueEof';responses=@('M','N','Artist',$null)})) {
         Invoke-Case ('metadata '+$row.label+' never converts unavailable input into defaults') 'S07-A2' {
             param($case)
             $parent=Join-Path $testRoot ($row.label+' output'); $child=Invoke-ProductionChild $row.label (Get-AppCommand $parent -Interactive) -Responses $row.responses -ScriptedUI
@@ -377,12 +378,28 @@ try {
             $case['exit_code']=$child.ExitCode; $case['prompts']=$child.Audit.metadata_prompts.Count
         }
     }
-    Invoke-Case 'invalid metadata opt-in stops without retry or conversion' 'S07-A2' {
+    Invoke-Case 'invalid ready and cover choices repeat only their prompt then convert actual tags and selected cover' 'v1.0.3' {
         param($case)
-        $parent=Join-Path $testRoot 'Invalid metadata output'; $child=Invoke-ProductionChild 'InvalidMetadata' (Get-AppCommand $parent -Interactive) -Responses @('M','maybe') -ScriptedUI
-        $case['no_batch']=Assert-NoBatch $parent $child 1
-        Assert-True ($child.Audit.metadata_prompts.Count -eq 2 -and $child.Audit.dialog_calls -eq 0) 'Invalid optional answer must fail once.'
-        $case['exit_code']=1; $case['prompts']=2
+        $parent=Join-Path $testRoot 'Recovered metadata output'; $artist="O'Brien & " + [char]0x00E4
+        $child=Invoke-ProductionChild 'RecoveredMetadata' (Get-AppCommand $parent -Interactive) -Responses @('typo','M','maybe','Y',$artist,'2027 Term 1 Week 8') -DialogPath $blue -ScriptedUI
+        $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum '2027 Term 1 Week 8' -HasCover $true
+        Assert-True ($child.Audit.metadata_prompts.Count -eq 6 -and $child.Audit.dialog_calls -eq 1 -and [regex]::Matches($child.Text,'Use Enter, M or Q\.').Count -eq 1 -and [regex]::Matches($child.Text,'Use Y, N or Q\.').Count -eq 1) 'Each invalid choice emits exactly one short hint and repeats only the relevant prompt.'
+        Assert-True ($child.Audit.metadata_prompts[0] -ceq $child.Audit.metadata_prompts[1] -and $child.Audit.metadata_prompts[2] -ceq $child.Audit.metadata_prompts[3]) 'Retries must not restart earlier prompts.'
+    }
+    foreach ($textTag in @('Y','N','Q')) {
+        Invoke-Case ('free-text tag '+$textTag+' remains data') 'v1.0.3' {
+            param($case)
+            $parent=Join-Path $testRoot ('Literal '+$textTag+' output')
+            $child=Invoke-ProductionChild ('LiteralTag'+$textTag) (Get-AppCommand $parent -Interactive) -Responses @('M','N',$textTag,$textTag) -ScriptedUI
+            $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $textTag -ExpectedAlbum $textTag
+        }
+    }
+    Invoke-Case 'invalid inert menu text repeats and Q cancels without conversion' 'v1.0.3' {
+        param($case)
+        $parent=Join-Path $testRoot 'Inert retry output'
+        $child=Invoke-ProductionChild 'InertRetry' (Get-AppCommand $parent -Interactive) -Responses @(('Set-Content -LiteralPath '+(Get-Literal $pastedSentinel)+' -Value executed'),'Q') -ScriptedUI
+        $case['no_batch']=Assert-NoBatch $parent $child 130
+        Assert-True (-not (Test-Path -LiteralPath $pastedSentinel) -and $child.Audit.metadata_prompts.Count -eq 2) 'Text is never executed and an invalid menu entry must prompt again.'
     }
     Invoke-Case 'actual redirected noninteractive host rejects ready interaction before a batch' 'S07-A2' {
         param($case)

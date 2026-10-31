@@ -7,6 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Collections.Generic;
 
 internal static class DirectLauncherConsole
 {
@@ -57,6 +58,18 @@ internal static class DirectLauncherConsole
         public long user, kernel, periodUser, periodKernel;
         public uint faults, total, active, terminated;
     }
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    private struct ShellInfo
+    {
+        public int size; public uint mask; public IntPtr window; public string verb, file, parameters, directory;
+        public int show; public IntPtr instance, idList; public string className; public IntPtr classKey;
+        public uint hotKey; public IntPtr icon, process;
+    }
+    [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern bool ShellExecuteEx(ref ShellInfo information);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool AllocConsole();
+    [DllImport("kernel32.dll")] private static extern IntPtr GetConsoleWindow();
+    [DllImport("kernel32.dll")] private static extern uint GetProcessId(IntPtr process);
+    [DllImport("user32.dll")] private static extern bool ShowWindow(IntPtr window, int show);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern bool CreateProcess(string app, StringBuilder arguments, IntPtr pa, IntPtr ta, bool inherit, uint flags, IntPtr environment, string directory, ref StartupInfo startup, out ProcessInformation process);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
@@ -79,6 +92,21 @@ internal static class DirectLauncherConsole
     private static extern bool ReadConsoleOutputCharacterW(IntPtr output, StringBuilder text, uint count, Coord position, out uint read);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern bool WriteConsoleInputW(IntPtr input, InputRecord[] records, uint count, out uint written);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool ReadConsoleOutputAttribute(IntPtr output, ushort[] values, uint count, Coord position, out uint read);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool SetConsoleScreenBufferSize(IntPtr output, Coord size);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool SetConsoleWindowInfo(IntPtr output, bool absolute, ref SmallRect rectangle);
+    private delegate bool EnumWindowProc(IntPtr window, IntPtr state);
+    [DllImport("user32.dll")] private static extern bool EnumWindows(EnumWindowProc callback, IntPtr state);
+    [DllImport("user32.dll")] private static extern bool EnumChildWindows(IntPtr parent, EnumWindowProc callback, IntPtr state);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int GetWindowText(IntPtr window, StringBuilder text, int capacity);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern int GetClassName(IntPtr window, StringBuilder text, int capacity);
+    [DllImport("user32.dll")] private static extern bool IsWindowVisible(IntPtr window);
+    [DllImport("user32.dll")] private static extern uint GetWindowThreadProcessId(IntPtr window, out uint process);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern IntPtr OpenProcess(uint access, bool inherit, uint process);
+    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool IsProcessInJob(IntPtr process, IntPtr job, out bool result);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern bool SetWindowText(IntPtr window, string text);
+    [DllImport("user32.dll")] private static extern IntPtr GetDlgItem(IntPtr window, int id);
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr SendMessage(IntPtr window, uint message, IntPtr first, IntPtr second);
     [DllImport("kernel32.dll")] private static extern uint WaitForSingleObject(IntPtr handle, uint milliseconds);
     [DllImport("kernel32.dll")] private static extern bool GetExitCodeProcess(IntPtr handle, out uint code);
     [DllImport("kernel32.dll")] private static extern bool CloseHandle(IntPtr handle);
@@ -114,6 +142,63 @@ internal static class DirectLauncherConsole
     }
     private static string Bool(bool value) { return value ? "true" : "false"; }
 
+    private static void SupplyLine(IntPtr input, string answer)
+    {
+        List<InputRecord> keys = new List<InputRecord>();
+        string value = answer == "~EOF~" ? "\u001a\r" : answer + "\r";
+        foreach (char character in value)
+        {
+            InputRecord key = new InputRecord(); key.type = 1; key.down = 1; key.repeat = 1;
+            key.character = character; key.key = character == '\r' ? (short)0x0D : (short)0;
+            if (character == '\u001a') { key.key = 0x5A; key.state = 8; }
+            keys.Add(key); key.down = 0; keys.Add(key);
+        }
+        uint written;
+        Require(WriteConsoleInputW(input, keys.ToArray(), (uint)keys.Count, out written) && written == keys.Count, "Cannot supply scripted literal console line.");
+    }
+    private static string ReadColors(IntPtr output)
+    {
+        BufferInfo info; Require(GetConsoleScreenBufferInfo(output, out info), "Cannot read console color geometry.");
+        int count = Math.Min((int)info.size.x * info.size.y, 120000); uint read;
+        ushort[] colors = new ushort[count];
+        Require(ReadConsoleOutputAttribute(output, colors, (uint)count, new Coord(), out read), "Cannot capture native color attributes.");
+        StringBuilder chars = new StringBuilder(count);
+        Require(ReadConsoleOutputCharacterW(output, chars, (uint)count, new Coord(), out read), "Cannot bind native colors to text.");
+        Dictionary<ushort, int> counts = new Dictionary<ushort, int>();
+        string flat = chars.ToString();
+        for (int i = 0; i < flat.Length; i++) if (!Char.IsWhiteSpace(flat[i]))
+        { if (!counts.ContainsKey(colors[i])) counts[colors[i]] = 0; counts[colors[i]]++; }
+        StringBuilder json = new StringBuilder("{"); bool comma = false;
+        foreach (KeyValuePair<ushort, int> color in counts)
+        { if (comma) json.Append(','); json.Append(Json(color.Key.ToString())).Append(':').Append(color.Value); comma = true; }
+        return json.Append('}').ToString();
+    }
+    private static bool SupplyCover(IntPtr job, string path)
+    {
+        bool supplied = false;
+        EnumWindows(delegate(IntPtr window, IntPtr state)
+        {
+            StringBuilder title = new StringBuilder(512); GetWindowText(window, title, title.Capacity);
+            if (!IsWindowVisible(window) || title.ToString() != "Select album cover image") return true;
+            uint pid; GetWindowThreadProcessId(window, out pid); IntPtr process = OpenProcess(0x1000, false, pid);
+            if (process == IntPtr.Zero) return true;
+            bool owned; bool known = IsProcessInJob(process, job, out owned); CloseHandle(process);
+            if (!known || !owned) return true;
+            if (path == "~CANCEL~") { SendMessage(GetDlgItem(window, 2), 0xF5, IntPtr.Zero, IntPtr.Zero); supplied = true; return false; }
+            IntPtr edit = IntPtr.Zero;
+            EnumChildWindows(window, delegate(IntPtr child, IntPtr ignored)
+            {
+                StringBuilder name = new StringBuilder(64); GetClassName(child, name, name.Capacity);
+                if (name.ToString() == "Edit" && IsWindowVisible(child)) edit = child;
+                return true;
+            }, IntPtr.Zero);
+            if (edit != IntPtr.Zero && SetWindowText(edit, path))
+            { SendMessage(GetDlgItem(window, 1), 0xF5, IntPtr.Zero, IntPtr.Zero); supplied = true; return false; }
+            return true;
+        }, IntPtr.Zero);
+        return supplied;
+    }
+
     // Arguments: exact cmd.exe, cmd argument string, unrelated working directory,
     // fresh report path, deadline milliseconds. The case environment is inherited.
     // Optional sixth argument is literal Enter (ready menu) or SetupCancel (Q + Enter).
@@ -123,33 +208,76 @@ internal static class DirectLauncherConsole
         IntPtr job = IntPtr.Zero, input = IntPtr.Zero, output = IntPtr.Zero;
         bool attached = false, assigned = false, paused = false, waiting = false, injected = false, released = false;
         bool initialMenuKeySent = false;
+        bool coverSupplied = false;
+        int scriptStep = 0;
+        string colors = "{}";
+        List<string[]> steps = new List<string[]>();
+        bool scripted = args.Length > 5 && (args[5] == "Script" || args[5] == "DirectScript");
+        bool direct = args.Length > 5 && args[5] == "DirectScript";
+        bool shell = args[0].StartsWith("shell:", StringComparison.Ordinal);
         uint exit = 999;
         string text = "", error = "";
         try
         {
             if (args.Length > 5 && (args.Length != 6 ||
-                (!String.Equals(args[5], "Enter", StringComparison.Ordinal) && !String.Equals(args[5], "SetupCancel", StringComparison.Ordinal))))
-                throw new ArgumentException("Optional sixth argument must be literal Enter or SetupCancel.");
+                (!String.Equals(args[5], "Enter", StringComparison.Ordinal) && !String.Equals(args[5], "SetupCancel", StringComparison.Ordinal) && !scripted)))
+                throw new ArgumentException("Unsupported native-console mode.");
+            if (scripted) foreach (string line in File.ReadAllLines(Environment.GetEnvironmentVariable("AFP_CONSOLE_STEPS"), Encoding.UTF8))
+            { string[] fields = line.Split('\t'); if (fields.Length != 3) throw new ArgumentException("Script steps need trigger, occurrence and literal answer."); steps.Add(fields); }
             job = CreateJobObject(IntPtr.Zero, null);
             Require(job != IntPtr.Zero, "Cannot create exclusive test job.");
             ExtendedLimits limits = new ExtendedLimits(); limits.basic.flags = 0x2000;
             Require(SetInformationJobObject(job, 9, ref limits, (uint)Marshal.SizeOf(limits)), "Cannot guard owned descendants.");
-            StartupInfo si = new StartupInfo(); si.cb = Marshal.SizeOf(si); si.flags = 1; si.show = 0;
-            Require(CreateProcess(args[0], new StringBuilder("\"" + args[0] + "\" " + args[1]), IntPtr.Zero, IntPtr.Zero, false,
-                0x10 | 0x4, IntPtr.Zero, args[2], ref si, out pi), "Cannot start hidden owned cmd console.");
+            if (shell)
+            {
+                FreeConsole(); Require(AllocConsole(), "Cannot create owned shell-delivery console.");
+                ShowWindow(GetConsoleWindow(), 0); attached = true;
+                ShellInfo launch = new ShellInfo(); launch.size = Marshal.SizeOf(launch); launch.mask = 0x40 | 0x8000 | 0x100;
+                launch.verb = "open"; launch.file = args[0].Substring(6); launch.parameters = args[1]; launch.directory = args[2]; launch.show = 0;
+                Require(ShellExecuteEx(ref launch) && launch.process != IntPtr.Zero, "Windows shell did not return the shortcut target process.");
+                pi.process = launch.process; pi.pid = GetProcessId(pi.process);
+            }
+            else
+            {
+                StartupInfo si = new StartupInfo(); si.cb = Marshal.SizeOf(si); si.flags = 1; si.show = 0;
+                Require(CreateProcess(args[0], new StringBuilder("\"" + args[0] + "\" " + args[1]), IntPtr.Zero, IntPtr.Zero, false,
+                    0x10 | 0x4, IntPtr.Zero, args[2], ref si, out pi), "Cannot start hidden owned cmd console.");
+            }
             Require(AssignProcessToJobObject(job, pi.process), "Cannot own cmd process tree."); assigned = true;
-            Require(ResumeThread(pi.thread) != UInt32.MaxValue, "Cannot resume owned cmd.");
-            CloseHandle(pi.thread); pi.thread = IntPtr.Zero;
-            FreeConsole();
-            for (int i = 0; i < 100 && !attached; i++) { attached = AttachConsole(pi.pid); if (!attached) Thread.Sleep(20); }
+            if (!shell)
+            {
+                Require(ResumeThread(pi.thread) != UInt32.MaxValue, "Cannot resume owned cmd.");
+                CloseHandle(pi.thread); pi.thread = IntPtr.Zero;
+                FreeConsole();
+                for (int i = 0; i < 100 && !attached; i++) { attached = AttachConsole(pi.pid); if (!attached) Thread.Sleep(20); }
+            }
             Require(attached, "Cannot attach disposable controller to owned console.");
             input = CreateFileW("CONIN$", 0x80000000 | 0x40000000, 3, IntPtr.Zero, 3, 0, IntPtr.Zero);
             output = CreateFileW("CONOUT$", 0x80000000 | 0x40000000, 3, IntPtr.Zero, 3, 0, IntPtr.Zero);
             Require(input != new IntPtr(-1) && output != new IntPtr(-1), "Cannot open owned console handles.");
+            string widthValue = Environment.GetEnvironmentVariable("AFP_CONSOLE_WIDTH");
+            if (!String.IsNullOrEmpty(widthValue))
+            {
+                short width = Int16.Parse(widthValue); Require(width >= 30 && width <= 200, "Unsafe console width.");
+                SmallRect rectangle = new SmallRect(); rectangle.right = (short)(width - 1); rectangle.bottom = 24;
+                Require(SetConsoleWindowInfo(output, true, ref rectangle), "Cannot set owned console window width.");
+                Coord size = new Coord(); size.x = width; size.y = 1000;
+                Require(SetConsoleScreenBufferSize(output, size), "Cannot set owned console buffer width.");
+            }
             Stopwatch timer = Stopwatch.StartNew();
             while (timer.ElapsedMilliseconds < Int32.Parse(args[4]))
             {
                 text = ReadConsole(output);
+                colors = ReadColors(output);
+                if (scripted && scriptStep < steps.Count)
+                {
+                    string trigger = steps[scriptStep][0]; int count = 0, start = 0, found;
+                    while ((found = text.IndexOf(trigger, start, StringComparison.OrdinalIgnoreCase)) >= 0) { count++; start = found + trigger.Length; }
+                    if (count >= Int32.Parse(steps[scriptStep][1]))
+                    { SupplyLine(input, steps[scriptStep][2]); scriptStep++; initialMenuKeySent = true; }
+                }
+                string cover = Environment.GetEnvironmentVariable("AFP_CONSOLE_COVER");
+                if (!coverSupplied && !String.IsNullOrEmpty(cover)) coverSupplied = SupplyCover(job, cover);
                 if (text.IndexOf("Press any key", StringComparison.OrdinalIgnoreCase) >= 0) { paused = true; break; }
                 if (args.Length > 5 && args[5] == "Enter" && !initialMenuKeySent && text.IndexOf("Waiting for your selection", StringComparison.OrdinalIgnoreCase) >= 0)
                 {
@@ -173,6 +301,15 @@ internal static class DirectLauncherConsole
                 if (WaitForSingleObject(pi.process, 0) == 0) break;
                 Thread.Sleep(25);
             }
+            if (scripted) Require(scriptStep == steps.Count, "Not all scripted prompts were reached.");
+            if (direct)
+            {
+                Require(WaitForSingleObject(pi.process, 10000) == 0, "Direct host did not finish.");
+                text = ReadConsole(output); colors = ReadColors(output);
+                Require(GetExitCodeProcess(pi.process, out exit), "Cannot read direct host exit code.");
+                released = true;
+            }
+            else {
             Require(paused, "Production BAT did not expose its final pause.");
             Thread.Sleep(250);
             waiting = WaitForSingleObject(pi.process, 0) == 0x102;
@@ -185,6 +322,7 @@ internal static class DirectLauncherConsole
             text = ReadConsole(output);
             Require(GetExitCodeProcess(pi.process, out exit), "Cannot read preserved BAT exit code.");
             released = true;
+            }
         }
         catch (Exception exception) { error = exception.Message; }
         finally
@@ -216,6 +354,7 @@ internal static class DirectLauncherConsole
             string report = "{\"exit_code\":" + exit + ",\"pause_seen\":" + Bool(paused) + ",\"still_waiting_before_key\":" + Bool(waiting) +
                 ",\"key_injected\":" + Bool(injected) + (args.Length > 5 ? ",\"initial_menu_key_sent\":" + Bool(initialMenuKeySent) + ",\"initial_menu_mode\":" + Json(args[5]) : "") +
                 ",\"owned_tree_released\":" + Bool(released) + ",\"text\":" + Json(text) + ",\"error\":" + Json(error) + "}";
+            report = report.Substring(0, report.Length - 1) + ",\"script_steps_sent\":" + scriptStep + ",\"cover_picker_supplied\":" + Bool(coverSupplied) + ",\"shell_shortcut_invoked\":" + Bool(shell) + ",\"color_attributes\":" + colors + "}";
             File.WriteAllText(args[3], report, new UTF8Encoding(false));
         }
         return error.Length == 0 ? 0 : 1;

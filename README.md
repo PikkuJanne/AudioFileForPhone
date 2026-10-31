@@ -55,7 +55,11 @@ development and legacy entry points listed below:
 
 For conversion, provide trusted `ffmpeg.exe` and `ffprobe.exe`. Selection order is
 `-FfmpegDirectory`, a deliberately saved user selection, a complete pair beside
-the scripts, then `PATH`. Explicit, saved and app-local choices require both
+the scripts, then complete pairs on `PATH`. If those automatic sources fail,
+`FFMPEG` may name the pair directory, an installation root with `bin/`, or the
+absolute `ffmpeg.exe` beside `ffprobe.exe`. Inherited values are tried first;
+unelevated desktop launches can also read saved User/Machine values and PATH.
+Explicit, saved and app-local choices require both
 regular executables in that directory. An incomplete local pair or an invalid
 explicit/saved choice stops preflight with repair guidance. Startup checks that
 both run and that FFmpeg provides `libmp3lame`. The console reports the selection
@@ -92,17 +96,18 @@ With `-Interactive` (including drag and drop), dependency repair finishes before
 the ready menu shows the supported-file count and selected bitrate:
 
 ```text
-Ready: 3 supported files -> 64 kbps CBR MP3
-Enter = start with defaults | M = customize metadata | Q = cancel
-Waiting for your selection (no conversion has started).
+[ READY ] Enter: convert    M: metadata    Q: quit
 ```
 
 Press Enter to convert using the normal source-tag/artwork policy and any supplied
 parameters. M offers cover, Artist and Album choices for this batch; supplied
 parameters remain in effect, including blank Artist/Album values that retain
-source tags. Conversion starts after the last metadata choice. Q cancels before
-batch output. Metadata choices are never saved for later batches. Invalid input
-stops with guidance; EOF cancels. Redirected or unavailable console input stops
+source tags. Artist and Album are direct text fields: Enter or whitespace keeps
+each file's existing tag. Text such as `Q`, `Y` or `2027 Term 1 Week 8` is literal
+tag data. Q cancels at menus. Cancelling the cover picker skips artwork.
+Conversion starts after the last metadata choice. Metadata choices are never
+saved for later batches. Invalid menu input gives one hint and repeats that
+prompt, retaining preceding answers; EOF cancels. Unavailable console input stops
 without starting a batch. For automation, omit `-Interactive` and pass parameters.
 The console distinguishes preflight, waiting, probing, encoding, validation and
 publication; encoding at 100% still needs validation before the file is complete.
@@ -293,11 +298,13 @@ never save settings; interactive setup saves only after affirmative consent.
 Setup is the simpler user-facing route to the same shared resolver and save API.
 
 Only the app directory itself is an app-local layout; `tools\ffmpeg\bin` is not
-searched. PATH discovery uses the first regular `.exe` under absolute PATH
+searched. PATH discovery validates complete pairs in individual absolute PATH
 directories, excluding implicit current-directory lookup and blank/relative entries.
+Quoted entries and `%VARIABLE%` references are read as literal environment data.
 An absolute PATH entry remains valid when it is also the working directory. It never
-executes aliases, functions or shell wrappers. Separate PATH directories remain
-supported; differing tool build IDs produce a warning. No source folders or whole
+executes aliases, functions or shell wrappers. An incomplete or unusable PATH
+directory cannot hide a later usable pair; tools from separate directories are
+never combined. Differing tool build IDs produce a warning. No source folders or whole
 drives are searched for tools.
 
 Version and encoder capability checks each have a 15-second deadline. A timeout

@@ -132,9 +132,34 @@ function New-AppCopy {
 function Invoke-Child {
     param([string]$Label, [string]$Code, [hashtable]$EnvironmentValues = @{}, [int]$DeadlineMilliseconds = 120000)
     $driver = Join-Path $testRoot ($Label + '-driver.ps1')
+    $loader = Join-Path $testRoot ($Label + '-environment-loader.ps1')
+    # Do not change copied runtime bytes or depend on desktop saved settings in
+    # missing-tool tests. Replace only the read-only environment seam at load.
+    $loaderCode = @'
+. $global:S10OriginalEnvironmentHelper
+function Get-AudioEnvironmentSetting {
+    param([string]$Name, [string]$Target = 'Process')
+    if ($Name -ieq 'Path' -and $Target -eq 'Process') { return $env:PATH }
+    return $null
+}
+'@
+    Write-NewText $loader $loaderCode; Add-Fixture $loader
     $prefix = @('$ErrorActionPreference=''Stop''; $ProgressPreference=''SilentlyContinue''',
         '[Console]::InputEncoding=New-Object Text.UTF8Encoding($false); [Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)',
-        '$env:PSModulePath=(Join-Path $PSHOME ''Modules'')+'';''+$env:PSModulePath')
+        '$env:PSModulePath=(Join-Path $PSHOME ''Modules'')+'';''+$env:PSModulePath',
+        ('$global:S10EnvironmentLoader=' + (Get-Literal $loader)),
+        @'
+function global:Join-Path {
+    [CmdletBinding()]
+    param([Parameter(Position=0)][string]$Path,[Parameter(Position=1)][string]$ChildPath,[switch]$Resolve)
+    $actual=Microsoft.PowerShell.Management\Join-Path @PSBoundParameters
+    if($ChildPath -ceq 'AudioFileForPhone.Helpers.ps1' -and [IO.File]::Exists($actual)) {
+        $global:S10OriginalEnvironmentHelper=$actual
+        return $global:S10EnvironmentLoader
+    }
+    return $actual
+}
+'@)
     Write-NewText $driver (($prefix + $Code) -join "`r`n"); Add-Fixture $driver
     $info = New-Object Diagnostics.ProcessStartInfo
     $info.FileName = $shellPath; $info.WorkingDirectory = $testRoot
@@ -390,6 +415,11 @@ try {
             ('$localConfig=' + (Get-Literal $configPath)), ('$savedConfig=' + (Get-Literal $savedConfig)), ('$localApp=' + (Get-Literal $appRoot)),
             @'
 $script:remoteAccess=0;$script:nativeCalls=0
+function Get-AudioEnvironmentSetting {
+    param([string]$Name, [string]$Target = 'Process')
+    if($Name -ieq 'Path' -and $Target -eq 'Process'){return $env:PATH}
+    return $null
+}
 $script:realSelectionPath=(Get-Command Get-AudioSelectionPath -CommandType Function).ScriptBlock
 function Assert-S10LocalAccess {
     param([object[]]$Values)

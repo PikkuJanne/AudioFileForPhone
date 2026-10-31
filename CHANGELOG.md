@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3 — 2026-10-31
+
+- Discover a complete validated FFmpeg pair from literal PATH entries, FFMPEG
+  directory/root/executable hints and read-only saved environment fallbacks.
+- Enter Artist and Album directly; recover locally from menu typos, keep previous
+  answers and treat free-text tags literally.
+- Use a compact labeled console with native colors and a plain accessibility
+  fallback, preserving conversion defaults, source safety and visible BAT results.
+
 ## 1.0.2 — published 2026-10-30
 
 [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)
