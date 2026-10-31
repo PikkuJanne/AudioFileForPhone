@@ -66,10 +66,6 @@ internal static class DirectLauncherConsole
         public uint hotKey; public IntPtr icon, process;
     }
     [DllImport("shell32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern bool ShellExecuteEx(ref ShellInfo information);
-    [DllImport("kernel32.dll", SetLastError = true)] private static extern bool AllocConsole();
-    [DllImport("kernel32.dll")] private static extern IntPtr GetConsoleWindow();
-    [DllImport("kernel32.dll")] private static extern uint GetProcessId(IntPtr process);
-    [DllImport("user32.dll")] private static extern bool ShowWindow(IntPtr window, int show);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern bool CreateProcess(string app, StringBuilder arguments, IntPtr pa, IntPtr ta, bool inherit, uint flags, IntPtr environment, string directory, ref StartupInfo startup, out ProcessInformation process);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
@@ -109,12 +105,6 @@ internal static class DirectLauncherConsole
     [DllImport("user32.dll")] private static extern IntPtr GetDlgItem(IntPtr window, int id);
     [DllImport("user32.dll")] private static extern int GetDlgCtrlID(IntPtr window);
     [DllImport("user32.dll", SetLastError = true)] private static extern bool PostMessage(IntPtr window, uint message, IntPtr first, IntPtr second);
-    [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
-    [DllImport("user32.dll")] private static extern bool AttachThreadInput(uint first, uint second, bool attach);
-    [DllImport("user32.dll")] private static extern bool SetForegroundWindow(IntPtr window);
-    [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
-    [DllImport("user32.dll")] private static extern IntPtr SetFocus(IntPtr window);
-    [DllImport("user32.dll")] private static extern void keybd_event(byte key, byte scan, uint flags, IntPtr extra);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr SendMessage(IntPtr window, uint message, IntPtr first, IntPtr second);
     [DllImport("kernel32.dll")] private static extern uint WaitForSingleObject(IntPtr handle, uint milliseconds);
     [DllImport("kernel32.dll")] private static extern bool GetExitCodeProcess(IntPtr handle, out uint code);
@@ -128,14 +118,19 @@ internal static class DirectLauncherConsole
     {
         BufferInfo info;
         Require(GetConsoleScreenBufferInfo(output, out info), "Cannot inspect owned console buffer.");
-        int count = Math.Min((int)info.size.x * info.size.y, 120000);
-        StringBuilder text = new StringBuilder(count);
-        uint read;
-        Require(ReadConsoleOutputCharacterW(output, text, (uint)count, new Coord(), out read), "Cannot read owned console buffer.");
         StringBuilder lines = new StringBuilder();
-        string flat = text.ToString();
-        for (int i = 0; i < flat.Length; i += info.size.x)
-            lines.AppendLine(flat.Substring(i, Math.Min(info.size.x, flat.Length - i)).TrimEnd());
+        // Read by screen row: wide Unicode glyphs occupy two cells but may be
+        // returned as one character. Slicing a flat character string by cell
+        // width can split later prompts (including PAUSE) at invented boundaries.
+        int first = Math.Max(0, (int)info.cursor.y - 999);
+        int last = Math.Min((int)info.size.y - 1, (int)info.cursor.y + 1);
+        for (int y = first; y <= last; y++)
+        {
+            StringBuilder row = new StringBuilder(info.size.x); uint read;
+            Coord position = new Coord(); position.y = (short)y;
+            Require(ReadConsoleOutputCharacterW(output, row, (uint)info.size.x, position, out read), "Cannot read owned console row.");
+            lines.AppendLine(row.ToString().TrimEnd());
+        }
         return lines.ToString().Trim();
     }
     private static string Json(string text)
