@@ -1,3 +1,10 @@
+# v1.0.4 source-probe repair in progress
+
+Owner-authorized one-chat implementation, automated Windows verification, ordinary
+reviewed PR/CI integration and public v1.0.4 release. No owner tests or approvals
+are pending. Evidence will be recorded in evidence/PATCH104.json. Earlier release
+records below are historical; their tags and public bytes remain frozen.
+
 # Next session — repair complete; no automatic next step
 
 ## v1.0.3 complete — no automatic next work

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "task": "PATCH104",
+  "status": "IMPLEMENTED_TESTING",
+  "owner_authorized": true,
+  "owner_testing_required": false,
+  "authority": "The current owner request incorporates private WORK_ORDER.md and authorizes implementation, automated Windows testing, ordinary reviewed PR/CI merge, public v1.0.4 release and independent public-download verification in one chat.",
+  "base_main": "80f0dd7649cc43ed72b0af33bbf6ac6c0d73b77f",
+  "feature_branch": "codex/v1.0.4-source-probe-recovery",
+  "version": "1.0.4",
+  "tag": "v1.0.4",
+  "privacy": "The original recording, private handoff, raw private logs, temporary media and test shim binaries remain outside Git and release assets. Public CI uses generated media only.",
+  "changes": [
+    "One M4A recovery attempt only after a completed, released native source probe returns a recognized Windows exception status; ordinary errors, cancellation, timeout and unproved termination do not trigger recovery.",
+    "Selected-tool stream-copy remux in a guarded owned scope, own stream index, strict independent original sample-time decode and 0.35-second duration comparison before the existing encode/validation/publication transaction.",
+    "Keep original identity, relative output naming and metadata policy; record bounded native crash/recovery evidence and named final failures.",
+    "Request only consumed title tags and preserve JSON date-looking strings on supporting PowerShell versions; optional probe fields remain safe under strict mode. Healthy encode arguments and conversion defaults are unchanged."
+  ],
+  "baseline": {
+    "windows": "Windows 11 Pro 26H2 build 26300.9711 x64",
+    "selected_tool_build": "2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev",
+    "reported_oct15_build_installed": false,
+    "exact_source_probe_native_exit": 0,
+    "powershell51_wrapper": "Success, 4255.010249 seconds, 44100 Hz stereo",
+    "powershell7_original_wrapper": "InvalidProbeData: ISO creation_time was automatically converted to DateTime; corrected with a smaller equivalent title query and literal JSON date parsing.",
+    "historical_native_crash_reproduced_naturally": false,
+    "forced_crash_strategy": "Test-only paired native delegates emit recorded 0xC0000409 and no stdout for the selected original source probe only; all recovery media work, encoding and full decoding use selected real tools. No runtime test switch."
+  },
+  "validation": "In progress; completion evidence will replace this field after exact-source CI, exact ZIP, public publication and download smoke have actually passed."
+}

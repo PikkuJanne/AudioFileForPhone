@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.3'
+    return '1.0.4'
 }
 
 function Assert-AudioParameters {
@@ -1609,7 +1609,7 @@ function Get-AudioMediaInfo {
         $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
         $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
-            'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags:format=duration:format_tags', '-of', 'json', '-i', $localPath
+            'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags=title:format=duration:format_tags=title', '-of', 'json', '-i', $localPath
         ) -Cancellation $Cancellation -Operation 'Source media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
@@ -1630,7 +1630,12 @@ function Get-AudioMediaInfo {
         }
         try {
             if ([string]::IsNullOrWhiteSpace($native.Stdout)) { throw 'ffprobe returned empty JSON output.' }
-            $meta = ConvertFrom-Json -InputObject $native.Stdout -ErrorAction Stop
+            # Current PowerShell can auto-convert ISO-looking tag strings into
+            # DateTime values. Preserve the literal source title when supported;
+            # Windows PowerShell 5.1 retains its existing JSON parser behavior.
+            $jsonParameters = @{ InputObject = $native.Stdout; ErrorAction = 'Stop' }
+            if ((Get-Command ConvertFrom-Json).Parameters.ContainsKey('DateKind')) { $jsonParameters.DateKind = 'String' }
+            $meta = ConvertFrom-Json @jsonParameters
         }
         catch {
             $result.Status = 'InvalidJson'
@@ -1662,11 +1667,11 @@ function Get-AudioMediaInfo {
         # conflicting stream tags into them.
         $tags = $null
         if ($result.MetadataSource -eq '0:s:a:0') {
-            $tags = $audio.tags
+            if ($null -ne $audio.PSObject.Properties['tags']) { $tags = $audio.tags }
         }
         elseif ($null -ne $meta.PSObject.Properties['format']) {
             if ($meta.format -isnot [pscustomobject]) { throw 'ffprobe format data must be an object.' }
-            $tags = $meta.format.tags
+            if ($null -ne $meta.format.PSObject.Properties['tags']) { $tags = $meta.format.tags }
         }
         if ($null -ne $tags) {
             if ($tags -isnot [pscustomobject]) { throw 'ffprobe tags must be a JSON object.' }
@@ -1677,17 +1682,18 @@ function Get-AudioMediaInfo {
         $result.StreamIndex = [int]$audio.index
         # Keep shape separate from metadata/duration so an unavailable shape gets
         # an explicit planning rejection before any encoder or working file.
-        if ($audio.codec_name -is [string]) { $result.CodecName = $audio.codec_name }
+        if ($null -ne $audio.PSObject.Properties['codec_name'] -and $audio.codec_name -is [string]) { $result.CodecName = $audio.codec_name }
         $sampleRate = 0; $channels = 0
-        if ([int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
-        if ([int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
-        if ($audio.channel_layout -is [string]) { $result.ChannelLayout = $audio.channel_layout }
+        if ($null -ne $audio.PSObject.Properties['sample_rate'] -and [int]::TryParse([string]$audio.sample_rate, [ref]$sampleRate) -and $sampleRate -gt 0) { $result.SampleRate = $sampleRate }
+        if ($null -ne $audio.PSObject.Properties['channels'] -and [int]::TryParse([string]$audio.channels, [ref]$channels) -and $channels -gt 0) { $result.Channels = $channels }
+        if ($null -ne $audio.PSObject.Properties['channel_layout'] -and $audio.channel_layout -is [string]) { $result.ChannelLayout = $audio.channel_layout }
         # Keep metadata inspection independent from duration policy. The caller
         # rejects a missing/invalid duration before it starts a transaction.
-        $durationValue = $audio.duration
+        $durationValue = if ($null -ne $audio.PSObject.Properties['duration']) { $audio.duration } else { $null }
         $result.DurationOrigin = 'Stream'
         if ($null -eq $durationValue -or $durationValue -ceq 'N/A') {
-            $durationValue = if ($null -ne $meta.PSObject.Properties['format']) { $meta.format.duration } else { $null }
+            $durationValue = if ($null -ne $meta.PSObject.Properties['format'] -and
+                $null -ne $meta.format.PSObject.Properties['duration']) { $meta.format.duration } else { $null }
             $result.DurationOrigin = 'Format'
         }
         if ($null -eq $durationValue -or $durationValue -ceq 'N/A') { $result.DurationOrigin = $null }
@@ -1700,7 +1706,7 @@ function Get-AudioMediaInfo {
         }
         # Keep baseline truthiness: an empty title falls back to the filename;
         # whitespace and all other nonempty title strings remain intact.
-        if ($null -ne $tags -and -not [string]::IsNullOrEmpty($tags.title)) {
+        if ($null -ne $tags -and $null -ne $tags.PSObject.Properties['title'] -and -not [string]::IsNullOrEmpty($tags.title)) {
             $result.TitleStatus = 'Present'
             $result.Title = $tags.title
         }
@@ -1713,6 +1719,173 @@ function Get-AudioMediaInfo {
         $result.Error = $_.Exception.Message
     }
     return [pscustomobject]$result
+}
+
+function Test-AudioSourceProbeCrash {
+    param([AllowNull()][object]$NativeResult)
+    # A normal ffprobe rejection is not a crash. Require the completed native
+    # result and drained/released child, then recognize Windows exception exit
+    # statuses; stderr text is diagnostic only and may be localized or empty.
+    if ($null -eq $NativeResult -or $NativeResult.Status -cne 'Completed' -or
+        $null -eq $NativeResult.PSObject.Properties['ProcessReleased'] -or -not $NativeResult.ProcessReleased -or
+        $null -eq $NativeResult.PSObject.Properties['PipeDrainCompleted'] -or -not $NativeResult.PipeDrainCompleted -or
+        $null -eq $NativeResult.ExitCode) { return $false }
+    $code = ([long]$NativeResult.ExitCode -band [long]4294967295).ToString('X8', [Globalization.CultureInfo]::InvariantCulture)
+    return $code -in @('C0000005', 'C000001D', 'C0000025', 'C0000026', 'C000008D', 'C000008E',
+        'C000008F', 'C0000090', 'C0000091', 'C0000092', 'C0000093', 'C0000094', 'C0000095',
+        'C0000096', 'C00000FD', 'C0000374', 'C0000409')
+}
+
+function Invoke-AudioSourceRecovery {
+    param([Parameter(Mandatory = $true)][string]$SourcePath,
+          [Parameter(Mandatory = $true)][string]$OutputRoot,
+          [Parameter(Mandatory = $true)][object]$FailedMedia,
+          [Parameter(Mandatory = $true)][string]$FfmpegPath,
+          [Parameter(Mandatory = $true)][string]$FfprobePath,
+          [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
+          [ValidateRange(1, 2147483)][int]$ProbeTimeoutSeconds = 60)
+    $result = [pscustomobject][ordered]@{
+        Status = 'RecoveryNotApplicable'; Error = ''; Media = $null; InputPath = $null
+        SourceProbeResult = $FailedMedia.NativeResult; RemuxResult = $null; ProbeResult = $null; DecodeResult = $null
+        OriginalDurationSeconds = $null; ProcessReleased = $true; CleanupError = ''
+        Directory = $null; MarkerPath = $null; MarkerGuard = $null; MarkerIdentity = $null
+        WorkingGuard = $null; WorkingIdentity = $null
+    }
+    try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ([IO.Path]::GetExtension($SourcePath) -ine '.m4a' -or
+            -not (Test-AudioSourceProbeCrash -NativeResult $FailedMedia.NativeResult)) {
+            throw 'Recovery requires an M4A source and a proved native source-probe crash.'
+        }
+        $SourcePath = Get-AudioPath -Path $SourcePath
+        $OutputRoot = Get-AudioPath -Path $OutputRoot
+        Assert-AudioNoReparseAncestor -Path $SourcePath
+        Assert-AudioNoReparseAncestor -Path $OutputRoot
+        if (-not [IO.Directory]::Exists($OutputRoot) -or (Test-AudioPathWithin -Path $SourcePath -Parent $OutputRoot)) {
+            throw 'Recovery requires a reserved output run and an original outside that run.'
+        }
+        $result.Status = 'RecoveryStageFailed'
+        $directory = [IO.Path]::Combine($OutputRoot, '.AudioFileForPhone-recovery-' + [guid]::NewGuid().ToString('N'))
+        $working = [IO.Path]::Combine($directory, 'source.m4a')
+        Assert-AudioPathBudget -Path $working -Kind File
+        Initialize-AudioDirectoryInterop
+        if (-not [AudioFileForPhone.PreflightDirectory]::CreateDirectoryW($directory, [IntPtr]::Zero)) {
+            throw ('Could not reserve exclusive recovery directory (Win32 {0}).' -f [Runtime.InteropServices.Marshal]::GetLastWin32Error())
+        }
+        $result.Directory = $directory
+        Assert-AudioNoReparseAncestor -Path $directory
+        $result.MarkerPath = [IO.Path]::Combine($directory, 'owner.tmp')
+        $result.MarkerGuard = New-Object IO.FileStream($result.MarkerPath, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::Read)
+        $result.MarkerIdentity = Get-AudioWorkingFileIdentity -Stream $result.MarkerGuard
+        $result.InputPath = $working
+
+        # Reserve the exact working file with CreateNew, then keep its handle
+        # without Delete sharing while the selected FFmpeg fills this owned file.
+        # As in the output transaction, -y applies only to this guarded scratch
+        # file; publication still refuses every occupied final output path.
+        $result.WorkingGuard = New-Object IO.FileStream($working, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::ReadWrite)
+        $result.WorkingIdentity = Get-AudioWorkingFileIdentity -Stream $result.WorkingGuard
+        $result.Status = 'RecoveryRemuxFailed'; $result.ProcessReleased = $false
+        $remux = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-v', 'error', '-xerror', '-i', $SourcePath, '-map', '0:a:0',
+            '-c:a', 'copy', '-map_metadata', '0', '-map_chapters', '0', '-movflags', '+faststart',
+            '-y', '-f', 'ipod', $working
+        ) -Cancellation $Cancellation -Operation 'Source recovery remux'
+        $result.RemuxResult = $remux
+        $result.ProcessReleased = $null -ne $remux.PSObject.Properties['ProcessReleased'] -and $remux.ProcessReleased
+        if ($remux.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $remux.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($remux.Status -ne 'Completed' -or $remux.ExitCode -ne 0 -or -not $result.ProcessReleased) {
+            throw "Recovery remux failed ($($remux.Status), exit $($remux.ExitCode)): $($remux.Error); $($remux.Stderr)"
+        }
+        Assert-AudioNoReparseAncestor -Path $working
+        # Restrict sharing to readers before re-probe, original validation and
+        # encoding, and verify that the guarded identity survived the transition.
+        $result.WorkingGuard.Dispose(); $result.WorkingGuard = $null
+        $result.WorkingGuard = New-Object IO.FileStream($working, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+        if ((Get-AudioWorkingFileIdentity -Stream $result.WorkingGuard) -cne $result.WorkingIdentity) {
+            throw 'Recovery working-file identity changed before probing.'
+        }
+        $result.Status = 'RecoveryProbeFailed'; $result.ProcessReleased = $false
+        $media = Get-AudioMediaInfo -Path $working -FfprobePath $FfprobePath -Cancellation $Cancellation -ProbeTimeoutSeconds $ProbeTimeoutSeconds
+        $result.ProbeResult = $media.NativeResult
+        $result.ProcessReleased = $null -ne $media.NativeResult -and $media.NativeResult.ProcessReleased
+        if ($media.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $media.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($media.Status -ne 'Success' -or $media.DurationStatus -ne 'Valid' -or -not $result.ProcessReleased) {
+            throw "Recovery probe failed ($($media.Status)): $($media.Error)"
+        }
+
+        # The copy must not validate its own shortened duration. Strictly decode
+        # the ORIGINAL selected audio to sample time, independently of its header
+        # and of the copy, before the existing output transaction can start.
+        $result.Status = 'RecoveryDecodeFailed'; $result.ProcessReleased = $false
+        $decode = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+            '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
+            '-i', $SourcePath, '-map', '0:a:0', '-vn', '-sn', '-dn', '-af', 'asetpts=N/SR/TB',
+            '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
+        ) -Cancellation $Cancellation -Operation 'Original recovery duration decode'
+        $result.DecodeResult = $decode
+        $result.ProcessReleased = $null -ne $decode.PSObject.Properties['ProcessReleased'] -and $decode.ProcessReleased
+        if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($decode.Status -ne 'Completed' -or $decode.ExitCode -ne 0 -or $decode.StdoutTruncated -or
+            $decode.StderrTruncated -or -not [string]::IsNullOrWhiteSpace($decode.Stderr) -or -not $result.ProcessReleased) {
+            throw "Original recovery duration decode failed ($($decode.Status), exit $($decode.ExitCode)): $($decode.Error); $($decode.Stderr)"
+        }
+        $mediaTime = $null; $endTime = $null
+        foreach ($line in ($decode.Stdout -split '\r?\n')) {
+            if ($line -cmatch '^out_time_us=(\d+)$') { $mediaTime = [long]::Parse($Matches[1], [Globalization.CultureInfo]::InvariantCulture) }
+            elseif ($line -ceq 'progress=end') { $endTime = $mediaTime }
+        }
+        if ($null -eq $endTime) { throw 'Original recovery decode did not report a completed media duration.' }
+        $result.OriginalDurationSeconds = ConvertTo-AudioPositiveSeconds -Value ([double]$endTime / 1000000)
+        $result.Status = 'RecoveryDurationMismatch'
+        if ([math]::Abs($result.OriginalDurationSeconds - $media.DurationSeconds) -gt 0.35) {
+            throw 'Recovery copy duration is outside the 0.35-second original decoded duration tolerance.'
+        }
+        # Continue normal planning/metadata using the copy's proven fields, but
+        # validate final output against the original's independently decoded time.
+        $media.DurationSeconds = $result.OriginalDurationSeconds
+        $media.DurationOrigin = 'OriginalDecodedAudio'
+        $result.Media = $media
+        $result.Status = 'Success'
+    }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
+    return $result
+}
+
+function Close-AudioSourceRecovery {
+    param([AllowNull()][object]$Recovery, [bool]$ProcessReleased = $true)
+    if ($null -eq $Recovery -or $null -eq $Recovery.Directory) { return }
+    try {
+        if ($null -ne $Recovery.WorkingGuard) { $Recovery.WorkingGuard.Dispose(); $Recovery.WorkingGuard = $null }
+        if ($null -ne $Recovery.MarkerGuard) { $Recovery.MarkerGuard.Dispose(); $Recovery.MarkerGuard = $null }
+        if (-not $Recovery.ProcessReleased -or -not $ProcessReleased) {
+            throw 'Owned native process release was not established; preserving the recovery scope.'
+        }
+        Assert-AudioNoReparseAncestor -Path $Recovery.Directory
+        if ($Recovery.InputPath -and [IO.File]::Exists($Recovery.InputPath)) {
+            if ($null -eq $Recovery.WorkingIdentity -or
+                (Get-AudioWorkingFileIdentity -Path $Recovery.InputPath) -cne $Recovery.WorkingIdentity) {
+                throw 'Recovery file identity changed; preserving that path.'
+            }
+            [IO.File]::Delete($Recovery.InputPath)
+        }
+        if ($Recovery.MarkerPath -and [IO.File]::Exists($Recovery.MarkerPath)) {
+            if ($null -eq $Recovery.MarkerIdentity -or
+                (Get-AudioWorkingFileIdentity -Path $Recovery.MarkerPath) -cne $Recovery.MarkerIdentity) {
+                throw 'Recovery marker identity changed; preserving that path.'
+            }
+            [IO.File]::Delete($Recovery.MarkerPath)
+        }
+        # Never enumerate/remove recursively: unexpected contents remain visible.
+        [IO.Directory]::Delete($Recovery.Directory, $false)
+    }
+    catch { $Recovery.CleanupError = $_.Exception.Message }
 }
 
 function Get-AudioEncoderSampleRates {
@@ -2532,6 +2705,18 @@ function Get-AudioNativeDiagnosticLines {
     if ($retained -gt 0) { '[NATIVE_STDERR] ' + $Stage + "`n" + $stderr.Substring(0, $retained) }
 }
 
+function Get-AudioNativeManifestDiagnostic {
+    param([AllowNull()][object]$NativeResult)
+    if ($null -eq $NativeResult) { return $null }
+    return [pscustomobject][ordered]@{
+        stage = $NativeResult.Operation; status = $NativeResult.Status; exit_code = $NativeResult.ExitCode
+        process_released = $NativeResult.ProcessReleased; elapsed_ms = $NativeResult.DurationMilliseconds
+        stderr = (Get-AudioBoundedText -Value $NativeResult.Stderr -MaximumChars 2048)
+        stderr_truncated = [bool]$NativeResult.StderrTruncated -or ([string]$NativeResult.Stderr).Length -gt 2048
+        error = (Get-AudioBoundedText -Value $NativeResult.Error)
+    }
+}
+
 function New-AudioRunManifest {
     param([object]$Run, [object]$Snapshot, [string]$InputFolder, [string]$ScriptPath,
           [object]$ToolInfo, [int]$BitrateKbps, [int]$MaxBaseLength,
@@ -2553,7 +2738,7 @@ function New-AudioRunManifest {
             input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
             input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
             source_title = $null; measurement_error = $measurementError
-            audio_plan = $null; observed_audio = $null
+            audio_plan = $null; observed_audio = $null; source_probe = $null; recovery = $null
         }
     })
     $data = [pscustomobject][ordered]@{
@@ -2595,12 +2780,24 @@ function Set-AudioManifestRecord {
     param([object]$Record, [string]$Status, [string]$Code, [AllowNull()][string]$Reason,
           [string]$SourcePath, [string]$OutputPath, [AllowNull()][object]$Media,
           [AllowNull()][object]$Transaction, [double]$ElapsedSeconds,
-          [AllowNull()][object]$OutputPlan = $null)
+          [AllowNull()][object]$OutputPlan = $null, [AllowNull()][object]$Recovery = $null)
     # Commit the outcome before optional measurements, which cannot reclassify
     # an already published output. Missing measurements are explicit nulls.
     $Record.status = $Status; $Record.code = $Code
     $Record.reason = Get-AudioBoundedText -Value $Reason
     $Record.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
+    if ($null -ne $Media) { $Record.source_probe = Get-AudioNativeManifestDiagnostic -NativeResult $Media.NativeResult }
+    if ($null -ne $Recovery) {
+        $Record.source_probe = Get-AudioNativeManifestDiagnostic -NativeResult $Recovery.SourceProbeResult
+        $Record.recovery = [pscustomobject][ordered]@{
+            attempted = $true; status = $Recovery.Status; error = (Get-AudioBoundedText -Value $Recovery.Error)
+            original_decoded_duration_seconds = $Recovery.OriginalDurationSeconds
+            remux = (Get-AudioNativeManifestDiagnostic -NativeResult $Recovery.RemuxResult)
+            probe = (Get-AudioNativeManifestDiagnostic -NativeResult $Recovery.ProbeResult)
+            original_decode = (Get-AudioNativeManifestDiagnostic -NativeResult $Recovery.DecodeResult)
+            cleanup_error = (Get-AudioBoundedText -Value $Recovery.CleanupError)
+        }
+    }
     if ($null -ne $OutputPlan) {
         $Record.audio_plan = [pscustomobject][ordered]@{
             status = $OutputPlan.Status; code = $OutputPlan.Code; reason = $OutputPlan.Reason

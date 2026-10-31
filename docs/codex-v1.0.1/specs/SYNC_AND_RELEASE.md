@@ -1,5 +1,15 @@
 # Checkpoint, handover and release protocol
 
+## Active v1.0.4 patch authority — 2026-10-31
+
+The current owner request authorizes this bounded tested source-probe crash patch
+through ordinary reviewed PR/CI merge, exact-package Windows verification, public
+v1.0.4 publication and independent public-download smoke in one chat. It replaces
+historical checkpoint stops and separate owner approval for this patch only.
+Validate the exact ZIP, verify draft bytes, publish normal release, independently
+download/hash/smoke, and close with main/live-ref sync. Owner testing: none.
+Preserve old tags/assets and all controls. No private media/handoff/raw logs in Git.
+
 ## Active v1.0.3 patch authority — 2026-10-31
 
 The owner's current request and incorporated v1.0.3 work order authorize this

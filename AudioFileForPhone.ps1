@@ -201,7 +201,7 @@ $batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $nu
 $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
 $manifest = $null; $manifestPath = $null; $activeRecordIndex = -1; $fileWatch = $null
-$media = $null; $transaction = $null; $diagnosticError = ''
+$media = $null; $sourceProbeMedia = $null; $recovery = $null; $transaction = $null; $diagnosticError = ''
 $outputAudioPlan = $null; $encoderCapabilities = $null
 $encoderReleaseUnproved = $false
 $coverValidation = $null
@@ -258,8 +258,15 @@ function Write-AudioBatchProgress {
 
 function Get-AudioResultSummary {
     $elapsed = $runWatch.Elapsed.TotalSeconds.ToString('F3', [Globalization.CultureInfo]::InvariantCulture)
-    return ('status={0}; total={1}; processed={2}; converted={3}; failed={4}; not_processed={5}; scan_excluded={6}; unsupported={7}; elapsed_seconds={8}' -f `
+    $summary = ('status={0}; total={1}; processed={2}; converted={3}; failed={4}; not_processed={5}; scan_excluded={6}; unsupported={7}; elapsed_seconds={8}' -f `
         $runStatus, $total, ($ok + $failed), $ok, $failed, ($total - $ok - $failed), $scanExcluded, $unsupported, $elapsed)
+    if ($manifest) {
+        $failures = @($manifest.Data.records | Where-Object { $_.status -eq 'Failed' } | ForEach-Object {
+            '{0}: {1}. Original unchanged.' -f $_.source_relative_path, (Get-AudioBoundedText -Value $_.reason -MaximumChars 240)
+        })
+        if ($failures.Count -gt 0) { $summary += '; failed files: ' + ($failures -join ' | ') }
+    }
+    return $summary
 }
 
 try {
@@ -487,7 +494,10 @@ function Save-AudioManifest {
 
 function Write-FileNativeDiagnostics {
     foreach ($entry in @(
-        @{ Stage = 'SourceProbe'; Result = if ($media) { $media.NativeResult } else { $null } },
+        @{ Stage = 'SourceProbe'; Result = if ($sourceProbeMedia) { $sourceProbeMedia.NativeResult } else { $null } },
+        @{ Stage = 'RecoveryRemux'; Result = if ($recovery) { $recovery.RemuxResult } else { $null } },
+        @{ Stage = 'RecoveryProbe'; Result = if ($recovery) { $recovery.ProbeResult } else { $null } },
+        @{ Stage = 'OriginalRecoveryDecode'; Result = if ($recovery) { $recovery.DecodeResult } else { $null } },
         @{ Stage = 'EncoderCapabilities'; Result = if ($encoderCapabilities) { $encoderCapabilities.NativeResult } else { $null } },
         @{ Stage = 'Encoder'; Result = if ($transaction) { $transaction.EncoderResult } else { $null } },
         @{ Stage = 'OutputProbe'; Result = if ($transaction -and $transaction.ValidationResult) { $transaction.ValidationResult.ProbeResult } else { $null } },
@@ -504,7 +514,7 @@ function Set-ActiveAudioRecordCancelled {
     if ($fileWatch) { $fileWatch.Stop() }
     $elapsed = if ($fileWatch) { $fileWatch.Elapsed.TotalSeconds } else { 0 }
     Set-AudioManifestRecord -Record $record -Status Cancelled -Code Cancelled -Reason 'User requested cancellation.' `
-        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $elapsed -OutputPlan $outputAudioPlan
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $elapsed -OutputPlan $outputAudioPlan -Recovery $recovery
 }
 
 $script:AudioCancellationContext = New-AudioCancellationContext -CaptureConsole
@@ -607,7 +617,10 @@ foreach ($plan in $plans) {
     $index++
     $activeRecordIndex = $index - 1
     $fileWatch = [Diagnostics.Stopwatch]::StartNew()
-    $media = $null; $transaction = $null; $outputAudioPlan = $null
+    $media = $null; $sourceProbeMedia = $null; $recovery = $null
+    $transaction = $null; $outputAudioPlan = $null; $sourceReleaseUnproved = $false
+    $recoveryReadProcessReleased = $true
+    $encodeInputPath = $file.FullName
     $outPath = $plan.OutputPath
 
     Write-AudioConsole -Label 'FILE' -Text ('{0}/{1}  {2}' -f $index, $total, $plan.SourceRelativePath) -Tone Identity
@@ -651,9 +664,26 @@ foreach ($plan in $plans) {
     try {
     Write-Log 'Running ffprobe.' 'DEBUG'
     $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
+    $sourceProbeMedia = $media
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
     if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
+    if ($media.Status -ne 'Success' -and [IO.Path]::GetExtension($file.FullName) -ieq '.m4a' -and
+        (Test-AudioSourceProbeCrash -NativeResult $media.NativeResult)) {
+        Write-Log '[STATE] Source ffprobe crashed; attempting one private stream-copy recovery. Original unchanged.' 'WARN'
+        $recovery = Invoke-AudioSourceRecovery -SourcePath $file.FullName -OutputRoot $outputRoot -FailedMedia $media `
+            -FfmpegPath $ffmpeg -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
+        if ($recovery.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
+        $sourceReleaseUnproved = -not $recovery.ProcessReleased
+        if ($recovery.Status -ne 'Success') {
+            $fileStatus = $recovery.Status
+            throw ('ffprobe crashed before encoding; one recovery attempt failed ({0}): {1}' -f $recovery.Status, $recovery.Error)
+        }
+        $media = $recovery.Media
+        $encodeInputPath = $recovery.InputPath
+        Write-Log '[STATE] Recovery copy validated against original decoded duration; continuing normal conversion.'
+    }
     if ($media.Status -ne 'Success') {
+        if ($media.NativeResult -and -not $media.NativeResult.ProcessReleased) { $sourceReleaseUnproved = $true }
         throw "Source probe failed ($($media.Status)): $($media.Error)"
     }
     $fileStatus = 'InvalidSourceDuration'
@@ -702,14 +732,23 @@ foreach ($plan in $plans) {
     if (-not [string]::IsNullOrWhiteSpace($CoverPath)) {
         Write-Log ("Embedding cover: {0}" -f $CoverPath) 'DEBUG'
     }
-    $ffArgs = @('-hide_banner', '-loglevel', 'warning') + @(New-AudioEncodeArguments -InputPath $file.FullName -Media $media -OutputPlan $outputAudioPlan -MetadataArguments $metadataArgs -CoverPath $CoverPath)
+    $ffArgs = @('-hide_banner', '-loglevel', 'warning') + @(New-AudioEncodeArguments -InputPath $encodeInputPath -Media $media -OutputPlan $outputAudioPlan -MetadataArguments $metadataArgs -CoverPath $CoverPath)
 
     Write-Log ("FFmpeg encoding arguments (working path added by transaction): {0} {1}" -f $ffmpeg, ($ffArgs -join ' ')) 'DEBUG'
 
+        # An abrupt unwind before the transaction returns cannot prove that its
+        # reader has released the recovery input. Retain scratch in that case.
+        if ($recovery) { $recoveryReadProcessReleased = $false }
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
             -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
             -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds -OutputPlan $outputAudioPlan
+        if ($recovery) {
+            $recoveryReadProcessReleased = $true
+            if ($transaction.EncoderResult) { $recoveryReadProcessReleased = [bool]$transaction.EncoderResult.ProcessReleased }
+            if ($transaction.ValidationResult) { $recoveryReadProcessReleased = $recoveryReadProcessReleased -and [bool]$transaction.ValidationResult.ProcessReleased }
+            $sourceReleaseUnproved = -not $recoveryReadProcessReleased
+        }
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -722,6 +761,11 @@ foreach ($plan in $plans) {
     }
     catch [OperationCanceledException] { throw }
     catch { $fileReason = $_.Exception.Message }
+    finally {
+        if ($recovery) {
+            Close-AudioSourceRecovery -Recovery $recovery -ProcessReleased $recoveryReadProcessReleased
+        }
+    }
 
     # Commit the actual file outcome before optional diagnostics. A published
     # file stays successful even if its log write fails; the run then exits 1.
@@ -732,7 +776,7 @@ foreach ($plan in $plans) {
     $fileWatch.Stop()
     $recordStatus = if ($fileStatus -eq 'Success') { 'Converted' } else { 'Failed' }
     Set-AudioManifestRecord -Record $manifest.Data.records[$activeRecordIndex] -Status $recordStatus -Code $fileStatus -Reason $fileReason `
-        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $fileWatch.Elapsed.TotalSeconds -OutputPlan $outputAudioPlan
+        -SourcePath $file.FullName -OutputPath $outPath -Media $media -Transaction $transaction -ElapsedSeconds $fileWatch.Elapsed.TotalSeconds -OutputPlan $outputAudioPlan -Recovery $recovery
     $activeRecordIndex = -1
     Save-AudioManifest -Checkpoint FileBoundary
     $displayOutcome = if ($fileStatus -eq 'Success') { 'Converted; validated output published' } else { "Failed: $fileStatus" }
@@ -740,6 +784,13 @@ foreach ($plan in $plans) {
     Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $displayOutcome -PercentComplete $filePercent -Completed
     Write-AudioBatchProgress -Detail $displayOutcome
     Write-FileNativeDiagnostics
+    if ($recovery) {
+        Write-Log ('Recovery outcome: {0}; {1}' -f $recovery.Status, (Get-AudioBoundedText -Value $recovery.Error)) 'DEBUG'
+        if ($recovery.CleanupError) { Write-Log ('Recovery scope retained: ' + $recovery.Directory + '; ' + $recovery.CleanupError) 'WARN' }
+    }
+    if ($sourceReleaseUnproved) {
+        throw 'Source/recovery process release was not proved. Stopping this batch before any further native operation.'
+    }
     if ($encoderReleaseUnproved) {
         throw 'Encoder capability process release was not proved. Stopping this batch before any further native operation.'
     }
