@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "task": "PATCH104",
-  "status": "IMPLEMENTED_TESTING",
+  "status": "COMPLETED",
   "owner_authorized": true,
   "owner_testing_required": false,
   "authority": "The current owner request incorporates private WORK_ORDER.md and authorizes implementation, automated Windows testing, ordinary reviewed PR/CI merge, public v1.0.4 release and independent public-download verification in one chat.",
@@ -26,5 +26,509 @@
     "historical_native_crash_reproduced_naturally": false,
     "forced_crash_strategy": "Test-only paired native delegates emit recorded 0xC0000409 and no stdout for the selected original source probe only; all recovery media work, encoding and full decoding use selected real tools. No runtime test switch."
   },
-  "validation": "In progress; completion evidence will replace this field after exact-source CI, exact ZIP, public publication and download smoke have actually passed."
+  "validation": {
+    "client": {
+      "caption": "Windows 11 Pro",
+      "display_version": "26H2",
+      "build": "26300.9711",
+      "architecture": "x64",
+      "elevated": false,
+      "ps51": "5.1.26100.9711",
+      "ps7": "7.6.5",
+      "ordinary_music_access": false,
+      "passing_families_per_shell": 19,
+      "required_checks_per_shell": 960,
+      "observations_per_shell": 3,
+      "source_unchanged": true,
+      "coverage": "Actual passing coverage across retained campaign and unchanged targeted runs; original nonpasses not reclassified.",
+      "ps51_aggregate_sha256": "b4f99310cd2a5ec7953f8457691839f8c8e29f85c8ff55667f341a074a8f2091",
+      "ps7_aggregate_sha256": "2eafabdc529dab44ce6bea96b694cda61bd15c1273a30ea22607939b740de92f"
+    },
+    "local_diagnostics": {
+      "ps51_managedreal": {
+        "family": "managedreal",
+        "status": "fail",
+        "error": "Real production managed setup must complete and remember: Managed download body exceeded its bounded deadline. ",
+        "deadline_seconds": 300,
+        "bytes_received": 0,
+        "cleanup_verified": true,
+        "source_unchanged": true,
+        "synthetic_unchanged": true,
+        "descendant_release_proved": true,
+        "record_sha256": "dd23ca85573da51ea45c542e98d1eec3723eca58aefdc58404f13a957f03e5d8",
+        "deadline_or_transport_changes": false
+      },
+      "ps7_managedreal": {
+        "family": "managedreal",
+        "status": "NOT_RUN",
+        "basis": "Same-host actual PS51 zero-byte managed transfer failed its unchanged300second body deadline with proved cleanup. Actual required hosted CI independently passed this family; no substituted transport, cached network pass or extended deadline."
+      },
+      "ps7_original_timing_nonpasses_preserved": 2,
+      "original_case_elapsed_ms": [
+        10153,
+        10206
+      ],
+      "assertion_ms": 10000,
+      "exact_current_shortoperations": {
+        "status": "pass",
+        "cases": 16,
+        "report_sha256": "c929fcc1bcf18bacbc906954a36242a9c71740f424d908187d747d0b55525218",
+        "source_hashes_match_current_checkout": true,
+        "cleanup": true,
+        "descendant_release": true,
+        "startup_elapsed_ms": [
+          2078,
+          2677,
+          2314
+        ],
+        "configured_deadline_ms": 2000,
+        "cause_of_initial_nonpasses": "UNPROVEN",
+        "control": "Clean detached same-commit checkout; same PS7, pinned absolute tools, root current working directory and actual argv; no env/PSModulePath edits. Original complete inherited environment was not snapshotted."
+      },
+      "baseline_v103_shortoperations": "16/16 passed on same client/shell/tools. No pre-existing-defect or causal claim.",
+      "deadline_transport_runtime_or_threadpool_changes": false
+    },
+    "original_file": {
+      "input": "Owner original from private bundle, identity verified against work-order whole-file SHA256",
+      "bytes": 136943622,
+      "whole_file_sha256_preserved": true,
+      "cases": [
+        {
+          "channels": 2,
+          "full_decode": true,
+          "bitrate": 64000,
+          "title_filename_preserved": true,
+          "failed": 0,
+          "mode": "normal",
+          "crashes": 0,
+          "recovery_attempts": 0,
+          "cover": true,
+          "converted": 1,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "processes_released": true,
+          "decoded_seconds": 4255.010249,
+          "artist_album_preserved": true,
+          "shell": "powershell.exe",
+          "exit": 0
+        },
+        {
+          "channels": 2,
+          "full_decode": true,
+          "bitrate": 64000,
+          "title_filename_preserved": true,
+          "failed": 0,
+          "mode": "crash",
+          "crashes": 1,
+          "recovery_attempts": 1,
+          "cover": true,
+          "converted": 1,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "processes_released": true,
+          "decoded_seconds": 4255.010249,
+          "artist_album_preserved": true,
+          "shell": "powershell.exe",
+          "exit": 0
+        },
+        {
+          "channels": 2,
+          "full_decode": true,
+          "bitrate": 64000,
+          "title_filename_preserved": true,
+          "failed": 0,
+          "mode": "normal",
+          "crashes": 0,
+          "recovery_attempts": 0,
+          "cover": true,
+          "converted": 1,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "processes_released": true,
+          "decoded_seconds": 4255.010249,
+          "artist_album_preserved": true,
+          "shell": "pwsh.exe",
+          "exit": 0
+        },
+        {
+          "channels": 2,
+          "full_decode": true,
+          "bitrate": 64000,
+          "title_filename_preserved": true,
+          "failed": 0,
+          "mode": "crash",
+          "crashes": 1,
+          "recovery_attempts": 1,
+          "cover": true,
+          "converted": 1,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "processes_released": true,
+          "decoded_seconds": 4255.010249,
+          "artist_album_preserved": true,
+          "shell": "pwsh.exe",
+          "exit": 0
+        }
+      ],
+      "duration_seconds": 4255.010249,
+      "bitrate_bps": 64000,
+      "sample_rate": 44100,
+      "channels": 2,
+      "artist_album": "2027 Term 1 Week 8",
+      "generated_jpeg_attached": true,
+      "title_filename_date_preserved": true,
+      "full_decode": true,
+      "control_packets_original_and_copy": 183248,
+      "control_expected_audio_payload_hash_matched": true,
+      "selected_tool_build": "2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev",
+      "natural_historical_crash_reproduced": false,
+      "forced_crash": "Test-only native delegate emits 0xC0000409/no stdout for original source probe only; real selected tools perform all media work. No shipped switch.",
+      "private_receipt_sha256": "9edcd9cbee34bede5e804bfa6ebcfab61564a2c9fe9d084ff354e81b54ab0f14"
+    },
+    "synthetic_recovery": {
+      "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+      "cases_per_shell": 8,
+      "classifier_rows": 9,
+      "healthy_recovery_attempts": 0,
+      "forced_crash_recovery_attempts": 1,
+      "mixed_batch": {
+        "converted": 1,
+        "exit": 2,
+        "no_partial_output": true,
+        "failed": 1,
+        "named_failure": true
+      },
+      "failed_remux_attempts": 1,
+      "short_remux_rejected": true,
+      "non_m4a_recovery_attempts": 0,
+      "source_and_synthetic_unchanged": true,
+      "owned_process_release_and_cleanup": true,
+      "ps51_report_sha256": "5ea9ac5aa28ca750d48fafe2eb121181c928e44e6b5e0ab75230fcbdfed44e0f",
+      "ps7_report_sha256": "4b686751d7e160e54a514e8e30df2ee472b8f0a0a847fbf084db549e7e11546e"
+    },
+    "exact_zip_package": {
+      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+      "members": 17,
+      "groups": 12,
+      "full_decoded_outputs": 20,
+      "native_bat_cases": 5,
+      "source_package_unchanged": true,
+      "report_sha256": "ad46cc0e949271ef601502d42d0d0834c1c17bc67cde3c4c22afee12330babfb",
+      "builder_cases_per_shell": 11,
+      "builder_passed": true,
+      "same_host_deterministic_rebuild": true,
+      "cross_framework_zip_identity_claimed": false,
+      "ps51_builder_sha256": "a9dbbfda847da0447a477845a83d00046dfe56515f174dd40cf1a43ad7acf7ae",
+      "ps7_builder_sha256": "5ef56c8bba65438842d17d65877c5279c8024974131931b2a64297227047162a",
+      "audio_or_native_executable_members": 0
+    },
+    "ci": {
+      "runs": [
+        {
+          "head": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+          "status": "success",
+          "ps7": "7.6.7",
+          "tested_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+          "event": "push",
+          "id": 41198379842
+        },
+        {
+          "head": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+          "status": "success",
+          "ps7": "7.6.9",
+          "tested_commit": "5ef06360e984298e9ab155187216dae1c0426bd0",
+          "event": "pull_request",
+          "id": 41198384398
+        },
+        {
+          "head": "657c290976c11e901d87621bed2f078a54f01664",
+          "status": "success",
+          "ps7": "7.6.7",
+          "tested_commit": "657c290976c11e901d87621bed2f078a54f01664",
+          "event": "push_main_after_merge",
+          "id": 41199375756
+        }
+      ],
+      "shell_jobs": 6,
+      "families_per_job": 20,
+      "required_checks_per_job": 963,
+      "observations_per_job": 3,
+      "separate_recovery_cases_per_job": 8,
+      "ffmpeg": "9.0.2-essentials_build-www.gyan.dev",
+      "ps51": "5.1.26100.33648",
+      "source_and_synthetic_unchanged": true,
+      "child_release_and_cleanup": true,
+      "synthetic_only": true,
+      "server_is_supplementary": true,
+      "pr_merge_tree_identical": true,
+      "source_tree": "71acf51588abfdfefb6934c58e39faf0db66e61e",
+      "push_pr_summary_sha256": "152913d7de6618df9f181b227da3bf0b850276ab00c5644104b5ee0d5e310c0a",
+      "main_summary_sha256": "365e5980b02149e9f7e2614f0e4a6f73f047c38fd7253915a1cde5ad6f8d2f6a"
+    }
+  },
+  "reviewed_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+  "frozen_release_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+  "integrated_main": "657c290976c11e901d87621bed2f078a54f01664",
+  "integration_pr": 38,
+  "annotated_tag_object": "3b87eacb8409ef5c002049a70106a8bf125aac21",
+  "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+  "publication_authorization": {
+    "owner_authorized": true,
+    "basis": "Current owner request incorporates private v1.0.4 WORK_ORDER.md",
+    "scope": "Bounded tested patch through ordinary reviewed PR/CI, normal public release and independent public-download verification in one chat",
+    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "target_tag": "v1.0.4",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.4.zip",
+        "bytes": 295157,
+        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 9815,
+        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+      }
+    ],
+    "record": "evidence/PATCH104.json"
+  },
+  "feature_sync": "Local reviewed head and fresh advertised feature ref both equal frozen source.",
+  "review": "Independent runtime review and primary-agent CI-policy review found no blocking defect. PR38 merged normally after exact-head CI. No access-control, visibility, history or older-byte change.",
+  "public_release": {
+    "id": 429916406,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4",
+    "published_at": "2026-10-31T12:22:21Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "tag": "v1.0.4",
+    "tag_object": "3b87eacb8409ef5c002049a70106a8bf125aac21",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.4.zip",
+        "bytes": 295157,
+        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 9815,
+        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "public_smoke": {
+      "cases": [
+        {
+          "crashes": 0,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2,
+          "exit": 0,
+          "cover": true,
+          "mode": "normal",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 0,
+          "channels": 2,
+          "shell": "powershell.exe"
+        },
+        {
+          "crashes": 1,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2,
+          "exit": 0,
+          "cover": true,
+          "mode": "crash",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 1,
+          "channels": 2,
+          "shell": "powershell.exe"
+        },
+        {
+          "crashes": 0,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2.0,
+          "exit": 0,
+          "cover": true,
+          "mode": "normal",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 0,
+          "channels": 2,
+          "shell": "pwsh.exe"
+        },
+        {
+          "crashes": 1,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2.0,
+          "exit": 0,
+          "cover": true,
+          "mode": "crash",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 1,
+          "channels": 2,
+          "shell": "pwsh.exe"
+        }
+      ],
+      "status": "pass",
+      "synthetic_only": true,
+      "receipt_sha256": "d3989eec54c2cadc67963d38b01a6f6f23b1de09f2609121f24998ff68075af7",
+      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
+    },
+    "frozen_bytes": true
+  },
+  "preservation": {
+    "status": "pass",
+    "old_releases": [
+      {
+        "tag": "v1.0.3",
+        "id": 429840128,
+        "assets": [
+          {
+            "id": 694949006,
+            "name": "AudioFileForPhone-v1.0.3.zip",
+            "size": 291844,
+            "digest": "sha256:10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
+          },
+          {
+            "id": 694949002,
+            "name": "release-manifest.json",
+            "size": 10325,
+            "digest": "sha256:52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97"
+          },
+          {
+            "id": 694949004,
+            "name": "SHA256SUMS.txt",
+            "size": 183,
+            "digest": "sha256:959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb"
+          }
+        ]
+      },
+      {
+        "tag": "v1.0.2",
+        "id": 429430152,
+        "assets": [
+          {
+            "id": 693234678,
+            "name": "AudioFileForPhone-v1.0.2.zip",
+            "size": 286541,
+            "digest": "sha256:012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+          },
+          {
+            "id": 693234679,
+            "name": "release-manifest.json",
+            "size": 10318,
+            "digest": "sha256:5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+          },
+          {
+            "id": 693234677,
+            "name": "SHA256SUMS.txt",
+            "size": 183,
+            "digest": "sha256:dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+          }
+        ]
+      },
+      {
+        "tag": "v1.0.1",
+        "id": 429170892,
+        "assets": [
+          {
+            "id": 692603804,
+            "name": "AudioFileForPhone-v1.0.1.zip",
+            "size": 128139,
+            "digest": "sha256:632070cadda570bdd28eeb193abdb873e65f18edd40aa5e6ab41f499061be5e6"
+          },
+          {
+            "id": 692603805,
+            "name": "release-manifest.json",
+            "size": 12118,
+            "digest": "sha256:8587279cddc03e31954cc747857c73ead36b8b90d777a7ca9d1ab1e684e90887"
+          },
+          {
+            "id": 692603802,
+            "name": "SHA256SUMS.txt",
+            "size": 183,
+            "digest": "sha256:1a93c76f1473b9b67555c3e0fd1aaae8d81ca347045ea67faf89ef76c8775ee3"
+          }
+        ]
+      },
+      {
+        "tag": "v1.0.0",
+        "id": 410779813,
+        "assets": [
+          {
+            "id": 634242834,
+            "name": "AudioFileForPhone-v1.0.0.zip",
+            "size": 53958,
+            "digest": "sha256:8fe8ac6752800f54dd58a7b454924ee5aa0b9b7153aa31457312ba3e1b2103cf"
+          },
+          {
+            "id": 634242836,
+            "name": "release-manifest.json",
+            "size": 4162,
+            "digest": "sha256:7f354b2065b472f126316a1ceeae818e6133f59539eeaa526cab2a2e75609146"
+          },
+          {
+            "id": 634242837,
+            "name": "SHA256SUMS.txt",
+            "size": 183,
+            "digest": "sha256:83e72d9eb69ab1189a45315ade9842dc7f7f450883f33ae3d58213c13ef29de8"
+          }
+        ]
+      }
+    ],
+    "old_release_count": 4,
+    "old_asset_count": 12,
+    "old_tag_refs_checked_unchanged": 8
+  },
+  "coverage_limits": [
+    "Windows10 client execution unavailable and not claimed.",
+    "No human listening/phone observation claimed or required.",
+    "Local online managed setup300s/0bytes failure with cleanup; duplicate PS7 network NOT_RUN. Six hosted CI equivalents passed.",
+    "Two original local PS7 timing nonpasses retained; exact current clean checkout passed16 unchanged cases. Cause unproven; full inherited environment not snapshotted."
+  ],
+  "closure": {
+    "owner_testing_required": "none",
+    "automatic_next_step": false,
+    "scope": "Docs/evidence only. Final containing closure commit/live-main comparison and CI checked after ordinary reviewed integration; no tag move or public byte replacement."
+  }
 }

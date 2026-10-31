@@ -1,3 +1,11 @@
+# v1.0.4 completed — current routing
+
+Read root AGENTS.md, current STATE and PATCH104-HANDOVER.md. The owner-directed
+patch completed public publication/download verification in one chat. No owner
+test, approval, numbered continuation or automatic version is pending. Preserve
+all released tags/bytes and controls. Older routing below is historical; future
+maintenance requires a new owner request.
+
 # Active focused-repair routing
 
 Root AGENTS.md, the CHARTER amendment and REPAIR_BRIEF.md supersede conflicting

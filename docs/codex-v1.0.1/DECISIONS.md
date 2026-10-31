@@ -863,3 +863,19 @@ was shipped for the controller-only Unicode marshaling defect. No security contr
 deadline, source validation or owner-testing boundary was weakened. Optional Win10,
 physical drop and picker Open automation gaps remain honest, with no owner task.
 Closure changes only excluded docs; never retag/replace released bytes for evidence.
+
+## PATCH104 — completed 2026-10-31
+
+The explicit owner request incorporated the private work order and authorized
+the bounded fix through normal PR/CI, v1.0.4 release and public-byte verification
+in one chat. Earlier checkpoint/approval stops did not route this patch.
+Use one guarded M4A stream-copy recovery only after proved native exception exit;
+re-probe its own stream and check independent original decoded sample time before
+the existing transaction. Narrow the query to consumed title tags and use
+literal JSON date parsing where supported; FFmpeg metadata mapping stays intact.
+Keep the recording, handoff and raw reports private; public CI uses synthetic
+media. Preserve network/timing nonpasses with exact-current unchanged control
+passes and six actual hosted CI job passes. Change no deadline, transport or unrelated
+normal runner to obtain a green result. Frozen source 6b302b5 and all three asset
+digests stay unchanged through later docs-only ordinary reviewed closure.
+Owner testing: none. Future work requires a new request.

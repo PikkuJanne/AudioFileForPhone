@@ -1,3 +1,9 @@
+# Current release: v1.0.4
+
+[Publication receipt](PATCH104-HANDOVER.md) · [Redacted evidence](evidence/PATCH104.json).
+Published and independently downloaded/tested; owner testing required: none.
+Earlier planning and routing below are historical.
+
 # Active plan index
 
 Read CHARTER.md and STATE.json first; STATUS.md and NEXT_SESSION.md provide the

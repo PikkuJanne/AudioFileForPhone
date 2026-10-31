@@ -1,14 +1,15 @@
 # AudioFileForPhone agent instructions
 
-## Owner-directed v1.0.4 patch — 2026-10-31
+## Completed owner-directed v1.0.4 patch — 2026-10-31
 
-The owner's new request incorporates the private work order and authorizes the
-bounded source-probe crash fix through implementation, automated Windows tests,
-ordinary reviewed PR/CI merge, public v1.0.4 release and independent download
-verification in one chat. It supersedes historical numbered stops and separate
-approval gates for this patch. No owner testing is required. Keep private input,
-private handoff and raw logs outside Git, CI and assets. Preserve existing
-controls, normal conversion behavior, public tags and published bytes.
+The owner-directed source-probe crash patch completed through ordinary reviewed
+PR/CI, public normal v1.0.4 release and independent public-download smoke.
+Frozen source/tag: 6b302b5813ccdfc9563de5bfbfde641e780e1e9f / v1.0.4.
+Evidence: docs/codex-v1.0.1/evidence/PATCH104.json and PATCH104-HANDOVER.md.
+The recording, private handoff and raw reports remain outside Git/assets.
+Old numbered stops and approval gates were historical for this one-chat patch.
+All releases and controls stay preserved; no owner testing or automatic next
+step/version is pending. Future maintenance requires a new owner request.
 
 ## Completed owner-directed v1.0.3 patch — 2026-10-31
 

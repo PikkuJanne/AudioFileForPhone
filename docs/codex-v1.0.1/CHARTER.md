@@ -1,6 +1,11 @@
 # Charter — focused launch and distribution repair
 
-## Active v1.0.4 owner work order — 2026-10-31
+This patch is published and independently verified; see PATCH104-HANDOVER.md and
+evidence/PATCH104.json in docs/codex-v1.0.1. Its one-chat authority is exhausted.
+No automatic next version, owner test or new publication follows. Older records
+remain historical.
+
+## Completed v1.0.4 owner work order — 2026-10-31
 
 Implement the bounded source-probe crash repair and complete automated Windows
 testing, ordinary reviewed integration, public v1.0.4 publication and independent
