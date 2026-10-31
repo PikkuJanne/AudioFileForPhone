@@ -1,6 +1,13 @@
 # Checkpoint, handover and release protocol
 
-## Active v1.0.5 batch-repair authority — 2026-10-31
+The v1.0.5 work order completed tested ordinary reviewed integration, normal
+public publication and independent public-download smoke. Frozen source/tag:
+`4cb6341ae5358faac28462643a9d67a5e3f9b424` / `v1.0.5`. See PATCH105-HANDOVER.md and
+evidence/PATCH105.json. Owner testing/action: none. Its one-chat authority is
+exhausted after documentation closure; no automatic next version follows.
+Earlier records remain historical; preserve every released tag/asset/control.
+
+## Completed v1.0.5 batch-repair authority — 2026-10-31
 
 The current owner request incorporates the v1.0.5 batch-repair work order and
 authorizes implementation, automated direct/package tests with the verified

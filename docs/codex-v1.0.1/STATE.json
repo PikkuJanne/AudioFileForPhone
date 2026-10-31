@@ -1,20 +1,39 @@
 {
   "schema_version": 1,
   "target_version": "1.0.5",
-  "project_status": "IN_PROGRESS",
+  "project_status": "COMPLETED",
   "current_step": "PATCH105",
-  "active_branch": "codex/v1.0.5-batch-recovery",
-  "tested_source_commit": null,
-  "frozen_release_commit": null,
-  "runtime_zip_sha256": null,
+  "active_branch": "main",
+  "tested_source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+  "frozen_release_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+  "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
   "acceptance_kit_sha256": null,
   "publication_authorization": {
     "owner_authorized": true,
-    "basis": "Current request incorporates v1.0.5 batch-repair work order",
-    "scope": "Tested exact candidate through ordinary reviewed PR/CI merge, normal public v1.0.5 release and independent public-download verification",
+    "basis": "Current owner request incorporates v1.0.5 batch repair work order",
+    "scope": "Tested exact candidate through ordinary reviewed CI-passing integration, normal public release and independent public-download smoke",
+    "source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
     "target_tag": "v1.0.5",
-    "source_commit": null,
-    "assets": [],
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.5.zip",
+        "bytes": 294085,
+        "sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 15194,
+        "sha256": "fbc6451043e8809095830e5f994898fed9bfca179b79640179ec03593b609ea6",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "24c795e57b4941771ddc856252904cc1c4ae57832faec438604e6463dc388eef",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/SHA256SUMS.txt"
+      }
+    ],
     "record": "evidence/PATCH105.json"
   },
   "recovery_exception": null,
@@ -147,15 +166,18 @@
       "owner_testing_required": "none"
     },
     "PATCH105": {
-      "status": "IN_PROGRESS",
+      "status": "COMPLETED",
       "evidence": "evidence/PATCH105.json",
       "owner_testing_required": "none",
-      "remaining_work": [
-        "Verify repeated direct/package batches on exact observed build and stable comparison",
-        "Complete crash-recovery regressions and full supported-shell suites",
-        "Reviewed CI-passing merge; exact-package acceptance; verified draft/public download smoke; closure"
-      ],
-      "blockers": []
+      "remaining_work": [],
+      "blockers": [],
+      "coverage_gaps": [
+        "The full original 29-file batch is unavailable. Generated29-M4A workload and one available authorized private fixture are labeled honestly.",
+        "Native stack-smashing crash was not naturally reproduced; underlying cause remains UNPROVEN. Fault injection proves recovery behavior.",
+        "Both local optional managed-download tests failed the unchanged 300 second body deadline, cleaned up and left2cases NOT_RUN each. Required hosted equivalents passed. No transport, security or timeout change.",
+        "Original local PS7 shortoperations10153ms nonpass remains retained with causeUNPROVEN. One finite baseline104/currentC comparison passed16unchanged cases each.",
+        "Windows 10 client and genuine Explorer conversion NOT_RUN; no listening/phone/human observations claimed or required."
+      ]
     }
   },
   "owner_override": {
@@ -166,10 +188,89 @@
     "work_order_sha256": "db758c424a1f334b5a8c8e8271f4ba2bced1eadcee69f7c91efbdacbf30845a7",
     "security_controls_waived": false,
     "owner_testing_required": "none",
-    "record": "evidence/PATCH105.json"
+    "record": "evidence/PATCH105.json",
+    "tested_source_selected_under_work_order": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+    "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+    "authority_status": "Completed boundedv1.0.5 work order; no automatic next version or owner test"
   },
-  "completion_basis": null,
-  "public_release": null,
+  "completion_basis": "Normal public v1.0.5, accepted exact ZIP, independent anonymous downloads and two real public-byte conversions verified. Ordinary PR40 plus source push/PR/integrated-main CI passed. Actual available local source coverage is 19 passing families/960 checks + 3 observations per shell; original nonpasses and network gaps remain nonpasses. Documentation-only closure protocol requires ordinary reviewed integration, post-checkpoint exact-commit CI and fresh live branch/main comparisons; final SHA/results are reported in the completion message.",
+  "public_release": {
+    "status": "PUBLICLY_VERIFIED",
+    "id": 430012191,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5",
+    "tag": "v1.0.5",
+    "title": "AudioFileForPhone v1.0.5",
+    "published_at": "2026-10-31T15:28:19Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+    "tag_object": "4a0ec0c2b2d5320688759d0bfec3c5e5bad31096",
+    "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.5.zip",
+        "bytes": 294085,
+        "sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 15194,
+        "sha256": "fbc6451043e8809095830e5f994898fed9bfca179b79640179ec03593b609ea6",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "24c795e57b4941771ddc856252904cc1c4ae57832faec438604e6463dc388eef",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "zip_members_verified": 17,
+    "public_smoke": {
+      "status": "pass",
+      "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+      "media": "Available authorized private JavaFX fixture; not original 29-file batch",
+      "selected_tools": "Verified October15 essentials pair, actual directory, uninstrumented",
+      "cases": [
+        {
+          "shell": "powershell.exe",
+          "exit": 0,
+          "converted": 1,
+          "failed": 0,
+          "decoded_seconds": 4255.010249,
+          "bitrate": 64000,
+          "sample_rate": 44100,
+          "channels": 2,
+          "title_artist_album": true,
+          "jpeg_225x225": true,
+          "strict_full_decode": true,
+          "owned_working_files_removed": true
+        },
+        {
+          "shell": "pwsh.exe",
+          "exit": 0,
+          "converted": 1,
+          "failed": 0,
+          "decoded_seconds": 4255.010249,
+          "bitrate": 64000,
+          "sample_rate": 44100,
+          "channels": 2,
+          "title_artist_album": true,
+          "jpeg_225x225": true,
+          "strict_full_decode": true,
+          "owned_working_files_removed": true
+        }
+      ],
+      "original_bytes_and_creation_write_timestamps_unchanged": true,
+      "natural_crashes": 0,
+      "report_sha256": "fd5dea432af1ebd5dd9c4e9dce3e84b56bd1dc218c6f8aefb0a428b84685dd7e"
+    },
+    "frozen_bytes": true
+  },
   "initial_publication_authorization": {
     "step": "S17",
     "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
@@ -431,7 +532,7 @@
     }
   },
   "active_corrective_target_version": "1.0.5",
-  "historical_release_fields_note": "Top-level active release/authority/completion fields describe v1.0.4. Prior v1.0.3 values are preserved under historical_v1_0_3_release_fields; earlier explicitly historical records remain unchanged. RELEASE_TARGET.json remains the historical v1.0.1 contract; current contract is CORRECTIVE_RELEASE_TARGET.json.",
+  "historical_release_fields_note": "Top-level active fields describe completedPATCH105/v1.0.5. Frozen prior release/authority fields remain in historical snapshots and prior evidence. No automatic next work/version.",
   "historical_v1_0_1_release_fields": {
     "target_version": "1.0.1",
     "frozen_release_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
@@ -513,7 +614,14 @@
     },
     "completion_basis": "Original release closure plus owner-requested packaging revision2, public downloads and actual clean-package tests verified. Original absent Win10/physical/phone observations remain waived, never passed."
   },
-  "final_checkpoint_observation": null,
+  "final_checkpoint_observation": {
+    "method": "Observe containing documentation checkpoint push/live branch ref, ordinary reviewed PRintegration and final local/live main equality after commit. Exact final SHA and CI are returned in completion message; no self-referential commit loop.",
+    "release_source": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+    "code_integration_main": "cb0a0bb017fb8d2bcef52f6530c83e98b1fb009d",
+    "code_ci": "Push/PR/integratedmain passed20 families963 checks + 3 observations plus 8 + 24 recovery per job",
+    "closure_scope": "Docs/evidence only; tested public bytes/tag remain frozen",
+    "owner_testing_required": "none"
+  },
   "patch103": {
     "status": "COMPLETED",
     "target_tag": "v1.0.3",
@@ -527,41 +635,12 @@
     "handover": "evidence/PATCH103-HANDOVER.md"
   },
   "previous_completed_release": {
-    "id": 429840128,
-    "tag": "v1.0.3",
-    "title": "AudioFileForPhone v1.0.3",
-    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3",
-    "draft": false,
-    "prerelease": false,
-    "published_at": "2026-10-31T09:31:24Z",
-    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
-    "annotated_tag_object": "3b42cbd4ee7cc965ad64517fe776acbeb1ea8f7e",
-    "assets": [
-      {
-        "name": "AudioFileForPhone-v1.0.3.zip",
-        "bytes": 291844,
-        "sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4",
-        "asset_id": 694949006,
-        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/AudioFileForPhone-v1.0.3.zip"
-      },
-      {
-        "name": "release-manifest.json",
-        "bytes": 10325,
-        "sha256": "52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97",
-        "asset_id": 694949002,
-        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/release-manifest.json"
-      },
-      {
-        "name": "SHA256SUMS.txt",
-        "bytes": 183,
-        "sha256": "959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb",
-        "asset_id": 694949004,
-        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/SHA256SUMS.txt"
-      }
-    ],
-    "status": "PUBLICLY_VERIFIED",
-    "package_revision": 3,
-    "runtime_zip_sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
+    "version": "1.0.4",
+    "tag": "v1.0.4",
+    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+    "evidence": "evidence/PATCH104.json",
+    "preserved": true
   },
   "historical_v1_0_2_release_fields": {
     "public_release": {
@@ -911,5 +990,42 @@
       "public_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
       "closure": "Containing docs-only closure commit, fresh main ref and CI are observed after normal reviewed merge and reported externally to avoid self-reference."
     }
+  },
+  "historical_previous_completed_release_before_PATCH105": {
+    "id": 429840128,
+    "tag": "v1.0.3",
+    "title": "AudioFileForPhone v1.0.3",
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-10-31T09:31:24Z",
+    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "annotated_tag_object": "3b42cbd4ee7cc965ad64517fe776acbeb1ea8f7e",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.3.zip",
+        "bytes": 291844,
+        "sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4",
+        "asset_id": 694949006,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/AudioFileForPhone-v1.0.3.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10325,
+        "sha256": "52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97",
+        "asset_id": 694949002,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb",
+        "asset_id": 694949004,
+        "download_url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.3/SHA256SUMS.txt"
+      }
+    ],
+    "status": "PUBLICLY_VERIFIED",
+    "package_revision": 3,
+    "runtime_zip_sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
   }
 }

@@ -1,16 +1,18 @@
 # AudioFileForPhone agent instructions
 
-## Owner-directed v1.0.5 batch repair — 2026-10-31
+## Completed owner-directed v1.0.5 batch repair — 2026-10-31
 
-The owner incorporated AudioFileForPhone_v1.0.5_Codex_Batch_Repair.md and authorized
-one repair through automated testing, ordinary reviewed PR/CI merge, normal public
-v1.0.5 publication and independent public-download smoke in this chat. This
-supersedes historical numbered stops and separate approval gates for this patch.
-Use the verified October 15 essentials pair for direct/package comparison; keep
-private recordings, raw reports and work-order contents outside Git/assets.
-Retry only a narrowly classified released native worker crash, once per failed
-operation; preserve validation, source protection and existing published bytes.
-Owner testing: none. See evidence/PATCH105.json for actual progress and limits.
+The incorporated batch work order completed ordinary reviewed PR40/CI integration,
+normal public v1.0.5 publication, anonymous exact-byte verification and automated
+public-download smoke in PS5.1/PS7. Frozen source/tag:
+4cb6341ae5358faac28462643a9d67a5e3f9b424 / v1.0.5.
+Evidence: docs/codex-v1.0.1/evidence/PATCH105.json and PATCH105-HANDOVER.md.
+Private recording, work order and raw reports/argv remain outside Git/assets.
+Native cause remains unproven; disclosed local nonpasses stay retained. Historical
+numbered stops/approval routing were superseded for this one-chat work order.
+Final documentation closure uses ordinary reviewed CI and post-commit live-ref
+verification. All released bytes/tags and controls remain frozen. Owner action:
+none. No automatic next step/version; future maintenance needs a new owner request.
 
 ## Completed owner-directed v1.0.4 patch — 2026-10-31
 
