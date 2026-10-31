@@ -142,6 +142,34 @@ function ConvertTo-PowerShellLiteral {
 
 function Invoke-ChildCode {
     param([string]$Code, [string]$Label, [string]$ChildPath = $ordinaryPath)
+    $loader = Join-Path $testRoot ($Label + '-environment-loader.ps1')
+    $loaderCode = @'
+. $global:T04OriginalEnvironmentHelper
+function Get-AudioEnvironmentSetting {
+    param([string]$Name, [string]$Target = 'Process')
+    # This test owns PATH; desktop FFMPEG/saved PATH must not repair its
+    # intentionally missing-tool preconditions.
+    if($Name -ieq 'Path' -and $Target -eq 'Process'){return $env:PATH}
+    return $null
+}
+'@
+    [IO.File]::WriteAllText($loader, $loaderCode, (New-Object Text.UTF8Encoding($true)))
+    $isolation = @(
+        ('$global:T04EnvironmentLoader=' + (ConvertTo-PowerShellLiteral $loader)),
+        @'
+function global:Join-Path {
+    [CmdletBinding()]
+    param([Parameter(Position=0)][string]$Path,[Parameter(Position=1)][string]$ChildPath,[switch]$Resolve)
+    $actual=Microsoft.PowerShell.Management\Join-Path @PSBoundParameters
+    if($ChildPath -ceq 'AudioFileForPhone.Helpers.ps1' -and [IO.File]::Exists($actual)) {
+        $global:T04OriginalEnvironmentHelper=$actual
+        return $global:T04EnvironmentLoader
+    }
+    return $actual
+}
+'@
+    ) -join "`n"
+    $Code = $isolation + "`n" + $Code
     # EncodedCommand preserves empty, whitespace and embedded-quote arguments
     # identically on PS5.1 and PS7; no shell evaluates user-controlled strings.
     $encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($Code))

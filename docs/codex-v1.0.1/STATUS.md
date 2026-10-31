@@ -1,5 +1,17 @@
 # Status — R3 completed; v1.0.2 published and verified
 
+## Active v1.0.3 patch — 2026-10-31
+
+Owner-authorized work order: repair discovery, metadata entry and native console
+presentation, then run automated acceptance and publish/verify the tested patch.
+Branch: codex/v1.0.3-discovery-metadata-console; base main 6fb3a6c.
+This job supersedes old numbered stops and separate owner approval gates. Normal
+reviewed PR/CI and all safety/access controls remain. Owner testing required: none.
+Discovery focused cases passed both supported PowerShell hosts. Metadata and
+exact-package checks are in progress; no new release is claimed yet. Host is
+Windows 11 Pro 26H2 build26300.9711 x64, unelevated. Windows10 client unavailable;
+actual shell invocation will be distinguished from physical Explorer drag/drop.
+
 Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2
 Release ID429430152; tag v1.0.2 points to frozen source 83a5713cacfbc330f309f48d8377cb5be11ba3a6.
 ZIP SHA256 012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad.

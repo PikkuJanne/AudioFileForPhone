@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.2'
+    return '1.0.3'
 }
 
 function Assert-AudioParameters {
@@ -283,47 +283,137 @@ function Assert-AudioLocalToolPath {
     return $full
 }
 
-function Get-AudioPathTool {
-    param([Parameter(Mandatory = $true)][ValidateSet('ffmpeg.exe', 'ffprobe.exe')][string]$ExeName,
+function Get-AudioEnvironmentSetting {
+    param([Parameter(Mandatory = $true)][string]$Name,
+        [ValidateSet('Process', 'User', 'Machine')][string]$Target = 'Process')
+    # Read only. Keeping this boundary small also lets isolated tests supply a
+    # stale-parent environment without changing the desktop's saved settings.
+    return [Environment]::GetEnvironmentVariable($Name, [EnvironmentVariableTarget]::$Target)
+}
+
+function Test-AudioSavedEnvironmentLookup {
+    # Saved user settings are fallback hints for ordinary desktop launches, not
+    # elevated/service execution. Never use a lower-trust user hint when elevated.
+    if (-not [Environment]::UserInteractive) { return $false }
+    try {
+        $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+        try {
+            $principal = New-Object Security.Principal.WindowsPrincipal($identity)
+            return -not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+        }
+        finally { $identity.Dispose() }
+    }
+    catch { return $false }
+}
+
+function ConvertTo-AudioEnvironmentPath {
+    param([AllowNull()][string]$Value)
+    if ([string]::IsNullOrWhiteSpace($Value)) { return $null }
+    $path = $Value.Trim()
+    if ($path.Length -ge 2 -and $path[0] -eq '"' -and $path[$path.Length - 1] -eq '"') {
+        $path = $path.Substring(1, $path.Length - 2)
+    }
+    # ExpandEnvironmentVariables substitutes %NAME% as data; it never evaluates
+    # shell syntax, expressions or executable commands.
+    $path = [Environment]::ExpandEnvironmentVariables($path)
+    if ($path -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { return $null }
+    return $path
+}
+
+function Resolve-AudioAutomaticToolPair {
+    param([AllowNull()][object]$Cancellation,
         [AllowNull()][hashtable]$DiagnosticContext, [switch]$LocalOnly)
-    # Resolve only exact .exe files under absolute PATH entries. Get-Command also
-    # searches the process working directory on Windows; source folders never gain
-    # executable-selection authority through that implicit search (or PATH '.').
-    foreach ($entry in @($env:PATH -split ';')) {
-        $directory = $entry.Trim().Trim('"')
-        if ($directory -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\]+\\[^\\]+)') { continue }
-        if ($LocalOnly) {
-            try { $null = Assert-AudioLocalToolPath -Path $directory }
-            catch {
-                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $directory -Status Rejected -Reason $_.Exception.Message
-                continue
-            }
-        }
-        try { $full = Get-AudioSelectionPath -Path $directory }
-        catch { continue }
-        $candidate = [IO.Path]::Combine($full, $ExeName)
-        if ($LocalOnly) {
-            try { Assert-AudioNoReparseAncestor -Path $candidate }
-            catch {
-                if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
-                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason $_.Exception.Message
-                throw
-            }
-        }
-        if (-not (Test-Path -LiteralPath $candidate -ErrorAction Stop)) {
-            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Missing -Reason 'Exact executable is absent.'
+    $seen = New-Object 'Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+    $failures = New-Object 'Collections.Generic.List[string]'
+    $found = $false
+    $savedAllowed = Test-AudioSavedEnvironmentLookup
+    # Process PATH keeps its established priority. Saved values are read only
+    # after earlier sources have failed to supply a usable, same-directory pair.
+    foreach ($source in @(
+        @{ Name = 'Path'; Target = 'Process'; Origin = 'PATH' },
+        @{ Name = 'FFMPEG'; Target = 'Process'; Origin = 'FFMPEG' },
+        @{ Name = 'FFMPEG'; Target = 'User'; Origin = 'User FFMPEG' },
+        @{ Name = 'FFMPEG'; Target = 'Machine'; Origin = 'Machine FFMPEG' },
+        @{ Name = 'Path'; Target = 'User'; Origin = 'User PATH' },
+        @{ Name = 'Path'; Target = 'Machine'; Origin = 'Machine PATH' }
+    )) {
+        if ($source.Target -ne 'Process' -and -not $savedAllowed) { continue }
+        try { $value = Get-AudioEnvironmentSetting -Name $source.Name -Target $source.Target }
+        catch {
+            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $source.Origin -Candidate $source.Name -Status Rejected -Reason 'Saved environment value could not be read.'
             continue
         }
-        $item = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop
-        if ($item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
-            if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyInvalid' }
-            Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Rejected -Reason 'Not a regular executable file.'
-            throw "PATH candidate is not a regular executable file: '$candidate'."
+        $entries = if ($source.Name -eq 'Path') { @($value -split ';') } else { @($value) }
+        foreach ($entry in $entries) {
+            $hint = ConvertTo-AudioEnvironmentPath -Value $entry
+            if ([string]::IsNullOrWhiteSpace($hint)) { continue }
+            try {
+                $directories = @($hint)
+                if ($source.Name -eq 'FFMPEG') {
+                    if ([IO.Path]::GetFileName($hint) -ieq 'ffmpeg.exe') { $directories = @([IO.Path]::GetDirectoryName($hint)) }
+                    else { $directories += [IO.Path]::Combine($hint, 'bin') }
+                }
+            }
+            catch {
+                Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $source.Origin -Candidate $hint -Status Rejected -Reason 'Hint is not a valid literal filesystem path.'
+                continue
+            }
+            foreach ($directory in $directories) {
+                try {
+                    if ($LocalOnly) { $null = Assert-AudioLocalToolPath -Path $directory }
+                    $full = Get-AudioSelectionPath -Path $directory
+                    if (-not $seen.Add($full.TrimEnd('\', '/'))) { continue }
+                    $missing = @()
+                    foreach ($name in @('ffmpeg.exe', 'ffprobe.exe')) {
+                        $candidate = [IO.Path]::Combine($full, $name)
+                        if (Test-Path -LiteralPath $candidate -ErrorAction Stop) { $found = $true }
+                        else { $missing += $name }
+                    }
+                    if ($missing.Count -gt 0) {
+                        $reason = 'Missing ' + ($missing -join ' and ') + '.'
+                        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $source.Origin -Candidate $full -Status Missing -Reason $reason
+                        if ($missing.Count -eq 1) { $failures.Add($source.Origin + ': ' + $reason) }
+                        continue
+                    }
+                    $pair = Get-AudioToolPairPaths -Directory $full
+                    $validation = @{ Stage = 'ToolSelection'; Code = 'DependencyInvalid'; Attempts = @(); NativeResult = $null
+                        Selection = [pscustomobject]@{ Origin = $source.Origin; Ffmpeg = $null; Ffprobe = $null } }
+                    try {
+                        $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation -DiagnosticContext $validation
+                    }
+                    catch [OperationCanceledException] { throw }
+                    catch {
+                        # A failed process start may be an enforced application
+                        # control denial. Do not search for a different binary to
+                        # get around it, or proceed after unproved process release.
+                        if ($null -ne $DiagnosticContext) {
+                            $DiagnosticContext.Code = $validation.Code
+                            $DiagnosticContext.NativeResult = $validation.NativeResult
+                            $DiagnosticContext.Selection = $validation.Selection
+                        }
+                        if ($null -ne $validation.NativeResult -and
+                            ($validation.NativeResult.Status -ne 'Completed' -or -not $validation.NativeResult.ProcessReleased)) {
+                            throw (New-Object InvalidOperationException("FFmpeg found but unusable via $($source.Origin): $($_.Exception.Message) No alternate executable was attempted after this startup failure.", $_.Exception))
+                        }
+                        throw
+                    }
+                    if ($null -ne $DiagnosticContext) { $DiagnosticContext.NativeResult = $validation.NativeResult }
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $source.Origin -Candidate $full -Status Selected -Reason 'Complete same-directory pair passed startup and libmp3lame checks.'
+                    return [pscustomobject]@{ Pair = $pair; Tools = $tools; Origin = $source.Origin }
+                }
+                catch [OperationCanceledException] { throw }
+                catch {
+                    if ($_.Exception -is [InvalidOperationException] -and $_.Exception.Message -like '*No alternate executable*') { throw }
+                    $failures.Add($source.Origin + ': ' + $_.Exception.Message)
+                    Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin $source.Origin -Candidate $directory -Status Rejected -Reason $_.Exception.Message
+                }
+            }
         }
-        Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin PATH -Candidate $candidate -Status Selected -Reason 'First exact executable in absolute PATH directories.'
-        return $item.FullName
     }
-    throw "Could not find $ExeName in absolute PATH directories. Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe>."
+    if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = if ($found) { 'DependencyInvalid' } else { 'DependencyMissing' } }
+    $summary = if ($found) { 'FFmpeg found but unusable: ' + (($failures | Select-Object -First 3) -join ' ') }
+        else { 'FFmpeg not found: no complete ffmpeg.exe and ffprobe.exe pair in the supported environment locations.' }
+    throw ($summary + ' Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> or run Setup-AudioFileForPhone.bat.')
 }
 
 function Resolve-AudioToolSelection {
@@ -345,7 +435,7 @@ function Resolve-AudioToolSelection {
         }
     }
     $configFile = Get-AudioConfigPath -ConfigPath $ConfigPath
-    $origin = $null; $pair = $null
+    $origin = $null; $pair = $null; $tools = $null
     if ($PSBoundParameters.ContainsKey('FfmpegDirectory') -and [string]::IsNullOrWhiteSpace($FfmpegDirectory)) {
         throw 'Invalid explicit FFmpeg selection: -FfmpegDirectory must be a non-empty directory.'
     }
@@ -409,14 +499,10 @@ function Resolve-AudioToolSelection {
                 }
             }
             else {
-                $origin = 'PATH'
                 if ($null -ne $DiagnosticContext) { $DiagnosticContext.Code = 'DependencyMissing' }
                 Add-AudioSelectionDiagnosticAttempt -Context $DiagnosticContext -Origin AppLocal -Candidate $scriptPath -Status Missing -Reason 'No application-local executable is present.'
-                $ffmpeg = Get-AudioPathTool -ExeName 'ffmpeg.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
-                $ffprobe = Get-AudioPathTool -ExeName 'ffprobe.exe' -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
-                $directory = [IO.Path]::GetDirectoryName($ffmpeg)
-                if (-not [StringComparer]::OrdinalIgnoreCase.Equals($directory, [IO.Path]::GetDirectoryName($ffprobe))) { $directory = $null }
-                $pair = [pscustomobject]@{ Directory = $directory; FfmpegPath = $ffmpeg; FfprobePath = $ffprobe }
+                $automatic = Resolve-AudioAutomaticToolPair -Cancellation $Cancellation -DiagnosticContext $DiagnosticContext -LocalOnly:$LocalOnly
+                $origin = $automatic.Origin; $pair = $automatic.Pair; $tools = $automatic.Tools
             }
         }
     }
@@ -426,7 +512,9 @@ function Resolve-AudioToolSelection {
             Ffmpeg = [pscustomobject]@{ Path = $pair.FfmpegPath; Version = ''; Architecture = '' }
             Ffprobe = [pscustomobject]@{ Path = $pair.FfprobePath; Version = ''; Architecture = '' } }
     }
-    try { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation -DiagnosticContext $DiagnosticContext }
+    try {
+        if ($null -eq $tools) { $tools = Assert-ToolPrerequisites -FfmpegPath $pair.FfmpegPath -FfprobePath $pair.FfprobePath -Cancellation $Cancellation -DiagnosticContext $DiagnosticContext }
+    }
     catch [OperationCanceledException] { throw }
     catch { throw "$origin FFmpeg selection failed validation: $($_.Exception.Message) Use -FfmpegDirectory <directory containing ffmpeg.exe and ffprobe.exe> to select a valid pair. No fallback was attempted." }
     Write-Host ("[INFO] FFmpeg selection origin: {0}" -f $origin)
@@ -533,6 +621,51 @@ function Get-AudioSetupRepairCommand {
     return $command
 }
 
+function Write-AudioConsole {
+    # Native host colors keep classic Windows PowerShell readable without ANSI.
+    # Display is best effort: it must never change an operation's result.
+    param([string]$Label, [string]$Text, [ValidateSet('Identity','Ready','Prompt','Warning','Failure','Detail')][string]$Tone = 'Detail', [switch]$NoNewline)
+    $line = if ([string]::IsNullOrEmpty($Label)) { $Text } else { '[' + $Label.ToUpperInvariant() + '] ' + $Text }
+    $line = ($line -replace '[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]', '?') -replace '[\r\n]+', ' '
+    try {
+        $plain = $Host.Name -ne 'ConsoleHost' -or [Console]::IsOutputRedirected -or
+            $null -ne [Environment]::GetEnvironmentVariable('NO_COLOR') -or $env:TERM -eq 'dumb' -or $env:CLICOLOR -eq '0'
+        $style = Get-Variable -Name PSStyle -ValueOnly -ErrorAction SilentlyContinue
+        if ($null -ne $style -and [string]$style.OutputRendering -eq 'PlainText') { $plain = $true }
+        if ($env:OS -eq 'Windows_NT') {
+            $contrast = [Microsoft.Win32.Registry]::GetValue('HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast', 'Flags', '0')
+            if (([int]$contrast -band 1) -ne 0) { $plain = $true }
+        }
+        $options = @{ NoNewline = [bool]$NoNewline; ErrorAction = 'Stop' }
+        if (-not $plain) {
+            $lightBackground = [Console]::BackgroundColor -in @([ConsoleColor]::Gray, [ConsoleColor]::White, [ConsoleColor]::Yellow, [ConsoleColor]::Cyan, [ConsoleColor]::Green, [ConsoleColor]::Magenta)
+            $color = switch ($Tone) {
+                'Identity' { if ($lightBackground) { 'DarkCyan' } else { 'Cyan' } }
+                'Ready' { if ($lightBackground) { 'DarkGreen' } else { 'Green' } }
+                'Prompt' { if ($lightBackground) { 'DarkYellow' } else { 'Yellow' } }
+                'Warning' { if ($lightBackground) { 'DarkYellow' } else { 'Yellow' } }
+                'Failure' { if ($lightBackground) { 'DarkRed' } else { 'Red' } }
+                default { [string][Console]::ForegroundColor }
+            }
+            $options.ForegroundColor = $color
+        }
+        # ASCII segments and natural host wrapping also work in narrow windows.
+        Write-Host $line @options
+    }
+    catch { try { Write-Host $line -NoNewline:$NoNewline -ErrorAction Continue } catch { } }
+}
+
+function Read-AudioSetupChoice {
+    param([string]$Prompt, [string[]]$Choices, [string]$Hint)
+    while ($true) {
+        $answer = Read-AudioSetupResponse -Prompt $Prompt
+        if ($null -eq $answer) { return $null }
+        $choice = $answer.Trim().ToUpperInvariant()
+        if ($Choices -contains $choice) { return $choice }
+        Write-AudioConsole -Label 'PROMPT' -Text $Hint -Tone Prompt
+    }
+}
+
 function Test-AudioSetupInteractionAvailable {
     # Read-Host can conceal EOF/redirected-input loops. Interactive setup supports
     # an ordinary console only; explicit-directory setup needs no console.
@@ -548,10 +681,10 @@ function Read-AudioSetupResponse {
     if (-not (Test-AudioSetupInteractionAvailable)) {
         throw 'Interactive setup requires console input. Use the explicit -FfmpegDirectory setup command instead.'
     }
-    Write-Host ($Prompt + ': ') -NoNewline
+    Write-AudioConsole -Label 'PROMPT' -Text ($Prompt + ': ') -Tone Prompt -NoNewline
     # Use host input rather than Console.ReadLine so PowerShell -NonInteractive
     # retains authority even with an attached console. Preserve null at EOF.
-    # Each stage reads once: invalid input/cancellation never create retry loops.
+    # Choice adapters retry only recognized menu input; null always stays EOF.
     return $Host.UI.ReadLine()
 }
 
@@ -564,7 +697,7 @@ function Read-AudioMetadataResponse {
     if (-not (Test-AudioMetadataInteractionAvailable)) {
         throw 'Interactive metadata requires console input. Run without -Interactive and pass any metadata parameters directly.'
     }
-    Write-Host ($Prompt + ': ') -NoNewline
+    Write-AudioConsole -Label 'PROMPT' -Text ($Prompt + ': ') -Tone Prompt -NoNewline
     # Preserve EOF and the host's -NonInteractive authority. Never turn missing
     # input into Enter, and never poll or retry a redirected input stream.
     return $Host.UI.ReadLine()
@@ -658,10 +791,10 @@ function Invoke-AudioToolSetup {
                 throw ('Setup requires an explicit existing-tool directory when console input is unavailable. Repair action: ' +
                     (Get-AudioSetupRepairCommand -ScriptDirectory $ScriptDirectory -ConfigPath $ConfigPath))
             }
-            if (-not [string]::IsNullOrWhiteSpace($Reason)) { Write-Host ('FFmpeg setup is needed: ' + $Reason) }
-            Write-Host 'No conversion has started. Select an existing FFmpeg pair to continue this launch.'
-            Write-Host 'S = select existing folder | M = manual/offline instructions | D = optional managed setup | Q = cancel'
-            $answer = Read-AudioSetupResponse -Prompt 'Setup selection'
+            if (-not [string]::IsNullOrWhiteSpace($Reason)) { Write-AudioConsole -Label 'SETUP' -Text ('FFmpeg setup is needed: ' + $Reason) -Tone Warning }
+            Write-AudioConsole -Label 'SETUP' -Text 'No conversion has started. Select an existing FFmpeg pair to continue this launch.' -Tone Prompt
+            Write-AudioConsole -Label 'SETUP' -Text 'S = select existing folder | M = manual/offline instructions | D = optional managed setup | Q = cancel' -Tone Prompt
+            $answer = Read-AudioSetupChoice -Prompt 'Setup selection' -Choices @('', 'S', 'M', 'D', 'Q') -Hint 'Use S, M, D or Q.'
             if ($null -eq $answer -or [string]::IsNullOrWhiteSpace($answer) -or $answer.Trim() -ieq 'Q') {
                 $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled; no selection was changed.'
                 return [pscustomobject]$result
@@ -705,7 +838,7 @@ function Invoke-AudioToolSetup {
                     elseif ($picked.Status -eq 'Selected') { $FfmpegDirectory = $picked.Directory }
                     else { throw 'Folder selection returned an unsupported result; no selection was changed.' }
                 }
-                default { throw 'Invalid setup selection. Run setup again and choose S, M, D or Q; no selection was changed.' }
+                default { throw 'Setup selection was not recognized; no selection was changed.' }
             }
         }
         if ($downloadRequested) {
@@ -723,7 +856,7 @@ function Invoke-AudioToolSetup {
             Write-Host ('Vendor license/notices: ' + $manifest.license_url + '; source: ' + $manifest.source_url)
             Write-Host 'Downloads executable code directly from this publisher. The pin verifies the reviewed bytes; review the publisher and its GPL terms. All vendor files/notices are retained. No global install or automatic updates.'
             if (-not $Consent) {
-                $answer = Read-AudioSetupResponse -Prompt 'Download and install this exact build? Y = consent | N/Enter/Q = cancel'
+                $answer = Read-AudioSetupChoice -Prompt 'Download and install this exact build? Y = consent | N/Enter/Q = cancel' -Choices @('', 'Y', 'N', 'Q') -Hint 'Use Y, N/Enter or Q.'
                 if ($null -eq $answer -or $answer.Trim() -ine 'Y') {
                     $result.Status = 'Cancelled'; $result.Error = 'Download consent was not granted. No files were downloaded or installed.'
                     return [pscustomobject]$result
@@ -773,7 +906,7 @@ function Invoke-AudioToolSetup {
         }
         Write-Host 'Capability checks and these hashes identify the selected files; they do not prove publisher authenticity.'
         if (-not $explicit -and -not $Download) {
-            $answer = Read-AudioSetupResponse -Prompt 'Remember this directory for future launches? Y = yes | N/Enter = this launch only | Q = cancel'
+            $answer = Read-AudioSetupChoice -Prompt 'Remember this directory for future launches? Y = yes | N/Enter = this launch only | Q = cancel' -Choices @('', 'Y', 'N', 'Q') -Hint 'Use Y, N/Enter or Q.'
             if ($null -eq $answer -or $answer.Trim() -ieq 'Q') {
                 $result.Status = 'Cancelled'; $result.Error = 'FFmpeg setup was cancelled before remembering or using the selection.'
                 return [pscustomobject]$result

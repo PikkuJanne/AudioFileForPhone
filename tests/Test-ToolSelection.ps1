@@ -172,6 +172,16 @@ try {
     }
     $report.copied_bytes_unchanged = $true
     . (Join-Path $appRoot 'AudioFileForPhone.Helpers.ps1')
+    # All environment fallback hints are test-owned. Do not let the desktop's
+    # saved FFMPEG/User PATH supply tools in deliberate missing-tool exercises.
+    $script:environmentHints = @{}
+    function Get-AudioEnvironmentSetting {
+        param([string]$Name, [string]$Target = 'Process')
+        $key = $Target + ':' + $Name
+        if ($script:environmentHints.ContainsKey($key)) { return $script:environmentHints[$key] }
+        if ($Target -eq 'Process' -and $Name -eq 'Path') { return $env:PATH }
+        return $null
+    }
     $script:originalNative = (Get-Command Invoke-AudioNativeProcess -CommandType Function).ScriptBlock
     Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value ${function:Invoke-TrackedNative}
     $ffmpeg = (Resolve-Path -LiteralPath $FfmpegPath).ProviderPath; $ffprobe = (Resolve-Path -LiteralPath $FfprobePath).ProviderPath
@@ -332,6 +342,60 @@ try {
         $case['startup_failure'] = Assert-Throws { Resolve-AudioToolSelection -FfmpegDirectory $bad -ConfigPath $absentConfig -ScriptDirectory $emptyApp } 'Invalid explicit FFmpeg selection|Explicit FFmpeg selection.*validation'
         $case['fixture_scope'] = 'Real Windows CreateProcess failure for synthetic invalid executable bytes; no actual missing-DLL or incompatible-machine hardware pass claimed.'
     }
+    Invoke-Case 'automatic PATH accepts quoted expanded Unicode paths and skips incomplete directories' 'V103-discovery' {
+        param($case)
+        $partial = Join-Path $testRoot 'PartialApp'
+        $oldExpansion = [Environment]::GetEnvironmentVariable('AFP_TOOL_SELECTION_FIXTURE', 'Process')
+        try {
+            [Environment]::SetEnvironmentVariable('AFP_TOOL_SELECTION_FIXTURE', $selected, 'Process')
+            $choice = Invoke-WithPath ($partial + ';"%AFP_TOOL_SELECTION_FIXTURE%"') { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($choice.Origin -ceq 'PATH' -and $choice.Directory -ceq $selected) 'A partial earlier directory must not hide the later quoted, expanded complete Unicode pair.'
+            $case['origin'] = $choice.Origin; $case['same_directory_pair'] = $true
+        }
+        finally { [Environment]::SetEnvironmentVariable('AFP_TOOL_SELECTION_FIXTURE', $oldExpansion, 'Process') }
+    }
+    Invoke-Case 'FFMPEG accepts a directory installation root and exact executable without executing hint text' 'V103-discovery' {
+        param($case)
+        $root = New-Directory 'Independent installation root'; $bin = Join-Path $root 'bin'; [IO.Directory]::CreateDirectory($bin) | Out-Null
+        New-PairCopy $bin
+        try {
+            foreach ($hint in @($selected, $root, ('"' + (Join-Path $selected 'ffmpeg.exe') + '"'))) {
+                $script:environmentHints['Process:FFMPEG'] = $hint
+                $choice = Invoke-WithPath '' { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+                $expected = if ($hint -ceq $root) { $bin } else { $selected }
+                Assert-True ($choice.Origin -ceq 'FFMPEG' -and $choice.Directory -ceq $expected) 'FFMPEG must select the validated complete pair from each supported literal hint shape.'
+            }
+            $script:environmentHints['Process:FFMPEG'] = '$(throw "must remain inert")'
+            $choice = Invoke-WithPath $pathDirectory { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($choice.Origin -ceq 'PATH') 'A working PATH pair must retain priority over an invalid hint.'
+            $case['shapes'] = @('directory', 'installation root/bin', 'absolute ffmpeg.exe'); $case['invalid_hint_did_not_execute'] = $true
+        }
+        finally { $script:environmentHints.Clear() }
+    }
+    Invoke-Case 'saved environment fallback follows process user machine order and final saved PATH' 'V103-discovery' {
+        param($case)
+        # This exercises read-only resolution of a fresh saved value against a
+        # stale inherited environment. The native package suite separately uses
+        # the actual desktop's saved User setting where available.
+        $originalSavedAllowed = ${function:Test-AudioSavedEnvironmentLookup}
+        function Test-AudioSavedEnvironmentLookup { return $true }
+        try {
+            $script:environmentHints['Process:FFMPEG'] = Join-Path $testRoot 'Stale parent hint'
+            $script:environmentHints['User:FFMPEG'] = $selected
+            $script:environmentHints['Machine:FFMPEG'] = $pathDirectory
+            $choice = Invoke-WithPath '' { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($choice.Origin -ceq 'User FFMPEG' -and $choice.Directory -ceq $selected) 'Fresh User FFMPEG must follow an invalid inherited hint and precede Machine FFMPEG.'
+            $script:environmentHints['User:FFMPEG'] = ''
+            $choice = Invoke-WithPath '' { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($choice.Origin -ceq 'Machine FFMPEG' -and $choice.Directory -ceq $pathDirectory) 'Machine FFMPEG is the next ordinary desktop fallback.'
+            $script:environmentHints['Machine:FFMPEG'] = ''
+            $script:environmentHints['User:Path'] = 'relative;. ;"' + $selected + '"'
+            $choice = Invoke-WithPath '' { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp }
+            Assert-True ($choice.Origin -ceq 'User PATH' -and $choice.Directory -ceq $selected) 'Saved User PATH must accept absolute entries only after FFMPEG hints.'
+            $case['origins'] = @('User FFMPEG', 'Machine FFMPEG', 'User PATH'); $case['persistent_environment_writes'] = $false
+        }
+        finally { $script:environmentHints.Clear(); Set-Item -LiteralPath Function:Test-AudioSavedEnvironmentLookup -Value $originalSavedAllowed }
+    }
     Invoke-Case 'current-directory input-directory aliases functions and wrappers are never executable discovery sources' 'S04-A1' {
         param($case)
         $decoy = New-Directory 'Decoy CWD'; $inputDecoy = New-Directory 'Decoy input'; $marker = Join-Path $testRoot 'DECOY-EXECUTED.txt'
@@ -361,17 +425,14 @@ try {
         } finally { Set-Location -LiteralPath $location.ProviderPath; [Environment]::CurrentDirectory = $processDirectory; Remove-Item -LiteralPath Alias:ffmpeg,Alias:ffprobe -ErrorAction SilentlyContinue; Remove-Item -LiteralPath Function:ffmpeg.exe,Function:ffprobe.exe -ErrorAction SilentlyContinue }
         $case['decoy_execution_marker_absent'] = $true; $case['independent_compiled_sentinel'] = $true
     }
-    Invoke-Case 'independent synthetic differing PATH build identities warn while preserving separate paths' 'S04-A1' {
+    Invoke-Case 'separate incomplete PATH directories never become a mixed executable pair' 'S04-A1,V103-discovery' {
         param($case)
         $mpegDirectory = New-Directory 'Mismatch ffmpeg'; $probeDirectory = New-Directory 'Mismatch ffprobe'
         foreach ($row in @(@{directory=$mpegDirectory;name='ffmpeg.exe'},@{directory=$probeDirectory;name='ffprobe.exe'})) {
             $destination = Join-Path $row.directory $row.name; Copy-Item -LiteralPath (Join-Path $testRoot 'Decoy.exe') -Destination $destination; Add-Fixture $destination
         }
-        $script:mismatchWarnings = @()
-        $choice = Invoke-WithPath ($mpegDirectory + ';' + $probeDirectory) { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp -WarningVariable script:mismatchWarnings }
-        Assert-True ($choice.Origin -ceq 'PATH' -and $choice.Ffmpeg.Path -ceq (Join-Path $mpegDirectory 'ffmpeg.exe') -and $choice.Ffprobe.Path -ceq (Join-Path $probeDirectory 'ffprobe.exe') -and $null -eq $choice.Directory -and @($script:mismatchWarnings).Count -gt 0) 'Legacy separate PATH directories with usable capabilities must remain selected with differing-build warning.'
-        $case['coverage_kind'] = 'Independent compiled native fixtures, real resolver and Windows process transport; no genuine mixed FFmpeg release conversion claimed.'
-        $case['warnings'] = @($script:mismatchWarnings | ForEach-Object {[string]$_}); $case['origin'] = $choice.Origin
+        $case['failure'] = Assert-Throws { Invoke-WithPath ($mpegDirectory + ';' + $probeDirectory) { Resolve-AudioToolSelection -ConfigPath $absentConfig -ScriptDirectory $emptyApp } } 'found but unusable.*Missing.*ffprobe.exe'
+        $case['coverage_kind'] = 'Independent compiled native fixtures; each PATH directory is incomplete and no mixed pair is executed.'
     }
     Invoke-Case 'fresh processes convert with explicit and remembered external pair on empty PATH' 'S04-A1,S04-A2,S04-A3' {
         param($case)

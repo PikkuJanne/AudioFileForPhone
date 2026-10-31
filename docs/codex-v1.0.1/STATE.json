@@ -1,36 +1,17 @@
 {
   "schema_version": 1,
-  "target_version": "1.0.2",
-  "project_status": "COMPLETED",
-  "current_step": "R3",
-  "active_branch": "main",
-  "tested_source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
-  "frozen_release_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
-  "runtime_zip_sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad",
+  "target_version": "1.0.3",
+  "project_status": "IMPLEMENTING",
+  "current_step": "PATCH103",
+  "active_branch": "codex/v1.0.3-discovery-metadata-console",
+  "tested_source_commit": null,
+  "frozen_release_commit": null,
+  "runtime_zip_sha256": null,
   "acceptance_kit_sha256": null,
   "publication_authorization": {
-    "step": "R3",
-    "record": "evidence/R3-PUBLICATION-AUTHORITY.json",
-    "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
-    "target_tag": "v1.0.2",
-    "assets": [
-      {
-        "name": "AudioFileForPhone-v1.0.2.zip",
-        "bytes": 286541,
-        "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
-      },
-      {
-        "name": "release-manifest.json",
-        "bytes": 10318,
-        "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
-      },
-      {
-        "name": "SHA256SUMS.txt",
-        "bytes": 183,
-        "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
-      }
-    ],
-    "owner_authorized": true
+    "owner_authorized": true,
+    "basis": "Current owner request and incorporated v1.0.3 repair work order",
+    "scope": "Tested patch through ordinary reviewed integration and verified public release"
   },
   "recovery_exception": null,
   "steps": {
@@ -579,5 +560,43 @@
     },
     "completion_basis": "Original release closure plus owner-requested packaging revision2, public downloads and actual clean-package tests verified. Original absent Win10/physical/phone observations remain waived, never passed."
   },
-  "final_checkpoint_observation": "Final containing documentation checkpoint and fresh advertised main/feature equality and exact-head CI are observed after merge and reported in the final response, without embedding the containing commit SHA into itself."
+  "final_checkpoint_observation": "Final containing documentation checkpoint and fresh advertised main/feature equality and exact-head CI are observed after merge and reported in the final response, without embedding the containing commit SHA into itself.",
+  "patch103": {
+    "status": "IMPLEMENTING",
+    "authority": "Owner request and AudioFileForPhone_v1.0.3_Codex_Repair.md, 2026-10-31",
+    "owner_testing_required": false,
+    "target_tag": "v1.0.3",
+    "branch": "codex/v1.0.3-discovery-metadata-console"
+  },
+  "previous_completed_release": {
+    "version": "1.0.2",
+    "status": "COMPLETED",
+    "step": "R3",
+    "source": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+    "zip_sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad",
+    "authority": {
+      "step": "R3",
+      "record": "evidence/R3-PUBLICATION-AUTHORITY.json",
+      "source_commit": "83a5713cacfbc330f309f48d8377cb5be11ba3a6",
+      "target_tag": "v1.0.2",
+      "assets": [
+        {
+          "name": "AudioFileForPhone-v1.0.2.zip",
+          "bytes": 286541,
+          "sha256": "012b82fbb82565ed5aff0d8444f0640c3dfb049e0f4a355ea2464c484219abad"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 10318,
+          "sha256": "5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 183,
+          "sha256": "dbeec838cb9191c483a3d1fb0ee7f7784b12bcb6f631adfd0fc66c7af2a3772c"
+        }
+      ],
+      "owner_authorized": true
+    }
+  }
 }

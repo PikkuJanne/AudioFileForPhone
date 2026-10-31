@@ -1,5 +1,16 @@
 # AudioFileForPhone agent instructions
 
+## Active owner-directed v1.0.3 patch — 2026-10-31
+
+The owner requested implementation of `AudioFileForPhone_v1.0.3_Codex_Repair.md`
+through tested public release and independent download verification in this chat.
+That work order supersedes the historical numbered stops and separate owner
+release/main approval gates below. Keep normal PR review and required CI, access
+controls, existing safety boundaries and all published tags/assets. Complete the
+discovery, metadata and terminal repairs without assigning owner testing. Record
+actual automated coverage and unavailable environments honestly. Publication is
+authorized for the tested patch, targeting the next free version from v1.0.3.
+
 ## Work boundaries
 
 Improve the existing PowerShell/FFmpeg tool incrementally. Keep the script and

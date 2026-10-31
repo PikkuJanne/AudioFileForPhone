@@ -264,7 +264,7 @@ function Assert-ExampleOutputs {
     $manifestPath = Join-Path $runRoot 'AudioFileForPhone_manifest.json'; $data = [IO.File]::ReadAllText($manifestPath) | ConvertFrom-Json
     $log = [IO.File]::ReadAllText((Join-Path $runRoot 'AudioFileForPhone_log.txt'))
     $bitrate = if ($Number -eq 2) { 96 } else { 64 }; $limit = if ($Number -eq 2) { 50 } else { 60 }
-    Assert-True ($data.app_version -ceq $appVersion -and $Result.text.Contains('AudioFileForPhone v' + $appVersion) -and $log.Contains('App version   : ' + $appVersion)) 'One authoritative version must drive actual banner, log and manifest.'
+    Assert-True ($data.app_version -ceq $appVersion -and $Result.text.Contains('[ AUDIOFILEFORPHONE :: ' + $appVersion + ' ] -- AUDIO CONSOLE') -and $log.Contains('App version   : ' + $appVersion)) 'One authoritative version must drive actual banner, log and manifest.'
     Assert-True ($data.build.entry_sha256 -ceq (Get-FileHash -LiteralPath (Join-Path $Fixture.app 'AudioFileForPhone.ps1')).Hash.ToLowerInvariant() -and $data.build.helper_sha256 -ceq (Get-FileHash -LiteralPath (Join-Path $Fixture.app 'AudioFileForPhone.Helpers.ps1')).Hash.ToLowerInvariant()) 'Manifest fingerprints must bind actual byte-identical shipped copies.'
     Assert-True ($data.run.status -ceq 'Completed' -and $data.run.exit_code -eq 0 -and $data.totals.converted -eq 4 -and $data.totals.failed -eq 0 -and $data.totals.unsupported -eq 2 -and @($data.records).Count -eq 4) 'All four supported formats must convert and reconcile; unsupported extensions remain separate.'
     Assert-True ($data.policies.bitrate_kbps -eq $bitrate -and $data.policies.max_base_length -eq $limit) 'Executed default/custom example options must match manifest.'
@@ -364,14 +364,14 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -cmatch '^1\.0\.2$') 'Authoritative semantic app version must be the owner-selected 1.0.2.'
+        Assert-True ($appVersion -cmatch '^1\.0\.3$') 'Authoritative semantic app version must be the owner-selected 1.0.3.'
         $literals = @()
         foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
-            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.2' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
+            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.3' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
         }
-        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.2 literal.'
+        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.3 literal.'
         $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')) | ConvertFrom-Json
         $expectedTag = 'v' + $appVersion; $expectedZip = 'AudioFileForPhone-' + $expectedTag + '.zip'
         Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Corrective release target must agree with the runtime version, tag, title and ZIP name.'

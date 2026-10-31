@@ -1,5 +1,18 @@
 # Decisions
 
+## v1.0.3 patch — 2026-10-31
+
+The owner explicitly incorporated the v1.0.3 repair work order and authorized
+implementation through verified public publication in this chat, superseding old
+numbered stop and separate approval routing. Keep ordinary PR review and CI.
+Automatic discovery now requires a validated same-directory pair; deliberate
+explicit/saved selection and application-control failures remain fail-closed.
+Read saved environment values only on an unelevated interactive desktop; never
+write registry/PATH. Prompt retries preserve prior answers; tag values are literal
+free text. Use native host colors with accessibility/plain fallbacks; no artwork,
+ANSI dependency, installer, telemetry or encoder rewrite. Missing optional client
+coverage is recorded as not run and never assigned to the owner.
+
 D01 — Owner-mandated public release v1.0.1. The owner corrected the earlier
       target on 17 October 2026. Preserve the entire accepted scope; published
       v1.0.0 and its assets remain unchanged. No alternative version without a

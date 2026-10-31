@@ -131,7 +131,7 @@ Assert-BuildTest (-not $EvidencePath.StartsWith($repository + '\', [StringCompar
 $coreManifest = Get-Content -LiteralPath (Join-Path $RuntimeAssetDirectory 'release-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 $coreZipName = [string]$coreManifest.zip.name
 Assert-BuildTest ($coreZipName -cmatch '^AudioFileForPhone-v[0-9]+\.[0-9]+\.[0-9]+\.zip$') 'Expected one ordinary core runtime archive name.'
-Assert-BuildTest ($coreZipName -ceq 'AudioFileForPhone-v1.0.2.zip' -and $coreManifest.app_version -ceq '1.0.2' -and $coreManifest.tag -ceq 'v1.0.2') 'Core source/assets must use the owner-selected corrective release identity.'
+Assert-BuildTest ($coreZipName -ceq 'AudioFileForPhone-v1.0.3.zip' -and $coreManifest.app_version -ceq '1.0.3' -and $coreManifest.tag -ceq 'v1.0.3') 'Core source/assets must use the owner-selected corrective release identity.'
 $assetNames = @($coreZipName, 'release-manifest.json', 'SHA256SUMS.txt')
 $root = Join-Path $evidenceParent ('user-package-build-' + [guid]::NewGuid().ToString('N'))
 Assert-BuildTest (-not (Test-Path -LiteralPath $root)) 'Owned test root collision.'
@@ -139,7 +139,7 @@ Assert-BuildTest (-not (Test-Path -LiteralPath $root)) 'Owned test root collisio
 [IO.File]::WriteAllText((Join-Path $root '.r2-build-owner'), [guid]::NewGuid().ToString('N'), $utf8)
 $windows = Get-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion'
 $report = [ordered]@{
-    schema_version = 1; kind = 'r3_user_package_build_policy'; task = 'R3'; app_version = '1.0.2'; artifact_kind = 'corrective_release_candidate'; status = 'RUNNING'
+    schema_version = 1; kind = 'r3_user_package_build_policy'; task = 'R3'; app_version = '1.0.3'; artifact_kind = 'corrective_release_candidate'; status = 'RUNNING'
     started_utc = [datetime]::UtcNow.ToString('o'); ended_utc = $null; error = $null
     source_commit = $SourceCommit; test_script_sha256 = Get-BuildTestHash $PSCommandPath
     builder_sha256 = Get-BuildTestHash $builder; shell = $PSVersionTable.PSVersion.ToString(); edition = $PSVersionTable.PSEdition
@@ -158,7 +158,7 @@ try {
     $first = Join-Path $root 'first'
     Add-BuildTestCase 'valid-build-and-exact-root-allowlist' {
         $null = Invoke-BuildTestBuilder $first
-        $zip = Join-Path $first 'AudioFileForPhone-v1.0.2.zip'
+        $zip = Join-Path $first 'AudioFileForPhone-v1.0.3.zip'
         $members = Read-BuildTestZip $zip
         [string[]]$expected = @('AudioFileForPhone.bat', 'AudioFileForPhone.ico', 'README.txt',
             'app/AudioFileForPhone.ps1', 'app/AudioFileForPhone.Helpers.ps1', 'app/AudioFileForPhone.ManagedSetup.ps1',
@@ -174,7 +174,7 @@ try {
         Assert-BuildTest ($report.icon_sha256 -ceq (Get-BuildTestHash (Join-Path $SourcePath 'AudioFileForPhone.ico'))) 'Existing icon bytes changed.'
         $manifest = Get-Content -LiteralPath (Join-Path $first 'release-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
         Assert-BuildTest ($manifest.package_revision -eq 3 -and $manifest.zip.sha256 -ceq $report.runtime_zip_sha256) 'Candidate manifest revision/ZIP binding mismatch.'
-        Assert-BuildTest ($manifest.release_commit -ceq $SourceCommit -and $manifest.app_version -ceq '1.0.2' -and $manifest.tag -ceq 'v1.0.2' -and $manifest.corrective_release_version -ceq '1.0.2' -and $manifest.publication_authorized -eq $false -and $manifest.artifact_kind -ceq 'corrective_release_candidate') 'Corrective candidate must bind its source and approved identity without claiming publication authority.'
+        Assert-BuildTest ($manifest.release_commit -ceq $SourceCommit -and $manifest.app_version -ceq '1.0.3' -and $manifest.tag -ceq 'v1.0.3' -and $manifest.corrective_release_version -ceq '1.0.3' -and $manifest.publication_authorized -eq $false -and $manifest.artifact_kind -ceq 'corrective_release_candidate') 'Corrective candidate must bind its source and approved identity without claiming publication authority.'
         Assert-BuildTest (@($manifest.files.PSObject.Properties).Count -eq 17) 'Candidate manifest inventory count mismatch.'
         foreach ($name in $members.Keys) {
             Assert-BuildTest ($manifest.files.$name -ceq $members[$name].sha256 -and $manifest.file_bytes.$name -eq $members[$name].length) 'Candidate manifest must bind every output member.'
@@ -190,13 +190,13 @@ try {
         $bat = $utf8.GetString($members['AudioFileForPhone.bat'].bytes)
         Assert-BuildTest ($bat.Contains('set "AFP_SCRIPT=%~dp0app\AudioFileForPhone.ps1"') -and $bat -notmatch '(?im)^\s*call\s+' -and $bat.Contains('-FromBatchLauncher') -and $bat.Contains('-ExecutionPolicy Bypass')) 'Root BAT must retain the direct converter route and process-only policy request.'
         $sums = @([IO.File]::ReadAllLines((Join-Path $first 'SHA256SUMS.txt')))
-        Assert-BuildTest ($sums.Count -eq 2 -and $sums[0] -ceq ($report.runtime_zip_sha256 + '  AudioFileForPhone-v1.0.2.zip') -and $sums[1] -ceq ((Get-BuildTestHash (Join-Path $first 'release-manifest.json')) + '  release-manifest.json')) 'External checksum binding mismatch.'
+        Assert-BuildTest ($sums.Count -eq 2 -and $sums[0] -ceq ($report.runtime_zip_sha256 + '  AudioFileForPhone-v1.0.3.zip') -and $sums[1] -ceq ((Get-BuildTestHash (Join-Path $first 'release-manifest.json')) + '  release-manifest.json')) 'External checksum binding mismatch.'
         'All seventeen exact members, four visible entries, CRLF direct BATs and unchanged icon verified.'
     }
     Add-BuildTestCase 'same-host-deterministic-rebuild' {
         $repeat = Join-Path $root 'repeat'
         $null = Invoke-BuildTestBuilder $repeat
-        foreach ($name in @('AudioFileForPhone-v1.0.2.zip', 'release-manifest.json', 'SHA256SUMS.txt')) {
+        foreach ($name in @('AudioFileForPhone-v1.0.3.zip', 'release-manifest.json', 'SHA256SUMS.txt')) {
             Assert-BuildTest ((Get-BuildTestHash (Join-Path $first $name)) -ceq (Get-BuildTestHash (Join-Path $repeat $name))) 'Repeated clean build changed artifact bytes.'
         }
         'ZIP, manifest and checksum bytes are identical on this actual shell.'
@@ -244,7 +244,7 @@ try {
     }
     Add-BuildTestCase 'mismatched-evidence-refused-and-owned-stage-cleaned' {
         $badEvidence = Join-Path $root 'mismatched-evidence.json'
-        $badRecord = [ordered]@{ schema_version = 1; kind = 'user_package_verification'; source_commit = $SourceCommit; status = 'PASSED'; package_revision = 3; app_version = '1.0.2'; artifact_kind = 'corrective_release_candidate'; runtime_zip_sha256 = ('0' * 64) }
+        $badRecord = [ordered]@{ schema_version = 1; kind = 'user_package_verification'; source_commit = $SourceCommit; status = 'PASSED'; package_revision = 3; app_version = '1.0.3'; artifact_kind = 'corrective_release_candidate'; runtime_zip_sha256 = ('0' * 64) }
         [IO.File]::WriteAllText($badEvidence, ($badRecord | ConvertTo-Json), $utf8)
         (Invoke-BuildTestBuilder (Join-Path $root 'bad-evidence-output') -TestEvidence $badEvidence -ExpectFailure).refusal
     }

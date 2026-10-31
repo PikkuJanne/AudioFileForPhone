@@ -116,7 +116,7 @@ function Verify-ShellRun([string]$Label,[string[]]$BeforeRuns,[int]$Total,[int]$
     $expectedStatus=if($Failed){'CompletedWithFailures'}else{'Completed'};$expectedExit=if($Failed){2}else{0}
     Assert-Shell ($m.app_version-ceq$ExpectedAppVersion-and$m.run.status-ceq$expectedStatus-and$m.run.exit_code-eq$expectedExit-and$m.policies.bitrate_kbps-eq 64-and$m.tools.selection_origin-ceq'Saved'-and$m.totals.converted-eq$Converted-and$m.totals.failed-eq$Failed-and$m.records.Count-eq$Total) 'Actual BAT conversion manifest/count/default/version mismatch.'
     Assert-Shell (@($m.records|Where-Object{$_.status-ceq'Converted'}).Count-eq$Converted-and@($m.records|Where-Object{$_.status-ceq'Failed'}).Count-eq$Failed) 'Per-file outcomes differ from totals.'
-    $compact=$Native.text-replace'\s+','';Assert-Shell ($compact.Contains('AudioFileForPhonev'+$ExpectedAppVersion)-and$compact.Contains('converted='+$Converted+';failed='+$Failed)) 'Native console lacks truthful version/count summary.'
+    $compact=$Native.text-replace'\s+','';Assert-Shell ($compact.Contains('[AUDIOFILEFORPHONE::'+$ExpectedAppVersion+']--AUDIOCONSOLE')-and$compact.Contains('converted='+$Converted+';failed='+$Failed)) 'Native console lacks truthful version/count summary.'
     $files=@(Get-ChildItem -LiteralPath $root -File -Recurse -Force);$outputs=@($files|Where-Object{$_.Extension-ceq'.mp3'})
     Assert-Shell ($outputs.Count-eq$Converted-and@($files|Where-Object{$_.Name-match'(?i)\.partial|\.working|\.tmp$'}).Count-eq 0) 'Published output/partial count mismatch.'
     $audioChecks=@();foreach($file in $outputs){

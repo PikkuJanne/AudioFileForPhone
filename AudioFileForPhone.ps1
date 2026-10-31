@@ -211,6 +211,28 @@ $diagnosticsReady = $false
 $diagnosticStage = 'Bootstrap'; $diagnosticCode = 'HelperMissing'
 $toolDiagnosticContext = @{}
 $toolInfo = $null
+$audioPresentationStyle = $null
+$audioPreviousOutputRendering = $null
+$audioRestoreOutputRendering = $false
+try {
+    # Host-formatted errors and warnings also need plain redirected output.
+    # PSStyle is absent in Windows PowerShell; never change a persistent setting.
+    $audioPresentationStyle = Get-Variable -Name PSStyle -ValueOnly -ErrorAction SilentlyContinue
+    if ($null -ne $audioPresentationStyle) {
+        $plainPresentation = [Console]::IsOutputRedirected -or [Console]::IsErrorRedirected -or
+            $null -ne [Environment]::GetEnvironmentVariable('NO_COLOR') -or $env:TERM -eq 'dumb' -or $env:CLICOLOR -eq '0'
+        if ($env:OS -eq 'Windows_NT') {
+            $contrast = [Microsoft.Win32.Registry]::GetValue('HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast', 'Flags', '0')
+            if (([int]$contrast -band 1) -ne 0) { $plainPresentation = $true }
+        }
+        if ($plainPresentation -and [string]$audioPresentationStyle.OutputRendering -ne 'PlainText') {
+            $audioPreviousOutputRendering = $audioPresentationStyle.OutputRendering
+            $audioRestoreOutputRendering = $true
+            $audioPresentationStyle.OutputRendering = 'PlainText'
+        }
+    }
+}
+catch { } # Optional presentation state must never prevent conversion.
 
 function Write-AudioProgress {
     param([string]$Status, [int]$PercentComplete, [switch]$Completed,
@@ -241,6 +263,7 @@ function Get-AudioResultSummary {
 }
 
 try {
+try {
     $diagnosticsPath = Join-Path $ScriptDir 'AudioFileForPhone.Diagnostics.ps1'
     if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
     . $diagnosticsPath
@@ -253,7 +276,7 @@ try {
     $helperPath = Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1'
     if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
     . $helperPath
-    Write-Host ("AudioFileForPhone v{0}" -f (Get-AudioAppVersion))
+    Write-AudioConsole -Text ('[ AUDIOFILEFORPHONE :: {0} ] -- AUDIO CONSOLE' -f (Get-AudioAppVersion)) -Tone Identity
     $diagnosticStage = 'Parameters'; $diagnosticCode = 'StartupFailed'
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
     $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
@@ -265,13 +288,14 @@ try {
     $provisionalRun = Get-AudioAvailableRunCandidate -OutputParent $outputParentPath -InputFolder $InputFolder -BitrateKbps $BitrateKbps -Timestamp $timestamp
     $outputRoot = $provisionalRun.OutputRoot
     $diagnosticStage = 'InputDiscovery'; $diagnosticCode = 'InputInvalid'
-    Write-Host "Input: $InputFolder"
+    Write-Verbose "Input: $InputFolder"
     $snapshot = Get-AudioInputSnapshot -InputFolder $InputFolder -OutputRoot $outputRoot
     foreach ($skip in $snapshot.Skipped) { Write-Warning ("{0}: {1}" -f $skip.Reason, $skip.Path) }
     $files = @($snapshot.Files)
     $total = $files.Count
     $scanExcluded = @($snapshot.Skipped).Count
     $unsupported = $snapshot.UnsupportedCount
+    Write-AudioConsole -Label 'INPUT' -Text ('Input: {0}    {1} files' -f $InputFolder, $total) -Tone Identity
     if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
@@ -299,6 +323,7 @@ try {
         }
         $ffmpeg = $toolInfo.Ffmpeg.Path
         $ffprobe = $toolInfo.Ffprobe.Path
+        Write-AudioConsole -Label 'TOOLS' -Text ('FFmpeg + ffprobe ready    via {0}' -f $toolInfo.Origin) -Tone Ready
         $diagnosticStage = 'CoverValidation'; $diagnosticCode = 'CoverInvalid'
         if ($PSBoundParameters.ContainsKey('CoverPath')) {
             $coverValidation = Get-ValidatedCoverPath -Path $CoverPath -FfmpegPath $ffmpeg -PassThru
@@ -348,41 +373,46 @@ function Read-MetadataResponse {
     if ($null -eq $answer) {
         throw (New-Object OperationCanceledException('Metadata input ended; no conversion has started.'))
     }
-    return $answer.Trim()
+    return $answer
 }
 
 function Read-MetadataYesNo {
     param([string]$Prompt)
-    switch ((Read-MetadataResponse -Prompt ($Prompt + ' (y/N; Q = cancel)')).ToUpperInvariant()) {
-        'Y' { return $true }
-        'YES' { return $true }
-        '' { return $false }
-        'N' { return $false }
-        'NO' { return $false }
-        'Q' { throw (New-Object OperationCanceledException('Metadata customization cancelled before conversion.')) }
-        default { throw 'Invalid metadata choice. Use Y, N or Q; no conversion has started.' }
+    while ($true) {
+        switch ((Read-MetadataResponse -Prompt ($Prompt + ' [y/N; Q = cancel]')).Trim().ToUpperInvariant()) {
+            'Y' { return $true }
+            'YES' { return $true }
+            '' { return $false }
+            'N' { return $false }
+            'NO' { return $false }
+            'Q' { throw (New-Object OperationCanceledException('Metadata customization cancelled before conversion.')) }
+            default { Write-AudioConsole -Label 'PROMPT' -Text 'Use Y, N or Q.' -Tone Prompt }
+        }
     }
 }
 
 # --- Optional: interactive metadata step, only if requested ---
 if ($Interactive) {
-    Write-Host ('Ready: {0} supported files -> {1} kbps CBR MP3' -f $total, $BitrateKbps)
-    Write-Host 'Enter = start with defaults | M = customize metadata | Q = cancel'
-    Write-Host 'Waiting for your selection (no conversion has started).'
+    Write-AudioConsole -Label 'READY' -Text ('{0} files -> {1} kbps CBR MP3' -f $total, $BitrateKbps) -Tone Ready
+    Write-AudioConsole -Label 'READY' -Text 'Enter: convert    M: metadata    Q: quit' -Tone Ready
+    Write-AudioConsole -Label 'READY' -Text 'Waiting for your selection (no conversion has started).' -Tone Ready
     $customizeMetadata = $false
-    switch ((Read-MetadataResponse -Prompt 'Selection').ToUpperInvariant()) {
-        '' { }
-        'M' { $customizeMetadata = $true }
-        'Q' { throw (New-Object OperationCanceledException('Conversion cancelled at the ready menu.')) }
-        default { throw 'Invalid selection. Use Enter, M or Q; no conversion has started.' }
+    $readyChosen = $false
+    while (-not $readyChosen) {
+        switch ((Read-MetadataResponse -Prompt 'Selection').Trim().ToUpperInvariant()) {
+            '' { $readyChosen = $true }
+            'M' { $customizeMetadata = $true; $readyChosen = $true }
+            'Q' { throw (New-Object OperationCanceledException('Conversion cancelled at the ready menu.')) }
+            default { Write-AudioConsole -Label 'PROMPT' -Text 'Use Enter, M or Q.' -Tone Prompt }
+        }
     }
     if ($customizeMetadata) {
-        Write-Host 'Customize this batch: source tags remain unless overridden; source artwork is dropped unless a cover is supplied.'
-        Write-Host 'Explicit parameters are retained. Enter skips an optional value; conversion starts after these choices. Nothing is saved for the next batch.'
+        Write-AudioConsole -Label 'METADATA' -Text 'Enter keeps each source tag. Supplied parameters are retained.' -Tone Prompt
+        Write-AudioConsole -Label 'METADATA' -Text 'Source artwork is dropped unless a cover is supplied. Conversion starts after these choices.' -Tone Prompt
 
         # Cover
-        if ([string]::IsNullOrWhiteSpace($CoverPath)) {
-            $doCover = Read-MetadataYesNo -Prompt 'Add album cover to output MP3 metadata?'
+        if (-not $PSBoundParameters.ContainsKey('CoverPath')) {
+            $doCover = Read-MetadataYesNo -Prompt 'Add cover art?'
             if ($doCover) {
                 $picked = Select-AudioMetadataCover
                 if ($picked) {
@@ -393,21 +423,21 @@ if ($Interactive) {
                     catch {
                         throw "Selected cover failed validation: $($_.Exception.Message)"
                     }
-                    Write-Host "[INFO] Cover selected: $CoverPath"
+                    Write-AudioConsole -Label 'COVER' -Text ('Selected: ' + $CoverPath) -Tone Ready
 
                     $coverDiag = $coverValidation.Diagnostics
                     if ($coverDiag.SizeMB -ne $null) {
-                        Write-Host ("[INFO] Cover size: {0} MB" -f $coverDiag.SizeMB)
+                        Write-Verbose ("Cover size: {0} MB" -f $coverDiag.SizeMB)
                     }
                     if (($coverDiag.Width -ne $null) -and ($coverDiag.Height -ne $null)) {
-                        Write-Host ("[INFO] Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
+                        Write-Verbose ("Cover dimensions: {0}x{1}" -f $coverDiag.Width, $coverDiag.Height)
                     }
                     foreach ($w in $coverDiag.Warnings) {
                         Write-Warning "[WARN] $w"
                     }
                 }
                 else {
-                    Write-Host "[WARN] No valid cover selected. Continuing without embedded cover."
+                    Write-AudioConsole -Label 'COVER' -Text 'Picker cancelled. Continuing without embedded cover.' -Tone Warning
                     $CoverPath = $null
                 }
             }
@@ -415,24 +445,18 @@ if ($Interactive) {
 
         # Artist
         if (-not $PSBoundParameters.ContainsKey('Artist')) {
-            $doArtist = Read-MetadataYesNo -Prompt 'Set Artist tag manually for all output files?'
-            if ($doArtist) {
-                $Artist = Read-MetadataResponse -Prompt 'Artist (Enter = retain source tag)'
-                if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
-            }
+            $Artist = Read-MetadataResponse -Prompt 'Artist [Enter = keep existing]'
+            if ([string]::IsNullOrWhiteSpace($Artist)) { $Artist = $null }
         }
 
         # Album
         if (-not $PSBoundParameters.ContainsKey('Album')) {
-            $doAlbum = Read-MetadataYesNo -Prompt 'Set Album tag manually for all output files?'
-            if ($doAlbum) {
-                $Album = Read-MetadataResponse -Prompt 'Album (Enter = retain source tag)'
-                if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
-            }
+            $Album = Read-MetadataResponse -Prompt 'Album [Enter = keep existing]'
+            if ([string]::IsNullOrWhiteSpace($Album)) { $Album = $null }
         }
 
     }
-    Write-Host '[STATE] Starting conversion with this batch metadata.'
+    Write-AudioConsole -Label 'STATE' -Text 'Starting conversion with this batch metadata.' -Tone Ready
 }
 
 # Console input belongs to this invocation only after interactive prompts finish.
@@ -444,7 +468,8 @@ function Write-Log {
     # Keep full mappings/native diagnostics in the local log. Warnings, failures
     # and phase changes remain visible; -Verbose also shows the retained detail.
     if ($Level -in @('WARN', 'FAIL', 'FATAL', 'CANCELLED') -or $Message.StartsWith('[STATE]')) {
-        Write-Host $line
+        $tone = if ($Level -in @('FAIL', 'FATAL')) { 'Failure' } elseif ($Level -in @('WARN', 'CANCELLED')) { 'Warning' } else { 'Ready' }
+        Write-AudioConsole -Label $Level -Text $Message -Tone $tone
     }
     else { Write-Verbose $line }
     Add-Content -LiteralPath $logPath -ErrorAction Stop -Value $line
@@ -498,7 +523,7 @@ try {
     $manifestPath = $manifest.Path
     $manifest.Data.run.started_utc = $runStartedUtc
     Save-AudioManifest -Checkpoint Initial
-    Write-Host "[INFO] Output root      : $outputRoot"
+    Write-AudioConsole -Label 'INFO' -Text ('Output root      : ' + $outputRoot) -Tone Ready
 
     # --- Log file ---
     "==== AudioFileForPhone Log ====" | Add-Content -LiteralPath $logPath -ErrorAction Stop
@@ -585,7 +610,7 @@ foreach ($plan in $plans) {
     $media = $null; $transaction = $null; $outputAudioPlan = $null
     $outPath = $plan.OutputPath
 
-    Write-Host ("[{0}/{1}] {2}" -f $index, $total, $plan.SourceRelativePath)
+    Write-AudioConsole -Label 'FILE' -Text ('{0}/{1}  {2}' -f $index, $total, $plan.SourceRelativePath) -Tone Identity
     Write-Log ("Processing file {0}/{1}: {2}" -f $index, $total, $file.FullName)
 
     Write-Log '[STATE] Probing source; duration unknown.'
@@ -724,7 +749,7 @@ foreach ($plan in $plans) {
         if ($null -ne $conversion -and $conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
     }
     if ($fileStatus -eq 'Success') {
-        Write-Host '  Converted and validated.'
+        Write-AudioConsole -Label 'OK' -Text 'Converted and validated.' -Tone Ready
         Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
     }
     else {
@@ -878,7 +903,11 @@ finally {
         Write-AudioBatchProgress -Detail $runStatus -Completed
     }
     $runWatch.Stop()
-    Write-Host ("[RESULT] " + (Get-AudioResultSummary))
+    $resultTone = if ($batchExitCode -eq 0) { 'Ready' } elseif ($batchExitCode -eq 130) { 'Warning' } else { 'Failure' }
+    if (Get-Command Write-AudioConsole -CommandType Function -ErrorAction SilentlyContinue) {
+        Write-AudioConsole -Label 'RESULT' -Text (Get-AudioResultSummary) -Tone $resultTone
+    }
+    else { Write-Host ("[RESULT] " + (Get-AudioResultSummary)) }
     # A setup failure can leave the exact reserved scope named in its error
     # before the reservation object returns. Do not imply that nothing exists.
     $actualOutput = if ($run) { $run.OutputRoot }
@@ -888,9 +917,19 @@ finally {
     $actualLog = if ($logPath) { $logPath }
         elseif ($DryRun) { '(not created during preview)' }
         else { '(not available)' }
-    Write-Host "  Output root  : $actualOutput"
-    Write-Host "  Log file     : $actualLog"
+    if (Get-Command Write-AudioConsole -CommandType Function -ErrorAction SilentlyContinue) {
+        Write-AudioConsole -Label 'OUTPUT' -Text ('Output root  : ' + $actualOutput) -Tone Detail
+        Write-AudioConsole -Label 'LOG' -Text ('Log file     : ' + $actualLog) -Tone Detail
+    }
+    else { Write-Host "  Output root  : $actualOutput"; Write-Host "  Log file     : $actualLog" }
     $actualManifest = if ($manifestPath) { $manifestPath } elseif ($DryRun) { '(not created during preview)' } else { '(not available)' }
     Write-Verbose "Manifest: $actualManifest; exit code: $batchExitCode"
+}
+}
+finally {
+    if ($audioRestoreOutputRendering) {
+        try { $audioPresentationStyle.OutputRendering = $audioPreviousOutputRendering }
+        catch { } # Display cleanup must not replace the conversion result.
+    }
 }
 exit $batchExitCode
