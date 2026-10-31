@@ -1,39 +1,189 @@
 {
   "schema_version": 1,
   "task": "PATCH103",
-  "status": "IMPLEMENTING",
+  "status": "COMPLETED",
   "owner_authorized": true,
   "owner_testing_required": false,
-  "authority": "Current owner request incorporates AudioFileForPhone_v1.0.3_Codex_Repair.md and authorizes the tested patch through ordinary reviewed integration, public release and independent public-download verification in this chat.",
+  "authority": "Current owner request incorporates the v1.0.3 work order and authorizes the tested patch through normal reviewed integration/publication without separate approval or human-testing gates.",
   "work_order_sha256": "3428218e7e8e461637ba0b50366767e08fb41c6a715432abcc4c5eb95c4ad2ba",
   "base_main": "6fb3a6c74feaf40bac7d3d10a034f7fe47d80444",
-  "branch": "codex/v1.0.3-discovery-metadata-console",
-  "target_tag": "v1.0.3",
+  "reviewed_source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+  "frozen_release_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+  "integrated_main": "e755ba451a64f1f206b48d16f6088619112659ed",
+  "integration_pr": 36,
+  "feature_branch": "codex/v1.0.3-discovery-metadata-console",
+  "feature_sync": "Local feature head and fresh advertised feature ref both equal frozen source.",
+  "version": "1.0.3",
+  "tag": "v1.0.3",
+  "annotated_tag_object": "3b42cbd4ee7cc965ad64517fe776acbeb1ea8f7e",
+  "runtime_zip_sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4",
   "changes": [
-    "Validate complete same-directory PATH pairs and literal environment hints; read-only saved desktop fallbacks; preserve deliberate selection and application-control boundaries.",
-    "Direct Artist and Album text fields; local menu retry with prior answers retained; literal free text and clean cancellation/EOF.",
-    "Shared labeled native-color console with accessibility/plain fallback; preserve logs, launcher result and source/output protections."
+    "Shared same-directory validated PATH/FFMPEG discovery, literal environment expansion and read-only saved desktop fallbacks; deliberate selections and application-control boundaries retained.",
+    "Direct literal Artist/Album entry, local menu retries, prior-answer preservation, picker cancellation skip and clean cancellation/EOF.",
+    "Labeled native console colors/plain accessibility fallback, real values and scoped PSStyle plain redirected errors with caller preference restored."
   ],
-  "focused_discovery": "PASSED17 source cases per shell; candidate1 exact-ZIP14 cases/10 fully decoded real outputs across PS5.1/PS7; real saved User FFMPEG fallback executed read-only.",
-  "full_source_checks": "Initial immutable source passed contracts, dependency guards, clean-first-run,39 native BAT cases,61 package policy cases, original isolated real-FFmpeg baseline and help per shell; stopped at legacy no-tools fixture repaired in subsequent test-only edits. Final campaign pending.",
-  "exact_package_checks": "Candidate1:12 groups/20 real outputs across both hosts;11 builder-policy cases;14 discovery cases/10 real outputs. Final integrated ZIP will be rebuilt/reverified.",
-  "public_release": null,
-  "environment": "Windows11 Pro26H2 build26300.9711 x64; unelevated; PowerShell5.1/7; synthetic fixtures only.",
-  "coverage_gaps": [
-    "Windows10 client unavailable: no local VM manager and no registered repository self-hosted runner. NOT_RUN, never an owner testing assignment.",
-    "Physical Explorer drag/drop is not inferred from Windows shell shortcut invocation or native BAT argument delivery."
-  ],
-  "private_evidence_root": "C:/projects/AFP-103-20261031",
+  "client": {
+    "caption": "Windows11 Pro",
+    "display_version": "26H2",
+    "build": "26300.9711",
+    "architecture": "x64",
+    "elevated": false,
+    "powershell": [
+      "5.1.26100.9711",
+      "7.6.5"
+    ],
+    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "full_families_per_host": 20,
+    "checks_per_host": 959,
+    "observations_per_host": 3,
+    "source_unchanged": true,
+    "synthetic_only": true,
+    "ordinary_music_access": false
+  },
+  "ci": {
+    "push_run": 41187058212,
+    "push_conclusion": "success",
+    "pull_request_run": 41187063535,
+    "pull_request_attempt": 2,
+    "pull_request_conclusion": "success",
+    "source_head": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "pr_synthetic_merge_tree_identical": true,
+    "families_per_host": 20,
+    "checks_per_host": 959,
+    "observations_per_host": 3,
+    "metadata_cases_per_host": 26,
+    "source_unchanged": true,
+    "server_is_supplementary": true,
+    "ps7": "7.6.7"
+  },
+  "exact_zip_acceptance": {
+    "native_cases": 9,
+    "native_outputs": 68,
+    "discovery_cases": 14,
+    "discovery_outputs": 10,
+    "package_groups": 12,
+    "package_outputs": 20,
+    "builder_cases": 11,
+    "total_outputs": 98,
+    "full_decode": true,
+    "independent_ffprobe": true,
+    "source_package_unchanged": true,
+    "owned_process_release": true,
+    "native_colors": [
+      "cyan11",
+      "green10",
+      "amber14"
+    ],
+    "plain_width": 50,
+    "plain_foreground": 7,
+    "internet_marks": "Deterministic ZIP/PS1 Zone3 fixtures; not browser extraction",
+    "shell_delivery": "Actual Windows ShellExecuteEx open of .lnk targeting BAT with literal folder argument; not physical Explorer drag/drop"
+  },
+  "public_release": {
+    "id": 429840128,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3",
+    "published_at": "2026-10-31T09:31:24Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.3.zip",
+        "bytes": 291844,
+        "sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10325,
+        "sha256": "52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "public_smoke_outputs": 2,
+    "public_smoke_hosts": [
+      "Windows PowerShell5.1",
+      "PowerShell7"
+    ],
+    "public_smoke": "Actual downloaded bytes: MP3/64kbps/artwork/Unicode Artist/Album=2027 Term 1 Week 8, full decode, source hashes and process release passed."
+  },
   "preserved_releases": [
     "v1.0.0",
     "v1.0.1",
     "v1.0.2"
   ],
-  "focused_metadata_setup": "Metadata25 and setup16 real-FFmpeg cases passed per shell; source/fixture/PATH unchanged and cleanup verified.",
-  "independent_review": "Independent Codex review found no actionable runtime/source-safety regressions; complete historical v1.0.2 target contract mechanically preserved.",
-  "interim_nonpasses": [
-    "Legacy fixture environment/wording assumptions corrected; initial nonpasses retained privately.",
-    "Native controller Unicode char marshalling corrected after side-by-side original/revised reader proof; no production input encoding change retained.",
-    "Native common-file-dialog automation cannot accept file on this desktop; explicit-cover interactive output verification and scripted picker semantics remain separate evidence."
-  ]
+  "preserved_public_assets": 9,
+  "preserved_old_tag_refs": 6,
+  "coverage_gaps": [
+    "Windows10 client NOT_RUN: no available authorized client/VM/registered self-hosted runner.",
+    "Physical Explorer drag/drop NOT_CLAIMED; actual Windows shell shortcut delivery is separately verified.",
+    "Native file-picker Open automation UNVERIFIED on this desktop; actual picker cancellation and real explicit-cover plus interactive metadata outputs passed.",
+    "No new human-listening or phone observations are claimed or required."
+  ],
+  "retained_nonpasses": [
+    "Early no-tools fixtures assumed no saved environment hints; byte-preserving test adapters corrected, final cases passed.",
+    "Early console interop ANSI char marshalling/flat wide-glyph capture and typed-null assertion defects were test-only, corrected without production input-encoding changes.",
+    "Initial PS7.6.7 ANSI error-formatting CI failure resolved in final source; forced-ANSI raw output zero-ESC and caller restoration verified.",
+    "Initial client optional vendor body timeouts retained; serial retries and final full campaigns passed the original300second deadline.",
+    "PR attempt1 ShortOperations fixture did not reach readiness before its existing deadline; unchanged same-source attempt2 passed. No deadline or safety guard was relaxed."
+  ],
+  "independent_review": "No actionable findings in final runtime or formatting/acceptance review.",
+  "reports": [
+    {
+      "report": "client-full-a931-summary.json",
+      "sha256": "d848043045e0382d0df8fd117f1a24f0c592acf241402662ac6ac4dd278886be"
+    },
+    {
+      "report": "ci-a931-evidence.json",
+      "sha256": "494cb2222118ac51bba13bd00794538a7d756b2b5ab57a7bc00c5e3c38420206"
+    },
+    {
+      "report": "ci-pr-a931-final.json",
+      "sha256": "7ff089271c12e157a4f9c5bbe3abbf9aa0fc15904ad4636b915718f7c99f83f6"
+    },
+    {
+      "report": "candidate3-native-explicit-attempt1.json",
+      "sha256": "6561512534dd9c7ba9b209bfe83bcc423a5bb9ada1527b9dc1c6cbf22bfdc10a"
+    },
+    {
+      "report": "discovery-candidate3-attempt2.json",
+      "sha256": "406dafb7c96a091bd248ff14a0db137dca6e0256d909df6cc0457872a82a2640"
+    },
+    {
+      "report": "user-package3.json",
+      "sha256": "4c24be2a548d39742ca535bbe9ec8ebeca6691414af8ed0bb3bcd8f25b8e8fa0"
+    },
+    {
+      "report": "build-policy3.json",
+      "sha256": "cc234c3358654d8a95d869ce6a66031fd81d090f0ecbbb6b079758aab853a8e1"
+    },
+    {
+      "report": "draft-verification.json",
+      "sha256": "1269ec3c0a10a43e2fef62684acab5cb07ea6ba1c9c8725427fd03ccb0174356"
+    },
+    {
+      "report": "public-download-verification.json",
+      "sha256": "b42837a5bafc2c24a2d9abc1b5ea274af01bcc2050a82209982bc029db88c1a0"
+    },
+    {
+      "report": "public-download-smoke.json",
+      "sha256": "58f0e968222a5cb7e7457d3cea5fb032fd09a1709543039a709f76c1dcab9b48"
+    },
+    {
+      "report": "public-final-audit.json",
+      "sha256": "d3aa58d9d5f06d0a832f7f6d4edb1b532322f1475f36a2382851fd9266335c18"
+    },
+    {
+      "report": "review-a931-formatting.json",
+      "sha256": "ee5dcd393ec92ef729fb0a6bce37d333a90f7b72e9d727ac75c2ccc7db813ef3"
+    }
+  ],
+  "private_evidence_root": "C:/projects/AFP-103-20261031",
+  "closure": "Only excluded agent/state/evidence documentation changes after publication. The released source/tag/assets remain frozen. The containing closure commit/main live-ref equality and CI are observed after merge and reported in the final handover, avoiding a self-referential SHA."
 }

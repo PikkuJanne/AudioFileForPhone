@@ -850,3 +850,16 @@ R3 owner completion directive — 2026-10-30: "R3 isnot blocked by executive
      native BAT checks. No security waiver, old-byte replacement or tag move.
      Complete documentation-only closure through ordinary reviewed PR/CI and
      observe final live main/feature equality after merge. Owner testing none.
+
+## v1.0.3 publication verified — 2026-10-31
+
+The tested source a931a5606346b5bef28beb0987371e9a7b4f42be was integrated through PR36, rebuilt byte-identically,
+tagged and published normally. Anonymous assets and actual public metadata/cover
+conversions match ZIP 10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4. All prior tags/assets are preserved.
+Final full client and source CI checks passed; the real vendor/network and unchanged
+timing fixture initial failures are retained with successful bounded reruns.
+PSStyle changes are invocation-scoped and restored; no input-encoding workaround
+was shipped for the controller-only Unicode marshaling defect. No security control,
+deadline, source validation or owner-testing boundary was weakened. Optional Win10,
+physical drop and picker Open automation gaps remain honest, with no owner task.
+Closure changes only excluded docs; never retag/replace released bytes for evidence.
