@@ -157,7 +157,7 @@ if ($global:S07ForbidNative) {
 '@
 function Invoke-ProductionChild {
     param([string]$Label,[string]$Command,[object[]]$Responses=@(),[string]$DialogPath='',
-        [switch]$ScriptedUI,[switch]$Preview,[switch]$ForceHostRead)
+        [switch]$ScriptedUI,[switch]$Preview,[switch]$ForceHostRead,[switch]$ForceAnsi)
     $loader=Join-Path $testRoot ($Label+'-loader.ps1'); Write-NewText $loader $guardLoader; Add-Fixture $loader
     $driver=Join-Path $testRoot ($Label+'-driver.ps1')
     $code=@(
@@ -168,6 +168,8 @@ function Invoke-ProductionChild {
         ('$global:S07ScriptedUI=$'+$ScriptedUI.IsPresent.ToString().ToLowerInvariant()),
         ('$global:S07ForceHostRead=$'+$ForceHostRead.IsPresent.ToString().ToLowerInvariant()),
         ('$global:S07ForbidNative=$'+$Preview.IsPresent.ToString().ToLowerInvariant()),
+        ('$global:S07ForceAnsi=$'+$ForceAnsi.IsPresent.ToString().ToLowerInvariant()),
+        '$global:S07Style=Get-Variable -Name PSStyle -ValueOnly -ErrorAction SilentlyContinue; if($global:S07ForceAnsi){$env:TERM="xterm";$env:FORCE_COLOR="1";$env:CLICOLOR_FORCE="1";if($null-ne$global:S07Style){$global:S07Style.OutputRendering="Ansi"}}; $global:S07StyleBefore=if($null-ne$global:S07Style){[string]$global:S07Style.OutputRendering}else{""}',
         ('$global:S07DialogPath='+(Get-Literal $DialogPath)),
         '$global:S07Loads=0; $global:S07DialogCalls=0; $global:S07Responses=New-Object ''System.Collections.Generic.Queue[object]''',
         '$global:S07Forbidden=New-Object ''System.Collections.Generic.List[string]''; $global:S07MetadataPrompts=New-Object ''System.Collections.Generic.List[string]''; $global:S07NativeProofs=New-Object ''System.Collections.Generic.List[object]'''
@@ -190,7 +192,7 @@ try {
     $code+=$Command
     $code+=@'
 } finally {
-    Write-Host ('[S07_AUDIT] ' + ([pscustomobject]@{output_encoding_codepage=[Console]::OutputEncoding.CodePage;helper_loads=$global:S07Loads;dialog_calls=$global:S07DialogCalls;metadata_prompts=@($global:S07MetadataPrompts.ToArray());remaining_responses=$global:S07Responses.Count;native_proofs=@($global:S07NativeProofs.ToArray());forbidden_calls=@($global:S07Forbidden.ToArray())} | ConvertTo-Json -Depth 6 -Compress))
+    Write-Host ('[S07_AUDIT] ' + ([pscustomobject]@{output_encoding_codepage=[Console]::OutputEncoding.CodePage;output_rendering_before=$global:S07StyleBefore;output_rendering_after=$(if($null-ne$global:S07Style){[string]$global:S07Style.OutputRendering}else{''});helper_loads=$global:S07Loads;dialog_calls=$global:S07DialogCalls;metadata_prompts=@($global:S07MetadataPrompts.ToArray());remaining_responses=$global:S07Responses.Count;native_proofs=@($global:S07NativeProofs.ToArray());forbidden_calls=@($global:S07Forbidden.ToArray())} | ConvertTo-Json -Depth 6 -Compress))
 }
 exit $LASTEXITCODE
 '@
@@ -407,6 +409,16 @@ try {
         $case['no_batch']=Assert-NoBatch $parent $child 1
         Assert-True ($child.Text -match '(?i)console|redirect|noninteractive|non-interactive' -and $child.Audit.metadata_prompts.Count -eq 0) 'Unavailable console must fail explicitly without scripted input.'
         $case['host']='actual -NonInteractive child; redirected stdout/stderr'; $case['exit_code']=1
+    }
+    Invoke-Case 'redirected failure stays plain under forced ANSI and restores caller style' 'v1.0.3' {
+        param($case)
+        $parent=Join-Path $testRoot 'Forced ANSI unavailable host output'
+        $child=Invoke-ProductionChild 'ForcedAnsiUnavailableHost' (Get-AppCommand $parent -Interactive) -ForceAnsi
+        $case['no_batch']=Assert-NoBatch $parent $child 1
+        Assert-True (($child.Text -replace '\s+', '') -match '\[FATAL\].*Interactivemetadatarequiresconsoleinput' -and $child.Audit.metadata_prompts.Count -eq 0) 'Plain formatting must retain the genuine error cause and exit1.'
+        Assert-True ($child.Audit.output_rendering_before -ceq $child.Audit.output_rendering_after) 'The application must restore its caller output-rendering preference.'
+        if ($edition -eq 'ps7') { Assert-True ($child.Audit.output_rendering_after -ceq 'Ansi') 'Regression must actually force ANSI in PowerShell7.' }
+        $case['caller_output_rendering_restored']=$true; $case['raw_escape_sequences']=0
     }
     Invoke-Case 'production response reader preserves actual NonInteractive host authority' 'S07-A2' {
         param($case)

@@ -211,6 +211,28 @@ $diagnosticsReady = $false
 $diagnosticStage = 'Bootstrap'; $diagnosticCode = 'HelperMissing'
 $toolDiagnosticContext = @{}
 $toolInfo = $null
+$audioPresentationStyle = $null
+$audioPreviousOutputRendering = $null
+$audioRestoreOutputRendering = $false
+try {
+    # Host-formatted errors and warnings also need plain redirected output.
+    # PSStyle is absent in Windows PowerShell; never change a persistent setting.
+    $audioPresentationStyle = Get-Variable -Name PSStyle -ValueOnly -ErrorAction SilentlyContinue
+    if ($null -ne $audioPresentationStyle) {
+        $plainPresentation = [Console]::IsOutputRedirected -or [Console]::IsErrorRedirected -or
+            $null -ne [Environment]::GetEnvironmentVariable('NO_COLOR') -or $env:TERM -eq 'dumb' -or $env:CLICOLOR -eq '0'
+        if ($env:OS -eq 'Windows_NT') {
+            $contrast = [Microsoft.Win32.Registry]::GetValue('HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast', 'Flags', '0')
+            if (([int]$contrast -band 1) -ne 0) { $plainPresentation = $true }
+        }
+        if ($plainPresentation -and [string]$audioPresentationStyle.OutputRendering -ne 'PlainText') {
+            $audioPreviousOutputRendering = $audioPresentationStyle.OutputRendering
+            $audioRestoreOutputRendering = $true
+            $audioPresentationStyle.OutputRendering = 'PlainText'
+        }
+    }
+}
+catch { } # Optional presentation state must never prevent conversion.
 
 function Write-AudioProgress {
     param([string]$Status, [int]$PercentComplete, [switch]$Completed,
@@ -240,6 +262,7 @@ function Get-AudioResultSummary {
         $runStatus, $total, ($ok + $failed), $ok, $failed, ($total - $ok - $failed), $scanExcluded, $unsupported, $elapsed)
 }
 
+try {
 try {
     $diagnosticsPath = Join-Path $ScriptDir 'AudioFileForPhone.Diagnostics.ps1'
     if (-not (Test-Path -LiteralPath $diagnosticsPath -PathType Leaf)) { throw 'Required runtime file is missing: AudioFileForPhone.Diagnostics.ps1. Restore the complete application package.' }
@@ -901,5 +924,12 @@ finally {
     else { Write-Host "  Output root  : $actualOutput"; Write-Host "  Log file     : $actualLog" }
     $actualManifest = if ($manifestPath) { $manifestPath } elseif ($DryRun) { '(not created during preview)' } else { '(not available)' }
     Write-Verbose "Manifest: $actualManifest; exit code: $batchExitCode"
+}
+}
+finally {
+    if ($audioRestoreOutputRendering) {
+        try { $audioPresentationStyle.OutputRendering = $audioPreviousOutputRendering }
+        catch { } # Display cleanup must not replace the conversion result.
+    }
 }
 exit $batchExitCode
