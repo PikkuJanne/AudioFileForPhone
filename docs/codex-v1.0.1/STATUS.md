@@ -1,11 +1,30 @@
-# Status — v1.0.5 batch repair in progress
+# Status — v1.0.5 published and independently verified
 
-The owner incorporated the batch-repair work order and authorized this patch
-through ordinary reviewed CI-passing merge, normal publication and independent
-public-download smoke in this chat. Exact October 15 essentials archive verified
-before execution; native/direct/package and fault-injection checks are running.
-No cause is inferred from the historical native crashes. All earlier releases
-remain frozen. Actual evidence: evidence/PATCH105.json. Owner testing: none.
+Public normal [v1.0.5](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5)
+is independently downloaded, hashed and smoke-tested in Windows PowerShell 5.1
+and PowerShell 7 using the verified October 15 essentials pair. Frozen source/tag:
+`4cb6341ae5358faac28462643a9d67a5e3f9b424` / `v1.0.5`.
+ZIP SHA256: `17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48`.
+
+Three independent packaged PS5.1 batches passed 29/29, plus PS7 and separately
+instrumented package runs 29/29; three direct replays of 121 actual native argument
+vectors each also validated 29/29. The first baseline/candidate batches produced
+29 byte-identical MP3s. Exact-ZIP faults passed 24 cases per shell, including validator
+retry of identical completed bytes without re-encoding. Native crashes were not
+naturally reproduced; underlying cause remains unproven. Original 29-file batch absent.
+
+Available local source coverage is19 passing families/960 checks + 3 observations per
+shell across preserved actual runs. Both local managed-download 300s nonpasses and
+the original PS7 timing nonpass remain nonpasses, with unchanged safeguards. A
+finite baseline104/currentC timing control passed 16 cases each. Source push/PR/main
+CI passed20 families/963 checks + 3 observations plus 8 + 24 recovery cases per shell on
+supplementary Server 2025. Windows 10/Explorer/human/phone observations are not claimed.
+
+See [PATCH105-HANDOVER.md](PATCH105-HANDOVER.md) and
+[evidence/PATCH105.json](evidence/PATCH105.json). Raw private recordings, logs and
+argv remain outside Git/assets. All five prior releases,15 assets and10 old tag refs
+remain unchanged. Owner action: none. No automatic next step/version. Final
+documentation checkpoint refs/CI are observed after its containing commit.
 
 # Status — v1.0.4 published and independently verified
 

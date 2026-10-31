@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "PikkuJanne/AudioFileForPhone",
   "step": "PATCH105",
-  "status": "IN_PROGRESS",
+  "status": "PUBLISHED_VERIFIED",
   "version_authority": {
     "recorded_date": "2026-10-31",
     "scope": "Bounded tested batch repair through ordinary reviewed PR/CI integration, normal public release and independent download verification in this chat",
@@ -219,19 +219,133 @@
       "public_smoke": "Actual downloaded bytes: MP3/64kbps/artwork/Unicode Artist/Album=2027 Term 1 Week 8, full decode, source hashes and process release passed."
     }
   },
-  "source_frozen": false,
+  "source_frozen": true,
   "publication_authorization": {
     "owner_authorized": true,
-    "basis": "Current request incorporates v1.0.5 batch-repair work order",
-    "scope": "Tested exact candidate through ordinary reviewed PR/CI merge, normal public v1.0.5 release and independent public-download verification",
+    "basis": "Current owner request incorporates v1.0.5 batch repair work order",
+    "scope": "Tested exact candidate through ordinary reviewed CI-passing integration, normal public release and independent public-download smoke",
+    "source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
     "target_tag": "v1.0.5",
-    "source_commit": null,
-    "assets": [],
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.5.zip",
+        "bytes": 294085,
+        "sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 15194,
+        "sha256": "fbc6451043e8809095830e5f994898fed9bfca179b79640179ec03593b609ea6",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "24c795e57b4941771ddc856252904cc1c4ae57832faec438604e6463dc388eef",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/SHA256SUMS.txt"
+      }
+    ],
     "record": "evidence/PATCH105.json"
   },
-  "candidate_source_commit": null,
-  "candidate_assets": [],
-  "published_release": null,
+  "candidate_source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+  "candidate_assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.5.zip",
+      "bytes": 294085,
+      "sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 15194,
+      "sha256": "fbc6451043e8809095830e5f994898fed9bfca179b79640179ec03593b609ea6",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/release-manifest.json"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "24c795e57b4941771ddc856252904cc1c4ae57832faec438604e6463dc388eef",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/SHA256SUMS.txt"
+    }
+  ],
+  "published_release": {
+    "status": "PUBLICLY_VERIFIED",
+    "id": 430012191,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5",
+    "tag": "v1.0.5",
+    "title": "AudioFileForPhone v1.0.5",
+    "published_at": "2026-10-31T15:28:19Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "4cb6341ae5358faac28462643a9d67a5e3f9b424",
+    "tag_object": "4a0ec0c2b2d5320688759d0bfec3c5e5bad31096",
+    "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.5.zip",
+        "bytes": 294085,
+        "sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 15194,
+        "sha256": "fbc6451043e8809095830e5f994898fed9bfca179b79640179ec03593b609ea6",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "24c795e57b4941771ddc856252904cc1c4ae57832faec438604e6463dc388eef",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "zip_members_verified": 17,
+    "public_smoke": {
+      "status": "pass",
+      "runtime_zip_sha256": "17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48",
+      "media": "Available authorized private JavaFX fixture; not original 29-file batch",
+      "selected_tools": "Verified October15 essentials pair, actual directory, uninstrumented",
+      "cases": [
+        {
+          "shell": "powershell.exe",
+          "exit": 0,
+          "converted": 1,
+          "failed": 0,
+          "decoded_seconds": 4255.010249,
+          "bitrate": 64000,
+          "sample_rate": 44100,
+          "channels": 2,
+          "title_artist_album": true,
+          "jpeg_225x225": true,
+          "strict_full_decode": true,
+          "owned_working_files_removed": true
+        },
+        {
+          "shell": "pwsh.exe",
+          "exit": 0,
+          "converted": 1,
+          "failed": 0,
+          "decoded_seconds": 4255.010249,
+          "bitrate": 64000,
+          "sample_rate": 44100,
+          "channels": 2,
+          "title_artist_album": true,
+          "jpeg_225x225": true,
+          "strict_full_decode": true,
+          "owned_working_files_removed": true
+        }
+      ],
+      "original_bytes_and_creation_write_timestamps_unchanged": true,
+      "natural_crashes": 0,
+      "report_sha256": "fd5dea432af1ebd5dd9c4e9dce3e84b56bd1dc218c6f8aefb0a428b84685dd7e"
+    },
+    "frozen_bytes": true
+  },
   "historical_v1_0_4_target": {
     "schema_version": 1,
     "repository": "PikkuJanne/AudioFileForPhone",

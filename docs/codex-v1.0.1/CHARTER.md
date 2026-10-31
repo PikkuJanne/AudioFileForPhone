@@ -1,6 +1,13 @@
 # Charter — focused launch and distribution repair
 
-## Active v1.0.5 owner work order — 2026-10-31
+The v1.0.5 work order completed tested ordinary reviewed integration, normal
+public publication and independent public-download smoke. Frozen source/tag:
+`4cb6341ae5358faac28462643a9d67a5e3f9b424` / `v1.0.5`. See PATCH105-HANDOVER.md and
+evidence/PATCH105.json. Owner testing/action: none. Its one-chat authority is
+exhausted after documentation closure; no automatic next version follows.
+Earlier records remain historical; preserve every released tag/asset/control.
+
+## Completed v1.0.5 owner work order — 2026-10-31
 
 The current owner request incorporates the batch-repair work order (SHA256
 db758c424a1f334b5a8c8e8271f4ba2bced1eadcee69f7c91efbdacbf30845a7).

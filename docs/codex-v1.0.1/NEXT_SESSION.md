@@ -1,11 +1,18 @@
-# Active chat — finish the authorized v1.0.5 batch repair
+# Next session — v1.0.5 complete; no automatic next step
 
-This chat continues through automated verification, ordinary reviewed PR/CI merge,
-normal public publication, independent download smoke and closure. Historical
-numbered stops and separate release approvals do not apply to this patch. Read
-the active CHARTER amendment and evidence/PATCH105.json for actual status. Keep
-the work order, private original and raw reports outside Git/assets. No owner
-testing, reinstall, PATH edits or diagnostic assignment.
+Public normal [v1.0.5](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5)
+is independently downloaded/verified and smoke-tested on PS5.1/PS7. Read
+[PATCH105-HANDOVER.md](PATCH105-HANDOVER.md) and [evidence/PATCH105.json](evidence/PATCH105.json).
+Frozen source/tag: `4cb6341ae5358faac28462643a9d67a5e3f9b424` / `v1.0.5`.
+ZIP SHA256: `17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48`.
+
+Required exact-package batch/recovery checks and public-byte smoke passed. Native
+crash cause remains unproven; representative media are not the original 29-file batch.
+The disclosed local managed-network and original timing nonpasses remain retained.
+No owner test, sign-off, reinstall, upload, PATH edit or next numbered step remains.
+Preserve every old/new tag and public byte. Future maintenance needs a new owner
+request. Final containing-checkpoint CI and local/live main equality are observed
+after ordinary reviewed closure; the release tag stays on the tested source.
 
 # Next session — v1.0.4 complete; no automatic next step
 

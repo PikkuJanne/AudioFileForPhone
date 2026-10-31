@@ -1,3 +1,11 @@
+# v1.0.5 completed — current routing
+
+Read root AGENTS.md, STATE and PATCH105-HANDOVER.md. Normal public v1.0.5 and
+independent anonymous-download smoke are verified at frozen source `4cb6341ae5358faac28462643a9d67a5e3f9b424`.
+Preserve all tags/assets, raw-private evidence separation and controls. No owner
+test, approval, automatic numbered continuation or new version is pending.
+Future maintenance requires a new owner request. Older routing below is historical.
+
 # v1.0.4 completed — current routing
 
 Read root AGENTS.md, current STATE and PATCH104-HANDOVER.md. The owner-directed

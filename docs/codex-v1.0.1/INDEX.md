@@ -1,4 +1,11 @@
-# Current release: v1.0.4
+# Current release: v1.0.5
+
+[Publication receipt](PATCH105-HANDOVER.md) · [Redacted evidence](evidence/PATCH105.json).
+Published, anonymously downloaded/hashed and smoke-tested. Owner action: none.
+Native crash cause remains unproven; local nonpasses/coverage limits stay disclosed.
+All earlier planning/routing below is historical. No automatic next work/version.
+
+# Historical release: v1.0.4
 
 [Publication receipt](PATCH104-HANDOVER.md) · [Redacted evidence](evidence/PATCH104.json).
 Published and independently downloaded/tested; owner testing required: none.

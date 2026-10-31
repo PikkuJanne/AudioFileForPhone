@@ -2,6 +2,15 @@
 
 ## v1.0.5 batch repair — 2026-10-31
 
+Completed: normal public v1.0.5 from `4cb6341ae5358faac28462643a9d67a5e3f9b424`, exact ZIP `17964b42e2cff1f8b95ebccf347ec05a2316caef6e439a2a841b39afb2d63d48`, anonymous
+downloads and two real public-byte conversions verified. Healthy baseline/candidate
+29 outputs were byte-identical. The original 29-file batch was unavailable and the native
+crash was not naturally reproduced; no cause is inferred. Retain local network and
+original timing nonpasses alongside actual passing controls. Test-only PID-instance
+identity and UTF-8 readers corrected harness errors without changing release bytes.
+Source/PR/integrated-main CI passed; documentation closure preserves frozen bytes.
+No owner action or automatic next version is pending.
+
 The owner incorporated the batch-repair brief and authorized implementation,
 testing, ordinary reviewed integration, public v1.0.5 and independent-byte smoke
 in one chat, superseding historical stops for this patch. The October 15 essentials
