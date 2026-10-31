@@ -1,5 +1,17 @@
 # AudioFileForPhone agent instructions
 
+## Owner-directed v1.0.5 batch repair — 2026-10-31
+
+The owner incorporated AudioFileForPhone_v1.0.5_Codex_Batch_Repair.md and authorized
+one repair through automated testing, ordinary reviewed PR/CI merge, normal public
+v1.0.5 publication and independent public-download smoke in this chat. This
+supersedes historical numbered stops and separate approval gates for this patch.
+Use the verified October 15 essentials pair for direct/package comparison; keep
+private recordings, raw reports and work-order contents outside Git/assets.
+Retry only a narrowly classified released native worker crash, once per failed
+operation; preserve validation, source protection and existing published bytes.
+Owner testing: none. See evidence/PATCH105.json for actual progress and limits.
+
 ## Completed owner-directed v1.0.4 patch — 2026-10-31
 
 The owner-directed source-probe crash patch completed through ordinary reviewed

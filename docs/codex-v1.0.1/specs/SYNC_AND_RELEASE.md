@@ -1,5 +1,16 @@
 # Checkpoint, handover and release protocol
 
+## Active v1.0.5 batch-repair authority — 2026-10-31
+
+The current owner request incorporates the v1.0.5 batch-repair work order and
+authorizes implementation, automated direct/package tests with the verified
+observed build, ordinary reviewed PR/CI integration, a normal public corrective
+release and independent public-byte verification in one chat. Historical stops
+and separate approval requests do not apply to this bounded patch. Freeze and
+validate the exact ZIP, verify draft bytes, publish, independently download/hash/
+smoke and finish branch/main sync. Preserve controls and all old tags/assets.
+No private recordings, raw logs or work-order contents in public Git or assets.
+
 This patch is published and independently verified; see PATCH104-HANDOVER.md and
 evidence/PATCH104.json in docs/codex-v1.0.1. Its one-chat authority is exhausted.
 No automatic next version, owner test or new publication follows. Older records

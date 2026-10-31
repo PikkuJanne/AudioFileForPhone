@@ -142,7 +142,7 @@ try{
     }
     Case-P104 'native-crash-in-mp3-does-not-enter-m4a-recovery' {param($case)
         $r=App-P104 'mp3-crash' 'crash' '2024-01-02 - Original.mp3' $mp3 2
-        Assert-P104 ($r.files.Count-eq0-and$r.crashes-eq1-and$r.remuxes-eq0-and$r.manifest.totals.failed-eq1) 'Non-M4A source entered M4A recovery.'
+        Assert-P104 ($r.files.Count-eq0-and$r.crashes-eq2-and$r.remuxes-eq0-and$r.manifest.totals.failed-eq1) 'Persistent non-M4A source crash must get one fresh probe, no M4A recovery and no output.'
         $case.exit_code=$r.native.ExitCode;$case.recovery_attempts=0
     }
     $report.source_unchanged=(($sourceBefore|ConvertTo-Json -Compress)-ceq((Inventory-P104 $runtime)|ConvertTo-Json -Compress))

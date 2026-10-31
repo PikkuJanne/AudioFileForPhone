@@ -12,7 +12,8 @@ jobs:
   windows:
     name: Supplementary Windows Server 2025 / ${{ matrix.edition }}
     runs-on: windows-2025
-    timeout-minutes: 20
+    # Retain the full suites plus the added 24-case worker fault regressions.
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:
@@ -45,7 +46,7 @@ jobs:
           $evidence = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-' + $env:CI_EDITION + '-' + $env:CI_RUN_LABEL + '.json')
           & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Initialize-CiDependencies.ps1') -DestinationPath $destination -EvidencePath $evidence
           & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Invoke-CiChecks.ps1') -DependenciesPath $evidence -RunLabel $env:CI_RUN_LABEL
-      - name: Verify source-probe crash recovery with synthetic media
+      - name: Verify media worker crash recovery with synthetic media
         run: |
           $ErrorActionPreference = 'Stop'
           $record = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json')
@@ -54,6 +55,12 @@ jobs:
           & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-Patch104Recovery.ps1') -EvidencePath $report -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $archiveReport = Join-Path $env:GITHUB_WORKSPACE 'docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+          if (Test-Path -LiteralPath $archiveReport) { throw 'Synthetic evidence already exists.' }
+          Copy-Item -LiteralPath $report -Destination $archiveReport
+          $report = Join-Path $env:RUNNER_TEMP 'patch105-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+          & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-Patch105Recovery.ps1') -EvidencePath $report -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $archiveReport = Join-Path $env:GITHUB_WORKSPACE 'docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
           if (Test-Path -LiteralPath $archiveReport) { throw 'Synthetic evidence already exists.' }
           Copy-Item -LiteralPath $report -Destination $archiveReport
       - name: Upload check evidence
@@ -73,6 +80,7 @@ jobs:
             docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
+            docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
           retention-days: 14
           if-no-files-found: warn
           include-hidden-files: false

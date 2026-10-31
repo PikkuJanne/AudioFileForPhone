@@ -1,40 +1,21 @@
 {
   "schema_version": 1,
-  "target_version": "1.0.4",
-  "project_status": "COMPLETED",
-  "current_step": "PATCH104",
-  "active_branch": "main",
-  "tested_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-  "frozen_release_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-  "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+  "target_version": "1.0.5",
+  "project_status": "IN_PROGRESS",
+  "current_step": "PATCH105",
+  "active_branch": "codex/v1.0.5-batch-recovery",
+  "tested_source_commit": null,
+  "frozen_release_commit": null,
+  "runtime_zip_sha256": null,
   "acceptance_kit_sha256": null,
   "publication_authorization": {
     "owner_authorized": true,
-    "basis": "Current owner request incorporates private v1.0.4 WORK_ORDER.md",
-    "scope": "Bounded tested patch through ordinary reviewed PR/CI, normal public release and independent public-download verification in one chat",
-    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-    "target_tag": "v1.0.4",
-    "assets": [
-      {
-        "name": "AudioFileForPhone-v1.0.4.zip",
-        "bytes": 295157,
-        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
-      },
-      {
-        "name": "release-manifest.json",
-        "bytes": 9815,
-        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
-      },
-      {
-        "name": "SHA256SUMS.txt",
-        "bytes": 183,
-        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
-      }
-    ],
-    "record": "evidence/PATCH104.json"
+    "basis": "Current request incorporates v1.0.5 batch-repair work order",
+    "scope": "Tested exact candidate through ordinary reviewed PR/CI merge, normal public v1.0.5 release and independent public-download verification",
+    "target_tag": "v1.0.5",
+    "source_commit": null,
+    "assets": [],
+    "record": "evidence/PATCH105.json"
   },
   "recovery_exception": null,
   "steps": {
@@ -164,138 +145,31 @@
       "blockers": [],
       "status": "COMPLETED",
       "owner_testing_required": "none"
+    },
+    "PATCH105": {
+      "status": "IN_PROGRESS",
+      "evidence": "evidence/PATCH105.json",
+      "owner_testing_required": "none",
+      "remaining_work": [
+        "Verify repeated direct/package batches on exact observed build and stable comparison",
+        "Complete crash-recovery regressions and full supported-shell suites",
+        "Reviewed CI-passing merge; exact-package acceptance; verified draft/public download smoke; closure"
+      ],
+      "blockers": []
     }
   },
   "owner_override": {
     "recorded_date": "2026-10-31",
-    "kind": "explicit_owner_v1_0_4_work_order",
-    "instruction": "Apply private WORK_ORDER.md, fix source-probe crash handling without changing normal encoding, implement/test/merge/publish v1.0.4 and verify public download without checkpoint stops, owner tests or another approval.",
-    "scope": "Bounded tested patch through ordinary reviewed CI-passing integration and verified public release in this chat only",
-    "work_order_sha256": "80d76c7fd429277419e2f5446709979cc92ff28605d7ee3187fece29d6021270",
-    "tested_source_selected_under_work_order": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-    "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+    "kind": "explicit_owner_v1_0_5_batch_repair_work_order",
+    "instruction": "Implement incorporated batch repair through automated verification, ordinary reviewed merge, normal public corrective release and independent public-download smoke in this chat.",
+    "scope": "Bounded batch-worker crash repair; historical stop gates superseded for this patch",
+    "work_order_sha256": "db758c424a1f334b5a8c8e8271f4ba2bced1eadcee69f7c91efbdacbf30845a7",
     "security_controls_waived": false,
     "owner_testing_required": "none",
-    "record": "evidence/PATCH104.json"
+    "record": "evidence/PATCH105.json"
   },
-  "completion_basis": "Owner-authorized source-probe crash repair completed through ordinary PR38 and exact-head push/PR/main CI. Exact ZIP passed four private-original cases and public downloads passed four smoke cases. Each local shell completed 19 passing families/960 checks across actual unchanged runs, with managed-network gap and original timing nonpasses preserved. Hosted CI passed 20 families/963 checks plus 8 recovery cases per job. No owner testing; frozen tag/assets unchanged through docs-only closure.",
-  "public_release": {
-    "id": 429916406,
-    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4",
-    "published_at": "2026-10-31T12:22:21Z",
-    "draft": false,
-    "prerelease": false,
-    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-    "tag": "v1.0.4",
-    "tag_object": "3b87eacb8409ef5c002049a70106a8bf125aac21",
-    "assets": [
-      {
-        "name": "AudioFileForPhone-v1.0.4.zip",
-        "bytes": 295157,
-        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
-      },
-      {
-        "name": "release-manifest.json",
-        "bytes": 9815,
-        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
-      },
-      {
-        "name": "SHA256SUMS.txt",
-        "bytes": 183,
-        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
-        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
-      }
-    ],
-    "draft_download_verified": true,
-    "anonymous_api_verified": true,
-    "anonymous_downloads_verified": true,
-    "public_smoke": {
-      "cases": [
-        {
-          "crashes": 0,
-          "bitrate": 64000,
-          "tags": true,
-          "duration": 2,
-          "exit": 0,
-          "cover": true,
-          "mode": "normal",
-          "converted": 1,
-          "failed": 0,
-          "source_unchanged": true,
-          "sample_rate": 44100,
-          "process_release": true,
-          "full_decode": true,
-          "recovery_attempts": 0,
-          "channels": 2,
-          "shell": "powershell.exe"
-        },
-        {
-          "crashes": 1,
-          "bitrate": 64000,
-          "tags": true,
-          "duration": 2,
-          "exit": 0,
-          "cover": true,
-          "mode": "crash",
-          "converted": 1,
-          "failed": 0,
-          "source_unchanged": true,
-          "sample_rate": 44100,
-          "process_release": true,
-          "full_decode": true,
-          "recovery_attempts": 1,
-          "channels": 2,
-          "shell": "powershell.exe"
-        },
-        {
-          "crashes": 0,
-          "bitrate": 64000,
-          "tags": true,
-          "duration": 2.0,
-          "exit": 0,
-          "cover": true,
-          "mode": "normal",
-          "converted": 1,
-          "failed": 0,
-          "source_unchanged": true,
-          "sample_rate": 44100,
-          "process_release": true,
-          "full_decode": true,
-          "recovery_attempts": 0,
-          "channels": 2,
-          "shell": "pwsh.exe"
-        },
-        {
-          "crashes": 1,
-          "bitrate": 64000,
-          "tags": true,
-          "duration": 2.0,
-          "exit": 0,
-          "cover": true,
-          "mode": "crash",
-          "converted": 1,
-          "failed": 0,
-          "source_unchanged": true,
-          "sample_rate": 44100,
-          "process_release": true,
-          "full_decode": true,
-          "recovery_attempts": 1,
-          "channels": 2,
-          "shell": "pwsh.exe"
-        }
-      ],
-      "status": "pass",
-      "synthetic_only": true,
-      "receipt_sha256": "d3989eec54c2cadc67963d38b01a6f6f23b1de09f2609121f24998ff68075af7",
-      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
-    },
-    "frozen_bytes": true,
-    "title": "AudioFileForPhone v1.0.4",
-    "status": "PUBLICLY_VERIFIED",
-    "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
-  },
+  "completion_basis": null,
+  "public_release": null,
   "initial_publication_authorization": {
     "step": "S17",
     "source_commit": "d9d7129e9463de17e29c2a36752c82e326abf22e",
@@ -556,7 +430,7 @@
       ]
     }
   },
-  "active_corrective_target_version": "1.0.4",
+  "active_corrective_target_version": "1.0.5",
   "historical_release_fields_note": "Top-level active release/authority/completion fields describe v1.0.4. Prior v1.0.3 values are preserved under historical_v1_0_3_release_fields; earlier explicitly historical records remain unchanged. RELEASE_TARGET.json remains the historical v1.0.1 contract; current contract is CORRECTIVE_RELEASE_TARGET.json.",
   "historical_v1_0_1_release_fields": {
     "target_version": "1.0.1",
@@ -639,14 +513,7 @@
     },
     "completion_basis": "Original release closure plus owner-requested packaging revision2, public downloads and actual clean-package tests verified. Original absent Win10/physical/phone observations remain waived, never passed."
   },
-  "final_checkpoint_observation": {
-    "stage": "v1.0.4 runtime integration and independent public-byte verification observed",
-    "reviewed_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
-    "runtime_main_commit": "657c290976c11e901d87621bed2f078a54f01664",
-    "source_and_runtime_main_ci": "passed",
-    "public_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
-    "closure": "Containing docs-only closure commit, fresh main ref and CI are observed after normal reviewed merge and reported externally to avoid self-reference."
-  },
+  "final_checkpoint_observation": null,
   "patch103": {
     "status": "COMPLETED",
     "target_tag": "v1.0.3",
@@ -869,5 +736,180 @@
       }
     },
     "final_checkpoint_observation": "Final containing documentation checkpoint and fresh advertised main/feature equality and exact-head CI are observed after merge and reported in the final response, without embedding the containing commit SHA into itself."
+  },
+  "historical_v1_0_4_release_fields": {
+    "target_version": "1.0.4",
+    "project_status": "COMPLETED",
+    "current_step": "PATCH104",
+    "active_branch": "main",
+    "tested_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "frozen_release_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+    "publication_authorization": {
+      "owner_authorized": true,
+      "basis": "Current owner request incorporates private v1.0.4 WORK_ORDER.md",
+      "scope": "Bounded tested patch through ordinary reviewed PR/CI, normal public release and independent public-download verification in one chat",
+      "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+      "target_tag": "v1.0.4",
+      "assets": [
+        {
+          "name": "AudioFileForPhone-v1.0.4.zip",
+          "bytes": 295157,
+          "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 9815,
+          "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 183,
+          "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+        }
+      ],
+      "record": "evidence/PATCH104.json"
+    },
+    "owner_override": {
+      "recorded_date": "2026-10-31",
+      "kind": "explicit_owner_v1_0_4_work_order",
+      "instruction": "Apply private WORK_ORDER.md, fix source-probe crash handling without changing normal encoding, implement/test/merge/publish v1.0.4 and verify public download without checkpoint stops, owner tests or another approval.",
+      "scope": "Bounded tested patch through ordinary reviewed CI-passing integration and verified public release in this chat only",
+      "work_order_sha256": "80d76c7fd429277419e2f5446709979cc92ff28605d7ee3187fece29d6021270",
+      "tested_source_selected_under_work_order": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+      "security_controls_waived": false,
+      "owner_testing_required": "none",
+      "record": "evidence/PATCH104.json"
+    },
+    "completion_basis": "Owner-authorized source-probe crash repair completed through ordinary PR38 and exact-head push/PR/main CI. Exact ZIP passed four private-original cases and public downloads passed four smoke cases. Each local shell completed 19 passing families/960 checks across actual unchanged runs, with managed-network gap and original timing nonpasses preserved. Hosted CI passed 20 families/963 checks plus 8 recovery cases per job. No owner testing; frozen tag/assets unchanged through docs-only closure.",
+    "public_release": {
+      "id": 429916406,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4",
+      "published_at": "2026-10-31T12:22:21Z",
+      "draft": false,
+      "prerelease": false,
+      "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+      "tag": "v1.0.4",
+      "tag_object": "3b87eacb8409ef5c002049a70106a8bf125aac21",
+      "assets": [
+        {
+          "name": "AudioFileForPhone-v1.0.4.zip",
+          "bytes": 295157,
+          "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+        },
+        {
+          "name": "release-manifest.json",
+          "bytes": 9815,
+          "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+        },
+        {
+          "name": "SHA256SUMS.txt",
+          "bytes": 183,
+          "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+        }
+      ],
+      "draft_download_verified": true,
+      "anonymous_api_verified": true,
+      "anonymous_downloads_verified": true,
+      "public_smoke": {
+        "cases": [
+          {
+            "crashes": 0,
+            "bitrate": 64000,
+            "tags": true,
+            "duration": 2,
+            "exit": 0,
+            "cover": true,
+            "mode": "normal",
+            "converted": 1,
+            "failed": 0,
+            "source_unchanged": true,
+            "sample_rate": 44100,
+            "process_release": true,
+            "full_decode": true,
+            "recovery_attempts": 0,
+            "channels": 2,
+            "shell": "powershell.exe"
+          },
+          {
+            "crashes": 1,
+            "bitrate": 64000,
+            "tags": true,
+            "duration": 2,
+            "exit": 0,
+            "cover": true,
+            "mode": "crash",
+            "converted": 1,
+            "failed": 0,
+            "source_unchanged": true,
+            "sample_rate": 44100,
+            "process_release": true,
+            "full_decode": true,
+            "recovery_attempts": 1,
+            "channels": 2,
+            "shell": "powershell.exe"
+          },
+          {
+            "crashes": 0,
+            "bitrate": 64000,
+            "tags": true,
+            "duration": 2.0,
+            "exit": 0,
+            "cover": true,
+            "mode": "normal",
+            "converted": 1,
+            "failed": 0,
+            "source_unchanged": true,
+            "sample_rate": 44100,
+            "process_release": true,
+            "full_decode": true,
+            "recovery_attempts": 0,
+            "channels": 2,
+            "shell": "pwsh.exe"
+          },
+          {
+            "crashes": 1,
+            "bitrate": 64000,
+            "tags": true,
+            "duration": 2.0,
+            "exit": 0,
+            "cover": true,
+            "mode": "crash",
+            "converted": 1,
+            "failed": 0,
+            "source_unchanged": true,
+            "sample_rate": 44100,
+            "process_release": true,
+            "full_decode": true,
+            "recovery_attempts": 1,
+            "channels": 2,
+            "shell": "pwsh.exe"
+          }
+        ],
+        "status": "pass",
+        "synthetic_only": true,
+        "receipt_sha256": "d3989eec54c2cadc67963d38b01a6f6f23b1de09f2609121f24998ff68075af7",
+        "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
+      },
+      "frozen_bytes": true,
+      "title": "AudioFileForPhone v1.0.4",
+      "status": "PUBLICLY_VERIFIED",
+      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
+    },
+    "final_checkpoint_observation": {
+      "stage": "v1.0.4 runtime integration and independent public-byte verification observed",
+      "reviewed_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+      "runtime_main_commit": "657c290976c11e901d87621bed2f078a54f01664",
+      "source_and_runtime_main_ci": "passed",
+      "public_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+      "closure": "Containing docs-only closure commit, fresh main ref and CI are observed after normal reviewed merge and reported externally to avoid self-reference."
+    }
   }
 }

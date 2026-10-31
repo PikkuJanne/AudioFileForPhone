@@ -217,7 +217,7 @@ function Assert-CiPolicy {
     $job = $document.jobs.windows
     Assert-CiMapKeys $job @('name', 'runs-on', 'timeout-minutes', 'strategy', 'defaults', 'steps') 'windows job'
     if ($job.name -cne 'Supplementary Windows Server 2025 / ${{ matrix.edition }}') { throw 'Hosted CI must be named supplementary Windows Server.' }
-    if ($job['runs-on'] -cne 'windows-2025' -or $job['timeout-minutes'] -ne 20) { throw 'Only bounded GitHub-hosted Windows jobs are approved.' }
+    if ($job['runs-on'] -cne 'windows-2025' -or $job['timeout-minutes'] -ne 30) { throw 'Only bounded GitHub-hosted Windows jobs are approved.' }
     Assert-CiMapKeys $job.strategy @('fail-fast', 'matrix') 'strategy'
     if ($job.strategy['fail-fast'] -isnot [bool] -or $job.strategy['fail-fast']) { throw 'Both supported shell jobs must report independently.' }
     Assert-CiMapKeys $job.strategy.matrix @('include') 'matrix'
@@ -267,6 +267,12 @@ function Assert-CiPolicy {
         '$archiveReport = Join-Path $env:GITHUB_WORKSPACE ''docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
         'if (Test-Path -LiteralPath $archiveReport) { throw ''Synthetic evidence already exists.'' }'
         'Copy-Item -LiteralPath $report -Destination $archiveReport'
+        '$report = Join-Path $env:RUNNER_TEMP ''patch105-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
+        '& (Join-Path $env:GITHUB_WORKSPACE ''tests/Test-Patch105Recovery.ps1'') -EvidencePath $report -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path'
+        'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'
+        '$archiveReport = Join-Path $env:GITHUB_WORKSPACE ''docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
+        'if (Test-Path -LiteralPath $archiveReport) { throw ''Synthetic evidence already exists.'' }'
+        'Copy-Item -LiteralPath $report -Destination $archiveReport'
     )
     if ($errors.Count -ne 0 -or $null -ne $recoveryAst.BeginBlock -or $null -ne $recoveryAst.ProcessBlock -or
         $recoveryAst.EndBlock.Statements.Count -ne $approvedRecoveryStatements.Count) { throw 'Unapproved synthetic recovery command structure.' }
@@ -288,6 +294,7 @@ function Assert-CiPolicy {
         'docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
     ))
     if ($steps[3].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
         $steps[3].with.path -cne $approvedArtifactPaths -or

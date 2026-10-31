@@ -1,5 +1,22 @@
 # Charter — focused launch and distribution repair
 
+## Active v1.0.5 owner work order — 2026-10-31
+
+The current owner request incorporates the batch-repair work order (SHA256
+db758c424a1f334b5a8c8e8271f4ba2bced1eadcee69f7c91efbdacbf30845a7).
+It authorizes this bounded repair through ordinary reviewed CI-passing merge,
+normal public v1.0.5 publication, independent download/hash/automated smoke and
+closure in this chat. It supersedes older numbered stops and separate approval
+gates for this patch only. Version occupancy was checked live before work.
+Test the exact October 15 essentials pair and a verified stable comparison pair;
+compare repeated direct native argument vectors and packaged launches. Use
+representative media and the available authorized private original honestly;
+the full original batch is unavailable. Never infer the native crash cause or
+corrupt output merely from a worker crash. One fresh failed-operation retry only
+after proved exit/release; preserve all existing output validation and controls.
+No owner testing, upload, reinstall, PATH change or further release permission.
+Earlier completed release records below remain historical and frozen.
+
 This patch is published and independently verified; see PATCH104-HANDOVER.md and
 evidence/PATCH104.json in docs/codex-v1.0.1. Its one-chat authority is exhausted.
 No automatic next version, owner test or new publication follows. Older records

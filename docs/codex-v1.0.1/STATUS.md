@@ -1,3 +1,12 @@
+# Status — v1.0.5 batch repair in progress
+
+The owner incorporated the batch-repair work order and authorized this patch
+through ordinary reviewed CI-passing merge, normal publication and independent
+public-download smoke in this chat. Exact October 15 essentials archive verified
+before execution; native/direct/package and fault-injection checks are running.
+No cause is inferred from the historical native crashes. All earlier releases
+remain frozen. Actual evidence: evidence/PATCH105.json. Owner testing: none.
+
 # Status — v1.0.4 published and independently verified
 
 Public normal [v1.0.4](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4)

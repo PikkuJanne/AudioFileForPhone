@@ -1,3 +1,12 @@
+# Active chat — finish the authorized v1.0.5 batch repair
+
+This chat continues through automated verification, ordinary reviewed PR/CI merge,
+normal public publication, independent download smoke and closure. Historical
+numbered stops and separate release approvals do not apply to this patch. Read
+the active CHARTER amendment and evidence/PATCH105.json for actual status. Keep
+the work order, private original and raw reports outside Git/assets. No owner
+testing, reinstall, PATH edits or diagnostic assignment.
+
 # Next session — v1.0.4 complete; no automatic next step
 
 Public normal [v1.0.4](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4)
