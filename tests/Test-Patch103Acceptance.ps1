@@ -61,10 +61,11 @@ function Run-PatchNative([string]$Label,[string]$Exe,[string[]]$Arguments,[strin
     $envCase=Copy-PatchEnvironment $Environment;$envCase.AFP_CONSOLE_STEPS=$stepsPath;$envCase.AFP_CONSOLE_COVER=$Cover
     $nativePath=Join-Path $raw ($Label+'-console.json');$mode=if($Bat){'Script'}else{'DirectScript'}
     $line=if($Exe-ieq$cmd){'/d /v:off /s /c '+$Arguments[-1]}else{(@($Arguments|ForEach-Object{Quote-Patch $_})-join' ')}
-    $null=Run-Patch $controller @($Exe,$line,$work,$nativePath,'180000',$mode) $envCase @(0) 205000
+    $process=Run-Patch $controller @($Exe,$line,$work,$nativePath,'180000',$mode) $envCase @(0,1) 205000
+    if(-not[IO.File]::Exists($nativePath)){$script:releaseProved=$false;throw ('Native ownership report missing: '+$Label)}
     $native=Get-Content -LiteralPath $nativePath -Raw -Encoding UTF8|ConvertFrom-Json
     if(-not$native.owned_tree_released){$script:releaseProved=$false}
-    Assert-Patch ([string]::IsNullOrEmpty($native.error)-and$native.owned_tree_released-and$native.exit_code-eq$Expected-and$native.script_steps_sent-eq$Steps.Count) ('Native flow failed '+$Label+': '+$native.error)
+    Assert-Patch ($process.exit-eq0-and[string]::IsNullOrEmpty($native.error)-and$native.owned_tree_released-and$native.exit_code-eq$Expected-and$native.script_steps_sent-eq$Steps.Count) ('Native flow failed '+$Label+': '+$native.error)
     if($Bat){Assert-Patch ($native.pause_seen-and$native.still_waiting_before_key-and$native.key_injected) 'BAT pause/wait/key contract missing.'}
     Assert-Patch ($native.text.IndexOf([char]27)-lt 0) 'Raw escape in native console.'
     $report.native+=[pscustomobject]@{label=$Label;exit=$native.exit_code;script_steps=$native.script_steps_sent;cover_picker_supplied=$native.cover_picker_supplied;color_attributes=$native.color_attributes;report_sha256=Hash-Patch $nativePath;owned_tree_released=$native.owned_tree_released}
@@ -81,8 +82,8 @@ function Verify-PatchOutputs([string]$Label,[string]$Destination,[string[]]$Befo
         $audio=@($probe.streams|Where-Object{$_.codec_type-eq'audio'});$art=@($probe.streams|Where-Object{$_.codec_type-eq'video'-and$_.disposition.attached_pic-eq1})
         Assert-Patch ($audio.Count-eq1-and$audio[0].codec_name-eq'mp3'-and[long]$audio[0].bit_rate-eq64000-and($art.Count-eq1)-eq$Cover) 'Audio bitrate or cover mismatch.'
         if($Keep){$number=if($file.Name.Contains('Second')){'2'}else{'1'};$expectedArtist='Original artist '+$number;$expectedAlbum='Original album '+$number}else{$expectedArtist=$Artist;$expectedAlbum=$Album}
-        if($null-ne$Artist-or$Keep){Assert-Patch ([string]$probe.format.tags.artist-ceq$expectedArtist) ('Artist mismatch in '+$Label)}
-        if($null-ne$Album-or$Keep){Assert-Patch ([string]$probe.format.tags.album-ceq$expectedAlbum) ('Album mismatch in '+$Label)}
+        if(-not[string]::IsNullOrEmpty($Artist)-or$Keep){Assert-Patch ([string]$probe.format.tags.artist-ceq$expectedArtist) ('Artist mismatch in '+$Label)}
+        if(-not[string]::IsNullOrEmpty($Album)-or$Keep){Assert-Patch ([string]$probe.format.tags.album-ceq$expectedAlbum) ('Album mismatch in '+$Label)}
         $null=Run-Patch $ffmpeg @('-nostdin','-hide_banner','-v','error','-xerror','-err_detect','explode','-i',$file.FullName,'-map','0:a:0','-f','null','NUL')
         $report.outputs+=[pscustomobject]@{case=$Label;file=$file.Name;sha256=Hash-Patch $file.FullName;artist=[string]$probe.format.tags.artist;album=[string]$probe.format.tags.album;cover=$Cover;full_decode=$true;bitrate=64000}
     }
@@ -108,8 +109,10 @@ try{
     & $csc /nologo /target:exe ('/out:'+$controller) $controllerSource;Assert-Patch ($LASTEXITCODE-eq0) 'Controller compile failed.'
     $child=New-PatchEnvironment 'owned-profile';$child.FFMPEG=$FfmpegDirectory
     $identityCommand='[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false);[ordered]@{music=[Environment]::GetFolderPath([Environment+SpecialFolder]::MyMusic,[Environment+SpecialFolderOption]::DoNotVerify);profile=$env:USERPROFILE;local=[Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,[Environment+SpecialFolderOption]::DoNotVerify);cwd=(Get-Location).ProviderPath}|ConvertTo-Json -Compress'
-    $i=(Run-Patch $winps @('-NoLogo','-NoProfile','-NonInteractive','-Command',$identityCommand) $child).stdout|ConvertFrom-Json
-    Assert-Patch ($i.music-ceq$music-and$i.profile-ceq$profileRoot-and$i.local-ceq$child.LOCALAPPDATA-and$i.cwd-ceq$work) 'Default folders are not owned; refusing real BAT.'
+    foreach($identityHost in @($winps,$PowerShell7Path)){
+        $i=(Run-Patch $identityHost @('-NoLogo','-NoProfile','-NonInteractive','-Command',$identityCommand) $child).stdout|ConvertFrom-Json
+        Assert-Patch ($i.music-ceq$music-and$i.profile-ceq$profileRoot-and$i.local-ceq$child.LOCALAPPDATA-and$i.cwd-ceq$work) 'Default folders are not owned; refusing application execution.'
+    }
     $single=Join-Path $data 'metadata synthetic';$batch=Join-Path $data '2027 Term 1 Week 8';[IO.Directory]::CreateDirectory($single)|Out-Null;[IO.Directory]::CreateDirectory($batch)|Out-Null
     foreach($n in 1,2){$name=if($n-eq1){'First'}else{'Second'};$null=Run-Patch $ffmpeg @('-nostdin','-hide_banner','-v','error','-f','lavfi','-i','sine=frequency=440:sample_rate=44100:duration=2','-c:a','aac','-metadata',('artist=Original artist '+$n),'-metadata',('album=Original album '+$n),(Join-Path $single ('2027-01-0'+$n+' '+$name+'.m4a')))}
     $template=Join-Path $single '2027-01-01 First.m4a';foreach($n in 1..29){[IO.File]::Copy($template,(Join-Path $batch ('2027-02-{0:D2} Lesson.m4a'-f$n)),$false)}
@@ -162,19 +165,23 @@ try{
     $n=Run-PatchNative 'free-q-tags' $winps @('-NoLogo','-NoProfile','-STA','-ExecutionPolicy','Bypass','-File',$app,'-InputFolder',$single,'-Interactive') @("Selection`t1`tM","Add cover art?`t1`tN","Artist [Enter = keep existing]`t1`tQ","Album [Enter = keep existing]`t1`tY") 0 $child
     $null=Verify-PatchOutputs 'free-q-tags' $music $before 2 'Q' 'Y' $false
     Add-PatchCase 'free-q-y-tags' 'Q and Y at free-text fields become actual tags.'
-    foreach($cancel in @(@{label='ready-cancel';steps=@("Selection`t1`tQ")},@{label='ready-eof';steps=@("Selection`t1`t~EOF~")})){
+    foreach($cancel in @(@{label='ready-cancel';steps=@("Selection`t1`tQ")})){
         $before=New-PatchRunRoot $music
         $null=Run-PatchNative $cancel.label $winps @('-NoLogo','-NoProfile','-STA','-ExecutionPolicy','Bypass','-File',$app,'-InputFolder',$single,'-Interactive') $cancel.steps 130 $child
         Assert-Patch ((@(New-PatchRunRoot $music)|ConvertTo-Json -Compress)-ceq(@($before)|ConvertTo-Json -Compress)) 'Cancellation/EOF created output.'
         Add-PatchCase $cancel.label 'Interactive termination preserves130 and creates no run.'
     }
+    $before=New-PatchRunRoot $music
+    $eof=Run-Patch $winps @('-NoLogo','-NoProfile','-STA','-ExecutionPolicy','Bypass','-File',$app,'-InputFolder',$single,'-Interactive') $child @(1)
+    Assert-Patch (($eof.stdout+$eof.stderr)-match'console input'-and(@(New-PatchRunRoot $music)|ConvertTo-Json -Compress)-ceq(@($before)|ConvertTo-Json -Compress)) 'Closed stdin/EOF did not terminate cleanly without output.'
+    Add-PatchCase 'closed-stdin-eof' 'Real redirected stdin is closed before app execution; unavailable interactive input terminates with readable exit1 and no run, no retry loop.'
     $saved=[Environment]::GetEnvironmentVariable('FFMPEG','User')
     if(-not[string]::IsNullOrWhiteSpace($saved)){
         $stale=Copy-PatchEnvironment $child;$stale.FFMPEG='';$before=New-PatchRunRoot $music
         $null=Run-Patch $winps @('-NoLogo','-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',$app,'-InputFolder',$single) $stale
         $null=Verify-PatchOutputs 'saved-user-ffmpeg-stale-child' $music $before 2 $null $null $false
         Add-PatchCase 'saved-user-ffmpeg-stale-child' 'Inherited FFMPEG and PATH empty; existing saved User FFMPEG read-only fallback converts without setup. No registry write.'
-    }else{Add-PatchCase 'saved-user-ffmpeg-stale-child' 'NOT_RUN: no existing saved User FFMPEG; never write persistent settings just for a fixture.'}
+    }else{$report.cases+=[pscustomobject]@{name='saved-user-ffmpeg-stale-child';status='NOT_RUN';observed='No existing saved User FFMPEG; never write persistent settings just for a fixture.'}}
     $report.sources_unchanged=($sourceBefore|ConvertTo-Json -Compress)-ceq(@(Inventory-Patch $single;Inventory-Patch $batch)|ConvertTo-Json -Compress)
     $report.package_unchanged=($packageBefore|ConvertTo-Json -Compress)-ceq((Inventory-Patch $package)|ConvertTo-Json -Compress)
     Assert-Patch ($report.sources_unchanged-and$report.package_unchanged-and(Hash-Patch $RuntimeZipPath)-ceq$ExpectedZipSha256) 'Source/package/ZIP changed.'

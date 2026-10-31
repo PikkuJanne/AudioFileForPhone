@@ -88,6 +88,8 @@ internal static class DirectLauncherConsole
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern bool ReadConsoleOutputCharacterW(IntPtr output, StringBuilder text, uint count, Coord position, out uint read);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool ReadConsoleOutputCharacterW(IntPtr output, [Out, MarshalAs(UnmanagedType.LPArray, ArraySubType = UnmanagedType.U2)] char[] text, uint count, Coord position, out uint read);
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern bool WriteConsoleInputW(IntPtr input, InputRecord[] records, uint count, out uint written);
     [DllImport("kernel32.dll", SetLastError = true)] private static extern bool ReadConsoleOutputAttribute(IntPtr output, ushort[] values, uint count, Coord position, out uint read);
     [DllImport("kernel32.dll", SetLastError = true)] private static extern bool SetConsoleScreenBufferSize(IntPtr output, Coord size);
@@ -126,10 +128,10 @@ internal static class DirectLauncherConsole
         int last = Math.Min((int)info.size.y - 1, (int)info.cursor.y + 1);
         for (int y = first; y <= last; y++)
         {
-            StringBuilder row = new StringBuilder(info.size.x); uint read;
+            char[] row = new char[info.size.x]; uint read;
             Coord position = new Coord(); position.y = (short)y;
             Require(ReadConsoleOutputCharacterW(output, row, (uint)info.size.x, position, out read), "Cannot read owned console row.");
-            lines.AppendLine(row.ToString().TrimEnd());
+            lines.AppendLine(new String(row, 0, (int)read).TrimEnd());
         }
         return lines.ToString().Trim();
     }
@@ -166,10 +168,10 @@ internal static class DirectLauncherConsole
         int count = Math.Min((int)info.size.x * info.size.y, 120000); uint read;
         ushort[] colors = new ushort[count];
         Require(ReadConsoleOutputAttribute(output, colors, (uint)count, new Coord(), out read), "Cannot capture native color attributes.");
-        StringBuilder chars = new StringBuilder(count);
+        char[] chars = new char[count];
         Require(ReadConsoleOutputCharacterW(output, chars, (uint)count, new Coord(), out read), "Cannot bind native colors to text.");
         Dictionary<ushort, int> counts = new Dictionary<ushort, int>();
-        string flat = chars.ToString();
+        string flat = new String(chars, 0, (int)read);
         for (int i = 0; i < flat.Length; i++) if (!Char.IsWhiteSpace(flat[i]))
         { if (!counts.ContainsKey(colors[i])) counts[colors[i]] = 0; counts[colors[i]]++; }
         StringBuilder json = new StringBuilder("{"); bool comma = false;
