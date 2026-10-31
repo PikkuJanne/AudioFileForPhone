@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.4'
+    return '1.0.5'
 }
 
 function Assert-AudioParameters {
@@ -1607,10 +1607,14 @@ function Get-AudioMediaInfo {
         }
         $localPath = [IO.Path]::GetFullPath($localPath)
         $result.MetadataSource = if ([IO.Path]::GetExtension($localPath) -ieq '.ogg') { '0:s:a:0' } else { '0' }
-        $native = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
+        $probeParameters = @{ ExecutablePath = $FfprobePath; Arguments = @(
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
             'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags=title:format=duration:format_tags=title', '-of', 'json', '-i', $localPath
-        ) -Cancellation $Cancellation -Operation 'Source media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
+        ); Cancellation = $Cancellation; Operation = 'Source media probe'; TimeoutMilliseconds = ($ProbeTimeoutSeconds * 1000) }
+        # M4A already has one bounded stream-copy source-probe recovery in the
+        # app. Do not compound that route with another attempt on the original.
+        if ([IO.Path]::GetExtension($localPath) -ieq '.m4a') { $native = Invoke-AudioNativeProcess @probeParameters }
+        else { $native = Invoke-AudioNativeReadOperation -Parameters $probeParameters }
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
             $result.Status = $native.Status
@@ -1721,9 +1725,9 @@ function Get-AudioMediaInfo {
     return [pscustomobject]$result
 }
 
-function Test-AudioSourceProbeCrash {
+function Test-AudioNativeWorkerCrash {
     param([AllowNull()][object]$NativeResult)
-    # A normal ffprobe rejection is not a crash. Require the completed native
+    # A normal media rejection is not a crash. Require the completed native
     # result and drained/released child, then recognize Windows exception exit
     # statuses; stderr text is diagnostic only and may be localized or empty.
     if ($null -eq $NativeResult -or $NativeResult.Status -cne 'Completed' -or
@@ -1734,6 +1738,27 @@ function Test-AudioSourceProbeCrash {
     return $code -in @('C0000005', 'C000001D', 'C0000025', 'C0000026', 'C000008D', 'C000008E',
         'C000008F', 'C0000090', 'C0000091', 'C0000092', 'C0000093', 'C0000094', 'C0000095',
         'C0000096', 'C00000FD', 'C0000374', 'C0000409')
+}
+
+function Test-AudioSourceProbeCrash {
+    param([AllowNull()][object]$NativeResult)
+    return (Test-AudioNativeWorkerCrash -NativeResult $NativeResult)
+}
+
+function Invoke-AudioNativeReadOperation {
+    param([Parameter(Mandatory = $true)][hashtable]$Parameters)
+    # Only read-only media operations use this helper. Each invocation has at
+    # most two processes. The first result is returned only after the native
+    # runner proved process exit, joined the drains and disposed its handles.
+    $native = Invoke-AudioNativeProcess @Parameters
+    if (Test-AudioNativeWorkerCrash -NativeResult $native) {
+        Assert-AudioNotCancelled -Cancellation $Parameters.Cancellation
+        Write-Warning ('{0} crashed; retrying that operation once in a fresh process.' -f $Parameters.Operation) -ErrorAction Continue
+        $firstAttempt = $native
+        $native = Invoke-AudioNativeProcess @Parameters
+        $native | Add-Member -NotePropertyName CrashRecovery -NotePropertyValue $firstAttempt
+    }
+    return $native
 }
 
 function Invoke-AudioSourceRecovery {
@@ -1820,11 +1845,11 @@ function Invoke-AudioSourceRecovery {
         # the ORIGINAL selected audio to sample time, independently of its header
         # and of the copy, before the existing output transaction can start.
         $result.Status = 'RecoveryDecodeFailed'; $result.ProcessReleased = $false
-        $decode = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+        $decode = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfmpegPath; Arguments = @(
             '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
             '-i', $SourcePath, '-map', '0:a:0', '-vn', '-sn', '-dn', '-af', 'asetpts=N/SR/TB',
             '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
-        ) -Cancellation $Cancellation -Operation 'Original recovery duration decode'
+        ); Cancellation = $Cancellation; Operation = 'Original recovery duration decode' }
         $result.DecodeResult = $decode
         $result.ProcessReleased = $null -ne $decode.PSObject.Properties['ProcessReleased'] -and $decode.ProcessReleased
         if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
@@ -1894,9 +1919,9 @@ function Get-AudioEncoderSampleRates {
           [ValidateRange(1, 2147483647)][int]$TimeoutMilliseconds = 15000)
     $result = [ordered]@{ Status = 'Failed'; SampleRates = @(); NativeResult = $null; Error = '' }
     try {
-        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+        $native = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfmpegPath; Arguments = @(
             '-nostdin', '-hide_banner', '-h', 'encoder=libmp3lame'
-        ) -Operation 'MP3 sample-rate capability check' -TimeoutMilliseconds $TimeoutMilliseconds -Cancellation $Cancellation
+        ); Operation = 'MP3 sample-rate capability check'; TimeoutMilliseconds = $TimeoutMilliseconds; Cancellation = $Cancellation }
         $result.NativeResult = $native
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $native.ProcessReleased -or
@@ -2107,11 +2132,11 @@ function Get-AudioOutputValidation {
         # An abrupt host unwind may prevent a native result from returning.
         # Only a returned release proof reauthorizes working-file cleanup.
         $result.ProcessReleased = $false
-        $probe = Invoke-AudioNativeProcess -ExecutablePath $FfprobePath -Arguments @(
+        $probe = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfprobePath; Arguments = @(
             '-v', 'error', '-show_entries',
             'stream=index,codec_type,codec_name,bit_rate,sample_rate,channels,duration:stream_disposition=attached_pic:format=format_name',
             '-of', 'json', '-i', $Path
-        ) -Cancellation $Cancellation -Operation 'Output media probe' -TimeoutMilliseconds ($ProbeTimeoutSeconds * 1000)
+        ); Cancellation = $Cancellation; Operation = 'Output media probe'; TimeoutMilliseconds = ($ProbeTimeoutSeconds * 1000) }
         $result.ProbeResult = $probe
         $result.ProcessReleased = $null -ne $probe.PSObject.Properties['ProcessReleased'] -and $probe.ProcessReleased
         if ($probe.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $probe.Error }
@@ -2173,12 +2198,12 @@ function Get-AudioOutputValidation {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'DecodeFailed'
         $result.ProcessReleased = $false
-        $decode = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+        $decode = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfmpegPath; Arguments = @(
             '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
             '-i', $Path, '-map', ('0:{0}' -f $audio.index), '-vn', '-sn', '-dn',
             '-af', 'asetpts=N/SR/TB',
             '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
-        ) -Cancellation $Cancellation
+        ); Cancellation = $Cancellation; Operation = 'Output audio decode' }
         $result.DecodeResult = $decode
         $result.ProcessReleased = $null -ne $decode.PSObject.Properties['ProcessReleased'] -and $decode.ProcessReleased
         if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
@@ -2285,22 +2310,48 @@ function Invoke-AudioOutputTransaction {
             $encodingProgress = Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds
             Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState -Progress $encodingProgress | Out-Null
         }
-        $canCleanup = $false
-        if ($null -eq $ProgressCallback) {
-            $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) -Cancellation $Cancellation
+        $firstEncoderAttempt = $null
+        for ($encodeAttempt = 0; $encodeAttempt -lt 2; $encodeAttempt++) {
+            $canCleanup = $false
+            if ($null -eq $ProgressCallback) {
+                $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) `
+                    -Cancellation $Cancellation -Operation 'MP3 encoder'
+            }
+            else {
+                $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) `
+                    -MaxStdoutChars 8192 -Cancellation $Cancellation -ProgressCallback $ProgressCallback `
+                    -ProgressDurationSeconds $sourceSeconds -ProgressCallbackState $progressCallbackState -Operation 'MP3 encoder'
+            }
+            if ($null -ne $firstEncoderAttempt) { $native | Add-Member -NotePropertyName CrashRecovery -NotePropertyValue $firstEncoderAttempt }
+            $result.EncoderResult = $native
+            $canCleanup = $null -ne $native.PSObject.Properties['ProcessReleased'] -and $native.ProcessReleased
+            if ($encodeAttempt -ne 0 -or -not (Test-AudioNativeWorkerCrash -NativeResult $native)) { break }
+            Assert-AudioNotCancelled -Cancellation $Cancellation
+            $firstEncoderAttempt = $native
+            # Discard only this exited encoder's owned partial. Reserve a fresh
+            # private path; never retry into a partly written file or final name.
+            $guard.Dispose(); $guard = $null
+            Assert-AudioNoReparseAncestor -Path $working
+            if ((Get-AudioWorkingFileIdentity -Path $working) -cne $ownedIdentity) { throw 'Working-file ownership changed after the encoder crash; preserving that path.' }
+            [IO.File]::Delete($working)
+            $working = [IO.Path]::Combine($outDir, '.AudioFileForPhone-' + [guid]::NewGuid().ToString('N') + '.partial')
+            Assert-AudioPathBudget -Path $working -Kind File
+            $guard = New-Object IO.FileStream($working, [IO.FileMode]::CreateNew, [IO.FileAccess]::ReadWrite, [IO.FileShare]::ReadWrite)
+            $result.WorkingPath = $working
+            $ownedIdentity = Get-AudioWorkingFileIdentity -Stream $guard
+            Write-Warning 'MP3 encoder crashed; retrying once into a fresh private working file.' -ErrorAction Continue
         }
-        else {
-            $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments ($nativeArguments + @('-y', '-f', 'mp3', $working)) `
-                -MaxStdoutChars 8192 -Cancellation $Cancellation -ProgressCallback $ProgressCallback `
-                -ProgressDurationSeconds $sourceSeconds -ProgressCallbackState $progressCallbackState
-        }
-        $result.EncoderResult = $native
-        $canCleanup = $null -ne $native.PSObject.Properties['ProcessReleased'] -and $native.ProcessReleased
         if ($native.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $native.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($native.Status -ne 'Completed' -or $native.ExitCode -ne 0 -or -not $canCleanup) {
             throw "Encoder failed ($($native.Status), exit $($native.ExitCode)): $($native.Error); $($native.Stderr)"
         }
+        # Completed output stays immutable through both validation attempts.
+        # Its read guard denies writes/delete; retrying a validator reads these
+        # exact bytes and never invokes the encoder again.
+        $guard.Dispose(); $guard = $null
+        $guard = New-Object IO.FileStream($working, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
+        if ((Get-AudioWorkingFileIdentity -Stream $guard) -cne $ownedIdentity) { throw 'Working-file ownership changed before validation; preserving that path.' }
         $result.Status = 'ValidationFailed'
         Invoke-AudioProgressCallback -Callback $ProgressCallback -State $progressCallbackState `
             -Progress (Get-AudioProgressState -Record $null -DurationSeconds $sourceSeconds -Phase 'Validating') | Out-Null
@@ -2449,10 +2500,10 @@ function Get-ValidatedCoverPath {
                 -Width $image.Width -Height $image.Height
         }
         finally { $image.Dispose() }
-        $native = Invoke-AudioNativeProcess -ExecutablePath $FfmpegPath -Arguments @(
+        $native = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfmpegPath; Arguments = @(
             '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-i', $item.FullName,
             '-map', '0:v:0', '-frames:v', '1', '-c:v', 'mjpeg', '-f', 'null', '-'
-        )
+        ); Operation = 'Cover decode'; Cancellation = (Get-AudioCancellationContext) }
         if ($native.Status -ne 'Completed') { throw "FFmpeg could not decode the cover ($($native.Status)): $($native.Error)" }
         if ($native.ExitCode -ne 0) { throw "FFmpeg could not decode the cover (exit $($native.ExitCode)): $($native.Stderr)" }
         if ($native.ProcessReleased -isnot [bool] -or -not $native.ProcessReleased) {
@@ -2691,6 +2742,9 @@ function Get-AudioBoundedText {
 function Get-AudioNativeDiagnosticLines {
     param([string]$Stage, [AllowNull()][object]$NativeResult, [ValidateRange(0, 65536)][int]$MaxStderrChars = 16384)
     if ($null -eq $NativeResult) { return }
+    if ($null -ne $NativeResult.PSObject.Properties['CrashRecovery']) {
+        Get-AudioNativeDiagnosticLines -Stage ($Stage + '.FirstAttempt') -NativeResult $NativeResult.CrashRecovery -MaxStderrChars $MaxStderrChars
+    }
     $stderr = [string]$NativeResult.Stderr
     $retained = [math]::Min($stderr.Length, $MaxStderrChars)
     $truncated = [bool]$NativeResult.StderrTruncated -or $retained -lt $stderr.Length
@@ -2700,6 +2754,7 @@ function Get-AudioNativeDiagnosticLines {
         stdout_total_chars = $NativeResult.StdoutTotalChars; stdout_truncated = $NativeResult.StdoutTruncated
         stderr_total_chars = $NativeResult.StderrTotalChars; stderr_retained_chars = $retained; stderr_truncated = $truncated
         error = (Get-AudioBoundedText -Value $NativeResult.Error)
+        crash_recovery_attempted = ($null -ne $NativeResult.PSObject.Properties['CrashRecovery'])
     }
     '[NATIVE] ' + ($summary | ConvertTo-Json -Compress)
     if ($retained -gt 0) { '[NATIVE_STDERR] ' + $Stage + "`n" + $stderr.Substring(0, $retained) }
@@ -2714,6 +2769,9 @@ function Get-AudioNativeManifestDiagnostic {
         stderr = (Get-AudioBoundedText -Value $NativeResult.Stderr -MaximumChars 2048)
         stderr_truncated = [bool]$NativeResult.StderrTruncated -or ([string]$NativeResult.Stderr).Length -gt 2048
         error = (Get-AudioBoundedText -Value $NativeResult.Error)
+        crash_recovery = $(if ($null -ne $NativeResult.PSObject.Properties['CrashRecovery']) {
+            Get-AudioNativeManifestDiagnostic -NativeResult $NativeResult.CrashRecovery
+        } else { $null })
     }
 }
 
@@ -2738,7 +2796,7 @@ function New-AudioRunManifest {
             input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
             input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
             source_title = $null; measurement_error = $measurementError
-            audio_plan = $null; observed_audio = $null; source_probe = $null; recovery = $null
+            audio_plan = $null; observed_audio = $null; source_probe = $null; recovery = $null; native_operations = $null
         }
     })
     $data = [pscustomobject][ordered]@{
@@ -2787,6 +2845,15 @@ function Set-AudioManifestRecord {
     $Record.reason = Get-AudioBoundedText -Value $Reason
     $Record.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
     if ($null -ne $Media) { $Record.source_probe = Get-AudioNativeManifestDiagnostic -NativeResult $Media.NativeResult }
+    if ($null -ne $Transaction) {
+        $validation = $Transaction.ValidationResult
+        $nativeOperations = [pscustomobject][ordered]@{
+            encoder = (Get-AudioNativeManifestDiagnostic -NativeResult $Transaction.EncoderResult)
+            output_probe = $(if ($null -ne $validation) { Get-AudioNativeManifestDiagnostic -NativeResult $validation.ProbeResult } else { $null })
+            output_decode = $(if ($null -ne $validation) { Get-AudioNativeManifestDiagnostic -NativeResult $validation.DecodeResult } else { $null })
+        }
+        $Record | Add-Member -NotePropertyName native_operations -NotePropertyValue $nativeOperations -Force
+    }
     if ($null -ne $Recovery) {
         $Record.source_probe = Get-AudioNativeManifestDiagnostic -NativeResult $Recovery.SourceProbeResult
         $Record.recovery = [pscustomobject][ordered]@{

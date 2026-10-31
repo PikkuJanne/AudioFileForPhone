@@ -9,20 +9,22 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-**[Download AudioFileForPhone v1.0.2 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)**
+**[Download AudioFileForPhone v1.0.5 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip)**
 
-Published 30 October 2026. [Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2)
-identify the exact application ZIP. Automated Windows 11 checks and a fresh public
-download smoke test with 20 validated outputs passed. Windows 10 and genuine Explorer conversion remain unverified;
-the owner accepted these release exceptions, without treating them as test passes.
+[Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5)
+identify the exact application ZIP and automated verification. v1.0.5 adds bounded
+recovery for native media worker crashes while keeping the selected tools and
+strict output validation. The native crash's underlying cause remains unproven.
+Windows 10 and genuine Explorer conversion remain unverified historical coverage
+exceptions, without being treated as test passes.
 See [CHANGELOG.md](CHANGELOG.md), the [tested boundaries](SUPPORT.md#tested-boundaries)
 and [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main/docs/codex-v1.0.1/STATUS.md).
 
 ## Setup
 
-v1.0.2 provides direct visible launch and a small user package. Published
-v1.0.0/v1.0.1 tags and bytes are preserved. The v1.0.2 tag and assets retain their
-tested source snapshot; later repository documentation does not replace them.
+The application provides direct visible launch and a small user package. Published
+v1.0.0 through v1.0.4 tags and bytes are preserved. Each release retains its
+tested source snapshot; later repository documentation does not replace it.
 Owner testing required: none.
 
 Extract the application ZIP linked above into a new empty folder. Its root is

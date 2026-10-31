@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.5 — 2026-10-31
+
+- Retry a confirmed, fully exited native worker crash once for the failed media
+  operation. Keep the existing bounded M4A source-probe recovery.
+- After an encoder crash, discard its owned partial and use a fresh private
+  output. After a validator crash, validate the same completed MP3 bytes again
+  without encoding again. A repeated crash fails that item and the batch continues.
+- Preserve strict duration, bitrate, metadata, artwork, full-decode and
+  no-overwrite checks. Ordinary errors, cancellation and validation mismatches
+  do not trigger retries. Keep the originally selected tool installation.
+
 ## 1.0.4 — 2026-10-31
 
 - Recover an M4A after a confirmed native source-probe crash with one owned

@@ -1,5 +1,19 @@
 # Decisions
 
+## v1.0.5 batch repair — 2026-10-31
+
+The owner incorporated the batch-repair brief and authorized implementation,
+testing, ordinary reviewed integration, public v1.0.5 and independent-byte smoke
+in one chat, superseding historical stops for this patch. The October 15 essentials
+ZIP is verified before execution; a stable pair is a comparison only. Test the
+actual selected build without replacing user tools. A native crash alone proves
+neither cause nor invalid output. Bound retries to one released failed operation,
+with fresh owned output for encoding and identical completed bytes for validation.
+Retain the existing M4A stream-copy route, all validation and honest failure counts.
+Keep original recordings, raw logs and argv private; representative media are
+explicitly labeled. Fault injection proves recovery behavior, not native causation.
+No owner tests or further approval are required by this work order.
+
 ## v1.0.3 patch — 2026-10-31
 
 The owner explicitly incorporated the v1.0.3 repair work order and authorized

@@ -1,9 +1,17 @@
 # Support and troubleshooting
 
+v1.0.5 makes one fresh-process recovery attempt after a recognized native media
+worker crash and confirmed process/handle release. An encoder retry uses a new
+owned temporary file; a validator retry reads the same completed output without
+re-encoding it. A repeated crash is reported as an item failure. Ordinary media
+errors and validation mismatches are not retried, and unvalidated files are never
+published. The app keeps the selected FFmpeg installation and never downloads or
+replaces tools during conversion. The native crash's underlying cause is unproven.
+
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
 PowerShell 5.1 and PowerShell 7. The published
-[v1.0.2 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)
-includes the direct-launch and clean-package repairs. Published v1.0.0/v1.0.1
+[v1.0.5 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip)
+includes the batch-worker, direct-launch and clean-package repairs. Earlier release
 tags and bytes are preserved. Windows 10 and genuine Explorer conversion remain
 unverified owner-accepted release exceptions (`OWNER_WAIVED`, `NOT_RUN`), not test
 passes. Actual coverage and gaps are in the

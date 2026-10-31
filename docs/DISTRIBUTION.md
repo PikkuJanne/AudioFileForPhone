@@ -1,6 +1,14 @@
 # User distribution
 
-## Published v1.0.2
+## v1.0.5 corrective batch repair
+
+Use the [v1.0.5 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip)
+and its [release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5).
+The package layout, existing artwork and entry points are unchanged. Current
+exact-byte testing and publication evidence is in
+[PATCH105](codex-v1.0.1/evidence/PATCH105.json). Earlier releases below remain frozen.
+
+## Published v1.0.2 (historical)
 
 **[Download the v1.0.2 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.2/AudioFileForPhone-v1.0.2.zip)**,
 or open the [release notes, manifest and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2).

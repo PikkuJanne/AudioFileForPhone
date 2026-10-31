@@ -364,14 +364,14 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -cmatch '^1\.0\.4$') 'Authoritative semantic app version must be the owner-selected 1.0.4.'
+        Assert-True ($appVersion -cmatch '^1\.0\.5$') 'Authoritative semantic app version must be the owner-selected 1.0.5.'
         $literals = @()
         foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)
             Assert-True (@($errors).Count -eq 0) 'Runtime sources must parse.'
-            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.4' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
+            $literals += @($ast.FindAll({ param($node) $node -is [Management.Automation.Language.StringConstantExpressionAst] -and $node.Value -ceq '1.0.5' }, $true) | ForEach-Object { [pscustomobject]@{ source = $file; line = $_.Extent.StartLineNumber; text = $_.Extent.Text } })
         }
-        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.4 literal.'
+        Assert-True ($literals.Count -eq 1 -and $literals[0].source -ceq 'AudioFileForPhone.Helpers.ps1') 'Only the version helper may define the runtime 1.0.5 literal.'
         $releaseTarget = [IO.File]::ReadAllText((Join-Path $projectRoot 'docs/codex-v1.0.1/CORRECTIVE_RELEASE_TARGET.json')) | ConvertFrom-Json
         $expectedTag = 'v' + $appVersion; $expectedZip = 'AudioFileForPhone-' + $expectedTag + '.zip'
         Assert-True ($releaseTarget.target_version -ceq $appVersion -and $releaseTarget.target_tag -ceq $expectedTag -and $releaseTarget.runtime_zip -ceq $expectedZip -and $releaseTarget.release_title -ceq ('AudioFileForPhone ' + $expectedTag)) 'Corrective release target must agree with the runtime version, tag, title and ZIP name.'
