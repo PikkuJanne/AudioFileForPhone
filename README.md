@@ -111,6 +111,9 @@ prompt, retaining preceding answers; EOF cancels. Unavailable console input stop
 without starting a batch. For automation, omit `-Interactive` and pass parameters.
 The console distinguishes preflight, waiting, probing, encoding, validation and
 publication; encoding at 100% still needs validation before the file is complete.
+Native console colors accompany text labels. `NO_COLOR`, `CLICOLOR=0`, `TERM=dumb`,
+Windows high contrast, redirected output and PowerShell plain-text rendering use
+the readable plain fallback. No ANSI support or special font is required.
 
 Convert with the defaults, using Music as the destination:
 

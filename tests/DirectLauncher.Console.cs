@@ -26,7 +26,7 @@ internal static class DirectLauncherConsole
     private struct SmallRect { public short left, top, right, bottom; }
     [StructLayout(LayoutKind.Sequential)]
     private struct BufferInfo { public Coord size, cursor; public short attributes; public SmallRect window; public Coord maximum; }
-    [StructLayout(LayoutKind.Explicit, Size = 20)]
+    [StructLayout(LayoutKind.Explicit, Size = 20, CharSet = CharSet.Unicode)]
     private struct InputRecord
     {
         [FieldOffset(0)] public short type;
@@ -34,7 +34,7 @@ internal static class DirectLauncherConsole
         [FieldOffset(8)] public short repeat;
         [FieldOffset(10)] public short key;
         [FieldOffset(12)] public short scan;
-        [FieldOffset(14)] public char character;
+        [FieldOffset(14), MarshalAs(UnmanagedType.U2)] public char character;
         [FieldOffset(16)] public int state;
     }
     [StructLayout(LayoutKind.Sequential)]
@@ -74,6 +74,7 @@ internal static class DirectLauncherConsole
     private static extern bool CreateProcess(string app, StringBuilder arguments, IntPtr pa, IntPtr ta, bool inherit, uint flags, IntPtr environment, string directory, ref StartupInfo startup, out ProcessInformation process);
     [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
     private static extern IntPtr CreateJobObject(IntPtr attributes, string name);
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)] private static extern IntPtr OpenJobObject(uint access, bool inherit, string name);
     [DllImport("kernel32.dll", SetLastError = true)]
     private static extern bool SetInformationJobObject(IntPtr job, int kind, ref ExtendedLimits information, uint length);
     [DllImport("kernel32.dll", SetLastError = true)]
@@ -106,6 +107,14 @@ internal static class DirectLauncherConsole
     [DllImport("kernel32.dll", SetLastError = true)] private static extern bool IsProcessInJob(IntPtr process, IntPtr job, out bool result);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern bool SetWindowText(IntPtr window, string text);
     [DllImport("user32.dll")] private static extern IntPtr GetDlgItem(IntPtr window, int id);
+    [DllImport("user32.dll")] private static extern int GetDlgCtrlID(IntPtr window);
+    [DllImport("user32.dll", SetLastError = true)] private static extern bool PostMessage(IntPtr window, uint message, IntPtr first, IntPtr second);
+    [DllImport("kernel32.dll")] private static extern uint GetCurrentThreadId();
+    [DllImport("user32.dll")] private static extern bool AttachThreadInput(uint first, uint second, bool attach);
+    [DllImport("user32.dll")] private static extern bool SetForegroundWindow(IntPtr window);
+    [DllImport("user32.dll")] private static extern IntPtr GetForegroundWindow();
+    [DllImport("user32.dll")] private static extern IntPtr SetFocus(IntPtr window);
+    [DllImport("user32.dll")] private static extern void keybd_event(byte key, byte scan, uint flags, IntPtr extra);
     [DllImport("user32.dll", CharSet = CharSet.Unicode)] private static extern IntPtr SendMessage(IntPtr window, uint message, IntPtr first, IntPtr second);
     [DllImport("kernel32.dll")] private static extern uint WaitForSingleObject(IntPtr handle, uint milliseconds);
     [DllImport("kernel32.dll")] private static extern bool GetExitCodeProcess(IntPtr handle, out uint code);
@@ -184,16 +193,24 @@ internal static class DirectLauncherConsole
             if (process == IntPtr.Zero) return true;
             bool owned; bool known = IsProcessInJob(process, job, out owned); CloseHandle(process);
             if (!known || !owned) return true;
-            if (path == "~CANCEL~") { SendMessage(GetDlgItem(window, 2), 0xF5, IntPtr.Zero, IntPtr.Zero); supplied = true; return false; }
+            if (path == "~CANCEL~") { SendMessage(window, 0x10, IntPtr.Zero, IntPtr.Zero); supplied = true; return false; }
             IntPtr edit = IntPtr.Zero;
             EnumChildWindows(window, delegate(IntPtr child, IntPtr ignored)
             {
                 StringBuilder name = new StringBuilder(64); GetClassName(child, name, name.Capacity);
-                if (name.ToString() == "Edit" && IsWindowVisible(child)) edit = child;
+                if (name.ToString() == "Edit" && GetDlgCtrlID(child) == 1148 && IsWindowVisible(child)) edit = child;
                 return true;
             }, IntPtr.Zero);
             if (edit != IntPtr.Zero && SetWindowText(edit, path))
-            { SendMessage(GetDlgItem(window, 1), 0xF5, IntPtr.Zero, IntPtr.Zero); supplied = true; return false; }
+            {
+                // Commit an edit notification after literal text assignment; the
+                // common dialog may retain a separate filename binding otherwise.
+                SendMessage(edit, 0xB1, new IntPtr(-1), new IntPtr(-1));
+                SendMessage(edit, 0x102, new IntPtr(32), IntPtr.Zero);
+                SendMessage(edit, 0x102, new IntPtr(8), IntPtr.Zero);
+                supplied = PostMessage(GetDlgItem(window, 1), 0xF5, IntPtr.Zero, IntPtr.Zero);
+                return !supplied;
+            }
             return true;
         }, IntPtr.Zero);
         return supplied;
@@ -204,6 +221,18 @@ internal static class DirectLauncherConsole
     // Optional sixth argument is literal Enter (ready menu) or SetupCancel (Q + Enter).
     private static int Main(string[] args)
     {
+        if (args.Length == 4 && args[0] == "--shell-worker")
+        {
+            IntPtr inheritedJob = OpenJobObject(4, false, args[3]);
+            Require(inheritedJob != IntPtr.Zero, "Cannot verify inherited shell-delivery job.");
+            ShellInfo launch = new ShellInfo(); launch.size = Marshal.SizeOf(launch); launch.mask = 0x40 | 0x8000 | 0x100;
+            launch.verb = "open"; launch.file = args[1]; launch.parameters = args[2]; launch.directory = Environment.CurrentDirectory; launch.show = 0;
+            Require(ShellExecuteEx(ref launch) && launch.process != IntPtr.Zero, "Windows shell did not return shortcut target process.");
+            bool contained; Require(IsProcessInJob(launch.process, inheritedJob, out contained) && contained, "Shell target did not inherit guarded job; refusing console input.");
+            Require(WaitForSingleObject(launch.process, 200000) == 0, "Shell target deadline.");
+            uint shellExit; Require(GetExitCodeProcess(launch.process, out shellExit), "Cannot read shell target exit.");
+            CloseHandle(launch.process); CloseHandle(inheritedJob); return (int)shellExit;
+        }
         ProcessInformation pi = new ProcessInformation();
         IntPtr job = IntPtr.Zero, input = IntPtr.Zero, output = IntPtr.Zero;
         bool attached = false, assigned = false, paused = false, waiting = false, injected = false, released = false;
@@ -224,18 +253,18 @@ internal static class DirectLauncherConsole
                 throw new ArgumentException("Unsupported native-console mode.");
             if (scripted) foreach (string line in File.ReadAllLines(Environment.GetEnvironmentVariable("AFP_CONSOLE_STEPS"), Encoding.UTF8))
             { string[] fields = line.Split('\t'); if (fields.Length != 3) throw new ArgumentException("Script steps need trigger, occurrence and literal answer."); steps.Add(fields); }
-            job = CreateJobObject(IntPtr.Zero, null);
+            string jobName = "Local\\AFP-Console-" + Guid.NewGuid().ToString("N");
+            job = CreateJobObject(IntPtr.Zero, jobName);
             Require(job != IntPtr.Zero, "Cannot create exclusive test job.");
             ExtendedLimits limits = new ExtendedLimits(); limits.basic.flags = 0x2000;
             Require(SetInformationJobObject(job, 9, ref limits, (uint)Marshal.SizeOf(limits)), "Cannot guard owned descendants.");
             if (shell)
             {
-                FreeConsole(); Require(AllocConsole(), "Cannot create owned shell-delivery console.");
-                ShowWindow(GetConsoleWindow(), 0); attached = true;
-                ShellInfo launch = new ShellInfo(); launch.size = Marshal.SizeOf(launch); launch.mask = 0x40 | 0x8000 | 0x100;
-                launch.verb = "open"; launch.file = args[0].Substring(6); launch.parameters = args[1]; launch.directory = args[2]; launch.show = 0;
-                Require(ShellExecuteEx(ref launch) && launch.process != IntPtr.Zero, "Windows shell did not return the shortcut target process.");
-                pi.process = launch.process; pi.pid = GetProcessId(pi.process);
+                string self = Environment.GetCommandLineArgs()[0];
+                StartupInfo si = new StartupInfo(); si.cb = Marshal.SizeOf(si); si.flags = 1; si.show = 0;
+                string arguments = "\"" + self + "\" --shell-worker \"" + args[0].Substring(6) + "\" \"" + args[1].Replace("\"", "\\\"") + "\" \"" + jobName + "\"";
+                Require(CreateProcess(self, new StringBuilder(arguments), IntPtr.Zero, IntPtr.Zero, false,
+                    0x10 | 0x4, IntPtr.Zero, args[2], ref si, out pi), "Cannot start suspended shell worker console.");
             }
             else
             {
@@ -244,13 +273,10 @@ internal static class DirectLauncherConsole
                     0x10 | 0x4, IntPtr.Zero, args[2], ref si, out pi), "Cannot start hidden owned cmd console.");
             }
             Require(AssignProcessToJobObject(job, pi.process), "Cannot own cmd process tree."); assigned = true;
-            if (!shell)
-            {
                 Require(ResumeThread(pi.thread) != UInt32.MaxValue, "Cannot resume owned cmd.");
                 CloseHandle(pi.thread); pi.thread = IntPtr.Zero;
                 FreeConsole();
                 for (int i = 0; i < 100 && !attached; i++) { attached = AttachConsole(pi.pid); if (!attached) Thread.Sleep(20); }
-            }
             Require(attached, "Cannot attach disposable controller to owned console.");
             input = CreateFileW("CONIN$", 0x80000000 | 0x40000000, 3, IntPtr.Zero, 3, 0, IntPtr.Zero);
             output = CreateFileW("CONOUT$", 0x80000000 | 0x40000000, 3, IntPtr.Zero, 3, 0, IntPtr.Zero);

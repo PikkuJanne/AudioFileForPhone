@@ -158,9 +158,34 @@ function Invoke-App {
     }
     $outputParent = Join-Path $caseRoot 'Outputs [literal]'
     $wrapper = Join-Path $caseRoot 'child.ps1'
+    $loader = Join-Path $caseRoot 'environment-loader.ps1'
+    # Preserve byte-identical production files while making missing-tool
+    # scenarios independent of the desktop's saved/inherited FFMPEG hints.
+    $loaderCode = @'
+. $global:S02OriginalEnvironmentHelper
+function Get-AudioEnvironmentSetting {
+    param([string]$Name, [string]$Target = 'Process')
+    if($Name -ieq 'Path' -and $Target -eq 'Process'){return $env:PATH}
+    return $null
+}
+'@
+    Write-NewText $loader $loaderCode
     $lines = @(
         '[Console]::OutputEncoding = New-Object Text.UTF8Encoding($false)',
         '$ProgressPreference = ''SilentlyContinue''',
+        ('$global:S02EnvironmentLoader=' + (Get-Literal $loader)),
+        @'
+function global:Join-Path {
+    [CmdletBinding()]
+    param([Parameter(Position=0)][string]$Path,[Parameter(Position=1)][string]$ChildPath,[switch]$Resolve)
+    $actual=Microsoft.PowerShell.Management\Join-Path @PSBoundParameters
+    if($ChildPath -ceq 'AudioFileForPhone.Helpers.ps1' -and [IO.File]::Exists($actual)) {
+        $global:S02OriginalEnvironmentHelper=$actual
+        return $global:S02EnvironmentLoader
+    }
+    return $actual
+}
+'@,
         '$found = @(''ffmpeg.exe'', ''ffprobe.exe'' | ForEach-Object { [bool](Get-Command $_ -CommandType Application -ErrorAction SilentlyContinue) })',
         'Write-Host (''[S02_DISCOVERY] '' + ($found | ConvertTo-Json -Compress))',
         ('& ' + (Get-Literal (Join-Path $caseRoot 'AudioFileForPhone.ps1')) + ' -InputFolder ' + (Get-Literal $InputPath) + ' -OutputParent ' + (Get-Literal $outputParent) + ' -ConfigPath ' + (Get-Literal (Join-Path $caseRoot 'missing-config.json')) + $(if ($DefaultRate) { '' } else { ' -BitrateKbps ' + $Rate })),
@@ -233,7 +258,7 @@ try {
         $searchPath = if ($id -eq 'both_tools_missing') { $emptySearch } else { '' }
         $child = Invoke-App $id (Split-Path -Parent $inputs['48000Hz-1ch']) $searchPath -DefaultRate
         Assert-True ($child.discovery.Count -eq 2 -and $child.discovery -notcontains $true) 'Sanitized no-profile child unexpectedly resolved a dependency.'
-        Assert-True ($child.exit_code -eq 1 -and $child.text -match 'Could not find ffmpeg.exe' -and $child.text -match 'converted=0' -and -not (Test-Path -LiteralPath $child.output_parent)) 'Expected missing-tool failure before output creation.'
+        Assert-True ($child.exit_code -eq 1 -and $child.text -match 'FFmpeg not found' -and $child.text -match 'converted=0' -and -not (Test-Path -LiteralPath $child.output_parent)) 'Expected missing-tool failure before output creation.'
         $report.cases += [pscustomobject]@{
             id = $id; status = 'pass'; classification = 'REPRODUCED_EXISTING_MISSING_TOOL_FAILURE'
             expected = 'Exit 1 before conversion, both commands unresolved, no output parent.'

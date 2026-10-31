@@ -380,7 +380,7 @@ try {
     }
     Invoke-Case 'invalid ready and cover choices repeat only their prompt then convert actual tags and selected cover' 'v1.0.3' {
         param($case)
-        $parent=Join-Path $testRoot 'Recovered metadata output'; $artist="O'Brien & " + [char]0x00E4
+        $parent=Join-Path $testRoot 'Recovered metadata output'; $artist="O'Brien & " + [char]0x00E4 + [char]0x4E2D
         $child=Invoke-ProductionChild 'RecoveredMetadata' (Get-AppCommand $parent -Interactive) -Responses @('typo','M','maybe','Y',$artist,'2027 Term 1 Week 8') -DialogPath $blue -ScriptedUI
         $case['conversion']=Assert-Conversion $parent $child -ExpectedArtist $artist -ExpectedAlbum '2027 Term 1 Week 8' -HasCover $true
         Assert-True ($child.Audit.metadata_prompts.Count -eq 6 -and $child.Audit.dialog_calls -eq 1 -and [regex]::Matches($child.Text,'Use Enter, M or Q\.').Count -eq 1 -and [regex]::Matches($child.Text,'Use Y, N or Q\.').Count -eq 1) 'Each invalid choice emits exactly one short hint and repeats only the relevant prompt.'

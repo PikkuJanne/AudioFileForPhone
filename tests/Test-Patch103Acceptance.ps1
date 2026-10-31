@@ -13,7 +13,8 @@ param(
     [Parameter(Mandatory=$true)][string]$EvidencePath,
     [Parameter(Mandatory=$true)][string]$FfmpegDirectory,
     [Parameter(Mandatory=$true)][string]$PowerShell7Path,
-    [string]$ExpectedAppVersion='1.0.3'
+    [string]$ExpectedAppVersion='1.0.3',
+    [ValidateSet('Native','Explicit')][string]$CoverPickerMode='Native'
 )
 $ErrorActionPreference='Stop'
 $project=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..')).TrimEnd('\','/')
@@ -38,7 +39,7 @@ function Run-Patch([string]$Exe,[string[]]$Arguments,[hashtable]$Environment=@{}
     $si=New-Object Diagnostics.ProcessStartInfo;$si.FileName=$Exe;$si.Arguments=(@($Arguments|ForEach-Object{Quote-Patch $_})-join' ');$si.UseShellExecute=$false;$si.CreateNoWindow=$true;$si.WorkingDirectory=$work
     $si.RedirectStandardInput=$true;$si.RedirectStandardOutput=$true;$si.RedirectStandardError=$true
     $si.StandardOutputEncoding=New-Object Text.UTF8Encoding($false);$si.StandardErrorEncoding=New-Object Text.UTF8Encoding($false)
-    foreach($key in $Environment.Keys){$si.EnvironmentVariables[$key]=[string]$Environment[$key]}
+    foreach($key in $Environment.Keys){if($null-eq$Environment[$key]){$si.EnvironmentVariables.Remove($key)}else{$si.EnvironmentVariables[$key]=[string]$Environment[$key]}}
     $p=New-Object Diagnostics.Process;$p.StartInfo=$si
     try{Assert-Patch ($p.Start()) 'Owned process did not start.';$p.StandardInput.Close();$stdout=$p.StandardOutput.ReadToEndAsync();$stderr=$p.StandardError.ReadToEndAsync()
         if(-not$p.WaitForExit($Deadline)){$script:releaseProved=$false;$p.Kill();$null=$p.WaitForExit(5000);throw ('Owned process deadline: '+$Exe)}
@@ -51,7 +52,7 @@ function Run-Patch([string]$Exe,[string[]]$Arguments,[hashtable]$Environment=@{}
 function Add-PatchCase([string]$Name,[string]$Observed){$report.cases+=[pscustomobject]@{name=$Name;status='PASSED';observed=$Observed}}
 function New-PatchEnvironment([string]$Name){
     $profile=Join-Path $data $Name
-    $values=@{USERPROFILE=$profile;LOCALAPPDATA=(Join-Path $profile 'AppData/Local');APPDATA=(Join-Path $profile 'AppData/Roaming');TEMP=(Join-Path $profile 'Temp');TMP=(Join-Path $profile 'Temp');PATH='';FFMPEG='';PSModulePath=(Join-Path $env:SystemRoot 'System32/WindowsPowerShell/v1.0/Modules');NO_COLOR='';TERM=''}
+    $values=@{USERPROFILE=$profile;LOCALAPPDATA=(Join-Path $profile 'AppData/Local');APPDATA=(Join-Path $profile 'AppData/Roaming');TEMP=(Join-Path $profile 'Temp');TMP=(Join-Path $profile 'Temp');PATH='';FFMPEG='';PSModulePath=(Join-Path $env:SystemRoot 'System32/WindowsPowerShell/v1.0/Modules');NO_COLOR=$null;TERM=$null;CLICOLOR=$null}
     foreach($p in @($profile,(Join-Path $profile 'Music'),$values.LOCALAPPDATA,$values.APPDATA,$values.TEMP)){[IO.Directory]::CreateDirectory($p)|Out-Null};return $values
 }
 function Copy-PatchEnvironment([hashtable]$Values){$copy=@{};foreach($k in $Values.Keys){$copy[$k]=$Values[$k]};return $copy}
@@ -119,12 +120,17 @@ try{
     Assert-Patch ($preview.stdout.Contains($music)-and@(Get-ChildItem -LiteralPath $music -Force).Count-eq0) 'DryRun default Music not proved write-free.'
     $artist="O'Neil & "+[char]0x00e4+[char]0x4e2d
     $before=New-PatchRunRoot $music
-    $steps=@("Selection`t1`twrong","Use Enter, M or Q.`t1`tM","Add cover art?`t1`twrong","Use Y, N or Q.`t1`tY","Artist [Enter = keep existing]`t1`t$artist","Album [Enter = keep existing]`t1`t2027 Term 1 Week 8")
-    $n=Run-PatchNative 'reported-metadata-bat' $cmd @('/d','/v:off','/s','/c',('""'+$bat+'" "'+$single+'""')) $steps 0 $child $true $cover
-    Assert-Patch $n.cover_picker_supplied 'Actual cover dialog was not supplied.'
-    $null=Verify-PatchOutputs 'reported-metadata-bat' $music $before 2 $artist '2027 Term 1 Week 8' $true
+    $coverAnswer=if($CoverPickerMode-eq'Native'){'Y'}else{'N'};$picker=if($CoverPickerMode-eq'Native'){$cover}else{''}
+    $steps=@("Selection`t1`twrong","Use Enter, M or Q.`t1`tM","Add cover art?`t1`twrong",("Use Y, N or Q.`t1`t"+$coverAnswer),"Artist [Enter = keep existing]`t1`t$artist","Album [Enter = keep existing]`t1`t2027 Term 1 Week 8")
+    $n=Run-PatchNative 'reported-metadata-bat' $cmd @('/d','/v:off','/s','/c',('""'+$bat+'" "'+$single+'""')) $steps 0 $child $true $picker
+    if($CoverPickerMode-eq'Native'){Assert-Patch $n.cover_picker_supplied 'Actual cover dialog was not supplied.'}
+    $null=Verify-PatchOutputs 'reported-metadata-bat' $music $before 2 $artist '2027 Term 1 Week 8' ($CoverPickerMode-eq'Native')
     Assert-Patch (@($n.color_attributes.PSObject.Properties).Count-ge3-and$n.text-match'1.0.3'-and$n.text-match'READY'-and$n.text-match'RESULT') 'Native colored presentation missing.'
-    Add-PatchCase 'reported-metadata-real-bat' 'Invalid ready and cover choices recover; actual cover dialog/Artist/Album produce two ffprobe-verified tagged covered MP3s; native color attributes captured.'
+    Add-PatchCase 'reported-metadata-real-bat' ('Invalid ready and cover choices recover; Artist/Album produce two ffprobe-verified MP3s; native color attributes captured; cover picker mode='+$CoverPickerMode+'.')
+    $before=New-PatchRunRoot $music
+    $null=Run-PatchNative 'explicit-cover-interactive-tags' $PowerShell7Path @('-NoLogo','-NoProfile','-STA','-ExecutionPolicy','Bypass','-File',$app,'-InputFolder',$single,'-CoverPath',$cover,'-Interactive') @("Selection`t1`tM","Artist [Enter = keep existing]`t1`t$artist","Album [Enter = keep existing]`t1`t2027 Term 1 Week 8") 0 $child
+    $null=Verify-PatchOutputs 'explicit-cover-interactive-tags' $music $before 2 $artist '2027 Term 1 Week 8' $true
+    Add-PatchCase 'explicit-cover-interactive-tags' 'Supplied CoverPath retained; actual native console Artist/Album set exact tags and real cover in ffprobe-verified MP3s.'
     $before=New-PatchRunRoot $music
     $n=Run-PatchNative '29-defaults-bat' $cmd @('/d','/v:off','/s','/c',('""'+$bat+'" "'+$batch+'""')) @("Selection`t1`t") 0 $child $true
     $null=Verify-PatchOutputs '29-defaults-bat' $music $before 29 $null $null $false

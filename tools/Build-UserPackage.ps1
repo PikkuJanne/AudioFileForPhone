@@ -298,6 +298,8 @@ can remember that choice or offer an optional download with your consent.
 Conversion never downloads tools. No FFmpeg binaries are bundled. Existing tools
 can stay in a separate folder; no PATH edit or reinstall is required. App-local
 tools, if wanted, belong beside the scripts in app/.
+Existing PATH pairs and the FFMPEG environment setting are discovered automatically;
+FFMPEG may name the pair's folder, its installation root, or ffmpeg.exe itself.
 
 If an error stays visible, read it and the reported local log path. Restore the
 complete package if a component is missing; consult app/SUPPORT.md. The final
@@ -392,7 +394,7 @@ with their existing options, including an explicit output directory.
         icon = [ordered]@{ source_path = 'AudioFileForPhone.ico'; sha256 = $hashes['AudioFileForPhone.ico']; byte_identical = $true }
         dependencies = $originalManifest.dependencies
         package_test_evidence = $tests
-        build = [ordered]@{ builder = 'tools/Build-UserPackage.ps1'; builder_sha256 = $builderHash; source_mode = 'Explicit clean detached Git source; every core blob verified; allowlisted app subset plus direct CRLF BAT and unchanged icon'; archive_order = 'Ordinal'; zip_timestamp_utc = '1980-01-01T00:00:00Z'; evidence_scope = 'Corrective v1.0.3 candidate only. The selected version and passing verification do not grant exact-byte publication authority. Preserve existing v1.0.0/v1.0.1 tags and public assets.' }
+        build = [ordered]@{ builder = 'tools/Build-UserPackage.ps1'; builder_sha256 = $builderHash; source_mode = 'Explicit clean detached Git source; every core blob verified; allowlisted app subset plus direct CRLF BAT and unchanged icon'; archive_order = 'Ordinal'; zip_timestamp_utc = '1980-01-01T00:00:00Z'; evidence_scope = 'Corrective v1.0.3 candidate only. The selected version and passing verification do not grant exact-byte publication authority. Preserve existing v1.0.0/v1.0.1/v1.0.2 tags and public assets.' }
     }
     $manifestPath = Join-Path $stage 'release-manifest.json'; $ownedFiles.Add($manifestPath)
     Write-UserPackageNewText $manifestPath (($manifest | ConvertTo-Json -Depth 20) + "`n")

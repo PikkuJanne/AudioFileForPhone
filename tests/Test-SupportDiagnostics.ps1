@@ -300,7 +300,7 @@ try {
     Write-NewText $preflightSentinel 'S10 nonmedia preflight sentinel'; Add-Fixture $preflightSentinel
     foreach ($failure in @(
         @{ label = 'helper'; missing = 'AudioFileForPhone.Helpers.ps1'; code = 'HelperMissing'; cause = 'Required runtime file is missing'; console = 'Helpers.ps1' },
-        @{ label = 'dependency'; missing = ''; code = 'DependencyMissing'; cause = 'Could not find ffmpeg'; console = 'ffmpeg.exe' },
+        @{ label = 'dependency'; missing = ''; code = 'DependencyMissing'; cause = 'FFmpeg not found'; console = 'ffmpeg.exe' },
         @{ label = 'config'; missing = ''; code = 'ConfigInvalid'; cause = 'Invalid tool configuration'; console = 'configuration' }
     )) {
         $failureSpec = $failure
@@ -365,7 +365,7 @@ try {
         $result = Invoke-Child 'early-no-storage' $code @{ LOCALAPPDATA = $blockedLocal; TEMP = $blockedTemp; TMP = $blockedTemp }
         Assert-ChildExit $result 1
         $text = $result.stdout + $result.stderr
-        Assert-True ($text -match 'Could not find ffmpeg' -and $text -match 'DependencyMissing' -and $text -match 'original console cause is unchanged') 'Failed logging must preserve the useful original missing-dependency cause and stable code.'
+        Assert-True ($text -match 'FFmpeg not found' -and $text -match 'DependencyMissing' -and $text -match 'original console cause is unchanged') 'Failed logging must preserve the useful original missing-dependency cause and stable code.'
         Assert-True ($text -notmatch 'PRIVATE local report' -and -not (Test-Path -LiteralPath $outputRoot)) 'Unavailable logging must not claim a saved report or create a run.'
         $case.original_cause_preserved = $true; $case.report_saved = $false
     }
