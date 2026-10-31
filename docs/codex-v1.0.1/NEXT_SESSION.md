@@ -1,14 +1,16 @@
 # Next session — repair complete; no automatic next step
 
-## Active v1.0.3 work — 2026-10-31
+## v1.0.3 complete — no automatic next work
 
-Finish the owner-requested discovery/metadata/console patch through ordinary
-reviewed CI-passing integration, exact integrated-source package acceptance,
-verified draft/public release and independent downloaded-byte metadata smoke.
-No approval stop, owner testing or numbered restart. Preserve published tags and
-bytes. Raw evidence is outside Git in C:/projects/AFP-103-20261031. Final patch
-summary will be evidence/PATCH103.json; historical R3/v1.0.2 evidence below stays
-preserved. Do not mistake its completion for completion of the new patch.
+Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3. Read evidence/PATCH103.json and
+PATCH103-HANDOVER.md. Preserve v1.0.3 at a931a5606346b5bef28beb0987371e9a7b4f42be and ZIP
+10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4, together with all older tags/assets.
+Owner testing required: none. No approval, acceptance kit, phone test or numbered
+repair step remains. Await a new owner maintenance request; do not republish/bump
+automatically. Refresh final live main/feature refs and containing-checkpoint CI
+when future maintenance is actually requested. Closure-only main may follow tagC.
+
+## Historical v1.0.2 next-session record — preserved
 
 R3 is complete: v1.0.2 is public and independently verified at https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2.
 Read evidence/R3-PUBLICATION.json, R3-PUBLICATION-AUTHORITY.json and the current

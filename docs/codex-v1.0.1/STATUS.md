@@ -1,16 +1,26 @@
-# Status — R3 completed; v1.0.2 published and verified
+# Status — v1.0.3 published and independently verified
 
-## Active v1.0.3 patch — 2026-10-31
+## v1.0.3 patch completed — 2026-10-31
 
-Owner-authorized work order: repair discovery, metadata entry and native console
-presentation, then run automated acceptance and publish/verify the tested patch.
-Branch: codex/v1.0.3-discovery-metadata-console; base main 6fb3a6c.
-This job supersedes old numbered stops and separate owner approval gates. Normal
-reviewed PR/CI and all safety/access controls remain. Owner testing required: none.
-Discovery focused cases passed both supported PowerShell hosts. Metadata and
-exact-package checks are in progress; no new release is claimed yet. Host is
-Windows 11 Pro 26H2 build26300.9711 x64, unelevated. Windows10 client unavailable;
-actual shell invocation will be distinguished from physical Explorer drag/drop.
+Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3 (ID429840128).
+Frozen integrated source/tag: a931a5606346b5bef28beb0987371e9a7b4f42be / v1.0.3.
+ZIP SHA256: 10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4.
+
+Discovery, direct metadata/menu retries and native terminal presentation are fixed.
+Each Windows11 client PS5.1/PS7 full campaign passed20families/959checks+3observations;
+the same source passed both supplementary CI hosts and the reviewed PR retry.
+Exact ZIP passed98 real decoded outputs, native BAT/shell shortcut29-file batches,
+metadata/artwork, literal Unicode tags, colors/plain output and source preservation.
+All3 draft/public assets matched; actual public ZIP passed2 metadata+cover conversions
+in PS5.1/PS7. All9 prior assets and6 old tag refs are preserved.
+
+Windows10/physical Explorer and picker Open automation limits remain explicitly
+unverified; actual shell delivery, picker cancellation and supplied-cover interactive
+outputs passed. No human-listening/phone claim. Owner testing required: none.
+Evidence: evidence/PATCH103.json and PATCH103-HANDOVER.md. Final containing closure
+main/ref/CI observations are reported after ordinary merge; released bytes never move.
+
+## Historical v1.0.2 closure — preserved
 
 Public normal release: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.2
 Release ID429430152; tag v1.0.2 points to frozen source 83a5713cacfbc330f309f48d8377cb5be11ba3a6.

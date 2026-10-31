@@ -1,15 +1,14 @@
 # AudioFileForPhone agent instructions
 
-## Active owner-directed v1.0.3 patch — 2026-10-31
+## Completed owner-directed v1.0.3 patch — 2026-10-31
 
-The owner requested implementation of `AudioFileForPhone_v1.0.3_Codex_Repair.md`
-through tested public release and independent download verification in this chat.
-That work order supersedes the historical numbered stops and separate owner
-release/main approval gates below. Keep normal PR review and required CI, access
-controls, existing safety boundaries and all published tags/assets. Complete the
-discovery, metadata and terminal repairs without assigning owner testing. Record
-actual automated coverage and unavailable environments honestly. Publication is
-authorized for the tested patch, targeting the next free version from v1.0.3.
+The incorporated v1.0.3 work order completed through ordinary reviewed PR/CI,
+public normal release and independent public-download conversion verification.
+Evidence: docs/codex-v1.0.1/evidence/PATCH103.json and PATCH103-HANDOVER.md.
+Source/tag a931a5606346b5bef28beb0987371e9a7b4f42be / v1.0.3 and all published bytes are frozen.
+The old numbered-stop/approval routing below was historical for this patch.
+No owner testing or automatic next step/version is pending. Future maintenance
+requires a new owner request; preserve existing access controls, history and assets.
 
 ## Work boundaries
 

@@ -1,14 +1,15 @@
 # Charter — focused launch and distribution repair
 
-## Active v1.0.3 owner work order — 2026-10-31
+## Completed v1.0.3 owner work order — 2026-10-31
 
-The current owner request incorporates `AudioFileForPhone_v1.0.3_Codex_Repair.md`:
-repair discovery, direct metadata entry and native console presentation, run the
-automated checks, integrate through the normal reviewed PR/CI workflow, publish
-the tested normal v1.0.3 release and verify its public bytes. Numbered stops and
-separate owner approval gates below are historical for this patch. Owner testing
-required: none. Preserve all published versions and safeguards. Actual missing
-optional host coverage is recorded honestly and is no owner assignment.
+The owner incorporated AudioFileForPhone_v1.0.3_Codex_Repair.md and authorized
+this tested discovery/metadata/console patch through ordinary reviewed integration,
+publication and independent public verification in one chat. That authority
+superseded old numbered stops and separate approval gates for this patch only.
+It is complete: https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3; frozen source a931a5606346b5bef28beb0987371e9a7b4f42be.
+Actual checks, asset hashes, prior preserved evidence and unrun optional coverage
+are recorded in evidence/PATCH103.json. Owner testing required: none. No automatic
+new release/version or changed public bytes are authorized by this completion.
 
 ## Owner-directed R3 completion and publication — 2026-10-30
 

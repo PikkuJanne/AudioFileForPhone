@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "PikkuJanne/AudioFileForPhone",
   "step": "PATCH103",
-  "status": "IMPLEMENTING",
+  "status": "PUBLISHED_VERIFIED",
   "version_authority": {
     "owner_instruction": "Implement the v1.0.3 work order, run checks, publish and verify public download without approval stops or owner testing.",
     "recorded_date": "2026-10-31",
@@ -126,5 +126,65 @@
       "public_download_verified": true,
       "public_windows_smoke": "PASSED20"
     }
+  },
+  "source_frozen": true,
+  "publication_authorization": {
+    "owner_authorized": true,
+    "basis": "Current owner request and incorporated v1.0.3 repair work order",
+    "scope": "Bounded tested patch through ordinary reviewed PR/CI and independently verified normal public release",
+    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "target_tag": "v1.0.3",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.3.zip",
+        "bytes": 291844,
+        "sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10325,
+        "sha256": "52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb"
+      }
+    ],
+    "record": "evidence/PATCH103.json"
+  },
+  "published_release": {
+    "id": 429840128,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.3",
+    "published_at": "2026-10-31T09:31:24Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "a931a5606346b5bef28beb0987371e9a7b4f42be",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.3.zip",
+        "bytes": 291844,
+        "sha256": "10f0bafb717ea8dabed9acb283989b53b2a8437bd9ac2e8b53c4548de3a6e8d4"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10325,
+        "sha256": "52277d6ddaa4c2841fbdf08b12314657515c683898da065f78b4ec3285e99d97"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "959c43b6b6af2a0c4414ffe695867f6a4a4a7352a72a9eee035ab557ca9c75bb"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "public_smoke_outputs": 2,
+    "public_smoke_hosts": [
+      "Windows PowerShell5.1",
+      "PowerShell7"
+    ],
+    "public_smoke": "Actual downloaded bytes: MP3/64kbps/artwork/Unicode Artist/Album=2027 Term 1 Week 8, full decode, source hashes and process release passed."
   }
 }
