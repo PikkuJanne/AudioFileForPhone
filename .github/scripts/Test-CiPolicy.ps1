@@ -217,7 +217,7 @@ function Assert-CiPolicy {
     $job = $document.jobs.windows
     Assert-CiMapKeys $job @('name', 'runs-on', 'timeout-minutes', 'strategy', 'defaults', 'steps') 'windows job'
     if ($job.name -cne 'Supplementary Windows Server 2025 / ${{ matrix.edition }}') { throw 'Hosted CI must be named supplementary Windows Server.' }
-    if ($job['runs-on'] -cne 'windows-2025' -or $job['timeout-minutes'] -ne 20) { throw 'Only bounded GitHub-hosted Windows jobs are approved.' }
+    if ($job['runs-on'] -cne 'windows-2025' -or $job['timeout-minutes'] -ne 30) { throw 'Only bounded GitHub-hosted Windows jobs are approved.' }
     Assert-CiMapKeys $job.strategy @('fail-fast', 'matrix') 'strategy'
     if ($job.strategy['fail-fast'] -isnot [bool] -or $job.strategy['fail-fast']) { throw 'Both supported shell jobs must report independently.' }
     Assert-CiMapKeys $job.strategy.matrix @('include') 'matrix'

@@ -12,7 +12,8 @@ jobs:
   windows:
     name: Supplementary Windows Server 2025 / ${{ matrix.edition }}
     runs-on: windows-2025
-    timeout-minutes: 20
+    # Retain the full suites plus the added 24-case worker fault regressions.
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       matrix:

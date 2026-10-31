@@ -49,10 +49,15 @@ internal static class Patch105NativeShim
     {
         string log = Env("LOG"); if (String.IsNullOrEmpty(log)) return;
         List<string> values = new List<string>(); foreach (string arg in args) values.Add(Json(arg));
-        string json = "{\"pid\":" + Process.GetCurrentProcess().Id + ",\"role\":" + Json(role) +
-            ",\"stage\":" + Json(stage) + ",\"action\":" + Json(action) + ",\"selected\":" +
-            (selected ? "true" : "false") + ",\"path\":" + Json(path) + ",\"sha256\":" + Json(Hash(path)) +
-            ",\"argv\":[" + String.Join(",", values.ToArray()) + "]}";
+        string json;
+        using (Process current = Process.GetCurrentProcess())
+        {
+            json = "{\"pid\":" + current.Id + ",\"started_utc_ticks\":" +
+                Json(current.StartTime.ToUniversalTime().Ticks.ToString(System.Globalization.CultureInfo.InvariantCulture)) + ",\"role\":" + Json(role) +
+                ",\"stage\":" + Json(stage) + ",\"action\":" + Json(action) + ",\"selected\":" +
+                (selected ? "true" : "false") + ",\"path\":" + Json(path) + ",\"sha256\":" + Json(Hash(path)) +
+                ",\"argv\":[" + String.Join(",", values.ToArray()) + "]}";
+        }
         File.AppendAllText(log, json + Environment.NewLine, new UTF8Encoding(false));
     }
 

@@ -25,9 +25,12 @@ $report=[ordered]@{
     schema_version=1;task='PATCH105';mode='real_tools_with_test_only_worker_fault_injection'
     status='fail';shell=$PSVersionTable.PSVersion.ToString();shell_edition=$PSVersionTable.PSEdition
     tested_commit=(& git -C $project rev-parse HEAD|Out-String).Trim()
+    test_script_sha256=(Get-FileHash -LiteralPath $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant()
+    shim_source_sha256=(Get-FileHash -LiteralPath (Join-Path $PSScriptRoot 'Patch105.NativeShim.cs') -Algorithm SHA256).Hash.ToLowerInvariant()
     started_utc=[DateTime]::UtcNow.ToString('o');environment=$null;cases=@()
     runtime_hashes=@();runtime_unchanged=$false;synthetic_unchanged=$false
     descendant_release_proved=$false;cleanup_verified=$false;owner_media_access=$false;ordinary_music_access=$false
+    process_identity_checks=0;recycled_pid_observations=0;exited_pid_observations=0;process_identity_failure=$null
 }
 function Assert-P105([bool]$Condition,[string]$Message){if(-not $Condition){throw $Message}}
 function Hash-P105([string]$Path){(Get-FileHash -LiteralPath $Path -Algorithm SHA256).Hash.ToLowerInvariant()}
@@ -57,7 +60,26 @@ function Case-P105([string]$Name,[scriptblock]$Body){
 function Media-P105([string]$Path){(Run-P105 $FfprobePath @('-v','error','-show_streams','-show_format','-of','json','-i',$Path)).Stdout|ConvertFrom-Json}
 function Events-P105([object]$Run,[string]$Stage,[bool]$Selected=$true){return ,@($Run.events|Where-Object{$_.stage-ceq$Stage-and$_.selected-eq$Selected})}
 function Assert-ReleasedEvents-P105([object[]]$Events){
-    foreach($event in $Events){Assert-P105 ($null-eq(Get-Process -Id $event.pid -ErrorAction SilentlyContinue)) 'Test native shim still runs after application return.'}
+    foreach($event in $Events){
+        $report.process_identity_checks++
+        $process=Get-Process -Id $event.pid -ErrorAction SilentlyContinue
+        if($null-eq$process){continue}
+        try{
+            if($process.HasExited){$report.exited_pid_observations++;continue}
+            # PIDs can be reused by independent concurrent tests. Identify the
+            # original worker instance before treating a live PID as a leak.
+            $observedTicks=$process.StartTime.ToUniversalTime().Ticks
+            if($observedTicks-eq[long]$event.started_utc_ticks){
+                $process.Refresh()
+                if($process.HasExited){$report.exited_pid_observations++;continue}
+                $script:released=$false
+                $report.process_identity_failure=[pscustomobject]@{pid=$event.pid;stage=$event.stage;recorded_start_utc_ticks=$event.started_utc_ticks;observed_start_utc_ticks=[string]$observedTicks;process_name=$process.ProcessName}
+                throw 'The same test native shim instance still runs after application return.'
+            }
+            $report.recycled_pid_observations++
+        }catch{$script:released=$false;throw}
+        finally{$process.Dispose()}
+    }
 }
 function App-P105 {
     param([string]$Name,[string]$Stage,[string]$Mode,[string]$Fixture,[int]$Expected=0,
