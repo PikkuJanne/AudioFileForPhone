@@ -75,7 +75,7 @@ $rawRoot = Join-Path $runRoot 'raw'
 $inputRoot = Join-Path $runRoot ('input [synthetic] ' + [char]0x00f6)
 foreach ($path in @($packageRoot,$rawRoot,$inputRoot,(Join-Path $inputRoot 'nested'))) { [IO.Directory]::CreateDirectory($path) | Out-Null }
 [IO.File]::WriteAllText((Join-Path $runRoot 'ownership.json'), ('{"kind":"AudioFileForPhone.UserPackageTests","token":"' + [guid]::NewGuid().ToString('N') + '"}'))
-$report = [ordered]@{schema_version=1;kind='user_package_verification';package_revision=3;app_version='1.0.3';artifact_kind='corrective_release_candidate';status='RUNNING';started_utc=[DateTime]::UtcNow.ToString('o');runtime_zip_sha256=$null;original_runtime_zip_sha256=Get-TestHash $CoreRuntimeZipPath;test_script_sha256=Get-TestHash $PSCommandPath;cases=@();shell_results=@();processes=@();native_cases=@();ordinary_music_access=$false;physical_observation=$false;windows10_observation=$false;phone_observation=$false;publication_performed=$false;internet_marks='Deterministic Zone.Identifier ADS on disposable copies; not browser extraction.';successful_bat_encoding=$false;raw_evidence_root=$runRoot}
+$report = [ordered]@{schema_version=1;kind='user_package_verification';package_revision=3;app_version='1.0.4';artifact_kind='corrective_release_candidate';status='RUNNING';started_utc=[DateTime]::UtcNow.ToString('o');runtime_zip_sha256=$null;original_runtime_zip_sha256=Get-TestHash $CoreRuntimeZipPath;test_script_sha256=Get-TestHash $PSCommandPath;cases=@();shell_results=@();processes=@();native_cases=@();ordinary_music_access=$false;physical_observation=$false;windows10_observation=$false;phone_observation=$false;publication_performed=$false;internet_marks='Deterministic Zone.Identifier ADS on disposable copies; not browser extraction.';successful_bat_encoding=$false;raw_evidence_root=$runRoot}
 $policiesBefore=@(Get-ExecutionPolicy -List | ForEach-Object { [pscustomobject]@{scope=[string]$_.Scope;policy=[string]$_.ExecutionPolicy} })
 
 function Invoke-TestProcess {
@@ -175,7 +175,7 @@ function Test-Conversion([string]$Shell,[string]$Label,[string]$Source,[string]$
     Assert-Test ($dirs.Count -eq 1) 'One owned output run required.'
     $manifestPath=Join-Path $dirs[0].FullName 'AudioFileForPhone_manifest.json'
     $manifest=Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.3 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
+    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.4 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
     Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[RESULT\]').Count -eq 1) 'Exactly one final result required.'
     Assert-Test ($run.stdout -notmatch '\[DEBUG\]|(?m)^[-=]{12,}|Script path\s*:|Raw input\s*:|ffmpeg encoding arguments|ffmpeg\.exe.+-') 'Normal console contains debug, command or banner clutter.'
     Assert-Test ($run.stdout -match 'Input:' -and $run.stdout -match '\[INFO\] Output root' -and $run.stdout -match 'Log file\s*:' -and $run.stdout -match 'converted=4; failed=0') 'Input/destination/count/log console context missing.'
@@ -184,7 +184,7 @@ function Test-Conversion([string]$Shell,[string]$Label,[string]$Source,[string]$
     $logText=Get-Content -LiteralPath $localLog -Raw
     Assert-Test ($logText -match 'Summary: total=4, converted=4, failed=0' -and $logText -match 'Source|Mapping|ffprobe|Probing') 'Detailed successful diagnostics missing from local log.'
     $expected=@(Get-ChildItem -LiteralPath $Source -File -Recurse).Count
-    Assert-Test ($manifest.app_version -ceq '1.0.3' -and $manifest.run.status -ceq 'Completed' -and $manifest.run.exit_code -eq 0 -and $manifest.policies.bitrate_kbps -eq 64 -and $manifest.totals.converted -eq $expected -and $manifest.totals.failed -eq 0 -and $manifest.records.Count -eq $expected) 'Manifest version/default/count/result mismatch.'
+    Assert-Test ($manifest.app_version -ceq '1.0.4' -and $manifest.run.status -ceq 'Completed' -and $manifest.run.exit_code -eq 0 -and $manifest.policies.bitrate_kbps -eq 64 -and $manifest.totals.converted -eq $expected -and $manifest.totals.failed -eq 0 -and $manifest.records.Count -eq $expected) 'Manifest version/default/count/result mismatch.'
     $expectedOrigin=if ($AppLocal) { 'AppLocal' } elseif ($Saved) { 'Saved' } else { 'Explicit' }
     Assert-Test ($manifest.tools.selection_origin -ceq $expectedOrigin) 'Tool selection origin changed.'
     Assert-Test (@(Get-ChildItem -LiteralPath $dirs[0].FullName -File -Recurse | Where-Object {$_.Name -like '*.partial*'}).Count -eq 0) 'Partial output remains.'
@@ -211,9 +211,9 @@ try {
     $report.environment=[ordered]@{caption=$os.Caption;product_type=$os.ProductType;build=$os.BuildNumber+'.'+$cv.UBR;display_version=$cv.DisplayVersion;architecture=$os.OSArchitecture;orchestrator_ps=$PSVersionTable.PSVersion.ToString()}
     Assert-Test ($os.ProductType -eq 1 -and [Environment]::Is64BitProcess) 'Actual Windows x64 client required.'
     $manifest=Get-Content -LiteralPath (Join-Path $PackageDirectory 'release-manifest.json') -Raw | ConvertFrom-Json
-    $zipPath=Join-Path $PackageDirectory 'AudioFileForPhone-v1.0.3.zip'
+    $zipPath=Join-Path $PackageDirectory 'AudioFileForPhone-v1.0.4.zip'
     $zipHash=Get-TestHash $zipPath; $report.runtime_zip_sha256=$zipHash
-    Assert-Test ($manifest.package_revision -eq 3 -and $manifest.app_version -ceq '1.0.3' -and $manifest.tag -ceq 'v1.0.3' -and $manifest.corrective_release_version -ceq '1.0.3' -and $manifest.artifact_kind -ceq 'corrective_release_candidate' -and $manifest.publication_authorized -eq $false -and $manifest.zip.name -ceq 'AudioFileForPhone-v1.0.3.zip' -and $manifest.zip.sha256 -ceq $zipHash -and $manifest.zip.bytes -eq (Get-Item -LiteralPath $zipPath).Length) 'Corrective candidate manifest identity mismatch.'
+    Assert-Test ($manifest.package_revision -eq 3 -and $manifest.app_version -ceq '1.0.4' -and $manifest.tag -ceq 'v1.0.4' -and $manifest.corrective_release_version -ceq '1.0.4' -and $manifest.artifact_kind -ceq 'corrective_release_candidate' -and $manifest.publication_authorized -eq $false -and $manifest.zip.name -ceq 'AudioFileForPhone-v1.0.4.zip' -and $manifest.zip.sha256 -ceq $zipHash -and $manifest.zip.bytes -eq (Get-Item -LiteralPath $zipPath).Length) 'Corrective candidate manifest identity mismatch.'
     $report.source_commit=$manifest.release_commit
     Assert-Test ($manifest.original_runtime_zip_sha256 -ceq $report.original_runtime_zip_sha256) 'Original payload binding mismatch.'
     $members=Get-TestZipMembers $zipPath; $original=Get-TestZipMembers $CoreRuntimeZipPath
@@ -241,7 +241,7 @@ try {
     $report.icon_sha256=$members['AudioFileForPhone.ico'].sha256
     Assert-Test ($report.icon_sha256 -ceq (Get-TestHash (Join-Path $projectRoot 'AudioFileForPhone.ico'))) 'Existing repository icon bytes changed.'
     $checksums=@(Get-Content -LiteralPath (Join-Path $PackageDirectory 'SHA256SUMS.txt'))
-    Assert-Test ($checksums.Count -eq 2 -and $checksums[0] -ceq ($zipHash+'  AudioFileForPhone-v1.0.3.zip') -and $checksums[1] -ceq ((Get-TestHash (Join-Path $PackageDirectory 'release-manifest.json'))+'  release-manifest.json')) 'External checksums do not match.'
+    Assert-Test ($checksums.Count -eq 2 -and $checksums[0] -ceq ($zipHash+'  AudioFileForPhone-v1.0.4.zip') -and $checksums[1] -ceq ((Get-TestHash (Join-Path $PackageDirectory 'release-manifest.json'))+'  release-manifest.json')) 'External checksums do not match.'
     [IO.Compression.ZipFile]::ExtractToDirectory($zipPath,$packageRoot)
     $visible=@(Get-ChildItem -LiteralPath $packageRoot | Select-Object -ExpandProperty Name)
     Assert-Test ($visible.Count -eq 4 -and @($visible | Where-Object { $_ -cnotin @('AudioFileForPhone.bat','AudioFileForPhone.ico','README.txt','app') }).Count -eq 0) 'Extraction must expose exactly the intended four root entries.'

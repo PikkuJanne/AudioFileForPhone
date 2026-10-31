@@ -1,5 +1,15 @@
 # Charter — focused launch and distribution repair
 
+## Active v1.0.4 owner work order — 2026-10-31
+
+Implement the bounded source-probe crash repair and complete automated Windows
+testing, ordinary reviewed integration, public v1.0.4 publication and independent
+download verification in this chat. The owner's explicit request incorporates
+the private work order and supersedes historical numbered stops and separate
+approvals for this patch. Keep original recording/private handoff/raw logs outside
+Git and public artifacts. Public tests use generated media. Owner testing: none.
+Existing access controls, source/output protections and old releases remain.
+
 ## Completed v1.0.3 owner work order — 2026-10-31
 
 The owner incorporated AudioFileForPhone_v1.0.3_Codex_Repair.md and authorized

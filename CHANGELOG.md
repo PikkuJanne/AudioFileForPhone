@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.4 — 2026-10-31
+
+- Recover an M4A after a confirmed native source-probe crash with one owned
+  stream-copy remux using the selected tools, then the existing MP3 transaction.
+- Check recovered duration against a strict decode of the original; retain
+  source naming, metadata, 64 kbps CBR, full output decode and no-overwrite safety.
+- Name failed files and short reasons in the final summary, continue the batch,
+  and record crash and recovery stages in the local manifest and log.
+
 ## 1.0.3 — 2026-10-31
 
 - Discover a complete validated FFmpeg pair from literal PATH entries, FFMPEG
