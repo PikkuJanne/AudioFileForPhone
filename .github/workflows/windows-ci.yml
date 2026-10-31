@@ -50,7 +50,12 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $record = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json')
           $dependencies = Get-Content -LiteralPath $record -Raw | ConvertFrom-Json
-          & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-Patch104Recovery.ps1') -EvidencePath (Join-Path $env:RUNNER_TEMP 'patch104-${{ matrix.edition }}.json') -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
+          $report = Join-Path $env:RUNNER_TEMP 'patch104-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+          & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-Patch104Recovery.ps1') -EvidencePath $report -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $archiveReport = Join-Path $env:GITHUB_WORKSPACE 'docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+          if (Test-Path -LiteralPath $archiveReport) { throw 'Synthetic evidence already exists.' }
+          Copy-Item -LiteralPath $report -Destination $archiveReport
       - name: Upload check evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -67,7 +72,7 @@ jobs:
             docs/codex-v1.0.1/evidence/S11-filesystem-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
             docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
-            ${{ runner.temp }}/patch104-${{ matrix.edition }}.json
+            docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json
           retention-days: 14
           if-no-files-found: warn
           include-hidden-files: false

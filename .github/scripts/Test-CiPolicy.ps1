@@ -230,7 +230,7 @@ function Assert-CiPolicy {
     Assert-CiMapKeys $job.defaults.run @('shell') 'default shell'
     if ($job.defaults.run.shell -cne '${{ matrix.shell }}') { throw 'Every run step must select its matrix shell.' }
     $steps = @($job.steps)
-    if ($steps.Count -ne 3) { throw 'Only checkout, verified checks and evidence upload steps are approved.' }
+    if ($steps.Count -ne 4) { throw 'Only checkout, verified checks, synthetic recovery checks and evidence upload steps are approved.' }
     Assert-CiMapKeys $steps[0] @('name', 'uses', 'with') 'checkout step'
     if ($steps[0].uses -cne 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1') { throw 'Checkout must use its reviewed official full commit SHA.' }
     Assert-CiMapKeys $steps[0].with @('ref', 'persist-credentials', 'fetch-depth', 'clean', 'submodules', 'lfs', 'allow-unsafe-pr-checkout') 'checkout inputs'
@@ -254,9 +254,28 @@ function Assert-CiPolicy {
     for ($i = 0; $i -lt $approvedStatements.Count; $i++) {
         if ($runAst.EndBlock.Statements[$i].Extent.Text.Trim() -cne $approvedStatements[$i]) { throw 'CI run blocks can only invoke the reviewed dependency and test entry chain.' }
     }
-    Assert-CiMapKeys $steps[2] @('name', 'if', 'uses', 'with') 'artifact step'
-    if ($steps[2].if -cne 'always()' -or $steps[2].uses -cne 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9') { throw 'Evidence upload must use the reviewed official full SHA and run after failed checks.' }
-    Assert-CiMapKeys $steps[2].with @('name', 'path', 'retention-days', 'if-no-files-found', 'include-hidden-files') 'artifact inputs'
+    Assert-CiMapKeys $steps[2] @('name', 'run') 'synthetic recovery step'
+    $tokens = $null; $errors = $null
+    $recoveryAst = [Management.Automation.Language.Parser]::ParseInput([string]$steps[2].run, [ref]$tokens, [ref]$errors)
+    $approvedRecoveryStatements = @(
+        '$ErrorActionPreference = ''Stop'''
+        '$record = Join-Path $env:GITHUB_WORKSPACE (''docs/codex-v1/evidence/T17-dependencies-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'')'
+        '$dependencies = Get-Content -LiteralPath $record -Raw | ConvertFrom-Json'
+        '$report = Join-Path $env:RUNNER_TEMP ''patch104-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
+        '& (Join-Path $env:GITHUB_WORKSPACE ''tests/Test-Patch104Recovery.ps1'') -EvidencePath $report -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path'
+        'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'
+        '$archiveReport = Join-Path $env:GITHUB_WORKSPACE ''docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
+        'if (Test-Path -LiteralPath $archiveReport) { throw ''Synthetic evidence already exists.'' }'
+        'Copy-Item -LiteralPath $report -Destination $archiveReport'
+    )
+    if ($errors.Count -ne 0 -or $null -ne $recoveryAst.BeginBlock -or $null -ne $recoveryAst.ProcessBlock -or
+        $recoveryAst.EndBlock.Statements.Count -ne $approvedRecoveryStatements.Count) { throw 'Unapproved synthetic recovery command structure.' }
+    for ($i = 0; $i -lt $approvedRecoveryStatements.Count; $i++) {
+        if ($recoveryAst.EndBlock.Statements[$i].Extent.Text.Trim() -cne $approvedRecoveryStatements[$i]) { throw 'Synthetic recovery can only invoke the reviewed isolated harness with verified tools and archive its exact current-run report.' }
+    }
+    Assert-CiMapKeys $steps[3] @('name', 'if', 'uses', 'with') 'artifact step'
+    if ($steps[3].if -cne 'always()' -or $steps[3].uses -cne 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9') { throw 'Evidence upload must use the reviewed official full SHA and run after failed checks.' }
+    Assert-CiMapKeys $steps[3].with @('name', 'path', 'retention-days', 'if-no-files-found', 'include-hidden-files') 'artifact inputs'
     $approvedArtifactPaths = [string]::Join("`n", @(
         'docs/codex-v1/evidence/T17-*-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S08-launcher-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
@@ -268,11 +287,12 @@ function Assert-CiPolicy {
         'docs/codex-v1.0.1/evidence/S11-filesystem-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S12-cleanfirst-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
         'docs/codex-v1.0.1/evidence/S12-releasegates-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
+        'docs/codex-v1.0.1/evidence/PATCH104-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
     ))
-    if ($steps[2].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
-        $steps[2].with.path -cne $approvedArtifactPaths -or
-        $steps[2].with['retention-days'] -ne 14 -or $steps[2].with['if-no-files-found'] -cne 'warn' -or
-        $steps[2].with['include-hidden-files'] -isnot [bool] -or $steps[2].with['include-hidden-files']) { throw 'Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.' }
+    if ($steps[3].with.name -cne 'windows-ci-${{ matrix.edition }}-${{ github.run_id }}-${{ github.run_attempt }}' -or
+        $steps[3].with.path -cne $approvedArtifactPaths -or
+        $steps[3].with['retention-days'] -ne 14 -or $steps[3].with['if-no-files-found'] -cne 'warn' -or
+        $steps[3].with['include-hidden-files'] -isnot [bool] -or $steps[3].with['include-hidden-files']) { throw 'Artifact upload must contain only current-run JSON, bounded retention and no hidden files or overwrites.' }
     $lock = Assert-CiLock $ManifestText
     return [pscustomobject]@{
         status = 'pass'; workflow = $WorkflowFiles[0]; permissions = 'contents: read'
@@ -306,6 +326,10 @@ function Test-CiPolicyMutations {
         @{ name = 'hidden artifact upload refused'; needle = 'include-hidden-files: false'; replacement = 'include-hidden-files: true' }
         @{ name = 'broad active-plan artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S09-encoding-ci-'; replacement = 'docs/codex-v1.0.1/evidence/S09-*-' }
         @{ name = 'broad support artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/S10-support-'; replacement = 'docs/codex-v1.0.1/evidence/S10-*-' }
+        @{ name = 'unreviewed recovery harness refused'; needle = 'tests/Test-Patch104Recovery.ps1'; replacement = 'tests/Unreviewed.ps1' }
+        @{ name = 'inherited recovery tools refused'; needle = '-FfmpegPath $dependencies.ffmpeg_path'; replacement = '-FfmpegPath ffmpeg.exe' }
+        @{ name = 'ignored recovery failure refused'; needle = 'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'; replacement = 'if ($LASTEXITCODE -ne 0) { Write-Host ignored }' }
+        @{ name = 'broad recovery artifact upload refused'; needle = 'docs/codex-v1.0.1/evidence/PATCH104-synthetic-'; replacement = 'docs/codex-v1.0.1/evidence/PATCH104-*-' }
         @{ name = 'artifact overwrite capability refused'; needle = '          retention-days: 14'; replacement = "          overwrite: true`n          retention-days: 14" }
         @{ name = 'release command injection refused'; needle = "          `$ErrorActionPreference = 'Stop'"; replacement = "          gh release create v1.0.0`n          `$ErrorActionPreference = 'Stop'" }
         @{ name = 'duplicate YAML permission key refused'; needle = 'permissions:'; replacement = "permissions:`n  contents: write`npermissions:" }

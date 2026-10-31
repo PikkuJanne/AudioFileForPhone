@@ -175,7 +175,7 @@ function Test-Conversion([string]$Shell,[string]$Label,[string]$Source,[string]$
     Assert-Test ($dirs.Count -eq 1) 'One owned output run required.'
     $manifestPath=Join-Path $dirs[0].FullName 'AudioFileForPhone_manifest.json'
     $manifest=Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
-    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.3 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
+    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.4 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
     Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[RESULT\]').Count -eq 1) 'Exactly one final result required.'
     Assert-Test ($run.stdout -notmatch '\[DEBUG\]|(?m)^[-=]{12,}|Script path\s*:|Raw input\s*:|ffmpeg encoding arguments|ffmpeg\.exe.+-') 'Normal console contains debug, command or banner clutter.'
     Assert-Test ($run.stdout -match 'Input:' -and $run.stdout -match '\[INFO\] Output root' -and $run.stdout -match 'Log file\s*:' -and $run.stdout -match 'converted=4; failed=0') 'Input/destination/count/log console context missing.'
