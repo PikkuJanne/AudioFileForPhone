@@ -1,9 +1,22 @@
-# v1.0.4 source-probe repair in progress
+# Next session — v1.0.4 complete; no automatic next step
 
-Owner-authorized one-chat implementation, automated Windows verification, ordinary
-reviewed PR/CI integration and public v1.0.4 release. No owner tests or approvals
-are pending. Evidence will be recorded in evidence/PATCH104.json. Earlier release
-records below are historical; their tags and public bytes remain frozen.
+Public normal [v1.0.4](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4)
+is independently downloaded and verified. Frozen source/tag:
+`6b302b5813ccdfc9563de5bfbfde641e780e1e9f` / `v1.0.4`.
+ZIP SHA256: `19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a`.
+
+Original-file four-case acceptance and public four-case smoke passed. Synthetic
+recovery: 8 cases, package: 12 groups/20 outputs and builder policy: 11 cases passed. Each local shell has
+19 actual passing source families/960 checks plus 3 observations, with the local
+managed-network gap and original PS7 timing nonpasses disclosed. Push/PR/main CI
+passed both shells: 20 families/963 checks plus 3 observations and 8 recovery cases.
+The recording, private handoff and raw reports remain outside Git and assets.
+See [PATCH104-HANDOVER.md](PATCH104-HANDOVER.md) and
+[evidence/PATCH104.json](evidence/PATCH104.json).
+
+Owner testing required: none. No automatic new version or numbered step remains.
+Preserve frozen bytes and existing controls. Future maintenance needs a new owner
+request. Earlier release records below remain historical evidence.
 
 # Next session — repair complete; no automatic next step
 
@@ -162,7 +175,7 @@ Use this next prompt:
     change requires new exact artifacts and affected automated verification.
     Canonical assets: C:\projects\AFP-R2-20261030\candidate-verified; ZIP SHA256
     cd356ff92bac6c1d05a3a29761abc01f03026df510004269e0c88ffaf7e42426.
-    Build11/11 per shell and exact relocated package12groups/20real conversions,
+    Build11/11 per shell and exact relocated package: 12groups/20real conversions,
     full decode/metadata/layout/integrity/console/icon checks already pass. Keep
     unchanged ZIP/source evidence; raw reports are privately retained under
     C:\projects\AFP-R2-20261030. Do not request an owner run, diagnostics, kit,

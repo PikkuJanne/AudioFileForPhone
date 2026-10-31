@@ -1,9 +1,22 @@
-# v1.0.4 source-probe repair in progress
+# Status — v1.0.4 published and independently verified
 
-Owner-authorized one-chat implementation, automated Windows verification, ordinary
-reviewed PR/CI integration and public v1.0.4 release. No owner tests or approvals
-are pending. Evidence will be recorded in evidence/PATCH104.json. Earlier release
-records below are historical; their tags and public bytes remain frozen.
+Public normal [v1.0.4](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4)
+is independently downloaded and verified. Frozen source/tag:
+`6b302b5813ccdfc9563de5bfbfde641e780e1e9f` / `v1.0.4`.
+ZIP SHA256: `19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a`.
+
+Original-file four-case acceptance and public four-case smoke passed. Synthetic
+recovery: 8 cases, package: 12 groups/20 outputs and builder policy: 11 cases passed. Each local shell has
+19 actual passing source families/960 checks plus 3 observations, with the local
+managed-network gap and original PS7 timing nonpasses disclosed. Push/PR/main CI
+passed both shells: 20 families/963 checks plus 3 observations and 8 recovery cases.
+The recording, private handoff and raw reports remain outside Git and assets.
+See [PATCH104-HANDOVER.md](PATCH104-HANDOVER.md) and
+[evidence/PATCH104.json](evidence/PATCH104.json).
+
+Owner testing required: none. No automatic new version or numbered step remains.
+Preserve frozen bytes and existing controls. Future maintenance needs a new owner
+request. Earlier release records below remain historical evidence.
 
 # Status — v1.0.3 published and independently verified
 
@@ -65,7 +78,7 @@ Final manifest 5e0ffdc894ca450cfe357e2f6fb8012ffedaba0095be9ae29aaf265a56647e06;
 The report attachment changes only external manifest/sums; ZIP bytes stay exact.
 
 Available Windows11 Pro26H2 26300.9711 x64 checks pass: ps51:20families/951checks+3observations, ps7:20families/951checks+3observations;
-build11 per shell; relocated user package12groups/20 outputs/5native cases;
+build11 per shell; relocated user package: 12groups/20 outputs/5native cases;
 exact audio64 outputs across PS5.1/PS7, including31M4A batch and30-minute/seek
 checks per host; controlled native BAT8cases/2outputs, real default Music
 in an owned child profile, saved tools outside empty PATH, success0/partial2/

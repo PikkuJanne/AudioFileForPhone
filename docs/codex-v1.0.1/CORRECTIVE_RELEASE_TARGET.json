@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "PikkuJanne/AudioFileForPhone",
   "step": "PATCH104",
-  "status": "IN_PROGRESS",
+  "status": "PUBLISHED_VERIFIED",
   "version_authority": {
     "recorded_date": "2026-10-31",
     "scope": "Bounded tested source-probe crash patch through ordinary reviewed PR/CI, public release and independent download smoke.",
@@ -216,5 +216,169 @@
       ],
       "public_smoke": "Actual downloaded bytes: MP3/64kbps/artwork/Unicode Artist/Album=2027 Term 1 Week 8, full decode, source hashes and process release passed."
     }
+  },
+  "source_frozen": true,
+  "publication_authorization": {
+    "owner_authorized": true,
+    "basis": "Current owner request incorporates private v1.0.4 WORK_ORDER.md",
+    "scope": "Bounded tested patch through ordinary reviewed PR/CI, normal public release and independent public-download verification in one chat",
+    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "target_tag": "v1.0.4",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.4.zip",
+        "bytes": 295157,
+        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 9815,
+        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+      }
+    ],
+    "record": "evidence/PATCH104.json"
+  },
+  "candidate_source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+  "candidate_assets": [
+    {
+      "name": "AudioFileForPhone-v1.0.4.zip",
+      "bytes": 295157,
+      "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+    },
+    {
+      "name": "release-manifest.json",
+      "bytes": 9815,
+      "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "bytes": 183,
+      "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+    }
+  ],
+  "published_release": {
+    "id": 429916406,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.4",
+    "published_at": "2026-10-31T12:22:21Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "6b302b5813ccdfc9563de5bfbfde641e780e1e9f",
+    "tag": "v1.0.4",
+    "tag_object": "3b87eacb8409ef5c002049a70106a8bf125aac21",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.4.zip",
+        "bytes": 295157,
+        "sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/AudioFileForPhone-v1.0.4.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 9815,
+        "sha256": "aa94c55ae20ca9b27ad730bc3bb8eecd0f816ce87835c8f6c02c3d1976b10195",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "a7e15260e0e0f95f7caaf5d39e8aea3ca99d53fc3e4b4c84b28505de9355f8fa",
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.4/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "public_smoke": {
+      "cases": [
+        {
+          "crashes": 0,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2,
+          "exit": 0,
+          "cover": true,
+          "mode": "normal",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 0,
+          "channels": 2,
+          "shell": "powershell.exe"
+        },
+        {
+          "crashes": 1,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2,
+          "exit": 0,
+          "cover": true,
+          "mode": "crash",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 1,
+          "channels": 2,
+          "shell": "powershell.exe"
+        },
+        {
+          "crashes": 0,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2.0,
+          "exit": 0,
+          "cover": true,
+          "mode": "normal",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 0,
+          "channels": 2,
+          "shell": "pwsh.exe"
+        },
+        {
+          "crashes": 1,
+          "bitrate": 64000,
+          "tags": true,
+          "duration": 2.0,
+          "exit": 0,
+          "cover": true,
+          "mode": "crash",
+          "converted": 1,
+          "failed": 0,
+          "source_unchanged": true,
+          "sample_rate": 44100,
+          "process_release": true,
+          "full_decode": true,
+          "recovery_attempts": 1,
+          "channels": 2,
+          "shell": "pwsh.exe"
+        }
+      ],
+      "status": "pass",
+      "synthetic_only": true,
+      "receipt_sha256": "d3989eec54c2cadc67963d38b01a6f6f23b1de09f2609121f24998ff68075af7",
+      "runtime_zip_sha256": "19fa8c1406aadd5b7478c348b486b9ffee070c2295f6c4083c56e25dd22c959a"
+    },
+    "frozen_bytes": true
   }
 }

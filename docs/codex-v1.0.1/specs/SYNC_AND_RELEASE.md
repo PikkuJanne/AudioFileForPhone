@@ -1,6 +1,11 @@
 # Checkpoint, handover and release protocol
 
-## Active v1.0.4 patch authority — 2026-10-31
+This patch is published and independently verified; see PATCH104-HANDOVER.md and
+evidence/PATCH104.json in docs/codex-v1.0.1. Its one-chat authority is exhausted.
+No automatic next version, owner test or new publication follows. Older records
+remain historical.
+
+## Completed v1.0.4 patch authority — 2026-10-31
 
 The current owner request authorizes this bounded tested source-probe crash patch
 through ordinary reviewed PR/CI merge, exact-package Windows verification, public
