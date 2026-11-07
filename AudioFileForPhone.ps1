@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-Converts a folder of MP3, M4A and OGG audio to smaller MP3 files.
+Converts a folder of MP3, M4A, M4B and OGG audio to smaller MP3 files.
 
 .DESCRIPTION
 Recursively snapshots supported files, preserves relative folders and writes a
@@ -10,8 +10,9 @@ preserved. Names keep a valid leading date or use LastWriteTime, then a sanitize
 NFC title with a bounded, collision-safe suffix. Folder names are preserved.
 
 Conversion changes bitrate, names and supported metadata. It performs no loudness
-normalization, noise reduction or EQ. .opus, .wav, .flac and .m4b are not scanned.
-OGG supports Vorbis and Opus in .ogg files. FFmpeg and ffprobe are external tools,
+normalization, noise reduction or EQ. .opus, .wav and .flac are not scanned.
+OGG supports Vorbis and Opus in .ogg files. Each unencrypted M4B that the selected
+tools can decode becomes one complete MP3. FFmpeg and ffprobe are external tools,
 selected by FfmpegDirectory, saved config, a pair beside the script, then PATH.
 Conversion requires libmp3lame. Interactive launches offer deliberate setup repair
 when tool selection fails; other launches stop with an exact setup command.
@@ -283,6 +284,7 @@ try {
     $helperPath = Join-Path $ScriptDir 'AudioFileForPhone.Helpers.ps1'
     if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) { throw ('Required runtime file is missing: AudioFileForPhone.Helpers.ps1. Restore the complete application package.') }
     . $helperPath
+    $supportedExtensions = @(Get-AudioSupportedExtensions)
     Write-AudioConsole -Text ('[ AUDIOFILEFORPHONE :: {0} ] -- AUDIO CONSOLE' -f (Get-AudioAppVersion)) -Tone Identity
     $diagnosticStage = 'Parameters'; $diagnosticCode = 'StartupFailed'
     Assert-AudioParameters -BitrateKbps $BitrateKbps -MaxBaseLength $MaxBaseLength
@@ -303,7 +305,10 @@ try {
     $scanExcluded = @($snapshot.Skipped).Count
     $unsupported = $snapshot.UnsupportedCount
     Write-AudioConsole -Label 'INPUT' -Text ('Input: {0}    {1} files' -f $InputFolder, $total) -Tone Identity
-    if ($files.Count -eq 0) { throw "No MP3/M4A/OGG files found under: $InputFolder" }
+    if ($files.Count -eq 0) {
+        $formatNames = (($supportedExtensions -join '/') -replace '\.', '').ToUpperInvariant()
+        throw "No $formatNames files found under: $InputFolder"
+    }
     $plans = @(Get-AudioBatchNamePlan -Files $files -InputFolder $InputFolder -OutputRoot $outputRoot -MaxBaseLength $MaxBaseLength)
     if (-not $DryRun) {
         $diagnosticStage = 'ToolSelection'; $diagnosticCode = 'DependencyInvalid'
@@ -353,7 +358,7 @@ if ($DryRun) {
     Write-Host '[PREVIEW] Destination writability: unverified (no write probe).'
     Write-Host '[PREVIEW] Tools, media and cover validation: unverified.'
     if ($Interactive) { Write-Host '[PREVIEW] -Interactive is ignored; no metadata prompts are shown.' }
-    Write-Host ('[PREVIEW] Scan exclusions: {0}; unsupported files: {1} (all extensions except .mp3, .m4a and .ogg).' -f $scanExcluded, $unsupported)
+    Write-Host ('[PREVIEW] Scan exclusions: {0}; unsupported files: {1} (supported extensions: {2}).' -f $scanExcluded, $unsupported, ($supportedExtensions -join ', '))
     Write-Host '[PREVIEW] Naming, date prefixes and collision suffixes use the same planner as conversion.'
     foreach ($plan in $plans) {
         Write-Host ('[PREVIEW] {0} -> {1}' -f $plan.SourceRelativePath, $plan.OutputRelativePath)
@@ -602,7 +607,7 @@ catch {
 }
 
 Write-Log "Using completed input snapshot from: $InputFolder"
-Write-Log ("Found {0} audio file(s) (.mp3/.m4a/.ogg)." -f $files.Count)
+Write-Log ("Found {0} audio file(s) ({1})." -f $files.Count, ($supportedExtensions -join '/'))
 
 # --- Main conversion + sanitize loop ---
 $index  = 0
@@ -667,7 +672,7 @@ foreach ($plan in $plans) {
     $sourceProbeMedia = $media
     if ($media.Status -eq 'Cancelled') { Assert-AudioNotCancelled }
     if ($media.Status -eq 'Timeout') { $fileStatus = 'Timeout' }
-    if ($media.Status -ne 'Success' -and [IO.Path]::GetExtension($file.FullName) -ieq '.m4a' -and
+    if ($media.Status -ne 'Success' -and (Test-AudioStreamCopyRecoveryExtension -Path $file.FullName) -and
         (Test-AudioSourceProbeCrash -NativeResult $media.NativeResult)) {
         Write-Log '[STATE] Source ffprobe crashed; attempting one private stream-copy recovery. Original unchanged.' 'WARN'
         $recovery = Invoke-AudioSourceRecovery -SourcePath $file.FullName -OutputRoot $outputRoot -FailedMedia $media `

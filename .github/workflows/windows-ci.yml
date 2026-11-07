@@ -63,6 +63,8 @@ jobs:
           $archiveReport = Join-Path $env:GITHUB_WORKSPACE 'docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'
           if (Test-Path -LiteralPath $archiveReport) { throw 'Synthetic evidence already exists.' }
           Copy-Item -LiteralPath $report -Destination $archiveReport
+          & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-M4B.ps1') -Mode Quick -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Upload check evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

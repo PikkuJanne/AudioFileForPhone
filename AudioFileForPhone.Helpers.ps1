@@ -2,7 +2,11 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.5'
+    return '1.0.6'
+}
+
+function Get-AudioSupportedExtensions {
+    return '.mp3', '.m4a', '.m4b', '.ogg'
 }
 
 function Assert-AudioParameters {
@@ -1585,6 +1589,13 @@ namespace AudioFileForPhone {
     return [pscustomobject]$result
 }
 
+function Test-AudioStreamCopyRecoveryExtension {
+    param([string]$Path)
+    $extension = [IO.Path]::GetExtension($Path)
+    return [StringComparer]::OrdinalIgnoreCase.Equals($extension, '.m4a') -or
+        [StringComparer]::OrdinalIgnoreCase.Equals($extension, '.m4b')
+}
+
 function Get-AudioMediaInfo {
     param([string]$Path, [string]$FfprobePath,
           [AllowNull()][object]$Cancellation = (Get-AudioCancellationContext),
@@ -1611,9 +1622,9 @@ function Get-AudioMediaInfo {
             '-v', 'error', '-select_streams', 'a:0', '-show_entries',
             'stream=index,codec_type,codec_name,sample_rate,channels,channel_layout,duration:stream_tags=title:format=duration:format_tags=title', '-of', 'json', '-i', $localPath
         ); Cancellation = $Cancellation; Operation = 'Source media probe'; TimeoutMilliseconds = ($ProbeTimeoutSeconds * 1000) }
-        # M4A already has one bounded stream-copy source-probe recovery in the
-        # app. Do not compound that route with another attempt on the original.
-        if ([IO.Path]::GetExtension($localPath) -ieq '.m4a') { $native = Invoke-AudioNativeProcess @probeParameters }
+        # M4A and M4B use one bounded stream-copy recovery in the app.
+        # Do not compound that route with another probe of the original.
+        if (Test-AudioStreamCopyRecoveryExtension -Path $localPath) { $native = Invoke-AudioNativeProcess @probeParameters }
         else { $native = Invoke-AudioNativeReadOperation -Parameters $probeParameters }
         $result.NativeResult = $native
         if ($native.Status -ne 'Completed') {
@@ -1667,7 +1678,7 @@ function Get-AudioMediaInfo {
             throw 'The selected stream must be audio with a nonnegative integer index.'
         }
         # Preserve the format-specific metadata map: Ogg comments belong to
-        # the selected a:0 stream; MP3/M4A use container tags without merging
+        # the selected a:0 stream; MP3/M4A/M4B use container tags without merging
         # conflicting stream tags into them.
         $tags = $null
         if ($result.MetadataSource -eq '0:s:a:0') {
@@ -1778,9 +1789,9 @@ function Invoke-AudioSourceRecovery {
     }
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
-        if ([IO.Path]::GetExtension($SourcePath) -ine '.m4a' -or
+        if (-not (Test-AudioStreamCopyRecoveryExtension -Path $SourcePath) -or
             -not (Test-AudioSourceProbeCrash -NativeResult $FailedMedia.NativeResult)) {
-            throw 'Recovery requires an M4A source and a proved native source-probe crash.'
+            throw 'Recovery requires an M4A or M4B source and a proved native source-probe crash.'
         }
         $SourcePath = Get-AudioPath -Path $SourcePath
         $OutputRoot = Get-AudioPath -Path $OutputRoot
@@ -2010,7 +2021,8 @@ function New-AudioEncodeArguments {
     if ($hasCover) { $arguments += @('-i', $CoverPath) }
     # Output options follow every input for both paths. No input -ar/-ac, and
     # no implicit stream choice when an attached picture or other audio exists.
-    $arguments += @('-map', ('0:{0}' -f $Media.StreamIndex), '-c:a', 'libmp3lame',
+    # The first input supplies chapters, including when it is the recovery copy.
+    $arguments += @('-map', ('0:{0}' -f $Media.StreamIndex), '-map_chapters', '0', '-c:a', 'libmp3lame',
         '-b:a', ('{0}k' -f $OutputPlan.BitrateKbps), '-ar', [string]$OutputPlan.OutputSampleRate,
         '-ac', [string]$OutputPlan.OutputChannels)
     if ($hasCover) {
@@ -2812,7 +2824,7 @@ function New-AudioRunManifest {
         }
         policies = [ordered]@{
             bitrate_kbps = $BitrateKbps; max_base_length = $MaxBaseLength
-            supported_extensions = @('.mp3', '.m4a', '.ogg'); recursive_relative_layout = $true
+            supported_extensions = @(Get-AudioSupportedExtensions); recursive_relative_layout = $true
             source_duration_policy = 'finite positive selected audio duration required'
             output_duration_tolerance_seconds = 0.35; full_output_decode_required = $true
             audio_plan_policy = 'preserve compatible source rate and mono/stereo; otherwise nearest encoder-supported MPEG CBR rate (ties lower); known standard multichannel layouts explicitly downmix to stereo; other layouts reject before encoding'
@@ -3065,6 +3077,8 @@ function Get-AudioInputSnapshot {
     $pending = New-Object 'System.Collections.Generic.Stack[string]'
     $found = New-Object 'System.Collections.Generic.Dictionary[string,object]' ([StringComparer]::Ordinal)
     $skipped = New-Object 'System.Collections.Generic.List[object]'
+    $supportedExtensions = [Collections.Generic.HashSet[string]]::new(
+        [string[]](Get-AudioSupportedExtensions), [StringComparer]::OrdinalIgnoreCase)
     $unsupported = 0
     $pending.Push($inputPath)
     while ($pending.Count -gt 0) {
@@ -3090,7 +3104,7 @@ function Get-AudioInputSnapshot {
                     if ($reason) { $skipped.Add([pscustomobject]@{ Path = $path; Reason = $reason }) }
                     else { $pending.Push($path) }
                 }
-                elseif (@('.mp3', '.m4a', '.ogg') -contains $item.Extension.ToLowerInvariant()) {
+                elseif ($supportedExtensions.Contains($item.Extension)) {
                     $found.Add($path, $item)
                 }
                 else { $unsupported++ }

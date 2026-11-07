@@ -1,17 +1,20 @@
 # Support and troubleshooting
 
-v1.0.5 makes one fresh-process recovery attempt after a recognized native media
+The application makes one fresh-process recovery attempt after a recognized native media
 worker crash and confirmed process/handle release. An encoder retry uses a new
 owned temporary file; a validator retry reads the same completed output without
 re-encoding it. A repeated crash is reported as an item failure. Ordinary media
 errors and validation mismatches are not retried, and unvalidated files are never
 published. The app keeps the selected FFmpeg installation and never downloads or
-replaces tools during conversion. The native crash's underlying cause is unproven.
+replaces tools during conversion. M4A and M4B use the existing stream-copy
+recovery after a confirmed source-probe crash. The native crash's underlying
+cause is unproven.
 
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
 PowerShell 5.1 and PowerShell 7. The published
-[v1.0.5 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip)
-includes the batch-worker, direct-launch and clean-package repairs. Earlier release
+[v1.0.6 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip)
+adds unencrypted M4B input support and retains the batch-worker, direct-launch
+and clean-package repairs. Earlier release
 tags and bytes are preserved. Windows 10 and genuine Explorer conversion remain
 unverified owner-accepted release exceptions (`OWNER_WAIVED`, `NOT_RUN`), not test
 passes. Actual coverage and gaps are in the
@@ -23,8 +26,8 @@ Read [README.md](README.md) for setup, options and output behavior.
 
 ## Tested boundaries
 
-Recorded checks use short synthetic media and isolated destinations, including
-MP3/M4A and OGG Vorbis/Opus, naming/path boundaries, metadata/covers, full decode,
+Recorded checks use synthetic media and isolated destinations, including
+MP3, M4A, M4B and OGG Vorbis/Opus, naming/path boundaries, metadata/covers, full decode,
 failure results, cancellation components and local record persistence.
 
 | Environment or workflow | Evidence boundary |
@@ -189,7 +192,7 @@ trusted offline build; do not disable verification to accept changed bytes.
 | Script cannot run or window closes | The repaired BAT keeps its own status and pause in CMD, including script-load errors. Read the error above the pause and follow the policy guidance above. Keep required helpers beside the converter. Forced window closure cannot retain the display. |
 | FFmpeg/ffprobe missing or capability check fails | Run `Setup-AudioFileForPhone.ps1` and select a trusted pair, or use the explicit existing-tool command above. Selection order remains explicit, saved config, complete app-local pair, then PATH. Check the printed origin, versions/paths and `libmp3lame` error. |
 | Saved tool folder is stale, config is corrupt/newer, or saving fails | Follow existing-tool/offline recovery above. `-FfmpegDirectory` works for the current run without changing config. The app preserves a bad/unsupported file and never silently falls back; failed persistence means not remembered. |
-| Invalid/unreadable input or no supported files | Select an existing folder below the drive/share root, not a file, shortcut or generated output. Only MP3/M4A/OGG extensions are scanned. |
+| Invalid/unreadable input or no supported files | Select an existing folder below the drive/share root that contains MP3, M4A, M4B or OGG files. |
 | Permission, junction or scan error | Choose accessible ordinary filesystem paths. Selected paths with reparse-point ancestors are rejected; descendant reparse points are excluded. An inaccessible subtree stops the scan. Preview does not test destination writability. |
 | Long/incompatible preserved path | Use a shallower input selection or shorter OutputParent. Folder names are kept; MaxBaseLength cannot shorten folders. File/working paths must be under 260 UTF-16 units and created directories under 248. |
 | Cover rejected or outputs grow unexpectedly | Use a readable JPEG/PNG. Invalid explicit covers stop preflight. Cover dimensions are preserved and artwork is embedded in every output; prepare a smaller image yourself if needed. Source artwork is otherwise dropped. |
@@ -197,7 +200,7 @@ trusted offline build; do not disable verification to accept changed bytes.
 | Some files fail | Inspect each Failed manifest row and bounded native error in the log. Unsupported source media, nonpositive/unknown duration or a rate incompatible with the source can fail. Other valid files continue; exit 2 reports batch failures. |
 | Progress reaches 100 percent but files failed | Batch progress means processed, including failed files. Encoding progress precedes validation/publication. Use the final counts and exit code. |
 | Required log/manifest write fails | The run stops with exit 1 while preserving actual published outputs/counts; cancellation stays 130. The last durable manifest may be incomplete. Keep the console result and reported root cause. |
-| Files, tags, cover or chapters behave differently on a phone | Recorded phone acceptance is limited to the historical S24/AIMP configuration above. Chapter navigation/resume and every source-specific tag are not guaranteed; M4B is unsupported. No new phone test is required for this repair. |
+| Files, tags, cover or chapters behave differently on a phone | Recorded phone acceptance is limited to the historical S24/AIMP configuration above. Chapter navigation and resume depend on the player, and some source tags have no MP3 equivalent. |
 
 For a direct interactive launch of the trusted app, choose the installed shell:
 

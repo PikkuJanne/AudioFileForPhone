@@ -61,6 +61,12 @@ function Get-AcceptanceSourceInventory {
     if (-not (Get-Item -LiteralPath $rootPath -Force).PSIsContainer) { throw 'Select a source folder.' }
     $pending = New-Object 'Collections.Generic.Stack[string]'
     $result = New-Object 'Collections.Generic.List[object]'
+    $supportedExtensions = @('.mp3', '.m4a', '.m4b', '.ogg')
+    if (Get-Command Get-AudioSupportedExtensions -CommandType Function -ErrorAction SilentlyContinue) {
+        $supportedExtensions = @(Get-AudioSupportedExtensions)
+    }
+    $supportedExtensions = [Collections.Generic.HashSet[string]]::new(
+        [string[]]$supportedExtensions, [StringComparer]::OrdinalIgnoreCase)
     $productionSnapshot = $null
     if (Get-Command Get-AudioInputSnapshot -CommandType Function -ErrorAction SilentlyContinue) {
         # Windows PS5.1 can return no object and no ItemNotFound exception for an
@@ -92,7 +98,7 @@ function Get-AcceptanceSourceInventory {
                 if ($null -ne $productionSnapshot -and (Get-AudioGeneratedRootReason $item.FullName)) { continue }
                 $pending.Push($item.FullName); continue
             }
-            $supported = @('.mp3', '.m4a', '.ogg') -contains $item.Extension.ToLowerInvariant()
+            $supported = $supportedExtensions.Contains($item.Extension)
             if (-not $supported -and -not $IncludeUnsupported) { continue }
             if ($result.Count -ge 100000) { throw 'The selected source inventory exceeds the bounded acceptance limit.' }
             $result.Add([pscustomobject]@{

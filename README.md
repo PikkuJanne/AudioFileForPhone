@@ -9,12 +9,12 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-**[Download AudioFileForPhone v1.0.5 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.5/AudioFileForPhone-v1.0.5.zip)**
+**[Download AudioFileForPhone v1.0.6 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip)**
 
-[Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.5)
-identify the exact application ZIP and automated verification. v1.0.5 adds bounded
-recovery for native media worker crashes while keeping the selected tools and
-strict output validation. The native crash's underlying cause remains unproven.
+[Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6)
+identify the exact application ZIP and automated verification. v1.0.6 converts
+unencrypted M4B audiobooks to one complete MP3 per book alongside the existing
+formats. It retains bounded native worker recovery and strict output validation.
 Windows 10 and genuine Explorer conversion remain unverified historical coverage
 exceptions, without being treated as test passes.
 See [CHANGELOG.md](CHANGELOG.md), the [tested boundaries](SUPPORT.md#tested-boundaries)
@@ -23,7 +23,7 @@ and [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main
 ## Setup
 
 The application provides direct visible launch and a small user package. Published
-v1.0.0 through v1.0.4 tags and bytes are preserved. Each release retains its
+v1.0.0 through v1.0.5 tags and bytes are preserved. Each release retains its
 tested source snapshot; later repository documentation does not replace it.
 Owner testing required: none.
 
@@ -319,8 +319,9 @@ no short fixed runtime ceiling. Pipe completion after child exit is bounded
 separately at five seconds, with bounded teardown. An unproved release retains
 the clearly incomplete working file and reports why.
 
-Inputs are `.mp3`, `.m4a` and `.ogg`, case-insensitively. OGG supports Vorbis and
-Opus audio. **`.opus`, `.wav`, `.flac` and `.m4b` are not scanned.** An unsupported
+Inputs are `.mp3`, `.m4a`, `.m4b` and `.ogg`, case-insensitively. OGG supports
+Vorbis and Opus audio. M4B support covers unencrypted books the selected FFmpeg
+pair can decode. **`.opus`, `.wav` and `.flac` are not scanned.** An unsupported
 extension is reported separately from a conversion failure.
 
 Preview prints a `[PLAN]` JSON line per supported source, exclusions and naming
@@ -358,17 +359,16 @@ an unreadable subtree aborts scanning. An input inside a recognized generated ru
 is rejected. Excluded subtrees are not enumerated or counted as conversions.
 
 The selected first audio stream is encoded with `libmp3lame` and ID3v2.3.
-MP3/M4A container tags and OGG first-audio-stream comments supply metadata. An
+MP3, M4A and M4B container tags and OGG first-audio-stream comments supply metadata. An
 existing nonempty title is retained; a missing/empty title falls back to the
 complete planned basename, including date and collision suffix. Source-specific
 tags may have no MP3 equivalent.
 
 **Source artwork is dropped by default.** An explicit JPEG/PNG replaces it for
 every output. Invalid explicit covers stop preflight; large covers warn, retain
-their dimensions and increase every output's size. Chapters follow FFmpeg's
-default mapping from the first input containing chapters. Conversion does not
-split files, and copied chapter fields do not establish phone navigation or
-resume behavior. Test your own player.
+their dimensions and increase every output's size. Each audiobook produces one
+complete MP3. FFmpeg copies chapter names and times from the audio source where
+its MP3 muxer supports them. Chapter navigation and resume depend on the player.
 
 Recorded phone acceptance is limited to Samsung S24, One UI 8.5, AIMP
 v4.31.1747 and USB transfer of the three T21 test files. The owner reports long
