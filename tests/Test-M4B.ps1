@@ -307,11 +307,13 @@ title=Loppu – yö
         $record = $data.records[0]
         $probe = Confirm-M4BOutput $data $record 7203 1
         $output = Join-Path $data.run.output_root $record.output_relative_path
-        $offsets = @('1', '3600', '7199')
+        # Start each seek half a second early so MP3 bit-reservoir warm-up
+        # does not dilute the one-second frequency measurement.
+        $offsets = @('0.5', '3599.5', '7198.5')
+        $sampleFilter = 'atrim=start=0.5:duration=1,asetpts=PTS-STARTPTS,astats=measure_perchannel=Zero_crossings_rate:measure_overall=none'
         for ($i = 0; $i -lt $offsets.Count; $i++) {
             $segment = Invoke-M4BNative $FfmpegPath @('-nostdin', '-hide_banner', '-v', 'info', '-xerror', '-ss', $offsets[$i],
-                '-i', $output, '-map', '0:a:0', '-t', '1',
-                '-af', 'astats=measure_perchannel=Zero_crossings_rate:measure_overall=none', '-f', 'null', '-')
+                '-i', $output, '-map', '0:a:0', '-t', '1', '-af', $sampleFilter, '-f', 'null', '-')
             $crossing = [regex]::Match($segment.Stderr, 'Zero crossings rate: ([\d.]+)')
             Assert-M4B $crossing.Success "No decoded frequency signature at $($offsets[$i]) seconds."
             $frequency = (Get-M4BSeconds $crossing.Groups[1].Value) * [int]$probe.streams[0].sample_rate / 2
