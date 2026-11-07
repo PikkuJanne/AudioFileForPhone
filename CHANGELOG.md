@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.6 — 2026-11-07
+
+- Discover unencrypted M4B audiobooks recursively and convert each to one
+  complete MP3, with 64 kbps CBR as the default.
+- Use the first audio stream and container tags, retain chapter fields where
+  the FFmpeg MP3 muxer supports them, and honor existing metadata and cover options.
+- Extend bounded source-probe recovery to M4B and retain the existing encoder
+  and validator retries.
+
 ## 1.0.5 — 2026-10-31
 
 - Retry a confirmed, fully exited native worker crash once for the failed media

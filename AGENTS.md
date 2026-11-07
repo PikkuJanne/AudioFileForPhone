@@ -1,5 +1,14 @@
 # AudioFileForPhone agent instructions
 
+## Owner-directed v1.0.6 M4B work order — 2026-11-07
+
+The owner authorized adding unencrypted M4B input through automated verification,
+ordinary reviewed CI integration, normal public release, independent download
+and smoke, and closure in one task. This supersedes older input exclusions,
+numbered stops and separate publication approvals for this change only.
+Keep existing batch-crash safeguards, tags, public bytes and controls. No owner
+testing is required. Keep the private work order and raw reports outside Git.
+
 ## Completed owner-directed v1.0.5 batch repair — 2026-10-31
 
 The incorporated batch work order completed ordinary reviewed PR40/CI integration,
@@ -38,7 +47,7 @@ requires a new owner request; preserve existing access controls, history and ass
 ## Work boundaries
 
 Improve the existing PowerShell/FFmpeg tool incrementally. Keep the script and
-BAT entry points, 64 kbps CBR MP3 default, supported MP3/M4A/OGG inputs, Music-folder
+BAT entry points, 64 kbps CBR MP3 default, supported MP3/M4A/M4B/OGG inputs, Music-folder
 destination, recursive relative layout, date-first names and metadata behavior.
 Do not add a hosted service, website, new UI framework, telemetry, account system,
 silent or automatic downloader/updater, production Python dependency or unrelated refactor.

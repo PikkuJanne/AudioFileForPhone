@@ -5,8 +5,9 @@ Verify the extracted user distribution without ordinary Music or personal media.
 Creates short synthetic fixtures in a new marker-owned evidence directory. Runs
 the real app/ PS1 entry points in Windows PowerShell 5.1 and PowerShell 7, probes
 and fully decodes outputs, and checks setup/config behavior. The existing native
-console controller observes the relocated production BAT's pause, supplies its
-key and verifies exits. An inert copy tests literal transport, not conversion.
+console controller starts a real mixed-format batch through the relocated BAT
+in an owned Music folder and verifies the final pause and exit. An inert copy
+tests literal transport separately.
 Raw captures stay beside EvidencePath, outside the repository. No downloads or
 persistent host changes. The final report binds ZIP bytes, not the outer manifest,
 so the builder can subsequently attach this report without a circular hash.
@@ -75,7 +76,7 @@ $rawRoot = Join-Path $runRoot 'raw'
 $inputRoot = Join-Path $runRoot ('input [synthetic] ' + [char]0x00f6)
 foreach ($path in @($packageRoot,$rawRoot,$inputRoot,(Join-Path $inputRoot 'nested'))) { [IO.Directory]::CreateDirectory($path) | Out-Null }
 [IO.File]::WriteAllText((Join-Path $runRoot 'ownership.json'), ('{"kind":"AudioFileForPhone.UserPackageTests","token":"' + [guid]::NewGuid().ToString('N') + '"}'))
-$report = [ordered]@{schema_version=1;kind='user_package_verification';package_revision=3;app_version='1.0.5';artifact_kind='corrective_release_candidate';status='RUNNING';started_utc=[DateTime]::UtcNow.ToString('o');runtime_zip_sha256=$null;original_runtime_zip_sha256=Get-TestHash $CoreRuntimeZipPath;test_script_sha256=Get-TestHash $PSCommandPath;cases=@();shell_results=@();processes=@();native_cases=@();ordinary_music_access=$false;physical_observation=$false;windows10_observation=$false;phone_observation=$false;publication_performed=$false;internet_marks='Deterministic Zone.Identifier ADS on disposable copies; not browser extraction.';successful_bat_encoding=$false;raw_evidence_root=$runRoot}
+$report = [ordered]@{schema_version=1;kind='user_package_verification';package_revision=3;app_version='1.0.6';artifact_kind='corrective_release_candidate';status='RUNNING';started_utc=[DateTime]::UtcNow.ToString('o');runtime_zip_sha256=$null;original_runtime_zip_sha256=Get-TestHash $CoreRuntimeZipPath;test_script_sha256=Get-TestHash $PSCommandPath;cases=@();shell_results=@();processes=@();native_cases=@();ordinary_music_access=$false;physical_observation=$false;windows10_observation=$false;phone_observation=$false;publication_performed=$false;internet_marks='Deterministic Zone.Identifier ADS on disposable copies; not browser extraction.';successful_bat_encoding=$false;raw_evidence_root=$runRoot}
 $policiesBefore=@(Get-ExecutionPolicy -List | ForEach-Object { [pscustomobject]@{scope=[string]$_.Scope;policy=[string]$_.ExecutionPolicy} })
 
 function Invoke-TestProcess {
@@ -134,7 +135,7 @@ function Set-TestInternetMark([string]$Path) {
     Assert-Test ((Get-Content -LiteralPath $Path -Stream Zone.Identifier -Raw).Contains('ZoneId=3')) 'Disposable Internet mark missing.'
 }
 function Invoke-TestNativeBat {
-    param([string]$Label,[string]$Bat,[string[]]$Folders=@(),[int]$ExpectedExit=1,[string]$ExpectedText,[hashtable]$Environment=@{})
+    param([string]$Label,[string]$Bat,[string[]]$Folders=@(),[int]$ExpectedExit=1,[string]$ExpectedText,[hashtable]$Environment=@{},[switch]$StartConversion)
     $nativePath=Join-Path $rawRoot ($Label+'-console.json')
     $before=@{}; $parentPath=$env:PATH; $parentModules=$env:PSModulePath
     $variables=@{AFP_PACKAGE_BAT=$Bat;PATH='';LOCALAPPDATA=(Join-Path $runRoot 'native-local-data');TEMP=(Join-Path $runRoot 'native-temp');PSModulePath=(Join-Path $env:SystemRoot 'System32/WindowsPowerShell/v1.0/Modules')}
@@ -148,11 +149,14 @@ function Invoke-TestNativeBat {
         foreach ($key in $variables.Keys) { $before[$key]=[Environment]::GetEnvironmentVariable($key,'Process'); [Environment]::SetEnvironmentVariable($key,[string]$variables[$key],'Process') }
         $info=New-Object Diagnostics.ProcessStartInfo
         $info.FileName=$controller; $info.UseShellExecute=$false; $info.CreateNoWindow=$true
-        $info.Arguments=(@($cmd,('/d /v:off /s /c "'+$command+'"'),$runRoot,$nativePath,'25000') | ForEach-Object {ConvertTo-TestArgument $_}) -join ' '
+        $deadline=if ($StartConversion) { 90000 } else { 25000 }
+        $arguments=@($cmd,('/d /v:off /s /c "'+$command+'"'),$runRoot,$nativePath,[string]$deadline)
+        if ($StartConversion) { $arguments += 'Enter' }
+        $info.Arguments=(@($arguments | ForEach-Object {ConvertTo-TestArgument $_}) -join ' ')
         $child=New-Object Diagnostics.Process; $child.StartInfo=$info
         try {
             Assert-Test ($child.Start()) 'Native controller could not start.'
-            if (-not $child.WaitForExit(45000)) { $child.Kill(); $null=$child.WaitForExit(5000); throw 'Native controller exceeded bounded startup deadline; its owned job guards descendants.' }
+            if (-not $child.WaitForExit($deadline+20000)) { $child.Kill(); $null=$child.WaitForExit(5000); throw 'Native controller exceeded bounded deadline; its owned job guards descendants.' }
             $controllerExit=$child.ExitCode
         } finally { $child.Dispose() }
         Assert-Test (Test-Path -LiteralPath $nativePath) 'Native console report missing.'
@@ -160,6 +164,9 @@ function Invoke-TestNativeBat {
         $report.native_cases += [pscustomobject]@{label=$Label;expected_exit=$ExpectedExit;native=$native;report_sha256=Get-TestHash $nativePath}
         Assert-Test ($controllerExit -eq 0 -and [string]::IsNullOrEmpty($native.error) -and $native.pause_seen -and $native.still_waiting_before_key -and $native.key_injected -and $native.owned_tree_released) ('Production pause/key/owned-release failed: '+$native.error)
         Assert-Test ($native.exit_code -eq $ExpectedExit) ('BAT exit mismatch: '+$native.text)
+        if ($StartConversion) {
+            Assert-Test ($native.initial_menu_key_sent -and $native.initial_menu_mode -ceq 'Enter') 'BAT metadata-menu selection was not proved.'
+        }
         if ($ExpectedText) { Assert-Test ($native.text -match $ExpectedText) ('Visible BAT diagnostic missing: '+$ExpectedText) }
         return $native
     } finally {
@@ -171,23 +178,27 @@ function Test-Conversion([string]$Shell,[string]$Label,[string]$Source,[string]$
     $arguments=@('-NoLogo','-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',(Join-Path $EntryRoot 'app/AudioFileForPhone.ps1'),'-InputFolder',$Source,'-OutputParent',$Output,'-ConfigPath',$Config)
     if (-not $Saved -and -not $AppLocal) { $arguments += @('-FfmpegDirectory',$FfmpegDirectory) }
     $run=Invoke-TestProcess $Shell $arguments ($Label+'-conversion')
+    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.6 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
+    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[RESULT\]').Count -eq 1) 'Exactly one final result required.'
+    Assert-Test ($run.stdout -notmatch '\[DEBUG\]|(?m)^[-=]{12,}|Script path\s*:|Raw input\s*:|ffmpeg encoding arguments|ffmpeg\.exe.+-') 'Normal console contains debug, command or banner clutter.'
+    Assert-Test ($run.stdout -match 'Input:' -and $run.stdout -match '\[INFO\] Output root' -and $run.stdout -match 'Log file\s*:' -and $run.stdout.Contains("converted=$($fixtures.Count); failed=0")) 'Input/destination/count/log console context missing.'
+    $expectedOrigin=if ($AppLocal) { 'AppLocal' } elseif ($Saved) { 'Saved' } else { 'Explicit' }
+    Test-ConversionOutput $Label $Source $Output $expectedOrigin
+}
+function Test-ConversionOutput([string]$Label,[string]$Source,[string]$Output,[string]$ExpectedOrigin) {
     $dirs=@(Get-ChildItem -LiteralPath $Output -Directory)
     Assert-Test ($dirs.Count -eq 1) 'One owned output run required.'
     $manifestPath=Join-Path $dirs[0].FullName 'AudioFileForPhone_manifest.json'
     $manifest=Get-Content -LiteralPath $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json
-    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[ AUDIOFILEFORPHONE :: 1\.0\.5 \] -- AUDIO CONSOLE\s*$').Count -eq 1) 'One concise application heading required.'
-    Assert-Test ([regex]::Matches($run.stdout,'(?m)^\[RESULT\]').Count -eq 1) 'Exactly one final result required.'
-    Assert-Test ($run.stdout -notmatch '\[DEBUG\]|(?m)^[-=]{12,}|Script path\s*:|Raw input\s*:|ffmpeg encoding arguments|ffmpeg\.exe.+-') 'Normal console contains debug, command or banner clutter.'
-    Assert-Test ($run.stdout -match 'Input:' -and $run.stdout -match '\[INFO\] Output root' -and $run.stdout -match 'Log file\s*:' -and $run.stdout -match 'converted=4; failed=0') 'Input/destination/count/log console context missing.'
+    $expected=$fixtures.Count
     $localLog=Join-Path $dirs[0].FullName 'AudioFileForPhone_log.txt'
     Assert-Test (Test-Path -LiteralPath $localLog -PathType Leaf) 'Detailed local log missing.'
     $logText=Get-Content -LiteralPath $localLog -Raw -Encoding UTF8
-    Assert-Test ($logText -match 'Summary: total=4, converted=4, failed=0' -and $logText -match 'Source|Mapping|ffprobe|Probing') 'Detailed successful diagnostics missing from local log.'
-    $expected=@(Get-ChildItem -LiteralPath $Source -File -Recurse).Count
-    Assert-Test ($manifest.app_version -ceq '1.0.5' -and $manifest.run.status -ceq 'Completed' -and $manifest.run.exit_code -eq 0 -and $manifest.policies.bitrate_kbps -eq 64 -and $manifest.totals.converted -eq $expected -and $manifest.totals.failed -eq 0 -and $manifest.records.Count -eq $expected) 'Manifest version/default/count/result mismatch.'
-    $expectedOrigin=if ($AppLocal) { 'AppLocal' } elseif ($Saved) { 'Saved' } else { 'Explicit' }
-    Assert-Test ($manifest.tools.selection_origin -ceq $expectedOrigin) 'Tool selection origin changed.'
-    Assert-Test (@(Get-ChildItem -LiteralPath $dirs[0].FullName -File -Recurse | Where-Object {$_.Name -like '*.partial*'}).Count -eq 0) 'Partial output remains.'
+    Assert-Test ($logText.Contains("Summary: total=$expected, converted=$expected, failed=0") -and $logText -match 'Source|Mapping|ffprobe|Probing') 'Detailed successful diagnostics missing from local log.'
+    Assert-Test ($manifest.app_version -ceq '1.0.6' -and $manifest.run.status -ceq 'Completed' -and $manifest.run.exit_code -eq 0 -and $manifest.policies.bitrate_kbps -eq 64 -and $manifest.totals.converted -eq $expected -and $manifest.totals.failed -eq 0 -and $manifest.records.Count -eq $expected) 'Manifest version/default/count/result mismatch.'
+    Assert-Test ($manifest.tools.selection_origin -ceq $ExpectedOrigin) 'Tool selection origin changed.'
+    $files=@(Get-ChildItem -LiteralPath $dirs[0].FullName -File -Recurse -Force)
+    Assert-Test (@($files | Where-Object {$_.Extension -ieq '.mp3'}).Count -eq $expected -and @($files | Where-Object {$_.Name -match '(?i)\.partial|\.working|\.tmp$'}).Count -eq 0) 'Published MP3 count or partial output mismatch.'
     foreach ($record in $manifest.records) {
         Assert-Test ($record.status -ceq 'Converted') 'Manifest record unconverted.'
         $outputPath=Join-Path $dirs[0].FullName $record.output_relative_path
@@ -200,10 +211,10 @@ function Test-Conversion([string]$Shell,[string]$Label,[string]$Source,[string]$
         $media=$probe.stdout | ConvertFrom-Json; $audio=@($media.streams | Where-Object {$_.codec_type -ceq 'audio'})
         Assert-Test ($audio.Count -eq 1 -and $audio[0].codec_name -ceq 'mp3' -and [int64]$audio[0].bit_rate -eq 64000 -and [double]$media.format.duration -ge 1.9 -and [double]$media.format.duration -le 2.35) 'Actual codec/64kbps/duration mismatch.'
         Assert-Test ($media.format.tags.title -ceq $fixture[0].title -and $media.format.tags.artist -ceq 'Package Artist' -and $media.format.tags.album -ceq 'Package Album') 'Metadata changed.'
-        $null=Invoke-TestProcess $ffmpeg @('-nostdin','-hide_banner','-v','error','-xerror','-i',$outputPath,'-map','0:a:0','-f','null','-') ($Label+'-decode')
+        $null=Invoke-TestProcess $ffmpeg @('-nostdin','-hide_banner','-v','error','-xerror','-err_detect','explode','-i',$outputPath,'-map','0:a:0','-f','null','-') ($Label+'-decode')
     }
     Add-TestCase $Label 'Real default64 conversion, metadata/layout, probe/full decode and raw exit0.' ($expected.ToString()+' real outputs validated.')
-    [pscustomobject]@{label=$Label;exit_code=$run.exit_code;converted=$expected;failed=0;selection_origin=$manifest.tools.selection_origin;manifest_sha256=Get-TestHash $manifestPath}
+    [pscustomobject]@{label=$Label;exit_code=$manifest.run.exit_code;converted=$expected;failed=0;selection_origin=$manifest.tools.selection_origin;manifest_sha256=Get-TestHash $manifestPath}
 }
 
 try {
@@ -211,9 +222,9 @@ try {
     $report.environment=[ordered]@{caption=$os.Caption;product_type=$os.ProductType;build=$os.BuildNumber+'.'+$cv.UBR;display_version=$cv.DisplayVersion;architecture=$os.OSArchitecture;orchestrator_ps=$PSVersionTable.PSVersion.ToString()}
     Assert-Test ($os.ProductType -eq 1 -and [Environment]::Is64BitProcess) 'Actual Windows x64 client required.'
     $manifest=Get-Content -LiteralPath (Join-Path $PackageDirectory 'release-manifest.json') -Raw -Encoding UTF8 | ConvertFrom-Json
-    $zipPath=Join-Path $PackageDirectory 'AudioFileForPhone-v1.0.5.zip'
+    $zipPath=Join-Path $PackageDirectory 'AudioFileForPhone-v1.0.6.zip'
     $zipHash=Get-TestHash $zipPath; $report.runtime_zip_sha256=$zipHash
-    Assert-Test ($manifest.package_revision -eq 3 -and $manifest.app_version -ceq '1.0.5' -and $manifest.tag -ceq 'v1.0.5' -and $manifest.corrective_release_version -ceq '1.0.5' -and $manifest.artifact_kind -ceq 'corrective_release_candidate' -and $manifest.publication_authorized -eq $false -and $manifest.zip.name -ceq 'AudioFileForPhone-v1.0.5.zip' -and $manifest.zip.sha256 -ceq $zipHash -and $manifest.zip.bytes -eq (Get-Item -LiteralPath $zipPath).Length) 'Corrective candidate manifest identity mismatch.'
+    Assert-Test ($manifest.package_revision -eq 3 -and $manifest.app_version -ceq '1.0.6' -and $manifest.tag -ceq 'v1.0.6' -and $manifest.corrective_release_version -ceq '1.0.6' -and $manifest.artifact_kind -ceq 'corrective_release_candidate' -and $manifest.publication_authorized -eq $false -and $manifest.zip.name -ceq 'AudioFileForPhone-v1.0.6.zip' -and $manifest.zip.sha256 -ceq $zipHash -and $manifest.zip.bytes -eq (Get-Item -LiteralPath $zipPath).Length) 'Corrective candidate manifest identity mismatch.'
     $report.source_commit=$manifest.release_commit
     Assert-Test ($manifest.original_runtime_zip_sha256 -ceq $report.original_runtime_zip_sha256) 'Original payload binding mismatch.'
     $members=Get-TestZipMembers $zipPath; $original=Get-TestZipMembers $CoreRuntimeZipPath
@@ -241,7 +252,7 @@ try {
     $report.icon_sha256=$members['AudioFileForPhone.ico'].sha256
     Assert-Test ($report.icon_sha256 -ceq (Get-TestHash (Join-Path $projectRoot 'AudioFileForPhone.ico'))) 'Existing repository icon bytes changed.'
     $checksums=@(Get-Content -LiteralPath (Join-Path $PackageDirectory 'SHA256SUMS.txt') -Encoding UTF8)
-    Assert-Test ($checksums.Count -eq 2 -and $checksums[0] -ceq ($zipHash+'  AudioFileForPhone-v1.0.5.zip') -and $checksums[1] -ceq ((Get-TestHash (Join-Path $PackageDirectory 'release-manifest.json'))+'  release-manifest.json')) 'External checksums do not match.'
+    Assert-Test ($checksums.Count -eq 2 -and $checksums[0] -ceq ($zipHash+'  AudioFileForPhone-v1.0.6.zip') -and $checksums[1] -ceq ((Get-TestHash (Join-Path $PackageDirectory 'release-manifest.json'))+'  release-manifest.json')) 'External checksums do not match.'
     [IO.Compression.ZipFile]::ExtractToDirectory($zipPath,$packageRoot)
     $visible=@(Get-ChildItem -LiteralPath $packageRoot | Select-Object -ExpandProperty Name)
     Assert-Test ($visible.Count -eq 4 -and @($visible | Where-Object { $_ -cnotin @('AudioFileForPhone.bat','AudioFileForPhone.ico','README.txt','app') }).Count -eq 0) 'Extraction must expose exactly the intended four root entries.'
@@ -249,7 +260,7 @@ try {
     $icon=New-Object Drawing.Icon((Join-Path $packageRoot 'AudioFileForPhone.ico'))
     try { Assert-Test ($icon.Width -gt 0 -and $icon.Height -gt 0) 'Relocated icon could not be decoded.' } finally { $icon.Dispose() }
     $readme=Get-Content -LiteralPath (Join-Path $packageRoot 'README.txt') -Raw -Encoding UTF8
-    Assert-Test ($readme -match 'app[\\/]LICENSE' -and $readme -match 'app[\\/]SUPPORT' -and $readme -match 'Bypass' -and $readme -match 'MachinePolicy|managed polic' -and $readme -match '(?i)application.*(asset|zip)|release.*asset') 'Root guide lacks license, support, process policy or correct download guidance.'
+    Assert-Test ($readme -match 'app[\\/]LICENSE' -and $readme -match 'app[\\/]SUPPORT' -and $readme -match 'Bypass' -and $readme -match 'MachinePolicy|managed polic' -and $readme -match '(?i)application.*(asset|zip)|release.*asset' -and $readme -match 'unencrypted M4B') 'Root guide lacks required usage, policy or download guidance.'
     Add-TestCase 'layout-and-provenance' 'Exactly BAT/unchanged ICO/README.txt/app;17 allowlisted files; CRLF BATs; exact checksums.' 'Inventory, byte mappings, relocated icon load and direct BAT target verified.'
     $packageBefore=Get-TestInventory $packageRoot
     foreach ($script in @(Get-ChildItem -LiteralPath (Join-Path $packageRoot 'app') -File -Recurse | Where-Object { $_.Extension -ceq '.ps1' })) { Set-TestInternetMark $script.FullName }
@@ -262,10 +273,21 @@ try {
     $ffmpeg=Join-Path $FfmpegDirectory 'ffmpeg.exe'; $ffprobe=Join-Path $FfmpegDirectory 'ffprobe.exe'
     foreach ($file in @($ffmpeg,$ffprobe)) { Assert-TestPath $file }
     $dependenciesBefore=@(Get-TestHash $ffmpeg; Get-TestHash $ffprobe)
-    $fixtures=@(@{path='2026-10-30 MP3.mp3';codec='libmp3lame';rate='44100';title='Synthetic MP3'},@{path='nested/2026-10-30 AAC.m4a';codec='aac';rate='44100';title='Synthetic AAC'},@{path='nested/2026-10-30 Vorbis.ogg';codec='libvorbis';rate='44100';title='Synthetic Vorbis'},@{path='nested/2026-10-30 Opus.ogg';codec='libopus';rate='48000';title='Synthetic Opus'})
+    $fixtures=@(
+        @{path='2026-10-30 MP3.mp3';codec='libmp3lame';rate='44100';title='Synthetic MP3'},
+        @{path='nested/2026-10-30 AAC.m4a';codec='aac';rate='44100';title='Synthetic AAC'},
+        @{path='nested/2026-10-30 Book.M4B';codec='aac';rate='44100';title='Synthetic M4B';muxer='ipod'},
+        @{path='nested/2026-10-30 Vorbis.ogg';codec='libvorbis';rate='44100';title='Synthetic Vorbis'},
+        @{path='nested/2026-10-30 Opus.ogg';codec='libopus';rate='48000';title='Synthetic Opus'}
+    )
     foreach ($fixture in $fixtures) {
-        $null=Invoke-TestProcess $ffmpeg @('-nostdin','-hide_banner','-v','error','-f','lavfi','-i',('sine=frequency=440:sample_rate='+$fixture.rate+':duration=2'),'-c:a',$fixture.codec,'-b:a','128k','-metadata',('title='+$fixture.title),'-metadata','artist=Package Artist','-metadata','album=Package Album',(Join-Path $inputRoot $fixture.path)) 'fixture'
+        $arguments=@('-nostdin','-hide_banner','-v','error','-f','lavfi','-i',('sine=frequency=440:sample_rate='+$fixture.rate+':duration=2'),'-c:a',$fixture.codec,'-b:a','128k','-metadata',('title='+$fixture.title),'-metadata','artist=Package Artist','-metadata','album=Package Album')
+        if ($fixture.muxer) { $arguments += @('-f',$fixture.muxer) }
+        $null=Invoke-TestProcess $ffmpeg ($arguments+@(Join-Path $inputRoot $fixture.path)) 'fixture'
     }
+    $book=Join-Path $inputRoot 'nested/2026-10-30 Book.M4B'
+    $bookProbe=(Invoke-TestProcess $ffprobe @('-v','error','-show_streams','-show_format','-of','json',$book) 'm4b-fixture-probe').stdout | ConvertFrom-Json
+    Assert-Test (($bookProbe.format.format_name -split ',') -contains 'mp4' -and @($bookProbe.streams | Where-Object {$_.codec_type -ceq 'audio' -and $_.codec_name -ceq 'aac'}).Count -eq 1) 'M4B fixture must be real MP4-family AAC audio.'
     $sourcesBefore=Get-TestInventory $inputRoot
     if ([string]::IsNullOrWhiteSpace($PowerShell7Path)) { $PowerShell7Path=(Get-Command pwsh.exe -CommandType Application -ErrorAction Stop | Select-Object -First 1).Source }
     $shells=@(@{label='ps51';path=(Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe')},@{label='ps7';path=$PowerShell7Path})
@@ -274,7 +296,8 @@ try {
         $config=Join-Path $runRoot ($shell.label+'-config.json')
         $report.shell_results += Test-Conversion $shell.path ($shell.label+'-explicit') $inputRoot (Join-Path $runRoot ($shell.label+'-outputs')) $config
         Assert-Test (-not (Test-Path -LiteralPath $config)) 'Ordinary conversion saved config.'
-        $null=Invoke-TestProcess $shell.path @('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',(Join-Path $packageRoot 'app/AudioFileForPhone.ps1'),'-InputFolder',$inputRoot,'-OutputParent',(Join-Path $runRoot ($shell.label+'-preview')),'-ConfigPath',$config,'-DryRun','-Interactive') ($shell.label+'-preview')
+        $preview=Invoke-TestProcess $shell.path @('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',(Join-Path $packageRoot 'app/AudioFileForPhone.ps1'),'-InputFolder',$inputRoot,'-OutputParent',(Join-Path $runRoot ($shell.label+'-preview')),'-ConfigPath',$config,'-DryRun','-Interactive') ($shell.label+'-preview')
+        Assert-Test ($preview.stdout -match '(?m)^\[PLAN\].+Book\.M4B') 'Package preview omitted the uppercase M4B.'
         Assert-Test (-not (Test-Path -LiteralPath (Join-Path $runRoot ($shell.label+'-preview'))) -and -not (Test-Path -LiteralPath $config)) 'DryRun wrote output/config.'
         $null=Invoke-TestProcess $shell.path @('-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',(Join-Path $packageRoot 'app/Setup-AudioFileForPhone.ps1'),'-FfmpegDirectory',$FfmpegDirectory,'-ConfigPath',$config,'-Remember','-NonInteractive') ($shell.label+'-setup')
         Assert-Test (Test-Path -LiteralPath $config -PathType Leaf) 'Explicit remembered setup did not save owned config.'
@@ -298,6 +321,34 @@ try {
     & $csc /nologo /target:exe ('/out:'+$controller) (Join-Path $PSScriptRoot 'DirectLauncher.Console.cs') | Out-Null
     Assert-Test ($LASTEXITCODE -eq 0 -and (Test-Path -LiteralPath $controller)) 'Existing native test controller did not compile.'
     foreach ($path in @((Join-Path $runRoot 'native-local-data'),(Join-Path $runRoot 'native-temp'))) { [IO.Directory]::CreateDirectory($path) | Out-Null }
+    $ownedProfile=Join-Path $runRoot 'native-profile'
+    $music=Join-Path $ownedProfile 'Music'
+    $batEnvironment=@{
+        USERPROFILE=$ownedProfile; LOCALAPPDATA=(Join-Path $ownedProfile 'AppData/Local')
+        APPDATA=(Join-Path $ownedProfile 'AppData/Roaming'); FFMPEG=$FfmpegDirectory
+        TEMP=(Join-Path $runRoot 'native-temp'); TMP=(Join-Path $runRoot 'native-temp')
+    }
+    foreach ($path in @($music,$batEnvironment.LOCALAPPDATA,$batEnvironment.APPDATA)) {
+        [IO.Directory]::CreateDirectory($path) | Out-Null
+        Assert-TestPath $path
+    }
+    $identityCommand=@'
+[Console]::OutputEncoding=New-Object Text.UTF8Encoding($false)
+@{
+    music=[Environment]::GetFolderPath([Environment+SpecialFolder]::MyMusic,[Environment+SpecialFolderOption]::DoNotVerify)
+    local=[Environment]::GetFolderPath([Environment+SpecialFolder]::LocalApplicationData,[Environment+SpecialFolderOption]::DoNotVerify)
+} | ConvertTo-Json -Compress
+'@
+    $winps=$shells[0].path
+    $identity=(Invoke-TestProcess $winps @('-NoLogo','-NoProfile','-NonInteractive','-STA','-Command',$identityCommand) 'native-owned-folders' -Environment $batEnvironment).stdout | ConvertFrom-Json
+    Assert-Test ($identity.music -ceq $music -and $identity.local -ceq $batEnvironment.LOCALAPPDATA) 'Windows did not resolve owned default folders. Refusing BAT conversion.'
+    $defaultPreview=Invoke-TestProcess $winps @('-NoLogo','-NoProfile','-NonInteractive','-STA','-ExecutionPolicy','Bypass','-File',(Join-Path $packageRoot 'app/AudioFileForPhone.ps1'),'-InputFolder',$inputRoot,'-DryRun') 'native-owned-music-preview' -Environment $batEnvironment
+    Assert-Test ($defaultPreview.stdout.Contains($music+'\') -and $defaultPreview.stdout -match 'status=Previewed;' -and @(Get-ChildItem -LiteralPath $music -Force).Count -eq 0) 'Package preview did not prove the owned default Music output.'
+    $native=Invoke-TestNativeBat -Label 'real-packaged-bat-mixed-conversion' -Bat (Join-Path $packageRoot 'AudioFileForPhone.bat') -Folders @($inputRoot) -ExpectedExit 0 -Environment $batEnvironment -StartConversion
+    $compact=$native.text -replace '\s+',''
+    Assert-Test ($compact.Contains('[AUDIOFILEFORPHONE::1.0.6]--AUDIOCONSOLE') -and $compact.Contains("converted=$($fixtures.Count);failed=0")) 'Native console lacks the expected version/count summary.'
+    $report.bat_result=Test-ConversionOutput 'real-packaged-bat-mixed-conversion' $inputRoot $music 'FFMPEG'
+    $report.successful_bat_encoding=$true
     $null=Invoke-TestNativeBat -Label 'real-packaged-bat-zero-arguments' -Bat (Join-Path $packageRoot 'AudioFileForPhone.bat') -ExpectedText 'exactly one audio folder'
     $null=Invoke-TestNativeBat -Label 'real-packaged-bat-extra-arguments' -Bat (Join-Path $packageRoot 'AudioFileForPhone.bat') -Folders @($inputRoot,'extra') -ExpectedText 'exactly one audio folder'
     Add-TestCase 'relocated-real-bat-refusals' 'Actual relocated production BAT rejects invalid arity; visible pause/key/exit1 from unrelated CWD.' 'Both unmodified BAT cases passed with original exit and owned process release.'
@@ -337,7 +388,7 @@ exit 37
     Assert-Test (($policiesBefore | ConvertTo-Json -Compress) -ceq ($policiesAfter | ConvertTo-Json -Compress)) 'Execution policy scopes changed.'
     $report.policies_unchanged=$true
     $report.source_unchanged=$true; $report.package_unchanged=$true; $report.dependencies_unchanged=$true
-    $report.total_outputs=(@($report.shell_results | Measure-Object -Property converted -Sum).Sum)
+    $report.total_outputs=(@($report.shell_results | Measure-Object -Property converted -Sum).Sum)+$report.bat_result.converted
     $report.status='PASSED'
 } catch { $report.status='FAILED'; $report.error=$_.Exception.Message; throw }
 finally {

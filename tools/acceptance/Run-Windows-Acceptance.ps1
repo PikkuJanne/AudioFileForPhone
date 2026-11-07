@@ -220,7 +220,7 @@ try {
         (Test-AcceptanceWithin $SourceDirectory $PSScriptRoot)) { throw 'Source and the kit/session workspace must be separate trees.' }
     $sourceBefore = @(Get-AcceptanceSourceInventory -Root $SourceDirectory -IncludeUnsupported)
     $supportedBefore = @($sourceBefore | Where-Object { $_.supported })
-    if ($supportedBefore.Count -eq 0) { throw 'The selected folder contains no supported MP3, M4A or OGG input.' }
+    if ($supportedBefore.Count -eq 0) { throw 'The selected folder contains no supported MP3, M4A, M4B or OGG input.' }
     $private.source_before = $sourceBefore
     $report.issue_code = 'DEPENDENCY_SELECTION'
     $config = Join-Path $session 'selection.json'

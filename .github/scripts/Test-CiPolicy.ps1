@@ -273,6 +273,8 @@ function Assert-CiPolicy {
         '$archiveReport = Join-Path $env:GITHUB_WORKSPACE ''docs/codex-v1.0.1/evidence/PATCH105-synthetic-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json'''
         'if (Test-Path -LiteralPath $archiveReport) { throw ''Synthetic evidence already exists.'' }'
         'Copy-Item -LiteralPath $report -Destination $archiveReport'
+        '& (Join-Path $env:GITHUB_WORKSPACE ''tests/Test-M4B.ps1'') -Mode Quick -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path'
+        'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'
     )
     if ($errors.Count -ne 0 -or $null -ne $recoveryAst.BeginBlock -or $null -ne $recoveryAst.ProcessBlock -or
         $recoveryAst.EndBlock.Statements.Count -ne $approvedRecoveryStatements.Count) { throw 'Unapproved synthetic recovery command structure.' }

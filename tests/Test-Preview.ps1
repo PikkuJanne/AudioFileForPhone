@@ -278,7 +278,7 @@ try {
     Invoke-Case 'empty unsupported-only preview fails without writes/native calls/partial plans' 'A31' {
         param($case);$empty=Join-Path $testRoot 'Empty';[IO.Directory]::CreateDirectory($empty)|Out-Null;$note=Join-Path $empty 'notes.txt';Write-NewText $note 'Synthetic empty scan';Add-Fixture $note
         $driver=New-Driver 'empty' $guardedEntry $empty (Join-Path $testRoot 'EmptyOut') -Preview
-        $observed=Assert-NoWritePreview $driver $case -Code 1;Assert-True ($observed.result.text -match 'No MP3/M4A/OGG') 'Empty preview must retain actionable source error.'
+        $observed=Assert-NoWritePreview $driver $case -Code 1;Assert-True ($observed.result.text -match 'No MP3/M4A/M4B/OGG') 'Empty preview must retain actionable source error.'
     }
     Invoke-Case 'invalid output-parent file and invalid parameters fail without writes' 'A31' {
         param($case);$driver=New-Driver 'parent-file' $guardedEntry $inputRoot $sentinel -Preview

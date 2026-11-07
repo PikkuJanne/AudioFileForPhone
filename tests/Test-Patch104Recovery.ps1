@@ -34,7 +34,7 @@ function Run-P104([string]$Exe,[string[]]$Arguments,[int[]]$Allowed=@(0),[hashta
     return $r
 }
 function Case-P104([string]$Name,[scriptblock]$Body){$case=[ordered]@{name=$Name;status='fail'};try{& $Body $case;$case.status='pass'}finally{$report.cases+=[pscustomobject]$case}}
-function Media-P104([string]$Path){(Run-P104 $FfprobePath @('-v','error','-show_streams','-show_format','-of','json','-i',$Path)).Stdout|ConvertFrom-Json}
+function Media-P104([string]$Path){(Run-P104 $FfprobePath @('-v','error','-show_streams','-show_format','-show_chapters','-of','json','-i',$Path)).Stdout|ConvertFrom-Json}
 function App-P104([string]$Name,[string]$Mode,[string]$Source,[string]$Fixture,[int]$Expected,[bool]$Mixed=$false){
     $caseRoot=Join-Path $root $Name;$input=Join-Path $caseRoot 'input';$output=Join-Path $caseRoot 'output';$temp=Join-Path $caseRoot 'temp'
     foreach($p in @($caseRoot,$input,$output,$temp)){[IO.Directory]::CreateDirectory($p)|Out-Null}
@@ -87,7 +87,18 @@ try{
     $null=Run-P104 $FfmpegPath @('-nostdin','-v','error','-f','lavfi','-i','color=c=black:s=16x16:r=5:d=1.5','-f','lavfi','-i','sine=frequency=733:sample_rate=44100:duration=1.5','-map','0:v:0','-map','1:a:0','-c:v','mpeg4','-c:a','aac','-ac','2','-metadata','title=Patch104 source title','-metadata','creation_time=2024-01-02T03:04:05.000000Z',$fixture)
     $null=Run-P104 $FfmpegPath @('-nostdin','-v','error','-i',$fixture,'-map','0:a:0','-c:a','libmp3lame',$mp3)
     Add-Type -AssemblyName System.Drawing;$image=New-Object Drawing.Bitmap(24,24);try{$image.Save($cover,[Drawing.Imaging.ImageFormat]::Jpeg)}finally{$image.Dispose()}
-    $fixtureBefore=Inventory-P104 @($fixture,$mp3,$cover)
+    $chapterMetadata = Join-Path $root 'chapters.ffmeta'
+    $book = Join-Path $root 'fragmented.m4b'
+    Write-P104 $chapterMetadata (@(';FFMETADATA1', '[CHAPTER]', 'TIMEBASE=1/1000', 'START=0', 'END=500', 'title=Opening',
+        '[CHAPTER]', 'TIMEBASE=1/1000', 'START=500', 'END=1500', 'title=Closing') -join "`n")
+    $null = Run-P104 $FfmpegPath @('-nostdin', '-v', 'error',
+        '-f', 'lavfi', '-i', 'color=c=black:s=16x16:r=5:d=1.5',
+        '-f', 'lavfi', '-i', 'sine=frequency=733:sample_rate=44100:duration=1.5',
+        '-f', 'ffmetadata', '-i', $chapterMetadata, '-map', '0:v:0', '-map', '1:a:0', '-map_chapters', '2',
+        '-c:v', 'mpeg4', '-c:a', 'aac', '-ac', '2', '-metadata', 'title=Patch104 source title',
+        '-movflags', '+frag_keyframe+empty_moov', '-frag_duration', '500000', '-f', 'mp4', $book)
+    $fixturePaths = @($fixture, $mp3, $cover, $book, $chapterMetadata)
+    $fixtureBefore=Inventory-P104 $fixturePaths
     Case-P104 'native-crash-classification-excludes-ordinary-failure-and-unproved-termination' {
         param($case)
         $rows=@(
@@ -124,6 +135,36 @@ try{
         Assert-P104 ([math]::Abs([double]$record.input_duration_seconds-[double]$record.decoded_duration_seconds)-le0.35) 'Independent source/output duration tolerance exceeded.'
         $case.exit_code=$r.native.ExitCode;$case.recovery_attempts=$r.remuxes;$case.native_crashes=$r.crashes;$case.source_duration=$record.input_duration_seconds;$case.output_duration=$record.decoded_duration_seconds;$case.full_decode=$true
     }
+    Case-P104 'injected-m4b-source-crash-recovers-fragmented-audio-and-chapters' {param($case)
+        $original = Media-P104 $book
+        $audio = @($original.streams | Where-Object { $_.codec_type -eq 'audio' })
+        $data = @($original.streams | Where-Object { $_.codec_type -eq 'data' })
+        Assert-P104 ($original.format.format_name -like 'mov,*' -and $audio.Count -eq 1 -and
+            $audio[0].codec_name -eq 'aac' -and $audio[0].index -eq 1 -and $data.Count -eq 1 -and
+            $original.chapters.Count -eq 2) 'Fixture must be MP4-family AAC with nonzero audio index and chapter data.'
+
+        $run = App-P104 'recover-book' 'crash' '2024-01-02 - Original.M4B' $book 0
+        Verify-P104 $run 1
+        $record = @($run.manifest.records)[0]
+        Assert-P104 ($run.crashes -eq 1 -and $run.remuxes -eq 1 -and $run.manifest.totals.converted -eq 1 -and
+            $run.manifest.totals.failed -eq 0 -and $record.recovery.attempted -and $record.recovery.status -eq 'Success') 'M4B must recover exactly once.'
+        Assert-P104 ($run.files[0].Name -ceq '2024-01-02 - Original.mp3' -and
+            [math]::Abs([double]$record.recovery.original_decoded_duration_seconds - [double]$record.decoded_duration_seconds) -le 0.35) 'M4B recovery lost the original name or complete duration.'
+
+        $output = Media-P104 $run.files[0].FullName
+        Assert-P104 ($output.chapters.Count -eq $original.chapters.Count -and $output.streams.Count -eq 2) 'Output must keep both chapters with only audio and the supplied cover streams.'
+        for ($index = 0; $index -lt $original.chapters.Count; $index++) {
+            $sourceChapter = $original.chapters[$index]
+            $outputChapter = $output.chapters[$index]
+            Assert-P104 ($outputChapter.tags.title -ceq $sourceChapter.tags.title -and
+                [math]::Abs([double]$outputChapter.start_time - [double]$sourceChapter.start_time) -le 0.001 -and
+                [math]::Abs([double]$outputChapter.end_time - [double]$sourceChapter.end_time) -le 0.001) 'Recovered chapter title or time differs from the original.'
+        }
+        $case.native_crashes = $run.crashes
+        $case.recovery_attempts = $run.remuxes
+        $case.chapters = $output.chapters.Count
+        $case.full_decode = $true
+    }
     Case-P104 'unreadable-m4a-fails-by-name-then-good-converts-normally' {param($case)
         $r=App-P104 'mixed' 'normal' '2024-01-02 - Good.m4a' $fixture 2 $true;Verify-P104 $r 1
         Assert-P104 ($r.remuxes-eq0-and$r.manifest.totals.converted-eq1-and$r.manifest.totals.failed-eq1-and$r.text.Contains('2024-01-01 - Unreadable.m4a')) 'Mixed batch lacks named once-only failure or normal continuation.'
@@ -146,7 +187,7 @@ try{
         $case.exit_code=$r.native.ExitCode;$case.recovery_attempts=0
     }
     $report.source_unchanged=(($sourceBefore|ConvertTo-Json -Compress)-ceq((Inventory-P104 $runtime)|ConvertTo-Json -Compress))
-    $report.synthetic_unchanged=(($fixtureBefore|ConvertTo-Json -Compress)-ceq((Inventory-P104 @($fixture,$mp3,$cover))|ConvertTo-Json -Compress))
+    $report.synthetic_unchanged=(($fixtureBefore|ConvertTo-Json -Compress)-ceq((Inventory-P104 $fixturePaths)|ConvertTo-Json -Compress))
     Assert-P104 ($report.source_unchanged-and$report.synthetic_unchanged) 'Source integrity check failed.'
     $report.status='pass';$exitCode=0
 }catch{$report.error=$_.Exception.Message;Write-Warning $report.error}

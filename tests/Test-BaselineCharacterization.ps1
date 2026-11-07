@@ -169,7 +169,9 @@ function New-AudioFixture {
     $nativeArgs += @('-c:a', $Codec, '-ac', "$Channels")
     if ($Title) { $nativeArgs += @('-metadata', "title=$Title") }
     $nativeArgs += @('-metadata', "artist=$Artist", '-metadata', "album=$Album",
-        '-metadata', 'comment=Synthetic source comment', '-metadata', 'track=4', $Path)
+        '-metadata', 'comment=Synthetic source comment', '-metadata', 'track=4')
+    if ([IO.Path]::GetExtension($Path) -ieq '.m4b') { $nativeArgs += @('-f', 'ipod') }
+    $nativeArgs += $Path
     Invoke-CapturedNative 'generate synthetic audio fixture' $FfmpegPath $nativeArgs | Out-Null
 }
 
@@ -318,17 +320,19 @@ try {
     $longName = '2024-04-05 - ' + ('Long title ' * 7) + 'end'
     $monoPath = Join-Path $input ($longName + '.MP3')
     $stereoPath = Join-Path $nested 'Stereo fallback!.M4A'
+    $bookPath = Join-Path $nested '2024-04-05 - Book.M4B'
     $vorbisPath = Join-Path $input '2024-04-06 - Vorbis.OGG'
     $opusPath = Join-Path $nested '2024-04-07 - Opus.ogg'
     New-AudioFixture $monoPath 'libmp3lame' 48000 1 $unicodeTitle $unicodeArtist $unicodeAlbum $coverPath
     New-AudioFixture $stereoPath 'aac' 44100 2 '' 'Source artist' 'Source album'
+    New-AudioFixture $bookPath 'aac' 44100 1 'Original book title' 'Source artist' 'Source album'
     (Get-Item -LiteralPath $stereoPath).LastWriteTime = [DateTime]::ParseExact('2023-02-03 12:00:00', 'yyyy-MM-dd HH:mm:ss', [Globalization.CultureInfo]::InvariantCulture)
     New-AudioFixture $vorbisPath 'libvorbis' 48000 1 'Original Vorbis title' 'Source artist' 'Source album'
     New-AudioFixture $opusPath 'libopus' 48000 2 $unicodeTitle $unicodeArtist $unicodeAlbum
     New-AudioFixture (Join-Path $input 'Ignored.wav') 'pcm_s16le' 48000 1 '' '' ''
     New-AudioFixture (Join-Path $input 'Ignored.FLAC') 'flac' 48000 1 '' '' ''
     Copy-Item -LiteralPath $opusPath -Destination (Join-Path $input 'Ignored.OPUS')
-    Copy-Item -LiteralPath $stereoPath -Destination (Join-Path $input 'Ignored.m4b')
+    Copy-Item -LiteralPath $bookPath -Destination (Join-Path $input 'Ignored.m4b.tmp')
     Copy-Item -LiteralPath $vorbisPath -Destination (Join-Path $overrideInput '2024-04-06 - Vorbis.OGG')
     Copy-Item -LiteralPath $vorbisPath -Destination (Join-Path $invalidDateInput '2024-02-30 - Impossible.ogg')
     $corruptBytes = [Text.Encoding]::ASCII.GetBytes('Synthetic corrupt fixture; deliberately not an MP3 stream.')
@@ -340,13 +344,14 @@ try {
     $fixtureDefinitions = @(
         [pscustomobject]@{ path = $monoPath; codec = 'mp3'; rate = 48000; channels = 1; title = $unicodeTitle; output = $longOutput; source_artwork = $true; source_duration_seconds = $null },
         [pscustomobject]@{ path = $stereoPath; codec = 'aac'; rate = 44100; channels = 2; title = '2023-02-03 - Stereo fallback'; output = 'Nested folder\More audio\2023-02-03 - Stereo fallback.mp3'; source_artwork = $false; source_duration_seconds = $null },
+        [pscustomobject]@{ path = $bookPath; codec = 'aac'; rate = 44100; channels = 1; title = 'Original book title'; output = 'Nested folder\More audio\2024-04-05 - Book.mp3'; source_artwork = $false; source_duration_seconds = $null },
         [pscustomobject]@{ path = $vorbisPath; codec = 'vorbis'; rate = 48000; channels = 1; title = 'Original Vorbis title'; output = '2024-04-06 - Vorbis.mp3'; source_artwork = $false; source_duration_seconds = $null },
         [pscustomobject]@{ path = $opusPath; codec = 'opus'; rate = 48000; channels = 2; title = $unicodeTitle; output = 'Nested folder\More audio\2024-04-07 - Opus.mp3'; source_artwork = $false; source_duration_seconds = $null }
     )
     Assert-NoReparseTree $ownedParent
     $inventoryBefore = Get-SourceInventory
     $directoriesBefore = Get-DirectoryInventory
-    Add-Check 'fixture_codecs_and_source_artwork' 'A04' 'Four intended source codecs, channel/rate matrix and MP3 attached picture exist.' {
+    Add-Check 'fixture_codecs_and_source_artwork' 'A04' 'Intended source codecs, channel/rate matrix and MP3 attached picture exist.' {
         $observed = @()
         foreach ($fixture in $fixtureDefinitions) {
             $media = Read-Media $fixture.path
@@ -361,10 +366,10 @@ try {
         return $observed
     }
     $defaultRun = Invoke-Conversion 'Default format, naming and exclusion matrix' $input
-    Add-Check 'supported_and_unsupported_extensions' 'A04' 'Uppercase MP3/M4A/OGG and Ogg Opus produce four MP3s; WAV/FLAC/OPUS/M4B are ignored.' {
+    Add-Check 'supported_and_unsupported_extensions' 'A04' 'Uppercase MP3/M4A/M4B/OGG and Ogg Opus produce five MP3s; WAV/FLAC/OPUS and M4B.TMP are ignored.' {
         Assert-True ($defaultRun.ExitCode -eq 0) 'Default conversion should exit 0.'
-        Assert-True ($defaultRun.Files.Count -eq 4) "Expected four outputs; observed $($defaultRun.Files.Count)."
-        Assert-True ($defaultRun.Summary.total -eq 4 -and $defaultRun.Summary.converted -eq 4 -and $defaultRun.Summary.failed -eq 0) 'Default log should report total=4, converted=4, failed=0.'
+        Assert-True ($defaultRun.Files.Count -eq 5) "Expected five outputs; observed $($defaultRun.Files.Count)."
+        Assert-True ($defaultRun.Summary.total -eq 5 -and $defaultRun.Summary.converted -eq 5 -and $defaultRun.Summary.failed -eq 0) 'Default log should report total=5, converted=5, failed=0.'
         Assert-True (@($defaultRun.Files | Where-Object { $_.Extension -ine '.mp3' }).Count -eq 0) 'All output extensions should be MP3.'
         return $defaultRun.Record
     }
