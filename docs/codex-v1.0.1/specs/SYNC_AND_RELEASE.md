@@ -1,3 +1,9 @@
+# Sync and release — v1.0.6 closed
+
+Public [v1.0.6](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6) is verified. Frozen source/tag `6e2b3cbb87ba29c8140b80e722f2c443044f6def` / `v1.0.6`. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip) SHA-256 `afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68`. The public bytes passed mixed-format M4B conversion through BAT and direct PowerShell. See [M4B-HANDOVER.md](M4B-HANDOVER.md) and [evidence/M4B.json](evidence/M4B.json). No owner testing or automatic next version is pending.
+
+The tested runtime tag remains separate from the ordinary reviewed documentation closure. Preserve previously published bytes and controls.
+
 # Checkpoint, handover and release protocol
 
 The v1.0.5 work order completed tested ordinary reviewed integration, normal
