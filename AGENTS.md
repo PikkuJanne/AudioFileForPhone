@@ -1,6 +1,6 @@
 # AudioFileForPhone agent instructions
 
-## Owner-directed v1.0.6 M4B work order — 2026-11-07
+## Completed owner-directed v1.0.6 M4B work order — 2026-11-07
 
 The owner authorized adding unencrypted M4B input through automated verification,
 ordinary reviewed CI integration, normal public release, independent download
@@ -8,6 +8,9 @@ and smoke, and closure in one task. This supersedes older input exclusions,
 numbered stops and separate publication approvals for this change only.
 Keep existing batch-crash safeguards, tags, public bytes and controls. No owner
 testing is required. Keep the private work order and raw reports outside Git.
+Verified normal release, exact ZIP and public mixed-format conversion are recorded
+in docs/codex-v1.0.1/M4B-HANDOVER.md and evidence/M4B.json. Future maintenance
+needs a new owner request. Preserve the published source tag and asset bytes.
 
 ## Completed owner-directed v1.0.5 batch repair — 2026-10-31
 

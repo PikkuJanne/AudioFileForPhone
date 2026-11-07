@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "task": "M4B",
+  "status": "COMPLETED",
+  "version": "1.0.6",
+  "work_order_sha256": "24615b072891d43c05158a00cb4e3fd96345e93ae3bec214c413af3234e82ef1",
+  "owner_testing_required": "none",
+  "authority": "Owner authorized bounded M4B support through ordinary reviewed CI integration, verified public publication and independent automated download smoke in one task.",
+  "base_main": "b621acae5dcbab1359141a8ba7f2b81581cd9307",
+  "feature_branch": "codex/v1.0.6-m4b",
+  "tested_source_commit": "6e2b3cbb87ba29c8140b80e722f2c443044f6def",
+  "tested_tree": "3b268e1b0b38fa55b5208c90b278a298a2496e81",
+  "runtime_main_commit": "c5dbd45670ad768d60e676bb86a5407c290edef7",
+  "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/42",
+  "client": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "shells": [
+      "5.1.26100.9711",
+      "7.6.9"
+    ],
+    "windows_10_client": "NOT_RUN"
+  },
+  "synthetic": {
+    "exact_commit_quick": {
+      "status": "pass",
+      "ps51_log_sha256": "a8e1cbe2b1582c7943731f01fc76c4f611ee5e35bcf5f50951d0d0d3cc6fe022",
+      "ps7_log_sha256": "4270534b9efbda34c4d4e12772541b9acf9a56ed1e5ac7cef548dc41988e6c7a"
+    },
+    "full": {
+      "status": "pass",
+      "inputs_per_batch": 29,
+      "batches_per_shell": 2,
+      "long_seconds": 7203,
+      "seek_seconds": [
+        1,
+        3600,
+        7199
+      ],
+      "full_decode": true,
+      "codecs": [
+        "AAC mono",
+        "AAC stereo",
+        "ALAC"
+      ],
+      "chapter_fields_and_cover": true,
+      "unreadable_exit": 2,
+      "next_file_converted": true,
+      "ps51_ffmpeg": "9.0.2 essentials",
+      "ps7_ffmpeg": "2026-10-08 git-ec420ba161 essentials",
+      "ps51_log_sha256": "b45c01493aecf641cc66b74b4ae09879ad055201d3847211be58a6e2a0e0d4df",
+      "ps7_log_sha256": "7c63b533794eed3059165647b2ed0f558d1b382ed532cb30e9410bc0b0d7e9c3"
+    },
+    "fragmented_m4b_recovery": "Injected source-probe crash. One compatible stream-copy recovery, both chapter titles/times retained within 1 ms, independent full decode, original file preserved.",
+    "validator_recovery": "Injected validator crash. Reused identical completed MP3 bytes on the second validator attempt with one encoder process."
+  },
+  "existing_m4a": {
+    "status": "PASSED",
+    "inputs_per_batch": 29,
+    "packaged_runs": 5,
+    "direct_runs": 3,
+    "natural_crash_observed": false,
+    "report_sha256": "1cce5b6b1b2daf393a3f7c848071e37b605e78804ae97380bf69ad4e76d7538c"
+  },
+  "candidate": {
+    "status": "PASSED",
+    "root": [
+      "AudioFileForPhone.bat",
+      "AudioFileForPhone.ico",
+      "README.txt",
+      "app/"
+    ],
+    "members": 17,
+    "groups": 13,
+    "outputs": 30.0,
+    "real_bat": true,
+    "unchanged_icon": "dfa4c59bb4dae90fc96df6a640a0efebbe9abb71ba3e0538d1930b86d5fa9976",
+    "report_sha256": "d94c1e3399817e42d5318c614a84fdc8b6a4b2bb618a711ec4c0621e45d4a400"
+  },
+  "ci": {
+    "feature_push": {
+      "id": 42369259101,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42369259101",
+      "checkout": "6e2b3cbb87ba29c8140b80e722f2c443044f6def",
+      "attempt": 1,
+      "event": "push",
+      "status": "pass",
+      "editions": [
+        {
+          "edition": "ps51",
+          "windows_build": "26100.33674",
+          "shell": "5.1.26100.33648",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "2cfa84085428bdecd9dbfbb58b272000e8b04b75899678ad38b3466ef67a9a9d"
+        },
+        {
+          "edition": "ps7",
+          "windows_build": "26100.33674",
+          "shell": "7.6.9",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "f1096f3e9e9f7b6a1f7d353e5d8e21e4955e76b55dab5671aaef8f6b0b8381f1"
+        }
+      ]
+    },
+    "pull_request": {
+      "id": 42369263258,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42369263258",
+      "checkout": "ad317b1b5d857c61cac4aee452b3446c789bf79a",
+      "attempt": 1,
+      "event": "pull_request",
+      "status": "pass",
+      "editions": [
+        {
+          "edition": "ps51",
+          "windows_build": "26100.33674",
+          "shell": "5.1.26100.33648",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "f207d44360275232ac23c7cd17fcd5a2f66b2e4509bc09c3ea046b2110dd5f9e"
+        },
+        {
+          "edition": "ps7",
+          "windows_build": "26100.33674",
+          "shell": "7.6.9",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "c68e0fa155a11d65ff16bfca751964ad2b00ba244c0ebfd846acf8ad5d9488f1"
+        }
+      ]
+    },
+    "integrated_main": {
+      "id": 42370479972,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42370479972",
+      "checkout": "c5dbd45670ad768d60e676bb86a5407c290edef7",
+      "attempt": 1,
+      "event": "push",
+      "status": "pass",
+      "editions": [
+        {
+          "edition": "ps51",
+          "windows_build": "26100.33674",
+          "shell": "5.1.26100.33648",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "727b9ea8e51f9e9a532d0eee84533fbdcaa8fabf70a8d514b4eda6434c20ebea"
+        },
+        {
+          "edition": "ps7",
+          "windows_build": "26100.33674",
+          "shell": "7.6.9",
+          "families": 20,
+          "required_checks": 963,
+          "observations": 3,
+          "patch104_cases": 9,
+          "patch105_cases": 24,
+          "report_sha256": "88ce2bee8fb6459617399fa962a8bd09b3ed17e2a42da2ffa192157661f44ad0"
+        }
+      ]
+    }
+  },
+  "release": {
+    "status": "PUBLICLY_VERIFIED",
+    "id": 437547878,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6",
+    "tag": "v1.0.6",
+    "title": "AudioFileForPhone v1.0.6",
+    "published_at": "2026-11-07T12:16:03Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "6e2b3cbb87ba29c8140b80e722f2c443044f6def",
+    "tag_object": "e742bfa247d9c9b34c2a6558d958a14bc5a040c5",
+    "runtime_zip_sha256": "afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.6.zip",
+        "bytes": 297202,
+        "sha256": "afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68",
+        "asset_id": 720582995,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10316,
+        "sha256": "cb9864ac6973ab912c9e4a8719ec6344cdb6ab83d75a6cb65deb81587d888cc3",
+        "asset_id": 720582997,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "d5db0e2309e55f64c01f060f9543a8be95c8213cc73974407a413f65187c2f3d",
+        "asset_id": 720582996,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "zip_members_verified": 17,
+    "public_smoke": {
+      "status": "pass",
+      "outputs": 30.0,
+      "groups": 13,
+      "real_bat": true,
+      "source_unchanged": true,
+      "package_unchanged": true,
+      "report_sha256": "95eab641e4b588ccfaa75d1fa8e5837bdc17a684dea652be3a64bf05a07a61fe"
+    },
+    "frozen_bytes": true
+  },
+  "preserved": {
+    "earlier_releases": 6,
+    "earlier_assets": 18,
+    "earlier_tag_refs": 12,
+    "repository_controls_changed": false,
+    "owner_work_order_or_raw_reports_in_git": false
+  },
+  "earlier_nonpasses": [
+    "Initial seek measurement sampled the MP3 decoder startup at seek boundaries. Full decode passed. A 0.5-second pre-roll and one-second trimmed measurement passed on retained output and in fresh full reruns.",
+    "Initial mutable checkout runs retained integrity nonpasses when files changed during execution. Stable isolated reruns passed.",
+    "Earlier PR CI run 42368760635 failed the unchanged real managed-download check with vendor HTTP 503. Its paired push run 42368754664 passed. Any later retry is recorded by run and attempt."
+  ],
+  "coverage_limits": [
+    "Windows 10 client, genuine Explorer drag-and-drop and phone playback were not exercised. The automated real BAT route ran on Windows 11.",
+    "Server CI is supplementary.",
+    "DRM-protected books are outside supported inputs. Chapter navigation/resume depends on the player."
+  ],
+  "closure": "Ordinary documentation PR and final fresh local/live main comparison follow the recorded runtime verification. The public tag remains on the tested source."
+}
