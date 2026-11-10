@@ -255,7 +255,8 @@ function Invoke-Transaction {
     param([string]$Label)
     $output=Join-Path $outputRoot ($Label+'.mp3')
     $encode=New-AudioEncodeArguments -InputPath $source -Media $media -OutputPlan $plan -MetadataArguments @('-map_metadata','0','-id3v2_version','3')
-    return Invoke-AudioOutputTransaction -SourcePath $source -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $media.DurationSeconds -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $encode -OutputPlan $plan
+    return Invoke-AudioOutputTransaction -SourcePath $source -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $media.DurationSeconds `
+        -SourceStreamIndex $media.StreamIndex -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $encode -OutputPlan $plan
 }
 function Assert-Failed {
     param([object]$Result)
@@ -320,7 +321,10 @@ try {
             Assert-True ($result.exit_code -eq 0) ('Readonly app entry failed: '+$result.stdout+' '+$result.stderr)
             $published=@(Get-SafeTree $entryOutput|Where-Object{-not $_.PSIsContainer -and $_.Extension -ieq '.mp3'})
             Assert-True ($published.Count -eq 1) 'Require one actually published output.'
-            $validation=Get-AudioOutputValidation -Path $published[0].FullName -SourceDurationSeconds $media.DurationSeconds -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -OutputPlan $plan
+            $measured=Get-AudioSourceMeasurement -Path $source -StreamSpecifier ('0:{0}' -f $media.StreamIndex) -FfmpegPath $ffmpeg `
+                -ProgressCallbackState (New-AudioProgressCallbackState)
+            Assert-True ($measured.Status -ceq 'Success') 'Independent source measurement failed.'
+            $validation=Get-AudioOutputValidation -Path $published[0].FullName -SourceDurationSeconds $measured.Seconds -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -OutputPlan $plan
             Assert-True ($validation.Status -ceq 'Success' -and $validation.ProcessReleased) 'Published output must pass production exact-shape/duration/full-decode validation.'
             Assert-True (-not (Test-Path -LiteralPath $configPath) -and @(Get-ChildItem -LiteralPath $appRoot -Force).Count -eq $runtimePaths.Count) 'Conversion wrote application/config state.'
             $case.actual_acl_write_denied=$true;$case.actual_entry_exit=0;$case.output_fully_decoded=$true
@@ -346,13 +350,16 @@ try {
             $case.actual_acl_denial=$true;$case.explicit_selection_valid=$true
         }finally{Restore-OwnedAcl $acl}
     }
-    Invoke-Case 'actual-busy-source-refuses-encode-and-cleans-owned-partial' 'S11-A1/S11-A3' {
+    Invoke-Case 'actual-busy-source-refuses-measurement-before-encoding' 'S11-A1/S11-A3' {
         param($case)
         $held=[IO.File]::Open($source,[IO.FileMode]::Open,[IO.FileAccess]::Read,[IO.FileShare]::None)
         try{
             $result=Invoke-Transaction 'busy';Assert-Failed $result
-            Assert-True ($result.Status -ceq 'EncodeFailed' -and $result.EncoderResult.Status -ceq 'Completed' -and $result.EncoderResult.ExitCode -ne 0 -and $result.EncoderResult.ProcessReleased -and $result.EncoderResult.PipeDrainCompleted) 'Actual encoder must refuse exclusively held source and prove release.'
-            $case.transaction_status=$result.Status;$case.native_exit=$result.EncoderResult.ExitCode;$case.actual_FileShare_None=$true
+            $decode=$result.SourceMeasurement.NativeResult
+            Assert-True ($result.Status -ceq 'SourceDecodeFailed' -and $decode.Status -ceq 'Completed' -and $decode.ExitCode -ne 0 -and
+                $decode.ProcessReleased -and $decode.PipeDrainCompleted -and $null -eq $result.EncoderResult -and $null -eq $result.WorkingPath) `
+                'Actual source measurement must refuse exclusively held source, prove release and avoid staging or encoding.'
+            $case.transaction_status=$result.Status;$case.native_exit=$decode.ExitCode;$case.actual_FileShare_None=$true
         }finally{$held.Dispose()}
     }
     Invoke-Case 'controlled-source-disappearance-after-real-plan-prevents-final-publication' 'S11-A1/S11-A3' {
@@ -360,7 +367,10 @@ try {
         $heldPath=$source+'.held';[IO.File]::Move($source,$heldPath)
         try{
             $result=Invoke-Transaction 'disappeared';Assert-Failed $result
-            Assert-True ($result.Status -ceq 'EncodeFailed' -and $result.EncoderResult.ExitCode -ne 0 -and $result.EncoderResult.ProcessReleased -and $result.EncoderResult.PipeDrainCompleted) 'Actual encoder must reject disappeared source and prove release.'
+            $decode=$result.SourceMeasurement.NativeResult
+            Assert-True ($result.Status -ceq 'SourceDecodeFailed' -and $decode.Status -ceq 'Completed' -and $decode.ExitCode -ne 0 -and
+                $decode.ProcessReleased -and $decode.PipeDrainCompleted -and $null -eq $result.EncoderResult -and $null -eq $result.WorkingPath) `
+                'Actual source measurement must reject disappeared source, prove release and avoid staging or encoding.'
             $case.controlled_fixture_move_after_plan=$true;$case.real_native_failure=$true;$case.transaction_status=$result.Status
         }finally{[IO.File]::Move($heldPath,$source)}
     }
@@ -369,7 +379,9 @@ try {
         $sentinel=Join-Path $outputRoot 'unrelated.mp3';Write-NewText $sentinel 'Owned unrelated synthetic final sentinel';Add-Fixture $sentinel
         $script:injectedCalls=0
         Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value {
-            param([string]$ExecutablePath,[string[]]$Arguments,[object]$Cancellation)
+            param([string]$ExecutablePath,[string[]]$Arguments,[int]$MaxStdoutChars,[object]$Cancellation,
+                [scriptblock]$ProgressCallback,[object]$ProgressDurationSeconds,[object]$ProgressParser,[object]$ProgressCallbackState,[string]$Operation)
+            if ($Operation -cne 'MP3 encoder') { return & $script:trackedNative @PSBoundParameters }
             $script:injectedCalls++
             Assert-True ($ExecutablePath -ieq $ffmpeg -and $Arguments -contains '-b:a') 'Only encoder boundary is injected.'
             $working=$Arguments[$Arguments.Count-1]

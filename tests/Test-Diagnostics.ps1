@@ -276,7 +276,14 @@ function Assert-ManifestTotals {
     foreach($row in $data.records){$source=Join-Path $InputPath $row.source_relative_path;Assert-True ([IO.File]::Exists($source) -and [long]$row.input_bytes -eq (Get-Item -LiteralPath $source).Length) 'Every row must map exact source and observed byte length.';$inputBytes+=[long]$row.input_bytes
         if($null -ne $row.input_duration_seconds){$inputDuration+=[double]$row.input_duration_seconds}else{$unknown++}
         if($row.status -ceq 'Converted'){$target=Join-Path $Artifacts.root $row.output_relative_path;Assert-True ([IO.File]::Exists($target) -and [long]$row.output_bytes -eq (Get-Item -LiteralPath $target).Length -and $row.output_duration_seconds -gt 0 -and $row.input_duration_seconds -gt 0 -and $row.code -ceq 'Success') 'Converted mapping must be actual validated publication with measured duration/bytes.';$outputBytes+=[long]$row.output_bytes;$outputDuration+=[double]$row.output_duration_seconds;$independent=Assert-Decoded $target $row.input_duration_seconds;Assert-True ([math]::Abs($independent.duration_seconds-$row.output_duration_seconds) -lt 0.000001) 'Manifest output duration must match independently observed selected audio probe duration.';$decoded+=$independent
-        }else{Assert-True ($row.output_bytes -eq 0 -and $null -eq $row.output_duration_seconds -and -not [IO.File]::Exists((Join-Path $Artifacts.root $row.output_relative_path))) 'Unpublished candidate must have no final and no invented output measurement.'}
+        }else{
+            Assert-True ($row.output_bytes -eq 0 -and -not [IO.File]::Exists((Join-Path $Artifacts.root $row.output_relative_path))) 'Unpublished candidate must have no final MP3 or published bytes.'
+            if ($null -ne $row.output_duration_seconds) {
+                $probe = $row.native_operations.output_probe
+                Assert-True ($row.output_duration_seconds -gt 0 -and $null -ne $probe -and $probe.exit_code -eq 0 -and $probe.process_released) (
+                    'A rejected working file can record a probe duration only after a completed output probe.')
+            }
+        }
         Assert-True ($row.elapsed_seconds -ge 0 -and $row.reason.Length -le 2048) 'Row timings/reasons must remain valid and bounded to2048 total characters including any truncation suffix.'
         if($row.status -ceq 'Converted'){Assert-True ($row.decoded_duration_seconds -gt 0 -and [math]::Abs($row.decoded_duration_seconds-$row.input_duration_seconds) -le 0.35) 'Converted row must record actual full-decode duration within the source tolerance.'}
     }
