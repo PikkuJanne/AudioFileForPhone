@@ -1,5 +1,16 @@
 # AudioFileForPhone agent instructions
 
+## Completed owner-directed v1.0.7 duration repair — 2026-11-10
+
+The focused work order completed automated Windows verification, ordinary reviewed
+integration, normal public release, anonymous byte verification and automated
+public-download smoke. Measured decoded duration governs validation. Usable
+conversions may carry source warnings. Existing output protections stay in force.
+See `docs/codex-v1.0.1/PATCH107-HANDOVER.md` and `evidence/PATCH107.json` there.
+Keep the original, private work order, raw log and raw reports outside Git and
+release assets. Preserve the published source tag and asset bytes. Future
+maintenance needs a new owner request.
+
 ## Completed owner-directed v1.0.6 M4B work order — 2026-11-07
 
 The owner authorized adding unencrypted M4B input through automated verification,
