@@ -276,7 +276,14 @@ function Assert-ManifestTotals {
     foreach($row in $data.records){$source=Join-Path $InputPath $row.source_relative_path;Assert-True ([IO.File]::Exists($source) -and [long]$row.input_bytes -eq (Get-Item -LiteralPath $source).Length) 'Every row must map exact source and observed byte length.';$inputBytes+=[long]$row.input_bytes
         if($null -ne $row.input_duration_seconds){$inputDuration+=[double]$row.input_duration_seconds}else{$unknown++}
         if($row.status -ceq 'Converted'){$target=Join-Path $Artifacts.root $row.output_relative_path;Assert-True ([IO.File]::Exists($target) -and [long]$row.output_bytes -eq (Get-Item -LiteralPath $target).Length -and $row.output_duration_seconds -gt 0 -and $row.input_duration_seconds -gt 0 -and $row.code -ceq 'Success') 'Converted mapping must be actual validated publication with measured duration/bytes.';$outputBytes+=[long]$row.output_bytes;$outputDuration+=[double]$row.output_duration_seconds;$independent=Assert-Decoded $target $row.input_duration_seconds;Assert-True ([math]::Abs($independent.duration_seconds-$row.output_duration_seconds) -lt 0.000001) 'Manifest output duration must match independently observed selected audio probe duration.';$decoded+=$independent
-        }else{Assert-True ($row.output_bytes -eq 0 -and $null -eq $row.output_duration_seconds -and -not [IO.File]::Exists((Join-Path $Artifacts.root $row.output_relative_path))) 'Unpublished candidate must have no final and no invented output measurement.'}
+        }else{
+            Assert-True ($row.output_bytes -eq 0 -and -not [IO.File]::Exists((Join-Path $Artifacts.root $row.output_relative_path))) 'Unpublished candidate must have no final MP3 or published bytes.'
+            if ($null -ne $row.output_duration_seconds) {
+                $probe = $row.native_operations.output_probe
+                Assert-True ($row.output_duration_seconds -gt 0 -and $null -ne $probe -and $probe.exit_code -eq 0 -and $probe.process_released) (
+                    'A rejected working file can record a probe duration only after a completed output probe.')
+            }
+        }
         Assert-True ($row.elapsed_seconds -ge 0 -and $row.reason.Length -le 2048) 'Row timings/reasons must remain valid and bounded to2048 total characters including any truncation suffix.'
         if($row.status -ceq 'Converted'){Assert-True ($row.decoded_duration_seconds -gt 0 -and [math]::Abs($row.decoded_duration_seconds-$row.input_duration_seconds) -le 0.35) 'Converted row must record actual full-decode duration within the source tolerance.'}
     }
@@ -373,7 +380,9 @@ try {
             Update-AudioRunManifest $context Failed 1 1.234;Write-AudioRunManifest $context FileBoundary;Write-AudioRunManifest $context Final
             $read=[IO.File]::ReadAllText($context.Path)|ConvertFrom-Json
             Assert-True ($read.records[0].reason -ceq $reason -and $read.records[0].source_title -ceq $exactTitle -and $read.policies.metadata.artist -ceq $exactArtist -and $read.policies.metadata.album -ceq $exactAlbum) 'JSON must roundtrip exact structured Unicode/formula-like/quoted/multiline values.'
-            Assert-True ($read.checkpoint -ceq 'Final' -and $read.revision -eq 3 -and $read.totals.failed -eq 1 -and $read.records[0].input_duration_seconds -eq $media.DurationSeconds) 'Snapshots must retain actual measured duration and exclusive failure row.'
+            Assert-True ($read.checkpoint -ceq 'Final' -and $read.revision -eq 3 -and $read.totals.failed -eq 1 -and
+                $null -eq $read.records[0].input_duration_seconds -and $read.records[0].source_reported_duration_seconds -eq $media.DurationSeconds) (
+                'Snapshots must preserve the reported source duration separately from an unavailable measurement.')
             $case['newline_fixture_kind']='actual source metadata and synthetic structured reason; no newline Windows filename';$case['exact_unicode_codepoints']=@('U+00E9','U+4E2D','U+03A9','U+65E5','U+672C');$case['roundtrip_json']=$read
         }finally{Close-AudioRunManifest $context}
         Get-RunArtifacts $parent|Out-Null
@@ -389,7 +398,10 @@ try {
         foreach($name in @('ffmpeg','ffprobe')){Assert-True ($artifacts.data.tools.$name.path -ceq (Get-Variable $name -ValueOnly) -and $artifacts.data.tools.$name.version -ceq $toolInfo.$name.Version) 'Actual tool path and full version line must persist.'}
         Assert-True ($artifacts.data.policies.metadata.artist -ceq $exactArtist -and $artifacts.data.policies.metadata.album -ceq $exactAlbum -and @($artifacts.data.records|Where-Object{$_.status -ceq 'Converted' -and $_.source_title -cne $exactTitle}).Count -eq 0) 'Actual metadata policy and source titles must retain exact JSON strings.'
         $summaries=Get-NativeSummaries $artifacts.log;$actualStages=(@($summaries.stage|Sort-Object -Unique) -join ',')
-        Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and $actualStages -ceq 'Encoder,EncoderCapabilities,OutputDecode,OutputProbe,SourceProbe') 'Local log must retain exactly the five actual source/capability/encoder/validation stages and the one source failure.';$case['native_stage_summaries']=$summaries
+        Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and
+            $actualStages -ceq 'Encoder,EncoderCapabilities,OutputDecode,OutputProbe,SourceDecode,SourceProbe') (
+            'Local log must retain all six actual source/capability/encoder/validation stages and the one source probe failure.')
+        $case['native_stage_summaries']=$summaries
     }
     Invoke-Case 'injected capability release refusal stops before a second source probe or encoding' 'S09-A1,A35,A37' {
         param($case);$inputPath=New-InputFixture 'capability-release-refusal' @('mp3','m4a');$parent=New-OutputParent 'capability-release-refusal'

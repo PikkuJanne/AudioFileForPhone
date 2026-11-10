@@ -275,6 +275,8 @@ function Assert-CiPolicy {
         'Copy-Item -LiteralPath $report -Destination $archiveReport'
         '& (Join-Path $env:GITHUB_WORKSPACE ''tests/Test-M4B.ps1'') -Mode Quick -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path'
         'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'
+        '& (Join-Path $env:GITHUB_WORKSPACE ''tests/Test-MeasuredDuration.ps1'') -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path'
+        'if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }'
     )
     if ($errors.Count -ne 0 -or $null -ne $recoveryAst.BeginBlock -or $null -ne $recoveryAst.ProcessBlock -or
         $recoveryAst.EndBlock.Statements.Count -ne $approvedRecoveryStatements.Count) { throw 'Unapproved synthetic recovery command structure.' }

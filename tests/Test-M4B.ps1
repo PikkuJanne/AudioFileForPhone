@@ -6,7 +6,7 @@ param(
     [string]$ApplicationPath,
     [string]$FfmpegPath = 'C:\ffmpeg\bin\ffmpeg.exe',
     [string]$FfprobePath = 'C:\ffmpeg\bin\ffprobe.exe',
-    [string]$ExpectedAppVersion = '1.0.6'
+    [string]$ExpectedAppVersion = '1.0.7'
 )
 
 $ErrorActionPreference = 'Stop'

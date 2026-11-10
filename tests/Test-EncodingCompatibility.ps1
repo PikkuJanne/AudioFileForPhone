@@ -190,7 +190,7 @@ function Invoke-MatrixConversion {
     $arIndex = [Array]::IndexOf($arguments, '-ar'); $acIndex = [Array]::IndexOf($arguments, '-ac')
     $lastInputIndex = [Array]::LastIndexOf($arguments, '-i')
     Assert-True (@($arguments | Where-Object { $_ -ceq '-ar' }).Count -eq 1 -and @($arguments | Where-Object { $_ -ceq '-ac' }).Count -eq 1 -and $arIndex -gt $lastInputIndex + 1 -and $acIndex -gt $lastInputIndex + 1 -and [int]$arguments[$arIndex+1] -eq $expectedSampleRate -and [int]$arguments[$acIndex+1] -eq $expectedChannels) ('Builder output options differ from the plan or occur before an input: ' + $id)
-    $transaction = Invoke-AudioOutputTransaction -SourcePath $Source.path -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $Source.media.DurationSeconds -BitrateKbps $Bitrate -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $arguments -HasCover ([bool]$Cover) -OutputPlan $plan
+    $transaction = Invoke-AudioOutputTransaction -SourcePath $Source.path -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $Source.media.DurationSeconds -SourceStreamIndex $Source.media.StreamIndex -BitrateKbps $Bitrate -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $arguments -HasCover ([bool]$Cover) -OutputPlan $plan
     Assert-True ($transaction.Status -ceq 'Success' -and [string]::IsNullOrEmpty($transaction.CleanupError)) ('Transaction failed: ' + $id + ' ' + $transaction.Status + ' ' + $transaction.Error)
     Assert-True ($transaction.EncoderResult.TimeoutMilliseconds -eq 0 -and $transaction.ValidationResult.DecodeResult.TimeoutMilliseconds -eq 0) 'Normal encoding/full decode gained a runtime limit.'
     $validation = $transaction.ValidationResult
@@ -219,7 +219,8 @@ function Invoke-MatrixConversion {
         id=$id; group=$Group; status='pass'; source_codec=$Source.codec; source_sample_rate=$Source.rate; source_channels=$Source.channels; source_channel_layout=$Source.layout
         requested_bitrate_kbps=$Bitrate; planned_sample_rate=$plan.OutputSampleRate; planned_channels=$plan.OutputChannels; resample=$plan.Resample; downmix=$plan.Downmix
         observed_bitrate_bps=[int]$audio[0].bit_rate; observed_sample_rate=[int]$audio[0].sample_rate; observed_channels=[int]$audio[0].channels
-        output_duration_seconds=$validation.DurationSeconds; decoded_duration_seconds=$validation.DecodedDurationSeconds; source_duration_seconds=$Source.media.DurationSeconds
+        output_duration_seconds=$validation.DurationSeconds; decoded_duration_seconds=$validation.DecodedDurationSeconds
+        source_duration_seconds=$transaction.SourceMeasurement.Seconds; source_reported_duration_seconds=$Source.media.DurationSeconds
         full_decode=$true; default_shape_unchanged=($Bitrate -eq 64 -and -not $plan.Resample -and -not $plan.Downmix); default_decoded_sound_unchanged=$soundUnchanged; cover=[bool]$Cover
     })
     return [pscustomobject]@{ output=$output; plan=$plan; source=$Source }

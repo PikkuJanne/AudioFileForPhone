@@ -9,12 +9,12 @@ The default is **64 kbps CBR MP3**. Re-encoding can reduce audio quality; it doe
 **not normalize loudness**. Loudness normalization is deferred and has no current
 option. Filename Unicode normalization is a separate naming operation.
 
-**[Download AudioFileForPhone v1.0.6 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip)**
+**[Download AudioFileForPhone v1.0.7 for Windows](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/AudioFileForPhone-v1.0.7.zip)**
 
-[Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6)
-identify the exact application ZIP and automated verification. v1.0.6 converts
-unencrypted M4B audiobooks to one complete MP3 per book alongside the existing
-formats. It retains bounded native worker recovery and strict output validation.
+[Release notes and checksums](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.7)
+identify the exact application ZIP and automated verification. v1.0.7 validates
+converted audio against the decoded source, so an inaccurate input duration
+estimate can no longer cause an otherwise valid conversion to fail.
 Windows 10 and genuine Explorer conversion remain unverified historical coverage
 exceptions, without being treated as test passes.
 See [CHANGELOG.md](CHANGELOG.md), the [tested boundaries](SUPPORT.md#tested-boundaries)
@@ -23,7 +23,7 @@ and [release evidence](https://github.com/PikkuJanne/AudioFileForPhone/blob/main
 ## Setup
 
 The application provides direct visible launch and a small user package. Published
-v1.0.0 through v1.0.5 tags and bytes are preserved. Each release retains its
+v1.0.0 through v1.0.6 tags and bytes are preserved. Each release retains its
 tested source snapshot; later repository documentation does not replace it.
 Owner testing required: none.
 
@@ -378,18 +378,26 @@ unavailable in that configuration; chapter navigation was not tested. See the
 
 ## Results and interruption
 
-Final MP3s appear only after encoding, audio/bitrate/duration validation and a
-full audio decode. Validation adds a read/decode pass. Independent files continue
-after ordinary failures; completed outputs and sources remain available.
+Final MP3s appear after encoding, output format checks and a strict full decode.
+Validation measures the selected source audio in a separate read-only decode and
+checks the decoded output against it within 0.35 seconds for codec padding and
+resampling. The source's reported duration is a progress hint. An inaccurate or
+missing estimate is compatible with a successful conversion.
+
+If FFmpeg finishes decoding usable audio from a damaged source, the verified MP3
+is kept and counted as converted with source warnings. Damaged segments may be
+missing or concealed in the decoded audio. Sources that cannot be read through to
+a usable decode fail individually. Independent files continue after failures.
 
 | Exit | Result |
 | --- | --- |
-| `0` | `Completed`: all supported inputs converted, or `Previewed`: planning succeeded with no conversion. |
+| `0` | `Completed` if all supported inputs converted, including outputs with source warnings. `Previewed` if planning succeeded with no conversion. |
 | `1` | `FailedBeforeConversion` or `Failed`: invalid setup, no supported files, scan/fatal error, or a required record-write failure. |
 | `2` | `CompletedWithFailures`: batch finished with at least one per-file failure. |
 | `130` | `Cancelled`: Q or EOF during interactive choices, or controlled Ctrl+C after metadata prompts in a supported Windows console. |
 
-The summary reports actual counts and output/log/manifest paths. Processed means
+The summary reports actual counts, including a separate count for conversions
+with source warnings, and output/log/manifest paths. Processed means
 converted plus failed; 100 percent processed can include failures. Unsupported
 files and scan exclusions are separate counts. PowerShell parameter-binding
 errors and forced termination can have host-defined exit behavior.
@@ -406,7 +414,8 @@ for host limits and recovery guidance.
 
 Conversion writes a human-readable log and JSON manifest under its run root.
 They contain exact paths, metadata, app/tool versions, script hashes, per-file
-outcomes, timings, available durations/bytes and bounded native errors. The app
+outcomes, timings, reported and measured durations, byte counts and bounded
+native diagnostics. The app
 does not upload them. Redact private paths, filenames and metadata before sharing.
 Records may be incomplete after a persistence failure or forced shutdown; use
 the console's final result too. Preview has no records, including on failure.

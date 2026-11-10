@@ -55,7 +55,7 @@ $report = [ordered]@{
     temp_exclusively_reserved = $false; marker_create_new = $false; runtime_mode = 'direct_production_functions'
     owned_temp_root = $testRoot; cleanup_phase = 'NotStarted'
     cleanup_verified = $false; descendant_release_proved = $false; parent_path_unchanged = $false
-    requested_bitrate_kbps = 64; duration_policy_changed = $false; duration_tolerance_seconds = 0.35
+    requested_bitrate_kbps = 64; source_duration_reference = 'independently decoded audio'; duration_tolerance_seconds = 0.35
     native_runs = @(); tools = @(); encoder_sample_rates = @(); cases = @(); matrix = @(); app_runs = @(); fixture_limitations = @()
     status = 'fail'; error = $null
 }
@@ -176,7 +176,7 @@ function Invoke-MatrixConversion {
     $arIndex = [Array]::IndexOf($arguments, '-ar'); $acIndex = [Array]::IndexOf($arguments, '-ac')
     $lastInputIndex = [Array]::LastIndexOf($arguments, '-i')
     Assert-True (@($arguments | Where-Object { $_ -ceq '-ar' }).Count -eq 1 -and @($arguments | Where-Object { $_ -ceq '-ac' }).Count -eq 1 -and $arIndex -gt $lastInputIndex + 1 -and $acIndex -gt $lastInputIndex + 1 -and [int]$arguments[$arIndex+1] -eq $expectedSampleRate -and [int]$arguments[$acIndex+1] -eq $expectedChannels) ('Builder output options differ from the plan or occur before an input: ' + $id)
-    $transaction = Invoke-AudioOutputTransaction -SourcePath $Source.path -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $Source.media.DurationSeconds -BitrateKbps $Bitrate -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $arguments -HasCover ([bool]$Cover) -OutputPlan $plan
+    $transaction = Invoke-AudioOutputTransaction -SourcePath $Source.path -OutputRoot $outputRoot -OutputPath $output -SourceDurationSeconds $Source.media.DurationSeconds -SourceStreamIndex $Source.media.StreamIndex -BitrateKbps $Bitrate -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $arguments -HasCover ([bool]$Cover) -OutputPlan $plan
     Assert-True ($transaction.Status -ceq 'Success' -and [string]::IsNullOrEmpty($transaction.CleanupError)) ('Transaction failed: ' + $id + ' ' + $transaction.Status + ' ' + $transaction.Error)
     Assert-True ($transaction.EncoderResult.TimeoutMilliseconds -eq 0 -and $transaction.ValidationResult.DecodeResult.TimeoutMilliseconds -eq 0) 'Normal encoding/full decode gained a runtime limit.'
     $validation = $transaction.ValidationResult
@@ -205,10 +205,11 @@ function Invoke-MatrixConversion {
         id=$id; group=$Group; status='pass'; source_codec=$Source.codec; source_sample_rate=$Source.rate; source_channels=$Source.channels; source_channel_layout=$Source.layout
         requested_bitrate_kbps=$Bitrate; planned_sample_rate=$plan.OutputSampleRate; planned_channels=$plan.OutputChannels; resample=$plan.Resample; downmix=$plan.Downmix
         observed_bitrate_bps=[int]$audio[0].bit_rate; observed_sample_rate=[int]$audio[0].sample_rate; observed_channels=[int]$audio[0].channels
-        output_duration_seconds=$validation.DurationSeconds; decoded_duration_seconds=$validation.DecodedDurationSeconds; source_duration_seconds=$Source.media.DurationSeconds
+        output_duration_seconds=$validation.DurationSeconds; decoded_duration_seconds=$validation.DecodedDurationSeconds
+        source_duration_seconds=$transaction.SourceMeasurement.Seconds; source_reported_duration_seconds=$Source.media.DurationSeconds
         full_decode=$true; default_shape_unchanged=($Bitrate -eq 64 -and -not $plan.Resample -and -not $plan.Downmix); default_decoded_sound_unchanged=$soundUnchanged; cover=[bool]$Cover
     })
-    return [pscustomobject]@{ output=$output; plan=$plan; source=$Source }
+    return [pscustomobject]@{ output=$output; plan=$plan; source=$Source; measured_source_seconds=$transaction.SourceMeasurement.Seconds }
 }
 function New-CorpusSource {
     param([string]$Id,[double]$Duration,[string]$Codec,[string]$Extension,[string[]]$ExtraArguments=@(),[int]$Rate=44100)
@@ -283,7 +284,7 @@ try {
             $source=New-CorpusSource $row.id $row.duration $row.codec $row.ext $row.extra $sourceRate
             Invoke-CorpusConversion $source|Out-Null
         }
-        $case['real_conversions']=6;$case['duration_policy_changed']=$false
+        $case['real_conversions']=6;$case['source_duration_reference']='independently decoded audio'
     }
     Invoke-Case 'AAC edit-list and packet skip-sample variants retain bounded decoded duration' {
         param($case)
@@ -293,7 +294,7 @@ try {
             $packets=Invoke-Tool $ffprobe @('-v','error','-select_streams','a:0','-read_intervals','%+#1','-show_packets','-of','json','-i',$source.path) 'S11 AAC first packet padding evidence'
             $packet=@((ConvertFrom-Json $packets.Stdout).packets)[0]
             Invoke-CorpusConversion $source|Out-Null
-            $case.variants += [pscustomobject]@{use_editlist=$edit;source_duration_seconds=$source.media.DurationSeconds;first_packet_pts_time=$packet.pts_time;first_packet_duration_time=$packet.duration_time;side_data=@($packet.side_data_list)}
+            $case.variants += [pscustomobject]@{use_editlist=$edit;source_reported_duration_seconds=$source.media.DurationSeconds;first_packet_pts_time=$packet.pts_time;first_packet_duration_time=$packet.duration_time;side_data=@($packet.side_data_list)}
         }
     }
     Invoke-Case 'MP3 without Xing header retains observed estimated duration and full decode' {
@@ -302,7 +303,7 @@ try {
         $bytes=[IO.File]::ReadAllBytes($source.path);$text=[Text.Encoding]::ASCII.GetString($bytes)
         Assert-True ($text.IndexOf('Xing',[StringComparison]::Ordinal) -lt 0 -and $text.IndexOf('Info',[StringComparison]::Ordinal) -lt 0) 'No-Xing fixture unexpectedly contains Xing/Info signature.'
         Invoke-CorpusConversion $source|Out-Null
-        $case['source_duration_seconds']=$source.media.DurationSeconds;$case['no_xing_or_info_signature']=$true
+        $case['source_reported_duration_seconds']=$source.media.DurationSeconds;$case['no_xing_or_info_signature']=$true
     }
     Invoke-Case 'intact payload passes while retained-header truncation fails full-decode validation' {
         param($case)
@@ -315,11 +316,11 @@ try {
         Add-Fixture $truncated
         $probe=Read-Probe $truncated;$audio=@($probe.streams|Where-Object{$_.codec_type -ceq 'audio'})[0]
         $headerSeconds=[double]::Parse([string]$audio.duration,[Globalization.CultureInfo]::InvariantCulture)
-        Assert-True ([math]::Abs($headerSeconds-$source.media.DurationSeconds) -le 0.35) 'Truncation control did not preserve plausible header duration.'
-        $validation=Get-AudioOutputValidation -Path $truncated -SourceDurationSeconds $source.media.DurationSeconds -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -OutputPlan $control.plan
+        Assert-True ([math]::Abs($headerSeconds-$control.measured_source_seconds) -le 0.35) 'Truncation control did not preserve plausible header duration.'
+        $validation=Get-AudioOutputValidation -Path $truncated -SourceDurationSeconds $control.measured_source_seconds -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -OutputPlan $control.plan
         Assert-True ($validation.Status -cne 'Success' -and $validation.ProcessReleased -and $null -ne $validation.DecodeResult -and $validation.Error -match 'decode|Decoded') 'Retained-header truncation escaped full-decode validation.'
         $case['intact_validation']='Success';$case['truncated_validation']=$validation.Status;$case['header_duration_seconds']=$headerSeconds
-        $case['expected_seconds']=$source.media.DurationSeconds;$case['decode_exit_code']=$validation.DecodeResult.ExitCode;$case['decoded_duration_seconds']=$validation.DecodedDurationSeconds
+        $case['expected_seconds']=$control.measured_source_seconds;$case['decode_exit_code']=$validation.DecodeResult.ExitCode;$case['decoded_duration_seconds']=$validation.DecodedDurationSeconds
         $case['truncated_file_never_published']=$true;$case['duration_tolerance_seconds']=0.35
     }
 

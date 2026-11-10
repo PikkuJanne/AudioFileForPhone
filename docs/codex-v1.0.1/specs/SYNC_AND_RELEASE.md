@@ -1,4 +1,22 @@
-# Sync and release — v1.0.6 closed
+# Sync and release
+
+## v1.0.7 duration repair authority — 2026-11-10
+
+The owner authorized the duration repair through automated Windows and exact ZIP
+verification, ordinary reviewed PR and CI integration, normal public publication,
+independent public download and smoke testing, and final live-ref verification.
+Historical numbered stops and separate owner approvals do not apply to this
+patch. Keep the original recording, raw log, private work order and raw reports
+outside Git, public CI and release assets. Use synthetic fixtures in public CI.
+Preserve previous tags, published bytes and repository controls.
+
+Verify that the intended tag is unused, integrate the reviewed tree, and build the
+allowlisted package from the exact tested source. Verify the uploaded draft assets
+before publishing the normal release. Then anonymously download and hash the
+public assets and run the focused package smoke checks on those bytes. Record the
+actual environments and any coverage limits. The work requires no owner testing.
+
+## v1.0.6 M4B release closure
 
 Public [v1.0.6](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6) is verified. Frozen source/tag `6e2b3cbb87ba29c8140b80e722f2c443044f6def` / `v1.0.6`. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip) SHA-256 `afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68`. The public bytes passed mixed-format M4B conversion through BAT and direct PowerShell. See [M4B-HANDOVER.md](M4B-HANDOVER.md) and [evidence/M4B.json](evidence/M4B.json). No owner testing or automatic next version is pending.
 

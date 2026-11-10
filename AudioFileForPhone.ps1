@@ -197,7 +197,7 @@ $ErrorActionPreference = 'Stop'
 $runStartedUtc = [datetime]::UtcNow.ToString('o')
 $runWatch = [Diagnostics.Stopwatch]::StartNew()
 $run = $null; $logPath = $null; $outputBase = $null
-$total = 0; $ok = 0; $failed = 0; $scanExcluded = 0; $unsupported = 0
+$total = 0; $ok = 0; $failed = 0; $convertedWithSourceWarnings = 0; $scanExcluded = 0; $unsupported = 0
 $batchExitCode = 1; $runStatus = 'FailedBeforeConversion'; $currentOutcome = $null
 $cancelCleanupNote = $null
 $consoleCaptureNotice = ''
@@ -261,10 +261,9 @@ function Get-AudioResultSummary {
     $elapsed = $runWatch.Elapsed.TotalSeconds.ToString('F3', [Globalization.CultureInfo]::InvariantCulture)
     $summary = ('status={0}; total={1}; processed={2}; converted={3}; failed={4}; not_processed={5}; scan_excluded={6}; unsupported={7}; elapsed_seconds={8}' -f `
         $runStatus, $total, ($ok + $failed), $ok, $failed, ($total - $ok - $failed), $scanExcluded, $unsupported, $elapsed)
+    $summary += '; converted_with_source_warnings=' + $convertedWithSourceWarnings
     if ($manifest) {
-        $failures = @($manifest.Data.records | Where-Object { $_.status -eq 'Failed' } | ForEach-Object {
-            '{0}: {1}. Original unchanged.' -f $_.source_relative_path, (Get-AudioBoundedText -Value $_.reason -MaximumChars 240)
-        })
+        $failures = @($manifest.Data.records | Where-Object { $_.status -eq 'Failed' } | ForEach-Object { $_.source_relative_path })
         if ($failures.Count -gt 0) { $summary += '; failed files: ' + ($failures -join ' | ') }
     }
     return $summary
@@ -475,11 +474,11 @@ if ($Interactive) {
 # Native calls share this context; redirected/unsupported hosts retain their own
 # interruption behavior and cannot promise a controlled exit code.
 function Write-Log {
-    param([string]$Message, [string]$Level = 'INFO')
+    param([string]$Message, [string]$Level = 'INFO', [switch]$LogOnly)
     $line = '[{0}] {1}' -f $Level, $Message
     # Keep full mappings/native diagnostics in the local log. Warnings, failures
     # and phase changes remain visible; -Verbose also shows the retained detail.
-    if ($Level -in @('WARN', 'FAIL', 'FATAL', 'CANCELLED') -or $Message.StartsWith('[STATE]')) {
+    if (-not $LogOnly -and ($Level -in @('WARN', 'FAIL', 'FATAL', 'CANCELLED') -or $Message.StartsWith('[STATE]'))) {
         $tone = if ($Level -in @('FAIL', 'FATAL')) { 'Failure' } elseif ($Level -in @('WARN', 'CANCELLED')) { 'Warning' } else { 'Ready' }
         Write-AudioConsole -Label $Level -Text $Message -Tone $tone
     }
@@ -491,7 +490,8 @@ function Save-AudioManifest {
     param([string]$Checkpoint, [string]$Status = 'Running', [AllowNull()][object]$ExitCode)
     Update-AudioRunManifest -Manifest $manifest -Status $Status -ExitCode $ExitCode `
         -ElapsedSeconds $runWatch.Elapsed.TotalSeconds -DiagnosticError $diagnosticError
-    if ($manifest.Data.totals.converted -ne $ok -or $manifest.Data.totals.failed -ne $failed) {
+    if ($manifest.Data.totals.converted -ne $ok -or $manifest.Data.totals.failed -ne $failed -or
+        $manifest.Data.totals.converted_with_source_warnings -ne $convertedWithSourceWarnings) {
         throw 'Run manifest outcomes do not match the committed conversion counts.'
     }
     Write-AudioRunManifest -Manifest $manifest -Checkpoint $Checkpoint
@@ -500,6 +500,7 @@ function Save-AudioManifest {
 function Write-FileNativeDiagnostics {
     foreach ($entry in @(
         @{ Stage = 'SourceProbe'; Result = if ($sourceProbeMedia) { $sourceProbeMedia.NativeResult } else { $null } },
+        @{ Stage = 'SourceDecode'; Result = if (-not $recovery -and $transaction -and $transaction.SourceMeasurement) { $transaction.SourceMeasurement.NativeResult } else { $null } },
         @{ Stage = 'RecoveryRemux'; Result = if ($recovery) { $recovery.RemuxResult } else { $null } },
         @{ Stage = 'RecoveryProbe'; Result = if ($recovery) { $recovery.ProbeResult } else { $null } },
         @{ Stage = 'OriginalRecoveryDecode'; Result = if ($recovery) { $recovery.DecodeResult } else { $null } },
@@ -665,8 +666,12 @@ foreach ($plan in $plans) {
 
     # A failed probe is a file failure, distinct from a valid missing title.
     $transaction = $null
+    $sourceGuard = $null; $sourceMeasurement = $null
     $fileStatus = 'ProbeFailed'; $fileReason = ''
     try {
+    Assert-AudioNoReparseAncestor -Path $file.FullName
+    # Keep the probed and measured original stable through encoding and publication.
+    $sourceGuard = [IO.File]::Open($file.FullName, [IO.FileMode]::Open, [IO.FileAccess]::Read, [IO.FileShare]::Read)
     Write-Log 'Running ffprobe.' 'DEBUG'
     $media = Get-AudioMediaInfo -Path $file.FullName -FfprobePath $ffprobe -ProbeTimeoutSeconds $ProbeTimeoutSeconds
     $sourceProbeMedia = $media
@@ -685,15 +690,12 @@ foreach ($plan in $plans) {
         }
         $media = $recovery.Media
         $encodeInputPath = $recovery.InputPath
+        $sourceMeasurement = $recovery.SourceMeasurement
         Write-Log '[STATE] Recovery copy validated against original decoded duration; continuing normal conversion.'
     }
     if ($media.Status -ne 'Success') {
         if ($media.NativeResult -and -not $media.NativeResult.ProcessReleased) { $sourceReleaseUnproved = $true }
         throw "Source probe failed ($($media.Status)): $($media.Error)"
-    }
-    $fileStatus = 'InvalidSourceDuration'
-    if ($media.DurationStatus -ne 'Valid') {
-        throw "Source duration $($media.DurationStatus); a finite positive source duration is required before conversion."
     }
     $fileStatus = 'IncompatibleAudioPlan'
     # Query the selected encoder once per started batch, after interactive input.
@@ -745,7 +747,7 @@ foreach ($plan in $plans) {
         # reader has released the recovery input. Retain scratch in that case.
         if ($recovery) { $recoveryReadProcessReleased = $false }
         $transaction = Invoke-AudioOutputTransaction -OutputPath $outPath -OutputRoot $outputRoot -SourcePath $file.FullName `
-            -SourceDurationSeconds $media.DurationSeconds -BitrateKbps $BitrateKbps `
+            -SourceDurationSeconds $media.DurationSeconds -SourceStreamIndex $media.StreamIndex -SourceMeasurement $sourceMeasurement -BitrateKbps $BitrateKbps `
             -HasCover (-not [string]::IsNullOrWhiteSpace($CoverPath)) -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $ffArgs `
             -ProgressCallback $fileProgressCallback -ProbeTimeoutSeconds $ProbeTimeoutSeconds -OutputPlan $outputAudioPlan
         if ($recovery) {
@@ -754,6 +756,7 @@ foreach ($plan in $plans) {
             if ($transaction.ValidationResult) { $recoveryReadProcessReleased = $recoveryReadProcessReleased -and [bool]$transaction.ValidationResult.ProcessReleased }
             $sourceReleaseUnproved = -not $recoveryReadProcessReleased
         }
+        if ($transaction.SourceMeasurement -and -not $transaction.SourceMeasurement.ProcessReleased) { $sourceReleaseUnproved = $true }
         $fileStatus = $transaction.Status
         $fileReason = $transaction.Error
         if ($fileStatus -eq 'Cancelled') {
@@ -767,6 +770,7 @@ foreach ($plan in $plans) {
     catch [OperationCanceledException] { throw }
     catch { $fileReason = $_.Exception.Message }
     finally {
+        if ($sourceGuard) { $sourceGuard.Dispose() }
         if ($recovery) {
             Close-AudioSourceRecovery -Recovery $recovery -ProcessReleased $recoveryReadProcessReleased
         }
@@ -774,7 +778,13 @@ foreach ($plan in $plans) {
 
     # Commit the actual file outcome before optional diagnostics. A published
     # file stays successful even if its log write fails; the run then exits 1.
-    if ($fileStatus -eq 'Success') { $ok++ } else { $failed++ }
+    $sourceMeasurement = $transaction.SourceMeasurement
+    $hasSourceWarnings = $null -ne $sourceMeasurement -and $sourceMeasurement.Warnings.Count -gt 0
+    if ($fileStatus -eq 'Success') {
+        $ok++
+        if ($hasSourceWarnings) { $convertedWithSourceWarnings++ }
+    }
+    else { $failed++ }
     $currentOutcome = if ($fileStatus -eq 'Success') {
         "Validated output was published to '$outPath'"
     } else { "File '$($file.FullName)' failed ($fileStatus`: $fileReason)" }
@@ -785,10 +795,21 @@ foreach ($plan in $plans) {
     $activeRecordIndex = -1
     Save-AudioManifest -Checkpoint FileBoundary
     $displayOutcome = if ($fileStatus -eq 'Success') { 'Converted; validated output published' } else { "Failed: $fileStatus" }
+    if ($fileStatus -eq 'Success' -and $hasSourceWarnings) { $displayOutcome = 'Converted with source decoding warnings' }
     $filePercent = if ($fileStatus -eq 'Success') { 100 } else { -1 }
     Write-AudioProgress -Id 1 -ParentId 0 -Activity $file.Name -Status $displayOutcome -PercentComplete $filePercent -Completed
     Write-AudioBatchProgress -Detail $displayOutcome
     Write-FileNativeDiagnostics
+    $record = $manifest.Data.records[$index - 1]
+    if ($sourceMeasurement) {
+        $durationDetails = [ordered]@{
+            source_reported_seconds = $record.source_reported_duration_seconds; source_reported_origin = $record.source_reported_duration_origin
+            source_measured_seconds = $record.input_duration_seconds; source_method = $record.source_measurement_method
+            output_decoded_seconds = $record.decoded_duration_seconds; difference_seconds = $record.duration_difference_seconds
+            tolerance_seconds = $record.duration_tolerance_seconds; source_warnings = $record.source_warnings
+        }
+        Write-Log ('[DURATION] ' + ($durationDetails | ConvertTo-Json -Compress)) 'DEBUG'
+    }
     if ($recovery) {
         Write-Log ('Recovery outcome: {0}; {1}' -f $recovery.Status, (Get-AudioBoundedText -Value $recovery.Error)) 'DEBUG'
         if ($recovery.CleanupError) { Write-Log ('Recovery scope retained: ' + $recovery.Directory + '; ' + $recovery.CleanupError) 'WARN' }
@@ -801,16 +822,29 @@ foreach ($plan in $plans) {
     }
     if ($null -ne $transaction) {
         $conversion = $transaction.EncoderResult
-        if ($null -ne $conversion -and $conversion.Stderr) { Write-Log $conversion.Stderr.TrimEnd() 'WARN' }
-        if ($null -ne $conversion -and $conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'WARN' }
+        if ($null -ne $conversion -and $conversion.StderrTruncated) { Write-Log 'FFmpeg diagnostics exceeded the retained limit.' 'DEBUG' }
     }
     if ($fileStatus -eq 'Success') {
-        Write-AudioConsole -Label 'OK' -Text 'Converted and validated.' -Tone Ready
+        $durationNote = if ($record.source_duration_estimated) {
+            'Input duration was estimated; verified the complete decoded audio instead.'
+        } elseif ($null -eq $recovery -and ($null -eq $record.source_reported_duration_seconds -or
+            [math]::Abs($record.source_reported_duration_seconds - $record.input_duration_seconds) -gt $record.duration_tolerance_seconds)) {
+            'Input header duration was missing or inaccurate; verified the complete decoded audio instead.'
+        }
+        if ($durationNote) {
+            Write-AudioConsole -Label 'INFO' -Text $durationNote -Tone Ready
+            Write-Log $durationNote
+        }
+        if ($hasSourceWarnings) {
+            Write-Log 'Converted with source decoding warnings. Output verified; damaged input segments may be missing or concealed. Original unchanged.' 'WARN'
+        }
+        else { Write-AudioConsole -Label 'OK' -Text 'Converted and validated.' -Tone Ready }
         Write-Log ("OK   : '{0}' -> '{1}'" -f $file.FullName, $outPath) 'OK'
     }
     else {
-        Write-Warning "       [FAIL] $fileStatus`: $fileReason"
-        Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $fileStatus, (Get-AudioBoundedText -Value $fileReason)) 'FAIL'
+        $shortReason = Get-AudioBoundedText -Value (($fileReason -split '\r?\n', 2)[0]) -MaximumChars 240
+        Write-AudioConsole -Label 'FAIL' -Text ("{0}: {1}" -f $fileStatus, $shortReason) -Tone Failure
+        Write-Log ("FAIL : '{0}' -> '{1}' ({2}: {3})" -f $file.FullName, $outPath, $fileStatus, (Get-AudioBoundedText -Value $fileReason)) 'FAIL' -LogOnly
     }
     if ($null -ne $transaction -and $transaction.CleanupError) {
         Write-Warning "       [WARN] Working path retained: $($transaction.WorkingPath); $($transaction.CleanupError)"
@@ -822,7 +856,7 @@ foreach ($plan in $plans) {
 Assert-AudioNotCancelled
 $currentOutcome = $null
 $runStatus = if ($failed -gt 0) { 'CompletedWithFailures' } else { 'Completed' }
-Write-Log ("Summary: total={0}, converted={1}, failed={2}" -f $total, $ok, $failed)
+Write-Log ("Summary: total={0}, converted={1}, failed={2}, converted_with_source_warnings={3}" -f $total, $ok, $failed, $convertedWithSourceWarnings)
 Write-Log ("Log file saved to: {0}" -f $logPath)
 Write-Log ("Manifest saved to: {0}" -f $manifestPath)
 Write-Log (Get-AudioResultSummary) 'RESULT'
@@ -959,7 +993,8 @@ finally {
         Write-AudioBatchProgress -Detail $runStatus -Completed
     }
     $runWatch.Stop()
-    $resultTone = if ($batchExitCode -eq 0) { 'Ready' } elseif ($batchExitCode -eq 130) { 'Warning' } else { 'Failure' }
+    $resultTone = if ($batchExitCode -eq 0 -and $convertedWithSourceWarnings -eq 0) { 'Ready' }
+        elseif ($batchExitCode -in @(0, 130)) { 'Warning' } else { 'Failure' }
     if (Get-Command Write-AudioConsole -CommandType Function -ErrorAction SilentlyContinue) {
         Write-AudioConsole -Label 'RESULT' -Text (Get-AudioResultSummary) -Tone $resultTone
     }

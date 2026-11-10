@@ -71,6 +71,7 @@ internal static class Patch105NativeShim
         else if (role == "ffprobe" && Has(args, "-show_entries") && input.EndsWith(".partial", StringComparison.OrdinalIgnoreCase)) stage = "output-probe";
         else if (role == "ffmpeg" && After(args, "-c:a") == "libmp3lame") { stage = "encode"; path = args[args.Length - 1]; }
         else if (role == "ffmpeg" && After(args, "-f") == "null" && input.EndsWith(".partial", StringComparison.OrdinalIgnoreCase)) stage = "validate";
+        else if (role == "ffmpeg" && After(args, "-af") == "ashowinfo" && !Has(args, "-xerror")) stage = "source-decode";
         else if (role == "ffmpeg" && After(args, "-c:a") == "copy") stage = "recovery-remux";
         bool selected = !String.IsNullOrEmpty(source) && String.Equals(source, input, StringComparison.OrdinalIgnoreCase);
         string selectedOutput = String.IsNullOrEmpty(state) ? "" : Path.Combine(state, "selected-output.txt");
@@ -96,6 +97,12 @@ internal static class Patch105NativeShim
                     output.Write(payload, 0, payload.Length);
                 }
             }
+            if (stage == "source-decode")
+            {
+                Console.Error.WriteLine("[Parsed_ashowinfo_0 @ fixture] [info] n:0 rate:44100 nb_samples:88200000 checksum:0");
+                Console.WriteLine("out_time_us=2000000000");
+                Console.WriteLine("progress=end");
+            }
             Console.Error.WriteLine("*** stack smashing detected ***: terminated");
             long exit = String.IsNullOrEmpty(Env("EXIT")) ? 3221226505L : Int64.Parse(Env("EXIT"));
             return unchecked((int)exit);
@@ -115,7 +122,10 @@ internal static class Patch105NativeShim
         {
             System.Threading.Tasks.Task<string> stdout = child.StandardOutput.ReadToEndAsync();
             System.Threading.Tasks.Task<string> stderr = child.StandardError.ReadToEndAsync();
-            child.WaitForExit(); Console.Out.Write(stdout.Result); Console.Error.Write(stderr.Result);
+            child.WaitForExit();
+            Console.Out.Write(inject && mode == "missing-completion" ? stdout.Result.Replace("progress=end", "progress=continue") : stdout.Result);
+            Console.Error.Write(stderr.Result);
+            if (inject && mode == "fatal-demux") Console.Error.WriteLine("[in#0 @ fixture] [error] Error during demuxing: Input/output error");
             return child.ExitCode;
         }
     }

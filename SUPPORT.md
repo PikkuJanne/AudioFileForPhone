@@ -12,9 +12,8 @@ cause is unproven.
 
 AudioFileForPhone targets Windows 10 22H2 x64 and Windows 11 x64 with Windows
 PowerShell 5.1 and PowerShell 7. The published
-[v1.0.6 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip)
-adds unencrypted M4B input support and retains the batch-worker, direct-launch
-and clean-package repairs. Earlier release
+[v1.0.7 application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/AudioFileForPhone-v1.0.7.zip)
+validates the duration of the decoded source and output independently. Earlier release
 tags and bytes are preserved. Windows 10 and genuine Explorer conversion remain
 unverified owner-accepted release exceptions (`OWNER_WAIVED`, `NOT_RUN`), not test
 passes. Actual coverage and gaps are in the
@@ -197,7 +196,8 @@ trusted offline build; do not disable verification to accept changed bytes.
 | Long/incompatible preserved path | Use a shallower input selection or shorter OutputParent. Folder names are kept; MaxBaseLength cannot shorten folders. File/working paths must be under 260 UTF-16 units and created directories under 248. |
 | Cover rejected or outputs grow unexpectedly | Use a readable JPEG/PNG. Invalid explicit covers stop preflight. Cover dimensions are preserved and artwork is embedded in every output; prepare a smaller image yourself if needed. Source artwork is otherwise dropped. |
 | Cover picker unavailable | Use the BAT's STA launch only where its policy request is acceptable, or start the installed shell with `-Sta` and `-Interactive`. Passing `-CoverPath` avoids the picker. |
-| Some files fail | Inspect each Failed manifest row and bounded native error in the log. Unsupported source media, nonpositive/unknown duration or a rate incompatible with the source can fail. Other valid files continue; exit 2 reports batch failures. |
+| Converted with source decoding warnings | The output passed strict decoding and matches the duration the source yielded. Damaged input segments may be missing or concealed. The log and manifest record the available source diagnostics. |
+| Some files fail | Inspect each Failed manifest row and the bounded native diagnostics in the log. A source that cannot finish decoding usable audio or has an incompatible rate can fail. Other valid files continue, and exit 2 reports batch failures. |
 | Progress reaches 100 percent but files failed | Batch progress means processed, including failed files. Encoding progress precedes validation/publication. Use the final counts and exit code. |
 | Required log/manifest write fails | The run stops with exit 1 while preserving actual published outputs/counts; cancellation stays 130. The last durable manifest may be incomplete. Keep the console result and reported root cause. |
 | Files, tags, cover or chapters behave differently on a phone | Recorded phone acceptance is limited to the historical S24/AIMP configuration above. Chapter navigation and resume depend on the player, and some source tags have no MP3 equivalent. |

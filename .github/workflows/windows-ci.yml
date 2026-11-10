@@ -46,7 +46,7 @@ jobs:
           $evidence = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-' + $env:CI_EDITION + '-' + $env:CI_RUN_LABEL + '.json')
           & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Initialize-CiDependencies.ps1') -DestinationPath $destination -EvidencePath $evidence
           & (Join-Path $env:GITHUB_WORKSPACE '.github/scripts/Invoke-CiChecks.ps1') -DependenciesPath $evidence -RunLabel $env:CI_RUN_LABEL
-      - name: Verify media worker crash recovery with synthetic media
+      - name: Verify recovery and decoded audio with synthetic media
         run: |
           $ErrorActionPreference = 'Stop'
           $record = Join-Path $env:GITHUB_WORKSPACE ('docs/codex-v1/evidence/T17-dependencies-${{ matrix.edition }}-run${{ github.run_id }}_${{ github.run_attempt }}.json')
@@ -64,6 +64,8 @@ jobs:
           if (Test-Path -LiteralPath $archiveReport) { throw 'Synthetic evidence already exists.' }
           Copy-Item -LiteralPath $report -Destination $archiveReport
           & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-M4B.ps1') -Mode Quick -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & (Join-Path $env:GITHUB_WORKSPACE 'tests/Test-MeasuredDuration.ps1') -FfmpegPath $dependencies.ffmpeg_path -FfprobePath $dependencies.ffprobe_path
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Upload check evidence
         if: always()

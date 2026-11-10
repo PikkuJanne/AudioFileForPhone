@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-Builds the v1.0.6 candidate in a small end-user layout.
+Builds the v1.0.7 candidate in a small end-user layout.
 .DESCRIPTION
 Follow-up to Build-Package.ps1: binds every core member and the existing icon to
 an explicit clean detached source commit. A reviewed subset stays under app/;
 the root contains only the direct BAT, existing ICO and short README.txt.
 BATs receive explicit CRLF and the root converter target moves under app/.
-The owner-selected release identity is v1.0.6. This operation establishes no
+The owner-selected release identity is v1.0.7. This operation establishes no
 acceptance, publication, tag creation or upload authority.
 No download, audio conversion, repository change or existing output write.
 The new output directory receives complete assets through one directory move.
@@ -22,7 +22,7 @@ param(
 
 Set-StrictMode -Version 2.0
 $ErrorActionPreference = 'Stop'
-$appVersion = '1.0.6'
+$appVersion = '1.0.7'
 $targetTag = 'v' + $appVersion
 $zipName = 'AudioFileForPhone-' + $targetTag + '.zip'
 $coreZipName = $zipName
@@ -286,6 +286,8 @@ AudioFileForPhone $targetTag
 Convert MP3, M4A, M4B and OGG folders to validated 64 kbps CBR MP3. Sources stay
 unchanged. Each unencrypted M4B book the selected tools can decode produces one
 complete MP3. Chapter navigation and resume depend on the player.
+The converter measures decoded source and output audio independently. A verified
+MP3 can be kept with a source warning if the input contains recoverable damage.
 
 1. Extract the complete application ZIP into a new empty folder you want to keep.
 2. Make a shortcut to AudioFileForPhone.bat. In shortcut Properties, Change Icon,

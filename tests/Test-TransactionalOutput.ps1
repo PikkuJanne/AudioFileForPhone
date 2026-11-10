@@ -95,7 +95,7 @@ function Add-LateFixture {
 }
 function New-NativeResult {
     param([int]$Code = 0, [string]$Stdout = '', [string]$Stderr = '', [string]$Status = 'Completed', [bool]$Truncated = $false, [bool]$Released = $true)
-    return [pscustomobject]@{ Status = $Status; ExitCode = $Code; Stdout = $Stdout; Stderr = $Stderr; Error = $Stderr; StdoutTruncated = $Truncated; StderrTruncated = $false; ElapsedMilliseconds = 0; ProcessReleased = $Released }
+    return [pscustomobject]@{ Status = $Status; ExitCode = $Code; Stdout = $Stdout; Stderr = $Stderr; Error = $Stderr; StdoutTruncated = $Truncated; StderrTruncated = $false; ElapsedMilliseconds = 0; ProcessReleased = $Released; PipeDrainCompleted = $Released }
 }
 function Invoke-RealNative {
     param([string]$Tool, [string[]]$NativeArguments,
@@ -134,7 +134,7 @@ function New-Fixture {
     return $path
 }
 function Invoke-Transaction {
-    param([string]$Output, [string]$Source, [double]$Duration, [int]$Rate = 64, [bool]$Cover = $false)
+    param([string]$Output, [string]$Source, [AllowNull()][object]$Duration, [int]$Rate = 64, [bool]$Cover = $false)
     $args = @('-nostdin', '-hide_banner', '-v', 'error', '-i', $Source, '-map', '0:a:0', '-c:a', 'libmp3lame', '-b:a', ($Rate.ToString([Globalization.CultureInfo]::InvariantCulture) + 'k'), '-id3v2_version', '3')
     return Invoke-AudioOutputTransaction -SourcePath $Source -OutputRoot $outputRoot -OutputPath $Output -SourceDurationSeconds $Duration -BitrateKbps $Rate -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments $args -HasCover $Cover
 }
@@ -154,7 +154,11 @@ function Set-NativeMock {
     $script:faultMode = $Mode; $script:encodeCopy = $CopyPath; $script:probeJson = $Json; $script:encoderCalls = 0; $script:capturedWorking = ''
     Set-Item -LiteralPath Function:script:Invoke-AudioNativeProcess -Value {
         param([string]$ExecutablePath, [string[]]$Arguments,
-              [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000)
+              [int]$TimeoutMilliseconds=0, [string]$Operation='Native operation', [int]$PipeDrainTimeoutMilliseconds=5000,
+              [AllowNull()][object]$Cancellation, [AllowNull()][object]$ProgressParser, [AllowNull()][scriptblock]$ProgressCallback,
+              [AllowNull()][object]$ProgressDurationSeconds, [AllowNull()][object]$ProgressCallbackState,
+              [int]$MaxStdoutChars, [int]$MaxStderrChars)
+        if ($Operation -ceq 'Source audio decode') { return & $script:originalNative @PSBoundParameters }
         $encode = $ExecutablePath -ieq $ffmpeg -and @($Arguments | Where-Object { $_ -eq '-b:a' }).Count -gt 0
         if ($encode) {
             $script:encoderCalls++; $work = $Arguments[$Arguments.Count - 1]; $script:capturedWorking = $work
@@ -184,8 +188,8 @@ function Set-NativeMock {
             if ($script:faultMode -eq 'probe-json') { return New-NativeResult 0 $script:probeJson }
             if ($script:faultMode -eq 'probe-unreleased') { return New-NativeResult 0 '' 'controlled exit ownership unknown' 'Completed' $false $false }
         }
-        if ($script:faultMode -eq 'decode-nonzero' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 23 '' 'controlled integrity decode failure' }
-        if ($script:faultMode -eq 'decode-unreleased' -and $ExecutablePath -ieq $ffmpeg) { return New-NativeResult 0 '' 'controlled exit ownership unknown' 'Completed' $false $false }
+        if ($script:faultMode -eq 'decode-nonzero' -and $Operation -ceq 'Output audio decode') { return New-NativeResult 23 '' 'controlled integrity decode failure' }
+        if ($script:faultMode -eq 'decode-unreleased' -and $Operation -ceq 'Output audio decode') { return New-NativeResult 0 '' 'controlled exit ownership unknown' 'Completed' $false $false }
         return Invoke-RealNative $ExecutablePath $Arguments -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
     }
 }
@@ -246,9 +250,15 @@ try {
     Invoke-RealSuccess $ffmpeg @('-nostdin', '-v', 'error', '-i', $wrongRate, '-i', $jpeg, '-map', '0:a:0', '-map', '1:v:0', '-c:a', 'copy', '-c:v', 'copy', '-disposition:v', 'attached_pic', $coverMismatch) | Out-Null; $fixtures.Add($coverMismatch)
     $good64 = Join-Path $inputRoot 'good64.mp3'
     Invoke-RealSuccess $ffmpeg @('-nostdin', '-v', 'error', '-i', $valid, '-map', '0:a:0', '-c:a', 'libmp3lame', '-b:a', '64k', $good64) | Out-Null; $fixtures.Add($good64)
+    $long64 = New-Fixture 'long64' 'mp3' 4.0 44100 'libmp3lame'
     $corrupt = Join-Path $inputRoot 'corrupt.mp3'; Write-NewText $corrupt ('this is synthetic corrupt media' * 40); $fixtures.Add($corrupt)
     $truncated = Join-Path $inputRoot 'truncated.mp3'
-    $bytes = [IO.File]::ReadAllBytes($good64); $short = New-Object byte[] ([int]($bytes.Length * 0.35)); [Array]::Copy($bytes, $short, $short.Length); [IO.File]::WriteAllBytes($truncated, $short); $fixtures.Add($truncated)
+    $packetData = (Invoke-RealSuccess $ffprobe @('-v', 'error', '-select_streams', 'a:0', '-show_packets',
+        '-show_entries', 'packet=pos', '-of', 'json', '-i', $good64)).Stdout | ConvertFrom-Json
+    $bytes = [IO.File]::ReadAllBytes($good64)
+    $short = New-Object byte[] ([int]$packetData.packets[30].pos)
+    [Array]::Copy($bytes, $short, $short.Length)
+    [IO.File]::WriteAllBytes($truncated, $short); $fixtures.Add($truncated)
     $payloadCorrupt = Join-Path $inputRoot 'payload-corrupt.mp3'
     $damaged = [IO.File]::ReadAllBytes($good64)
     for ($offset = [int]($damaged.Length * 0.3); $offset -lt [int]($damaged.Length * 0.8); $offset++) { $damaged[$offset] = 0 }
@@ -280,10 +290,11 @@ try {
             $audio = @($probe.streams | Where-Object { $_.codec_type -eq 'audio' })[0]
             $report.duration_matrix += [pscustomobject]@{
                 extension = $row.extension; generated_seconds = $row.generated_seconds; source_sample_rate = $row.source_sample_rate; selected_bitrate_kbps = $row.bitrate
-                source_duration_seconds = $media.DurationSeconds; output_duration_seconds = [double]::Parse([string]$audio.duration, [Globalization.CultureInfo]::InvariantCulture)
+                source_reported_duration_seconds = $media.DurationSeconds; source_duration_seconds = $result.SourceMeasurement.Seconds
+                output_duration_seconds = [double]::Parse([string]$audio.duration, [Globalization.CultureInfo]::InvariantCulture)
                 absolute_probe_delta_seconds = [Math]::Abs($media.DurationSeconds - [double]::Parse([string]$audio.duration, [Globalization.CultureInfo]::InvariantCulture))
                 decoded_duration_seconds = $result.ValidationResult.DecodedDurationSeconds
-                source_decode_delta_seconds = [Math]::Abs($media.DurationSeconds - $result.ValidationResult.DecodedDurationSeconds)
+                source_decode_delta_seconds = [Math]::Abs($result.SourceMeasurement.Seconds - $result.ValidationResult.DecodedDurationSeconds)
                 output_sample_rate = [int]$audio.sample_rate; full_decode = $true; status = $result.Status
             }
         }
@@ -302,7 +313,7 @@ try {
         @{ mode = 'cover-rate'; source = $coverMismatch; title = 'audio bitrate mismatch despite artwork/container bitrate' },
         @{ mode = 'truncated'; source = $truncated; title = 'physically truncated MP3 retaining original Xing duration' },
         @{ mode = 'payload-corrupt'; source = $payloadCorrupt; title = 'corrupted payload after valid MP3 header' },
-        @{ mode = 'too-long'; source = $good64; title = 'implausibly long output' },
+        @{ mode = 'too-long'; source = $long64; title = 'implausibly long output' },
         @{ mode = 'encoder-nonzero'; source = $good64; title = 'nonzero encoder after partial bytes' },
         @{ mode = 'encoder-start'; source = ''; title = 'encoder startup failure' },
         @{ mode = 'probe-nonzero'; source = $good64; title = 'nonzero validation probe' },
@@ -314,13 +325,20 @@ try {
             $script:expectedFinal = Join-Path $outputRoot ('fault-' + $fault.mode + '.mp3')
             Set-NativeMock $fault.mode $fault.source
             try {
-                $duration = if ($fault.mode -eq 'too-long') { 0.2 } else { (Get-RealProbe $good64).format.duration }
+                $duration = (Get-RealProbe $good64).format.duration
                 $result = Invoke-Transaction $script:expectedFinal $valid ([double]::Parse([string]$duration, [Globalization.CultureInfo]::InvariantCulture)) 64 ($fault.mode -eq 'cover-rate')
                 $expectedStatus = if ($fault.mode -match '^encoder-') { '^EncodeFailed$' } else { '^ValidationFailed$' }
                 Assert-FailureCleanup $result $script:expectedFinal $expectedStatus
                 Assert-True ($script:encoderCalls -eq 1) 'Each injected output must execute its encoder exactly once.'
                 $case['transaction_status'] = $result.Status; $case['reason'] = $result.Error.Replace($testRoot, '<OWNED_TEMP>')
                 $case['only_owned_working_removed'] = $true
+                if ($fault.mode -eq 'truncated') {
+                    $header = [double]::Parse((Get-RealProbe $truncated).format.duration, [Globalization.CultureInfo]::InvariantCulture)
+                    Assert-True ([math]::Abs($header - $result.SourceMeasurement.Seconds) -le 0.35 -and
+                        $result.ValidationResult.DecodeResult.ExitCode -eq 0 -and
+                        $result.SourceMeasurement.Seconds - $result.ValidationResult.DecodedDurationSeconds -gt 0.35) (
+                        'Frame-aligned truncation must preserve the plausible header and fully decode but fail measured duration.')
+                }
                 if ($fault.mode -eq 'cover-rate') {
                     $probe = Get-RealProbe $coverMismatch; $case['actual_audio_bitrate'] = [int]$probe.streams[0].bit_rate; $case['container_bitrate'] = [int]$probe.format.bit_rate
                     Assert-True ($probe.streams.Count -eq 2 -and [int]$probe.streams[0].bit_rate -eq 32000 -and [int]$probe.format.bit_rate -gt 64000 -and $result.Error -match 'bitrate') 'Valid JPEG artwork must inflate the container above64k while wrong32k audio is specifically rejected by bitrate.'
@@ -343,19 +361,21 @@ try {
         finally { Reset-NativeMock }
         $case['payloads'] = $payloads.Count + 1; $case['statuses'] = $statuses
     }
-    Invoke-Case 'missing/invalid source duration fails before encoding' 'A25,A26' {
+    Invoke-Case 'missing, invalid and stale source duration hints do not gate a real decode' 'A25,A26' {
         param($case)
         $statuses = @()
-        foreach ($duration in @(0.0, -1.0, [double]::NaN, [double]::PositiveInfinity)) {
-            $script:expectedFinal = Join-Path $outputRoot ('source-duration-' + $statuses.Count + '.mp3'); Set-NativeMock 'empty'
+        foreach ($duration in @($null, 0.0, -1.0, [double]::NaN, [double]::PositiveInfinity, 7200.0)) {
+            $script:expectedFinal = Join-Path $outputRoot ('source-duration-' + $statuses.Count + '.mp3'); Set-NativeMock 'copy-valid' $good64
             try {
                 $result = Invoke-Transaction $script:expectedFinal $valid $duration
-                Assert-FailureCleanup $result $script:expectedFinal '^InvalidSourceDuration$'
-                Assert-True ($script:encoderCalls -eq 0) 'Invalid source duration must be rejected before encoder invocation.'
+                Assert-True ($result.Status -ceq 'Success' -and $script:encoderCalls -eq 1 -and
+                    [math]::Abs($result.SourceMeasurement.Seconds - 2.0) -lt 0.00001) (
+                    'Source decode must independently measure the original even when its reported duration is absent or misleading.')
                 $statuses += $result.Status
             } finally { Reset-NativeMock }
         }
-        $case['invalid_values'] = @('zero', 'negative', 'NaN', 'positive infinity'); $case['statuses'] = $statuses; $case['no_encoder_calls'] = $true
+        $case['reported_values'] = @('null', 'zero', 'negative', 'NaN', 'positive infinity', 'stale positive')
+        $case['statuses'] = $statuses
     }
     Invoke-Case 'source inspection distinguishes missing/invalid duration and declared format fallback' 'A25' {
         param($case)
@@ -370,17 +390,11 @@ try {
             Set-NativeMock 'probe-json' '' $row.json
             try {
                 $media = Get-AudioMediaInfo -Path $valid -FfprobePath $ffprobe
-                Assert-True ($media.Status -eq 'Success' -and $media.DurationStatus -ceq $row.status -and $media.DurationOrigin -ceq $row.origin) 'Source duration policy must preserve explicit Missing/Invalid/Valid distinction and only documented fallback.'
+                Assert-True ($media.Status -eq 'Success' -and $media.DurationStatus -ceq $row.status -and $media.DurationOrigin -ceq $row.origin) 'The reported duration hint must preserve explicit Missing/Invalid/Valid distinction and documented fallback.'
                 $observed += [pscustomobject]@{ status = $media.DurationStatus; origin = $media.DurationOrigin; seconds = $media.DurationSeconds }
             } finally { Reset-NativeMock }
         }
-        $script:expectedFinal = Join-Path $outputRoot 'missing-source-null.mp3'; Set-NativeMock 'empty'
-        try {
-            $result = Invoke-AudioOutputTransaction -SourcePath $valid -OutputRoot $outputRoot -OutputPath $script:expectedFinal -SourceDurationSeconds $null -BitrateKbps 64 -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments @()
-            Assert-FailureCleanup $result $script:expectedFinal '^InvalidSourceDuration$'
-            Assert-True ($script:encoderCalls -eq 0) 'An explicit null source duration must fail before encoding.'
-        } finally { Reset-NativeMock }
-        $case['source_duration_results'] = $observed; $case['explicit_null_transaction_status'] = $result.Status
+        $case['source_reported_duration_results'] = $observed
     }
     Invoke-Case 'apparently valid probe cannot bless corrupt audio payload' 'A25,A26' {
         param($case)
@@ -392,13 +406,6 @@ try {
             Assert-True ($result.ValidationResult.Status -eq 'DecodeFailed' -and $null -ne $result.ValidationResult.DecodeResult) 'A valid-looking probe over corrupt payload must reach and fail real integrity decode.'
             $case['validation_status'] = $result.ValidationResult.Status; $case['real_decode_exit'] = $result.ValidationResult.DecodeResult.ExitCode
         } finally { Reset-NativeMock }
-    }
-    Invoke-Case 'bounded duration policy rejects minute loss for multi-hour claimed source' 'A25' {
-        param($case)
-        $json = '{"streams":[{"index":0,"codec_type":"audio","codec_name":"mp3","bit_rate":"64000","sample_rate":"44100","channels":1,"duration":"7140"}],"format":{"format_name":"mp3","duration":"7140","bit_rate":"64000"}}'
-        $script:expectedFinal = Join-Path $outputRoot 'long-duration-policy.mp3'; Set-NativeMock 'probe-json' $good64 $json
-        try { $result = Invoke-Transaction $script:expectedFinal $valid 7200; Assert-FailureCleanup $result $script:expectedFinal '^ValidationFailed$'; $case['transaction_status'] = $result.Status; $case['source_claim_seconds'] = 7200; $case['output_claim_seconds'] = 7140 }
-        finally { Reset-NativeMock }
     }
     Invoke-Case 'promotion exception and actual locked working file fail safely' 'A26' {
         param($case)

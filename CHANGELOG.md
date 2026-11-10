@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.7 — 2026-11-10
+
+- Verify the duration of the decoded MP3 against an independent full decode of
+  the selected source audio. Use source-reported durations as progress hints.
+- Keep verified conversions when a source decodes to completion with recoverable
+  warnings. Count those conversions separately in the summary and record the
+  measurements and bounded diagnostics in the log and manifest.
+- Retain strict full decoding of the staged output and the fixed 0.35-second
+  tolerance. A shortened or unreadable output still fails validation.
+
 ## 1.0.6 — 2026-11-07
 
 - Discover unencrypted M4B audiobooks recursively and convert each to one

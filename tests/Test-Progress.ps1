@@ -298,7 +298,7 @@ try {
     }
     Invoke-Case 'throwing worker consumer is disabled and both flood pipes continue draining' 'A33' {
         param($case);$capture=$null;$prior=$script:descendantReleaseProved;$script:descendantReleaseProved=$false;[T13Support.ConsumerFault]::Calls=0
-        try{$capture=New-Object AudioFileForPhone.NativeCapture($childExe,[string[]]@('huge'),64,128,[T13Support.ConsumerFault]::Callback)
+        try{$capture=New-Object AudioFileForPhone.MediaInterop.NativeCapture($childExe,[string[]]@('huge'),64,128,[T13Support.ConsumerFault]::Callback)
             Assert-True ($capture.WaitForExit(10000)) 'Consumer fault must not stop stdout draining or block its owned child.'
             $code=$capture.CaptureExitCode();Assert-True ($capture.Complete(5000)) 'Flood drain must join after child exit.'
             Assert-True ($code -eq 0 -and [T13Support.ConsumerFault]::Calls -eq 1 -and $capture.ProgressConsumerError.Contains('controlled T13 stream consumer failure') -and $capture.ProgressConsumerError.Length -le 1024) 'Consumer exception must be retained once, bounded and disabled.'
@@ -331,7 +331,11 @@ try {
         $transaction=Invoke-AudioOutputTransaction -OutputPath $target -OutputRoot $outRoot -SourcePath $short -SourceDurationSeconds $seconds -FfmpegPath $ffmpeg -FfprobePath $ffprobe -EncodeArguments @('-nostdin','-v','error','-i',$short,'-vn','-c:a','libmp3lame','-b:a','64k') -Cancellation $null -ProgressCallback {param($event);$events.Add([pscustomobject]@{phase=$event.Phase;percent=$event.PercentComplete;final_exists=[IO.File]::Exists($target)})}
         if($transaction.EncoderResult.ProcessReleased -and $transaction.ValidationResult.ProcessReleased){$script:descendantReleaseProved=$true}
         $case['phase_events']=$events.ToArray();Assert-True ($transaction.Status -ceq 'Success' -and [IO.File]::Exists($target)) 'Real transaction must publish only validated output.'
-        $phases=@($events|ForEach-Object{$_.phase});Assert-True ($phases -contains 'Validating' -and $phases -contains 'Promoting' -and [array]::IndexOf($phases,'Validating') -lt [array]::IndexOf($phases,'Promoting')) 'Validation and publication must be distinct ordered phases.'
+        $phases=@($events|ForEach-Object{$_.phase})
+        Assert-True ($phases -contains 'Measuring source' -and $phases -contains 'Encoding' -and
+            $phases -contains 'Validating' -and $phases -contains 'Promoting' -and
+            [array]::IndexOf($phases,'Measuring source') -lt [array]::IndexOf($phases,'Encoding') -and
+            [array]::IndexOf($phases,'Validating') -lt [array]::IndexOf($phases,'Promoting')) 'Source measurement, encoding, output validation and publication must have ordered visible phases.'
         Assert-True (@($events|Where-Object{$_.final_exists -or $_.percent -ge 100 -or $_.phase -ceq 'Success'}).Count -eq 0) 'Transaction progress must not claim success before the caller commits outcome.'
         $case['decoded_output']=Assert-Decoded $target $seconds;$case['publication_after_validation_and_promotion']=$true
     }
@@ -425,8 +429,8 @@ function Invoke-AudioNativeProcess {
         Assert-True ($result.exit_code -eq 0) 'Actual hour-plus VBR source must convert without widening duration policy.'
         $published=Get-Published $out;Assert-True ($published.Count -eq 1) 'Long VBR must publish one validated output.'
         $case['decoded_output']=Assert-Decoded $published[0].FullName $media.DurationSeconds
-        $case['source_duration_seconds']=$media.DurationSeconds;$case['independent_packet_sizes']=$sizes
-        $case['duration_tolerance_seconds']=0.35;$case['source_duration_policy_changed']=$false
+        $case['source_reported_duration_seconds']=$media.DurationSeconds;$case['independent_packet_sizes']=$sizes
+        $case['duration_tolerance_seconds']=0.35
     }
     $report.status='pass';$exitCode=0
 }
