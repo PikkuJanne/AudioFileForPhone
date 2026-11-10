@@ -298,7 +298,7 @@ try {
     }
     Invoke-Case 'throwing worker consumer is disabled and both flood pipes continue draining' 'A33' {
         param($case);$capture=$null;$prior=$script:descendantReleaseProved;$script:descendantReleaseProved=$false;[T13Support.ConsumerFault]::Calls=0
-        try{$capture=New-Object AudioFileForPhone.NativeCapture($childExe,[string[]]@('huge'),64,128,[T13Support.ConsumerFault]::Callback)
+        try{$capture=New-Object AudioFileForPhone.MediaInterop.NativeCapture($childExe,[string[]]@('huge'),64,128,[T13Support.ConsumerFault]::Callback)
             Assert-True ($capture.WaitForExit(10000)) 'Consumer fault must not stop stdout draining or block its owned child.'
             $code=$capture.CaptureExitCode();Assert-True ($capture.Complete(5000)) 'Flood drain must join after child exit.'
             Assert-True ($code -eq 0 -and [T13Support.ConsumerFault]::Calls -eq 1 -and $capture.ProgressConsumerError.Contains('controlled T13 stream consumer failure') -and $capture.ProgressConsumerError.Length -le 1024) 'Consumer exception must be retained once, bounded and disabled.'

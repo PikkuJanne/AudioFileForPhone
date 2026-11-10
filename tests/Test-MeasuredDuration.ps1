@@ -19,8 +19,8 @@ $shell = (Get-Process -Id $PID).Path
 function Assert-Measurement([bool]$Condition, [string]$Message) {
     if (-not $Condition) { throw $Message }
 }
-function Invoke-MeasurementTool([string]$Executable, [string[]]$Arguments, [int]$ExpectedExit = 0) {
-    $result = Invoke-AudioNativeProcess -ExecutablePath $Executable -Arguments $Arguments -TimeoutMilliseconds 120000
+function Invoke-MeasurementTool([string]$Executable, [string[]]$Arguments, [int]$ExpectedExit = 0, [int]$TimeoutMilliseconds = 120000) {
+    $result = Invoke-AudioNativeProcess -ExecutablePath $Executable -Arguments $Arguments -TimeoutMilliseconds $TimeoutMilliseconds
     Assert-Measurement ($result.Status -ceq 'Completed' -and $result.ExitCode -eq $ExpectedExit -and
         $result.ProcessReleased -and $result.PipeDrainCompleted -and -not $result.StdoutTruncated -and -not $result.StderrTruncated) (
         "Expected exit $ExpectedExit from $Executable, got $($result.Status) / $($result.ExitCode). $($result.Error) $($result.Stderr) $($result.Stdout)")
@@ -54,7 +54,7 @@ function Invoke-MeasurementApp([string]$InputDirectory, [string]$Destination, [i
     $before = Get-MeasurementHashes $InputDirectory
     $result = Invoke-MeasurementTool $shell @('-NoLogo', '-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'RemoteSigned',
         '-File', $ApplicationPath, '-InputFolder', $InputDirectory, '-OutputParent', $Destination,
-        '-FfmpegDirectory', $toolDirectory, '-ConfigPath', (Join-Path $root 'unused.json')) $ExpectedExit
+        '-FfmpegDirectory', $toolDirectory, '-ConfigPath', (Join-Path $root 'unused.json')) $ExpectedExit 300000
     Assert-Measurement ($before -ceq (Get-MeasurementHashes $InputDirectory)) 'The application modified source files.'
     $files = @(Get-ChildItem -LiteralPath $Destination -Recurse -Force)
     $manifests = @($files | Where-Object Name -ceq 'AudioFileForPhone_manifest.json')

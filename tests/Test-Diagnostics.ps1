@@ -391,7 +391,10 @@ try {
         foreach($name in @('ffmpeg','ffprobe')){Assert-True ($artifacts.data.tools.$name.path -ceq (Get-Variable $name -ValueOnly) -and $artifacts.data.tools.$name.version -ceq $toolInfo.$name.Version) 'Actual tool path and full version line must persist.'}
         Assert-True ($artifacts.data.policies.metadata.artist -ceq $exactArtist -and $artifacts.data.policies.metadata.album -ceq $exactAlbum -and @($artifacts.data.records|Where-Object{$_.status -ceq 'Converted' -and $_.source_title -cne $exactTitle}).Count -eq 0) 'Actual metadata policy and source titles must retain exact JSON strings.'
         $summaries=Get-NativeSummaries $artifacts.log;$actualStages=(@($summaries.stage|Sort-Object -Unique) -join ',')
-        Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and $actualStages -ceq 'Encoder,EncoderCapabilities,OutputDecode,OutputProbe,SourceProbe') 'Local log must retain exactly the five actual source/capability/encoder/validation stages and the one source failure.';$case['native_stage_summaries']=$summaries
+        Assert-True (@($summaries|Where-Object{$_.stage -ceq 'SourceProbe' -and $_.exit_code -ne 0}).Count -eq 1 -and
+            $actualStages -ceq 'Encoder,EncoderCapabilities,OutputDecode,OutputProbe,SourceDecode,SourceProbe') (
+            'Local log must retain all six actual source/capability/encoder/validation stages and the one source probe failure.')
+        $case['native_stage_summaries']=$summaries
     }
     Invoke-Case 'injected capability release refusal stops before a second source probe or encoding' 'S09-A1,A35,A37' {
         param($case);$inputPath=New-InputFixture 'capability-release-refusal' @('mp3','m4a');$parent=New-OutputParent 'capability-release-refusal'

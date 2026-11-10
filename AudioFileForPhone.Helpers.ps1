@@ -1071,13 +1071,14 @@ function Assert-AudioNotCancelled {
 
 function New-AudioProgressParser {
     # Compile only for an actual progress consumer, never for a preview.
-    if (-not ('AudioFileForPhone.ProgressParser' -as [type])) {
+    # An earlier app release may have already loaded its interop in this shell.
+    if (-not ('AudioFileForPhone.MediaInterop.ProgressParser' -as [type])) {
         Add-Type -TypeDefinition @'
 using System;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
-namespace AudioFileForPhone {
+namespace AudioFileForPhone.MediaInterop {
     public sealed class ProgressRecord {
         public long Sequence { get; private set; }
         public double? MediaSeconds { get; private set; }
@@ -1260,7 +1261,7 @@ namespace AudioFileForPhone {
 }
 '@ -ErrorAction Stop
     }
-    return New-Object AudioFileForPhone.ProgressParser
+    return New-Object AudioFileForPhone.MediaInterop.ProgressParser
 }
 
 function Get-AudioProgressState {
@@ -1379,7 +1380,7 @@ function Invoke-AudioNativeProcess {
         }
         # Compile only on first invocation. Dot-sourcing remains functions-only.
         # This implementation uses APIs available in .NET Framework/PowerShell 5.1.
-        if (-not ('AudioFileForPhone.NativeCapture' -as [type])) {
+        if (-not ('AudioFileForPhone.MediaInterop.NativeCapture' -as [type])) {
             Add-Type -TypeDefinition @'
 using System;
 using System.Diagnostics;
@@ -1389,7 +1390,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
-namespace AudioFileForPhone {
+namespace AudioFileForPhone.MediaInterop {
     public sealed class NativeCapture : IDisposable {
         private sealed class DrainResult {
             public readonly object Gate = new object();
@@ -1612,13 +1613,13 @@ namespace AudioFileForPhone {
         }
         $result.ProcessReleased = $false
         if ($null -ne $sourceObserver) {
-            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, 0, $ProgressParser.Consumer, $sourceObserver.Consumer)
+            $capture = New-Object AudioFileForPhone.MediaInterop.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, 0, $ProgressParser.Consumer, $sourceObserver.Consumer)
         }
         elseif ($null -eq $ProgressParser) {
-            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
+            $capture = New-Object AudioFileForPhone.MediaInterop.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
         }
         else {
-            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars, $ProgressParser.Consumer)
+            $capture = New-Object AudioFileForPhone.MediaInterop.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars, $ProgressParser.Consumer)
         }
         if ($null -ne $Cancellation) { $Cancellation.SetActiveProcessId($capture.ProcessId) }
         # Zero means unlimited process runtime (encoding/full decode). Only
@@ -1907,7 +1908,7 @@ function Get-AudioSourceMeasurement {
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $parser = New-AudioProgressParser
-        $observer = New-Object AudioFileForPhone.SourceDecodeObserver
+        $observer = New-Object AudioFileForPhone.MediaInterop.SourceDecodeObserver
         $phase = 'Measuring source'
         $parser.Phase = $phase
         $parser.SourceObserver = $observer
