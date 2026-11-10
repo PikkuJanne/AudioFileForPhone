@@ -1,3 +1,11 @@
+# Status — v1.0.7 published and independently verified
+
+[AudioFileForPhone v1.0.7](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.7) was published and independently verified. Frozen source d279ca585ca28b3ff40ce00e99bd2cb499ab04c5. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/AudioFileForPhone-v1.0.7.zip) SHA-256 f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5.
+
+The anonymously downloaded ZIP passed 7/7 mixed inputs on each PowerShell edition, with one converted source warning per batch. The supplied MP3 passed with and without generated artwork. Both negative batches failed the unreadable input and converted the next valid file. All seven earlier releases, 21 assets and 14 advertised tag refs matched the pre-work inventory after publication.
+
+See [PATCH107-HANDOVER.md](PATCH107-HANDOVER.md) and [the evidence](evidence/PATCH107.json). No owner testing or automatic next version is pending. Future maintenance needs a new owner request. Preserve the released source tag and all published assets.
+
 # Status — v1.0.6 published and independently verified
 
 Public [v1.0.6](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6) is verified. Frozen source/tag `6e2b3cbb87ba29c8140b80e722f2c443044f6def` / `v1.0.6`. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip) SHA-256 `afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68`. The public bytes passed mixed-format M4B conversion through BAT and direct PowerShell. See [M4B-HANDOVER.md](M4B-HANDOVER.md) and [evidence/M4B.json](evidence/M4B.json). No owner testing or automatic next version is pending.

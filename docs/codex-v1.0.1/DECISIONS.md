@@ -1,3 +1,9 @@
+# Decisions — v1.0.7 duration validation
+
+Use source-reported duration as a hint. Measure decoded source samples by sample rate and compare them with a separate strict full decode of the output. Keep the fixed 0.35-second tolerance. Publish usable conversions with clear, counted source warnings after a complete read. Preserve no-overwrite, cleanup, and bounded worker recovery.
+
+[AudioFileForPhone v1.0.7](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.7) was published and independently verified. Frozen source d279ca585ca28b3ff40ce00e99bd2cb499ab04c5. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/AudioFileForPhone-v1.0.7.zip) SHA-256 f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5. See [PATCH107-HANDOVER.md](PATCH107-HANDOVER.md) and [the evidence](evidence/PATCH107.json).
+
 # Decisions — v1.0.6 M4B
 
 M4B shares exact case-insensitive discovery, first-audio conversion, container tags and bounded source-probe recovery with the existing pipeline. Encoding explicitly reads chapters from its audio input, including the compatible recovery copy. The two-hour test uses a half-second decoder warm-up before measuring seek samples. Public [v1.0.6](https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.6) is verified. Frozen source/tag `6e2b3cbb87ba29c8140b80e722f2c443044f6def` / `v1.0.6`. [Application ZIP](https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.6/AudioFileForPhone-v1.0.6.zip) SHA-256 `afae97d280f3fc410e220be2eb84c8cd1d49a71feb107d4fd46ee229f71b1e68`. The public bytes passed mixed-format M4B conversion through BAT and direct PowerShell. See [M4B-HANDOVER.md](M4B-HANDOVER.md) and [evidence/M4B.json](evidence/M4B.json). No owner testing or automatic next version is pending.

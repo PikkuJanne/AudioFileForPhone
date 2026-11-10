@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "task": "PATCH107",
+  "status": "COMPLETED",
+  "version": "1.0.7",
+  "authority": "Owner authorized the focused duration repair, automated verification, ordinary reviewed integration, normal public publication, and independent public-download smoke in one task.",
+  "owner_testing_required": "none",
+  "feature_branch": "codex/v1.0.7-duration-validation",
+  "tested_source_commit": "d279ca585ca28b3ff40ce00e99bd2cb499ab04c5",
+  "runtime_main_commit": "9ffaf3ada873f5442cdfaf7c802728c0dcc1e43f",
+  "pr": "https://github.com/PikkuJanne/AudioFileForPhone/pull/44",
+  "ci": {
+    "feature_push": {
+      "id": 42886805316,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886805316",
+      "event": "push",
+      "head": "d279ca585ca28b3ff40ce00e99bd2cb499ab04c5",
+      "status": "pass",
+      "shell_jobs": [
+        {
+          "name": "Supplementary Windows Server 2025 / ps7",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886805316/job/130077144127",
+          "status": "pass"
+        },
+        {
+          "name": "Supplementary Windows Server 2025 / ps51",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886805316/job/130077144535",
+          "status": "pass"
+        }
+      ]
+    },
+    "pull_request": {
+      "id": 42886816196,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886816196",
+      "event": "pull_request",
+      "head": "d279ca585ca28b3ff40ce00e99bd2cb499ab04c5",
+      "status": "pass",
+      "shell_jobs": [
+        {
+          "name": "Supplementary Windows Server 2025 / ps7",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886816196/job/130077183203",
+          "status": "pass"
+        },
+        {
+          "name": "Supplementary Windows Server 2025 / ps51",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42886816196/job/130077183649",
+          "status": "pass"
+        }
+      ]
+    },
+    "integrated_main": {
+      "id": 42889733983,
+      "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42889733983",
+      "event": "push",
+      "head": "9ffaf3ada873f5442cdfaf7c802728c0dcc1e43f",
+      "status": "pass",
+      "shell_jobs": [
+        {
+          "name": "Supplementary Windows Server 2025 / ps51",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42889733983/job/130087369846",
+          "status": "pass"
+        },
+        {
+          "name": "Supplementary Windows Server 2025 / ps7",
+          "url": "https://github.com/PikkuJanne/AudioFileForPhone/actions/runs/42889733983/job/130087370476",
+          "status": "pass"
+        }
+      ]
+    }
+  },
+  "client": {
+    "os": "Windows 11 Pro 26H2 x64",
+    "build": "26300.9711",
+    "shells": [
+      "5.1.26100.9711",
+      "7.6.9"
+    ]
+  },
+  "original_reproduction": {
+    "v1_0_6_public_zip_false_rejection": true,
+    "header_estimate_seconds": 2141.13275,
+    "source_decoded_samples": 47434752,
+    "sample_rate_hz": 22050,
+    "decoded_source_seconds": 2151.235918367347,
+    "fixed_output_decoded_samples": 47435281,
+    "fixed_output_decoded_seconds": 2151.259909297052,
+    "fixed_output_difference_seconds": 0.023990929705,
+    "tolerance_seconds": 0.35,
+    "generated_jpeg_width": 609,
+    "generated_jpeg_height": 1000,
+    "source_bytes_preserved": true
+  },
+  "loss_control": {
+    "plausible_header_seconds": 2151.259909,
+    "decoded_seconds": 2146.037551,
+    "measured_loss_seconds": 5.198367,
+    "strict_decode_exit": 0,
+    "rejected": true,
+    "unreadable_output_rejected": true,
+    "public_download_repeat": true,
+    "public_repeat_report_sha256": "440780efb7092f672c787a2cb2bae5d294db985a85eaf9d2cc5ccbb39657f5dc"
+  },
+  "representative_source_batches": {
+    "batches": 2,
+    "inputs_per_batch": 23,
+    "converted_per_batch": 23,
+    "warnings_per_batch": 1
+  },
+  "local_regressions": {
+    "filesystem_cases_per_shell": 5,
+    "native_process_cases_per_shell": 35,
+    "patch104_cases_per_shell": 9,
+    "patch105_cases_per_shell": 29,
+    "measured_duration_both_shells": "pass",
+    "progress_cases_per_shell": 18,
+    "transaction_corpus_metadata_diagnostics_cancellation": "pass"
+  },
+  "package": {
+    "status": "pass",
+    "members": 17,
+    "cases": 13,
+    "outputs": 30,
+    "real_bat": true,
+    "execution_commit": "81df44ee189cac629f44dd0f3b4796229ac4cf94",
+    "execution_report_sha256": "34a833247b0b512e175bf40229be4d8abd2f666bbe52dae8fc5d2d94e773fb82",
+    "byte_identity_binding_sha256": "0d329a88705ac83f51537eb99c28ba5700c1e594df8328155a1d833e787a0a30",
+    "app_zip_sha256": "f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5",
+    "core_zip_sha256": "040e73a37f74ff14eeed35e5606cfaf45652fe92b7f35d032e33f649295f9c6e",
+    "candidate_private_mixed_per_shell": 7,
+    "candidate_private_warnings_per_shell": 1
+  },
+  "public_release": {
+    "status": "PUBLICLY_VERIFIED",
+    "id": 440857642,
+    "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/tag/v1.0.7",
+    "tag": "v1.0.7",
+    "title": "AudioFileForPhone v1.0.7",
+    "published_at": "2026-11-10T20:12:19Z",
+    "draft": false,
+    "prerelease": false,
+    "source_commit": "d279ca585ca28b3ff40ce00e99bd2cb499ab04c5",
+    "tag_object": "ace9f88418747398465d4d2fb60c8d2c8fde2010",
+    "runtime_zip_sha256": "f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5",
+    "assets": [
+      {
+        "name": "AudioFileForPhone-v1.0.7.zip",
+        "bytes": 301230,
+        "sha256": "f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5",
+        "asset_id": 732800264,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/AudioFileForPhone-v1.0.7.zip"
+      },
+      {
+        "name": "release-manifest.json",
+        "bytes": 10316,
+        "sha256": "5098b3a64090c1bacb70656505fe2cc01f322bd0760e61113cb6ca862fc588dd",
+        "asset_id": 732800251,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/release-manifest.json"
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "bytes": 183,
+        "sha256": "5ab5cf491f44b8c0b9d0644fa1b623d87efe86109fa566f774e01df3f51712f5",
+        "asset_id": 732800282,
+        "url": "https://github.com/PikkuJanne/AudioFileForPhone/releases/download/v1.0.7/SHA256SUMS.txt"
+      }
+    ],
+    "draft_download_verified": true,
+    "anonymous_api_verified": true,
+    "anonymous_downloads_verified": true,
+    "zip_members_verified": true,
+    "zip_members": 17,
+    "public_smoke": {
+      "status": "pass",
+      "cases": [
+        {
+          "status": "pass",
+          "shell_version": "5.1.26100.9711",
+          "ffmpeg_build": "2026-10-08-git-ec420ba161-essentials_build-www.gyan.dev",
+          "report_sha256": "0becf9182923376df82b31d97174481dac5f074c928d2471c817d39a99bcf34f",
+          "zip_sha256": "f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5",
+          "original_without_cover": {
+            "sample_rate_hz": 22050,
+            "source_reported_seconds": 2141.13275,
+            "source_decoded_samples": 47434752,
+            "output_decoded_samples": 47435281,
+            "source_decoded_seconds": 2151.235918367347,
+            "output_decoded_seconds": 2151.259909297052,
+            "decoded_difference_seconds": 0.023990929705178132
+          },
+          "original_with_generated_cover": {
+            "sample_rate_hz": 22050,
+            "source_reported_seconds": 2141.13275,
+            "source_decoded_samples": 47434752,
+            "output_decoded_samples": 47435281,
+            "source_decoded_seconds": 2151.235918367347,
+            "output_decoded_seconds": 2151.259909297052,
+            "decoded_difference_seconds": 0.023990929705178132
+          },
+          "mixed_converted": 7,
+          "converted_with_source_warnings": 1,
+          "inaccurate_estimates": 2,
+          "vbr_reported_seconds": 65.4005,
+          "vbr_decoded_seconds": 18.050612244898,
+          "recoverable_source": {
+            "sample_rate_hz": 44100,
+            "source_reported_seconds": 4.127312,
+            "source_decoded_samples": 180864,
+            "output_decoded_samples": 180864,
+            "source_decoded_seconds": 4.101224489795919,
+            "output_decoded_seconds": 4.101224489795919,
+            "decoded_difference_seconds": 0.0
+          },
+          "negative_converted": 1,
+          "negative_failed": 1,
+          "original_bytes_preserved": true,
+          "strict_output_full_decode": true
+        },
+        {
+          "status": "pass",
+          "shell_version": "7.6.9",
+          "ffmpeg_build": "2026-10-15-git-afead44165-essentials_build-www.gyan.dev",
+          "report_sha256": "157e0c02e2fe21e6a341aa45e2a61839e3768cca105169c293915d1ca9966d57",
+          "zip_sha256": "f0af636dc512ebeaa49ceb6df8002f0cb4dc2fe854ca3ca2bc362a731efcf9f5",
+          "original_without_cover": {
+            "sample_rate_hz": 22050,
+            "source_reported_seconds": 2141.13275,
+            "source_decoded_samples": 47434752,
+            "output_decoded_samples": 47435281,
+            "source_decoded_seconds": 2151.235918367347,
+            "output_decoded_seconds": 2151.259909297052,
+            "decoded_difference_seconds": 0.023990929705178132
+          },
+          "original_with_generated_cover": {
+            "sample_rate_hz": 22050,
+            "source_reported_seconds": 2141.13275,
+            "source_decoded_samples": 47434752,
+            "output_decoded_samples": 47435281,
+            "source_decoded_seconds": 2151.235918367347,
+            "output_decoded_seconds": 2151.259909297052,
+            "decoded_difference_seconds": 0.023990929705178132
+          },
+          "mixed_converted": 7,
+          "converted_with_source_warnings": 1,
+          "inaccurate_estimates": 2,
+          "vbr_reported_seconds": 65.37325,
+          "vbr_decoded_seconds": 18.05061224489796,
+          "recoverable_source": {
+            "sample_rate_hz": 44100,
+            "source_reported_seconds": 4.127312,
+            "source_decoded_samples": 180864,
+            "output_decoded_samples": 180864,
+            "source_decoded_seconds": 4.101224489795919,
+            "output_decoded_seconds": 4.101224489795919,
+            "decoded_difference_seconds": 0.0
+          },
+          "negative_converted": 1,
+          "negative_failed": 1,
+          "original_bytes_preserved": true,
+          "strict_output_full_decode": true
+        }
+      ]
+    },
+    "frozen_bytes": true
+  },
+  "prior_public_state": {
+    "status": "pass",
+    "prior_releases": 7,
+    "prior_assets": 21.0,
+    "prior_tag_refs": 14
+  },
+  "coverage_gaps": [
+    "Windows 10 client, genuine Explorer conversion, and physical phone playback were not run.",
+    "The other 22 original chapters and the original artwork were unavailable. A generated JPEG exercised artwork.",
+    "Earlier local full-CI attempts stopped at an immutable-checkout check or vendor transfer deadline. Early hosted runs exposed stale help and filesystem expectations, corrected in test/target-only commits."
+  ],
+  "closure": "Documentation-only checkpoint follows the frozen release. Observe containing-commit CI and local/live main equality after integration."
+}
