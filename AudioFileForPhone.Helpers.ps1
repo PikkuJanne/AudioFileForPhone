@@ -2,7 +2,7 @@
 
 function Get-AudioAppVersion {
     # Authoritative application version; banner, manifest and package metadata consume this.
-    return '1.0.6'
+    return '1.0.7'
 }
 
 function Get-AudioSupportedExtensions {
@@ -1096,6 +1096,8 @@ namespace AudioFileForPhone {
         private bool lineOverflow, invalidRecord;
         private long sequence, droppedRecords;
         private ProgressRecord snapshot;
+        public string Phase { get; set; }
+        public SourceDecodeObserver SourceObserver { get; set; }
         public Action<char[], int> Consumer { get { return Feed; } }
         public ProgressRecord Snapshot { get { lock (gate) { return snapshot; } } }
         public int BufferedChars { get { lock (gate) { return Buffered(); } } }
@@ -1169,6 +1171,92 @@ namespace AudioFileForPhone {
         }
         public void Complete() { lock (gate) { if (line.Length != 0 || lineOverflow) EndLine(); } }
     }
+
+    // ashowinfo reports decoded samples before the null output can resample.
+    // Sum by rate across filter reinitializations and ignore input timestamps.
+    public sealed class SourceDecodeObserver {
+        private const int limit = 8192;
+        private static readonly Regex frame = new Regex(
+            @"^\[Parsed_ashowinfo_\d+ @ [^\]]+\] \[info\] .*\brate:(\d+) nb_samples:(\d+) ");
+        private static readonly Regex diagnostic = new Regex(
+            @"^(?:\[[^\]]+ @ [^\]]+\] )*\[(warning|error|fatal|panic)\] (.*)$");
+        private static readonly Regex information = new Regex(@"^(?:\[[^\]]+ @ [^\]]+\] )*\[info\] ");
+        private static readonly Regex decoder = new Regex(@"^\[(?:mp3(?:float)?|aac(?:_fixed)?|vorbis|opus) @ ");
+        private readonly StringBuilder line = new StringBuilder();
+        private readonly StringBuilder diagnostics = new StringBuilder();
+        private bool lineTruncated;
+        private int sampleRate;
+        private long samplesAtRate;
+        private double priorSeconds;
+        public long DiagnosticChars { get; private set; }
+        public string Diagnostics { get { return diagnostics.ToString(); } }
+        public bool Estimated { get; private set; }
+        public bool HasWarnings { get; private set; }
+        public bool HasErrors { get; private set; }
+        public bool Failed { get; private set; }
+        public bool InvalidFrames { get; private set; }
+        private double CurrentSeconds { get { return sampleRate == 0 ? 0 : (double)samplesAtRate / sampleRate; } }
+        public double Seconds { get { return priorSeconds + CurrentSeconds; } }
+        public Action<char[], int> Consumer { get { return Feed; } }
+        private void Feed(char[] chars, int count) {
+            for (int i = 0; i < count; i++) {
+                char c = chars[i];
+                if (c == '\n') Complete();
+                else if (c != '\r') {
+                    if (line.Length < limit) line.Append(c);
+                    else lineTruncated = true;
+                }
+            }
+        }
+        public void Complete() {
+            if (line.Length == 0) return;
+            string text = line.ToString(); line.Clear();
+            bool truncated = lineTruncated; lineTruncated = false;
+            if (text.StartsWith("[Parsed_ashowinfo_", StringComparison.Ordinal)) {
+                var match = frame.Match(text);
+                if (match.Success) {
+                    int rate, count;
+                    if (!Int32.TryParse(match.Groups[1].Value, out rate) || rate <= 0 ||
+                        !Int32.TryParse(match.Groups[2].Value, out count) || count <= 0) { InvalidFrames = true; return; }
+                    if (rate != sampleRate) {
+                        priorSeconds += CurrentSeconds;
+                        sampleRate = rate;
+                        samplesAtRate = 0;
+                    }
+                    samplesAtRate = checked(samplesAtRate + count);
+                    return;
+                }
+                if (text.Contains("] [info] n:")) InvalidFrames = true;
+            }
+            var message = diagnostic.Match(text);
+            if (!message.Success && information.IsMatch(text)) return;
+            DiagnosticChars += text.Length + 1 + (truncated ? 1 : 0);
+            int remaining = limit - diagnostics.Length;
+            if (remaining > 0) diagnostics.Append((text + "\n"), 0, Math.Min(text.Length + 1, remaining));
+            if (!message.Success) return;
+            string level = message.Groups[1].Value, detail = message.Groups[2].Value;
+            if (level != "warning") HasErrors = true;
+            if (level == "warning" && detail.StartsWith("Estimating duration from bitrate", StringComparison.Ordinal)) {
+                Estimated = true;
+                return;
+            }
+            if (level == "warning" && (detail.StartsWith("filesize and duration do not match", StringComparison.Ordinal) ||
+                detail.Contains("detected only with low score of"))) return;
+            // FFmpeg can exit zero after a demux or I/O error. Only allow
+            // decoder-local damage and the invalid-packet wrapper to recover.
+            bool invalidPacket = detail.Contains("Error submitting packet to decoder: Invalid data found when processing input");
+            bool decoderDamage = decoder.IsMatch(text) &&
+                !Regex.IsMatch(detail, @"(?i)\b(?:out of memory|cannot allocate|input/output error|i/o error)\b");
+            if (level == "warning") HasWarnings = true;
+            else if (level == "error" && (decoderDamage || invalidPacket)) HasWarnings = true;
+            else Failed = true;
+        }
+        public void Reset() {
+            line.Clear(); diagnostics.Clear(); DiagnosticChars = 0;
+            sampleRate = 0; samplesAtRate = 0; priorSeconds = 0;
+            lineTruncated = Estimated = HasWarnings = HasErrors = Failed = InvalidFrames = false;
+        }
+    }
 }
 '@ -ErrorAction Stop
     }
@@ -1212,6 +1300,7 @@ function Invoke-AudioProgressCallback {
         # The caller is the PowerShell polling thread; worker drains never run
         # scriptblocks. Discard display output so it cannot change result shape.
         & $Callback $Progress | Out-Null
+        if ($State.LastPhase -cne $Progress.Phase) { $State.LastRecordSequence = 0 }
         $State.LastPhase = $Progress.Phase; $State.LastTimestamp = $now
         return $true
     }
@@ -1227,7 +1316,8 @@ function Send-AudioNativeProgress {
     if ($null -eq $Parser -or $null -eq $Callback -or -not $State.Enabled) { return }
     $record = $Parser.Snapshot
     if ($null -eq $record -or $record.Sequence -le $State.LastRecordSequence) { return }
-    $progress = Get-AudioProgressState -Record $record -DurationSeconds $DurationSeconds
+    $phase = if ($Parser.Phase) { $Parser.Phase } else { 'Encoding' }
+    $progress = Get-AudioProgressState -Record $record -DurationSeconds $DurationSeconds -Phase $phase
     if (Invoke-AudioProgressCallback -Callback $Callback -State $State -Progress $progress) {
         $State.LastRecordSequence = $record.Sequence
     }
@@ -1258,9 +1348,11 @@ function Invoke-AudioNativeProcess {
     }
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $capture = $null
+    $sourceObserver = $null
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
         if ($null -ne $ProgressCallback -and $null -eq $ProgressParser) { $ProgressParser = New-AudioProgressParser }
+        if ($null -ne $ProgressParser) { $sourceObserver = $ProgressParser.SourceObserver }
         if ($null -eq $ProgressCallbackState) { $ProgressCallbackState = New-AudioProgressCallbackState }
         # A rooted drive-relative path such as C:tool.exe is not an absolute path.
         # FileName is passed directly to Process, never to a command interpreter.
@@ -1330,6 +1422,7 @@ namespace AudioFileForPhone {
         public bool StdoutTruncated { get; private set; }
         public bool StderrTruncated { get; private set; }
         public string ProgressConsumerError { get; private set; }
+        public string StderrConsumerError { get; private set; }
         public int ProcessId { get { return process.Id; } }
 
         // Quote every argument using the Windows CRT rules: backslashes preceding
@@ -1407,7 +1500,9 @@ namespace AudioFileForPhone {
         }
         public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit)
             : this(executablePath, arguments, stdoutLimit, stderrLimit, null) { }
-        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit, Action<char[], int> stdoutConsumer) {
+        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit, Action<char[], int> stdoutConsumer)
+            : this(executablePath, arguments, stdoutLimit, stderrLimit, stdoutConsumer, null) { }
+        public NativeCapture(string executablePath, string[] arguments, int stdoutLimit, int stderrLimit, Action<char[], int> stdoutConsumer, Action<char[], int> stderrConsumer) {
             try {
                 StringBuilder commandLine = new StringBuilder();
                 foreach (string argument in arguments) {
@@ -1433,7 +1528,7 @@ namespace AudioFileForPhone {
                 // Reuse pool workers rather than allocate two CLR threads and
                 // their native handles for every media item in a long batch.
                 stdoutTask = Task.Factory.StartNew(() => Drain(stdoutReader, stdoutLimit, stdoutConsumer, stdoutState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
-                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, null, stderrState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
+                stderrTask = Task.Factory.StartNew(() => Drain(stderrReader, stderrLimit, stderrConsumer, stderrState), CancellationToken.None, TaskCreationOptions.None, TaskScheduler.Default);
                 // Observe faults even if an interrupted caller cannot join a drain.
                 stdoutTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
                 stderrTask.ContinueWith(t => { var ignored = t.Exception; }, TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
@@ -1451,7 +1546,10 @@ namespace AudioFileForPhone {
                 Stdout = stdoutState.Text.ToString(); StdoutTotalChars = stdoutState.TotalChars;
                 ProgressConsumerError = stdoutState.ConsumerError;
             }
-            lock (stderrState.Gate) { Stderr = stderrState.Text.ToString(); StderrTotalChars = stderrState.TotalChars; }
+            lock (stderrState.Gate) {
+                Stderr = stderrState.Text.ToString(); StderrTotalChars = stderrState.TotalChars;
+                StderrConsumerError = stderrState.ConsumerError;
+            }
             StdoutTruncated = StdoutTotalChars > Stdout.Length;
             StderrTruncated = StderrTotalChars > Stderr.Length;
             PipeDrainCompleted = stdoutState.EndOfPipe && stderrState.EndOfPipe;
@@ -1513,7 +1611,10 @@ namespace AudioFileForPhone {
             throw (New-Object TimeoutException('Operation deadline expired before native start.'))
         }
         $result.ProcessReleased = $false
-        if ($null -eq $ProgressParser) {
+        if ($null -ne $sourceObserver) {
+            $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, 0, $ProgressParser.Consumer, $sourceObserver.Consumer)
+        }
+        elseif ($null -eq $ProgressParser) {
             $capture = New-Object AudioFileForPhone.NativeCapture($ExecutablePath, $Arguments, $MaxStdoutChars, $MaxStderrChars)
         }
         else {
@@ -1577,6 +1678,16 @@ namespace AudioFileForPhone {
             $result.StdoutTruncated = $capture.StdoutTruncated; $result.StderrTruncated = $capture.StderrTruncated
             $result.StdoutTotalChars = $capture.StdoutTotalChars; $result.StderrTotalChars = $capture.StderrTotalChars
             $result.ProgressError = $capture.ProgressConsumerError
+            if ($null -ne $sourceObserver -and $capture.PipeDrainCompleted) {
+                $sourceObserver.Complete()
+                $result.Stderr = $sourceObserver.Diagnostics
+                $result.StderrTotalChars = $sourceObserver.DiagnosticChars
+                $result.StderrTruncated = $result.StderrTotalChars -gt $result.Stderr.Length
+                if ($capture.StderrConsumerError) {
+                    $result.Status = 'CaptureFailed'
+                    $result.Error = $capture.StderrConsumerError
+                }
+            }
             if ($capture.Released -and $null -ne $Cancellation) { $Cancellation.ClearActiveProcessId($ownedProcessId) }
         }
         $timer.Stop()
@@ -1766,10 +1877,79 @@ function Invoke-AudioNativeReadOperation {
         Assert-AudioNotCancelled -Cancellation $Parameters.Cancellation
         Write-Warning ('{0} crashed; retrying that operation once in a fresh process.' -f $Parameters.Operation) -ErrorAction Continue
         $firstAttempt = $native
+        if ($Parameters.ProgressParser -and $Parameters.ProgressParser.SourceObserver) {
+            $previousParser = $Parameters.ProgressParser
+            $previousParser.SourceObserver.Reset()
+            $Parameters.ProgressParser = New-AudioProgressParser
+            $Parameters.ProgressParser.SourceObserver = $previousParser.SourceObserver
+            $Parameters.ProgressParser.Phase = $previousParser.Phase
+            $Parameters.ProgressCallbackState.LastRecordSequence = 0
+        }
         $native = Invoke-AudioNativeProcess @Parameters
         $native | Add-Member -NotePropertyName CrashRecovery -NotePropertyValue $firstAttempt
     }
     return $native
+}
+
+function Get-AudioSourceMeasurement {
+    param([Parameter(Mandatory = $true)][string]$Path,
+          [Parameter(Mandatory = $true)][string]$StreamSpecifier,
+          [Parameter(Mandatory = $true)][string]$FfmpegPath,
+          [AllowNull()][object]$ReportedSeconds,
+          [AllowNull()][object]$Cancellation,
+          [AllowNull()][scriptblock]$ProgressCallback,
+          [Parameter(Mandatory = $true)][object]$ProgressCallbackState,
+          [switch]$StrictRecovery)
+    $result = [pscustomobject]@{
+        Status = 'SourceDecodeFailed'; Error = ''; ProcessReleased = $true; NativeResult = $null
+        Seconds = $null; Method = 'decoded_samples_by_rate'; Estimated = $false; Warnings = @()
+    }
+    try {
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        $parser = New-AudioProgressParser
+        $observer = New-Object AudioFileForPhone.SourceDecodeObserver
+        $phase = 'Measuring source'
+        $parser.Phase = $phase
+        $parser.SourceObserver = $observer
+        Invoke-AudioProgressCallback -Callback $ProgressCallback -State $ProgressCallbackState `
+            -Progress (Get-AudioProgressState -Record $null -DurationSeconds $ReportedSeconds -Phase $phase) | Out-Null
+        $arguments = @('-nostdin', '-hide_banner', '-loglevel', 'level+info', '-nostats')
+        $operation = 'Source audio decode'
+        if ($StrictRecovery) {
+            $arguments += @('-xerror', '-err_detect', 'explode')
+            $operation = 'Original recovery duration decode'
+        }
+        $arguments += @('-i', $Path, '-map', $StreamSpecifier, '-vn', '-sn', '-dn', '-af', 'ashowinfo',
+            '-progress', 'pipe:1', '-stats_period', '0.5', '-f', 'null', '-')
+        $parameters = @{ ExecutablePath = $FfmpegPath; Arguments = $arguments; Cancellation = $Cancellation
+           Operation = $operation; MaxStdoutChars = 8192
+           ProgressParser = $parser
+           ProgressCallback = $ProgressCallback; ProgressDurationSeconds = $ReportedSeconds; ProgressCallbackState = $ProgressCallbackState }
+        $result.ProcessReleased = $false
+        $decode = Invoke-AudioNativeReadOperation -Parameters $parameters
+        $result.NativeResult = $decode
+        $result.ProcessReleased = $decode.ProcessReleased
+        if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
+        Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($decode.Status -ne 'Completed' -or $decode.ExitCode -ne 0 -or -not $decode.PipeDrainCompleted -or
+            -not $result.ProcessReleased -or $decode.ProgressError -or $observer.Failed -or $observer.InvalidFrames -or
+            ($StrictRecovery -and $observer.HasErrors)) {
+            throw "Source audio could not be decoded completely ($($decode.Status), exit $($decode.ExitCode)). See the local log for details."
+        }
+        $completed = $parameters.ProgressParser.Snapshot
+        if ($null -eq $completed -or $completed.ProgressState -cne 'end') {
+            throw 'Source decode did not report a completed read.'
+        }
+        $result.Seconds = ConvertTo-AudioPositiveSeconds -Value $observer.Seconds
+        $result.Estimated = $observer.Estimated
+        if ($observer.HasWarnings -and -not $StrictRecovery) { $result.Warnings = @('Source decoder reported recoverable warnings; damaged segments may be missing or concealed.') }
+        $result.Status = 'Success'
+    }
+    catch {
+        if ($_.Exception.GetBaseException() -is [OperationCanceledException]) { $result.Status = 'Cancelled' }
+        $result.Error = $_.Exception.Message
+    }
+    return $result
 }
 
 function Invoke-AudioSourceRecovery {
@@ -1783,7 +1963,7 @@ function Invoke-AudioSourceRecovery {
     $result = [pscustomobject][ordered]@{
         Status = 'RecoveryNotApplicable'; Error = ''; Media = $null; InputPath = $null
         SourceProbeResult = $FailedMedia.NativeResult; RemuxResult = $null; ProbeResult = $null; DecodeResult = $null
-        OriginalDurationSeconds = $null; ProcessReleased = $true; CleanupError = ''
+        OriginalDurationSeconds = $null; SourceMeasurement = $null; ProcessReleased = $true; CleanupError = ''
         Directory = $null; MarkerPath = $null; MarkerGuard = $null; MarkerIdentity = $null
         WorkingGuard = $null; WorkingIdentity = $null
     }
@@ -1856,34 +2036,22 @@ function Invoke-AudioSourceRecovery {
         # the ORIGINAL selected audio to sample time, independently of its header
         # and of the copy, before the existing output transaction can start.
         $result.Status = 'RecoveryDecodeFailed'; $result.ProcessReleased = $false
-        $decode = Invoke-AudioNativeReadOperation -Parameters @{ ExecutablePath = $FfmpegPath; Arguments = @(
-            '-nostdin', '-hide_banner', '-v', 'error', '-xerror', '-err_detect', 'explode',
-            '-i', $SourcePath, '-map', '0:a:0', '-vn', '-sn', '-dn', '-af', 'asetpts=N/SR/TB',
-            '-progress', 'pipe:1', '-stats_period', '86400', '-f', 'null', '-'
-        ); Cancellation = $Cancellation; Operation = 'Original recovery duration decode' }
-        $result.DecodeResult = $decode
-        $result.ProcessReleased = $null -ne $decode.PSObject.Properties['ProcessReleased'] -and $decode.ProcessReleased
-        if ($decode.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $decode.Error }
+        $measurement = Get-AudioSourceMeasurement -Path $SourcePath -StreamSpecifier '0:a:0' -FfmpegPath $FfmpegPath `
+            -Cancellation $Cancellation -ProgressCallbackState (New-AudioProgressCallbackState) -StrictRecovery
+        $result.DecodeResult = $measurement.NativeResult
+        $result.SourceMeasurement = $measurement
+        $result.ProcessReleased = $measurement.ProcessReleased
+        if ($measurement.Status -eq 'Cancelled') { $result.Status = 'Cancelled'; throw $measurement.Error }
         Assert-AudioNotCancelled -Cancellation $Cancellation
-        if ($decode.Status -ne 'Completed' -or $decode.ExitCode -ne 0 -or $decode.StdoutTruncated -or
-            $decode.StderrTruncated -or -not [string]::IsNullOrWhiteSpace($decode.Stderr) -or -not $result.ProcessReleased) {
-            throw "Original recovery duration decode failed ($($decode.Status), exit $($decode.ExitCode)): $($decode.Error); $($decode.Stderr)"
+        if ($measurement.Status -ne 'Success') {
+            throw ('Original recovery duration decode failed. ' + $measurement.Error)
         }
-        $mediaTime = $null; $endTime = $null
-        foreach ($line in ($decode.Stdout -split '\r?\n')) {
-            if ($line -cmatch '^out_time_us=(\d+)$') { $mediaTime = [long]::Parse($Matches[1], [Globalization.CultureInfo]::InvariantCulture) }
-            elseif ($line -ceq 'progress=end') { $endTime = $mediaTime }
-        }
-        if ($null -eq $endTime) { throw 'Original recovery decode did not report a completed media duration.' }
-        $result.OriginalDurationSeconds = ConvertTo-AudioPositiveSeconds -Value ([double]$endTime / 1000000)
+        $result.OriginalDurationSeconds = $measurement.Seconds
         $result.Status = 'RecoveryDurationMismatch'
         if ([math]::Abs($result.OriginalDurationSeconds - $media.DurationSeconds) -gt 0.35) {
             throw 'Recovery copy duration is outside the 0.35-second original decoded duration tolerance.'
         }
-        # Continue normal planning/metadata using the copy's proven fields, but
-        # validate final output against the original's independently decoded time.
-        $media.DurationSeconds = $result.OriginalDurationSeconds
-        $media.DurationOrigin = 'OriginalDecodedAudio'
+        # Keep the copy's probe fields separate from the measured original.
         $result.Media = $media
         $result.Status = 'Success'
     }
@@ -2129,6 +2297,7 @@ function Get-AudioOutputValidation {
     $result = [ordered]@{
         Status = 'InvalidOutput'; Error = ''; ProbeResult = $null; DecodeResult = $null
         DurationSeconds = $null; DecodedDurationSeconds = $null; DurationToleranceSeconds = 0.35
+        DurationDifferenceSeconds = $null
         ProcessReleased = $true
         Bitrate = $null; SampleRate = $null; Channels = $null
     }
@@ -2197,12 +2366,6 @@ function Get-AudioOutputValidation {
             if ($result.Channels -ne $OutputPlan.OutputChannels) { throw 'Output audio-stream channels do not match the audio plan.' }
         }
         $result.DurationSeconds = ConvertTo-AudioPositiveSeconds -Value $audio.duration
-        # A fixed bound avoids permitting minutes of loss in a multi-hour source.
-        # 350ms covers low-sample-rate MP3 encoder padding as well as AAC/Opus
-        # duration rounding; short real fixtures establish the actual margin.
-        if ([math]::Abs($result.DurationSeconds - $sourceSeconds) -gt $result.DurationToleranceSeconds) {
-            throw 'Output audio duration is outside the 0.35-second source tolerance.'
-        }
         # Headers (including Xing) can retain a plausible duration after payload
         # truncation. Decode the selected audio without re-encoding or writing a
         # media file, then compare its actual media time. Progress is emitted only
@@ -2231,9 +2394,14 @@ function Get-AudioOutputValidation {
         }
         if ($null -eq $endTime) { throw 'Output decode did not report a completed media duration.' }
         $result.DecodedDurationSeconds = ConvertTo-AudioPositiveSeconds -Value ([double]$endTime / 1000000)
-        if ([math]::Abs($result.DecodedDurationSeconds - $sourceSeconds) -gt $result.DurationToleranceSeconds -or
+        # The fixed 350 ms covers codec padding, rounding and resampling.
+        # Check output integrity and loss against independently decoded audio.
+        $result.DurationDifferenceSeconds = [math]::Abs($result.DecodedDurationSeconds - $sourceSeconds)
+        if ($result.DurationDifferenceSeconds -gt $result.DurationToleranceSeconds -or
             [math]::Abs($result.DecodedDurationSeconds - $result.DurationSeconds) -gt $result.DurationToleranceSeconds) {
-            throw 'Decoded output duration is outside the 0.35-second source/header tolerance.'
+            throw ([string]::Format([Globalization.CultureInfo]::InvariantCulture,
+                'Duration mismatch (tolerance {0:F2}s): decoded source {1:F6}s, decoded output {2:F6}s, output header {3:F6}s.',
+                $result.DurationToleranceSeconds, $sourceSeconds, $result.DecodedDurationSeconds, $result.DurationSeconds))
         }
         Assert-AudioNotCancelled -Cancellation $Cancellation
         $result.Status = 'Success'
@@ -2260,7 +2428,9 @@ function Invoke-AudioOutputTransaction {
         [Parameter(Mandatory = $true)][string]$OutputPath,
         [Parameter(Mandatory = $true)][string]$OutputRoot,
         [Parameter(Mandatory = $true)][string]$SourcePath,
-        [Parameter(Mandatory = $true)][AllowNull()][object]$SourceDurationSeconds,
+        [AllowNull()][object]$SourceDurationSeconds,
+        [int]$SourceStreamIndex = 0,
+        [AllowNull()][object]$SourceMeasurement,
         [int]$BitrateKbps = 64, [bool]$HasCover = $false,
         [Parameter(Mandatory = $true)][string]$FfmpegPath,
         [Parameter(Mandatory = $true)][string]$FfprobePath,
@@ -2271,14 +2441,13 @@ function Invoke-AudioOutputTransaction {
         [AllowNull()][object]$OutputPlan = $null
     )
     $result = [ordered]@{
-        Status = 'InvalidSourceDuration'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
-        EncoderResult = $null; ValidationResult = $null; CleanupError = ''
+        Status = 'StageFailed'; Error = ''; OutputPath = $OutputPath; WorkingPath = $null
+        SourceMeasurement = $null; EncoderResult = $null; ValidationResult = $null; CleanupError = ''
     }
     $guard = $null; $ownedIdentity = $null; $canCleanup = $true
     $progressCallbackState = New-AudioProgressCallbackState
     try {
         Assert-AudioNotCancelled -Cancellation $Cancellation
-        $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceDurationSeconds
         if ($null -ne $OutputPlan -and ($OutputPlan.Status -cne 'Success' -or $OutputPlan.BitrateKbps -ne $BitrateKbps -or
             $OutputPlan.OutputSampleRate -notin @(8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000) -or
             $OutputPlan.OutputChannels -notin @(1, 2))) {
@@ -2303,6 +2472,16 @@ function Invoke-AudioOutputTransaction {
         if (Test-Path -LiteralPath $OutputPath -ErrorAction Stop) { throw 'The planned final output already exists; refusing to overwrite it.' }
         if ($EncodeArguments -contains '-y' -or $EncodeArguments -contains '-n') { throw 'Encoder overwrite policy belongs to the working-file transaction.' }
         Assert-AudioNotCancelled -Cancellation $Cancellation
+        if ($null -eq $SourceMeasurement) {
+            $SourceMeasurement = Get-AudioSourceMeasurement -Path $SourcePath -StreamSpecifier ('0:{0}' -f $SourceStreamIndex) -FfmpegPath $FfmpegPath `
+                -ReportedSeconds $SourceDurationSeconds -Cancellation $Cancellation -ProgressCallback $ProgressCallback `
+                -ProgressCallbackState $progressCallbackState
+        }
+        $result.SourceMeasurement = $SourceMeasurement
+        $result.Status = $SourceMeasurement.Status
+        if ($SourceMeasurement.Status -ne 'Success') { throw $SourceMeasurement.Error }
+        $sourceSeconds = ConvertTo-AudioPositiveSeconds -Value $SourceMeasurement.Seconds
+        $result.Status = 'StageFailed'
         $outDir = [IO.Path]::GetDirectoryName($OutputPath)
         Assert-AudioPathBudget -Path $outDir -Kind Directory
         [IO.Directory]::CreateDirectory($outDir) | Out-Null
@@ -2806,6 +2985,9 @@ function New-AudioRunManifest {
             source_relative_path = [string]$plan.SourceRelativePath; output_relative_path = [string]$plan.OutputRelativePath
             status = 'NotProcessed'; code = 'NotProcessed'; reason = 'Not started'
             input_duration_seconds = $null; output_duration_seconds = $null; decoded_duration_seconds = $null
+            source_reported_duration_seconds = $null; source_reported_duration_origin = $null; source_duration_estimated = $false
+            source_measurement_method = $null; source_warnings = @()
+            duration_difference_seconds = $null; duration_tolerance_seconds = $null
             input_bytes = $inputBytes; output_bytes = [long]0; elapsed_seconds = [double]0
             source_title = $null; measurement_error = $measurementError
             audio_plan = $null; observed_audio = $null; source_probe = $null; recovery = $null; native_operations = $null
@@ -2825,7 +3007,7 @@ function New-AudioRunManifest {
         policies = [ordered]@{
             bitrate_kbps = $BitrateKbps; max_base_length = $MaxBaseLength
             supported_extensions = @(Get-AudioSupportedExtensions); recursive_relative_layout = $true
-            source_duration_policy = 'finite positive selected audio duration required'
+            source_duration_policy = 'header duration is a hint; require a complete independent decode of selected original audio and retain usable output with recoverable source warnings'
             output_duration_tolerance_seconds = 0.35; full_output_decode_required = $true
             audio_plan_policy = 'preserve compatible source rate and mono/stereo; otherwise nearest encoder-supported MPEG CBR rate (ties lower); known standard multichannel layouts explicitly downmix to stereo; other layouts reject before encoding'
             overwrite_policy = 'publish validated output without overwriting an occupied final path'
@@ -2859,7 +3041,15 @@ function Set-AudioManifestRecord {
     if ($null -ne $Media) { $Record.source_probe = Get-AudioNativeManifestDiagnostic -NativeResult $Media.NativeResult }
     if ($null -ne $Transaction) {
         $validation = $Transaction.ValidationResult
+        $measurement = $Transaction.SourceMeasurement
+        if ($null -ne $measurement) {
+            $Record.input_duration_seconds = $measurement.Seconds
+            $Record.source_measurement_method = $measurement.Method
+            $Record.source_duration_estimated = $measurement.Estimated
+            $Record.source_warnings = @($measurement.Warnings)
+        }
         $nativeOperations = [pscustomobject][ordered]@{
+            source_decode = $(if ($null -ne $measurement) { Get-AudioNativeManifestDiagnostic -NativeResult $measurement.NativeResult } else { $null })
             encoder = (Get-AudioNativeManifestDiagnostic -NativeResult $Transaction.EncoderResult)
             output_probe = $(if ($null -ne $validation) { Get-AudioNativeManifestDiagnostic -NativeResult $validation.ProbeResult } else { $null })
             output_decode = $(if ($null -ne $validation) { Get-AudioNativeManifestDiagnostic -NativeResult $validation.DecodeResult } else { $null })
@@ -2895,10 +3085,19 @@ function Set-AudioManifestRecord {
     }
     catch { $Record.measurement_error = Get-AudioBoundedText -Value $_.Exception.Message -MaximumChars 512 }
     if ($null -ne $Media) {
-        try { $Record.input_duration_seconds = ConvertTo-AudioPositiveSeconds -Value $Media.DurationSeconds } catch { }
+        if ($null -eq $Recovery) {
+            $Record.source_reported_duration_seconds = $Media.DurationSeconds
+            $Record.source_reported_duration_origin = $Media.DurationOrigin
+        }
         if ($Media.TitleStatus -eq 'Present') { $Record.source_title = [string]$Media.Title }
     }
-    $Record.output_bytes = [long]0; $Record.output_duration_seconds = $null; $Record.decoded_duration_seconds = $null
+    $Record.output_bytes = [long]0
+    if ($null -ne $validation) {
+        $Record.output_duration_seconds = $validation.DurationSeconds
+        $Record.decoded_duration_seconds = $validation.DecodedDurationSeconds
+        $Record.duration_difference_seconds = $validation.DurationDifferenceSeconds
+        $Record.duration_tolerance_seconds = $validation.DurationToleranceSeconds
+    }
     if ($Status -eq 'Converted') {
         $Record.output_bytes = $null
         try {
@@ -2929,12 +3128,15 @@ function Update-AudioRunManifest {
     $data.run.elapsed_seconds = [math]::Round($ElapsedSeconds, 3)
     $data.run.updated_utc = [datetime]::UtcNow.ToString('o')
     $data.run.diagnostic_error = Get-AudioBoundedText -Value $DiagnosticError
-    $converted = 0; $failed = 0; $cancelled = 0; $pending = 0
+    $converted = 0; $convertedWithSourceWarnings = 0; $failed = 0; $cancelled = 0; $pending = 0
     $inputBytes = [long]0; $outputBytes = [long]0; $inputUnknown = 0; $outputUnknown = 0
     $inputDuration = [double]0; $outputDuration = [double]0; $durationUnknown = 0
     foreach ($record in $data.records) {
         switch ($record.status) {
-            'Converted' { $converted++ }
+            'Converted' {
+                $converted++
+                if ($record.source_warnings.Count -gt 0) { $convertedWithSourceWarnings++ }
+            }
             'Failed' { $failed++ }
             'Cancelled' { $cancelled++ }
             'NotProcessed' { $pending++ }
@@ -2943,11 +3145,12 @@ function Update-AudioRunManifest {
         if ($null -ne $record.input_bytes) { $inputBytes += [long]$record.input_bytes } else { $inputUnknown++ }
         if ($null -ne $record.output_bytes) { $outputBytes += [long]$record.output_bytes } else { $outputUnknown++ }
         if ($null -ne $record.input_duration_seconds) { $inputDuration += [double]$record.input_duration_seconds } else { $durationUnknown++ }
-        if ($null -ne $record.output_duration_seconds) { $outputDuration += [double]$record.output_duration_seconds }
+        if ($record.status -eq 'Converted' -and $null -ne $record.output_duration_seconds) { $outputDuration += [double]$record.output_duration_seconds }
         if ($Status -ne 'Running' -and $record.status -eq 'NotProcessed') { $record.reason = "Run ended with $Status before this candidate was processed." }
     }
     $data.totals = [ordered]@{
         supported = @($data.records).Count; processed = $converted + $failed; converted = $converted; failed = $failed
+        converted_with_source_warnings = $convertedWithSourceWarnings
         cancelled = $cancelled; not_processed = $pending; not_completed = $cancelled + $pending
         scan_excluded = @($data.scan_exclusions).Count; unsupported = $Manifest.UnsupportedCount
         input_bytes = $inputBytes; output_bytes = $outputBytes

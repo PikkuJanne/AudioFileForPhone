@@ -42,26 +42,39 @@ supports them. Generate source fixtures independently of the requested output pl
 The expected result is either correctly planned/validated output or a deliberate
 pre-encode rejection with a stable reason, not arbitrary allowed failure.
 
-Include M4A AAC-LC, HE-AAC or ALAC where the chosen build can generate/decode a valid
-fixture, MP3 CBR/VBR, Ogg Vorbis/Opus, missing/empty/Unicode title, and artwork.
+Include M4A and unencrypted M4B AAC-LC, HE-AAC or ALAC where the chosen build can
+generate/decode a valid fixture, MP3 CBR/VBR, Ogg Vorbis/Opus, missing/empty/Unicode
+title, and artwork.
 A fixture-generation limitation is NOT evidence that the converter rejected valid
 input. Use licensed public/synthetic fixtures with provenance only as necessary;
 never acquire private media or encrypted material. Existing unsupported extensions
-(.m4b/.wav/.flac/.opus) remain outside scanner scope for this release.
+(.wav/.flac/.opus) remain outside scanner scope.
 
 Use the reference Windows build and a second current capability-compatible build,
 including the owner-observed Git-style build where available. Keep exact tested
 builds in evidence, not an overly restrictive runtime dependency policy.
 
-## Duration validation investigation
+## Duration validation
 
-Test long VBR recordings, AAC edit lists/padding, short clips, inaccurate header
-duration, unknown/N/A duration, silence, and deliberate payload truncation. Preserve
-strong detection of truncated outputs. Do not simply widen 0.35 seconds to a percent
-of a multi-hour book. When a legitimate mismatch is reproduced, improve the source
-duration basis (for example selected-stream decoded duration on an explicit fallback)
-and document bounded tolerances. Never trim/pad/stretch audio just to pass a check.
-A fallback may be more expensive; trigger it only when warranted and show its phase.
+Treat source probe durations as progress and diagnostic hints. A missing or
+invalid header duration may still accompany a usable source. Independently read
+the selected original audio stream through the end and measure its duration from
+decoded samples, accounting for the effective sample rate and skip/discard data.
+Use bounded diagnostics and retain no PCM. The source pass may use the same
+tolerant decoding policy as conversion. A normal, complete read yielding usable
+audio may carry source warnings. A fatal error or incomplete read fails the item.
 
-No duration-policy change is mandatory without a demonstrated issue. Every policy
-change must carry both a real-valid-media regression and a retained truncation test.
+Check the staged output's header and independently measure its duration with a
+strict full decode. Use the measured source reference and the existing fixed
+0.35-second tolerance for codec padding and resampling. A staged output may be
+published only after all format, bitrate, shape, metadata and validation checks
+pass. Reuse the per-file source measurement through retries of the same source.
+Log reported and measured durations with their origins, the difference and the
+tolerance. Count outputs with source warnings as converted and report them
+separately. Preserve the original source and the no-overwrite transaction.
+
+Test long VBR recordings, AAC edit lists/padding, short clips, demonstrably
+inaccurate or unavailable reported durations, recoverable source errors, and
+unreadable sources. Retain a control where the output loses audio despite a
+plausible header and successful strict decode. A successful conversion must
+retain the measured recoverable source duration within the fixed tolerance.

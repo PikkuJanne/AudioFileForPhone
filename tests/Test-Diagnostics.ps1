@@ -373,7 +373,9 @@ try {
             Update-AudioRunManifest $context Failed 1 1.234;Write-AudioRunManifest $context FileBoundary;Write-AudioRunManifest $context Final
             $read=[IO.File]::ReadAllText($context.Path)|ConvertFrom-Json
             Assert-True ($read.records[0].reason -ceq $reason -and $read.records[0].source_title -ceq $exactTitle -and $read.policies.metadata.artist -ceq $exactArtist -and $read.policies.metadata.album -ceq $exactAlbum) 'JSON must roundtrip exact structured Unicode/formula-like/quoted/multiline values.'
-            Assert-True ($read.checkpoint -ceq 'Final' -and $read.revision -eq 3 -and $read.totals.failed -eq 1 -and $read.records[0].input_duration_seconds -eq $media.DurationSeconds) 'Snapshots must retain actual measured duration and exclusive failure row.'
+            Assert-True ($read.checkpoint -ceq 'Final' -and $read.revision -eq 3 -and $read.totals.failed -eq 1 -and
+                $null -eq $read.records[0].input_duration_seconds -and $read.records[0].source_reported_duration_seconds -eq $media.DurationSeconds) (
+                'Snapshots must preserve the reported source duration separately from an unavailable measurement.')
             $case['newline_fixture_kind']='actual source metadata and synthetic structured reason; no newline Windows filename';$case['exact_unicode_codepoints']=@('U+00E9','U+4E2D','U+03A9','U+65E5','U+672C');$case['roundtrip_json']=$read
         }finally{Close-AudioRunManifest $context}
         Get-RunArtifacts $parent|Out-Null

@@ -231,14 +231,14 @@ function Invoke-AudioSyntheticSelfTest {
         }
         if (-not $result.ProcessReleased -or -not $result.PipeDrainCompleted) { throw 'Synthetic source probe release was not established; files were retained.' }
         if ($media.Status -eq 'Cancelled') { throw (New-Object OperationCanceledException('Synthetic self-test cancelled.')) }
-        if ($media.Status -ne 'Success' -or $media.DurationStatus -ne 'Valid') { throw ('Synthetic source probe failed: ' + $media.Error) }
+        if ($media.Status -ne 'Success') { throw ('Synthetic source probe failed: ' + $media.Error) }
         $plan = Get-AudioOutputPlan -Media $media -BitrateKbps 64 -SupportedSampleRates $SupportedSampleRates
         if ($plan.Status -ne 'Success') { throw ('Synthetic output planning failed: ' + $plan.Reason) }
         $metadata = Get-AudioMetadataPlan -Media $media -FallbackTitle 'Synthetic self-test'
         $arguments = New-AudioEncodeArguments -InputPath $scope.FixturePath -Media $media -OutputPlan $plan -MetadataArguments $metadata.Arguments
         $result.ProcessReleased = $false; $result.PipeDrainCompleted = $false
         $transaction = Invoke-AudioOutputTransaction -OutputPath $scope.ResultPath -OutputRoot $scope.OutputPath -SourcePath $scope.FixturePath `
-            -SourceDurationSeconds $media.DurationSeconds -BitrateKbps 64 -FfmpegPath $Selection.Ffmpeg.Path -FfprobePath $Selection.Ffprobe.Path `
+            -SourceDurationSeconds $media.DurationSeconds -SourceStreamIndex $media.StreamIndex -BitrateKbps 64 -FfmpegPath $Selection.Ffmpeg.Path -FfprobePath $Selection.Ffprobe.Path `
             -EncodeArguments $arguments -OutputPlan $plan -Cancellation $Cancellation
         $scope.WorkingPath = $transaction.WorkingPath
         $transactionNative = @($transaction.EncoderResult)

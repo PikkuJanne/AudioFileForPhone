@@ -364,7 +364,7 @@ try {
     }
     Invoke-Case 'one runtime version literal and real helper output are consistent' 'A46' {
         param($case)
-        Assert-True ($appVersion -ceq '1.0.6') 'Authoritative semantic app version must be the owner-selected 1.0.6.'
+        Assert-True ($appVersion -ceq '1.0.7') 'Authoritative semantic app version must be the owner-selected 1.0.7.'
         $literals = @()
         foreach ($file in @('AudioFileForPhone.ps1', 'AudioFileForPhone.Helpers.ps1', 'AudioFileForPhone.Diagnostics.ps1')) {
             $tokens = $null; $errors = $null; $ast = [Management.Automation.Language.Parser]::ParseFile((Join-Path $projectRoot $file), [ref]$tokens, [ref]$errors)

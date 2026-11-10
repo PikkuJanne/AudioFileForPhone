@@ -373,7 +373,8 @@ try {
                 return [pscustomobject]@{Status='Cancelled';ExitCode=$null;ProcessReleased=$false;Error='controlled unproved-release cancellation result; no child launched by this fault';Stdout='';Stderr='';StdoutTruncated=$false;StderrTruncated=$false}
             }
             $result=& $script:T11TestOriginalNative -ExecutablePath $ExecutablePath -Arguments $Arguments -MaxStdoutChars $MaxStdoutChars -MaxStderrChars $MaxStderrChars -Cancellation $Cancellation -ProgressCallback $ProgressCallback -ProgressDurationSeconds $ProgressDurationSeconds -ProgressParser $ProgressParser -ProgressCallbackState $ProgressCallbackState -TimeoutMilliseconds $TimeoutMilliseconds -Operation $Operation -PipeDrainTimeoutMilliseconds $PipeDrainTimeoutMilliseconds
-            if($working.Count -gt 0 -and (($script:T11Phase -ceq 'validation-probe' -and $Arguments -contains '-show_entries') -or ($script:T11Phase -ceq 'full-decode' -and $Arguments -contains '-progress' -and $Arguments -contains 'null'))) {
+            if(($script:T11Phase -ceq 'source-measurement' -and $Operation -ceq 'Source audio decode') -or
+                ($working.Count -gt 0 -and (($script:T11Phase -ceq 'validation-probe' -and $Arguments -contains '-show_entries') -or ($script:T11Phase -ceq 'full-decode' -and $Arguments -contains '-progress' -and $Arguments -contains 'null')))) {
                 Assert-True ($result.Status -ceq 'Completed' -and $result.ProcessReleased) 'Phase cancellation requests follow a real successful native release.'
                 $Cancellation.Request();$script:T11PhaseReached=$true
             }
@@ -384,7 +385,7 @@ try {
             if($script:T11Phase -ceq 'publication'){$Cancellation.Request();$script:T11PhaseReached=$true}
             & $script:T11TestOriginalPublish -WorkingPath $WorkingPath -OutputPath $OutputPath -Cancellation $Cancellation
         }
-        foreach($phase in @('validation-probe','full-decode','publication','unproved-release')) {
+        foreach($phase in @('source-measurement','validation-probe','full-decode','publication','unproved-release')) {
             Invoke-Case ('transaction cancellation at '+$phase+' preserves publication/cleanup boundary') 'A29' {
                 param($case);$script:T11Phase=$phase;$script:T11PhaseReached=$false;$context=New-AudioCancellationContext
                 $phaseRoot=Join-Path $testRoot ('O-phase-'+$phase);[IO.Directory]::CreateDirectory($phaseRoot)|Out-Null
@@ -398,6 +399,10 @@ try {
                     if($phase -ceq 'unproved-release') {
                         Assert-True ((Test-Path -LiteralPath $transaction.WorkingPath) -and $transaction.CleanupError.Contains('exit was not established')) 'Simulated unproved native release must retain the exact current partial and explicit cleanup reason.'
                         $case['injected_unknown_release_no_actual_child']=$true;$case['exact_partial_retained']=$true;$case['cleanup_reason']=$transaction.CleanupError
+                    }elseif($phase -ceq 'source-measurement'){
+                        Assert-True ($script:T11PhaseReached -and $null -eq $transaction.WorkingPath -and $null -eq $transaction.EncoderResult -and
+                            $context.ActiveProcessId -eq 0) 'Cancellation during source measurement must not start an encoder or stage output.'
+                        $case['real_phase_reached']=$true;$case['no_working_file_staged']=$true
                     }else{
                         Assert-True ($script:T11PhaseReached -and -not(Test-Path -LiteralPath $transaction.WorkingPath) -and [string]::IsNullOrEmpty($transaction.CleanupError) -and $context.ActiveProcessId -eq 0) 'Proved released phase must remove exact current partial after closing the guard.'
                         $case['real_phase_reached']=$true;$case['current_partial_removed']=$true

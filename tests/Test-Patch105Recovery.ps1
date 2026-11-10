@@ -134,6 +134,7 @@ function Assert-OneRetry-P105([object]$Run,[string]$Stage){
         'output-probe'{$diagnostic=$record.native_operations.output_probe;$logStage='OutputProbe'}
         'validate'{$diagnostic=$record.native_operations.output_decode;$logStage='OutputDecode'}
         'source-probe'{$diagnostic=$record.source_probe;$logStage='SourceProbe'}
+        'source-decode'{$diagnostic=$record.native_operations.source_decode;$logStage='SourceDecode'}
     }
     Assert-P105 ($null-ne$diagnostic-and$diagnostic.exit_code-eq0-and$diagnostic.process_released-and$null-ne$diagnostic.crash_recovery-and$diagnostic.crash_recovery.exit_code-ne0-and$diagnostic.crash_recovery.process_released) 'Manifest lost first crash or final successful process diagnostic.'
     Assert-P105 ($Run.diagnostics.Contains($logStage+'.FirstAttempt')-and$Run.diagnostics.Contains('*** stack smashing detected ***: terminated')) 'Local diagnostics lost the first failed worker.'
@@ -186,7 +187,7 @@ try{
     }
     Case-P105 'healthy-input-does-not-retry' {param($case)
         $r=App-P105 -Name normal -Stage encode -Mode normal -Fixture $fixtureM4a;Verify-P105 $r 1
-        foreach($stage in @('source-probe','encode','output-probe','validate')){Assert-P105 ((Events-P105 $r $stage).Count-eq1) ('Healthy '+$stage+' retried.')}
+        foreach($stage in @('source-probe','source-decode','encode','output-probe','validate')){Assert-P105 ((Events-P105 $r $stage).Count-eq1) ('Healthy '+$stage+' retried.')}
         $case.exit_code=0;$case.converted=1;$case.retries=0
     }
     Case-P105 'encoder-once-crash-retries-in-new-owned-partial' {param($case)
@@ -211,6 +212,14 @@ try{
         Assert-P105 ((Events-P105 $r encode).Count-eq1-and(Events-P105 $r validate).Count-eq1) 'Output probe retry reran encode or validation.'
         $case.exit_code=0;$case.output_probe_processes=2;$case.encode_processes=1;$case.identical_completed_bytes=$true
     }
+    Case-P105 'source-decode-retry-discards-all-samples-from-crashed-worker' {param($case)
+        $r=App-P105 -Name source-decode-once -Stage source-decode -Mode once -Fixture $fixtureM4a;Verify-P105 $r 1
+        $events=Assert-OneRetry-P105 $r source-decode
+        Assert-P105 ($events[0].path-ceq$events[1].path-and$events[0].sha256-ceq$events[1].sha256-and
+            ($events[0].argv|ConvertTo-Json -Compress)-ceq($events[1].argv|ConvertTo-Json -Compress)) 'Source decode retry changed bytes or argv.'
+        Assert-P105 ((Events-P105 $r encode).Count-eq1-and$r.manifest.records[0].input_duration_seconds-lt2) 'Failed-attempt samples contaminated the measured reference or caused re-encoding.'
+        $case.exit_code=0;$case.source_decode_processes=2;$case.encode_processes=1
+    }
     foreach($fixture in @($fixtureMp3,$fixtureOgg)){
         $kind=[IO.Path]::GetExtension($fixture).TrimStart('.')
         Case-P105 ($kind+'-source-probe-once-crash-retries-without-remux') {param($case)
@@ -231,7 +240,7 @@ try{
         $events=Assert-OneRetry-P105 $r encode
         $case.exit_code=0;$case.encode_processes=2;$case.injected_ntstatus='0xC0000005'
     }
-    foreach($stage in @('encode','output-probe','validate','source-probe')){
+    foreach($stage in @('encode','output-probe','validate','source-probe','source-decode')){
         Case-P105 ($stage+'-persistent-crash-fails-once-bounded-then-next-input-converts') {param($case)
             $fixture=if($stage-ceq'source-probe'){$fixtureMp3}else{$fixtureM4a}
             $r=App-P105 -Name ('persistent-'+$stage) -Stage $stage -Mode persistent -Fixture $fixture -Expected 2 -FollowingGood $true;Verify-P105 $r 1 1
@@ -241,11 +250,19 @@ try{
             $case.exit_code=2;$case.failed_operation_processes=2;$case.converted=1;$case.failed=1;$case.no_partial_output=$true
         }
     }
-    foreach($stage in @('encode','validate','output-probe','source-probe')){
+    foreach($stage in @('encode','validate','output-probe','source-probe','source-decode')){
         Case-P105 ($stage+'-ordinary-error-is-not-retried') {param($case)
             $r=App-P105 -Name ('ordinary-'+$stage) -Stage $stage -Mode ordinary -Fixture $fixtureM4a -Expected 2 -FollowingGood $true -ErrorText 'test-only ordinary decode failure';Verify-P105 $r 1 1
             Assert-P105 ((Events-P105 $r $stage).Count-eq1) 'An ordinary native error was retried.'
             $case.exit_code=2;$case.failed_operation_processes=1;$case.converted=1;$case.failed=1
+        }
+    }
+    foreach($mode in @('missing-completion','fatal-demux')){
+        Case-P105 ('source-decode-'+$mode+'-rejects-zero-exit') {param($case)
+            $r=App-P105 -Name $mode -Stage source-decode -Mode $mode -Fixture $fixtureM4a -Expected 2 -FollowingGood $true;Verify-P105 $r 1 1
+            Assert-P105 ((Events-P105 $r 'source-decode').Count-eq1-and(Events-P105 $r encode).Count-eq0-and
+                $r.manifest.records[0].native_operations.source_decode.exit_code-eq0) 'Unverified source accepted or retried despite a zero-exit worker.'
+            $case.exit_code=2;$case.source_worker_exit_code=0;$case.converted=1;$case.failed=1
         }
     }
     foreach($message in @('Permission denied','No space left on device')){
@@ -263,7 +280,8 @@ try{
     }
     Case-P105 'actual-duration-mismatch-is-rejected-without-reencode-or-validation-retry' {param($case)
         $r=App-P105 -Name mismatch -Stage encode -Mode duration-mismatch -Fixture $fixtureM4a -Expected 2;Verify-P105 $r 0 1
-        Assert-P105 ((Events-P105 $r encode).Count-eq1-and(Events-P105 $r 'output-probe').Count-eq1-and(Events-P105 $r validate).Count-eq0) 'Duration mismatch was retried or decoded despite invalid header duration.'
+        Assert-P105 ((Events-P105 $r encode).Count-eq1-and(Events-P105 $r 'output-probe').Count-eq1-and(Events-P105 $r validate).Count-eq1-and
+            $r.manifest.records[0].native_operations.output_decode.exit_code-eq0) 'A decodable but short output must be fully decoded and rejected without retries.'
         $case.exit_code=2;$case.encode_processes=1;$case.failed=1;$case.no_partial_output=$true
     }
     Case-P105 'source-probe-timeout-is-not-retried-and-next-good-input-converts' {param($case)
